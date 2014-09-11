@@ -7,25 +7,24 @@
 
     <name>FundacioBit GenApp</name>
 
-    <modules>	
-	   <module>core</module>
+    <modules>    
+       <module>core</module>
        <module>web</module>
-	   <module>gen</module>
+       <module>gen</module>
     </modules>
-	
-	<properties>
-	
-	     <spring.version>3.1.2.RELEASE</spring.version>
-		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <properties>
+         <spring.version>3.1.2.RELEASE</spring.version>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
          <!--
         <springsecurity.version>3.1.2.RELEASE</springsecurity.version>
         <cxf.version>2.2.12</cxf.version> 
         <ibkey.version>3.3.2</ibkey.version>
         <global.version>${project.version}</global.version>
-		<miniapplet.version>1.2</miniapplet.version>
-		<hibernate.version>3.3.2.GA</hibernate.version>
-		<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
-		-->
+        <miniapplet.version>1.2</miniapplet.version>
+        <hibernate.version>3.3.2.GA</hibernate.version>
+        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        -->
     </properties>
 
     <repositories>
@@ -48,14 +47,14 @@
 
 
     <dependencies>
-
-	    <dependency>
+    
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
-			<scope>test</scope>
+            <scope>test</scope>
         </dependency>
-	
+    
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -88,23 +87,41 @@
                     </configuration>
                 </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-idea-plugin</artifactId>
-                    <configuration>
-                        <jdkName>JDK1.5</jdkName>
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                    </configuration>
-                </plugin>
-
             </plugins>
         </pluginManagement>
-		
-
-	
-		
+        
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.4</version>
+            </extension>
+        </extensions>
 
     </build>
+
+    <distributionManagement>
+        <site>
+            <id>org.fundaciobit.genapp</id>
+            <url>scp://shell.sourceforge.net/home/project-web/genapp/htdocs/maven</url>
+        </site>
+        <repository>
+            <id>org.fundaciobit.genapp</id>
+            <name>GenApp Maven Repository</name>
+            <url>scp://shell.sourceforge.net/home/project-web/genapp/htdocs/maven</url>
+        </repository>
+        
+        <!--   COM UTILITZAR: AFEGIR AQUEST CODI AL pom.xml    -->
+        <!--
+        <repositories>
+           <repository>
+             <id>org.fundaciobit.genapp</id>
+             <name>GenApp Maven Repository</name>
+             <url>http://genapp.sourceforge.net/maven/</url>
+           </repository>
+        <repositories>
+        -->
+
+    </distributionManagement>
 
 </project>
