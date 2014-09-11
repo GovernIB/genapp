@@ -4,13 +4,13 @@
 
   <groupId>${package}</groupId>
   <artifactId>${artifactid}</artifactId>  
-  <version>1.0</version>
+  <version>${app_current_version}</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>${package}</groupId>
     <artifactId>${name}-persistence</artifactId>
-    <version>1.0</version>
+    <version>${app_current_version}</version>
   </parent>
 
   <name>${persistencefullname}</name>

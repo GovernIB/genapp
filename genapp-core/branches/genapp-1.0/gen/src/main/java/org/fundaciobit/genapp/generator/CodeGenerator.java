@@ -453,7 +453,7 @@ public class CodeGenerator {
     // ====================================================================
     // ================== Copy jars to lib  ===============================
     // ====================================================================
-    
+    /*
     File libDir = new File(projectDir, "lib");
     libDir.mkdirs();
     {
@@ -485,15 +485,8 @@ public class CodeGenerator {
         log.info("GEN JAR = " + genJar);
         copyFile(genJar, new File(libDir, genJar.getName()));
       }
-
-      
-      
-      
     }
-    
-    
-
-    
+    */
     
     
     BasicPackages packages = new BasicPackages(packageName);
