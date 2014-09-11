@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+  <mbean code="org.jboss.varia.property.SystemPropertiesService" name="jboss:type=Service,name=${name}SystemProperties">
+    <attribute name="Properties">
+      # Dialecte de Hibernate
+      ${package}.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      # ${package}.hibernate.dialect=org.hibernate.dialect.MySQLDialect      
+      # ${package}.hibernate.dialect=org.hibernate.dialect.DB2Dialect
+      # ${package}.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+      # ${package}.hibernate.dialect=net.sf.hibernate.dialect.Oracle9Dialect
+      # ${package}.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+      # ${package}.hibernate.query.substitutions=true 1, false 0
+
+      <!-- Directori on es guardaran tots els fitxers de ${fullname}-->
+      ${package}.filesdirectory=c:\\tmp\\${name}files
+      <!-- Accés HTTP a l'aplicació (Important que sigui http, no https)  -->
+      ${package}.url=http://localhost:8080/${name}
+      ${package}.email.from=${name}@${name}.org
+      ${package}.defaultlanguage=ca
+      ${package}.development=false
+      <!-- Tamany màxim de pujada de fitxers en bytes. No definit significa sense límit -->
+      ${package}.maxuploadsizeinbytes=
+      <!-- Tamany màxim del fitxer PDF una vegada se li han afegit els annexes i taula de firmes. No definit significa sense límit -->
+      ${package}.maxfitxeradaptatsizeinbytes=
+      <!-- Clau per encriptar l'identificador del fitxers a descarregar (IMPORTANT tamany de 16 caràcters) -->
+      ${package}.encryptkey=1234567890123456
+      ${package}.name=${fullname}
+    </attribute>
+  </mbean>
+</server>
