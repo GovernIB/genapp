@@ -1867,7 +1867,7 @@ return sourceFiles;
       
     case WebType.Time:
       code.append("              <form:errors path=\"" + model + "." + modelCamp + "\" cssClass=\"errorField alert alert-error\" />\n");
-      code.append("              <div id=\"hora\" class=\"input-append\">\n");
+      code.append("              <div id=\"" + modelCamp + "\" class=\"input-append\">\n");
       code.append("                <form:input " + formInputReadOnly.replace("'input", "'input-small") + " path=\"" + model + "." + modelCamp + "\" />\n");
       code.append("                <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
       code.append("                <span class=\"add-on\">\n");

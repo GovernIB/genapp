@@ -31,8 +31,6 @@ import org.fundaciobit.genapp.MultipleUnique;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.Versio;
-import org.fundaciobit.genapp.common.query.Field;
-import org.fundaciobit.genapp.common.web.exportdata.IDataExporter;
 
 import sun.misc.Launcher;
 

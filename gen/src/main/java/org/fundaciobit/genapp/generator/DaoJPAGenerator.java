@@ -1343,7 +1343,11 @@ public class DaoJPAGenerator {
       manager.append("    if (transientInstance != null) {\n");
       for (FieldInfo fieldInfo : transFields) {
         String method = CodeGenUtils.get(fieldInfo);
-        manager.append("      if (transientInstance." + method + " == 0) {\n");
+        if (fieldInfo.getJavaType().isPrimitive()) {
+	        manager.append("      if (transientInstance." + method + " == 0) {\n");
+	    } else {
+	        manager.append("      if (transientInstance." + method + " == null) {\n");
+	    }
         manager.append("        if (transientInstance instanceof " + className + ") {\n");
         manager.append("          " + className + " _jpa = (" + className + ")transientInstance;\n");
         manager.append("          TraduccioJPA _trad = _jpa." + method.replace("ID()", "()")+ ";\n");
