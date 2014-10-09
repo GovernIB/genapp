@@ -105,7 +105,7 @@ public class BackWebGenerator {
 
         code.append("  <%@include file=\"" + model + "ListCommon.jsp\" %>\n");
         
-        code.append("  <div class=\"filterLine lead\" style=\"margin-bootom:10px\">\n");
+        code.append("  <div class=\"filterLine lead\" style=\"margin-bottom:10px\">\n");
         code.append("    <%@include file=\"" + model + "ListHeaderButtons.jsp\" %>\n");
         code.append("    <%-- ADD HERE NEW HEADER BUTTONS (Multiple Select or similar to add item)  --%>\n\n");
         code.append("  </div>\n");
@@ -1402,7 +1402,7 @@ return sourceFiles;
     codeTitle.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
     codeTitle.append("  \n");
     
-    codeTitle.append("<div class=\"lead\" style=\"margin-bootom:10px\">\n");
+    codeTitle.append("<div class=\"lead\" style=\"margin-bottom:10px\">\n");
 
     codeTitle.append("  <c:if test=\"${empty " + instanceForm + ".entityNameCode}\">\n");
     codeTitle.append("    <fmt:message var=\"entityname\" key=\"" + model + "." + model +"\"/>\n");
