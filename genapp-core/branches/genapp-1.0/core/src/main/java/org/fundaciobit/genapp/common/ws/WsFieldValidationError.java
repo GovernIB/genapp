@@ -16,15 +16,19 @@ import javax.xml.bind.annotation.XmlType;
 @XmlSeeAlso({WsI18NTranslation.class})
 public class WsFieldValidationError {
 
+  /** Etiqueta traduida del camp */
   @XmlElement(required = true)
   protected String label;
 
+  /** Nom del camp java */
   @XmlElement(required = true)
   protected String field;
   
+  /** Traducció completa de l'error */
   @XmlElement(required = true)
   protected String error;
 
+  /** Codi d'error i arguments */
   @XmlElement(required = true)
   protected WsI18NTranslation translation;
 
