@@ -7,6 +7,8 @@
 
   <mbean code="org.jboss.mail.MailService" name="jboss:service=${name}Mail">
     <attribute name="JNDIName">java:/${package}.mail</attribute>
+	<attribute name="User">username</attribute>
+    <attribute name="Password">password</attribute>
     <attribute name="Configuration">
       <!-- A test configuration -->
       <configuration>
