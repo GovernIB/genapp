@@ -330,7 +330,7 @@ public class SqlGenerator {
 
         String column = line.substring(0, line.indexOf(' '));
 
-        String uniqueName = checkValue(table + "_UNIQUE_(" + column + ")", shortnames);
+        String uniqueName = checkValue(table + "_" + column + "_uk", shortnames);
         allUniques.append("    alter table " + table + " add constraint " + uniqueName
             + " unique (" + column + ");\n\n");
 
