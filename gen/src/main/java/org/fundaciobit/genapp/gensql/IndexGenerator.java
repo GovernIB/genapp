@@ -25,7 +25,7 @@ import java.io.FileReader;
 public class IndexGenerator {
 
 
-  public static void main2(String[] args) {
+  public static void main(String[] args) {
     try {
       BufferedReader br = new BufferedReader(new FileReader("indices.sql"));
 
