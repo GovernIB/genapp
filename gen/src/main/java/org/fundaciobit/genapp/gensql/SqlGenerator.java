@@ -209,7 +209,7 @@ public class SqlGenerator {
         System.err.println("El nom " + key + " te una longitud superior a 30. ");
         System.err.println("Ha de definir un nom curt dins el fitxer " + SHORTNAMES_FILE);
         System.err.println(" Per exemple:");
-        System.err.println("      " + key + "=" + key.substring(0, 30));
+        System.err.println("      " + key.replaceAll(" ", "\u0020") + "=" + key.substring(0, 30));
         throw new Exception();
       }
       return key;
