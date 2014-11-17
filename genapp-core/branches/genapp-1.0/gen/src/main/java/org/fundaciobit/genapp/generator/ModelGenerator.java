@@ -782,21 +782,23 @@ public class ModelGenerator {
       beanCode.append("    " + var + ".setEncryptedFileID(__bean.getEncryptedFileID());\n");
       
     } else {
-      for (FieldInfo field : fileFields) {
-        String javaNameField = field.getJavaName();
-        if (!javaNameField.endsWith("ID")) {                          
-          throw new Exception("El camp " + field.getJavaName() + " de la taula "
-                +  tableNameJava 
-                + " fa referencia a la taula externa [FITXERS BBDD]" +
-                    " però aquest camp java no acaba amb ID");
+      if (fileFields != null) {
+        for (FieldInfo field : fileFields) {
+          String javaNameField = field.getJavaName();
+          if (!javaNameField.endsWith("ID")) {                          
+            throw new Exception("El camp " + field.getJavaName() + " de la taula "
+                  +  tableNameJava 
+                  + " fa referencia a la taula externa [FITXERS BBDD]" +
+                      " però aquest camp java no acaba amb ID");
+          }
+          javaNameField= javaNameField.substring(0, javaNameField.length() - 2);
+          beanCode.append("    // Fitxer\n");
+          String fileClass = fileTable.getNameJava() + fileSuffix;
+          beanCode.append("    " + var + "." + CodeGenUtils.set(javaNameField) + "(");
+          beanCode.append(fileClass +"." + methodName + "(");
+          beanCode.append("__bean." + CodeGenUtils.get(javaNameField) + "));\n");
+          
         }
-        javaNameField= javaNameField.substring(0, javaNameField.length() - 2);
-        beanCode.append("    // Fitxer\n");
-        String fileClass = fileTable.getNameJava() + fileSuffix;
-        beanCode.append("    " + var + "." + CodeGenUtils.set(javaNameField) + "(");
-        beanCode.append(fileClass +"." + methodName + "(");
-        beanCode.append("__bean." + CodeGenUtils.get(javaNameField) + "));\n");
-        
       }
     }
     
