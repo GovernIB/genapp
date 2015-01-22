@@ -1167,7 +1167,7 @@ public class CodeGenerator {
             shortnames.append(taules[i].name + "_PK=" + fieldInfo.getPK() + "\n"); 
           }
           if (fieldInfo.isUniqueKey()) {
-            shortnames.append(taules[i].name + "_UNIQUE_(" + fieldInfo.sqlName + ")=" + fieldInfo.getUnique()+ "\n"); 
+            shortnames.append(taules[i].name + "_" + fieldInfo.sqlName + "_uk=" + fieldInfo.getUnique()+ "\n"); 
           }
         }
       }
