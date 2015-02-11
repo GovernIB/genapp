@@ -438,7 +438,7 @@ public class SqlGenerator {
             String lobname = checkValue(table + "_" + field + "_lob", shortnames);
             
             allLOBs.append("    alter table " + table + " move lob (" + field + ")"
-                + " store as " + lobname + " (tablespace "+ projectName + "_lob);\n");
+                + " store as " + lobname + " (tablespace "+ projectName + "_lob index " + lobname + "_i);\n");
           }
         }
 
