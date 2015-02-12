@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -22,7 +23,6 @@ import java.util.jar.JarFile;
 
 import org.hibernate.cfg.Configuration;
 import org.hibernate.dialect.Dialect;
-import org.hibernate.dialect.Oracle9iDialect;
 import org.hibernate.ejb.Ejb3Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
@@ -166,7 +166,6 @@ public class SqlGenerator {
     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     URL packageURL;
     ArrayList<String> names = new ArrayList<String>();
-    ;
 
     packageName = packageName.replace(".", "/");
     packageURL = classLoader.getResource(packageName);
@@ -251,6 +250,10 @@ public class SqlGenerator {
     String caibFileName = filename.substring(0, punt) + "_caib."
         + filename.substring(punt + 1);
     
+    Map<Integer,String> tagsReplacer = new HashMap<Integer, String>();
+    int tagCounter = 0;
+    
+    
     if (dialect == null || dialect.indexOf("Oracle") == -1) {
       System.out.println("------------ No Dialect ORACLE");
       // Borram versio ORACLE-CAIB de sql 
@@ -277,6 +280,8 @@ public class SqlGenerator {
 
       }
     }
+    
+    final String postIndex = shortnames.get("__postindex_");
     
     
     final boolean generatelob;
@@ -403,7 +408,17 @@ public class SqlGenerator {
         }
 
         if (line.startsWith("create index ")) {
-          allIndexes.append(l).append("\n");
+          
+          if (postIndex == null) {
+            allIndexes.append(l).append("\n");
+          } else {
+            final int c = tagCounter++;
+            tagsReplacer.put(c, postIndex);
+            final int pos= l.lastIndexOf(';');
+            allIndexes.append(l.substring(0, pos));
+            allIndexes.append(getFormat(c));
+            allIndexes.append(l.substring(pos)).append("\n");
+          }          
           br.readLine(); // Retorn de carro
           continue;
         }
@@ -411,7 +426,21 @@ public class SqlGenerator {
         // Final taula
         if (line.startsWith(");")) {
 
-          out.append(l).append("\n");
+          String postStr = shortnames.get("__post_" + table);
+          // hem d'afegir alguna cosa al final de la taula (p.e. Partitions) ?
+          if (postStr == null) {
+            out.append(l);
+          } else {
+
+            final int c = tagCounter++;
+            tagsReplacer.put(c, postStr);
+            
+            out.append(l.replace(";", ""));
+            out.append(getFormat(c));            
+            out.append(";");
+          }
+          
+          out.append("\n");
 
           table = null;
           // shortName = null;
@@ -475,7 +504,14 @@ public class SqlGenerator {
       {
         FileOutputStream fos = new FileOutputStream(filename);
 
-        fos.write(out.toString().replace(",\n    );", "\n    );").getBytes());
+        String toWrite = out.toString().replace(",\n    );", "\n    );");
+        
+        for(int c : tagsReplacer.keySet()) {
+          toWrite = toWrite.replace(getFormat(c), "");
+        }
+        
+
+        fos.write(toWrite.getBytes());
         fos.flush();
         fos.close();
       }
@@ -493,7 +529,14 @@ public class SqlGenerator {
       { 
         FileOutputStream fos = new FileOutputStream(caibFileName);
 
-        fos.write(out.toString().replace(",\n    );", "\n    );").getBytes());
+        String toWrite = out.toString().replace(",\n    );", "\n    );");
+        
+        for(int c : tagsReplacer.keySet()) {
+          toWrite = toWrite.replace(getFormat(c), tagsReplacer.get(c));
+        }
+        
+
+        fos.write(toWrite.getBytes());
         fos.flush();
         fos.close();
       }
@@ -505,6 +548,10 @@ public class SqlGenerator {
 
     }
 
+  }
+
+  public static String getFormat(final int c) {
+    return "__%%" + String.format("%06d", c) + "%%__";
   }
 
 }
