@@ -18,7 +18,6 @@ import javax.validation.constraints.Null;
 import org.fundaciobit.genapp.common.ws.WsI18NException;
 import org.fundaciobit.genapp.common.ws.WsValidationException;
 
-import ${package}.utils.CompileConstants;
 import ${package}.utils.Constants;
 import ${package}.ws.utils.AuthenticatedBaseWsImpl;
 
@@ -37,7 +36,7 @@ import ${package}.ws.utils.AuthenticatedBaseWsImpl;
 @WebService(name = ${fullname}HelloWorldWithSecurityWsImpl.NAME_WS, portName = ${fullname}HelloWorldWithSecurityWsImpl.NAME_WS, serviceName = ${fullname}HelloWorldWithSecurityWsImpl.NAME_WS
     + "Service")
 @WebContext(contextRoot = "/${name}/ws", urlPattern = "/v1/"
-    + ${fullname}HelloWorldWithSecurityWsImpl.NAME, transportGuarantee = TransportGuarantee.NONE, secureWSDLAccess = false, authMethod = CompileConstants.AUTH_METHOD)
+    + ${fullname}HelloWorldWithSecurityWsImpl.NAME, transportGuarantee = TransportGuarantee.NONE, secureWSDLAccess = false, authMethod = "WSBASIC")
 public class ${fullname}HelloWorldWithSecurityWsImpl extends AuthenticatedBaseWsImpl {
 
   public static final String NAME = "${fullname}HelloWorldWithSecurity";
