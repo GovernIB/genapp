@@ -101,10 +101,6 @@
     </build>
 
     <distributionManagement>
-        <site>
-            <id>org.fundaciobit.genapp</id>
-            <url>scp://shell.sourceforge.net/home/project-web/genapp/htdocs/maven</url>
-        </site>
         <repository>
             <id>org.fundaciobit.genapp</id>
             <name>GenApp Maven Repository</name>
