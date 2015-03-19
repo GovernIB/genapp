@@ -233,7 +233,7 @@ public class SqlGenerator {
         System.err.println("La clau " + key + " te una longitud superior a 30.");
         System.err.println("Ha de definir un nom curt dins el fitxer " + SHORTNAMES_FILE);
         System.err.println(" Per exemple:");
-        System.err.println("      " + key.replaceAll(" ", "\u0020") + "="
+        System.err.println("      " + key.replace(" ", "\\u0020") + "="
             + key.substring(0, 30));
         throw new Exception();
       }
@@ -425,6 +425,13 @@ public class SqlGenerator {
 
         // Final taula
         if (line.startsWith(");")) {
+          
+          if (out.toString().endsWith(",\n")) {
+            // Hem de llevar la coma
+            out.setLength(out.length() - 2);
+            out.append('\n');
+          }
+          
 
           String postStr = shortnames.get("__post_" + table);
           // hem d'afegir alguna cosa al final de la taula (p.e. Partitions) ?
@@ -470,7 +477,7 @@ public class SqlGenerator {
                 + " store as " + lobname + " (tablespace "+ projectName + "_lob index " + lobname + "_i);\n");
           }
         }
-
+       
         // Afegir la linia original
         out.append(l).append("\n");
       }
@@ -504,7 +511,7 @@ public class SqlGenerator {
       {
         FileOutputStream fos = new FileOutputStream(filename);
 
-        String toWrite = out.toString().replace(",\n    );", "\n    );");
+        String toWrite = out.toString(); //.replace(",\n    );", "\n    );");
         
         for(int c : tagsReplacer.keySet()) {
           toWrite = toWrite.replace(getFormat(c), "");
