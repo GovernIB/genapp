@@ -1730,8 +1730,34 @@ return sourceFiles;
         newInputSize = getCssInputTypeBySize(field.getSize());
       }
       
+      //final String condiURL = readOnlyCondition + " && not empty " + instanceForm + "." + model + "." + modelCamp;
+      //final String onClick = "window.open('${" + instanceForm + "." + model + "." + modelCamp + "}', '_blank')";
+      if (webType == WebType.URL) {
+        code.append("           <c:if test=\"${" + readOnlyCondition + "}\">\n\n");
+        code.append("             <c:if test=\"${ not empty " + instanceForm + "." + model + "." + modelCamp + "}\">\n");
+        code.append("               <a href=\"${" + instanceForm + "." + model + "." + modelCamp + "}\" target=\"_blank\">"
+            + "${" + instanceForm + "." + model + "." + modelCamp + "}</a>\n\n");
+        code.append("             </c:if>\n");
+        code.append("           </c:if>\n\n");
+        code.append("           <c:if test=\"${not (" + readOnlyCondition + ")}\">\n\n");
+      }
+      
       code.append("            <form:errors path=\"" + model + "." + modelCamp + "\" cssClass=\"errorField alert alert-error\" />\n");
-      code.append("            <form:input " + formInputReadOnly.replace("'input", "'" + newInputSize) + " " + maxlength + " path=\"" + model + "." + modelCamp + "\" />\n");
+      //code.append("            <div class=\"input-append\">\n"); 
+      code.append("            <form:input " + formInputReadOnly.replace("'input", "'" + newInputSize) + " " + maxlength 
+          + " path=\"" + model + "." + modelCamp + "\" "
+             // + ((webType == WebType.URL)?" onClick=\"${__onClick}\" ": "")
+              + "  />\n\n");
+      
+      if (webType == WebType.URL) {
+        code.append("           </c:if>\n\n");
+      //code.append("            <c:if test=\"${" + condiURL + "}\">\n");
+      //code.append("            <button class=\"btn\" onClick=\"${__onClick}; return false;\"><i class=\"icon-download-alt\"></i></button>\n");
+      //code.append("            </c:if>\n"); 
+      }
+      //code.append("            </div>\n");
+      
+      
       return code.toString();
 
     case WebType.ComboBox:
