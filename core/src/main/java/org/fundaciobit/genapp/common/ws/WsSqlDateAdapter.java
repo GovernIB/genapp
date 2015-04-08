@@ -1,5 +1,8 @@
 package org.fundaciobit.genapp.common.ws;
 
+import java.util.Calendar;
+
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.adapters.*;
 /**
  * 
@@ -22,6 +25,22 @@ public class WsSqlDateAdapter extends XmlAdapter<java.util.Date, java.sql.Date> 
             return null;
         }
         return new java.sql.Date(utilDate.getTime());
+    }
+    
+    public static java.sql.Date parseDate(String s) {
+      if (s == null) {
+        return null;
+      }
+      return new java.sql.Date(DatatypeConverter.parseDate(s).getTimeInMillis());
+    }
+    
+    public static String printDate(java.sql.Date dt) {
+      if (dt == null) {
+        return null;
+      }
+      Calendar c = Calendar.getInstance();
+      c.setTime(dt);
+      return DatatypeConverter.printDate(c);
     }
 
 }
