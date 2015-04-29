@@ -1225,7 +1225,7 @@ public class BackGenerator {
       codeRefList.append("  public List<StringKeyValue> getReferenceList(Field<?> keyField, Where where, OrderBy ... orderBy) throws I18NException {\n");
       // TODO ReferencedFieldSelect a GenAPP
       
-      boolean isTaulaTraduccio = table.getName().equals(transTable.getName());
+      boolean isTaulaTraduccio = (transTable == null)? false : table.getName().equals(transTable.getName());
       
       if (!isTaulaTraduccio) {
       

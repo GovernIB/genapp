@@ -330,28 +330,30 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         // @todo delete default values 
         // ========================================
         
-        // ============= ORACLE ==============
-        
-        pack.setText("org.fundaciobit.jac");
-        projectName.setText("JAC");
-        url.setText("jdbc:oracle:thin:@oracle.ibit.org:1521:LIBRA");
-        driver.setText("oracle.jdbc.driver.OracleDriver");
-        usr.setText("username");
-        pwd.setText("password");
-        prefix.setText("JAC");
+        // ============= COMU ==============
         modulSeguretat.setText("seycon");
         idiomes.setText("ca,es");
         generateBack.setSelected(true);
         generateWs.setSelected(true);
+        usr.setText("username");
+        pwd.setText("password");
         
+        
+        // ============= ORACLE ==============
+        /*
+        pack.setText("org.fundaciobit.jac");
+        projectName.setText("JAC");
+        url.setText("jdbc:oracle:thin:@oracle.ibit.org:1521:LIBRA");
+        driver.setText("oracle.jdbc.driver.OracleDriver");
+        prefix.setText("JAC");
+        */
 
         /*
         pack.setText("org.fundaciobit.expedientweb");
         projectName.setText("DimedWeb");
         url.setText("jdbc:oracle:thin:@192.168.35.100:1521:XE");
         driver.setText("oracle.jdbc.driver.OracleDriver");
-        usr.setText("username");
-        pwd.setText("password");
+
         */
         
         
@@ -365,7 +367,6 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         usr.setText("username");
         pwd.setText("password");
         prefix.setText("PFI");
-        modulSeguretat.setText("seycon");
         */
         
         
@@ -389,15 +390,13 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         */
 
         // ============= POSTGRESQL ==============
-        /*
+        
         pack.setText("org.fundaciobit.rolsac.db");
         projectName.setText("Rolsac");
         url.setText("jdbc:postgresql://192.168.35.222:5432/rolsac");
         driver.setText("org.postgresql.Driver");
         usr.setText("username");
         pwd.setText("password");
-        */
-
 
         
         // ========================================
