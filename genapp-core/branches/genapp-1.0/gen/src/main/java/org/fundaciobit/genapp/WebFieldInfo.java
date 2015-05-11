@@ -157,13 +157,13 @@ public class WebFieldInfo implements Serializable {
         if (exported != null) {
           return new WebFieldInfo[] {              
               new WebFieldInfo(WebType.PrimaryKey,  new String[]{ "nom"}),
-              new WebFieldInfo(WebType.UserID), new WebFieldInfo(WebType.RoleID),              
+              //,new WebFieldInfo(WebType.UserID), new WebFieldInfo(WebType.RoleID),              
               new WebFieldInfo(WebType.Query, exported)
             };
         } else {
           return new WebFieldInfo[] {
-            new WebFieldInfo(WebType.PrimaryKey,  new String[]{ "nom"}),
-            new WebFieldInfo(WebType.UserID), new WebFieldInfo(WebType.RoleID)
+            new WebFieldInfo(WebType.PrimaryKey,  new String[]{ "nom"})
+            //,new WebFieldInfo(WebType.UserID), new WebFieldInfo(WebType.RoleID)
           };
         }
       }
@@ -194,13 +194,15 @@ public class WebFieldInfo implements Serializable {
     
     if (fi.isPrimaryKey()) {
       if (fi.getJavaType().equals(String.class)) {
-        return new WebFieldInfo[] { new WebFieldInfo(WebType.PrimaryKey),
-            new WebFieldInfo(WebType.UserID) };
+        return new WebFieldInfo[] { new WebFieldInfo(WebType.PrimaryKey)
+            //, new WebFieldInfo(WebType.UserID)
+        };
       }
       if (javaType.equals(Integer.class) || javaType.equals(Integer.TYPE)) {
         return new WebFieldInfo[] {
-            new WebFieldInfo(WebType.PrimaryKey),
-            new WebFieldInfo(WebType.RoleID) };
+            new WebFieldInfo(WebType.PrimaryKey)
+            //, new WebFieldInfo(WebType.RoleID) 
+          };
       }
       return new WebFieldInfo[] { new WebFieldInfo(WebType.PrimaryKey) };
     }
@@ -211,7 +213,7 @@ public class WebFieldInfo implements Serializable {
           || javaType.equals(Long.TYPE) || javaType.equals(Byte.TYPE)) { 
          return new WebFieldInfo[] { new WebFieldInfo(WebType.Integer),
              new WebFieldInfo(WebType.Text),
-             new WebFieldInfo(WebType.RoleID),
+             //new WebFieldInfo(WebType.RoleID),
              new WebFieldInfo(WebType.ComboBox)
          };
       }
@@ -233,7 +235,7 @@ public class WebFieldInfo implements Serializable {
         || javaType.equals(BigInteger.class)) { 
        return new WebFieldInfo[] { new WebFieldInfo(WebType.Integer),
            new WebFieldInfo(WebType.Text),
-           new WebFieldInfo(WebType.RoleID),
+           //new WebFieldInfo(WebType.RoleID),
            new WebFieldInfo(WebType.ComboBox)
        };
     }
@@ -255,7 +257,7 @@ public class WebFieldInfo implements Serializable {
                  new WebFieldInfo(WebType.Text),
                  webFile,
                  new WebFieldInfo(WebType.URL),
-                 new WebFieldInfo(WebType.UserID),
+                 //new WebFieldInfo(WebType.UserID),
                  new WebFieldInfo(WebType.ComboBox)};
     }
     
@@ -269,7 +271,7 @@ public class WebFieldInfo implements Serializable {
         new WebFieldInfo(WebType.RichText),        
         webFile,
         new WebFieldInfo(WebType.URL),
-        new WebFieldInfo(WebType.UserID),
+        //new WebFieldInfo(WebType.UserID),
         new WebFieldInfo(WebType.ComboBox)};
   }
 

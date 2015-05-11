@@ -27,7 +27,7 @@ import org.fundaciobit.genapp.TraduibleInfo;
  */
 public class TableModelTranslator extends AbstractTableModel {
   
-  protected final Logger log = Logger.getLogger(getClass());
+  protected final Logger log = Logger.getLogger(getClass().getSimpleName());
 
   protected final String[] idiomes;
 

@@ -26,8 +26,10 @@ public class IndexGenerator {
 
 
   public static void main(String[] args) {
+    BufferedReader br = null;
     try {
-      BufferedReader br = new BufferedReader(new FileReader("indices.sql"));
+
+      br = new BufferedReader(new FileReader("indices.sql"));
 
       String lastTable = null;
       String lastIndex = null;
@@ -75,9 +77,9 @@ public class IndexGenerator {
               // ON DIR_OFICINA(CODPROVINCIA, CODENTGEOGRAFICA, CODLOCALIDAD);
               int i = line.lastIndexOf('(');
               int i2 = line.lastIndexOf(')');
-              int i3 = line.indexOf(' ');
+              //int i3 = line.indexOf(' ');
 
-              String table = line.substring(i3 + 1, i - 1).trim();
+              //String table = line.substring(i3 + 1, i - 1).trim();
               String[] columns = line.substring(i + 1, i2).split(",");
 
               if (indexes.length() != 0) {
@@ -101,6 +103,7 @@ public class IndexGenerator {
 
             } else {
               System.err.println(" LINIA no entesa = ]" + line + "[");
+              br.close();
               throw new Exception();
             }
           }
@@ -114,9 +117,20 @@ public class IndexGenerator {
       System.out.println(indexes.toString());
       System.out.println("})");
       System.out.println();
+      
+      
 
     } catch (Exception e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (br != null) { 
+          br.close();
+        }
+      } catch (Exception e2) {
+        // TODO: handle exception
+      }
+      
     }
 
   }

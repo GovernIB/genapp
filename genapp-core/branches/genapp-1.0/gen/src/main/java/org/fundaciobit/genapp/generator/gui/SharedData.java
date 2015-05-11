@@ -18,7 +18,7 @@ public class SharedData  {
   
   public enum ProjectType { NEW, UPDATE, OPEN, GENERATE };
 
-  private static final long serialVersionUID = -6992336889553331811L;
+  //private static final long serialVersionUID = -6992336889553331811L;
   
   public static ProjectType project;
 

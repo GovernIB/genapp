@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class Panel_1_SelectDB extends Paneable implements ItemListener {
   
-  private final Logger log = Logger.getLogger(getClass());
+  private final Logger log = Logger.getLogger(getClass().getSimpleName());
 
   /**
    * 
@@ -429,6 +429,8 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         JOptionPane.showMessageDialog(this,
             "CASE IS NOT POSSIBLE: Showing SelectDB panel when projecttype is OPEN ");
         return false;
+        
+      case GENERATE:
     }
 
     return (true);
@@ -620,6 +622,8 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         SharedData.data.tables = mergedTables;
 
       break;
+      
+      default:
 
     }
     return true;

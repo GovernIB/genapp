@@ -18,7 +18,7 @@ import org.fundaciobit.genapp.common.db.DataBaseInfo;
  */
 public class Project implements Serializable {
   
-  private static final Logger log = Logger.getLogger(Project.class);
+  private static final Logger log = Logger.getLogger(Project.class.getSimpleName());
 
   /**
    * 
