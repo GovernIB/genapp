@@ -384,7 +384,9 @@ public class WebGenerator {
           tableContent.append("    };\n");
         }
           break;
-        case WebType.UserID: {
+        case WebType.UserID:
+        /*
+        {
           tableContent.append("    if (__orderField == " + tableJavaName + "Fields."
               + fields[i].javaName.toUpperCase() + ".fieldID) {\n");
           tableContent
@@ -395,8 +397,8 @@ public class WebGenerator {
           tableContent.append("    };\n");
         }
           break;
-
-        case WebType.RoleID: {
+         */
+        case WebType.RoleID: /* {
           tableContent.append("    if (__orderField == " + tableJavaName + "Fields."
               + fields[i].javaName.toUpperCase() + ".fieldID) {\n");
           tableContent
@@ -407,6 +409,8 @@ public class WebGenerator {
           tableContent.append("    };\n");
         }
           break;
+          */
+          throw new Exception("Aquest tipus web no està suportat !!! ");
 
         }
       }
@@ -941,10 +945,15 @@ public class WebGenerator {
    * @param mode
    * @return
    */
-  public static String genJavascript(FieldInfo field, ModeWeb mode) {
+  public static String genJavascript(FieldInfo field, ModeWeb mode) throws Exception {
     int webType = field.webFieldInfo.webtype;
     String otherChecks = "";
     switch (webType) {
+    
+    case WebType.RoleID:
+    case WebType.UserID:
+      throw new Exception("Aquest tipus web no està suportat !!! " + field.getJavaName() );
+      
 
     case WebType.PrimaryKey:
       if (field.isAutoIncrement && mode == ModeWeb.NEW) {
@@ -953,8 +962,7 @@ public class WebGenerator {
         return generateIsEmptyJavascript(field.javaName);
       }
 
-    case WebType.RoleID:
-    case WebType.UserID:
+
     case WebType.Query:
       if (field.isNotNullable) {
         String item = "document." + HtmlPageGenerator.FORM_NAME + "."
@@ -1164,6 +1172,9 @@ public class WebGenerator {
     }
 
     case WebType.RoleID:
+      throw new Exception("Aquest tipus web no està suportat !!! " + field.getJavaName());
+      /*
+      /*
       switch (mode) {
       case LIST:
         return "<% if (bean." + CodeGenUtils.get(field)
@@ -1199,8 +1210,12 @@ public class WebGenerator {
             + "<% } %>\n" + "<% } %>\n" + "</select>\n";
         return txt;
       }
+      */
 
+      
     case WebType.UserID:
+      throw new Exception("Aquest tipus web no està suportat !!! " + field.getJavaName());
+      /*
       switch (mode) {
       case LIST:
         return "<% if (bean." + CodeGenUtils.get(field)
@@ -1236,6 +1251,7 @@ public class WebGenerator {
             + "<% } %>\n" + "<% } %>\n" + "</select>\n";
         return txt;
       }
+      */
 
     case WebType.File: {
       String txt = "";

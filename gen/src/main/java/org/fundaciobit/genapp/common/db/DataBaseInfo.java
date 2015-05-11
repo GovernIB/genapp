@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  */
 public class DataBaseInfo implements Serializable {
 
-  private static final Logger log = Logger.getLogger(DataBaseInfo.class);
+  private static final Logger log = Logger.getLogger(DataBaseInfo.class.getSimpleName());
   /**
    * 
    */

@@ -24,7 +24,7 @@ import org.fundaciobit.genapp.generator.CodeGenUtils;
  */
 public class DataBaseUtils {
   
-  private static final Logger log = Logger.getLogger(DataBaseUtils.class);
+  private static final Logger log = Logger.getLogger(DataBaseUtils.class.getSimpleName());
   
   
   public static <T> void orderList(java.sql.Connection con, T[] list,

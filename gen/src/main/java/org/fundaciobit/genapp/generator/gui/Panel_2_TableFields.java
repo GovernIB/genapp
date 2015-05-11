@@ -30,7 +30,7 @@ import org.fundaciobit.genapp.generator.gui.TableModelColumnList.ColumnConfig;
  */
 public class Panel_2_TableFields extends Paneable {
 
-  private final Logger log = Logger.getLogger(getClass());
+  private final Logger log = Logger.getLogger(getClass().getSimpleName());
   
   /**
    * 
@@ -491,7 +491,7 @@ public class Panel_2_TableFields extends Paneable {
 
   public class MyComboBoxRenderer implements TableCellRenderer {
 
-    private static final long serialVersionUID = -2782386544682856105L;
+    //private static final long serialVersionUID = -2782386544682856105L;
 
     public MyComboBoxRenderer() {
       super();

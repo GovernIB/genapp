@@ -51,7 +51,7 @@ import freemarker.template.TemplateException;
 public class CodeGenerator {
   
   
-  private static final Logger log = Logger.getLogger(CodeGenerator.class);
+  private static final Logger log = Logger.getLogger(CodeGenerator.class.getSimpleName());
 
   /*
   public static void main(String[] args) {

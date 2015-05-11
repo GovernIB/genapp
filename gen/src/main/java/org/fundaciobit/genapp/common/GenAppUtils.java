@@ -44,7 +44,7 @@ import org.fundaciobit.genapp.generator.CodeGenUtils;
  */
 public class GenAppUtils {
   
-  private static final Logger log = Logger.getLogger(GenAppUtils.class);
+  private static final Logger log = Logger.getLogger(GenAppUtils.class.getSimpleName());
 
   /**
    * 

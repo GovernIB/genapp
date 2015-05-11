@@ -425,6 +425,8 @@ public class TableModelColumnList extends AbstractTableModel {
           this.fireTableCellUpdated(row, ColumnConfig.WEBQUERY.index);
         }
       }
+      
+      default:
     }
 
   }

@@ -18,7 +18,7 @@ import java.awt.event.*;
 
 public class Panel_4_CodeGenerator extends Paneable {
   
-  private final Logger log = Logger.getLogger(getClass());
+  private final Logger log = Logger.getLogger(getClass().getSimpleName());
   
 	/**
    * 

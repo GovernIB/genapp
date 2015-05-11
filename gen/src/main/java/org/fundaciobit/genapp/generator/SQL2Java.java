@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
  */
 public class SQL2Java {
   
-  private static final Logger log = Logger.getLogger(SQL2Java.class);
+  private static final Logger log = Logger.getLogger(SQL2Java.class.getSimpleName());
 
   protected static Hashtable<Integer, String> sql2java = new Hashtable<Integer, String>();
   protected static Hashtable<Integer, String> sqltype2sqltypename

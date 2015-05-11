@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -14,6 +15,8 @@ import java.util.Properties;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.Project;
@@ -33,7 +36,7 @@ import org.fundaciobit.genapp.generator.gui.SharedData.ProjectType;
 
 public class RebApp extends JFrame {
   
-  private static final Logger log = Logger.getLogger(RebApp.class);
+  private static final Logger log = Logger.getLogger(RebApp.class.getSimpleName());
 
   /**
    * 
@@ -271,14 +274,20 @@ public class RebApp extends JFrame {
   public static void main(String[] args) {
 
     try {
-      final Object[] options = { "Nou Projecte", "Actualitzar Projecte", "Obrir Projecte" , "Generar Projecte" };
-      int n = JOptionPane.showOptionDialog(null, "Seleccioni un opció ", "GenApp 2014",
+      final Object[] options = { 
+          "Nou Projecte", "Actualitzar Projecte", 
+          "Obrir Projecte" , "Generar Projecte", "Generar taules base" };
+      int n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", "GenApp 2015",
           JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
           options, options[0]);
 
       log.info(" NUMERO -> " + n);
 
       switch (n) {
+        case -1:
+           System.exit(0);
+          break;
+      
         // ================= NEW PROJECT
         case 0: {
           SharedData.project = ProjectType.NEW;
@@ -369,14 +378,82 @@ public class RebApp extends JFrame {
           break;
         }
 
+        // generate taules base
+        case 4: 
+        {
+         
+          final String nomCamp = "Prefix";
+          final Integer expectedSize = 3;
+          String prefix = readField(nomCamp, "pfx", expectedSize);
+          
+          
+          final String nomCamp2 = "Nom";
+          final Integer expectedSize2 = null;
+          String nomApp = readField(nomCamp2, "nomapp", expectedSize2);
+          
+
+          ClassLoader classLoader = RebApp.class.getClassLoader();
+          InputStream is = classLoader.getResourceAsStream("genapp_required_tables.sql");
+          
+          String content = IOUtils.toString(is);
+          
+          
+          content = content.replace("PFX", prefix);
+          
+          content = content.replace("APPNAME", nomApp);
+
+          
+          File f = new File(prefix + "_" + nomApp + "_SCHEMA_BASE.sql");
+          
+          FileUtils.write(f, content);
+          
+
+          JOptionPane.showMessageDialog(null,
+              "Fitxer SQL Base creat a: " + f.getAbsolutePath(),
+              "Info", JOptionPane.INFORMATION_MESSAGE);
+          
+          System.exit(0);
+          
+        }
+        
         default:
       }
 
-    } catch (FileNotFoundException e) {
+    } catch (Exception e) {
       // TODO Mostrar en un dialeg
       e.printStackTrace();
     }
 
+  }
+
+  public static String readField(String nomCamp, String sample, Integer expectedSize) {
+    String prefix;
+    do {
+      prefix = (String)JOptionPane.showInputDialog(
+          null, nomCamp + " de l'aplicació:\n", nomCamp + " de l'aplicació",
+          JOptionPane.PLAIN_MESSAGE, null, null, sample);
+      
+      if (prefix == null) {
+        System.exit(0);
+      }
+      if ( (expectedSize == null && prefix.trim().length() == 0) 
+          || (expectedSize != null && prefix.trim().length() != expectedSize)) {
+        
+        String msg;
+        if (expectedSize == null) {
+          msg = "El " + nomCamp + " no ha d'estar buit";
+        } else {
+          msg = "El " + nomCamp + " ha d'estar format per una cadema de tamany " + expectedSize;
+        }
+        JOptionPane.showMessageDialog(null,
+            msg,
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+      } else {
+        return prefix.toLowerCase();
+      }
+        
+    } while(true);
   }
 
   /**

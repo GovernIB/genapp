@@ -30,7 +30,7 @@ import org.fundaciobit.genapp.generator.SQL2Java;
 
 public final class DatabaseManager {
   
-  private static final Logger log = Logger.getLogger(DatabaseManager.class);
+  private static final Logger log = Logger.getLogger(DatabaseManager.class.getSimpleName());
 
   
 // 1 TABLE_CAT String => table catalog (may be null) 
