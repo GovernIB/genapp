@@ -1,0 +1,1797 @@
+2015-05-05 14:02:45,075 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  NUMERO -> -1
+2015-05-05 15:13:23,493 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  NUMERO -> 4
+2015-05-05 15:14:25,758 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  NUMERO -> 4
+2015-05-05 15:23:34,350 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  NUMERO -> -1
+2015-05-06 13:45:32,560 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  NUMERO -> 4
+2015-05-06 15:15:36,975 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  NUMERO -> 0
+2015-05-06 15:15:37,011 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (org.fundaciobit.genapp.generator.gui.RebApp.main())  ================ PASSA PER INITPANEL() de SELECTDB;
+2015-05-06 15:15:37,027 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main())  CARD NAME: SelectDB
+2015-05-06 15:15:37,027 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (org.fundaciobit.genapp.generator.gui.RebApp.main()) INIT BUTTON STATUS: false
+2015-05-06 15:22:50,258 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0) Passa per next SELECT DB
+2015-05-06 15:22:50,384 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) List of schemas: 
+2015-05-06 15:22:50,384 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) SHEMA = information_schema
+2015-05-06 15:22:50,384 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) SHEMA = pg_catalog
+2015-05-06 15:22:50,385 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) SHEMA = pg_toast_temp_1
+2015-05-06 15:22:50,385 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) SHEMA = public
+2015-05-06 15:24:39,488 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) FINAL SCHEMA SELECCIONAT = public
+2015-05-06 15:24:39,511 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [alumneid] = pad_alumne_pk
+2015-05-06 15:24:39,555 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_alumneid_fkey] >>>> ExportedKeys FOREIGN KEY[alumneid] -> dem_assignaturaalumne[alumneid]
+2015-05-06 15:24:39,567 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_fotoid_fkey] <<<< ImportedKeys FOREIGN KEY[fotoid] -> dem_fitxer[fitxerid]
+2015-05-06 15:24:39,567 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_idiomaid_fkey] <<<< ImportedKeys FOREIGN KEY[idiomaid] -> dem_idioma[idiomaid]
+2015-05-06 15:24:39,567 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_titolacademic_fkey] <<<< ImportedKeys FOREIGN KEY[titolacademic] -> dem_traduccio[traduccioid]
+2015-05-06 15:24:39,574 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = pad_alumne_pk => alumneid
+2015-05-06 15:24:39,588 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,588 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- alumneid
+2015-05-06 15:24:39,590 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- nom
+2015-05-06 15:24:39,591 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- idiomaid
+2015-05-06 15:24:39,591 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- actiu
+2015-05-06 15:24:39,592 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 4.- datanaixement
+2015-05-06 15:24:39,592 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 5.- despertador
+2015-05-06 15:24:39,592 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 6.- darreracces
+2015-05-06 15:24:39,592 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 7.- fotoid
+2015-05-06 15:24:39,593 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 8.- titolacademic
+2015-05-06 15:24:39,593 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:24:39,596 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [assignaturaid] = dem_assignatura_pk
+2015-05-06 15:24:39,610 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_assignaturaid_fkey] >>>> ExportedKeys FOREIGN KEY[assignaturaid] -> dem_assignaturaalumne[assignaturaid]
+2015-05-06 15:24:39,624 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_assignatura_pk => assignaturaid
+2015-05-06 15:24:39,628 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,628 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- assignaturaid
+2015-05-06 15:24:39,629 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- nom
+2015-05-06 15:24:39,629 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- credits
+2015-05-06 15:24:39,629 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- diasetmana
+2015-05-06 15:24:39,630 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 4.- hora
+2015-05-06 15:24:39,630 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:24:39,632 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [id] = dem_assignaturaalumne_pk
+2015-05-06 15:24:39,655 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_alumneid_fkey] <<<< ImportedKeys FOREIGN KEY[alumneid] -> dem_alumne[alumneid]
+2015-05-06 15:24:39,655 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_assignaturaid_fkey] <<<< ImportedKeys FOREIGN KEY[assignaturaid] -> dem_assignatura[assignaturaid]
+2015-05-06 15:24:39,658 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_assignaturaalumne_pk => id
+2015-05-06 15:24:39,662 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,662 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- id
+2015-05-06 15:24:39,662 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- alumneid
+2015-05-06 15:24:39,662 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- assignaturaid
+2015-05-06 15:24:39,663 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- nota
+2015-05-06 15:24:39,663 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:24:39,665 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [fitxerid] = dem_fitxer_pk
+2015-05-06 15:24:39,679 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_fotoid_fkey] >>>> ExportedKeys FOREIGN KEY[fitxerid] -> dem_alumne[fotoid]
+2015-05-06 15:24:39,691 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_fitxer_pk => fitxerid
+2015-05-06 15:24:39,694 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_fitxer_pk_i => fitxerid
+2015-05-06 15:24:39,696 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,696 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- fitxerid
+2015-05-06 15:24:39,697 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- descripcio
+2015-05-06 15:24:39,697 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- mime
+2015-05-06 15:24:39,697 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- nom
+2015-05-06 15:24:39,697 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 4.- tamany
+2015-05-06 15:24:39,697 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:24:39,699 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [idiomaid] = dem_idioma_pk
+2015-05-06 15:24:39,713 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_idiomaid_fkey] >>>> ExportedKeys FOREIGN KEY[idiomaid] -> dem_alumne[idiomaid]
+2015-05-06 15:24:39,726 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_idioma_pk => idiomaid
+2015-05-06 15:24:39,729 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_idioma_pk_i => idiomaid
+2015-05-06 15:24:39,731 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,731 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- idiomaid
+2015-05-06 15:24:39,731 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- nom
+2015-05-06 15:24:39,732 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- suportat
+2015-05-06 15:24:39,732 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- ordre
+2015-05-06 15:24:39,732 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:24:39,734 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [traduccioid] = dem_traduccio_pk
+2015-05-06 15:24:39,746 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_titolacademic_fkey] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_alumne[titolacademic]
+2015-05-06 15:24:39,747 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_traducmap_traduccio_fk] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_traducciomap[traducciomapid]
+2015-05-06 15:24:39,759 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_traduccio_pk => traduccioid
+2015-05-06 15:24:39,761 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_traduccio_pk_i => traduccioid
+2015-05-06 15:24:39,763 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,764 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- traduccioid
+2015-05-06 15:24:39,764 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:24:39,765 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [traducciomapid] = dem_traducmap_pk
+2015-05-06 15:24:39,766 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [idiomaid] = dem_traducmap_pk
+2015-05-06 15:24:39,789 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_traducmap_traduccio_fk] <<<< ImportedKeys FOREIGN KEY[traducciomapid] -> dem_traduccio[traduccioid]
+2015-05-06 15:24:39,791 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_traducmap_pk => traducciomapid
+2015-05-06 15:24:39,792 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_traducmap_pk => idiomaid
+2015-05-06 15:24:39,794 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_traducciomap_idiomaid_fk_i => idiomaid
+2015-05-06 15:24:39,794 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_traducciomap_pk_i => traducciomapid
+2015-05-06 15:24:39,797 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:24:39,797 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- traducciomapid
+2015-05-06 15:24:39,798 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- idiomaid
+2015-05-06 15:24:39,798 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- valor
+2015-05-06 15:24:39,798 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:27,829 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_alumne]
+2015-05-06 15:25:27,832 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [alumneid] = pad_alumne_pk
+2015-05-06 15:25:27,845 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_alumneid_fkey] >>>> ExportedKeys FOREIGN KEY[alumneid] -> dem_assignaturaalumne[alumneid]
+2015-05-06 15:25:27,856 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_fotoid_fkey] <<<< ImportedKeys FOREIGN KEY[fotoid] -> dem_fitxer[fitxerid]
+2015-05-06 15:25:27,856 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_idiomaid_fkey] <<<< ImportedKeys FOREIGN KEY[idiomaid] -> dem_idioma[idiomaid]
+2015-05-06 15:25:27,856 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_titolacademic_fkey] <<<< ImportedKeys FOREIGN KEY[titolacademic] -> dem_traduccio[traduccioid]
+2015-05-06 15:25:27,859 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = pad_alumne_pk => alumneid
+2015-05-06 15:25:27,865 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:27,866 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- alumneid
+2015-05-06 15:25:27,866 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- nom
+2015-05-06 15:25:27,866 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- idiomaid
+2015-05-06 15:25:27,867 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- actiu
+2015-05-06 15:25:27,867 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 4.- datanaixement
+2015-05-06 15:25:27,867 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 5.- despertador
+2015-05-06 15:25:27,867 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 6.- darreracces
+2015-05-06 15:25:27,868 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 7.- fotoid
+2015-05-06 15:25:27,868 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 8.- titolacademic
+2015-05-06 15:25:27,868 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:27,868 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_assignatura]
+2015-05-06 15:25:27,870 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [assignaturaid] = dem_assignatura_pk
+2015-05-06 15:25:27,883 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_assignaturaid_fkey] >>>> ExportedKeys FOREIGN KEY[assignaturaid] -> dem_assignaturaalumne[assignaturaid]
+2015-05-06 15:25:27,897 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_assignatura_pk => assignaturaid
+2015-05-06 15:25:27,902 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:27,902 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- assignaturaid
+2015-05-06 15:25:27,902 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- nom
+2015-05-06 15:25:27,903 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- credits
+2015-05-06 15:25:27,903 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- diasetmana
+2015-05-06 15:25:27,903 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 4.- hora
+2015-05-06 15:25:27,903 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:27,904 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_assignaturaalumne]
+2015-05-06 15:25:27,905 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [id] = dem_assignaturaalumne_pk
+2015-05-06 15:25:27,928 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_alumneid_fkey] <<<< ImportedKeys FOREIGN KEY[alumneid] -> dem_alumne[alumneid]
+2015-05-06 15:25:27,929 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_assignaturaalumne_assignaturaid_fkey] <<<< ImportedKeys FOREIGN KEY[assignaturaid] -> dem_assignatura[assignaturaid]
+2015-05-06 15:25:27,931 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_assignaturaalumne_pk => id
+2015-05-06 15:25:27,936 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:27,936 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- id
+2015-05-06 15:25:27,936 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- alumneid
+2015-05-06 15:25:27,936 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- assignaturaid
+2015-05-06 15:25:27,937 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- nota
+2015-05-06 15:25:27,937 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:27,937 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_fitxer]
+2015-05-06 15:25:27,939 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [fitxerid] = dem_fitxer_pk
+2015-05-06 15:25:27,952 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_fotoid_fkey] >>>> ExportedKeys FOREIGN KEY[fitxerid] -> dem_alumne[fotoid]
+2015-05-06 15:25:27,964 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_fitxer_pk => fitxerid
+2015-05-06 15:25:27,967 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_fitxer_pk_i => fitxerid
+2015-05-06 15:25:27,969 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:27,970 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- fitxerid
+2015-05-06 15:25:27,970 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- descripcio
+2015-05-06 15:25:27,970 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- mime
+2015-05-06 15:25:27,971 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- nom
+2015-05-06 15:25:27,971 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 4.- tamany
+2015-05-06 15:25:27,971 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:27,971 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_idioma]
+2015-05-06 15:25:27,973 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [idiomaid] = dem_idioma_pk
+2015-05-06 15:25:27,986 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_idiomaid_fkey] >>>> ExportedKeys FOREIGN KEY[idiomaid] -> dem_alumne[idiomaid]
+2015-05-06 15:25:28,000 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_idioma_pk => idiomaid
+2015-05-06 15:25:28,002 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_idioma_pk_i => idiomaid
+2015-05-06 15:25:28,005 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:28,005 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- idiomaid
+2015-05-06 15:25:28,005 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- nom
+2015-05-06 15:25:28,005 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- suportat
+2015-05-06 15:25:28,006 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 3.- ordre
+2015-05-06 15:25:28,006 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:28,006 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_traduccio]
+2015-05-06 15:25:28,008 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [traduccioid] = dem_traduccio_pk
+2015-05-06 15:25:28,020 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_alumne_titolacademic_fkey] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_alumne[titolacademic]
+2015-05-06 15:25:28,021 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_traducmap_traduccio_fk] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_traducciomap[traducciomapid]
+2015-05-06 15:25:28,034 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_traduccio_pk => traduccioid
+2015-05-06 15:25:28,036 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_traduccio_pk_i => traduccioid
+2015-05-06 15:25:28,039 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:28,039 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- traduccioid
+2015-05-06 15:25:28,039 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:28,039 INFO  [org.fundaciobit.genapp.generator.gui.Panel_1_SelectDB] (AWT-EventQueue-0)  TABLA [ dem_traducciomap]
+2015-05-06 15:25:28,041 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [traducciomapid] = dem_traducmap_pk
+2015-05-06 15:25:28,041 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) Primary KEY [idiomaid] = dem_traducmap_pk
+2015-05-06 15:25:28,063 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ====[dem_traducmap_traduccio_fk] <<<< ImportedKeys FOREIGN KEY[traducciomapid] -> dem_traduccio[traduccioid]
+2015-05-06 15:25:28,066 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_traducmap_pk => traducciomapid
+2015-05-06 15:25:28,066 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) UNIQUES = dem_traducmap_pk => idiomaid
+2015-05-06 15:25:28,068 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_traducciomap_idiomaid_fk_i => idiomaid
+2015-05-06 15:25:28,068 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) INDEX = dem_traducciomap_pk_i => traducciomapid
+2015-05-06 15:25:28,071 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) --- Camps --
+2015-05-06 15:25:28,072 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 0.- traducciomapid
+2015-05-06 15:25:28,072 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 1.- idiomaid
+2015-05-06 15:25:28,072 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) 2.- valor
+2015-05-06 15:25:28,072 INFO  [org.fundaciobit.genapp.DatabaseManager] (AWT-EventQueue-0) ------------
+2015-05-06 15:25:28,073 INFO  [org.fundaciobit.genapp.generator.gui.Panel_2_TableFields] (AWT-EventQueue-0)  generateTable.isSelected(): true
+2015-05-06 15:25:28,073 INFO  [org.fundaciobit.genapp.generator.gui.Panel_2_TableFields] (AWT-EventQueue-0)  Valor actual: true
+2015-05-06 15:25:28,102 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (AWT-EventQueue-0) INIT BUTTON STATUS: false
+2015-05-06 15:26:04,399 INFO  [org.fundaciobit.genapp.generator.gui.RebApp] (AWT-EventQueue-0) INIT BUTTON STATUS: true
+2015-05-06 15:27:05,358 INFO  [org.fundaciobit.genapp.generator.gui.Panel_5_StoreProject] (AWT-EventQueue-0)  Checks ...
+2015-05-06 15:27:05,373 INFO  [org.fundaciobit.genapp.generator.gui.Panel_5_StoreProject] (AWT-EventQueue-0) Executing Checks in 15ms
+2015-05-06 15:27:05,509 INFO  [org.fundaciobit.genapp.generator.gui.Panel_5_StoreProject] (AWT-EventQueue-0) Saving File in 136ms
+INFO  2015-05-07 10:54:02,922 RebApp -  NUMERO -> 2
+INFO  2015-05-07 10:54:04,882 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 10:54:04,882 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 10:54:04,882 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 10:54:04,882 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 10:54:04,882 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 10:54:04,882 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 10:54:04,882 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 10:54:04,902 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 10:54:04,902 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 10:54:04,932 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 10:54:04,932 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 10:54:07,457 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 10:54:07,677 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 10:54:07,687 Panel_5_StoreProject - Executing Checks in 10ms
+ERROR 2015-05-07 10:54:07,687 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 10:54:15,501 Panel_5_StoreProject - Saving File in 140ms
+INFO  2015-05-07 10:57:36,777 RebApp -  NUMERO -> 2
+INFO  2015-05-07 10:57:38,750 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 10:57:38,750 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 10:57:38,750 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 10:57:38,750 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 10:57:38,750 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 10:57:38,750 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 10:57:38,750 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 10:57:38,770 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 10:57:38,770 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 10:57:38,800 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 10:57:38,800 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 10:57:41,387 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 10:57:42,787 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 10:57:42,797 Panel_5_StoreProject - Executing Checks in 10ms
+ERROR 2015-05-07 10:57:42,797 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 10:57:49,660 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-07 11:00:22,700 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:00:25,036 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:00:25,036 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:00:25,036 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:00:25,036 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:00:25,036 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:00:25,036 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:00:25,036 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:00:25,056 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:00:25,056 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:00:25,086 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:00:25,086 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:00:27,579 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:00:28,869 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:00:28,869 Panel_5_StoreProject - Executing Checks in 0ms
+ERROR 2015-05-07 11:00:28,869 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 11:00:34,787 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-07 11:02:06,310 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:02:08,152 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:02:08,152 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:02:08,152 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:02:08,152 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:02:08,152 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:02:08,152 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:02:08,152 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:02:08,162 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:02:08,162 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:02:08,192 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:02:08,202 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:02:11,183 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:02:12,323 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:02:12,323 Panel_5_StoreProject - Executing Checks in 0ms
+ERROR 2015-05-07 11:02:12,323 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 11:02:15,677 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-07 11:06:33,474 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:06:35,324 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:06:35,324 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:06:35,324 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:06:35,324 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:06:35,324 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:06:35,324 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:06:35,324 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:06:35,334 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:06:35,334 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:06:35,374 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:06:35,374 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:06:39,297 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:06:40,517 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:06:40,527 Panel_5_StoreProject - Executing Checks in 10ms
+ERROR 2015-05-07 11:06:40,527 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 11:06:57,666 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-07 11:12:03,569 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:12:05,590 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:12:05,590 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:12:05,590 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:12:05,590 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:12:05,590 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:12:05,590 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:12:05,590 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:12:05,610 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:12:05,610 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:12:05,650 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:12:05,650 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:12:08,771 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:12:11,462 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:12:11,462 Panel_5_StoreProject - Executing Checks in 0ms
+ERROR 2015-05-07 11:12:11,462 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 11:12:36,010 Panel_5_StoreProject - Saving File in 160ms
+INFO  2015-05-07 11:14:02,539 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:14:04,879 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:14:04,879 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:14:04,879 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:14:04,879 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:14:04,889 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:14:04,889 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:14:04,889 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:14:04,899 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:14:04,899 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:14:04,929 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:14:04,929 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:14:07,533 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:14:08,760 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:14:08,770 Panel_5_StoreProject - Executing Checks in 10ms
+ERROR 2015-05-07 11:14:08,770 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 11:16:43,504 Panel_5_StoreProject - Saving File in 160ms
+INFO  2015-05-07 11:17:27,584 RebApp -  NUMERO -> 3
+INFO  2015-05-07 11:17:55,707 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:17:57,687 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:17:57,687 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:17:57,687 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:17:57,687 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:17:57,687 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:17:57,687 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:17:57,687 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:17:57,707 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:17:57,707 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:17:57,737 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:17:57,737 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:18:00,597 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:18:02,645 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:18:02,655 Panel_5_StoreProject - Executing Checks in 10ms
+ERROR 2015-05-07 11:18:02,655 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_idioma[:
+
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_idioma_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traduccio[:
+
+-- El camp shortname de la taula dem_traduccio ha de tenir longitud de 10 o menys caracters (dem_traduccio)-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traduccio_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- El camp shortname de la taula dem_traducciomap ha de tenir longitud de 10 o menys caracters (dem_traducciomap)-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+INFO  2015-05-07 11:18:33,607 Panel_5_StoreProject - Saving File in 160ms
+INFO  2015-05-07 11:29:42,277 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:29:44,660 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:29:44,660 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:29:44,660 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:29:44,660 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:29:44,660 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:29:44,660 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:29:44,660 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:29:44,670 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:29:44,670 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:29:44,710 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:29:44,710 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:29:57,863 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:30:16,106 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:30:16,106 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:30:16,106 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:30:16,106 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:30:16,106 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:30:16,106 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:30:16,106 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:30:16,126 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:30:16,126 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:30:16,156 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:30:16,156 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 11:47:01,121 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 11:47:06,861 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 11:47:25,135 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 11:47:41,235 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 11:47:42,465 Panel_2_TableFields - PREVIOUS: PASSA PER TABLE FIELDS
+INFO  2015-05-07 11:47:45,387 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 11:47:48,749 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 11:47:50,441 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 11:47:50,441 Panel_5_StoreProject - Executing Checks in 0ms
+ERROR 2015-05-07 11:47:50,441 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]dem_alumne[:
+
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_alumne_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_dem_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula dem_alumne no té un nom correcte (esperat dem_dem_alumne_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]dem_assignatura[:
+
+-- El camp shortname de la taula dem_assignatura ha de tenir longitud de 10 o menys caracters (dem_assignatura)-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignatura_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_assignaturaalumne[:
+
+-- El camp shortname de la taula dem_assignaturaalumne ha de tenir longitud de 10 o menys caracters (dem_assignaturaalumne)-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_assignaturaalumne_plural no té definida l'etiqueta per l'idioma  [es]
+
+-- No es faran comprobacions de Longitud de camps ni de constraints
+--      (PrimaryKeys, ForeignKeys, Indexs i UNIQUEs) mentre no es
+--      solventin els problemes anteriors.
+
+
+
+-- ==== ERRORS EN TAULA ]dem_fitxer[:
+
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_fitxer_plural no té definida l'etiqueta per l'idioma  [es]
+
+
+-- ==== ERRORS EN TAULA ]dem_traducciomap[:
+
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap no té definida l'etiqueta per l'idioma  [es]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [ca]
+-- La taula dem_traducciomap_plural no té definida l'etiqueta per l'idioma  [es]
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX dem_traducmap_pk RENAME to dem_traducciomap_pk;
+La ForeignKey dem_traducmap_traduccio_fk de la taula dem_traducciomap no té un nom correcte (esperat dem_tradmap_traduccio_*_fk )
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX dem_traducmap_pk RENAME to dem_traducciomap_pk;
+
+
+INFO  2015-05-07 11:47:52,940 Panel_5_StoreProject - Saving File in 160ms
+INFO  2015-05-07 11:58:47,796 RebApp -  NUMERO -> 2
+INFO  2015-05-07 11:59:05,044 RebApp - dem_alumne	dem_alumne
+INFO  2015-05-07 11:59:05,044 RebApp - dem_assignatura	dem_assignatura
+INFO  2015-05-07 11:59:05,044 RebApp - dem_assignaturaalumne	dem_assignaturaalumne
+INFO  2015-05-07 11:59:05,044 RebApp - dem_fitxer	dem_fitxer
+INFO  2015-05-07 11:59:05,044 RebApp - dem_idioma	dem_idioma
+INFO  2015-05-07 11:59:05,044 RebApp - dem_traduccio	dem_traduccio
+INFO  2015-05-07 11:59:05,044 RebApp - dem_traducciomap	dem_traducciomap
+INFO  2015-05-07 11:59:05,064 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 11:59:05,064 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 11:59:05,094 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 11:59:05,094 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 12:07:10,888 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:15:15,387 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:17:13,252 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:18:04,813 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 12:18:04,813 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 12:18:04,823 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 12:18:04,823 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 12:28:25,445 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:28:45,506 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:29:05,653 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:29:49,297 Panel_2_TableFields -  ---------- EDIT TAULA ------
+INFO  2015-05-07 12:29:55,329 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 12:29:57,217 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 12:29:57,227 Panel_5_StoreProject - Executing Checks in 10ms
+ERROR 2015-05-07 12:29:57,227 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]Alumne[:
+
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]AssignaturaAlumne[:
+
+-- La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_alumne_*_fk )
+-- La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_assign_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]TraduccioMap[:
+
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX dem_traducmap_pk RENAME to dem_traducciomap_pk;
+La ForeignKey dem_traducmap_traduccio_fk de la taula TraduccioMap no té un nom correcte (esperat dem_tradmap_traduccio_*_fk )
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX dem_traducmap_pk RENAME to dem_traducciomap_pk;
+
+
+INFO  2015-05-07 12:30:41,909 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-07 12:32:47,539 RebApp -  NUMERO -> 2
+INFO  2015-05-07 12:32:49,195 RebApp - Alumne	dem_alumne
+INFO  2015-05-07 12:32:49,195 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-07 12:32:49,205 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-07 12:32:49,205 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-07 12:32:49,205 RebApp - Idioma	dem_idioma
+INFO  2015-05-07 12:32:49,205 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-07 12:32:49,205 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-07 12:32:49,215 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 12:32:49,215 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 12:32:49,255 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 12:32:49,255 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 12:33:17,531 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-07 12:50:34,146 RebApp -  NUMERO -> 1
+INFO  2015-05-07 12:50:36,011 Panel_1_SelectDB -  ================ PASSA PER INITPANEL() de SELECTDB;
+INFO  2015-05-07 12:50:36,011 RebApp -  CARD NAME: SelectDB
+INFO  2015-05-07 12:50:36,011 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 12:50:37,133 Panel_1_SelectDB - Passa per next SELECT DB
+INFO  2015-05-07 12:50:37,223 DatabaseManager - FINAL SCHEMA SELECCIONAT = public
+INFO  2015-05-07 12:50:37,263 DatabaseManager - Primary KEY [alumneid] = pad_alumne_pk
+INFO  2015-05-07 12:50:37,303 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] >>>> ExportedKeys FOREIGN KEY[alumneid] -> dem_assignaturaalumne[alumneid]
+INFO  2015-05-07 12:50:37,313 DatabaseManager - ====[dem_alumne_fotoid_fkey] <<<< ImportedKeys FOREIGN KEY[fotoid] -> dem_fitxer[fitxerid]
+INFO  2015-05-07 12:50:37,313 DatabaseManager - ====[dem_alumne_idiomaid_fkey] <<<< ImportedKeys FOREIGN KEY[idiomaid] -> dem_idioma[idiomaid]
+INFO  2015-05-07 12:50:37,313 DatabaseManager - ====[dem_alumne_titolacademic_fkey] <<<< ImportedKeys FOREIGN KEY[titolacademic] -> dem_traduccio[traduccioid]
+INFO  2015-05-07 12:50:37,323 DatabaseManager - UNIQUES = pad_alumne_pk => alumneid
+INFO  2015-05-07 12:50:37,333 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,333 DatabaseManager - 0.- alumneid
+INFO  2015-05-07 12:50:37,333 DatabaseManager - 1.- nom
+INFO  2015-05-07 12:50:37,333 DatabaseManager - 2.- idiomaid
+INFO  2015-05-07 12:50:37,333 DatabaseManager - 3.- actiu
+INFO  2015-05-07 12:50:37,333 DatabaseManager - 4.- datanaixement
+INFO  2015-05-07 12:50:37,343 DatabaseManager - 5.- despertador
+INFO  2015-05-07 12:50:37,343 DatabaseManager - 6.- darreracces
+INFO  2015-05-07 12:50:37,343 DatabaseManager - 7.- fotoid
+INFO  2015-05-07 12:50:37,343 DatabaseManager - 8.- titolacademic
+INFO  2015-05-07 12:50:37,343 DatabaseManager - 9.- paginaweb
+INFO  2015-05-07 12:50:37,343 DatabaseManager - ------------
+INFO  2015-05-07 12:50:37,343 DatabaseManager - Primary KEY [assignaturaid] = dem_assignatura_pk
+INFO  2015-05-07 12:50:37,353 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] >>>> ExportedKeys FOREIGN KEY[assignaturaid] -> dem_assignaturaalumne[assignaturaid]
+INFO  2015-05-07 12:50:37,373 DatabaseManager - UNIQUES = dem_assignatura_pk => assignaturaid
+INFO  2015-05-07 12:50:37,373 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,373 DatabaseManager - 0.- assignaturaid
+INFO  2015-05-07 12:50:37,373 DatabaseManager - 1.- nom
+INFO  2015-05-07 12:50:37,373 DatabaseManager - 2.- credits
+INFO  2015-05-07 12:50:37,373 DatabaseManager - 3.- diasetmana
+INFO  2015-05-07 12:50:37,373 DatabaseManager - 4.- hora
+INFO  2015-05-07 12:50:37,373 DatabaseManager - ------------
+INFO  2015-05-07 12:50:37,383 DatabaseManager - Primary KEY [id] = dem_assignaturaalumne_pk
+INFO  2015-05-07 12:50:37,413 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] <<<< ImportedKeys FOREIGN KEY[alumneid] -> dem_alumne[alumneid]
+INFO  2015-05-07 12:50:37,413 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] <<<< ImportedKeys FOREIGN KEY[assignaturaid] -> dem_assignatura[assignaturaid]
+INFO  2015-05-07 12:50:37,413 DatabaseManager - UNIQUES = dem_assignaturaalumne_pk => id
+INFO  2015-05-07 12:50:37,413 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,413 DatabaseManager - 0.- id
+INFO  2015-05-07 12:50:37,413 DatabaseManager - 1.- alumneid
+INFO  2015-05-07 12:50:37,413 DatabaseManager - 2.- assignaturaid
+INFO  2015-05-07 12:50:37,413 DatabaseManager - 3.- nota
+INFO  2015-05-07 12:50:37,413 DatabaseManager - ------------
+INFO  2015-05-07 12:50:37,423 DatabaseManager - Primary KEY [fitxerid] = dem_fitxer_pk
+INFO  2015-05-07 12:50:37,433 DatabaseManager - ====[dem_alumne_fotoid_fkey] >>>> ExportedKeys FOREIGN KEY[fitxerid] -> dem_alumne[fotoid]
+INFO  2015-05-07 12:50:37,443 DatabaseManager - UNIQUES = dem_fitxer_pk => fitxerid
+INFO  2015-05-07 12:50:37,443 DatabaseManager - INDEX = dem_fitxer_pk_i => fitxerid
+INFO  2015-05-07 12:50:37,453 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,453 DatabaseManager - 0.- fitxerid
+INFO  2015-05-07 12:50:37,453 DatabaseManager - 1.- descripcio
+INFO  2015-05-07 12:50:37,453 DatabaseManager - 2.- mime
+INFO  2015-05-07 12:50:37,453 DatabaseManager - 3.- nom
+INFO  2015-05-07 12:50:37,453 DatabaseManager - 4.- tamany
+INFO  2015-05-07 12:50:37,453 DatabaseManager - ------------
+INFO  2015-05-07 12:50:37,453 DatabaseManager - Primary KEY [idiomaid] = dem_idioma_pk
+INFO  2015-05-07 12:50:37,463 DatabaseManager - ====[dem_alumne_idiomaid_fkey] >>>> ExportedKeys FOREIGN KEY[idiomaid] -> dem_alumne[idiomaid]
+INFO  2015-05-07 12:50:37,473 DatabaseManager - UNIQUES = dem_idioma_pk => idiomaid
+INFO  2015-05-07 12:50:37,473 DatabaseManager - INDEX = dem_idioma_pk_i => idiomaid
+INFO  2015-05-07 12:50:37,483 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,483 DatabaseManager - 0.- idiomaid
+INFO  2015-05-07 12:50:37,483 DatabaseManager - 1.- nom
+INFO  2015-05-07 12:50:37,483 DatabaseManager - 2.- suportat
+INFO  2015-05-07 12:50:37,483 DatabaseManager - 3.- ordre
+INFO  2015-05-07 12:50:37,483 DatabaseManager - ------------
+INFO  2015-05-07 12:50:37,483 DatabaseManager - Primary KEY [traduccioid] = dem_traduccio_pk
+INFO  2015-05-07 12:50:37,493 DatabaseManager - ====[dem_alumne_titolacademic_fkey] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_alumne[titolacademic]
+INFO  2015-05-07 12:50:37,493 DatabaseManager - ====[dem_traducmap_traduccio_fk] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_traducciomap[traducciomapid]
+INFO  2015-05-07 12:50:37,503 DatabaseManager - UNIQUES = dem_traduccio_pk => traduccioid
+INFO  2015-05-07 12:50:37,503 DatabaseManager - INDEX = dem_traduccio_pk_i => traduccioid
+INFO  2015-05-07 12:50:37,513 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,513 DatabaseManager - 0.- traduccioid
+INFO  2015-05-07 12:50:37,513 DatabaseManager - ------------
+INFO  2015-05-07 12:50:37,513 DatabaseManager - Primary KEY [traducciomapid] = dem_traducmap_pk
+INFO  2015-05-07 12:50:37,513 DatabaseManager - Primary KEY [idiomaid] = dem_traducmap_pk
+INFO  2015-05-07 12:50:37,533 DatabaseManager - ====[dem_traducmap_traduccio_fk] <<<< ImportedKeys FOREIGN KEY[traducciomapid] -> dem_traduccio[traduccioid]
+INFO  2015-05-07 12:50:37,533 DatabaseManager - UNIQUES = dem_traducmap_pk => traducciomapid
+INFO  2015-05-07 12:50:37,533 DatabaseManager - UNIQUES = dem_traducmap_pk => idiomaid
+INFO  2015-05-07 12:50:37,533 DatabaseManager - INDEX = dem_traducciomap_idiomaid_fk_i => idiomaid
+INFO  2015-05-07 12:50:37,533 DatabaseManager - INDEX = dem_traducciomap_pk_i => traducciomapid
+INFO  2015-05-07 12:50:37,543 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:37,543 DatabaseManager - 0.- traducciomapid
+INFO  2015-05-07 12:50:37,543 DatabaseManager - 1.- idiomaid
+INFO  2015-05-07 12:50:37,543 DatabaseManager - 2.- valor
+INFO  2015-05-07 12:50:37,543 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,795 Panel_1_SelectDB - 
+>>>>>>>>>>>>>>>>>  UPDATE TABLES <<<<<<<<<<<<<<<<<
+
+INFO  2015-05-07 12:50:38,795 DatabaseManager - Primary KEY [alumneid] = pad_alumne_pk
+INFO  2015-05-07 12:50:38,815 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] >>>> ExportedKeys FOREIGN KEY[alumneid] -> dem_assignaturaalumne[alumneid]
+INFO  2015-05-07 12:50:38,825 DatabaseManager - ====[dem_alumne_fotoid_fkey] <<<< ImportedKeys FOREIGN KEY[fotoid] -> dem_fitxer[fitxerid]
+INFO  2015-05-07 12:50:38,825 DatabaseManager - ====[dem_alumne_idiomaid_fkey] <<<< ImportedKeys FOREIGN KEY[idiomaid] -> dem_idioma[idiomaid]
+INFO  2015-05-07 12:50:38,825 DatabaseManager - ====[dem_alumne_titolacademic_fkey] <<<< ImportedKeys FOREIGN KEY[titolacademic] -> dem_traduccio[traduccioid]
+INFO  2015-05-07 12:50:38,825 DatabaseManager - UNIQUES = pad_alumne_pk => alumneid
+INFO  2015-05-07 12:50:38,835 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 0.- alumneid
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 1.- nom
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 2.- idiomaid
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 3.- actiu
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 4.- datanaixement
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 5.- despertador
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 6.- darreracces
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 7.- fotoid
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 8.- titolacademic
+INFO  2015-05-07 12:50:38,835 DatabaseManager - 9.- paginaweb
+INFO  2015-05-07 12:50:38,835 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB - 
+  >>>>>>> 0.- UPDATE TABLE dem_alumne
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     0.-Update Field[alumneid
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     1.-Update Field[nom
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     2.-Update Field[idiomaid
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     3.-Update Field[actiu
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     4.-Update Field[datanaixement
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     5.-Update Field[despertador
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     6.-Update Field[darreracces
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     7.-Update Field[fotoid
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     8.-Update Field[titolacademic
+INFO  2015-05-07 12:50:38,835 Panel_1_SelectDB -     -  NEW  Field[paginaweb
+INFO  2015-05-07 12:50:38,835 DatabaseManager - Primary KEY [assignaturaid] = dem_assignatura_pk
+INFO  2015-05-07 12:50:38,845 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] >>>> ExportedKeys FOREIGN KEY[assignaturaid] -> dem_assignaturaalumne[assignaturaid]
+INFO  2015-05-07 12:50:38,855 DatabaseManager - UNIQUES = dem_assignatura_pk => assignaturaid
+INFO  2015-05-07 12:50:38,865 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:38,865 DatabaseManager - 0.- assignaturaid
+INFO  2015-05-07 12:50:38,865 DatabaseManager - 1.- nom
+INFO  2015-05-07 12:50:38,865 DatabaseManager - 2.- credits
+INFO  2015-05-07 12:50:38,865 DatabaseManager - 3.- diasetmana
+INFO  2015-05-07 12:50:38,865 DatabaseManager - 4.- hora
+INFO  2015-05-07 12:50:38,865 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,865 Panel_1_SelectDB - 
+  >>>>>>> 1.- UPDATE TABLE dem_assignatura
+INFO  2015-05-07 12:50:38,865 Panel_1_SelectDB -     0.-Update Field[assignaturaid
+INFO  2015-05-07 12:50:38,865 Panel_1_SelectDB -     1.-Update Field[nom
+INFO  2015-05-07 12:50:38,865 Panel_1_SelectDB -     2.-Update Field[credits
+INFO  2015-05-07 12:50:38,865 Panel_1_SelectDB -     3.-Update Field[diasetmana
+INFO  2015-05-07 12:50:38,865 Panel_1_SelectDB -     4.-Update Field[hora
+INFO  2015-05-07 12:50:38,865 DatabaseManager - Primary KEY [id] = dem_assignaturaalumne_pk
+INFO  2015-05-07 12:50:38,885 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] <<<< ImportedKeys FOREIGN KEY[alumneid] -> dem_alumne[alumneid]
+INFO  2015-05-07 12:50:38,885 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] <<<< ImportedKeys FOREIGN KEY[assignaturaid] -> dem_assignatura[assignaturaid]
+INFO  2015-05-07 12:50:38,895 DatabaseManager - UNIQUES = dem_assignaturaalumne_pk => id
+INFO  2015-05-07 12:50:38,895 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:38,895 DatabaseManager - 0.- id
+INFO  2015-05-07 12:50:38,895 DatabaseManager - 1.- alumneid
+INFO  2015-05-07 12:50:38,895 DatabaseManager - 2.- assignaturaid
+INFO  2015-05-07 12:50:38,895 DatabaseManager - 3.- nota
+INFO  2015-05-07 12:50:38,895 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,895 Panel_1_SelectDB - 
+  >>>>>>> 2.- UPDATE TABLE dem_assignaturaalumne
+INFO  2015-05-07 12:50:38,895 Panel_1_SelectDB -     0.-Update Field[id
+INFO  2015-05-07 12:50:38,895 Panel_1_SelectDB -     1.-Update Field[alumneid
+INFO  2015-05-07 12:50:38,895 Panel_1_SelectDB -     2.-Update Field[assignaturaid
+INFO  2015-05-07 12:50:38,895 Panel_1_SelectDB -     3.-Update Field[nota
+INFO  2015-05-07 12:50:38,895 DatabaseManager - Primary KEY [fitxerid] = dem_fitxer_pk
+INFO  2015-05-07 12:50:38,905 DatabaseManager - ====[dem_alumne_fotoid_fkey] >>>> ExportedKeys FOREIGN KEY[fitxerid] -> dem_alumne[fotoid]
+INFO  2015-05-07 12:50:38,925 DatabaseManager - UNIQUES = dem_fitxer_pk => fitxerid
+INFO  2015-05-07 12:50:38,925 DatabaseManager - INDEX = dem_fitxer_pk_i => fitxerid
+INFO  2015-05-07 12:50:38,925 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:38,925 DatabaseManager - 0.- fitxerid
+INFO  2015-05-07 12:50:38,925 DatabaseManager - 1.- descripcio
+INFO  2015-05-07 12:50:38,925 DatabaseManager - 2.- mime
+INFO  2015-05-07 12:50:38,925 DatabaseManager - 3.- nom
+INFO  2015-05-07 12:50:38,925 DatabaseManager - 4.- tamany
+INFO  2015-05-07 12:50:38,925 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,925 Panel_1_SelectDB - 
+  >>>>>>> 3.- UPDATE TABLE dem_fitxer
+INFO  2015-05-07 12:50:38,925 Panel_1_SelectDB -     0.-Update Field[fitxerid
+INFO  2015-05-07 12:50:38,925 Panel_1_SelectDB -     1.-Update Field[descripcio
+INFO  2015-05-07 12:50:38,925 Panel_1_SelectDB -     2.-Update Field[mime
+INFO  2015-05-07 12:50:38,925 Panel_1_SelectDB -     3.-Update Field[nom
+INFO  2015-05-07 12:50:38,925 Panel_1_SelectDB -     4.-Update Field[tamany
+INFO  2015-05-07 12:50:38,925 DatabaseManager - Primary KEY [idiomaid] = dem_idioma_pk
+INFO  2015-05-07 12:50:38,945 DatabaseManager - ====[dem_alumne_idiomaid_fkey] >>>> ExportedKeys FOREIGN KEY[idiomaid] -> dem_alumne[idiomaid]
+INFO  2015-05-07 12:50:38,955 DatabaseManager - UNIQUES = dem_idioma_pk => idiomaid
+INFO  2015-05-07 12:50:38,955 DatabaseManager - INDEX = dem_idioma_pk_i => idiomaid
+INFO  2015-05-07 12:50:38,955 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:38,955 DatabaseManager - 0.- idiomaid
+INFO  2015-05-07 12:50:38,955 DatabaseManager - 1.- nom
+INFO  2015-05-07 12:50:38,955 DatabaseManager - 2.- suportat
+INFO  2015-05-07 12:50:38,955 DatabaseManager - 3.- ordre
+INFO  2015-05-07 12:50:38,955 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,955 Panel_1_SelectDB - 
+  >>>>>>> 4.- UPDATE TABLE dem_idioma
+INFO  2015-05-07 12:50:38,955 Panel_1_SelectDB -     0.-Update Field[idiomaid
+INFO  2015-05-07 12:50:38,955 Panel_1_SelectDB -     1.-Update Field[nom
+INFO  2015-05-07 12:50:38,955 Panel_1_SelectDB -     2.-Update Field[suportat
+INFO  2015-05-07 12:50:38,955 Panel_1_SelectDB -     3.-Update Field[ordre
+INFO  2015-05-07 12:50:38,965 DatabaseManager - Primary KEY [traduccioid] = dem_traduccio_pk
+INFO  2015-05-07 12:50:38,975 DatabaseManager - ====[dem_alumne_titolacademic_fkey] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_alumne[titolacademic]
+INFO  2015-05-07 12:50:38,975 DatabaseManager - ====[dem_traducmap_traduccio_fk] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_traducciomap[traducciomapid]
+INFO  2015-05-07 12:50:38,985 DatabaseManager - UNIQUES = dem_traduccio_pk => traduccioid
+INFO  2015-05-07 12:50:38,985 DatabaseManager - INDEX = dem_traduccio_pk_i => traduccioid
+INFO  2015-05-07 12:50:38,985 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:38,985 DatabaseManager - 0.- traduccioid
+INFO  2015-05-07 12:50:38,985 DatabaseManager - ------------
+INFO  2015-05-07 12:50:38,985 Panel_1_SelectDB - 
+  >>>>>>> 5.- UPDATE TABLE dem_traduccio
+INFO  2015-05-07 12:50:38,985 Panel_1_SelectDB -     0.-Update Field[traduccioid
+INFO  2015-05-07 12:50:38,985 DatabaseManager - Primary KEY [traducciomapid] = dem_traducmap_pk
+INFO  2015-05-07 12:50:38,985 DatabaseManager - Primary KEY [idiomaid] = dem_traducmap_pk
+INFO  2015-05-07 12:50:39,005 DatabaseManager - ====[dem_traducmap_traduccio_fk] <<<< ImportedKeys FOREIGN KEY[traducciomapid] -> dem_traduccio[traduccioid]
+INFO  2015-05-07 12:50:39,015 DatabaseManager - UNIQUES = dem_traducmap_pk => traducciomapid
+INFO  2015-05-07 12:50:39,015 DatabaseManager - UNIQUES = dem_traducmap_pk => idiomaid
+INFO  2015-05-07 12:50:39,015 DatabaseManager - INDEX = dem_traducciomap_idiomaid_fk_i => idiomaid
+INFO  2015-05-07 12:50:39,015 DatabaseManager - INDEX = dem_traducciomap_pk_i => traducciomapid
+INFO  2015-05-07 12:50:39,015 DatabaseManager - --- Camps --
+INFO  2015-05-07 12:50:39,015 DatabaseManager - 0.- traducciomapid
+INFO  2015-05-07 12:50:39,015 DatabaseManager - 1.- idiomaid
+INFO  2015-05-07 12:50:39,015 DatabaseManager - 2.- valor
+INFO  2015-05-07 12:50:39,015 DatabaseManager - ------------
+INFO  2015-05-07 12:50:39,015 Panel_1_SelectDB - 
+  >>>>>>> 6.- UPDATE TABLE dem_traducciomap
+INFO  2015-05-07 12:50:39,015 Panel_1_SelectDB -     0.-Update Field[traducciomapid
+INFO  2015-05-07 12:50:39,015 Panel_1_SelectDB -     1.-Update Field[idiomaid
+INFO  2015-05-07 12:50:39,015 Panel_1_SelectDB -     2.-Update Field[valor
+INFO  2015-05-07 12:50:39,015 Panel_1_SelectDB - >>>>>>>>>>>>>>>>>  NEW TABLES (0) <<<<<<<<<<<<<<<<<
+INFO  2015-05-07 12:50:39,015 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 12:50:39,015 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 12:50:39,045 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 13:30:46,610 RebApp -  NUMERO -> 2
+INFO  2015-05-07 13:30:49,322 RebApp - Alumne	dem_alumne
+INFO  2015-05-07 13:30:49,322 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-07 13:30:49,322 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-07 13:30:49,322 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-07 13:30:49,322 RebApp - Idioma	dem_idioma
+INFO  2015-05-07 13:30:49,322 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-07 13:30:49,322 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-07 13:30:49,342 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 13:30:49,342 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 13:30:49,372 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 13:30:49,372 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 13:30:57,311 Panel_2_TableFields - PREVIOUS: PASSA PER TABLE FIELDS
+INFO  2015-05-07 13:33:57,158 RebApp -  NUMERO -> 2
+INFO  2015-05-07 13:33:59,049 RebApp - Alumne	dem_alumne
+INFO  2015-05-07 13:33:59,049 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-07 13:33:59,049 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-07 13:33:59,049 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-07 13:33:59,049 RebApp - Idioma	dem_idioma
+INFO  2015-05-07 13:33:59,049 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-07 13:33:59,049 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-07 13:33:59,069 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 13:33:59,069 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 13:33:59,099 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 13:33:59,099 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 13:35:01,859 Panel_2_TableFields - PREVIOUS: PASSA PER TABLE FIELDS
+INFO  2015-05-07 13:45:03,745 RebApp -  NUMERO -> 2
+INFO  2015-05-07 13:45:05,735 RebApp - Alumne	dem_alumne
+INFO  2015-05-07 13:45:05,735 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-07 13:45:05,735 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-07 13:45:05,735 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-07 13:45:05,735 RebApp - Idioma	dem_idioma
+INFO  2015-05-07 13:45:05,735 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-07 13:45:05,735 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-07 13:45:05,755 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-07 13:45:05,755 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-07 13:45:05,785 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-07 13:45:05,785 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-07 13:45:24,891 Panel_2_TableFields -  ---------- DOWN ------
+INFO  2015-05-07 13:45:25,811 Panel_2_TableFields -  ---------- DOWN ------
+INFO  2015-05-07 13:45:26,824 Panel_2_TableFields -  ---------- DOWN ------
+INFO  2015-05-07 13:46:14,502 Panel_2_TableFields -  ---------- UP ------
+INFO  2015-05-07 13:48:53,580 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-07 13:48:56,786 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-07 13:48:56,786 Panel_5_StoreProject - Executing Checks in 0ms
+ERROR 2015-05-07 13:48:56,786 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]Alumne[:
+
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]AssignaturaAlumne[:
+
+-- La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_alumne_*_fk )
+-- La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_assign_*_fk )
+
+
+INFO  2015-05-07 13:48:59,348 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-12 15:20:21,368 RebApp -  NUMERO -> 2
+INFO  2015-05-12 15:20:23,346 RebApp - Alumne	dem_alumne
+INFO  2015-05-12 15:20:23,346 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-12 15:20:23,346 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-12 15:20:23,346 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-12 15:20:23,346 RebApp - Idioma	dem_idioma
+INFO  2015-05-12 15:20:23,346 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-12 15:20:23,346 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-12 15:20:23,366 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-12 15:20:23,366 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-12 15:20:23,396 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-12 15:20:23,396 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-13 09:00:37,529 RebApp -  NUMERO -> 2
+INFO  2015-05-13 09:00:41,908 RebApp - Alumne	dem_alumne
+INFO  2015-05-13 09:00:41,908 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-13 09:00:41,908 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-13 09:00:41,909 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-13 09:00:41,909 RebApp - Idioma	dem_idioma
+INFO  2015-05-13 09:00:41,909 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-13 09:00:41,909 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-13 09:00:41,927 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-13 09:00:41,927 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-13 09:00:41,962 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-13 09:00:41,963 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-13 12:23:32,433 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:25:58,089 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:33:39,727 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:34:09,190 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:34:13,885 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:34:19,933 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:34:26,212 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:34:31,420 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:34:54,651 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:36:37,829 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:36:51,044 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:37:24,482 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:38:04,456 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:38:16,455 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:38:41,974 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:39:07,909 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:39:35,603 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:40:23,856 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:40:39,615 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:40:43,333 Panel_2_TableFields - PREVIOUS: PASSA PER TABLE FIELDS
+INFO  2015-05-13 12:40:43,893 Panel_2_TableFields - PREVIOUS: PASSA PER TABLE FIELDS
+INFO  2015-05-13 12:41:02,463 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:41:23,349 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:41:49,284 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:41:53,028 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:42:08,130 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:42:27,842 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:43:24,022 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:44:12,652 Panel_2_TableFields -  ---------- EDIT CAMP ------
+INFO  2015-05-13 12:47:57,372 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-13 12:47:58,460 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-13 12:47:58,465 Panel_5_StoreProject - Executing Checks in 4ms
+ERROR 2015-05-13 12:47:58,465 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]Alumne[:
+
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]AssignaturaAlumne[:
+
+-- La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_alumne_*_fk )
+-- La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_assign_*_fk )
+
+
+INFO  2015-05-13 12:48:08,980 Panel_5_StoreProject - Saving File in 164ms
+INFO  2015-05-13 12:48:51,181 RebApp -  NUMERO -> 2
+INFO  2015-05-13 12:49:16,003 RebApp -  NUMERO -> 2
+INFO  2015-05-13 12:49:18,531 RebApp - Alumne	dem_alumne
+INFO  2015-05-13 12:49:18,531 RebApp - Assignatura	dem_assignatura
+INFO  2015-05-13 12:49:18,531 RebApp - AssignaturaAlumne	dem_assignaturaalumne
+INFO  2015-05-13 12:49:18,532 RebApp - Fitxer	dem_fitxer
+INFO  2015-05-13 12:49:18,532 RebApp - Idioma	dem_idioma
+INFO  2015-05-13 12:49:18,532 RebApp - Traduccio	dem_traduccio
+INFO  2015-05-13 12:49:18,532 RebApp - TraduccioMap	dem_traducciomap
+INFO  2015-05-13 12:49:18,550 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-13 12:49:18,550 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-13 12:49:18,582 RebApp -  CARD NAME: ColumnList
+INFO  2015-05-13 12:49:18,583 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-13 12:49:21,688 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-13 12:49:23,848 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-13 12:49:23,853 Panel_5_StoreProject - Executing Checks in 5ms
+ERROR 2015-05-13 12:49:23,854 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]Alumne[:
+
+ --  Error de forma en contraint Primary KEY 
+ALTER INDEX pad_alumne_pk RENAME to dem_alumne_pk;
+La ForeignKey dem_alumne_idiomaid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]AssignaturaAlumne[:
+
+-- La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_alumne_*_fk )
+-- La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_assign_*_fk )
+
+
+INFO  2015-05-13 12:49:53,850 Panel_5_StoreProject - Saving File in 170ms
+INFO  2015-05-13 12:50:00,385 RebApp -  NUMERO -> 1
+INFO  2015-05-13 12:50:02,139 Panel_1_SelectDB -  ================ PASSA PER INITPANEL() de SELECTDB;
+INFO  2015-05-13 12:50:02,145 RebApp -  CARD NAME: SelectDB
+INFO  2015-05-13 12:50:02,145 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-13 12:50:03,549 Panel_1_SelectDB - Passa per next SELECT DB
+INFO  2015-05-13 12:50:03,699 DatabaseManager - FINAL SCHEMA SELECCIONAT = public
+INFO  2015-05-13 12:50:03,730 DatabaseManager - Primary KEY [alumneid] = dem_alumne_pk
+INFO  2015-05-13 12:50:03,750 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] >>>> ExportedKeys FOREIGN KEY[alumneid] -> dem_assignaturaalumne[alumneid]
+INFO  2015-05-13 12:50:03,761 DatabaseManager - ====[dem_alumne_fotoid_fkey] <<<< ImportedKeys FOREIGN KEY[fotoid] -> dem_fitxer[fitxerid]
+INFO  2015-05-13 12:50:03,762 DatabaseManager - ====[dem_alumne_idiomaid_fkey] <<<< ImportedKeys FOREIGN KEY[idiomaid] -> dem_idioma[idiomaid]
+INFO  2015-05-13 12:50:03,762 DatabaseManager - ====[dem_alumne_titolacademic_fkey] <<<< ImportedKeys FOREIGN KEY[titolacademic] -> dem_traduccio[traduccioid]
+INFO  2015-05-13 12:50:03,765 DatabaseManager - UNIQUES = dem_alumne_pk => alumneid
+INFO  2015-05-13 12:50:03,773 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,774 DatabaseManager - 0.- alumneid
+INFO  2015-05-13 12:50:03,775 DatabaseManager - 1.- nom
+INFO  2015-05-13 12:50:03,776 DatabaseManager - 2.- idiomaid
+INFO  2015-05-13 12:50:03,776 DatabaseManager - 3.- actiu
+INFO  2015-05-13 12:50:03,776 DatabaseManager - 4.- datanaixement
+INFO  2015-05-13 12:50:03,776 DatabaseManager - 5.- despertador
+INFO  2015-05-13 12:50:03,777 DatabaseManager - 6.- darreracces
+INFO  2015-05-13 12:50:03,777 DatabaseManager - 7.- fotoid
+INFO  2015-05-13 12:50:03,777 DatabaseManager - 8.- titolacademic
+INFO  2015-05-13 12:50:03,777 DatabaseManager - 9.- paginaweb
+INFO  2015-05-13 12:50:03,777 DatabaseManager - ------------
+INFO  2015-05-13 12:50:03,780 DatabaseManager - Primary KEY [assignaturaid] = dem_assignatura_pk
+INFO  2015-05-13 12:50:03,795 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] >>>> ExportedKeys FOREIGN KEY[assignaturaid] -> dem_assignaturaalumne[assignaturaid]
+INFO  2015-05-13 12:50:03,810 DatabaseManager - UNIQUES = dem_assignatura_pk => assignaturaid
+INFO  2015-05-13 12:50:03,824 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,825 DatabaseManager - 0.- assignaturaid
+INFO  2015-05-13 12:50:03,825 DatabaseManager - 1.- nom
+INFO  2015-05-13 12:50:03,825 DatabaseManager - 2.- credits
+INFO  2015-05-13 12:50:03,825 DatabaseManager - 3.- diasetmana
+INFO  2015-05-13 12:50:03,825 DatabaseManager - 4.- hora
+INFO  2015-05-13 12:50:03,825 DatabaseManager - ------------
+INFO  2015-05-13 12:50:03,827 DatabaseManager - Primary KEY [id] = dem_assignaturaalumne_pk
+INFO  2015-05-13 12:50:03,850 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] <<<< ImportedKeys FOREIGN KEY[alumneid] -> dem_alumne[alumneid]
+INFO  2015-05-13 12:50:03,850 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] <<<< ImportedKeys FOREIGN KEY[assignaturaid] -> dem_assignatura[assignaturaid]
+INFO  2015-05-13 12:50:03,852 DatabaseManager - UNIQUES = dem_alumneassignatura_alu_asig_uk => alumneid
+INFO  2015-05-13 12:50:03,852 DatabaseManager - UNIQUES = dem_alumneassignatura_alu_asig_uk => assignaturaid
+INFO  2015-05-13 12:50:03,852 DatabaseManager - UNIQUES = dem_assignaturaalumne_pk => id
+INFO  2015-05-13 12:50:03,858 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,858 DatabaseManager - 0.- id
+INFO  2015-05-13 12:50:03,858 DatabaseManager - 1.- alumneid
+INFO  2015-05-13 12:50:03,859 DatabaseManager - 2.- assignaturaid
+INFO  2015-05-13 12:50:03,859 DatabaseManager - 3.- nota
+INFO  2015-05-13 12:50:03,859 DatabaseManager - ------------
+INFO  2015-05-13 12:50:03,861 DatabaseManager - Primary KEY [fitxerid] = dem_fitxer_pk
+INFO  2015-05-13 12:50:03,874 DatabaseManager - ====[dem_alumne_fotoid_fkey] >>>> ExportedKeys FOREIGN KEY[fitxerid] -> dem_alumne[fotoid]
+INFO  2015-05-13 12:50:03,886 DatabaseManager - UNIQUES = dem_fitxer_pk => fitxerid
+INFO  2015-05-13 12:50:03,889 DatabaseManager - INDEX = dem_fitxer_pk_i => fitxerid
+INFO  2015-05-13 12:50:03,891 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,892 DatabaseManager - 0.- fitxerid
+INFO  2015-05-13 12:50:03,892 DatabaseManager - 1.- descripcio
+INFO  2015-05-13 12:50:03,892 DatabaseManager - 2.- mime
+INFO  2015-05-13 12:50:03,892 DatabaseManager - 3.- nom
+INFO  2015-05-13 12:50:03,893 DatabaseManager - 4.- tamany
+INFO  2015-05-13 12:50:03,893 DatabaseManager - ------------
+INFO  2015-05-13 12:50:03,895 DatabaseManager - Primary KEY [idiomaid] = dem_idioma_pk
+INFO  2015-05-13 12:50:03,908 DatabaseManager - ====[dem_alumne_idiomaid_fkey] >>>> ExportedKeys FOREIGN KEY[idiomaid] -> dem_alumne[idiomaid]
+INFO  2015-05-13 12:50:03,920 DatabaseManager - UNIQUES = dem_idioma_pk => idiomaid
+INFO  2015-05-13 12:50:03,923 DatabaseManager - INDEX = dem_idioma_pk_i => idiomaid
+INFO  2015-05-13 12:50:03,926 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,926 DatabaseManager - 0.- idiomaid
+INFO  2015-05-13 12:50:03,927 DatabaseManager - 1.- nom
+INFO  2015-05-13 12:50:03,927 DatabaseManager - 2.- suportat
+INFO  2015-05-13 12:50:03,927 DatabaseManager - 3.- ordre
+INFO  2015-05-13 12:50:03,927 DatabaseManager - ------------
+INFO  2015-05-13 12:50:03,929 DatabaseManager - Primary KEY [traduccioid] = dem_traduccio_pk
+INFO  2015-05-13 12:50:03,941 DatabaseManager - ====[dem_alumne_titolacademic_fkey] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_alumne[titolacademic]
+INFO  2015-05-13 12:50:03,941 DatabaseManager - ====[dem_traducmap_traduccio_fk] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_traducciomap[traducciomapid]
+INFO  2015-05-13 12:50:03,953 DatabaseManager - UNIQUES = dem_traduccio_pk => traduccioid
+INFO  2015-05-13 12:50:03,956 DatabaseManager - INDEX = dem_traduccio_pk_i => traduccioid
+INFO  2015-05-13 12:50:03,958 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,959 DatabaseManager - 0.- traduccioid
+INFO  2015-05-13 12:50:03,959 DatabaseManager - ------------
+INFO  2015-05-13 12:50:03,961 DatabaseManager - Primary KEY [traducciomapid] = dem_traducmap_pk
+INFO  2015-05-13 12:50:03,961 DatabaseManager - Primary KEY [idiomaid] = dem_traducmap_pk
+INFO  2015-05-13 12:50:03,983 DatabaseManager - ====[dem_traducmap_traduccio_fk] <<<< ImportedKeys FOREIGN KEY[traducciomapid] -> dem_traduccio[traduccioid]
+INFO  2015-05-13 12:50:03,985 DatabaseManager - UNIQUES = dem_traducmap_pk => traducciomapid
+INFO  2015-05-13 12:50:03,985 DatabaseManager - UNIQUES = dem_traducmap_pk => idiomaid
+INFO  2015-05-13 12:50:03,988 DatabaseManager - INDEX = dem_traducciomap_idiomaid_fk_i => idiomaid
+INFO  2015-05-13 12:50:03,988 DatabaseManager - INDEX = dem_traducciomap_pk_i => traducciomapid
+INFO  2015-05-13 12:50:03,990 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:03,991 DatabaseManager - 0.- traducciomapid
+INFO  2015-05-13 12:50:03,991 DatabaseManager - 1.- idiomaid
+INFO  2015-05-13 12:50:03,991 DatabaseManager - 2.- valor
+INFO  2015-05-13 12:50:03,991 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,408 Panel_1_SelectDB - 
+>>>>>>>>>>>>>>>>>  UPDATE TABLES <<<<<<<<<<<<<<<<<
+
+INFO  2015-05-13 12:50:05,410 DatabaseManager - Primary KEY [alumneid] = dem_alumne_pk
+INFO  2015-05-13 12:50:05,424 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] >>>> ExportedKeys FOREIGN KEY[alumneid] -> dem_assignaturaalumne[alumneid]
+INFO  2015-05-13 12:50:05,434 DatabaseManager - ====[dem_alumne_fotoid_fkey] <<<< ImportedKeys FOREIGN KEY[fotoid] -> dem_fitxer[fitxerid]
+INFO  2015-05-13 12:50:05,435 DatabaseManager - ====[dem_alumne_idiomaid_fkey] <<<< ImportedKeys FOREIGN KEY[idiomaid] -> dem_idioma[idiomaid]
+INFO  2015-05-13 12:50:05,435 DatabaseManager - ====[dem_alumne_titolacademic_fkey] <<<< ImportedKeys FOREIGN KEY[titolacademic] -> dem_traduccio[traduccioid]
+INFO  2015-05-13 12:50:05,437 DatabaseManager - UNIQUES = dem_alumne_pk => alumneid
+INFO  2015-05-13 12:50:05,443 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,443 DatabaseManager - 0.- alumneid
+INFO  2015-05-13 12:50:05,444 DatabaseManager - 1.- nom
+INFO  2015-05-13 12:50:05,444 DatabaseManager - 2.- idiomaid
+INFO  2015-05-13 12:50:05,444 DatabaseManager - 3.- actiu
+INFO  2015-05-13 12:50:05,444 DatabaseManager - 4.- datanaixement
+INFO  2015-05-13 12:50:05,445 DatabaseManager - 5.- despertador
+INFO  2015-05-13 12:50:05,445 DatabaseManager - 6.- darreracces
+INFO  2015-05-13 12:50:05,445 DatabaseManager - 7.- fotoid
+INFO  2015-05-13 12:50:05,445 DatabaseManager - 8.- titolacademic
+INFO  2015-05-13 12:50:05,445 DatabaseManager - 9.- paginaweb
+INFO  2015-05-13 12:50:05,445 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,445 Panel_1_SelectDB - 
+  >>>>>>> 0.- UPDATE TABLE dem_alumne
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     0.-Update Field[alumneid
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     1.-Update Field[nom
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     2.-Update Field[idiomaid
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     3.-Update Field[datanaixement
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     4.-Update Field[actiu
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     5.-Update Field[darreracces
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     6.-Update Field[fotoid
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     7.-Update Field[titolacademic
+INFO  2015-05-13 12:50:05,446 Panel_1_SelectDB -     8.-Update Field[despertador
+INFO  2015-05-13 12:50:05,447 Panel_1_SelectDB -     -  NEW  Field[paginaweb
+INFO  2015-05-13 12:50:05,448 DatabaseManager - Primary KEY [assignaturaid] = dem_assignatura_pk
+INFO  2015-05-13 12:50:05,461 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] >>>> ExportedKeys FOREIGN KEY[assignaturaid] -> dem_assignaturaalumne[assignaturaid]
+INFO  2015-05-13 12:50:05,474 DatabaseManager - UNIQUES = dem_assignatura_pk => assignaturaid
+INFO  2015-05-13 12:50:05,478 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,479 DatabaseManager - 0.- assignaturaid
+INFO  2015-05-13 12:50:05,479 DatabaseManager - 1.- nom
+INFO  2015-05-13 12:50:05,479 DatabaseManager - 2.- credits
+INFO  2015-05-13 12:50:05,479 DatabaseManager - 3.- diasetmana
+INFO  2015-05-13 12:50:05,479 DatabaseManager - 4.- hora
+INFO  2015-05-13 12:50:05,479 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,480 Panel_1_SelectDB - 
+  >>>>>>> 1.- UPDATE TABLE dem_assignatura
+INFO  2015-05-13 12:50:05,480 Panel_1_SelectDB -     0.-Update Field[assignaturaid
+INFO  2015-05-13 12:50:05,480 Panel_1_SelectDB -     1.-Update Field[nom
+INFO  2015-05-13 12:50:05,480 Panel_1_SelectDB -     2.-Update Field[credits
+INFO  2015-05-13 12:50:05,480 Panel_1_SelectDB -     3.-Update Field[diasetmana
+INFO  2015-05-13 12:50:05,480 Panel_1_SelectDB -     4.-Update Field[hora
+INFO  2015-05-13 12:50:05,482 DatabaseManager - Primary KEY [id] = dem_assignaturaalumne_pk
+INFO  2015-05-13 12:50:05,502 DatabaseManager - ====[dem_assignaturaalumne_alumneid_fkey] <<<< ImportedKeys FOREIGN KEY[alumneid] -> dem_alumne[alumneid]
+INFO  2015-05-13 12:50:05,503 DatabaseManager - ====[dem_assignaturaalumne_assignaturaid_fkey] <<<< ImportedKeys FOREIGN KEY[assignaturaid] -> dem_assignatura[assignaturaid]
+INFO  2015-05-13 12:50:05,506 DatabaseManager - UNIQUES = dem_alumneassignatura_alu_asig_uk => alumneid
+INFO  2015-05-13 12:50:05,506 DatabaseManager - UNIQUES = dem_alumneassignatura_alu_asig_uk => assignaturaid
+INFO  2015-05-13 12:50:05,506 DatabaseManager - UNIQUES = dem_assignaturaalumne_pk => id
+INFO  2015-05-13 12:50:05,511 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,511 DatabaseManager - 0.- id
+INFO  2015-05-13 12:50:05,511 DatabaseManager - 1.- alumneid
+INFO  2015-05-13 12:50:05,512 DatabaseManager - 2.- assignaturaid
+INFO  2015-05-13 12:50:05,512 DatabaseManager - 3.- nota
+INFO  2015-05-13 12:50:05,512 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,512 Panel_1_SelectDB - 
+  >>>>>>> 2.- UPDATE TABLE dem_assignaturaalumne
+INFO  2015-05-13 12:50:05,512 Panel_1_SelectDB -     0.-Update Field[id
+INFO  2015-05-13 12:50:05,513 Panel_1_SelectDB -     1.-Update Field[alumneid
+INFO  2015-05-13 12:50:05,513 Panel_1_SelectDB -     2.-Update Field[assignaturaid
+INFO  2015-05-13 12:50:05,513 Panel_1_SelectDB -     3.-Update Field[nota
+INFO  2015-05-13 12:50:05,515 DatabaseManager - Primary KEY [fitxerid] = dem_fitxer_pk
+INFO  2015-05-13 12:50:05,527 DatabaseManager - ====[dem_alumne_fotoid_fkey] >>>> ExportedKeys FOREIGN KEY[fitxerid] -> dem_alumne[fotoid]
+INFO  2015-05-13 12:50:05,540 DatabaseManager - UNIQUES = dem_fitxer_pk => fitxerid
+INFO  2015-05-13 12:50:05,542 DatabaseManager - INDEX = dem_fitxer_pk_i => fitxerid
+INFO  2015-05-13 12:50:05,545 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,545 DatabaseManager - 0.- fitxerid
+INFO  2015-05-13 12:50:05,545 DatabaseManager - 1.- descripcio
+INFO  2015-05-13 12:50:05,546 DatabaseManager - 2.- mime
+INFO  2015-05-13 12:50:05,546 DatabaseManager - 3.- nom
+INFO  2015-05-13 12:50:05,546 DatabaseManager - 4.- tamany
+INFO  2015-05-13 12:50:05,546 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,547 Panel_1_SelectDB - 
+  >>>>>>> 3.- UPDATE TABLE dem_fitxer
+INFO  2015-05-13 12:50:05,547 Panel_1_SelectDB -     0.-Update Field[fitxerid
+INFO  2015-05-13 12:50:05,547 Panel_1_SelectDB -     1.-Update Field[descripcio
+INFO  2015-05-13 12:50:05,547 Panel_1_SelectDB -     2.-Update Field[mime
+INFO  2015-05-13 12:50:05,547 Panel_1_SelectDB -     3.-Update Field[nom
+INFO  2015-05-13 12:50:05,547 Panel_1_SelectDB -     4.-Update Field[tamany
+INFO  2015-05-13 12:50:05,549 DatabaseManager - Primary KEY [idiomaid] = dem_idioma_pk
+INFO  2015-05-13 12:50:05,561 DatabaseManager - ====[dem_alumne_idiomaid_fkey] >>>> ExportedKeys FOREIGN KEY[idiomaid] -> dem_alumne[idiomaid]
+INFO  2015-05-13 12:50:05,575 DatabaseManager - UNIQUES = dem_idioma_pk => idiomaid
+INFO  2015-05-13 12:50:05,578 DatabaseManager - INDEX = dem_idioma_pk_i => idiomaid
+INFO  2015-05-13 12:50:05,580 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,581 DatabaseManager - 0.- idiomaid
+INFO  2015-05-13 12:50:05,581 DatabaseManager - 1.- nom
+INFO  2015-05-13 12:50:05,581 DatabaseManager - 2.- suportat
+INFO  2015-05-13 12:50:05,581 DatabaseManager - 3.- ordre
+INFO  2015-05-13 12:50:05,581 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,581 Panel_1_SelectDB - 
+  >>>>>>> 4.- UPDATE TABLE dem_idioma
+INFO  2015-05-13 12:50:05,582 Panel_1_SelectDB -     0.-Update Field[idiomaid
+INFO  2015-05-13 12:50:05,582 Panel_1_SelectDB -     1.-Update Field[nom
+INFO  2015-05-13 12:50:05,582 Panel_1_SelectDB -     2.-Update Field[suportat
+INFO  2015-05-13 12:50:05,582 Panel_1_SelectDB -     3.-Update Field[ordre
+INFO  2015-05-13 12:50:05,583 DatabaseManager - Primary KEY [traduccioid] = dem_traduccio_pk
+INFO  2015-05-13 12:50:05,594 DatabaseManager - ====[dem_alumne_titolacademic_fkey] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_alumne[titolacademic]
+INFO  2015-05-13 12:50:05,595 DatabaseManager - ====[dem_traducmap_traduccio_fk] >>>> ExportedKeys FOREIGN KEY[traduccioid] -> dem_traducciomap[traducciomapid]
+INFO  2015-05-13 12:50:05,608 DatabaseManager - UNIQUES = dem_traduccio_pk => traduccioid
+INFO  2015-05-13 12:50:05,610 DatabaseManager - INDEX = dem_traduccio_pk_i => traduccioid
+INFO  2015-05-13 12:50:05,613 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,613 DatabaseManager - 0.- traduccioid
+INFO  2015-05-13 12:50:05,613 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,613 Panel_1_SelectDB - 
+  >>>>>>> 5.- UPDATE TABLE dem_traduccio
+INFO  2015-05-13 12:50:05,614 Panel_1_SelectDB -     0.-Update Field[traduccioid
+INFO  2015-05-13 12:50:05,615 DatabaseManager - Primary KEY [traducciomapid] = dem_traducmap_pk
+INFO  2015-05-13 12:50:05,615 DatabaseManager - Primary KEY [idiomaid] = dem_traducmap_pk
+INFO  2015-05-13 12:50:05,636 DatabaseManager - ====[dem_traducmap_traduccio_fk] <<<< ImportedKeys FOREIGN KEY[traducciomapid] -> dem_traduccio[traduccioid]
+INFO  2015-05-13 12:50:05,640 DatabaseManager - UNIQUES = dem_traducmap_pk => traducciomapid
+INFO  2015-05-13 12:50:05,640 DatabaseManager - UNIQUES = dem_traducmap_pk => idiomaid
+INFO  2015-05-13 12:50:05,642 DatabaseManager - INDEX = dem_traducciomap_idiomaid_fk_i => idiomaid
+INFO  2015-05-13 12:50:05,642 DatabaseManager - INDEX = dem_traducciomap_pk_i => traducciomapid
+INFO  2015-05-13 12:50:05,645 DatabaseManager - --- Camps --
+INFO  2015-05-13 12:50:05,645 DatabaseManager - 0.- traducciomapid
+INFO  2015-05-13 12:50:05,645 DatabaseManager - 1.- idiomaid
+INFO  2015-05-13 12:50:05,645 DatabaseManager - 2.- valor
+INFO  2015-05-13 12:50:05,646 DatabaseManager - ------------
+INFO  2015-05-13 12:50:05,646 Panel_1_SelectDB - 
+  >>>>>>> 6.- UPDATE TABLE dem_traducciomap
+INFO  2015-05-13 12:50:05,646 Panel_1_SelectDB -     0.-Update Field[traducciomapid
+INFO  2015-05-13 12:50:05,646 Panel_1_SelectDB -     1.-Update Field[idiomaid
+INFO  2015-05-13 12:50:05,646 Panel_1_SelectDB -     2.-Update Field[valor
+INFO  2015-05-13 12:50:05,646 Panel_1_SelectDB - >>>>>>>>>>>>>>>>>  NEW TABLES (0) <<<<<<<<<<<<<<<<<
+INFO  2015-05-13 12:50:05,647 Panel_2_TableFields -  generateTable.isSelected(): true
+INFO  2015-05-13 12:50:05,648 Panel_2_TableFields -  Valor actual: true
+INFO  2015-05-13 12:50:05,678 RebApp - INIT BUTTON STATUS: false
+INFO  2015-05-13 12:50:12,821 RebApp - INIT BUTTON STATUS: true
+INFO  2015-05-13 12:50:13,869 Panel_5_StoreProject - 
+ =============== CHECKS ============== 
+INFO  2015-05-13 12:50:13,874 Panel_5_StoreProject - Executing Checks in 5ms
+ERROR 2015-05-13 12:50:13,874 Panel_5_StoreProject - 
+
+-- ==== ERRORS EN TAULA ]Alumne[:
+
+La ForeignKey dem_alumne_idiomaid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_idioma_*_fk )
+La ForeignKey dem_alumne_fotoid_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_fitxer_*_fk )
+La ForeignKey dem_alumne_titolacademic_fkey de la taula Alumne no té un nom correcte (esperat dem_alumne_traduccio_*_fk )
+
+
+-- ==== ERRORS EN TAULA ]AssignaturaAlumne[:
+
+-- La Constraint unique dem_alumneassignatura_alu_asig_uk de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+-- La Constraint unique dem_alumneassignatura_alu_asig_uk de la taula AssignaturaAlumne té un nom incorrecte.
+ALTER TABLE dem_assignaturaalumne DROP CONSTRAINT dem_alumneassignatura_alu_asig_uk;
+ALTER TABLE dem_assignaturaalumne ADD CONSTRAINT dem_assigalumn_MULTIPLE_uk UNIQUE (alumneid,assignaturaid);
+-- La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_alumneid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_alumne_*_fk )
+-- La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne té un tamany de més de 30 caracters
+La ForeignKey dem_assignaturaalumne_assignaturaid_fkey de la taula AssignaturaAlumne no té un nom correcte (esperat dem_assigalumn_assign_*_fk )
+
+
+INFO  2015-05-13 12:50:54,346 Panel_5_StoreProject - Saving File in 180ms
