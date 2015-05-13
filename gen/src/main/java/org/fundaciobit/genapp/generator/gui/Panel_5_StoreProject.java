@@ -356,7 +356,7 @@ public class Panel_5_StoreProject extends Paneable {
                      + " té un tamany de més de 30 caracters\n");
               }
   
-              errors.append("La ForeignKey " + fkName + " de la taula " + table.nameJava
+              errors.append("-- La ForeignKey " + fkName + " de la taula " + table.nameJava
                  + " no té un nom correcte (esperat " + fkNameStartsExpected + "*_fk )\n");
               {
                 String newC =  fkNameStartsExpected + "fk";

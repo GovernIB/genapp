@@ -47,7 +47,7 @@ public class BackGenerator {
 
     for (int i = 0; i < tables.length; i++) {
       
-      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity()) {
+      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity() ) {
         continue;
       }
 
@@ -651,7 +651,7 @@ public class BackGenerator {
 
     for (int i = 0; i < tables.length; i++) {
       
-      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity()) {
+      if (!tables[i].isGenerate()  || tables[i].isTranslationMapEntity()) {
         continue;
       }
 
@@ -875,7 +875,7 @@ public class BackGenerator {
 
     for (int i = 0; i < tables.length; i++) {
       
-      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity()) {
+      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity() ) {
         continue;
       }
 
@@ -1149,13 +1149,15 @@ public class BackGenerator {
       code.append("}\n");
       sourceFiles.add(new SourceFile(form + ".java", code.toString()));
 
-      
-      
-      
       final String refList = tableJavaName + "RefList";
+      StringBuffer codeRefList = new StringBuffer();
+      {
+      
+      
+      
       final String instanceEjb = model + "Ejb";
       
-      StringBuffer codeRefList = new StringBuffer();
+      
       codeRefList.append("\n");
       codeRefList.append("package " + packageFormBack + ";\n");
       
@@ -1285,6 +1287,7 @@ public class BackGenerator {
       codeRefList.append("  }\n");
       
       codeRefList.append("}\n");
+      }
       
       sourceFiles.add(new SourceFile(refList + ".java", codeRefList.toString()));
       
@@ -1329,7 +1332,7 @@ public class BackGenerator {
     for (int i = 0; i < tables.length; i++) {
 
       TableInfo table = tables[i];
-      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity()) {
+      if (!tables[i].isGenerate() || tables[i].isTranslationMapEntity() ) {
         continue;
       }
 
@@ -1347,8 +1350,7 @@ public class BackGenerator {
       
       final String refList = tableJavaName + "RefList";
       final String instanceRefList = CodeGenUtils.getModelName(refList);
-      
-      
+
       final String local = tableJavaName + "Local";
       final String instanceEjb = model + "Ejb";
       final String validator = tableJavaName + "WebValidator";
