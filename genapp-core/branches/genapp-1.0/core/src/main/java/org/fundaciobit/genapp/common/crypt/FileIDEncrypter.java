@@ -22,12 +22,12 @@ public class FileIDEncrypter extends AlgorithmEncrypter {
   @Override
   protected String encrypt(Key key, String data) throws Exception {
     String encryptedData = super.encrypt(key, data);
-    return encryptedData.replace('/', '_');
+    return encryptedData; //.replace('/', '_');
   }
 
   @Override
   protected String decrypt(Key key, String encryptedData) throws Exception {
-    String idFileEncrypted = encryptedData.replace('_', '/');
+    String idFileEncrypted = encryptedData; //.replace('_', '/');
     return super.decrypt(key, idFileEncrypted);
   }
   
