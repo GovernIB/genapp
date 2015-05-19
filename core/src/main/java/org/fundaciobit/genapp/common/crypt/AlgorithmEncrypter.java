@@ -5,8 +5,8 @@ import java.security.Key;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.fundaciobit.genapp.common.utils.Base64;
+
 
 /**
  * 
@@ -24,10 +24,6 @@ public class AlgorithmEncrypter extends AbstractEncrypter {
   protected final String algorithm;
 
   protected final Key key;
-
-  protected static BASE64Encoder b64encoder = new BASE64Encoder();
-
-  protected static BASE64Decoder b64decoder = new BASE64Decoder();
 
   /**
    * @param keyValue
@@ -73,7 +69,7 @@ public class AlgorithmEncrypter extends AbstractEncrypter {
     Cipher c = Cipher.getInstance(this.algorithm);
     c.init(Cipher.ENCRYPT_MODE, key);
     byte[] encVal = c.doFinal(data.getBytes());
-    String encryptedValue = b64encoder.encode(encVal);
+    String encryptedValue = Base64.encodeBytes(encVal, Base64.URL_SAFE);
     return encryptedValue;
   }
 
@@ -81,7 +77,7 @@ public class AlgorithmEncrypter extends AbstractEncrypter {
       throws Exception {
     Cipher c = Cipher.getInstance(this.algorithm);
     c.init(Cipher.DECRYPT_MODE, key);
-    byte[] decodedValue = b64decoder.decodeBuffer(encryptedData);
+    byte[] decodedValue = Base64.decode(encryptedData, Base64.URL_SAFE);
     byte[] decValue = c.doFinal(decodedValue);
     String decryptedValue = new String(decValue);
     return decryptedValue;
