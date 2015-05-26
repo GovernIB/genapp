@@ -13,6 +13,7 @@ import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.WebType;
+import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 
 
 
@@ -883,61 +884,110 @@ public class BackWebGenerator {
   
   codeButtons.append("          <c:if test=\"" + testDeFerVisibleBotons + "\">\n");
   codeButtons.append("          <td>\n");
-  codeButtons.append("            <div class=\"btn-group\" data-toggle=\"buttons-checkbox\">\n");
+  codeButtons.append("          <c:set var=\"pk\" value=\"" + pkMapping.substring(1) + "\"/>\n");
+  codeButtons.append("          <c:choose>\n");
+  /*
+  <c:when test="${number1 < number2}">
+      ${"number1 is less than number2"}
+  </c:when>
+  <c:when test="${number1 <= number3}">
+      ${"number1 is less than equal to number2"}
+  </c:when>
+*/
   
+  
+  ActionsRenderer[] renderers = new ActionsRenderer[] {
+      new ActionsRendererSimpleIconList(), 
+      new ActionsRendererDropDownButton() };
+  
+  for (ActionsRenderer render : renderers ) {
+    
+    codeButtons.append("           <c:when test=\"${" + instanceFilterForm + ".actionsRenderer == " + render.getID() +"}\">\n");
+  //****
+  //codeButtons.append("            <div class=\"btn-group\" data-toggle=\"buttons-checkbox\">\n");
+  
+    
+    codeButtons.append("            " + render.getHeader(instanceFilterForm));
 
   
   // BOTO D'EDITAR
   codeButtons.append("            <c:if test=\"${" + instanceFilterForm + ".editButtonVisible}\">\n");
+  /*
   codeButtons.append("            <a class=\"btn\" href=\"#\" \n");
   codeButtons.append("              onclick=\"goTo('<c:url value=\"${contexte}" + pkMapping + "/edit\"/>')\"\n");
   codeButtons.append("              title=\"<fmt:message key=\"genapp.edit\"/>\">\n");
   codeButtons.append("              <i class=\"icon-pencil\"></i>\n");
   codeButtons.append("            </a>\n");
+  */
+  codeButtons.append(render.getActionButtonCode("            ", "", "#",
+      "goTo('<c:url value=\"${contexte}" + pkMapping + "/edit\"/>')",
+      "icon-pencil", "genapp.edit"));
   codeButtons.append("            </c:if>\n");
   
   // BOTO DE BORRAR
   codeButtons.append("            <c:if test=\"${" + instanceFilterForm + ".deleteButtonVisible}\">\n");
+  /*
   codeButtons.append("            <a class=\"btn btn-danger\" href=\"#myModal\"\n");
   codeButtons.append("               onclick=\"openModal('<c:url value=\"${contexte}" + pkMapping + "/delete\"/>','show');\"\n");
   codeButtons.append("               title=\"<fmt:message key=\"genapp.delete\"/>\">\n");
   codeButtons.append("               <i class=\"icon-trash icon-white\"></i>\n");
   codeButtons.append("            </a>\n");
+  */
+  codeButtons.append(render.getActionButtonCode("            ", "btn-danger", "#myModal",
+      "openModal('<c:url value=\"${contexte}" + pkMapping + "/delete\"/>','show');",
+      "icon-trash icon-white", "genapp.delete"));
   codeButtons.append("            </c:if>\n");
   
   
   final String commonCodeAddBut = 
-        "            <c:set var=\"thelink\" value=\"${fn:replace(button.link,bracket, pk)}\" />\n"
-      + "            <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n"
-      + "            <c:url var=\"thelink\" value=\"${thelink}\"/>\n"
-      + "            <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n"
-      + "            </c:if>\n"
+        "                  <c:set var=\"thelink\" value=\"${fn:replace(button.link,bracket, pk)}\" />\n"
+      + "                  <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n"
+      + "                  <c:url var=\"thelink\" value=\"${thelink}\"/>\n"
+      + "                  <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n"
+      + "                  </c:if>\n"
+      /*
       + "            <a class=\"btn ${button.type} \" href=\"#\" \n"
       + "              onclick=\"${thelink}\" \n"
       + "              title=\"<fmt:message key=\"${button.codeText}\"/>\">\n"
       + "              <i class=\"${button.icon}\"></i>\n"
-      + "            </a>\n";
-  
-  
+      + "            </a>\n"*/
+      + render.getActionButtonCode("                  ", "${button.type}", "#",
+          "${thelink}",
+          "${button.icon}", "${button.codeText}");
 
   // BOTONS ADICIONALS PER CADA ITEM
   codeButtons.append("            <c:set var=\"bracket\" value=\"{0}\"/>\n");
-  codeButtons.append("            <c:set var=\"pk\" value=\"" + pkMapping.substring(1) + "\"/>\n");
+
   codeButtons.append("            <c:forEach var=\"button\" items=\"${" + instanceFilterForm + ".additionalButtonsForEachItem}\">\n");
   codeButtons.append(commonCodeAddBut);
-  codeButtons.append("            </c:forEach>\n\n\n");
-  
+  codeButtons.append("            </c:forEach>\n\n");
+
   // BOTONS ADICIONALS BY PK
   codeButtons.append("            <c:if test=\"${not empty " + instanceFilterForm + ".additionalButtonsByPK}\">\n");
   codeButtons.append("              <c:if test=\"${not empty " + instanceFilterForm + ".additionalButtonsByPK[pk]}\">\n");
-  codeButtons.append("                <c:set var=\"button\" value=\"${" + instanceFilterForm + ".additionalButtonsByPK[pk]}\"/>\n");
+  //codeButtons.append("                <c:set var=\"button\" value=\"${" + instanceFilterForm + ".additionalButtonsByPK[pk]}\"/>\n");
+
+  codeButtons.append("                  <c:forEach var=\"button\" items=\"${" + instanceFilterForm + ".additionalButtonsByPK[pk]}\">\n");
   codeButtons.append(commonCodeAddBut);
+  codeButtons.append("                  </c:forEach>\n\n");
+
   codeButtons.append("               </c:if>\n\n");
   codeButtons.append("            </c:if>\n\n");
-  
 
-  codeButtons.append("            </div>\n");
+  //codeButtons.append("            </div>\n");
+  codeButtons.append("            " + render.getFooter());
+
+  codeButtons.append("            </c:when>\n");
+
+  }; // Final for de renders
+  
+  codeButtons.append("            <c:otherwise>\n");
+  codeButtons.append("              &nbsp;<!-- Sense Render d'accions -->\n");
+  codeButtons.append("            </c:otherwise>\n");
+  codeButtons.append("          </c:choose>\n");
+  
   codeButtons.append("           </td>\n");
+  
   codeButtons.append("           </c:if>\n");
   
   sourceFiles.add(new SourceFile(model + "ListButtons.jsp", codeButtons.toString()));
@@ -976,9 +1026,7 @@ public class BackWebGenerator {
   
   
   codeCoreContent.append(additionalFieldsUp);
-  
-  
-  
+
   
   for (FieldInfo field : fields) {
     //Class<?> cls = field.getJavaType();
@@ -1003,7 +1051,7 @@ public class BackWebGenerator {
       }
       
       switch (field.getWebFieldInfo().getWebtype()) {
-  
+
         case WebType.Text:
         case WebType.Integer:
         case WebType.Decimal:
@@ -1131,6 +1179,133 @@ public class BackWebGenerator {
 
 return sourceFiles;
   }
+  
+  
+  
+  public static abstract class ActionsRenderer {
+    
+    abstract int getID();
+    
+    abstract String getHeader(String instanceFilterForm);
+    
+    abstract String getFooter();
+    
+    abstract String getActionButtonCode(String tab, String type, 
+        String href, String onclick, String icon, String codeMessage);
+    
+    
+    public String getImage(String icon, String tab) {
+      if (icon.trim().startsWith("${")) {
+        StringBuffer code = new StringBuffer();
+        String simpleVar = icon.trim().substring(2, icon.length() - 1);
+        code.append(tab + "<c:if test=\"${fn:startsWith(" + simpleVar  + ", '/')}\">\n");
+        code.append(tab + "<img src=\"<c:url value=\"" + icon+"\"/>\"/>\n");
+        code.append(tab + "</c:if>");
+        code.append(tab + "<c:if test=\"${!fn:startsWith(" + simpleVar  + ", '/')}\">\n");
+        code.append(tab + "<i class=\"" + icon + "\"></i>\n");        
+        code.append(tab + "</c:if>");
+
+        return code.toString();
+      } else {
+        return tab + "<i class=\"" + icon + "\"></i>";
+      }
+      
+      
+      
+    }
+
+  }
+  
+  
+  
+  public static class ActionsRendererDropDownButton extends ActionsRenderer {
+    
+    @Override
+    public int getID() {
+      return BaseFilterForm.ACTIONS_RENDERER_DROPDOWN_BUTTON; 
+    }
+    
+    @Override
+    public String getHeader(String instanceFilterForm) {
+
+      String botomenu = "instanceFilterForm.additionalInfoForActionsRendererByPK[pk]";
+      return "    <div class=\"btn-group\">\n"
+             + "      <a class=\"btn btn-small ${" + botomenu + "}\" href=\"#\" style=\"${(empty " + botomenu + ")? '' : 'color: white;'}\"><i class=\"icon-list ${(empty " + botomenu + ")? '' : 'icon-white'}\"></i> <fmt:message key=\"genapp.actions\" /></a>\n"
+             + "      <a class=\"btn btn-small ${" + botomenu + "} dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">&nbsp;<span class=\"caret\"> </span></a>\n"
+             + "      <ul class=\"dropdown-menu pull-right\" style=\"min-width:35px;padding:5px 5px 0px 5px;margin:0px;font-size: 12px\" >\n";
+    }
+
+    @Override
+    String getFooter() {
+      return "     </ul>\n"    
+          + "    </div>\n";
+    }
+
+    @Override
+    String getActionButtonCode(String tab, String type, String href, String onclick,
+        String icon, String codeMessage) {
+      // TODO Auto-generated method stub
+      return    
+          tab + "<li>\n"
+          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;color:white;\" href=\"" + href + "\" \n" 
+          + tab + "onclick=\"" + onclick + "\"> \n"
+          //+ "<img src="<c:url value="/img/fluxicon.png"/>"/>\n"
+          + getImage(icon, tab) + "\n"
+          + tab + " <fmt:message key=\"" + codeMessage + "\"/>\n"
+          + tab + "</a>\n"
+          + tab + "</li>\n";
+    }
+
+  }
+  
+  
+  
+  public static class ActionsRendererSimpleIconList extends ActionsRenderer {
+    
+    
+    
+    @Override
+    public int getID() {
+      return BaseFilterForm.ACTIONS_RENDERER_SIMPLE_ICON_LIST; 
+    }
+    
+    @Override
+    public String getHeader(String instanceFilterForm) {
+      return "<div class=\"btn-group\" data-toggle=\"buttons-checkbox\">\n";
+    }
+    
+    @Override
+    public String getFooter() {
+      return "</div>\n";
+    }
+    
+    /**
+
+       codeButtons.append("            <a class=\"btn btn-danger\" href=\"#myModal\"\n");
+  codeButtons.append("               onclick=\"openModal('<c:url value=\"${contexte}" + pkMapping + "/delete\"/>','show');\"\n");
+  codeButtons.append("               title=\"<fmt:message key=\"genapp.delete\"/>\">\n");
+  codeButtons.append("               <i class=\"icon-trash icon-white\"></i>\n");
+  codeButtons.append("            </a>\n");
+     
+
+
+     */
+    @Override
+    public String getActionButtonCode(String tab, String type, String href, String onclick, String icon, String codeMessage) {
+      StringBuffer codeButtons = new StringBuffer();
+      
+      codeButtons.append(tab + "<a class=\"btn " + type + "\" href=\"" + href + "\"\n");
+      codeButtons.append(tab + "   onclick=\"" + onclick + "\"\n");
+      codeButtons.append(tab + "   title=\"<fmt:message key=\"" + codeMessage + "\"/>\">\n");
+      codeButtons.append( getImage(icon, tab + "   ") + "\n");
+      codeButtons.append(tab + "</a>\n");
+      return codeButtons.toString();
+    }
+    
+  }
+  
+  
+  
 
 
   public static String generateMenu(TableInfo[] tables) {

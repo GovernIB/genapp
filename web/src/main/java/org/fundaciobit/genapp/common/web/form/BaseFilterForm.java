@@ -15,6 +15,12 @@ import org.fundaciobit.genapp.common.query.OrderBy;
  * 
  */
 public abstract class BaseFilterForm extends CommonBaseForm {
+  
+  public static final int ACTIONS_RENDERER_NONE = 0;
+  
+  public static final int ACTIONS_RENDERER_SIMPLE_ICON_LIST = 1;
+  
+  public static final int ACTIONS_RENDERER_DROPDOWN_BUTTON = 2;
 
   protected final Logger log = Logger.getLogger(getClass());
 
@@ -80,14 +86,16 @@ public abstract class BaseFilterForm extends CommonBaseForm {
    * Conté la llista de botons adicionals que es poden mostrar en un form o en
    * cada element de la llista
    */
-  private Map<Object, AdditionalButton> additionalButtonsByPK = new HashMap<Object, AdditionalButton>();
+  private Map<Object, ArrayList<AdditionalButton>> additionalButtonsByPK = new HashMap<Object, ArrayList<AdditionalButton>>();
 
-  
   private List<AdditionalButton> additionalButtonsForEachItem = new ArrayList<AdditionalButton>();
-  
-  
+
   private boolean visibleExportList = true;
+
+  private int actionsRenderer = ACTIONS_RENDERER_SIMPLE_ICON_LIST;
   
+  private Map<Object, Object> additionalInfoForActionsRendererByPK = new HashMap<Object, Object>();
+
   /**
    * 
    * @param toClone
@@ -115,6 +123,8 @@ public abstract class BaseFilterForm extends CommonBaseForm {
     this.additionalButtonsByPK = toClone.additionalButtonsByPK;
     this.additionalButtonsForEachItem = toClone.additionalButtonsForEachItem;
     this.visibleExportList = toClone.visibleExportList;
+    this.actionsRenderer = toClone.actionsRenderer;
+    this.additionalInfoForActionsRendererByPK = toClone.additionalInfoForActionsRendererByPK;
   }
   
 
@@ -122,8 +132,43 @@ public abstract class BaseFilterForm extends CommonBaseForm {
     super();
   }
 
+  public int getActionsRenderer() {
+    return actionsRenderer;
+  }
+
+
+  public void setActionsRenderer(int actionsRenderer) {
+    this.actionsRenderer = actionsRenderer;
+  }
+
   
   
+  
+  public Map<Object, Object> getAdditionalInfoForActionsRendererByPK() {
+    return additionalInfoForActionsRendererByPK;
+  }
+
+
+  public void setAdditionalInfoForActionsRendererByPK(
+      Map<Object, Object> additionalInfoForActionsRendererByPK) {
+    this.additionalInfoForActionsRendererByPK = additionalInfoForActionsRendererByPK;
+  }
+
+
+  public void addAdditionalInfoForActionsRendererByPK(Object pk,Object info) {
+
+    if (info != null) {
+      if (this.additionalInfoForActionsRendererByPK.get(pk) != null) {
+        log.warn("Esta intentant afegir un camp info de ActionsRenderer "
+            + " a una PK que ja el conté !!!!", new Exception());
+      }
+      this.additionalInfoForActionsRendererByPK.put(pk, info);
+    }
+
+  }
+  
+  
+
   public boolean isVisibleOrderBy() {
     return visibleOrderBy;
   }
@@ -301,27 +346,36 @@ public abstract class BaseFilterForm extends CommonBaseForm {
   }
   
 
-  public Map<Object, AdditionalButton> getAdditionalButtonsByPK() {
+  public Map<Object,  ArrayList<AdditionalButton>> getAdditionalButtonsByPK() {
     return additionalButtonsByPK;
   }
 
 
-  public void setAdditionalButtonsByPK(Map<Object, AdditionalButton> additionalButtonsByPK) {
+  public void setAdditionalButtonsByPK(Map<Object,  ArrayList<AdditionalButton>> additionalButtonsByPK) {
     this.additionalButtonsByPK = additionalButtonsByPK;
   }
   
   
   public void addAdditionalButtonByPK(Object pk,AdditionalButton additionalButton) {
 
-    if (additionalButton != null) {
-      if (this.additionalButtonsByPK.get(pk) != null) {
-        log.warn("Esta intentant afegir un camp AdditionalButton"
+    if (additionalButton != null && pk != null) {
+      ArrayList<AdditionalButton> list = this.additionalButtonsByPK.get(pk);
+      if (list == null) {
+        list = new ArrayList<AdditionalButton>();
+        this.additionalButtonsByPK.put(pk, list);
+      } else {
+        if (list.contains(additionalButton)) {
+          log.warn("Esta intentant afegir un camp AdditionalButton"
             + " a una PK que ja el conté !!!!", new Exception());
+        }
       }
-      this.additionalButtonsByPK.put(pk, additionalButton);
+      list.add(additionalButton);
     }
 
   }
+  
+  
+  
 
   public boolean isVisibleExportList() {
     return visibleExportList;

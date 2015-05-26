@@ -73,5 +73,10 @@ public class AdditionalButton {
   public void setType(String type) {
     this.type = type;
   }
+  
+  @Override
+  public int hashCode() {
+    return (this.icon + "==" + this.codeText + "==" + this.link + "==" + this.type).hashCode();
+  }
 
 }
