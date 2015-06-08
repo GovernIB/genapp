@@ -14,6 +14,7 @@ import org.fundaciobit.genapp.common.query.BigDecimalField;
 import org.fundaciobit.genapp.common.query.BigIntegerField;
 import org.fundaciobit.genapp.common.query.BooleanField;
 import org.fundaciobit.genapp.common.query.ByteField;
+import org.fundaciobit.genapp.common.query.CustomField;
 import org.fundaciobit.genapp.common.query.DateField;
 import org.fundaciobit.genapp.common.query.Field;
 import org.fundaciobit.genapp.common.query.FieldHour;
@@ -246,6 +247,12 @@ public class LogicForBaseFilterForm {
           groupByItems.add(loadDataForGroupByField(f, atm, whereAdditionalCondition));
           continue;
         }
+        
+        if (f instanceof CustomField) {
+          // Gestionat per l'usuari
+          continue;
+        }
+        
   
         // TODO Falten altres tipus ???
         log.error("No s'ha trobat gestor en el mètode loadDataForGroupByFilterBy de la classe "
@@ -460,6 +467,11 @@ public class LogicForBaseFilterForm {
             log.error("Error " + nfe.getMessage(), nfe);
             return null;
           }
+        }
+        
+        if (f instanceof CustomField) {
+          // Ho gestionarà l'usuari dins algun mètode com postList o fillReferencesForList
+          return null;
         }
 
         // TODO Falten altres tipus !!!!
