@@ -51,19 +51,47 @@ public class BeanValidatorResult<T> implements IValidatorResult<T> {
   @Override
   public Object getFieldValue(T target, Field<?> field)  {
     try {
-      if (target == null) {
+      if (target == null || field == null || field.javaName == null) {
         return null;
       }
-      java.lang.reflect.Field fieldR = target.getClass().getDeclaredField(field.javaName);
-      fieldR.setAccessible(true);
-      return fieldR.get(target);
+
+      if (field.javaName.indexOf('.') == -1) {
+        java.lang.reflect.Field fieldR = target.getClass().getDeclaredField(field.javaName);
+        fieldR.setAccessible(true);
+        return fieldR.get(target);
+      } else {
+        return getFieldValueRecursive(target, field.javaName);
+      }
     } catch (Exception e) {
-      log.error("No puc obtenir el valor del camp " + field.fullName + " de l'instancia "
-          + target.toString(), e);
+      log.error("No puc obtenir el valor del camp " + field.fullName + " de la instancia "
+          + target.toString() + ":" + e.getMessage(), e);
       return null;
     }
 
   }
+  
+  
+  protected Object getFieldValueRecursive(Object target, String field) throws Exception {
+    int pos = field.indexOf('.'); 
+    if (pos == -1) {
+      
+      java.lang.reflect.Field fieldR = target.getClass().getDeclaredField(field);
+      fieldR.setAccessible(true);
+      return fieldR.get(target);
+    } else {
+      
+      String parentField = field.substring(0, pos);
+      
+      java.lang.reflect.Field fieldR = target.getClass().getDeclaredField(parentField);
+      fieldR.setAccessible(true);
+      Object parentTarget = fieldR.get(target);
+
+      return getFieldValueRecursive(parentTarget, field.substring(pos +1));
+    } 
+  }
+  
+  
+  
 
   @Override
   public void rejectIfEmptyOrWhitespace(T target, Field<?> field,
