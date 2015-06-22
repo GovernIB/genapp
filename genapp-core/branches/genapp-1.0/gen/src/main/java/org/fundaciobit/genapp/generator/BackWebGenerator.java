@@ -382,20 +382,30 @@ public class BackWebGenerator {
         codeHeaderButtons.append("      </a>\n");
         codeHeaderButtons.append("    </c:if>\n");
         
-        // BOTONS ADICIONALS 
+        // BOTONS ADICIONALS
+        //codeHeaderButtons.append("    <div id=\"" + model + "_list_buttons_header\">\n");
         codeHeaderButtons.append("    <c:forEach var=\"button\" items=\"${" + instanceFilterForm + ".additionalButtons}\">\n");
         codeHeaderButtons.append("      <c:set var=\"thelink\" value=\"${button.link}\" />\n");
         codeHeaderButtons.append("      <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n");
         codeHeaderButtons.append("        <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
         codeHeaderButtons.append("        <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
         codeHeaderButtons.append("      </c:if>\n");
+        /*
         codeHeaderButtons.append("      <a class=\"btn ${button.type} btn-small pull-right\" href=\"#\" \n");
         codeHeaderButtons.append("         onclick=\"${thelink}\" \n");
         codeHeaderButtons.append("         title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
         codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
         codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
         codeHeaderButtons.append("      </a>\n");
-        codeHeaderButtons.append("    </c:forEach>\n\n\n");
+        */
+        
+        codeHeaderButtons.append("       <button type=\"button\" class=\"btn btn-small ${button.type} pull-right\""
+             + " onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
+        codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
+        codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
+        codeHeaderButtons.append("       </button>\n");
+        codeHeaderButtons.append("    </c:forEach>\n");
+        //codeHeaderButtons.append("    </div>\n");
         
         
 
