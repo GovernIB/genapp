@@ -191,7 +191,7 @@ public class DaoJPAGenerator {
   
         imports.add("javax.persistence.SequenceGenerator");
         
-        beanCode.append("@SequenceGenerator(name=\"" + sequenceJPAName + "\", sequenceName=\"" + sequenceSQLName + "\")\n"); 
+        beanCode.append("@SequenceGenerator(name=\"" + sequenceJPAName + "\", sequenceName=\"" + sequenceSQLName + "\", allocationSize=1)\n"); 
       }
       
       beanCode.append("public class " + codeBeanFileName

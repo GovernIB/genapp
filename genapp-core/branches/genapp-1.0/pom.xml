@@ -104,7 +104,7 @@
         <repository>
             <id>org.fundaciobit.genapp</id>
             <name>GenApp Maven Repository</name>
-            <url>scp://shell.sourceforge.net/home/project-web/genapp/htdocs/maven</url>
+            <url>sftp://web.sourceforge.net/home/project-web/genapp/htdocs/maven</url>
         </repository>
         
         <!--   COM UTILITZAR: AFEGIR AQUEST CODI AL pom.xml    -->
