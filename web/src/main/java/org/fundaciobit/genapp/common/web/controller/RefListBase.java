@@ -3,16 +3,19 @@ package org.fundaciobit.genapp.common.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fundaciobit.genapp.common.StringKeyValue;
 import org.fundaciobit.genapp.common.i18n.I18NException;
+import org.fundaciobit.genapp.common.query.Field;
 import org.fundaciobit.genapp.common.query.OrderBy;
 import org.fundaciobit.genapp.common.query.Select;
+import org.fundaciobit.genapp.common.query.Where;
 
 /**
  * 
  * @author anadal
  * 
  */
-public class RefListBase {
+public abstract class RefListBase {
 
   protected Select<?>[] selects;
 
@@ -86,5 +89,8 @@ public class RefListBase {
     }
     return null;
   }
+  
+  public abstract List<StringKeyValue> getReferenceList(Field<?> keyField, Where where,
+      OrderBy ... orderBy) throws I18NException;
 
 }

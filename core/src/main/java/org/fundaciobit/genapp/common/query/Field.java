@@ -494,7 +494,7 @@ public abstract class Field<C> implements Serializable {
         }
         return "( " + fullName + " " + oper + " ( " + str.toString() + " ) )";
       } else {
-        return "1=0"; // FALSE CONDITION
+        return "IN".equals(oper)?"1=0":"1=1"; // FALSE CONDITION si IN, TRUE Condition if "NOT IN"
       }
       
     }
