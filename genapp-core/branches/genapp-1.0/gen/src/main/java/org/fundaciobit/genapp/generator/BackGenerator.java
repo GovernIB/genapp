@@ -1987,9 +1987,9 @@ public class BackGenerator {
       if (fileFields.size() != 0) {
         code.append("      this.setFilesFormToEntity(afm, " + model + ", " + instanceForm + "); // FILE\n");
       }
-      code.append("      preValidate(" + instanceForm + ", result);\n");
+      code.append("      preValidate(request, " + instanceForm + ", result);\n");
       code.append("      getWebValidator().validate(" + instanceForm + ", result);\n");
-      code.append("      postValidate(" + instanceForm + ", result);\n");
+      code.append("      postValidate(request," + instanceForm + ", result);\n");
       code.append("\n");
       code.append("      if (result.hasErrors()) {\n");
       if (fileFields.size() != 0) {
@@ -1999,7 +1999,7 @@ public class BackGenerator {
       code.append("      } else {\n");
 
       
-      code.append("        " + model + " = create(" + model + ");\n");
+      code.append("        " + model + " = create(request, " + model + ");\n");
       if (fileFields.size() != 0) {
       code.append("        afm.postPersistFiles(); // FILE\n");
       }
@@ -2045,7 +2045,7 @@ public class BackGenerator {
       code.append("      }\n");
       code.append("    }\n");
       //code.append("    " + jpa + " " + model + " = (" + jpa + ") " + instanceEjb + ".findByPrimaryKey(" + pkFromParams + ");\n");
-      code.append("    " + jpa + " " + model + " = findByPrimaryKey(" + pkFromParams + ");\n");
+      code.append("    " + jpa + " " + model + " = findByPrimaryKey(request, " + pkFromParams + ");\n");
       code.append("\n");
       code.append("    if (" + model + " == null) {\n");
       code.append("      createMessageWarning(request, \"error.notfound\", " + pkFromParams + ");\n");
@@ -2112,9 +2112,9 @@ public class BackGenerator {
       }
       
       
-      code.append("      preValidate(" + instanceForm + ", result);\n");
+      code.append("      preValidate(request, " + instanceForm + ", result);\n");
       code.append("      getWebValidator().validate(" + model + ", result);\n");
-      code.append("      postValidate(" + instanceForm + ", result);\n");
+      code.append("      postValidate(request, " + instanceForm + ", result);\n");
       code.append("\n");
       code.append("      if (result.hasErrors()) {\n");
       if (fileFields.size() != 0) {
@@ -2123,7 +2123,7 @@ public class BackGenerator {
       code.append("        return getTileForm();\n");
       code.append("      } else {\n");
 
-      code.append("        " + model + " = update(" + model + ");\n");
+      code.append("        " + model + " = update(request, " + model + ");\n");
       if (fileFields.size() != 0) {
       code.append("        afm.postPersistFiles(); // FILE\n");
       }
@@ -2529,12 +2529,12 @@ public class BackGenerator {
       }
 
       code.append("\n");
-      code.append("  public void preValidate(" + form + " " + instanceForm 
+      code.append("  public void preValidate(HttpServletRequest request," + form + " " + instanceForm 
           + " , BindingResult result)  throws I18NException {\n");
       code.append("  }\n");
       
       code.append("\n");
-      code.append("  public void postValidate(" + form + " " + instanceForm 
+      code.append("  public void postValidate(HttpServletRequest request," + form + " " + instanceForm 
            + ", BindingResult result)  throws I18NException {\n");
       //code.append("    return true;\n");
       code.append("  }\n");
@@ -2623,16 +2623,23 @@ public class BackGenerator {
       } while (index != -1);
       
       
-      code.append("  public " + jpa + " findByPrimaryKey(" + pkParams2.trim() + ") throws I18NException {\n");
+      code.append("  public " + jpa + " findByPrimaryKey(HttpServletRequest request, " + pkParams2.trim() + ") throws I18NException {\n");
       code.append("    return (" + jpa + ") " + instanceEjb + ".findByPrimaryKey(" + pkFromParams + ");\n");
       code.append("  }\n");
       code.append("\n");
       
       
       code.append("\n");
-      code.append("  public " + jpa + " create(" + jpa + " " + model + ")\n");
+      code.append("  public " + jpa + " create(HttpServletRequest request, " + jpa + " " + model + ")\n");
       code.append("    throws Exception,I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
       code.append("    return (" + jpa + ") " + instanceEjb + ".create(" + model + ");\n");
+      code.append("  }\n");
+      code.append("\n");
+      
+      code.append("\n");
+      code.append("  public " + jpa + " update(HttpServletRequest request, " + jpa + " " + model + ")\n");
+      code.append("    throws Exception,I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
+      code.append("    return (" + jpa + ") " + instanceEjb + ".update(" + model + ");\n");
       code.append("  }\n");
       code.append("\n");
       
@@ -2643,12 +2650,7 @@ public class BackGenerator {
       code.append("  }\n");
       code.append("\n");
  
-      code.append("\n");
-      code.append("  public " + jpa + " update(" + jpa + " " + model + ")\n");
-      code.append("    throws Exception,I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
-      code.append("    return (" + jpa + ") " + instanceEjb + ".update(" + model + ");\n");
-      code.append("  }\n");
-      code.append("\n");
+
       
       
       code.append("} // Final de Classe\n");
