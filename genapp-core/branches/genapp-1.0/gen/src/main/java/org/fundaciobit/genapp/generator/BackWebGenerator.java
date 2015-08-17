@@ -1810,8 +1810,8 @@ return sourceFiles;
     StringBuffer code = new StringBuffer();
     
     final String readOnlyCondition = "gen:contains(" + instanceForm + ".readOnlyFields ," + modelCampMay + ")";
-    final String formInputReadOnly = "readonly=\"${ " + readOnlyCondition + "? 'true' : 'false'}\"" +
-    		" cssClass=\"${" + readOnlyCondition + "? 'input uneditable-input' : 'input'}\" "; 
+    final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'true' : 'false'}\"";
+    final String formInputReadOnly = readOnlyAttribute + " cssClass=\"${" + readOnlyCondition + "? 'input uneditable-input' : 'input'}\" "; 
     
     if (fileFields.contains(field)) {
       String fileObj = modelCamp;
@@ -2016,7 +2016,10 @@ return sourceFiles;
       if (webType == WebType.RichText) {
         code.append(" cssClass=\"${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\"");
       } else {
-        code.append(" rows=\"3\" " + formInputReadOnly.replace("'input", "'input-xxlarge") + " ");
+        code.append(" rows=\"3\" wrap=\"off\" style=\"overflow:auto;\" cssClass=\"input-xxlarge\" "
+            + readOnlyAttribute);
+        
+            //formInputReadOnly.replace("'input", "'input-xxlarge") + " ");
       }
       code.append(" path=\"" + model + "." + modelCamp + "\"  />\n");
       return code.toString();
