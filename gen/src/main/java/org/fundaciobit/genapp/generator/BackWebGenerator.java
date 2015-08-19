@@ -1212,7 +1212,7 @@ return sourceFiles;
         code.append(tab + "<img src=\"<c:url value=\"" + icon+"\"/>\"/>\n");
         code.append(tab + "</c:if>");
         code.append(tab + "<c:if test=\"${!fn:startsWith(" + simpleVar  + ", '/')}\">\n");
-        code.append(tab + "<i class=\"" + icon + "\"></i>\n");        
+        code.append(tab + "<i class=\"" + icon +  "\"></i>\n");        
         code.append(tab + "</c:if>");
 
         return code.toString();
@@ -1238,7 +1238,7 @@ return sourceFiles;
     @Override
     public String getHeader(String instanceFilterForm) {
 
-      String botomenu = "instanceFilterForm.additionalInfoForActionsRendererByPK[pk]";
+      String botomenu = instanceFilterForm + ".additionalInfoForActionsRendererByPK[pk]";
       return "    <div class=\"btn-group\">\n"
              + "      <a class=\"btn btn-small ${" + botomenu + "}\" href=\"#\" style=\"${(empty " + botomenu + ")? '' : 'color: white;'}\"><i class=\"icon-list ${(empty " + botomenu + ")? '' : 'icon-white'}\"></i> <fmt:message key=\"genapp.actions\" /></a>\n"
              + "      <a class=\"btn btn-small ${" + botomenu + "} dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">&nbsp;<span class=\"caret\"> </span></a>\n"
@@ -1254,12 +1254,10 @@ return sourceFiles;
     @Override
     String getActionButtonCode(String tab, String type, String href, String onclick,
         String icon, String codeMessage) {
-      // TODO Auto-generated method stub
       return    
           tab + "<li>\n"
-          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;color:white;\" href=\"" + href + "\" \n" 
+          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;${(empty " + excludeVariableJSTL(type) + ")? '' : 'color: white;'}\" href=\"" + href + "\" \n" 
           + tab + "onclick=\"" + onclick + "\"> \n"
-          //+ "<img src="<c:url value="/img/fluxicon.png"/>"/>\n"
           + getImage(icon, tab) + "\n"
           + tab + " <fmt:message key=\"" + codeMessage + "\"/>\n"
           + tab + "</a>\n"
@@ -1268,7 +1266,16 @@ return sourceFiles;
 
   }
   
-  
+  public static String excludeVariableJSTL(String value) {
+    if (value == null || value.trim().length() == 0) {
+      return value;
+    }
+    value = value.trim();
+    if (value.startsWith("${")) {
+      value = value.substring(2, value.length() - 1);
+    }
+    return value;
+  }
   
   public static class ActionsRendererSimpleIconList extends ActionsRenderer {
     
