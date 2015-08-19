@@ -2005,7 +2005,7 @@ public class BackGenerator {
       }
       code.append("        createMessageSuccess(request, \"success.creation\", " + pkFromModel + ");\n");
       code.append("        " + instanceForm + ".set" + tableJavaName + "(" + model + ");\n");
-      code.append("        return getRedirectWhenCreated(" + instanceForm + ");\n");
+      code.append("        return getRedirectWhenCreated(request, " + instanceForm + ");\n");
       code.append("      }\n");
       code.append("    } catch (Throwable __e) {\n");
       if (fileFields.size() != 0) {
@@ -2049,7 +2049,7 @@ public class BackGenerator {
       code.append("\n");
       code.append("    if (" + model + " == null) {\n");
       code.append("      createMessageWarning(request, \"error.notfound\", " + pkFromParams + ");\n");
-      code.append("      new ModelAndView(new RedirectView(getRedirectWhenCancel(" + pkFromParams + "), true));\n");
+      code.append("      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, " + pkFromParams + "), true));\n");
       code.append("      return llistatPaginat(request, response, 1);\n");
       code.append("    } else {\n");
       code.append("      ModelAndView mav = new ModelAndView(getTileForm());\n");   
@@ -2131,7 +2131,7 @@ public class BackGenerator {
       
       code.append("        status.setComplete();\n");
       
-      code.append("        return getRedirectWhenModified(" + instanceForm + ", null);\n");
+      code.append("        return getRedirectWhenModified(request, " + instanceForm + ", null);\n");
       
       code.append("      }\n");
       code.append("    } catch (Throwable __e) {\n");
@@ -2142,7 +2142,7 @@ public class BackGenerator {
       code.append("      String msg = createMessageError(request, \"error.modification\",\n");
       code.append("          " + pkFromModel + ", __e);\n");
       code.append("      log.error(msg, __e);\n");
-      code.append("      return getRedirectWhenModified(" + instanceForm + ", __e);\n");
+      code.append("      return getRedirectWhenModified(request, " + instanceForm + ", __e);\n");
       code.append("    }\n");
       code.append("\n");
       code.append("  }\n");
@@ -2166,18 +2166,18 @@ public class BackGenerator {
       code.append("      " + tableJavaName + " " + model + " = " + instanceEjb + ".findByPrimaryKey(" + pkFromParams + ");\n");
       code.append("      if (" + model + " == null) {\n");
       code.append("        String __msg =createMessageError(request, \"error.notfound\", " + pkFromParams + ");\n");
-      code.append("        return getRedirectWhenDelete(" + pkFromParams + ", new Exception(__msg));\n");
+      code.append("        return getRedirectWhenDelete(request, " + pkFromParams + ", new Exception(__msg));\n");
       code.append("      } else {\n");
       code.append("        delete(request, " + model + ");\n");
       code.append("        createMessageSuccess(request, \"success.deleted\", " + pkFromParams + ");\n");      
-      code.append("        return getRedirectWhenDelete(" + pkFromParams + ",null);\n");
+      code.append("        return getRedirectWhenDelete(request, " + pkFromParams + ",null);\n");
       code.append("      }\n");
       //code.append("      return \"redirect:\" + getContextWeb() + \"/list\";\n");
       code.append("\n");
       code.append("    } catch (Throwable e) {\n");
       code.append("      String msg = createMessageError(request, \"error.deleting\", " + pkFromParams + ", e);\n");
       code.append("      log.error(msg, e);\n");
-      code.append("      return getRedirectWhenDelete(" + pkFromParams + ", e);\n");
+      code.append("      return getRedirectWhenDelete(request, " + pkFromParams + ", e);\n");
       //code.append("      return getTileForm();\n");
       code.append("    }\n");
       code.append("  }\n");
@@ -2209,7 +2209,7 @@ public class BackGenerator {
       code.append("    }\n");
       code.append("  }\n");
       code.append("  if (redirect == null) {\n");
-      code.append("    redirect = getRedirectWhenDelete(null,null);\n");
+      code.append("    redirect = getRedirectWhenDelete(request, null,null);\n");
       code.append("  }\n");
       code.append("\n");
       code.append("  return redirect;\n");
@@ -2321,7 +2321,7 @@ public class BackGenerator {
       code.append("  @RequestMapping(value = \"" + pkMapping + "/cancel\")\n");
       code.append("  public String cancel" + tableJavaName + "(" + pkParams + ",\n");
       code.append("      HttpServletRequest request,HttpServletResponse response) {\n");
-      code.append("     return getRedirectWhenCancel(" + pkFromParams + ");\n"); 
+      code.append("     return getRedirectWhenCancel(request, " + pkFromParams + ");\n"); 
       code.append("  }\n");
       code.append("\n");
       
@@ -2551,13 +2551,13 @@ public class BackGenerator {
       code.append("  }\n");
       
       code.append("\n");
-      code.append("  public String getRedirectWhenCreated(" +form + " " + instanceForm + ") {\n");
+      code.append("  public String getRedirectWhenCreated(HttpServletRequest request, " +form + " " + instanceForm + ") {\n");
       code.append("    return \"redirect:\" + getContextWeb() + \"/list/1\";\n");
       code.append("  }\n");
       
       
       code.append("\n");
-      code.append("  public String getRedirectWhenModified(" +form + " " + instanceForm + ", Throwable __e) {\n");
+      code.append("  public String getRedirectWhenModified(HttpServletRequest request, " +form + " " + instanceForm + ", Throwable __e) {\n");
       code.append("    if (__e == null) {\n");
       code.append("      return \"redirect:\" + getContextWeb() + \"/list\";\n");
       code.append("    } else {\n");
@@ -2566,12 +2566,12 @@ public class BackGenerator {
       code.append("  }\n");
       
       code.append("\n");
-      code.append("  public String getRedirectWhenDelete(" + pkParamsSense + ", Throwable __e) {\n");
+      code.append("  public String getRedirectWhenDelete(HttpServletRequest request, " + pkParamsSense + ", Throwable __e) {\n");
       code.append("    return \"redirect:\" + getContextWeb() + \"/list\";\n");
       code.append("  }\n");
       
       code.append("\n");
-      code.append("  public String getRedirectWhenCancel(" + pkParamsSense + ") {\n");
+      code.append("  public String getRedirectWhenCancel(HttpServletRequest request, " + pkParamsSense + ") {\n");
       code.append("    return \"redirect:\" + getContextWeb() + \"/list\";\n");
       code.append("  }\n");
 
