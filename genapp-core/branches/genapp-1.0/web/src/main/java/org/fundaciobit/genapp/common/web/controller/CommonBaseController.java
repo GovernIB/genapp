@@ -306,7 +306,7 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
   
 
   public void exportData(HttpServletRequest request, HttpServletResponse response,
-      String dataExporterID, BaseFilterForm filterForm, List<? extends IGenAppEntity> list,
+      String dataExporterID, BaseFilterForm filterForm, List<I> list,
       Field<?>[] allFields, Map<Field<?>,Map<String,String>> mapValuesByField, Field<?>[] primaryKeyFields) throws Exception {
     try {
       //log.debug(" Cridant a Export: TIPUS = " + dataExporterID);
