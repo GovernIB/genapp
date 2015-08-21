@@ -450,7 +450,25 @@ public class BackWebGenerator {
         codeFilterBy.append("      </div>\n");
         codeFilterBy.append("      <div class=\"form-inline\">\n");
         codeFilterBy.append("      \n");
-        codeFilterBy.append("      \n");
+        
+        final String searchByAdditional =
+            "<c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
+          + "<c:if test=\"${ __entry.key < 0 && not empty __entry.value.searchBy }\">\n"
+          + "<div class=\"input-prepend\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n"
+          + "  <span class=\"add-on\"><fmt:message key=\"${__entry.value.codeName}\" />:</span>\n" 
+          + "  <fmt:message key=\"genapp.form.searchby\" var=\"cercaperAF\" >\n"
+          + "    <fmt:param>\n"
+          + "      <fmt:message key=\"${__entry.value.codeName}\" />\n"
+          + "    </fmt:param>\n"
+          + "  </fmt:message>\n"
+          + "  <input id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"search-query input-medium\" placeholder=\"${cercaperAF}\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
+          + "</div>\n"
+          + "</c:if>\n"
+          + "</c:forEach>\n";
+        
+        codeFilterBy.append(searchByAdditional);
+        
+        codeFilterBy.append("\n\n");
         for (FieldInfo field : fields) {
          
           if (fileFields.contains(field)) {
@@ -667,6 +685,9 @@ public class BackWebGenerator {
         
         }; // Final de for de Filtres
         codeFilterBy.append("\n");
+        
+        codeFilterBy.append(searchByAdditional.replace(" < 0", " >= 0"));
+        
         codeFilterBy.append("      </div>\n");
         codeFilterBy.append("    </div>\n");
         
