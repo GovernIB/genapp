@@ -20,8 +20,7 @@ import javax.ejb.EJB;
  */
 @Controller
 public abstract class ${fullname}FilesBaseController<I extends IGenAppEntity, PK extends Object, F extends BaseForm>
-  extends CommonFilesBaseController<I, PK, F, ${fitxer}>
-  
+  extends CommonFilesBaseController<I, PK, F, ${fitxer}> {
 
   @EJB(mappedName = "${name}/${fitxer}EJB/local")
   protected ${fitxer}Local fitxerEjb;
