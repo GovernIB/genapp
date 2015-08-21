@@ -1116,7 +1116,7 @@ public class DaoJPAGenerator {
     }
     
     manager.append("public class " + managerFileName 
-        + "\n\t\t extends Abstract" + project.projectName + "JPAManager<" + tableNameJava + ", " + pkClass +" >"
+        + "\n\t\t extends Abstract" + project.projectName + "JPAManager<" + tableNameJava + ", " + pkClass +">"
         + "\n\t\t implements I"  + tableNameJava + "Manager, " + tableNameJava + "Fields {\n\n\n");
     
     manager.append("\n\n");

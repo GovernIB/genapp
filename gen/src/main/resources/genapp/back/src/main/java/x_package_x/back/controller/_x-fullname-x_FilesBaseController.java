@@ -2,21 +2,26 @@ package ${package}.back.controller;
 
 import ${package}.ejb.${fitxer}Local;
 import ${package}.model.entity.${fitxer};
+
 import org.apache.log4j.Logger;
+import org.fundaciobit.genapp.common.IGenAppEntity;
 import org.fundaciobit.genapp.common.filesystem.FileSystemManager;
 import org.fundaciobit.genapp.common.web.controller.CommonFilesBaseController;
 import org.fundaciobit.genapp.common.web.controller.FilesFormManager;
+import org.fundaciobit.genapp.common.web.form.BaseForm;
 import org.springframework.stereotype.Controller;
 
 import javax.ejb.EJB;
 
 /**
- * 
+ * POT SOBRESCRIURE AQUESTA CLASSE
  * @author anadal
  * 
  */
 @Controller
-public abstract class ${fullname}FilesBaseController<P, F> extends CommonFilesBaseController<P,F, ${fitxer}> {
+public abstract class ${fullname}FilesBaseController<I extends IGenAppEntity, PK extends Object, F extends BaseForm>
+  extends CommonFilesBaseController<I, PK, F, ${fitxer}>
+  
 
   @EJB(mappedName = "${name}/${fitxer}EJB/local")
   protected ${fitxer}Local fitxerEjb;

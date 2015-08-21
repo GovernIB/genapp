@@ -1603,9 +1603,9 @@ public class BackGenerator {
       code.append("@SessionAttributes(types = { " + form + ".class, " + filterForm + ".class })\n");
       code.append("public class " + controller + "\n");
       if (fileFields.size() != 0) {
-        code.append("    extends " + derivatDe + "<" + jpa + ", " + form + ">");
+        code.append("    extends " + derivatDe + "<" + tableJavaName + ", " + pkClass +", " + form + ">");
       } else {
-        code.append("    extends " + derivatDe);
+        code.append("    extends " + derivatDe + "<" + tableJavaName + ", " + pkClass +">");
       }
       code.append(" implements " + fieldsClass + " {\n");
       
@@ -2336,7 +2336,7 @@ public class BackGenerator {
       if (fileFields.size() != 0) {
       code.append("  // FILE\n");
       code.append("  @Override\n");
-      code.append("  public void setFilesFormToEntity(FilesFormManager<" + fileTable.getNameJava() + "> afm, " + jpa + " " + model + ",\n      " + form + " form");
+      code.append("  public void setFilesFormToEntity(FilesFormManager<" + fileTable.getNameJava() + "> afm, " + tableJavaName + " " + model + ",\n      " + form + " form");
       //code.append(", BindingResult result");
       code.append(") throws I18NException {\n");
       code.append("\n");
@@ -2352,7 +2352,7 @@ public class BackGenerator {
         }
 
         code.append("        form.isNou()? null : " + model + "." + CodeGenUtils.getOnlyName(jn) + "());\n");
-        code.append("    " + model + "." +  CodeGenUtils.set(jn) + "(f);\n");
+        code.append("    ((" + jpa + ")" + model + ")." +  CodeGenUtils.set(jn) + "(f);\n");
 
         code.append("    if (f != null) { \n");
         code.append("      " + model + "." +  CodeGenUtils.set(fieldInfo) + "(f.getFitxerID());\n");
@@ -2379,7 +2379,7 @@ public class BackGenerator {
       code.append("\n");
       code.append("  // FILE\n");
       code.append("  @Override\n");
-      code.append("  public void deleteFiles(" + jpa + " " + model + ") {\n");
+      code.append("  public void deleteFiles(" + tableJavaName + " " + model + ") {\n");
       for (FieldInfo fieldInfo : fileFields) {
         String jn = fieldInfo.getJavaName();
         code.append("    deleteFile(" + model + "." + CodeGenUtils.getOnlyName(jn) + "());\n");
