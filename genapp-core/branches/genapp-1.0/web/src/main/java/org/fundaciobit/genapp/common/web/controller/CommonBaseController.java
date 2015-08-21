@@ -43,7 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author anadal
  *
  */
-public abstract class CommonBaseController extends ModelGenerator {
+public abstract class CommonBaseController <I extends IGenAppEntity, PK extends Object> extends ModelGenerator {
 
   public static final List<StringKeyValue> EMPTY_STRINGKEYVALUE_LIST = Collections.unmodifiableList(new ArrayList<StringKeyValue>());
   
@@ -137,7 +137,7 @@ public abstract class CommonBaseController extends ModelGenerator {
     return msg;
   }
   
-  protected List<?> processarLlistat(ITableManager<?, ?> ejb,
+  protected List<I> processarLlistat(ITableManager<I, PK> ejb,
       BaseFilterForm filterForm, int pagina,
       Where whereAdditionalCondition, ModelAndView mav) throws I18NException {
     if (filterForm == null) {
@@ -158,7 +158,7 @@ public abstract class CommonBaseController extends ModelGenerator {
     log.debug("WHERE: " + (where == null ? null : where.toSQL()));
 
     // ============== CONSULTA
-    List<?> items = null;
+    List<I> items = null;
     Long total = null;
 
     if (pagina < 1) {
@@ -167,12 +167,12 @@ public abstract class CommonBaseController extends ModelGenerator {
     
     if (itemsPerPage < 0) {
       pagina = 1;
-      items = ejb.select(where, orderBy);
+      items = executeSelect(ejb, where, orderBy, null , 0); 
     } else {
       for (;;) {
         final int inici = (pagina - 1) * itemsPerPage;
         // Elements que apareixeram a la pàgina "pagina".
-        items = ejb.select(where, inici, itemsPerPage, orderBy);
+        items = executeSelect(ejb, where, orderBy, itemsPerPage, inici);
   
         // Numero total de registres amb aquell filtre
         total = ejb.count(where);
@@ -191,7 +191,19 @@ public abstract class CommonBaseController extends ModelGenerator {
     omplirDadesPaginacio(mav, pagina, itemsPerPage, total);
     return items;
   }
+
+
+  public List<I> executeSelect(ITableManager<I, PK> ejb, Where where,
+      final OrderBy[] orderBy, final Integer itemsPerPage, final int inici)
+      throws I18NException {
+    if (itemsPerPage == null) {
+      return ejb.select(where, orderBy);
+    } else {
+      return ejb.select(where, inici, itemsPerPage, orderBy);
+    }
+  }
   
+
   
 
   public static void mapTomav(Map<String, Object> map, ModelAndView mav) {

@@ -11,7 +11,10 @@ import ${package}.utils.Configuracio;
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.StringKeyValue;
 import org.fundaciobit.genapp.common.query.Field;
+import org.fundaciobit.genapp.common.query.OrderBy;
+import org.fundaciobit.genapp.common.query.OrderType;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
+import org.fundaciobit.genapp.common.web.form.AdditionalField;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 
 
@@ -24,47 +27,87 @@ public class Utils {
 
   protected static final Logger log = Logger.getLogger(Utils.class);
 
-  public static String getSortIcons(BaseFilterForm baseFilter, Field<?> theField) throws Exception {
+  public static String getSortIconsAdditionalField(BaseFilterForm baseFilter,
+       AdditionalField<?, ?> additionalField) throws Exception {
+      
+      String code = additionalField.getCodeName();
+      String newCode = baseFilter.getLabels().get(additionalField.getValueField());
+      if (newCode != null) {
+        code = newCode;
+      }
+      return getSortIcons(baseFilter, additionalField.getOrderBy(), code);
     
-    
-    if (baseFilter == null) {
-      throw new Exception("FilterForm is null.");
-    }
-    
-    String field = theField.getJavaName();
-    String code = theField.getFullName();
-    String html;
+  }
   
+
+  public static String getSortIcons(BaseFilterForm baseFilter, Field<?> theField) throws Exception {
+    String code = theField.getFullName();
     String newCode = baseFilter.getLabels().get(theField);
     if (newCode != null) {
       code = newCode;
     }
+    return getSortIcons(baseFilter, theField, code);
+  }
+  
+  
+  protected static String getSortIcons(BaseFilterForm baseFilter, 
+      Field<?> theField, String code) throws Exception {
     
-    if (baseFilter.isVisibleOrderBy()) {
+    if (baseFilter == null) {
+      throw new Exception("FilterForm is null.");
+    }
 
-      if (field.equals(baseFilter.getOrderBy())) {
+    
+    if (baseFilter.isVisibleOrderBy() && theField != null) {
+
+      String field = theField.getJavaName();
+      
+      String html;
+      
+      boolean orderedBythisfield = false;
+      boolean isOrderedAsc = false;
+      if (baseFilter.getOrderBy() == null) {
+        // cercam en el valors per defecte
+        OrderBy[] orderByDefaultList = baseFilter.getDefaultOrderBy();
+        if (orderByDefaultList != null) {
+          for (OrderBy orderBy : orderByDefaultList) {          
+            if (orderBy.javaName.equals(theField.fullName)) {
+              orderedBythisfield = true;
+              isOrderedAsc = orderBy.orderType.equals(OrderType.ASC);
+              break;
+            }
+          }
+        }
+        
+      } else {
+        orderedBythisfield = field.equals(baseFilter.getOrderBy());
+        isOrderedAsc = baseFilter.isOrderAsc();
+      }
+      
+      
+      if (orderedBythisfield) {
   
         html = "<span style=\"cursor:row-resize\" onClick=\"javascript:executeOrderBy('"
             + field
             + "', "
-            + !baseFilter.isOrderAsc()
+            + !isOrderedAsc
             + ");\""
             + " title=\""
             + I18NUtils
-                .tradueix(!baseFilter.isOrderAsc() ? "genapp.form.sort.asc" : "genapp.form.sort.desc")
+                .tradueix(!isOrderedAsc ? "genapp.form.sort.asc" : "genapp.form.sort.desc")
             + "\" >" + I18NUtils.tradueix(code) + "<i class=\""
-            + (baseFilter.isOrderAsc() ? "icon-chevron-up" : "icon-chevron-down")
+            + (isOrderedAsc ? "icon-chevron-up" : "icon-chevron-down")
             + "\"></i></span>";
       } else {
         html = "<span style=\"cursor:row-resize\" onclick=\"javascript:executeOrderBy('" + field + "', true);\" "
             + " title=\"" + I18NUtils.tradueix("genapp.form.sort.asc") + "\">"
             + I18NUtils.tradueix(code) + "<i class=\"icon-resize-vertical\"></i></span>";
       }
+      return html;
     } else {
-      html = I18NUtils.tradueix(code);
+      return I18NUtils.tradueix(code);
     }
-    
-    return html;
+
   }
 
   public static String intArrayToString(int[] itemsPerPagines) {
