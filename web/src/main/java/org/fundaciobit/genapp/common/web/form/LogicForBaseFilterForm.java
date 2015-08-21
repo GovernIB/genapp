@@ -1,5 +1,7 @@
 package org.fundaciobit.genapp.common.web.form;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.i18n.I18NException;
@@ -74,6 +77,58 @@ public class LogicForBaseFilterForm {
 
   protected final Where getFilterWhere() {
     List<Where> __wheres = new ArrayList<Where>();
+    
+    
+    TreeMap<Integer, AdditionalField<?,?>> additionalFields = filterForm.getAdditionalFields();
+    
+    for (Integer pos : additionalFields.keySet()) {
+      
+      AdditionalField<?,?> af = additionalFields.get(pos);
+      Field<?> searchBy = af.getSearchBy(); 
+      if (searchBy != null) {
+        
+        // Cerca
+        String _value = af.getSearchByValue();
+        
+        // Només Cerques per numeros i Strings
+        if (_value != null && _value.trim().length() != 0) {
+          _value = _value.trim();
+          if (searchBy instanceof StringField) {
+            __wheres.add(searchBy.like("%" + _value.replace(' ', '%') + "%"));
+          } else {
+            try {
+              if ((searchBy instanceof LongField)) {
+                __wheres.add(((Field<Number>) searchBy).equal(new Long(_value)));
+              } else if (searchBy instanceof IntegerField) {
+                __wheres.add(((Field<Number>) searchBy).equal(new Integer(_value)));
+              } else if (searchBy instanceof ByteField) {
+                __wheres.add(((Field<Number>) searchBy).equal(new Byte(_value)));
+              } else if (searchBy instanceof FloatField) {
+                __wheres.add(((Field<Number>) searchBy).equal(new Float(_value)));
+              } else if (searchBy instanceof ShortField) {
+                __wheres.add(((Field<Number>) searchBy).equal(new Short(_value)));
+              } else if (searchBy instanceof BigIntegerField) {
+                __wheres.add(((Field<Number>) searchBy).equal(new BigInteger(_value)));
+              } else if (searchBy instanceof BigDecimalField) {
+                __wheres.add(((Field<Number>) searchBy).equal(new BigDecimal(_value)));
+              } else {
+                log.warn("Només es por cercar sobre camps addicionals de tipus "
+                    + "String o Numèric. Camp = " + searchBy.fullName, new Exception());
+              }
+
+            } catch (Throwable e) {
+              log.error("Error intentant filtrar pel camp " + searchBy.fullName
+                  + " amb el valor " + _value + ": " + e.getMessage(), e);
+              af.setSearchByValue(e.getMessage());
+            }
+          }
+        }
+        
+      }
+      
+      
+    }
+    
 
     if (filterForm.getFilterByFields() != null) {
       for (Field<?> f : filterForm.getFilterByFields()) {
@@ -83,7 +138,7 @@ public class LogicForBaseFilterForm {
         if (f instanceof StringField) {
           String _value = (String) Utils.getValueOfJavaField(this.filterForm, f.javaName);
           if (_value != null && _value.length() != 0) {
-            __wheres.add(f.like("%" + _value.replace(' ', '%') + "%"));
+            __wheres.add(f.like("%" + _value.trim().replace(' ', '%') + "%"));
           }
           continue;
         }
@@ -174,7 +229,8 @@ public class LogicForBaseFilterForm {
   
   
   public static FilterFormData getFilterFormData(BaseFilterForm filterForm,
-      ITableManager<?, ?> ejb,  Where whereAdditionalCondition) throws I18NException {
+      ITableManager<?, ?> ejb, Where whereAdditionalCondition) throws I18NException {
+    
     LogicForBaseFilterForm logicForm = new LogicForBaseFilterForm(filterForm);
     FilterFormData ffd = logicForm.getFilterFormData(ejb, whereAdditionalCondition);
     return ffd;

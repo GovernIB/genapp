@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ import org.fundaciobit.genapp.common.web.HtmlUtils;
 import org.fundaciobit.genapp.common.web.exportdata.DataExported;
 import org.fundaciobit.genapp.common.web.exportdata.DataExporterManager;
 import org.fundaciobit.genapp.common.web.exportdata.IDataExporter;
+import org.fundaciobit.genapp.common.web.form.AdditionalField;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 import org.fundaciobit.genapp.common.web.form.FilterFormData;
 import org.fundaciobit.genapp.common.web.form.LogicForBaseFilterForm;
@@ -200,6 +202,26 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
       return ejb.select(where, orderBy);
     } else {
       return ejb.select(where, inici, itemsPerPage, orderBy);
+    }
+  }
+  
+  
+  public void captureSearchByValueOfAdditionalFields(HttpServletRequest request,
+      BaseFilterForm filterForm) {
+    TreeMap<Integer, AdditionalField<?,?>> additionalFields = filterForm.getAdditionalFields();
+    if (additionalFields != null) {
+      for (Integer pos : additionalFields.keySet()) {
+        
+        AdditionalField<?,?> af = additionalFields.get(pos);
+        Field<?> searchBy = af.getSearchBy(); 
+        if (searchBy != null) {
+          
+          af.setSearchByValue(request.getParameter(searchBy.fullName));
+          if (log.isDebugEnabled()) {
+            log.debug("Cercant valor searchBy per ]" + searchBy.fullName  + "[ = " + af.getSearchByValue() );
+          }
+        }
+      }
     }
   }
   

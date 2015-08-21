@@ -1759,9 +1759,11 @@ public class BackGenerator {
       code.append("    int pagina = filterForm.getPage();\n");
       code.append("    request.getSession().setAttribute(getSessionAttributeFilterForm(), filterForm);\n");
       code.append("\n");
+      code.append("    captureSearchByValueOfAdditionalFields(request, filterForm);\n");
+      code.append("\n");
       code.append("    preList(request, mav, filterForm);\n");
       code.append("\n");
-      code.append("    List<" + tableJavaName + "> " + model + " = (List<" + tableJavaName + ">) processarLlistat(" + instanceEjb + ",\n");
+      code.append("    List<" + tableJavaName + "> " + model + " = processarLlistat(" + instanceEjb + ",\n");
       code.append("        filterForm, pagina, getAdditionalCondition(request), mav);\n");
       code.append("\n");
       code.append("    mav.addObject(\"" + model + "Items\", " + model + ");\n");

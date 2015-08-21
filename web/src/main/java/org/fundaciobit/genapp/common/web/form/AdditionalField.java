@@ -33,6 +33,8 @@ public class AdditionalField<ID,T> {
   protected Field<?> orderBy;
 
   protected Field<?> searchBy;
+  
+  protected String searchByValue;
 
   protected Field<?> groupBy;
   
@@ -89,6 +91,14 @@ public class AdditionalField<ID,T> {
 
   public void setSearchBy(Field<?> searchBy) {
     this.searchBy = searchBy;
+  }
+
+  public String getSearchByValue() {
+    return searchByValue;
+  }
+
+  public void setSearchByValue(String searchByValue) {
+    this.searchByValue = searchByValue;
   }
 
   public Field<?> getGroupBy() {
