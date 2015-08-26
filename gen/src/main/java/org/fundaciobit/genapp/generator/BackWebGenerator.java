@@ -297,10 +297,6 @@ public class BackWebGenerator {
         codeSubtitle.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
         codeSubtitle.append("\n");
         codeSubtitle.append("  <c:if test=\"${not empty " + instanceFilterForm + ".subTitleCode}\">\n");
-        
-        //codeSubtitle.append("      <h5 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px;\"><fmt:message key=\"${" + instanceFilterForm + ".subTitleCode}\" /></h5>\n");
-
-        
         codeSubtitle.append("<h5 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px;\">\n");
         codeSubtitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceFilterForm + ".subTitleCode,'=')}\" />\n"); 
         codeSubtitle.append("<c:if test=\"${subtitleTranslated}\">\n");
@@ -778,10 +774,6 @@ public class BackWebGenerator {
   codeGroupBy.append("                <li>\n");
   codeGroupBy.append("                  <a href=\"#\" role=\"branch\" class=\"tree-toggle ${groupby_item.selected? \"\" : \"closed\"}\" data-toggle=\"branch\" data-value=\"${groupby_item.value}\">\n");
   codeGroupBy.append("                    <span style=\"${groupby_item.selected? \"font-weight: bold;\" : \"\"}\">\n");
-  
-  
-  // codeGroupBy.append("                    <c:set var=\"fieldName\" value=\"${fn:replace(groupby_item.codeLabel,'"+ model +".','')}\" />\n");
-  
   codeGroupBy.append("                    <c:set var=\"code\" value=\"${(empty " + instanceFilterForm + ".labels[groupby_item.field])? groupby_item.codeLabel:" + instanceFilterForm + ".labels[groupby_item.field]}\" />\n");
   codeGroupBy.append("                        <fmt:message key=\"${code}\">\n");
   codeGroupBy.append("                              <fmt:param><fmt:message key=\"${groupby_item.codeParamLabel}\"/></fmt:param>\n");
@@ -1638,10 +1630,23 @@ return sourceFiles;
     codeTitle.append("  </c:if>\n");
     codeTitle.append("  \n");
     
+    
     codeTitle.append("  <c:if test=\"${not empty " + instanceForm + ".subTitleCode}\">\n");
-    codeTitle.append("      <br/><h5 style=\"line-height: 10px; margin-top: 0px; margin-bottom: 0px;\"><fmt:message key=\"${" + instanceForm + ".subTitleCode}\" /></h5>\n");
+    codeTitle.append("  <br/><h5 style=\"line-height: 10px; margin-top: 0px; margin-bottom: 0px;\">\n");
+    codeTitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceForm + ".subTitleCode,'=')}\" />\n"); 
+    codeTitle.append("<c:if test=\"${subtitleTranslated}\">\n");
+    codeTitle.append("   <c:out value=\"${fn:substringAfter(" + instanceForm + ".subTitleCode, '=')}\"/>\n");
+    codeTitle.append("</c:if>\n");
+    codeTitle.append("<c:if test=\"${not subtitleTranslated}\">\n");
+    codeTitle.append("  <fmt:message key=\"${" + instanceForm + ".subTitleCode}\" />\n");     
+    codeTitle.append("</c:if>\n");
+    codeTitle.append("</h5>\n");
     codeTitle.append("  </c:if>\n");
+    
     codeTitle.append("</div>");
+    
+    
+    
     
     sourceFiles.add(new SourceFile(model + "FormTitle.jsp", codeTitle.toString()));
     
