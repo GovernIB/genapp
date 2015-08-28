@@ -1,6 +1,7 @@
 package org.fundaciobit.genapp.generator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
 
 
 /**
- * Title:        Rapit Entity Bean 2010
+ * Title:      GenApp 2015 (Rapit Entity Bean 2010)
  * Description:
  * Copyright:    Copyright (c) 2014
  * Company:      XmasSoft
@@ -27,9 +28,6 @@ import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
  * @version 1.0
  */
 public class DaoJPAGenerator {
-  
-  
-  
   
 
   public static SourceFile[] generateHibernateUtils(String hibernatePackage,
@@ -194,6 +192,7 @@ public class DaoJPAGenerator {
         beanCode.append("@SequenceGenerator(name=\"" + sequenceJPAName + "\", sequenceName=\"" + sequenceSQLName + "\", allocationSize=1)\n"); 
       }
       
+      beanCode.append("@javax.xml.bind.annotation.XmlRootElement\n");
       beanCode.append("public class " + codeBeanFileName
           + " implements " + tableNameJava + " {\n\n");
       beanCode.append("\n\n");
@@ -302,9 +301,8 @@ public class DaoJPAGenerator {
       
       
 
-      beanCode.append(ModelGenerator.generateCopyBeanCode(
-          table, fields, codeBeanFileName, "toJPA", 
-          fileFields, fileTable, "JPA", false));
+      
+      
       
   
       // Metodos GET-SET
@@ -363,9 +361,11 @@ public class DaoJPAGenerator {
       beanCode.append("  }\n\n");
 
       
-      
+      HashMap<String, String>  importForeignKeys = new HashMap<String, String>();
+      HashMap<String, String>  exportForeignKeys = new HashMap<String, String>();
       if (!table.isTranslationMapEntity()) {
-        beanCode.append(generateImportsExports(project, table, fields, imports, jpaPackage, CodeType.JPA));
+        beanCode.append(generateImportsExports(project, table, fields, imports, 
+            jpaPackage, CodeType.JPA, importForeignKeys, exportForeignKeys));
       }
       
       // Generate DataHandler si és Fitxer
@@ -393,6 +393,18 @@ public class DaoJPAGenerator {
         beanCode.append("    }\n");
         beanCode.append("  }\n");
         beanCode.append("\n");
+      }
+      
+      
+      if (!table.isTranslationMapEntity()) {
+        beanCode.append("\n // ---------------  STATIC METHODS ------------------\n");
+        
+        beanCode.append(ModelGenerator.generateCopyBeanCode(
+            table, fields, codeBeanFileName, "toJPA", 
+            fileFields, fileTable, "JPA", false));
+
+        beanCode.append(generateCopyJPACode(table,  importForeignKeys, exportForeignKeys,
+            fields, codeBeanFileName, "copyJPA", fileFields, fileTable, "JPA"));
       }
 
       // Final de Classe
@@ -437,16 +449,111 @@ public class DaoJPAGenerator {
     BEAN,
     INTERFACE
   }
+
+  
+  
+  public static String generateCopyJPACode(TableInfo table,
+      HashMap<String, String>  importForeignKeys, HashMap<String, String>  exportForeignKeys,
+      FieldInfo[] fields, String codeBeanFileName, String copyMethodName,
+     List<FieldInfo> fileFields, TableInfo fileTable, String fileSuffix) throws Exception {
+    
+    String tableNameJava = table.getNameJava();
+    
+    StringBuffer beanCode = new StringBuffer();
+    
+    String entityBase = "Object"; //IGenAppEntity.class.getCanonicalName();
+    
+    beanCode.append("\n");
+    beanCode.append("  public static " + codeBeanFileName + " " + copyMethodName + "(" + codeBeanFileName + " __jpa) {\n");
+    beanCode.append("    return " + copyMethodName + "(__jpa,new java.util.HashMap<" + entityBase + "," + entityBase + ">(), null);\n");
+    beanCode.append("  }\n\n");
+    
+    
+    /*static Set<PeticioDeFirmaJPA> copyJPA(Set<PeticioDeFirmaJPA> __jpaSet, java.util.Map<org.fundaciobit.genapp.common.IGenAppEntity,org.fundaciobit.genapp.common.IGenAppEntity> __alreadyCopied) {
+      if (__jpaSet == null) { return null; }
+      Set<PeticioDeFirmaJPA> __tmp = (Set<PeticioDeFirmaJPA>) __alreadyCopied.get(__jpaSet);
+      if (__tmp != null) { return __tmp; };
+      __tmp = new HashSet<PeticioDeFirmaJPA>();
+      __alreadyCopied.put(__jpaSet, __tmp);
+      */
+    
+    beanCode.append("  static java.util.Set<" + codeBeanFileName + "> " + copyMethodName + "(java.util.Set<" + codeBeanFileName + "> __jpaSet,\n"
+        + "    java.util.Map<" + entityBase + "," + entityBase + "> __alreadyCopied, String origenJPA) {\n");
+    beanCode.append("    if (__jpaSet == null) { return null; }\n");
+    beanCode.append("    java.util.Set<" + codeBeanFileName + "> __tmpSet = (java.util.Set<" + codeBeanFileName + ">) __alreadyCopied.get(__jpaSet);\n");
+    beanCode.append("    if (__tmpSet != null) { return __tmpSet; };\n");
+    beanCode.append("    __tmpSet = new java.util.HashSet<"+ codeBeanFileName + ">(__jpaSet.size());\n");
+    beanCode.append("    __alreadyCopied.put(__jpaSet, __tmpSet);\n");
+    beanCode.append("    for (" + codeBeanFileName + " __jpa : __jpaSet) {\n");
+    beanCode.append("      __tmpSet.add(copyJPA(__jpa, __alreadyCopied, origenJPA));\n");
+    beanCode.append("    }\n");
+    beanCode.append("    return __tmpSet;\n");
+    beanCode.append("  }\n\n");
+    
+    
+
+    beanCode.append("  static " + codeBeanFileName + " " + copyMethodName + "(" + codeBeanFileName + " __jpa,\n"
+        + "    java.util.Map<" + entityBase + "," + entityBase + "> __alreadyCopied, String origenJPA) {\n");
+    beanCode.append("    if (__jpa == null) { return null; }\n");
+    beanCode.append("    " + codeBeanFileName + " __tmp = (" + codeBeanFileName + ") __alreadyCopied.get(__jpa);\n");
+    beanCode.append("    if (__tmp != null) { return __tmp; };\n");
+    beanCode.append("    __tmp = toJPA(__jpa);\n");
+    beanCode.append("    __alreadyCopied.put(__jpa, __tmp);\n");
+    beanCode.append("    // Copia de beans complexes (EXP)\n");
+    for (String method : exportForeignKeys.keySet()) {
+      String jpa = exportForeignKeys.get(method);
+      // No copiam la classe d'on provenim
+      beanCode.append("    if(!\"" + jpa +  "\".equals(origenJPA) \n");
+      beanCode.append("       && ( !org.fundaciobit.genapp.common.utils.Utils.isEmpty(__jpa." + CodeGenUtils.getModelName(method) 
+          + ") || org.hibernate.Hibernate.isInitialized(__jpa." + CodeGenUtils.get(method) + ")) ) {\n");
+      beanCode.append("      __tmp." + CodeGenUtils.set(method) + "(" + jpa +  "." + copyMethodName + "(__jpa." + CodeGenUtils.get(method) + ", __alreadyCopied,\"" +  codeBeanFileName + "\"));\n");
+      beanCode.append("    }\n");
+    }
+    
+    beanCode.append("    // Copia de beans complexes (IMP)\n");
+    
+    for (String method : importForeignKeys.keySet()) {
+      String jpa = importForeignKeys.get(method);
+      beanCode.append("    if(!\"" + jpa +  "\".equals(origenJPA) && \n");
+      beanCode.append("       (!org.fundaciobit.genapp.common.utils.Utils.isEmpty(__jpa." + CodeGenUtils.getModelName(method) 
+          + ") || org.hibernate.Hibernate.isInitialized(__jpa." + CodeGenUtils.get(method) + ") ) ) {\n");
+
+      beanCode.append("      __tmp." + CodeGenUtils.set(method) + "(" + jpa +  "." + copyMethodName + "(__jpa." +  CodeGenUtils.get(method) + ", __alreadyCopied,\"" +  codeBeanFileName + "\"));\n");
+      beanCode.append("    }\n");
+    }
+    
+    if (table.isTranslationEntity()) {
+      beanCode.append("    // Aquesta linia s'afeix de forma manual\n");
+      beanCode.append("    __tmp.setTraduccions(new HashMap<String, TraduccioMapJPA>(__jpa.getTraduccions()));\n");
+    }
+    
+    beanCode.append("\n");
+    
+    
+    beanCode.append("    return __tmp;\n");
+    beanCode.append("  }\n\n\n");
+    
+    return beanCode.toString();
+  }
   
 
-
+  
   protected static String generateImportsExports(Project project, TableInfo table,
       FieldInfo[] fields, Set<String> imports, String jpaPackage, CodeType codeType) throws Exception {
-    
-    
+   
+    return generateImportsExports(project, table,   fields, imports, jpaPackage,
+        codeType, new HashMap<String, String>(), new HashMap<String, String>());
+      
+  }
+  
+  
+
+  protected static String generateImportsExports(Project project, TableInfo table,
+      FieldInfo[] fields, Set<String> imports, String jpaPackage, CodeType codeType,
+      Map<String, String> importForeignKeys, Map<String, String> exportForeignKeys)
+          throws Exception {
     
 
-    
     StringBuffer jpaCode = new StringBuffer();
     StringBuffer interfaceCode;
     StringBuffer beanCode;
@@ -518,6 +625,12 @@ public class DaoJPAGenerator {
       String type = typeClass.getName();
       String name = field.javaName;
       */
+      
+      // =================================
+      // =================================
+      // ========= E X P O R T ===========
+      // =================================
+      // =================================
 
       ForeignKey[] keys =  field.getForeignKeysByType( ForeignKey.EXPORTED);
       
@@ -715,10 +828,20 @@ public class DaoJPAGenerator {
           }
         }
         
+        exportForeignKeys.put(methodname, javaName);
+        
         foreignFields.add(new ForeignFieldInfo(newfield ,  expTable.getNameJava(), typeForeign));
         
 
       } // Final de for-EXP
+      
+      
+      // =================================
+      // =================================
+      // ========= I M P O R T ===========
+      // =================================
+      // =================================
+      
       
       if (table.isTranslationEntity() && codeType == CodeType.JPA) {
         /*
@@ -862,8 +985,13 @@ public class DaoJPAGenerator {
           
         }
         
+
         TableInfo expTable = CodeGenUtils.findTableInfoByTableSQLName(project, fk.getTable()); 
         FieldInfo expField = CodeGenUtils.findFieldInfoByColumnSQLName(expTable, fk.getField());
+        
+        if (!isFiletable) {
+          importForeignKeys.put(methodname, javaName);
+        }
              
         
         newfield = CodeGenUtils.getModelName(methodname);
@@ -946,6 +1074,7 @@ public class DaoJPAGenerator {
         
         if (isTranslationTable && codeType == CodeType.JPA) {
           beanCode.append("\n"); 
+          beanCode.append("  @javax.xml.bind.annotation.XmlTransient\n");
           beanCode.append("  public java.util.Map<String, " + jpaPackage+ ".TraduccioMapJPA> " + CodeGenUtils.getOnlyName(methodname) + "Traduccions() {\n"); 
           beanCode.append("    return this." + newfield + ".getTraduccions();\n"); 
           beanCode.append("  }\n"); 

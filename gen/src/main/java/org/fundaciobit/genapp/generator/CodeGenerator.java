@@ -1576,6 +1576,15 @@ public class CodeGenerator {
         abstractManSF.saveToPath(jpaSrcDir);
         abstractMan.delete();
       }
+      // (f.1) Crear package info per adapters de time, date i timestamp.
+      { 
+        File packageInfo = new File(jpaDir, "package-info.java");
+        SourceFile packageInfoSF = substitution(packageInfo, prop);
+        packageInfoSF.fileName = "package-info.java";
+        packageInfoSF.saveToPath(jpaSrcDir);
+        packageInfo.delete();
+      }
+      
       
       // (g) DaoManagers
       {
