@@ -457,8 +457,7 @@ public class DaoJPAGenerator {
       FieldInfo[] fields, String codeBeanFileName, String copyMethodName,
      List<FieldInfo> fileFields, TableInfo fileTable, String fileSuffix) throws Exception {
     
-    String tableNameJava = table.getNameJava();
-    
+   
     StringBuffer beanCode = new StringBuffer();
     
     String entityBase = "Object"; //IGenAppEntity.class.getCanonicalName();
