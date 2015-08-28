@@ -562,9 +562,6 @@ public class ModelGenerator {
 
     // Imports i Exports de la taula
     Set<String> imports = new HashSet<String>();
-    
-
-    
     String codeImportsExports = DaoJPAGenerator.generateImportsExports(project, table, fields, imports, null, CodeType.BEAN);
     
     
@@ -735,6 +732,11 @@ public class ModelGenerator {
   public static String getInterfaceName(String tableName) {
     return tableName;
   }
+  
+  
+
+  
+  
   
   public static String generateCopyBeanCode(TableInfo table,
       FieldInfo[] fields, String codeBeanFileName, String methodName,

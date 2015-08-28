@@ -189,4 +189,16 @@ public final class Utils {
   }
 
   
+  public static boolean isEmpty(Object obj) {
+    if (obj == null) return true;
+    
+    if (obj instanceof Collection) {
+      
+      return ((Collection<?>)obj).isEmpty();
+      
+    }
+    
+    return false;
+  }
+  
 }
