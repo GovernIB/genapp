@@ -2,8 +2,10 @@ package org.fundaciobit.genapp.common.web.form;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
@@ -38,7 +40,7 @@ public class CommonBaseForm {
   /**
    * Conte la llista de javaName de Field que no volem que es mostrin
    */
-  private List<Field<?>> hiddenFields = new ArrayList<Field<?>>();
+  private Set<Field<?>> hiddenFields = new HashSet<Field<?>>();
 
   private TreeMap<Integer, AdditionalField<?,?>> additionalFields = new TreeMap<Integer, AdditionalField<?,?>>();
 
@@ -119,11 +121,11 @@ public class CommonBaseForm {
     return field.javaName;
   }
 
-  public List<Field<?>> getHiddenFields() {
+  public Set<Field<?>> getHiddenFields() {
     return hiddenFields;
   }
 
-  public void setHiddenFields(List<Field<?>> hiddenFields) {
+  public void setHiddenFields(Set<Field<?>> hiddenFields) {
     this.hiddenFields = hiddenFields;
   }
 

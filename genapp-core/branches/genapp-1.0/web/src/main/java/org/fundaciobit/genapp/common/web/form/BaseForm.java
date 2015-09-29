@@ -1,9 +1,9 @@
 package org.fundaciobit.genapp.common.web.form;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.fundaciobit.genapp.common.query.Field;
 
@@ -17,7 +17,7 @@ public abstract class BaseForm extends CommonBaseForm {
   /**
    * Conte la llista de javaName de Field que volem que siguin només de lectura
    */
-  private List<Field<?>> readOnlyFields = new ArrayList<Field<?>>();
+  private Set<Field<?>> readOnlyFields = new HashSet<Field<?>>();
 
   private boolean cancelButtonVisible = true;
 
@@ -48,11 +48,11 @@ public abstract class BaseForm extends CommonBaseForm {
     this.view = toClone.view;
   }
 
-  public List<Field<?>> getReadOnlyFields() {
+  public Set<Field<?>> getReadOnlyFields() {
     return readOnlyFields;
   }
 
-  public void setReadOnlyFields(List<Field<?>> readOnlyFields) {
+  public void setReadOnlyFields(Set<Field<?>> readOnlyFields) {
     this.readOnlyFields = readOnlyFields;
   }
 

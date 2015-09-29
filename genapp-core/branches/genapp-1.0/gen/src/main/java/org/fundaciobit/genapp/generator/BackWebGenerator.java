@@ -210,6 +210,7 @@ public class BackWebGenerator {
         
         
         code.append("  <c:if test=\"${not empty " + model + "Items}\">\n\n");
+        code.append("  <div class=\"row\" style=\"margin-left: 0px;\">\n");
         code.append("  <table class=\"table table-condensed table-bordered table-striped\" style=\"width:auto;\"> \n");
         code.append("    <thead>\n");
         code.append("      <tr>\n\n");
@@ -246,6 +247,7 @@ public class BackWebGenerator {
         code.append("\n");
         code.append("    </tbody>\n");
         code.append("  </table>\n");
+        code.append("  </div>\n");
         code.append("  </c:if>\n");        
         code.append("  \n");
         

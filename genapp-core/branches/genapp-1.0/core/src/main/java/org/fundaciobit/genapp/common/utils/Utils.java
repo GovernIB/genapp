@@ -84,7 +84,7 @@ public final class Utils {
     return null;
   }
   
-  public static boolean contains(@SuppressWarnings("rawtypes") List list, Object o) {
+  public static boolean contains(@SuppressWarnings("rawtypes") Collection list, Object o) {
     if (list == null) {
       new Exception("La llista es buida").printStackTrace();
       return false;
