@@ -384,24 +384,17 @@ public class BackWebGenerator {
         //codeHeaderButtons.append("    <div id=\"" + model + "_list_buttons_header\">\n");
         codeHeaderButtons.append("    <c:forEach var=\"button\" items=\"${" + instanceFilterForm + ".additionalButtons}\">\n");
         codeHeaderButtons.append("      <c:set var=\"thelink\" value=\"${button.link}\" />\n");
+        codeHeaderButtons.append("     <c:set var=\"thehref\" value=\"#\"/>\n");
         codeHeaderButtons.append("      <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n");
+        codeHeaderButtons.append("        <c:url var=\"thehref\" value=\"${thelink}\"/>\n");
         codeHeaderButtons.append("        <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
         codeHeaderButtons.append("        <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
         codeHeaderButtons.append("      </c:if>\n");
-        /*
-        codeHeaderButtons.append("      <a class=\"btn ${button.type} btn-small pull-right\" href=\"#\" \n");
-        codeHeaderButtons.append("         onclick=\"${thelink}\" \n");
-        codeHeaderButtons.append("         title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
+        codeHeaderButtons.append("      <button type=\"button\" class=\"btn btn-small ${button.type} pull-right\""
+             + "href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
         codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
         codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
-        codeHeaderButtons.append("      </a>\n");
-        */
-        
-        codeHeaderButtons.append("       <button type=\"button\" class=\"btn btn-small ${button.type} pull-right\""
-             + " onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
-        codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
-        codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
-        codeHeaderButtons.append("       </button>\n");
+        codeHeaderButtons.append("      </button>\n");
         codeHeaderButtons.append("    </c:forEach>\n");
         //codeHeaderButtons.append("    </div>\n");
         
@@ -950,7 +943,7 @@ public class BackWebGenerator {
   codeButtons.append("              <i class=\"icon-pencil\"></i>\n");
   codeButtons.append("            </a>\n");
   */
-  codeButtons.append(render.getActionButtonCode("            ", "", "#",
+  codeButtons.append(render.getActionButtonCode("            ", "", "<c:url value=\"${contexte}" + pkMapping + "/edit\"/>",
       "goTo('<c:url value=\"${contexte}" + pkMapping + "/edit\"/>')",
       "icon-pencil", "genapp.edit"));
   codeButtons.append("            </c:if>\n");
@@ -971,8 +964,10 @@ public class BackWebGenerator {
   
   
   final String commonCodeAddBut = 
-        "                  <c:set var=\"thelink\" value=\"${fn:replace(button.link,bracket, pk)}\" />\n"
+        "                  <c:set var=\"thehref\" value=\"#\"/>\n"
+      + "                  <c:set var=\"thelink\" value=\"${fn:replace(button.link,bracket, pk)}\" />\n"
       + "                  <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n"
+      + "                  <c:url var=\"thehref\" value=\"${thelink}\"/>\n"
       + "                  <c:url var=\"thelink\" value=\"${thelink}\"/>\n"
       + "                  <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n"
       + "                  </c:if>\n"
@@ -982,7 +977,7 @@ public class BackWebGenerator {
       + "              title=\"<fmt:message key=\"${button.codeText}\"/>\">\n"
       + "              <i class=\"${button.icon}\"></i>\n"
       + "            </a>\n"*/
-      + render.getActionButtonCode("                  ", "${button.type}", "#",
+      + render.getActionButtonCode("                  ", "${button.type}", "${thehref}",
           "${thelink}",
           "${button.icon}", "${button.codeText}");
 
@@ -1277,8 +1272,8 @@ return sourceFiles;
         String icon, String codeMessage) {
       return    
           tab + "<li>\n"
-          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;${(empty " + excludeVariableJSTL(type) + ")? '' : 'color: white;'}\" href=\"" + href + "\" \n" 
-          + tab + "onclick=\"" + onclick + "\"> \n"
+          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;${(empty " + excludeVariableJSTL(type) + ")? '' : 'color: white;'}\" "
+          + "href=\"" + href + "\" onclick=\"" + onclick + "\">\n"
           + getImage(icon, tab) + "\n"
           + tab + " <fmt:message key=\"" + codeMessage + "\"/>\n"
           + tab + "</a>\n"
@@ -1332,9 +1327,8 @@ return sourceFiles;
     public String getActionButtonCode(String tab, String type, String href, String onclick, String icon, String codeMessage) {
       StringBuffer codeButtons = new StringBuffer();
       
-      codeButtons.append(tab + "<a class=\"btn " + type + "\" href=\"" + href + "\"\n");
-      codeButtons.append(tab + "   onclick=\"" + onclick + "\"\n");
-      codeButtons.append(tab + "   title=\"<fmt:message key=\"" + codeMessage + "\"/>\">\n");
+      codeButtons.append(tab + "<a class=\"btn " + type + "\" href=\"" + href + "\" onclick=\"" 
+          + onclick + "\" title=\"<fmt:message key=\"" + codeMessage + "\"/>\">\n");
       codeButtons.append( getImage(icon, tab + "   ") + "\n");
       codeButtons.append(tab + "</a>\n");
       return codeButtons.toString();
@@ -1744,13 +1738,14 @@ return sourceFiles;
     codeButton.append("    <c:if test=\"${!" + instanceForm + ".nou || (-1 == fn:indexOf(button.link,bracket))}\">\n");
     codeButton.append("    <c:set var=\"pk\" value=\"" + pkMapping.substring(1) + "\"/>\n");
     codeButton.append("    <c:set var=\"thelink\" value=\"${fn:replace(button.link,bracket, pk)}\" />\n");
+    codeButton.append("    <c:set var=\"thehref\" value=\"#\"/>\n");
     codeButton.append("    <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n");
-    
+    codeButton.append("     <c:url var=\"thehref\" value=\"${thelink}\"/>\n");
     codeButton.append("     <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
     codeButton.append("     <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
     codeButton.append("    </c:if>\n");
     codeButton.append("    <button type=\"button\" class=\"btn ${button.type}\" \n");
-    codeButton.append("       onclick=\"${thelink}\">\n");
+    codeButton.append("       href=\"${thehref}\" onclick=\"${thelink}\">\n");
     codeButton.append("       <i class=\"${button.icon}\"></i><fmt:message key=\"${button.codeText}\"/>\n");
     codeButton.append("    </button>\n");
     codeButton.append("    </c:if>\n");
