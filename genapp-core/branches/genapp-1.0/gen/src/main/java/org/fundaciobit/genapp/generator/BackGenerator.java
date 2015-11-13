@@ -1850,7 +1850,8 @@ public class BackGenerator {
       if(transFields != null) {
         for (FieldInfo fieldInfo : transFields) {
           code.append("    \n");
-          code.append("    {\n");
+          String getmethod = CodeGenUtils.get(fieldInfo); // -4 == Llevar ID i '()'
+          code.append("    if (" + instanceForm + ".get" + tableJavaName + "()." + getmethod.substring(0,getmethod.length() - 4 ) + "() == null){\n");
           code.append("      " + jpaPackage + ".TraduccioJPA trad = new " + jpaPackage + ".TraduccioJPA();\n");
           code.append("      for (" + packages.entityPackage + ".Idioma idioma : " + instanceForm + ".getIdiomesTraduccio()) {\n");
           code.append("        trad.addTraduccio(idioma.getIdiomaID(), new " + jpaPackage + ".TraduccioMapJPA());\n");
