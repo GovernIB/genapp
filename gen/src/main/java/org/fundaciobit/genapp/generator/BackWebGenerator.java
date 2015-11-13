@@ -391,7 +391,7 @@ public class BackWebGenerator {
         codeHeaderButtons.append("        <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
         codeHeaderButtons.append("      </c:if>\n");
         codeHeaderButtons.append("      <button type=\"button\" class=\"btn btn-small ${button.type} pull-right\""
-             + "href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
+             + " href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
         codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
         codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
         codeHeaderButtons.append("      </button>\n");
