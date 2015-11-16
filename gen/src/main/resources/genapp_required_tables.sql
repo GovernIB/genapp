@@ -5,7 +5,7 @@ CREATE SEQUENCE PFX_APPNAME_seq INCREMENT 1  MINVALUE 1  MAXVALUE 92233720368547
 CREATE TABLE PFX_fitxer (
     fitxerid bigint DEFAULT nextval('PFX_APPNAME_seq'::regclass) NOT NULL,
     descripcio character varying(1000) DEFAULT NULL::character varying,
-    mime character varying(45) NOT NULL,
+    mime character varying(255) NOT NULL,
     nom character varying(255) NOT NULL,
     tamany bigint NOT NULL
 );
