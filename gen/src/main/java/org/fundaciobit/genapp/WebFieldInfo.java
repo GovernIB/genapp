@@ -182,6 +182,7 @@ public class WebFieldInfo implements Serializable {
     if (javaType.equals(Timestamp.class)) {
       return new WebFieldInfo[] {
           new WebFieldInfo(WebType.DateTime),
+          new WebFieldInfo(WebType.Date),
           new WebFieldInfo(WebType.ComboBox) };
     }
 

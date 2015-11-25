@@ -335,6 +335,9 @@ public class JPAValidatorGenerator {
 
           TableInfo impTable = CodeGenUtils.findTableInfoByTableSQLName(project, wfi
               .getForeignKey().getTable());
+          System.out.println("impTable: " + impTable.getNameJava());
+          System.out.println("wfi.getForeignKey().getField(): " + wfi.getForeignKey().getField());
+          
           FieldInfo impField = CodeGenUtils.findFieldInfoByColumnSQLName(impTable, wfi
               .getForeignKey().getField());
 
