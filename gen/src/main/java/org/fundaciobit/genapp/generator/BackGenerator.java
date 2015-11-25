@@ -192,6 +192,67 @@ public class BackGenerator {
         code.append("    }\n");
         
         for (FieldInfo fieldInfo : transFields) {
+          
+          code.append("    {\n");
+          code.append("      // IF CAMP ES NOT NULL verificar que totes les traduccions son not null\n");
+          code.append("      " + jpaPackage+ ".TraduccioJPA tradJPA = " + model + "." + CodeGenUtils.get(fieldInfo).replace("ID()", "()") +";\n");
+          boolean isNullable = !fieldInfo.isNotNullable;
+          //code.append("      boolean isNullable = " + !fieldInfo.isNotNullable + ";\n");
+          code.append("      if (tradJPA != null) {\n");
+          // TODO Aquesta no és el codi d'error: "revisar les traduccions ja que hi ha errors."
+          code.append("        // TODO ERROR\n");
+          String path = model + "." + fieldInfo.getJavaName().substring(0, fieldInfo.getJavaName().length() - 2);
+          String codeError = "\"genapp.validation.required\", new String[] {" + I18NUtils.class.getName() + ".tradueix(" + fieldInfo.getJavaName().toUpperCase() + ".fullName)}, null);\n";
+          
+          
+          code.append("        java.util.Map<String,"+ jpaPackage + ".TraduccioMapJPA> _trad = tradJPA.getTraduccions();\n");
+          if (isNullable) {
+          code.append("        int countNull= 0;\n");
+          }
+          code.append("        int countNotNull = 0;\n");
+          code.append("        for (String _idioma : _trad.keySet()) {\n");
+          code.append("          " + jpaPackage + ".TraduccioMapJPA _map = _trad.get(_idioma);\n");
+          code.append("          if (_map == null || (_map.getValor() == null || _map.getValor().length() == 0 )) {\n");
+          if (isNullable) {
+          code.append("            countNull++;\n");
+          }
+          code.append("          } else {\n");
+          code.append("            countNotNull++;\n");
+          code.append("          }\n");
+          code.append("        }\n");
+          code.append("\n");
+          if (isNullable) {
+          code.append("        if (countNull == _trad.size()) {\n");
+          code.append("          // OK Tot esta buit ==> passam el camp a NULL\n");
+          String setMethod = CodeGenUtils.set(fieldInfo);
+          code.append("          " + model + "." + setMethod + "(null);\n");
+          code.append("          " + model + "." + setMethod.substring(0, setMethod.length() - 2) + "(null);\n");
+          code.append("        } else {\n");
+          }
+          code.append("          if (countNotNull  == _trad.size()) {\n");
+          code.append("            // OK Tot esta ple\n");
+          code.append("          } else {\n");
+          code.append("            for (String _idioma : _trad.keySet()) {\n");
+          code.append("              " + jpaPackage + ".TraduccioMapJPA _map = _trad.get(_idioma);\n");
+          code.append("              if (_map == null || (_map.getValor() == null || _map.getValor().length() == 0 )) {\n");
+          code.append("                errors.rejectValue(\"" + path + "\", " + codeError);
+          code.append("                errors.rejectValue(\"" + path + ".traduccions[\"+ _idioma +\"].valor\",\n");
+          code.append("                  " + codeError);
+          code.append("              }\n");
+          code.append("            }\n");
+          code.append("          }\n");
+          if (isNullable) {
+          code.append("        }\n");
+          }
+          code.append("      } else {\n");
+          code.append("        errors.rejectValue(\"" + path + "\", " + codeError);
+          code.append("      }\n");
+          code.append("    }\n");
+          
+          
+          
+          
+          /* XYZ
           code.append("    {\n");
           code.append("    // IF CAMP ES NOT NULL verificar que totes les traduccions son not null\n");
           code.append("    " + jpaPackage+ ".TraduccioJPA tradJPA = " + model + "." + CodeGenUtils.get(fieldInfo).replace("ID()", "()") +";\n");
@@ -213,6 +274,7 @@ public class BackGenerator {
           code.append("      }\n");
           code.append("    }\n");
           code.append("    }\n");
+          */
         }
         
         code.append("\n");
