@@ -158,7 +158,7 @@ public class RebApp extends JFrame {
           try {
             File project = CodeGenerator.generateCode(SharedData.data, dstDir);
             JOptionPane.showMessageDialog(null,
-                "Generat el codi dins " + project.getAbsolutePath() , "Error",
+                "Generat el codi dins " + project.getAbsolutePath() , "Info",
                 JOptionPane.INFORMATION_MESSAGE);
             
             saveDirectoryOfLastGeneration(dstDir);

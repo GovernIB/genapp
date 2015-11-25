@@ -359,12 +359,24 @@ public class Panel_5_StoreProject extends Paneable {
               errors.append("-- La ForeignKey " + fkName + " de la taula " + table.nameJava
                  + " no té un nom correcte (esperat " + fkNameStartsExpected + "*_fk )\n");
               {
-                String newC =  fkNameStartsExpected + "fk";
+            	int tamanyField = 30 - (fkNameStartsExpected + "_fk").length();
+            	String fieldfk;
+            	if (tamanyField < 5) {
+            		fieldfk = field.sqlName;
+            	} else {
+            		if (field.sqlName.length() <= tamanyField) {
+            			fieldfk = field.sqlName;
+            		} else {
+            			fieldfk = field.sqlName.substring(0, tamanyField);
+            		}
+            	}
+            	
+                String newC =  fkNameStartsExpected + fieldfk +  "_fk";
                 String sql = "ALTER TABLE " + table.getName() + " DROP CONSTRAINT " + fkName + ";\n";
                 sql = sql + "ALTER TABLE " + table.getName() + " ADD CONSTRAINT " + newC + " "
                     + " FOREIGN KEY (" + field.sqlName + ") "
                     + " REFERENCES " + expTable.name + " (" + expField.sqlName + ");\n";
-                
+                errors.append(sql);
                constraints.put(String.valueOf(System.nanoTime()) , sql);
               }
               
@@ -523,12 +535,12 @@ public class Panel_5_StoreProject extends Paneable {
       os = new FileOutputStream(SharedData.projectFile);
       XMLEncoder encoder = new XMLEncoder(os);
       encoder.writeObject(SharedData.data);
+	  encoder.flush();
       encoder.close();
       
       finish = System.currentTimeMillis();
       
       log.info("Saving File in " + (finish - now) + "ms");
-      
       return true;
     } catch (FileNotFoundException e) {
       e.printStackTrace();

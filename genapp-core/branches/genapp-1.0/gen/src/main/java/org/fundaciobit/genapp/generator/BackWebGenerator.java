@@ -849,7 +849,7 @@ public class BackWebGenerator {
         "\n\n        <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
         + "        <c:if test=\"${ __entry.key < 0 }\">\n"
         + "        <th>\n"
-        + "        ${pfi:getSortIconsAdditionalField(__theFilterForm,__entry.value)}\n"
+        + "        ${" + project.getPrefix().toLowerCase() + ":getSortIconsAdditionalField(__theFilterForm,__entry.value)}\n"
         //+ "        <fmt:message key=\"${__entry.value.codeName}\" />\n"
         + "        </th>\n"
         + "        </c:if>\n"
