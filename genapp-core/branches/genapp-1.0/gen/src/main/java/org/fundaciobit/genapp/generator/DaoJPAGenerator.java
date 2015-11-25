@@ -1468,6 +1468,22 @@ public class DaoJPAGenerator {
     
       manager.append("  @Override\n");
       manager.append("  public " + tableNameJava + " create(" + tableNameJava + " transientInstance) throws I18NException {\n");      
+      manager.append("    processTranslations(transientInstance);\n");
+      manager.append("    return super.create(transientInstance);\n");
+      manager.append("  }\n");
+      manager.append("\n");
+      manager.append("\n");
+      
+      manager.append("  @Override\n");
+      manager.append("  public " + tableNameJava + " update(" + tableNameJava + " transientInstance) throws I18NException {\n");      
+      manager.append("    processTranslations(transientInstance);\n");
+      manager.append("    return super.update(transientInstance);\n");
+      manager.append("  }\n");
+      
+      manager.append("\n");
+      manager.append("\n");
+      
+      manager.append("  private void processTranslations(" + tableNameJava + " transientInstance) {\n");
       manager.append("    if (transientInstance != null) {\n");
       for (FieldInfo fieldInfo : transFields) {
         String method = CodeGenUtils.get(fieldInfo);
@@ -1489,7 +1505,6 @@ public class DaoJPAGenerator {
         manager.append("      }\n");
       }
       manager.append("    }\n");
-      manager.append("    return super.create(transientInstance);\n");
       manager.append("  }\n");
       manager.append("\n");
     
