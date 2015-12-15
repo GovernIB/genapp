@@ -2050,7 +2050,7 @@ return sourceFiles;
       code.append("              <form:errors path=\"" + model + "." + modelCamp + "\" cssClass=\"errorField alert alert-error\" />\n");
       code.append("              <form:textarea");
       if (webType == WebType.RichText) {
-        code.append(" cssClass=\"${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\"");
+        code.append(" cssClass=\"input-xxlarge ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\"");
       } else {
         code.append(" rows=\"3\" wrap=\"off\" style=\"overflow:auto;\" cssClass=\"input-xxlarge\" "
             + readOnlyAttribute);
