@@ -103,6 +103,7 @@ public class FileSystemManager {
             + newFile.getAbsolutePath());
       }
     }
+    // TODO Substituir per FileUtils.moveFile()
     if (!src.renameTo(newFile)) {
       log.warn("sobreescriureFitxer:: No s'ha renombrat el fitxer de [" + src.getAbsolutePath()
           + "] a [" + newFile.getAbsolutePath() + "]");
