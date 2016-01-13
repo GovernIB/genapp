@@ -2052,7 +2052,7 @@ return sourceFiles;
       if (webType == WebType.RichText) {
         code.append(" cssClass=\"input-xxlarge ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\"");
       } else {
-        code.append(" rows=\"3\" wrap=\"off\" style=\"overflow:auto;\" cssClass=\"input-xxlarge\" "
+        code.append(" rows=\"3\" wrap=\"soft\" style=\"overflow:auto;\" cssClass=\"input-xxlarge\" "
             + readOnlyAttribute);
         
             //formInputReadOnly.replace("'input", "'input-xxlarge") + " ");
