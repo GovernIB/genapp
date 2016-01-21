@@ -2054,10 +2054,22 @@ return sourceFiles;
       } else {
         code.append(" rows=\"3\" wrap=\"soft\" style=\"overflow:auto;\" cssClass=\"input-xxlarge\" "
             + readOnlyAttribute);
-        
             //formInputReadOnly.replace("'input", "'input-xxlarge") + " ");
       }
-      code.append(" path=\"" + model + "." + modelCamp + "\"  />\n");
+      String path = model + "." + modelCamp;
+      code.append(" path=\"" + path + "\"  />\n");
+      // Wrap
+      if (webType == WebType.TextArea) {
+        code.append("              <div class=\"btn-group\" style=\"vertical-align: top;\">\n");
+        code.append("              <button class=\"btn btn-mini dropdown-toggle\" data-toggle=\"dropdown\">&nbsp;<span class=\"caret\"></span></button>\n");
+        code.append("              <ul class=\"dropdown-menu\">\n");
+        code.append("                <li><a href=\"#\" onclick=\"javascript:var ta=document.getElementById('" + path + "'); ta.wrap='off';\" >No Wrap</a></li>\n");
+        code.append("                <li><a href=\"#\" onclick=\"javascript:var ta=document.getElementById('" + path + "'); ta.wrap='soft';\">Soft Wrap</a></li>\n");
+        code.append("                <li><a href=\"#\" onclick=\"javascript:var ta=document.getElementById('" + path + "'); ta.wrap='hard';\">Hard Wrap</a></li>\n");
+        code.append("              </ul>\n");
+        code.append("              </div>\n");
+      }
+      
       return code.toString();
      
       
