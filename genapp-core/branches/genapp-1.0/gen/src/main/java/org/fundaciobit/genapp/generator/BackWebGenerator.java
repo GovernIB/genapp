@@ -1610,25 +1610,33 @@ return sourceFiles;
     codeTitle.append("  \n");
     
     codeTitle.append("<div class=\"lead\" style=\"margin-bottom:10px\">\n");
+    
+    codeTitle.append(" <c:choose>\n");
+    codeTitle.append("  <c:when test=\"${fn:startsWith(" + instanceForm + ".titleCode,'=')}\">\n");
+    codeTitle.append("       <c:out value=\"${fn:substringAfter(" + instanceForm + ".titleCode, '=')}\" escapeXml=\"false\"/>\n");
+    codeTitle.append("  </c:when>\n");
 
-    codeTitle.append("  <c:if test=\"${empty " + instanceForm + ".entityNameCode}\">\n");
-    codeTitle.append("    <fmt:message var=\"entityname\" key=\"" + model + "." + model +"\"/>\n");
-    codeTitle.append("  </c:if>\n");
-    codeTitle.append("  <c:if test=\"${not empty " + instanceForm + ".entityNameCode}\">\n");
-    codeTitle.append("    <fmt:message var=\"entityname\" key=\"${" + instanceForm + ".entityNameCode}\"/>\n");
-    codeTitle.append("  </c:if>\n");
-
-    codeTitle.append("  <c:if test=\"${not empty " + instanceForm + ".titleCode}\">\n");
+    codeTitle.append("  <c:when test=\"${not empty " + instanceForm + ".titleCode}\">\n");
     codeTitle.append("    <fmt:message key=\"${" + instanceForm + ".titleCode}\" >\n");
     codeTitle.append("      <fmt:param value=\"${" + instanceForm + ".titleParam}\" />\n");
     codeTitle.append("    </fmt:message>\n");
-    codeTitle.append("  </c:if>\n");
-    codeTitle.append("  <c:if test=\"${empty " + instanceForm + ".titleCode}\">\n");
+    codeTitle.append("  </c:when>\n");
+    codeTitle.append("  <c:otherwise>\n");
+    codeTitle.append("    <c:if test=\"${empty " + instanceForm + ".entityNameCode}\">\n");
+    codeTitle.append("      <fmt:message var=\"entityname\" key=\"" + model + "." + model +"\"/>\n");
+    codeTitle.append("    </c:if>\n");
+    
+    codeTitle.append("    <c:if test=\"${not empty " + instanceForm + ".entityNameCode}\">\n");
+    codeTitle.append("      <fmt:message var=\"entityname\" key=\"${" + instanceForm + ".entityNameCode}\"/>\n");
+    codeTitle.append("    </c:if>\n");
+    //codeTitle.append("  <c:when test=\"${empty " + instanceForm + ".titleCode}\">\n");
     codeTitle.append("    <c:set var=\"keytitle\" value=\"${" + instanceForm + ".nou?'genapp.createtitle':(" + instanceForm + ".view?'genapp.viewtitle':'genapp.edittitle')}\"/>\n");
     codeTitle.append("    <fmt:message key=\"${keytitle}\">\n");
     codeTitle.append("      <fmt:param value=\"${entityname}\"/>\n");
     codeTitle.append("    </fmt:message>\n");
-    codeTitle.append("  </c:if>\n");
+    //codeTitle.append("  </c:when>\n");
+    codeTitle.append("    </c:otherwise>\n");
+    codeTitle.append(" </c:choose>\n");
     codeTitle.append("  \n");
     
     
@@ -1674,6 +1682,7 @@ return sourceFiles;
     code.append("    \n");
 
     // Mostrar errors de camps ocults
+    code.append("    <c:if test=\"${not " + instanceForm + ".view}\">");
     code.append("    <c:forEach items=\"${" + instanceForm + ".hiddenFields}\" var=\"hiddenFieldF\" >\n");
     code.append("      <c:set  var=\"hiddenField\" value=\"${hiddenFieldF.javaName}\" />\n");
     code.append("      <c:if test=\"${gen:hasProperty(__theForm." + model + ",hiddenField)}\">\n");
@@ -1681,6 +1690,7 @@ return sourceFiles;
     code.append("        <form:hidden path=\"" + model + ".${hiddenField}\"/>\n");
     code.append("      </c:if>\n");
     code.append("    </c:forEach>\n");
+    code.append("    </c:if>");
 
     code.append("    <table class=\"tdformlabel table-condensed table table-bordered table-striped marTop10  \" > \n");
     code.append("    <tbody>      \n");
