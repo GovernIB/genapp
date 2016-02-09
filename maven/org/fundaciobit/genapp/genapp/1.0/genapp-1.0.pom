@@ -1,0 +1,205 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.fundaciobit.genapp</groupId>
+    <version>1.0</version>
+    <artifactId>genapp</artifactId>
+    <packaging>pom</packaging>
+
+    <name>FundacioBit GenApp</name>
+
+    <modules>    
+       <module>core</module>
+       <module>web</module>
+       <module>gen</module>
+    </modules>
+
+    <properties>
+         <spring.version>3.1.2.RELEASE</spring.version>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+         <!--
+        <springsecurity.version>3.1.2.RELEASE</springsecurity.version>
+        <cxf.version>2.2.12</cxf.version> 
+        <ibkey.version>3.3.2</ibkey.version>
+        <global.version>${project.version}</global.version>
+        <miniapplet.version>1.2</miniapplet.version>
+        <hibernate.version>3.3.2.GA</hibernate.version>
+        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        -->
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>maven-nuxeo</id>
+            <name>Maven Nuxeo Repository</name>
+            <url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+
+    <dependencies>
+    
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.5</source>
+                        <target>1.5</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+        
+        <!-- XYZ -->
+        <!--
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.4</version>
+            </extension>
+        </extensions>
+        -->
+    
+
+    <plugins>
+        <plugin>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.8.1</version>
+            <configuration>
+                <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <version>0.12</version> 
+            <configuration>
+                <message>Maven artifacts for ${project.version}</message>
+                <!-- git commit message -->
+                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> 
+                <noJekyll>true</noJekyll>   
+                <branch>refs/heads/gh-pages</branch>
+                <!-- remote branch name -->
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <path>maven</path>
+                <!-- github repo name -->
+                <repositoryName>genapp</repositoryName>
+                
+                <!-- github username or organization  -->
+                <repositoryOwner>GovernIB</repositoryOwner>
+                
+                <server>github_governib</server>
+                <merge>true</merge>
+                <dryRun>false</dryRun>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>site</goal>
+                    </goals>
+                    <phase>deploy</phase>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
+      </build>
+
+
+        
+        <distributionManagement>
+            <repository>
+                <id>github_governib</id>
+                <name>GitHub Maven Repository</name>
+                <url>file://${project.build.directory}/mvn-repo</url>
+            </repository>
+        </distributionManagement>
+        
+        
+        <!--   COM UTILITZAR AQUESTA LLIBRERIA EN UN ALTRA MODUL O PROJECTE   -->
+        <!--
+        
+        <repositories>
+
+          <repository>
+            <id>genapp-maven-repos</id>
+            <name>GenApp Maven Repository</name>
+            <url>http://GovernIB.github.io/genapp/maven/</url>
+          </repository>
+
+        </repositories>
+        -->
+        
+        
+
+        
+        <!-- ====================== ANTIC XYZ  ========================== -->
+        
+        <!--
+        <distributionManagement>
+            <repository>
+                <id>org.fundaciobit.genapp</id>
+                <name>GenApp Maven Repository</name>
+                <url>sftp://web.sourceforge.net/home/project-web/genapp/htdocs/maven</url>
+            </repository>
+      
+        </distributionManagement>
+        -->
+        
+        <!--   COM UTILITZAR: AFEGIR AQUEST CODI AL pom.xml    -->
+        <!--
+        <repositories>
+           <repository>
+             <id>org.fundaciobit.genapp</id>
+             <name>GenApp Maven Repository</name>
+             <url>http://genapp.sourceforge.net/maven/</url>
+           </repository>
+        <repositories>
+        -->
+
+
+
+</project>
