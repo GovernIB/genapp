@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>    
+	
+   <groupId>${package}</groupId>
+   <artifactId>${name}-ws-server</artifactId>  
+   <version>${app_current_version}</version>
+   <packaging>ejb</packaging>
+
+    <parent>
+        <groupId>${package}</groupId>
+        <artifactId>${name}-ws</artifactId>
+        <version>${app_current_version}</version>
+    </parent>
+
+    <name>${fullname} WS - Server</name>
+	
+    <build>
+	    <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                  <ejbVersion>3.0</ejbVersion>
+                </configuration>
+            </plugin>
+			<!-- Sempre fer net -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<executions>
+				  <execution>
+					<id>auto-clean</id>
+					<phase>initialize</phase>
+					<goals>
+					  <goal>clean</goal>
+					</goals>
+				  </execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.jboss.ejb3</groupId>
+            <artifactId>jboss-ejb3-ext-api</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+		<dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-bindings-soap</artifactId>
+          <version>${cxf_version}</version>
+		   <scope>provided</scope>
+       </dependency>
+		
+		<dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf_version}</version>
+		   <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf_version}</version>
+		   <scope>provided</scope>
+        </dependency>
+		
+		<dependency>
+		   <groupId>org.apache.cxf</groupId>
+		   <artifactId>cxf-rt-ws-security</artifactId>
+           <version>${cxf_version}</version>
+		   <scope>provided</scope>
+        </dependency>
+		
+		<dependency>
+		   <groupId>org.jboss.ws</groupId>
+		   <artifactId>jbossws-spi</artifactId>
+		   <version>1.1.2.GA</version>
+		   <scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+		<dependency>
+		  <groupId>${package}</groupId>
+		  <artifactId>${name}-utils</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+
+	    <dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-ejb</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+		
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-logic</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+	
+		<dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+			<scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+          <groupId>org.fundaciobit.genapp</groupId>
+          <artifactId>genapp-core</artifactId>
+          <version>${genapp_version}</version>
+          <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

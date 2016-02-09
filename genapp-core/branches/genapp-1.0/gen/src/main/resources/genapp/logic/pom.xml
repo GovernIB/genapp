@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${package}</groupId>
+	<artifactId>${name}-logic</artifactId>  
+	<version>${app_current_version}</version>
+	<packaging>ejb</packaging>
+
+	<parent>
+		<groupId>${package}</groupId>
+		<artifactId>${name}</artifactId>
+		<version>${app_current_version}</version>
+	</parent>
+  
+
+  <name>${fullname} Logic</name>
+
+
+  <dependencies>
+   
+
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-jpa</artifactId>
+			<version>${project_version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-ejb</artifactId>
+			<version>${project_version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-utils</artifactId>
+		    <version>${project_version}</version>
+		</dependency>
+
+        <dependency>
+          <groupId>javax.persistence</groupId>
+          <artifactId>persistence-api</artifactId>
+          <version>1.0</version>
+          <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate_version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate_version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>ejb-api</artifactId>
+            <version>3.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.ejb3</groupId>
+            <artifactId>jboss-ejb3-ext-api</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        
+       <dependency>
+           <groupId>javax</groupId>
+           <artifactId>javaee-api</artifactId>
+           <version>6.0</version>
+            <scope>provided</scope>
+       </dependency>
+        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+			<scope>provided</scope>
+        </dependency>
+
+  </dependencies>
+  
+  
+  <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <build>
+        
+        <filters>
+            <filter>../config.properties</filter>
+        </filters>
+       
+        <plugins>
+		
+		    <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/src/main/resources</directory>
+							<includes>
+							   <include>genapp_*.properties</include>
+							   <include>${name}_genapp_*.properties</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+				  <execution>
+					<id>copy-resources</id>
+					<phase>validate</phase>
+					<goals>
+					  <goal>copy-resources</goal>
+					</goals>
+					<configuration>
+					  <outputDirectory>${basedir}/src/main/resources</outputDirectory>
+					  <resources>          
+						<resource>
+						  <directory>${basedir}/../ejb/src/main/resources</directory>
+							<includes>
+							   <include>genapp_*.properties</include>
+							   <include>${name}_genapp_*.properties</include>
+							</includes>
+						  <filtering>true</filtering>
+						</resource>
+					  </resources>
+					  <overwrite>true</overwrite>
+					</configuration>            
+				  </execution>
+				</executions>
+		    </plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+				   <source>1.6</source>
+				   <target>1.6</target>
+				   <compilerVersion>1.6</compilerVersion>
+				</configuration>
+			</plugin>
+		
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                  <ejbVersion>3.0</ejbVersion>
+                </configuration>
+            </plugin>
+			
+        </plugins>
+  </build>
+  
+</project>
