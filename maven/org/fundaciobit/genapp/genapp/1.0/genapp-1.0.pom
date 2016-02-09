@@ -132,7 +132,7 @@
                 <!-- github username or organization  -->
                 <repositoryOwner>GovernIB</repositoryOwner>
                 
-                <server>github_governib</server>
+                <server>github_governib_genapp</server>
                 <merge>true</merge>
                 <dryRun>false</dryRun>
             </configuration>
@@ -152,8 +152,8 @@
         
         <distributionManagement>
             <repository>
-                <id>github_governib</id>
-                <name>GitHub Maven Repository</name>
+                <id>github_governib_genapp</id>
+                <name>GitHub GovernIB GenApp Maven Repository</name>
                 <url>file://${project.build.directory}/mvn-repo</url>
             </repository>
         </distributionManagement>
