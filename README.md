@@ -15,7 +15,18 @@ El projecte està partit en tres subprojectes:
 * genapp-web: classes base i d'utilitat per entorn Web (emprant Spring)
 * genapp-gen: generador de les diferent caps del projecte abans descrita i generador de sql a partir d'hibernate
 
-** Captures de pantalla **
+**Característiques**
+
+
+* Languages: Catalan
+* Intended Audience: Government
+* User Interface: Java Swing, Console/Terminal
+* Programming Language: Java
+* Registered: 2013-02-19
+
+
+
+**Captures de pantalla**
 
 ![Formulari Web Generat](https://github.com/GovernIB/genapp/blob/binaris/projectinfo_Attachments/screenshots/genapp_form.png)
 Formulari Web Generat
