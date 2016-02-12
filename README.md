@@ -17,13 +17,17 @@ El projecte està partit en tres subprojectes:
 
 **Característiques**
 
-
-* Languages: Catalan
-* Intended Audience: Government
-* User Interface: Java Swing, Console/Terminal
-* Programming Language: Java
 * Registered: 2013-02-19
-
+* Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java  JBoss 5.1  JBoss 5.2  
+* Topic: Agile development tools,  Frameworks,  Templates
+* License:  European Union Public License, GNU General Public License version 3.0 (GPLv3)
+* Database Environment: JDBC
+* Development Status: Production/Stable
+* Intended Audience:  Government
+* Operating System:  OS Independent (Written in an interpreted language)
+* Programming Language: Java
+* Translations: Spanish, Catalan
+* User Interface: Java Swing, Console/Terminal
 
 
 **Captures de pantalla**
