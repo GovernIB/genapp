@@ -1133,10 +1133,10 @@ public class CodeGenerator {
     }
     
     // (2) Copiar fitxers que no necessiten substitucions
-    {
-      String resourceBaseDirsBin = resourceBase + "/" +  "baseDirsBin";
-      copyResourcesToDir(resourceBaseDirsBin, projectDir, true);
-    }
+//    {
+//      String resourceBaseDirsBin = resourceBase + "/" +  "baseDirsBin";
+//      copyResourcesToDir(resourceBaseDirsBin, projectDir, true);
+//    }
     
     
     {
