@@ -778,7 +778,7 @@ public class DaoJPAGenerator {
                  || (translationTableInfo != null && table.getName().equals(translationTableInfo.getName()) )) {
                mappedBy = expField.getJavaName();
              } else {
-               mappedBy = CodeGenUtils.getModelName(table.getNameJava());  //.toLowerCase(); // .name ZZZ
+               mappedBy = CodeGenUtils.getModelName(table.getNameJava());  //.toLowerCase();
              }
           }
           boolean isFileMappingTable = CodeGenUtils.isTranslationTable(project, fk.getTable());

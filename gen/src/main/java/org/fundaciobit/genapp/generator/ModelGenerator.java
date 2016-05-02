@@ -224,12 +224,6 @@ public class ModelGenerator {
     interfaceCode.append("\n\n");
 
 
-
-/**  ZZZZZZZZZZZZZZZZZ
-    interfaceCode.append("\t public static final TableName<" + className
-        + "> _TABLENAME =  new TableName<" + className + ">(_TABLE_);\n");
-    interfaceCode.append("\n\n");
-    */
     interfaceCode.append("  public static final Field<?>[] ALL_" + javaName.toUpperCase()
         + "_FIELDS = {\n");
     for (int i = 0; i < fields.length; i++) {

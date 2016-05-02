@@ -26,10 +26,10 @@ public interface ModificationListener <K extends Serializable> {
   public void postList(ModificationEvent<ListEventInfo> event);
   
 
-  //public void preFieldUpdate(ModificationEvent<UpdateEventInfo> event) throws Exception;
+  // public void preFieldUpdate(ModificationEvent<UpdateEventInfo> event) throws Exception;
   
 
-  //public void postFieldUpdate(ModificationEvent<UpdateEventInfo> event);
+  // public void postFieldUpdate(ModificationEvent<UpdateEventInfo> event);
   
   
   public void preFullUpdate(ModificationEvent<K> event) throws Exception;

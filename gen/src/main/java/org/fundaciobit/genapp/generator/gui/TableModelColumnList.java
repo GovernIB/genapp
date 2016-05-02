@@ -523,7 +523,6 @@ public class TableModelColumnList extends AbstractTableModel {
     }
 
     public void actionPerformed(ActionEvent e) {
-      //log.info("ZZZZZZZZZZZZZZ  ActionPerformet -> " + fi.getJavaName());
       WebFieldInfo wfi = (WebFieldInfo)box.getSelectedItem();
       fi.webFieldInfo = wfi;
       fireTableDataChanged();
