@@ -143,7 +143,7 @@
   <!--
         <repositories>
            <repository>
-             <id>maven-repos</id>
+             <id>github-governib-maven-repos</id>
              <name>GitHub GovernIB Maven Repository</name>
              <url>http://GovernIB.github.io/maven/maven/</url>
            </repository>
