@@ -108,12 +108,12 @@
           </includes>
           <path>maven</path>
           <!-- github repo name -->
-          <repositoryName>genapp</repositoryName>
+          <repositoryName>maven</repositoryName>
 
           <!-- github username or organization  -->
           <repositoryOwner>GovernIB</repositoryOwner>
 
-          <server>github_governib_genapp</server>
+          <server>github_governib_maven</server>
           <merge>true</merge>
           <dryRun>false</dryRun>
         </configuration>
@@ -133,25 +133,21 @@
 
   <distributionManagement>
     <repository>
-      <id>github_governib_genapp</id>
-      <name>GitHub GovernIB GenApp Maven Repository</name>
+      <id>github_governib_maven</id>
+      <name>GitHub GovernIB Maven Repository</name>
       <url>file://${project.build.directory}/mvn-repo</url>
     </repository>
   </distributionManagement>
-
-
-  <!--   COM UTILITZAR AQUESTA LLIBRERIA EN UN ALTRA MODUL O PROJECTE   -->
+  
+  <!--   COM UTILITZAR: AFEGIR AQUEST CODI AL pom.xml    -->
   <!--
-        
         <repositories>
-
-          <repository>
-            <id>genapp-maven-repos</id>
-            <name>GenApp Maven Repository</name>
-            <url>http://GovernIB.github.io/genapp/maven/</url>
-          </repository>
-
+           <repository>
+             <id>maven-repos</id>
+             <name>GitHub GovernIB Maven Repository</name>
+             <url>http://GovernIB.github.io/maven/maven/</url>
+           </repository>
         </repositories>
-        -->
+  -->
 
 </project>
