@@ -1,4 +1,4 @@
-# ![Logo](https://github.com/GovernIB/genapp/blob/binaris/projectinfo_Attachments/icon.jpg) Generador d'Aplicacions (genapp)  
+# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) Generador d'Aplicacions (genapp)  
 
 
 **Descripció**
@@ -32,15 +32,15 @@ El projecte està partit en tres subprojectes:
 
 **Captures de pantalla**
 
-![Formulari Web Generat](https://github.com/GovernIB/genapp/blob/binaris/projectinfo_Attachments/screenshots/genapp_form.png)
+![Formulari Web Generat](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_form.png)
 Formulari Web Generat
 
-![Llistat Web Generat](https://github.com/GovernIB/genapp/blob/binaris/projectinfo_Attachments/screenshots/genapp_llistat.png)
+![Llistat Web Generat](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_llistat.png)
 Llistat Web Generat
 
-![Aplicació GenApp:  Menú principal](https://github.com/GovernIB/genapp/blob/binaris/projectinfo_Attachments/screenshots/genapp_aplicacio_menu.png)
+![Aplicació GenApp:  Menú principal](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_aplicacio_menu.png)
 Aplicació GenApp:  Menú principal
 
-![Aplicació GenApp: Edició de les propietats d'una taula](https://github.com/GovernIB/genapp/blob/binaris/projectinfo_Attachments/screenshots/genapp_aplicacio_editar_projecte.png)
+![Aplicació GenApp: Edició de les propietats d'una taula](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_aplicacio_editar_projecte.png)
 Aplicació GenApp: Edició de les propietats d'una taula
 
