@@ -1156,13 +1156,21 @@ public class BackWebGenerator {
   
         case WebType.Checkbox:
           codeCoreContent.append("          <td>\n");
-          if (!field.isNotNullable()) {
-            codeCoreContent.append("            &nbsp;<c:if test=\"${not empty " + model + "." + modelCamp + "}\">\n");
-          }          
-          codeCoreContent.append("            <img height=\"18\" width=\"18\" src=\"<c:url value=\"/img/icn_alert_${" + model + "." + modelCamp + "?'success':'error'}.png\"/>\">\n");
-          if (!field.isNotNullable()) {
-            codeCoreContent.append("            </c:if>\n");
-          } 
+          
+          if (field.getMinAllowedValue() != null) {
+
+            codeCoreContent.append("            <fmt:message key=\"" + field.getMinAllowedValue() + ".${" + model + "." + modelCamp + "}\" />");
+            
+          } else {
+          
+            if (!field.isNotNullable()) {
+              codeCoreContent.append("            &nbsp;<c:if test=\"${not empty " + model + "." + modelCamp + "}\">\n");
+            }          
+            codeCoreContent.append("            <img height=\"18\" width=\"18\" src=\"<c:url value=\"/img/icn_alert_${" + model + "." + modelCamp + "?'success':'error'}.png\"/>\">\n");
+            if (!field.isNotNullable()) {
+              codeCoreContent.append("            </c:if>\n");
+            }
+          }
           codeCoreContent.append("          </td>\n");
           continue;
           
