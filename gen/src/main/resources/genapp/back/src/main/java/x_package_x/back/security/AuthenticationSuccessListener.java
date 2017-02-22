@@ -11,7 +11,7 @@ import java.util.TreeSet;
 import javax.naming.InitialContext;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.demogenapp.back.security.LoginInfo;
+import ${package}.back.security.LoginInfo;
 import org.fundaciobit.genapp.common.i18n.I18NTranslation;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
 import org.springframework.context.ApplicationListener;

@@ -12,7 +12,7 @@ import org.apache.tiles.AttributeContext;
 import org.apache.tiles.context.TilesRequestContext;
 import org.apache.tiles.preparer.PreparerException;
 import org.apache.tiles.preparer.ViewPreparerSupport;
-import org.fundaciobit.demogenapp.back.security.LoginInfo;
+import ${package}.back.security.LoginInfo;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 import ${package}.back.security.LoginInfo;

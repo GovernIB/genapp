@@ -1,5 +1,5 @@
 
-package org.fundaciobit.demogenapp.ws.api.v1;
+package ${package}.ws.api.v1;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
