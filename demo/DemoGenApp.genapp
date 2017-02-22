@@ -70,7 +70,7 @@
                <string>alumneid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_assignaturaalumne_alumneid_fkey</string> 
+               <string>dem_assigalumn_alumne_alumn_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_assignaturaalumne</string> 
@@ -78,6 +78,9 @@
              </object> 
             </void> 
            </array> 
+          </void> 
+          <void property="index"> 
+           <string>dem_alumne_pk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>alumneID</string> 
@@ -184,7 +187,7 @@
                <string>idiomaid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_alumne_idiomaid_fkey</string> 
+               <string>dem_alumne_idioma_idiomaid_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_idioma</string> 
@@ -198,6 +201,9 @@
           </void> 
           <void property="groupBy"> 
            <boolean>true</boolean> 
+          </void> 
+          <void property="index"> 
+           <string>dem_alumne_idiomaid_fk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>idiomaID</string> 
@@ -403,7 +409,7 @@
                <string>fitxerid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_alumne_fotoid_fkey</string> 
+               <string>dem_alumne_fitxer_fotoid_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_fitxer</string> 
@@ -414,6 +420,9 @@
              </object> 
             </void> 
            </array> 
+          </void> 
+          <void property="index"> 
+           <string>dem_alumne_fotoid_fk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>fotoID</string> 
@@ -478,7 +487,7 @@
                <string>traduccioid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_alumne_titolacademic_fkey</string> 
+               <string>dem_alumne_traduccio_titola_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_traduccio</string> 
@@ -489,6 +498,9 @@
              </object> 
             </void> 
            </array> 
+          </void> 
+          <void property="index"> 
+           <string>dem_alumne_titolaca_fk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>titolAcademicID</string> 
@@ -680,7 +692,7 @@
                <string>assignaturaid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_assignaturaalumne_assignaturaid_fkey</string> 
+               <string>dem_assigalumn_assign_assig_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_assignaturaalumne</string> 
@@ -688,6 +700,9 @@
              </object> 
             </void> 
            </array> 
+          </void> 
+          <void property="index"> 
+           <string>dem_assignatura_pk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>assignaturaID</string> 
@@ -949,6 +964,9 @@
           <void property="digits"> 
            <int>0</int> 
           </void> 
+          <void property="index"> 
+           <string>dem_assignaturaalumne_pk_i</string> 
+          </void> 
           <void property="javaName"> 
            <string>id</string> 
           </void> 
@@ -995,7 +1013,7 @@
                <string>alumneid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_assignaturaalumne_alumneid_fkey</string> 
+               <string>dem_assigalumn_alumne_alumn_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_alumne</string> 
@@ -1009,6 +1027,9 @@
           </void> 
           <void property="groupBy"> 
            <boolean>true</boolean> 
+          </void> 
+          <void property="index"> 
+           <string>dem_assigalumn_alumneid_fk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>alumneID</string> 
@@ -1079,7 +1100,7 @@
                <string>assignaturaid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_assignaturaalumne_assignaturaid_fkey</string> 
+               <string>dem_assigalumn_assign_assig_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_assignatura</string> 
@@ -1093,6 +1114,9 @@
           </void> 
           <void property="groupBy"> 
            <boolean>true</boolean> 
+          </void> 
+          <void property="index"> 
+           <string>dem_assigalumn_assigna_fk_i</string> 
           </void> 
           <void property="javaName"> 
            <string>assignaturaID</string> 
@@ -1222,7 +1246,7 @@
         <void index="0"> 
          <object class="org.fundaciobit.genapp.MultipleUnique"> 
           <void property="name"> 
-           <string>dem_alumneassignatura_alu_asig_uk</string> 
+           <string>dem_assigalumn_multiple_uk</string> 
           </void> 
           <void property="sqlColumns"> 
            <array class="java.lang.String" length="2"> 
@@ -1275,7 +1299,7 @@
                <string>fotoid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_alumne_fotoid_fkey</string> 
+               <string>dem_alumne_fitxer_fotoid_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_alumne</string> 
@@ -1330,6 +1354,51 @@
         </void> 
         <void index="1"> 
          <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>nom</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>nom</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>nom</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="showInReferenceList"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>255</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>nom</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>1</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="2"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
           <void property="defaultValue"> 
            <string>NULL::character varying</string> 
           </void> 
@@ -1370,7 +1439,7 @@
           </void> 
          </object> 
         </void> 
-        <void index="2"> 
+        <void index="3"> 
          <object class="org.fundaciobit.genapp.FieldInfo"> 
           <void property="digits"> 
            <int>0</int> 
@@ -1407,51 +1476,6 @@
            <object class="org.fundaciobit.genapp.WebFieldInfo"> 
             <void property="webtype"> 
              <int>1</int> 
-            </void> 
-           </object> 
-          </void> 
-         </object> 
-        </void> 
-        <void index="3"> 
-         <object class="org.fundaciobit.genapp.FieldInfo"> 
-          <void property="digits"> 
-           <int>0</int> 
-          </void> 
-          <void property="javaName"> 
-           <string>nom</string> 
-          </void> 
-          <void property="javaType"> 
-           <class>java.lang.String</class> 
-          </void> 
-          <void property="labels"> 
-           <void method="put"> 
-            <string>ca</string> 
-            <string>nom</string> 
-           </void> 
-           <void method="put"> 
-            <string>es</string> 
-            <string>nom</string> 
-           </void> 
-          </void> 
-          <void property="notNullable"> 
-           <boolean>true</boolean> 
-          </void> 
-          <void property="showInReferenceList"> 
-           <boolean>true</boolean> 
-          </void> 
-          <void property="size"> 
-           <int>255</int> 
-          </void> 
-          <void property="sqlName"> 
-           <string>nom</string> 
-          </void> 
-          <void property="sqlType"> 
-           <int>12</int> 
-          </void> 
-          <void property="webFieldInfo"> 
-           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
-            <void property="webtype"> 
-             <int>2</int> 
             </void> 
            </object> 
           </void> 
@@ -1510,21 +1534,21 @@
       <void property="labels"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_fitxer</string> 
+        <string>Fitxer</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_fitxer</string> 
+        <string>Fichero</string> 
        </void> 
       </void> 
       <void property="labelsPlural"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_fitxer</string> 
+        <string>Fitxers</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_fitxer</string> 
+        <string>Ficheros</string> 
        </void> 
       </void> 
       <void property="name"> 
@@ -1558,7 +1582,7 @@
                <string>idiomaid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_alumne_idiomaid_fkey</string> 
+               <string>dem_alumne_idioma_idiomaid_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_alumne</string> 
@@ -1754,21 +1778,21 @@
       <void property="labels"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_idioma</string> 
+        <string>Idioma</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_idioma</string> 
+        <string>Idioma</string> 
        </void> 
       </void> 
       <void property="labelsPlural"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_idioma_plural</string> 
+        <string>Idiomes</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_idioma_plural</string> 
+        <string>Idiomas</string> 
        </void> 
       </void> 
       <void property="languageMappingEntity"> 
@@ -1800,6 +1824,9 @@
           <void property="defaultValue"> 
            <string>nextval(&apos;dem_demogenapp_seq&apos;::regclass)</string> 
           </void> 
+          <void property="descripcio"> 
+           <string></string> 
+          </void> 
           <void property="digits"> 
            <int>0</int> 
           </void> 
@@ -1811,7 +1838,7 @@
                <string>titolacademicid</string> 
               </void> 
               <void property="name"> 
-               <string>dem_alumne_titolacademic_fkey</string> 
+               <string>dem_alumne_traduccio_titola_fk</string> 
               </void> 
               <void property="table"> 
                <string>dem_alumne</string> 
@@ -1888,21 +1915,21 @@
       <void property="labels"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_traduccio</string> 
+        <string>Traducció</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_traduccio</string> 
+        <string>Traducción</string> 
        </void> 
       </void> 
       <void property="labelsPlural"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_traduccio_plural</string> 
+        <string>Traduccions</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_traduccio_plural</string> 
+        <string>Traducciones</string> 
        </void> 
       </void> 
       <void property="name"> 
@@ -1927,6 +1954,12 @@
          <object class="org.fundaciobit.genapp.FieldInfo"> 
           <void property="PK"> 
            <string>dem_traducmap_pk</string> 
+          </void> 
+          <void property="autoIncrement"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="defaultValue"> 
+           <string>nextval(&apos;dem_demogenapp_seq&apos;::regclass)</string> 
           </void> 
           <void property="descripcio"> 
            <string></string> 
@@ -2107,21 +2140,21 @@
       <void property="labels"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_traducciomap</string> 
+        <string>Traducciomap</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_traducciomap</string> 
+        <string>Traducciomap</string> 
        </void> 
       </void> 
       <void property="labelsPlural"> 
        <void method="put"> 
         <string>ca</string> 
-        <string>dem_traducciomap_plural</string> 
+        <string>Traducciomap_plural</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string>dem_traducciomap_plural</string> 
+        <string>Traducciomap_plural</string> 
        </void> 
       </void> 
       <void property="name"> 

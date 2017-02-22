@@ -4,7 +4,6 @@ import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 import ${package}.ws.api.v1.${fullname}HelloWorldWs;
 import ${package}.ws.api.v1.utils.I18NUtils;

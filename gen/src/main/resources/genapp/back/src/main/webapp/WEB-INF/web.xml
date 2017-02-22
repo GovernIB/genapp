@@ -153,9 +153,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>${name}_back-user</web-resource-name>
-            <url-pattern>/pathuser_1/*</url-pattern>
-            <url-pattern>/pathuser_2/*</url-pattern>
-            <url-pattern>/pathuser_3/*</url-pattern>
+            <url-pattern>/user/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>${prefix}_USER</role-name>
@@ -182,12 +180,12 @@
 
 	<security-role>
 		<description>Administrador de ${fullname}</description>
-		${role_admin}
+		<role-name>${prefix}_ADMIN</role-name>
 	</security-role>
 
 	<security-role>
 		<description>Usuari de ${fullname}</description>
-		${role_user}
+		<role-name>${prefix}_USER</role-name>
 	</security-role>
 
 	<listener>

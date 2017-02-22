@@ -103,6 +103,160 @@
 
     </build>
 
+ <profiles>
+    <profile>
+      <id>regenerateapi</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>                  
+          <name>regenerateapi</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>       
+            
+          <plugin>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-java2ws-plugin</artifactId>
+            <version>${cxf_version}</version>
+            <dependencies>
+              <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                <version>${cxf_version}</version>
+              </dependency>
+
+              <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-simple</artifactId>
+                <version>${cxf_version}</version>
+              </dependency>
+
+              <dependency>
+                <groupId>${package}</groupId>
+                <artifactId>${name}-ws-server</artifactId>
+                <version>1.0.0</version>
+                <scope>compile</scope>
+              </dependency>
+
+              <dependency>
+                <groupId>${package}</groupId>
+                <artifactId>${name}-jpa</artifactId>
+                <version>1.0.0</version>
+                <scope>compile</scope>
+              </dependency>
+
+              <dependency>
+                <groupId>${package}</groupId>
+                <artifactId>${name}-logic</artifactId>
+                <version>1.0.0</version>
+                <scope>compile</scope>
+              </dependency>
+
+
+            </dependencies>
+
+            <executions>
+
+              <execution>
+                <id>generate-wsdl-${fullname}HelloWorldWs</id>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <className>${package}.ws.v1.impl.${fullname}HelloWorldWsImpl</className>
+                  <genWsdl>true</genWsdl>                           
+                  <verbose>true</verbose>
+                  <frontend>jaxws</frontend>
+                  <databinding>jaxb</databinding>
+                  <outputFile>${basedir}/src/main/resources/wsdl/${fullname}HelloWorld.wsdl</outputFile>
+                  <argline>-s ${basedir}/code -portname ${fullname}HelloWorldWs -address http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld</argline>
+                </configuration>
+                <goals>
+                  <goal>java2ws</goal>
+                </goals>
+              </execution>
+              
+              <execution>
+                <id>generate-wsdl-${fullname}HelloWorldWithSecurityWs</id>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <className>${package}.ws.v1.impl.${fullname}HelloWorldWithSecurityWsImpl</className>
+                  <genWsdl>true</genWsdl>                           
+                  <verbose>true</verbose>
+                  <frontend>jaxws</frontend>
+                  <databinding>jaxb</databinding>
+                  <outputFile>${basedir}/src/main/resources/wsdl/${fullname}HelloWorldWithSecurity.wsdl</outputFile>
+                  <argline>-s ${basedir}/code -portname ${fullname}HelloWorldWithSecurityWs -address http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity</argline>
+                </configuration>
+                <goals>
+                  <goal>java2ws</goal>
+                </goals>
+              </execution>
+ 
+              <!--   ADD HERE MORE WS -->
+
+
+            </executions>
+          </plugin>
+            
+
+      
+      
+      <plugin>  
+            <groupId>org.jboss.ws.plugins</groupId>  
+            <artifactId>maven-jaxws-tools-plugin</artifactId>  
+            <version>1.1.1.Final</version>
+            <configuration>  
+              <verbose>true</verbose>  
+              <goalPrefix>wsconsume</goalPrefix>    
+              <extension>true</extension>                   
+              <sourceDirectory>${dollar}{project.basedir}/src/main/java</sourceDirectory>   
+              <targetPackage>${package}.ws.api.v1</targetPackage>
+              <bindingFiles>
+                <bindingFile>${basedir}/bindings/bindings.xjc</bindingFile>
+              </bindingFiles>
+            </configuration>  
+            <executions>  
+              <execution>  
+                <id>WSDL to Java API ${fullname}HelloWorld</id>  
+                <goals>
+                  <goal>wsconsume</goal>
+                </goals>  
+                <configuration>  
+                  <wsdls> 
+                    <wsdl>${basedir}/src/main/resources/wsdl/${fullname}HelloWorld.wsdl</wsdl>  
+                  </wsdls>
+                  <wsdlLocation>http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld?wsdl</wsdlLocation>
+                  <argLine>-n</argLine>
+                </configuration>  
+              </execution> 
+              
+              <execution>  
+                <id>WSDL to Java API ${fullname}HelloWorldWithSecurity</id>  
+                <goals>
+                  <goal>wsconsume</goal>
+                </goals>  
+                <configuration>  
+                  <wsdls> 
+                    <wsdl>${basedir}/src/main/resources/wsdl/${fullname}HelloWorldWithSecurity.wsdl</wsdl>  
+                  </wsdls>
+                  <wsdlLocation>http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity?wsdl</wsdlLocation>
+                  <argLine>-n</argLine>
+                </configuration>  
+              </execution> 
+              
+              
+              <!--   ADD HERE MORE WSDL -->
+              
+
+            </executions>  
+          </plugin> 
+    
+            
+    </plugins>
+
+    </build>
+    </profile>
+  </profiles>
 	
 	<repositories>
 	  <repository>
@@ -114,6 +268,13 @@
 	
 	
     <dependencies>
+    
+        <dependency>  
+          <groupId>org.jboss.ws.cxf</groupId>  
+          <artifactId>jbossws-cxf-client</artifactId>  
+          <version>4.1.1.Final</version>  
+          <scope>provided</scope>  
+        </dependency> 
  
 		<dependency>
 		  <groupId>${package}</groupId>

@@ -33,7 +33,6 @@ import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.Versio;
 
 import sun.misc.Launcher;
-
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
@@ -669,13 +668,50 @@ public class CodeGenerator {
       BasicPackages packages, String jpaPackage, String validatorPackage, String ejbPackage)
       throws Exception, FileNotFoundException, IOException {
     {
-      // (1) Variables
+      // (0) Variables
       final String backName =  "back";
-        
       File dstBackDir = new File(projectDir, backName);
       File baseCode = new File(dstBackDir, "src/main/java");
       String backPackage = project.getPackageName() + "." + backName;
-      //File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
+      File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
+      
+      // (1) Preparar quins fitxers esborrar
+
+      final String name =  project.projectName.toLowerCase();
+      final String fullname = project.projectName;
+      
+ 
+      
+      final String[] fitxersABorrar = new String[] {
+          dstBackDir.getAbsolutePath() + "/src/main/java/es/caib/portafib/back/controller/admin/AdminController.java",
+          dstBackDir.getAbsolutePath() + "/src/main/java/es/caib/portafib/back/controller/common/CommonController.java",
+          dstBackDir.getAbsolutePath() + "/src/main/java/es/caib/portafib/back/controller/user/UserController.java",
+          dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/admin/admin.jsp",
+          dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/common/option.jsp",
+          dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/moduls/menu_admin.jsp",
+          dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/moduls/menu_user.jsp",
+          dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/user/user.jsp"
+      };
+      
+      List<File> toDelete = new ArrayList<File>();
+
+      
+      
+      for (int i = 0; i < fitxersABorrar.length; i++) {
+        
+        System.err.println("fitxersABorrar[" + i + "]:" + fitxersABorrar[i]);
+        
+        File exampleCode = new File(fitxersABorrar[i]);
+        
+        System.err.println("X_" + exampleCode.exists() + "_X " + exampleCode.getAbsolutePath());
+        
+        if (!exampleCode.exists() && exampleCode.getParentFile().exists()) {
+          // OK: S'ha de borrar
+          toDelete.add(exampleCode);
+        } 
+      }
+        
+
       
       // (2) Còpia inicial: Copiar estructura directoris des de recursos
       Map<String, Object> prop = new HashMap<String, Object>();
@@ -921,6 +957,14 @@ public class CodeGenerator {
             }
           }
           
+        }
+      }
+      
+      // (12) Esborrar Fitxers preCalculats 
+      for (File file: toDelete) {
+        log.info("BORRANT: " + file.getAbsolutePath());
+        if (!file.delete()) {
+          file.deleteOnExit();
         }
       }
       
@@ -1238,14 +1282,19 @@ public class CodeGenerator {
       prop.put("name", project.projectName.toLowerCase());
       prop.put("package", project.getPackageName());
       
-      String[] parts =  project.getPackageName().split(".");
+      System.out.println("project.getPackageName() = " + project.getPackageName());
+      
+      String[] parts =  project.getPackageName().split("\\.");
       StringBuffer packageInverse = new StringBuffer();
-      for (int i = 0; i < parts.length; i++) {
+      for (int i = parts.length -1; i >= 0 ; i--) {
         if (packageInverse.length() != 0) {
           packageInverse.append('.');
         }
         packageInverse.append(parts[i]);
       }
+      
+      System.out.println("packageInverse.toString() = " + packageInverse.toString());
+      //Thread.sleep(5000);
 
       prop.put("packageInverse", packageInverse.toString());
 
@@ -1255,6 +1304,7 @@ public class CodeGenerator {
       prop.put("name_uppercase", project.projectName.toUpperCase());
 
       prop.put("prefix", project.getPrefix().toUpperCase());
+      prop.put("dollar", "$");
 
       prop.put("genapp_version", Versio.VERSIO);
 

@@ -41,6 +41,18 @@
     </c:if>  
     </c:forEach>
     --%>
+    
+    <sec:authorize access="hasRole('ROLE_USER')">
+    <li ${dollar}{(pipella eq 'user')?'class="active"' : '' }>
+       <a href="<c:url value="/canviarPipella/user"/>">ROLE_USER</a>
+    </li>
+    </sec:authorize>
+    
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+    <li ${dollar}{(pipella eq 'admin')?'class="active"' : '' }>
+       <a href="<c:url value="/canviarPipella/admin"/>">ROLE_ADMIN</a>
+    </li>
+    </sec:authorize>
 
     <sec:authorize access="hasRole('ROLE_ADMIN')">
     <li ${dollar}{(pipella eq 'webdb')?'class="active"' : '' }>

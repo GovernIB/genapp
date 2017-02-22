@@ -31,9 +31,9 @@
 
     <hr  style="margin-top: 6px;  margin-bottom: 6px;" />
     <li style="list-style-type: disc; list-style-position: inside;">
-        <a target="_blank" href="/common/option2">
-        Last Menu Option (other page)
-        </a>
+      <a href="<c:url value="/common/option2"/>">
+        <span style="${dollar}{(fn:contains(url, 'option2'))? "font-weight: bold;" : ""}">Menú Option 2</span>
+      </a>
     </li>
    
   </ul>

@@ -38,6 +38,12 @@ This page is generated automatically. Please edit.
  
 </div>
 
+<br/>
+Username: ${dollar}{loginInfo.username}<br/>
+&#36;{${prefixLowercase}:hasRole(ROLE_ADMIN)}= ${dollar}{${prefixLowercase}:hasRole('ROLE_ADMIN')}<br/>
+&#36;{${prefixLowercase}:hasRole(ROLE_USER) }= ${dollar}{${prefixLowercase}:hasRole('ROLE_USER') }<br/>
+<br/>
+
 <c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
 Only in Development Mode
 </c:if>

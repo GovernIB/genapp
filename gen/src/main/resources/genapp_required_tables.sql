@@ -22,7 +22,7 @@ CREATE TABLE PFX_traduccio (
 );
 
 CREATE TABLE PFX_traducciomap (
-    traducciomapid bigint NOT NULL,
+    traducciomapid bigint nextval('PFX_APPNAME_seq'::regclass) NOT NULL,
     idiomaid character varying(10) NOT NULL,
     valor character varying(4000)
 );

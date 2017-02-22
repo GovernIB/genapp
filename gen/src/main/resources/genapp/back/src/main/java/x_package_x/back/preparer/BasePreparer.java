@@ -1,13 +1,10 @@
 package ${package}.back.preparer;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.security.RunAs;
-import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -15,14 +12,10 @@ import org.apache.tiles.AttributeContext;
 import org.apache.tiles.context.TilesRequestContext;
 import org.apache.tiles.preparer.PreparerException;
 import org.apache.tiles.preparer.ViewPreparerSupport;
-import org.fundaciobit.genapp.common.i18n.I18NException;
-import org.fundaciobit.genapp.common.i18n.I18NTranslation;
-import org.fundaciobit.genapp.common.query.Where;
-import org.fundaciobit.genapp.common.web.HtmlUtils;
-import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
+import org.fundaciobit.demogenapp.back.security.LoginInfo;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import ${package}.back.security.LoginInfo;
 
 import ${package}.utils.Constants;
 
@@ -46,7 +39,10 @@ public class BasePreparer extends ViewPreparerSupport implements Constants {
 
 	  Map<String, Object> request = tilesContext.getRequestScope();
 	  
-	  
+    // Informació de Login
+    LoginInfo loginInfo = LoginInfo.getInstance();
+    // Posa dins la sessió la informació de Login    
+    request.put("loginInfo", loginInfo);
 
 	  
 	  

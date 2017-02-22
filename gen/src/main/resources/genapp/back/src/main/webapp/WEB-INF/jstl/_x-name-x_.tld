@@ -44,12 +44,18 @@
         <function-signature>java.lang.String escapeJavaScript(java.lang.String)</function-signature>
 </function>
 
-
 <function>
         <name>isDesenvolupament</name>
         <description>Retorna si estam en mode desenvolupament</description>
         <function-class>${package}.utils.Configuracio</function-class>
         <function-signature>boolean isDesenvolupament()</function-signature>
+</function>
+
+<function>
+        <name>hasRole</name>
+        <description>hasRole</description>
+        <function-class>${package}.back.security.LoginInfo</function-class>
+        <function-signature>boolean hasRole(java.lang.String)</function-signature>
 </function>
 
 </taglib>

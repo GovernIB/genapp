@@ -11,7 +11,7 @@ import java.util.TreeSet;
 import javax.naming.InitialContext;
 
 import org.apache.log4j.Logger;
-
+import org.fundaciobit.demogenapp.back.security.LoginInfo;
 import org.fundaciobit.genapp.common.i18n.I18NTranslation;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
 import org.springframework.context.ApplicationListener;
@@ -23,6 +23,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
+
 
 
 import ${package}.utils.Configuracio;
@@ -74,8 +75,13 @@ public class AuthenticationSuccessListener implements
 
     // TODO GenApp Afegir el codi oportu despres del login
 
+    LoginInfo loginInfo;
+    // create a new authentication token
+    loginInfo = new LoginInfo(user, name, new HashSet<GrantedAuthority>(seyconAuthorities));
+
     // and set the authentication of the current Session context
-    // SecurityContextHolder.getContext().setAuthentication(loginInfo.generateToken());
+    SecurityContextHolder.getContext().setAuthentication(loginInfo.generateToken());
+    
     
     log.info(">>>>>> Final del Process d'autenticació.");
     log.info(" =================================================================");

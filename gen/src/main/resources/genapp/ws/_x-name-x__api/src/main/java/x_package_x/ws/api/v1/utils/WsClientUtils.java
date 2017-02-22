@@ -10,7 +10,6 @@ import ${package}.ws.api.v1.WsI18NError;
 import ${package}.ws.api.v1.WsI18NException;
 import ${package}.ws.api.v1.WsI18NTranslation;
 import ${package}.ws.api.v1.WsValidationException;
-import ${package}.ws.api.v1.WsValidationException;
 
 /**
  * 
