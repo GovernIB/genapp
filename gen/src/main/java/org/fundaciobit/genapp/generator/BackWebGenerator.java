@@ -229,7 +229,7 @@ public class BackWebGenerator {
         code.append("    </thead>\n");
         code.append("    <tbody>\n\n");
         code.append("      <c:forEach var=\"" + model + "\" items=\"${" + model + "Items}\">\n\n");
-        code.append("        <tr>\n");
+        code.append("        <tr id=\"" + model + "_rowid_${" + pkMapping.substring(3,pkMapping.length() - 1) +  "}\">\n");
         
         code.append("          <%@include file=\"" + model + "ListCoreMultipleSelect.jsp\" %>\n\n");
         
@@ -443,19 +443,19 @@ public class BackWebGenerator {
         codeFilterBy.append("      \n");
         
         final String searchByAdditional =
-            "<c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
-          + "<c:if test=\"${ __entry.key < 0 && not empty __entry.value.searchBy }\">\n"
-          + "<div class=\"input-prepend\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n"
-          + "  <span class=\"add-on\"><fmt:message key=\"${__entry.value.codeName}\" />:</span>\n" 
-          + "  <fmt:message key=\"genapp.form.searchby\" var=\"cercaperAF\" >\n"
-          + "    <fmt:param>\n"
-          + "      <fmt:message key=\"${__entry.value.codeName}\" />\n"
-          + "    </fmt:param>\n"
-          + "  </fmt:message>\n"
-          + "  <input id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"search-query input-medium\" placeholder=\"${cercaperAF}\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
-          + "</div>\n"
-          + "</c:if>\n"
-          + "</c:forEach>\n";
+            "      <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
+          + "      <c:if test=\"${ __entry.key < 0 && not empty __entry.value.searchBy }\">\n"
+          + "      <div class=\"input-prepend\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n"
+          + "        <span class=\"add-on\"><fmt:message key=\"${__entry.value.codeName}\" />:</span>\n" 
+          + "        <fmt:message key=\"genapp.form.searchby\" var=\"cercaperAF\" >\n"
+          + "          <fmt:param>\n"
+          + "            <fmt:message key=\"${__entry.value.codeName}\" />\n"
+          + "          </fmt:param>\n"
+          + "        </fmt:message>\n"
+          + "        <input id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"search-query input-medium\" placeholder=\"${cercaperAF}\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
+          + "      </div>\n"
+          + "      </c:if>\n"
+          + "      </c:forEach>\n";
         
         codeFilterBy.append(searchByAdditional);
         
@@ -495,12 +495,12 @@ public class BackWebGenerator {
             codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"genapp.from\" /></span>\n");
             codeFilterBy.append("              \n");
             codeFilterBy.append("              <form:input cssClass=\"input-append input-small\" path=\"" + modelCamp + "Desde\" />\n");
-            codeFilterBy.append("                                       \n");
-            codeFilterBy.append("              \n");
+            codeFilterBy.append("\n");
+            codeFilterBy.append("\n");
             codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"genapp.to\" /></span>\n");
-            codeFilterBy.append("              \n");
+            codeFilterBy.append("\n");
             codeFilterBy.append("              <form:input cssClass=\"input-append input-small search-query\" path=\"" + modelCamp + "Fins\" />\n");
-            codeFilterBy.append("              \n");
+            codeFilterBy.append("\n");
             codeFilterBy.append("            </div>\n");
             codeFilterBy.append("\n\n");
             continue;
@@ -847,7 +847,7 @@ public class BackWebGenerator {
         
         String additionalFieldsHeaderUp = 
         "\n\n        <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
-        + "        <c:if test=\"${ __entry.key < 0 }\">\n"
+        + "        <c:if test=\"${ __entry.key < 0 && ((empty __entry.value.searchBy)? true : !gen:contains(__theFilterForm.hiddenFields, __entry.value.searchBy)) && ((empty __entry.value.groupBy )? true : !gen:contains(__theFilterForm.hiddenFields, __entry.value.groupBy ))}\">\n"
         + "        <th>\n"
         + "        ${" + project.getPrefix().toLowerCase() + ":getSortIconsAdditionalField(__theFilterForm,__entry.value)}\n"
         //+ "        <fmt:message key=\"${__entry.value.codeName}\" />\n"
@@ -1032,7 +1032,7 @@ public class BackWebGenerator {
   String additionalFieldsUp = 
    "\n\n        <!--  /** Additional Fields */  -->\n"
   + "        <c:forEach var=\"__entry\" items=\"${" + instanceFilterForm + ".additionalFields}\" >\n"
-  + "        <c:if test=\"${ __entry.key < 0 }\">\n"
+  + "        <c:if test=\"${ __entry.key < 0  && ((empty __entry.value.searchBy)? true : !gen:contains(__theFilterForm.hiddenFields, __entry.value.searchBy)) && ((empty __entry.value.groupBy )? true : !gen:contains(__theFilterForm.hiddenFields, __entry.value.groupBy ))}\">\n"
   + "          <td>\n"
   + "             <c:if test=\"${not empty __entry.value.valueMap }\">\n"
   //  TODO Això no funciona per claus multiples
@@ -1873,7 +1873,9 @@ return sourceFiles;
       if (codeField != null ) {
 
         code.append("        <c:if test=\"${!gen:contains(" + instanceForm + ".hiddenFields," + modelCampMay + ")}\">\n");
-        code.append("        <tr>\n"); 
+        //code.append("        <tr>\n");
+        code.append("        <tr id=\"" + model + "_" + modelCamp + "_rowid\">\n");
+        
         code.append("          <td>\n");
         code.append("            <label>\n");
         code.append("              <fmt:message key=\""
