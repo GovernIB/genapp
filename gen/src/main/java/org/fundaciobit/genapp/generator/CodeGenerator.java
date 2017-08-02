@@ -1330,7 +1330,9 @@ public class CodeGenerator {
 
       // ----- Tots fitxers de forma recursiva i substituint
       String resourceUtils = resourceBase + "/" + wsName;
-      {
+      
+      if (!new File(dstBaseDir, project.getProjectName().toLowerCase() + "_api").exists()
+          && !new File(dstBaseDir, project.getProjectName().toLowerCase() + "_server").exists()) {
         boolean overwrite = false;
         recursiveSubstitution(dstBaseDir,resourceUtils, prop, project, overwrite);
       }

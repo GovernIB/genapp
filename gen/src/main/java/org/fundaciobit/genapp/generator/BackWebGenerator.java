@@ -1089,7 +1089,6 @@ public class BackWebGenerator {
         case WebType.ComboBox:
           
           codeCoreContent.append("          <td>\n");
-          
           ForeignKey fk =field.getWebFieldInfo().getForeignKey();
           if (fk == null && field.getWebFieldInfo().getWebtype() != WebType.ComboBox) {
             //System.out.println(" ERROR DE QUERY: " + table.getNameJava() + "::" +  field.getJavaName());
@@ -1098,7 +1097,15 @@ public class BackWebGenerator {
             /* WWW if (field.traduible) {
               code.append("<fmt:message key=\"");
             } */
-            codeCoreContent.append("${" + model + "." + modelCamp + "}");
+            
+            if (field.getWebFieldInfo().getWebtype() == WebType.URL) {
+              codeCoreContent.append("             <c:if test=\"${ not empty " + model + "." + modelCamp + "}\">\n");
+              codeCoreContent.append("               <a href=\"${" +  model + "." + modelCamp + "}\" target=\"_blank\">"
+                + "${" +  model + "." + modelCamp + "}</a>\n");
+              codeCoreContent.append("             </c:if>\n");
+            } else {
+              codeCoreContent.append("${" + model + "." + modelCamp + "}");
+            }
             /* WWW if (field.traduible) {
               code.append("\"/>");
             }  
@@ -1278,9 +1285,20 @@ return sourceFiles;
     @Override
     String getActionButtonCode(String tab, String type, String href, String onclick,
         String icon, String codeMessage) {
-      return    
-          tab + "<li>\n"
-          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;${(empty " + excludeVariableJSTL(type) + ")? '' : 'color: white;'}\" "
+      
+      String style;
+      
+      if (type == null || type.trim().length() == 0) {
+        style = "";
+      } else if (type.trim().startsWith("${")) {
+        final String variable = type.trim().substring(2, type.length() - 1);
+        style = "${(empty " + variable + ")? '' : 'color: white;'};";
+      } else {
+        style= "color: white;";
+      }
+
+      return tab + "<li>\n"
+          + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;" + style + "\" "
           + "href=\"" + href + "\" onclick=\"" + onclick + "\">\n"
           + getImage(icon, tab) + "\n"
           + tab + " <fmt:message key=\"" + codeMessage + "\"/>\n"
@@ -1290,16 +1308,7 @@ return sourceFiles;
 
   }
   
-  public static String excludeVariableJSTL(String value) {
-    if (value == null || value.trim().length() == 0) {
-      return value;
-    }
-    value = value.trim();
-    if (value.startsWith("${")) {
-      value = value.substring(2, value.length() - 1);
-    }
-    return value;
-  }
+
   
   public static class ActionsRendererSimpleIconList extends ActionsRenderer {
     
