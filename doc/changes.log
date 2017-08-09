@@ -1,0 +1,8 @@
+
+GENAPP 1.0
+==========
+
+
+2017-08-09 Mètode FileSystemManager::getFileContent deixa bloquejat el fitxer que llegeix. #13
+
+2017-08-02 Arreglar dos bugs: URL en llistats i error d'estils al pintar botons d'Accions. 

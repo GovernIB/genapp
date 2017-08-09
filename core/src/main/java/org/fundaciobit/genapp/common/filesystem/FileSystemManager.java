@@ -5,10 +5,14 @@ import org.fundaciobit.genapp.common.i18n.I18NArgumentString;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.utils.Utils;
 
-import java.io.*;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileChannel.MapMode;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Set;
 
 /**
@@ -149,7 +153,7 @@ public class FileSystemManager {
     if (file.exists()) {
       if (!file.delete()) {
         file.deleteOnExit();
-        log.warn("Per algun motiu desconegut no s'ha pogut borrar l'arxiu "
+        log.warn("Per algun motiu desconegut no s'ha pogut esborrar l'arxiu "
             + file.getAbsolutePath());
         printMiniStackTrace();
         return false;
@@ -195,6 +199,8 @@ public class FileSystemManager {
   }
   
   public static byte[] getFileContent(long fitxerID) throws FileNotFoundException, IOException {
+    
+    /** Deixa bloquejat el fitxer
     byte[] bytes;
     File file = getFile(fitxerID);
     FileInputStream fin = null;
@@ -210,18 +216,42 @@ public class FileSystemManager {
 
     } finally {
         try {
+            if (ch != null) {
+              ch.close();
+            }
             if (fin != null) {
                 fin.close();
-            }
-            if (ch != null) {
-                ch.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     return bytes;
+    */
+    
+    return readFileToByteArray(getFile(fitxerID));
+    
   }
+  
+  
+  public static byte[] readFileToByteArray(File file) throws IOException {
+     InputStream input = null;
+     try {
+         input = new FileInputStream(file);
+         ByteArrayOutputStream output = new ByteArrayOutputStream();
+         copy(input, output);
+         return output.toByteArray();
+     } finally {
+        if (input != null) {
+          try {
+            input.close();
+          } catch (IOException ioe) {
+            // ignore
+          }
+        }                  
+     }
+  }
+  
 
 
 }
