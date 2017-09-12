@@ -103,7 +103,7 @@ public class FileSystemManager {
     File newFile = new File(getFilesPath(), String.valueOf(dstId));
     if (newFile.exists()) {
       if (!newFile.delete()) {
-        log.warn("sobreescriureFitxer:: El fitxer desti existeix i no s'ha pogut borrar: " 
+        log.warn("sobreescriureFitxer:: El fitxer desti existeix i no s'ha pogut esborrar: " 
             + newFile.getAbsolutePath());
       }
     }
