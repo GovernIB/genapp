@@ -15,7 +15,7 @@
 	
 	
     <repositories>
-        <repository>
+      <repository>
             <id>maven-nuxeo</id>
             <name>Maven Nuxeo Repository</name>
             <url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
@@ -28,24 +28,18 @@
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
-        </repository>
-
-		<repository>
-            <id>pluginsib-maven-repos</id>
-            <name>PluginsIB Maven Repository</name>            
-            <url>http://GovernIB.github.io/pluginsib/maven/</url>
-        </repository>
-		
-		<repository>
+      </repository>
+	
+		  <repository>
 		    <id>org.fundaciobit.genapp</id>
 		    <name>GenApp Maven Repository</name>
-		    <url>http://GovernIB.github.io/genapp/maven/</url>
+		    <url>http://GovernIB.github.io/maven/maven/</url>
 	    </repository>
     </repositories>
 
     <dependencies>
 	    <dependency>
-            <groupId>junit</groupId>
+        <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
         </dependency>
