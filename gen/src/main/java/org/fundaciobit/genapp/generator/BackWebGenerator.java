@@ -105,8 +105,8 @@ public class BackWebGenerator {
         code.append("\n");
 
         code.append("  <%@include file=\"" + model + "ListCommon.jsp\" %>\n");
-        
-        code.append("  <div class=\"filterLine lead\" style=\"margin-bottom:10px\">\n");
+
+        code.append("  <div id=\"${formName}_listheader\" class=\"filterLine lead\" style=\"margin-bottom:10px\">\n");
         code.append("    <%@include file=\"" + model + "ListHeaderButtons.jsp\" %>\n");
         code.append("    <%-- ADD HERE NEW HEADER BUTTONS (Multiple Select or similar to add item)  --%>\n\n");
         code.append("  </div>\n");
@@ -358,9 +358,11 @@ public class BackWebGenerator {
         codeHeaderButtons.append("      </c:if>\n"); 
         codeHeaderButtons.append("      <%-- FILTRAR PER BOTO - FINAL  --%>\n");
         codeHeaderButtons.append("     \n");
-
+        
+        codeHeaderButtons.append("  <div id=\"${formName}_headerbuttons\">\n"); 
 
         // BOTO DE NOU ELEMENT EN LLISTAT
+        codeHeaderButtons.append("      <%-- BOTO DE NOU ELEMENT EN LLISTAT  --%>\n");
         codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".addButtonVisible}\">\n");  
         codeHeaderButtons.append("      <a class=\"btn btn-small pull-right\" role=\"button\" data-toggle=\"modal\"\n");
         codeHeaderButtons.append("        href=\"<c:url value=\"${contexte}/new\"/>\"> <i class=\"icon-plus-sign\"></i>\n");
@@ -370,7 +372,8 @@ public class BackWebGenerator {
         codeHeaderButtons.append("      </a>\n");
         codeHeaderButtons.append("    </c:if>\n");
 
-        // BOTO DE BORRAT MULTIPLE
+        // BOTO DE ESBORRAT MULTIPLE
+        codeHeaderButtons.append("      <%-- BOTO DE ESBORRAT MULTIPLE  --%>\n");
         codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".deleteSelectedButtonVisible && " + instanceFilterForm + ".visibleMultipleSelection && not empty " + model + "Items}\">\n");
         codeHeaderButtons.append("      <a class=\"btn btn-danger btn-small pull-right\" style=\"color: white;\" href=\"#myModal\"\n");
         codeHeaderButtons.append("        onclick=\"openModalSubmit('<c:url value=\"${contexte}/deleteSelected\"/>','show', '" + model + "');\"\n");
@@ -396,9 +399,10 @@ public class BackWebGenerator {
         codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
         codeHeaderButtons.append("      </button>\n");
         codeHeaderButtons.append("    </c:forEach>\n");
-        //codeHeaderButtons.append("    </div>\n");
         
         
+        codeHeaderButtons.append("  </div>\n");
+
 
         codeHeaderButtons.append("  \n");
 

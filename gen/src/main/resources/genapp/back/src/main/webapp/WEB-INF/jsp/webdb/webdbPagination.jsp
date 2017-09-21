@@ -39,6 +39,9 @@ function reassignAction() {
   </c:if>
   </div>
   
+  
+  <c:if test="${dollar}{not empty __theFilterForm.itemsPerPage}">
+
   <fmt:message var="allitems" key="genapp.form.allitems" />
     <div style="float:right;" id="${dollar}{formName}_pagination_right" >
       <label><fmt:message key="genapp.form.itemsperpage" />:</label>
@@ -93,6 +96,7 @@ function reassignAction() {
     </ul>
     </div>
     
+    </c:if>
     
 </div>
 

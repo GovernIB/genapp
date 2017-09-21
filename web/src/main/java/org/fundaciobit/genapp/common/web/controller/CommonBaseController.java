@@ -60,10 +60,10 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
    * @param itemsPerPagina
    * @param total
    */
-  public void omplirDadesPaginacio(ModelAndView mav, Integer pagina, int itemsPerPagina,
+  public void omplirDadesPaginacio(ModelAndView mav, Integer pagina, Integer itemsPerPagina,
       Long total) {
     
-    if (itemsPerPagina == -1) {
+    if (itemsPerPagina == null || itemsPerPagina == -1) {
       // Tots els elements en una sola pàgina
       mav.addObject("totalPages", 1);
       mav.addObject("beginIndex", 1);
@@ -167,7 +167,7 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
       pagina = 1;
     }
     
-    if (itemsPerPage < 0) {
+    if (itemsPerPage == null || itemsPerPage < 0) {
       pagina = 1;
       items = executeSelect(ejb, where, orderBy, null , 0); 
     } else {
