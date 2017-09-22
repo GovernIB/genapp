@@ -37,7 +37,7 @@
 
     <repository>
       <id>genapp-maven-repos</id>
-      <name>GenApp Maven Repository</name>
+      <name>GovernIB Maven Repository</name>
       <url>http://GovernIB.github.io/maven/maven/</url>
     </repository>
 

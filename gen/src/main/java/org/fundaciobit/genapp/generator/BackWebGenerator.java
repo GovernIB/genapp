@@ -359,7 +359,7 @@ public class BackWebGenerator {
         codeHeaderButtons.append("      <%-- FILTRAR PER BOTO - FINAL  --%>\n");
         codeHeaderButtons.append("     \n");
         
-        codeHeaderButtons.append("  <div id=\"${formName}_headerbuttons\">\n"); 
+        //codeHeaderButtons.append("  <div id=\"${formName}_headerbuttons\">\n"); 
 
         // BOTO DE NOU ELEMENT EN LLISTAT
         codeHeaderButtons.append("      <%-- BOTO DE NOU ELEMENT EN LLISTAT  --%>\n");
@@ -401,7 +401,7 @@ public class BackWebGenerator {
         codeHeaderButtons.append("    </c:forEach>\n");
         
         
-        codeHeaderButtons.append("  </div>\n");
+        //codeHeaderButtons.append("  </div>\n");
 
 
         codeHeaderButtons.append("  \n");
