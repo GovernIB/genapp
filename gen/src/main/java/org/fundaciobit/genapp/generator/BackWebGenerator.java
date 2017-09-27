@@ -390,14 +390,24 @@ public class BackWebGenerator {
         codeHeaderButtons.append("     <c:set var=\"thehref\" value=\"#\"/>\n");
         codeHeaderButtons.append("      <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n");
         codeHeaderButtons.append("        <c:url var=\"thehref\" value=\"${thelink}\"/>\n");
-        codeHeaderButtons.append("        <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
-        codeHeaderButtons.append("        <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
+
+        // NOU Ticket #17
+        codeHeaderButtons.append("        <c:url var=\"thelink\" value=\"\"/>\n");
+        //codeHeaderButtons.append("        <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
+        //codeHeaderButtons.append("        <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
+
         codeHeaderButtons.append("      </c:if>\n");
-        codeHeaderButtons.append("      <button type=\"button\" class=\"btn btn-small ${button.type} pull-right\""
+
+        // #17 codeHeaderButtons.append("      <button type=\"button\" ");
+        codeHeaderButtons.append("<a ");
+        codeHeaderButtons.append("class=\"btn btn-small ${button.type} pull-right\" style=\"${(empty button.type)? '' : 'color: white;'}\" "
              + " href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
         codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
         codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
-        codeHeaderButtons.append("      </button>\n");
+        
+        // #17 codeHeaderButtons.append("      </button>\n");
+        codeHeaderButtons.append("      </a>\n");
+        
         codeHeaderButtons.append("    </c:forEach>\n");
         
         
@@ -948,7 +958,7 @@ public class BackWebGenerator {
   codeButtons.append("            </a>\n");
   */
   codeButtons.append(render.getActionButtonCode("            ", "", "<c:url value=\"${contexte}" + pkMapping + "/edit\"/>",
-      "goTo('<c:url value=\"${contexte}" + pkMapping + "/edit\"/>')",
+      "", // #17 "goTo('<c:url value=\"${contexte}" + pkMapping + "/edit\"/>')",
       "icon-pencil", "genapp.edit"));
   codeButtons.append("            </c:if>\n");
   
@@ -972,8 +982,9 @@ public class BackWebGenerator {
       + "                  <c:set var=\"thelink\" value=\"${fn:replace(button.link,bracket, pk)}\" />\n"
       + "                  <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n"
       + "                  <c:url var=\"thehref\" value=\"${thelink}\"/>\n"
-      + "                  <c:url var=\"thelink\" value=\"${thelink}\"/>\n"
-      + "                  <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n"
+      + "                  <c:url var=\"thelink\" value=\"\"/>\n"
+      //+ "                  <c:url var=\"thelink\" value=\"${thelink}\"/>\n"
+      //+ "                  <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n"
       + "                  </c:if>\n"
       /*
       + "            <a class=\"btn ${button.type} \" href=\"#\" \n"
@@ -1821,13 +1832,21 @@ return sourceFiles;
     codeButton.append("    <c:set var=\"thehref\" value=\"#\"/>\n");
     codeButton.append("    <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n");
     codeButton.append("     <c:url var=\"thehref\" value=\"${thelink}\"/>\n");
-    codeButton.append("     <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
-    codeButton.append("     <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
+
+    // NOU Ticket #17
+    codeButton.append("     <c:url var=\"thelink\" value=\"\"/>\n");
+    //codeButton.append("     <c:url var=\"thelink\" value=\"${thelink}\"/>\n");
+    //codeButton.append("     <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n");
+
     codeButton.append("    </c:if>\n");
-    codeButton.append("    <button type=\"button\" class=\"btn ${button.type}\" \n");
-    codeButton.append("       href=\"${thehref}\" onclick=\"${thelink}\">\n");
+ // #17 codeButton.append("    <button type=\"button\" 
+    codeButton.append("    <a class=\"btn ${button.type}\" \n");
+    codeButton.append("       href=\"${thehref}\" onclick=\"${thelink}\" style=\"${(empty button.type)? '' : 'color: white;'}\"  >\n");
     codeButton.append("       <i class=\"${button.icon}\"></i><fmt:message key=\"${button.codeText}\"/>\n");
-    codeButton.append("    </button>\n");
+    
+    // #17 codeButton.append("    </button>\n");
+    codeButton.append("    </a>\n");
+    
     codeButton.append("    </c:if>\n");
     codeButton.append("    </c:forEach>\n");
     codeButton.append("  </div>\n");
