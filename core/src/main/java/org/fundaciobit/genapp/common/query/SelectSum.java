@@ -5,13 +5,10 @@ package org.fundaciobit.genapp.common.query;
  * @author anadal
  *
  */
-public class SelectSum extends SelectCount  {
+public class SelectSum extends SelectCount {
 
   public final Field<?> field;
-  
-  
-  
-  
+
   /**
    * @param field
    */
@@ -24,6 +21,5 @@ public class SelectSum extends SelectCount  {
   public String getSelectString() {
     return "sum(" + field.fullName + ")";
   }
-  
-  
+
 }
