@@ -2,6 +2,11 @@
 GENAPP 1.0
 ==========
 
+2017-10-02 Afegida classe SelectSumDouble.java per poder sumar de columnes tipus Double #18
+
+2017-09-27 Accions duplicacdes al pitjar als botons de la Columna d'Accions #17
+
+2017-09-25 Poder posar ItemsPerPage a null, ID a DIVs de capçalera i noves traduccions #15
 
 2017-08-09 Mètode FileSystemManager::getFileContent deixa bloquejat el fitxer que llegeix. #13
 
