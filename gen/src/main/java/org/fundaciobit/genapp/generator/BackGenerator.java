@@ -2555,7 +2555,10 @@ public class BackGenerator {
           }
           code.append("        _pkList.add(_item.get" + name + "());\n");
           code.append("        }\n");
-          code.append("        _w = " + fkTable.getNameJava() + "Fields." + fk.getField().toUpperCase() + ".in(_pkList);\n");
+          
+          
+          code.append("        _w = " + fkTable.getNameJava() + "Fields." + fkInfo.getJavaName().toUpperCase() + ".in(_pkList);\n");
+          // OLD CODE code.append("        _w = " + fkTable.getNameJava() + "Fields." + fk.getField().toUpperCase() + ".in(_pkList);\n");
           code.append("      }\n");
         }
         
@@ -2571,7 +2574,10 @@ public class BackGenerator {
         if (wfi.getWebtype() == WebType.Query) {
           code.append("    return " + CodeGenUtils.getModelName(fkTable.getNameJava()) 
             + "RefList.getReferenceList("
-            + fkTable.getNameJava() + "Fields." + fk.getField().toUpperCase() + ", where );\n");
+            + fkTable.getNameJava() + "Fields."
+            // + fk.getField().toUpperCase()
+            + fkInfo.getJavaName().toUpperCase()
+            + ", where );\n");
         } else {
           // MinAllowedValue conte la llista de possibles valors separats per coma
           // Si va null o un string buit llavors 
