@@ -62,8 +62,21 @@ public abstract class BaseForm extends CommonBaseForm {
     }
   }
   
+  
+  public boolean isReadOnlyField(Field<?> field) {
+    return this.readOnlyFields.contains(field);
+  }
+  
+  // XYZ ZZZ TODO Eliminar en propera versió
+  @Deprecated
   public boolean isReadOnlyField(String javaName) {
-    return this.readOnlyFields.contains(javaName);
+    for(Field<?> readField : this.readOnlyFields) {
+      String jn = getStringOfField(readField);
+      if (jn.equals(javaName)) {
+        return true;
+      }
+    }
+    return false;
   }
   
   public void setAllFieldsReadOnly(Field<?> ... fieldToSetReadOnly) {

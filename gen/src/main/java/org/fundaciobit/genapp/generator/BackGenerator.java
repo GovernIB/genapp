@@ -2513,9 +2513,9 @@ public class BackGenerator {
           code.append("    }\n");
 
           if (wfi.getWebtype() == WebType.Query) {
-            code.append("    final String _fieldName =  " + instanceForm + ".getStringOfField(" + field.javaName.toUpperCase() +  ");\n");
+            //code.append("    final String _fieldName =  " + instanceForm + ".getStringOfField(" + field.javaName.toUpperCase() +  ");\n");
             code.append("    Where _where = null;\n");
-            code.append("    if (" + instanceForm + ".isReadOnlyField(_fieldName)) {\n");
+            code.append("    if (" + instanceForm + ".isReadOnlyField(" + field.javaName.toUpperCase() + ")) {\n");
             code.append("      _where = " + fkTable.getNameJava() + "Fields." + fkInfo.getJavaName().toUpperCase() + ".equal(" + instanceForm + ".get" + tableJavaName + "().get" + name + "());\n");
             code.append("    }\n");
             code.append("    return getReferenceListFor" + name + "(request, mav, Where.AND(where, _where));\n"); 
