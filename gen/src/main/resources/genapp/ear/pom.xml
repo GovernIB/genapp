@@ -1,122 +1,122 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    
-    
-    
-   <groupId>${package}</groupId>
-   <artifactId>${name}-ear</artifactId>  
-   <version>${app_current_version}</version>
-   <packaging>ear</packaging>
-
-    <parent>
-        <groupId>${package}</groupId>
-        <artifactId>${name}</artifactId>
-        <version>${app_current_version}</version>
-    </parent>
-    
-    <name>${fullname} Ear</name>
-    
-
-	<properties>
-	  <clientcert.properties.dir>./src/main/application/APP-INF/classes/</clientcert.properties.dir>
-	  <clientcert.properties.filename>clientcert.properties</clientcert.properties.filename>
-	  <clientcert.properties>${clientcert_properties_dir}${clientcert_properties_filename}</clientcert.properties>
-	  
-	  <timestamp>${maven_build_timestamp}</timestamp>
-      <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-	</properties>
-
-    <dependencies>
-
-        <!-- Internes -->
-		
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-jpa</artifactId>
-			<version>${project_version}</version>			
-	    </dependency>
-
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-ejb</artifactId>
-			<version>${project_version}</version>
-			<type>ejb</type>
-		</dependency>
-		
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-logic</artifactId>
-			<version>${project_version}</version>
-			<type>ejb</type>
-		</dependency>
-
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-persistence-jta</artifactId>
-			<version>${project_version}</version>
-			<type>jar</type>
-		</dependency>
-		
-				
-		<dependency>
-            <groupId>${package}</groupId>
-            <artifactId>${name}-back</artifactId>
-            <version>${project_version}</version>
-            <type>war</type>
-        </dependency>
-		
-		<!-- Externes -->
-		
+  <modelVersion>4.0.0</modelVersion>
 
 
-        <!-- Commons Dependencies -->
-		
-        <dependency>
-        	<groupId>commons-fileupload</groupId>
-        	<artifactId>commons-fileupload</artifactId>
-        	<version>1.3</version>
-        </dependency>
 
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.2</version>
-        </dependency>
-		
-		<dependency>
-		  <groupId>apache-lang</groupId>
-		  <artifactId>commons-lang</artifactId>
-		  <version>2.0</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-digester</groupId>
-			<artifactId>commons-digester</artifactId>
-			<version>2.0</version>
-		</dependency>
+  <groupId>${package}</groupId>
+  <artifactId>${name}-ear</artifactId>  
+  <version>${app_current_version}</version>
+  <packaging>ear</packaging>
+
+  <parent>
+    <groupId>${package}</groupId>
+    <artifactId>${name}</artifactId>
+    <version>${app_current_version}</version>
+  </parent>
+
+  <name>${fullname} Ear</name>
+
+
+  <properties>
+    <clientcert.properties.dir>./src/main/application/APP-INF/classes/</clientcert.properties.dir>
+    <clientcert.properties.filename>clientcert.properties</clientcert.properties.filename>
+    <clientcert.properties>${clientcert_properties_dir}${clientcert_properties_filename}</clientcert.properties>
+
+    <timestamp>${maven_build_timestamp}</timestamp>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+  </properties>
+
+  <dependencies>
+
+    <!-- Internes -->
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-jpa</artifactId>
+      <version>${project_version}</version>			
+    </dependency>
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-ejb</artifactId>
+      <version>${project_version}</version>
+      <type>ejb</type>
+    </dependency>
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-logic</artifactId>
+      <version>${project_version}</version>
+      <type>ejb</type>
+    </dependency>
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-persistence-jta</artifactId>
+      <version>${project_version}</version>
+      <type>jar</type>
+    </dependency>
+
+
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-back</artifactId>
+      <version>${project_version}</version>
+      <type>war</type>
+    </dependency>
+
+    <!-- Externes -->
+
+
+
+    <!-- Commons Dependencies -->
+
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>apache-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+      <version>2.0</version>
+    </dependency>
 
     <dependency>
       <groupId>cglib</groupId>
       <artifactId>cglib</artifactId>
       <version>2.2.2</version>
     </dependency>
-		
-		<!-- =====================================================  -->
-		<!-- Necessitam les llibreries d'AXIS ja que ho requereix   -->
-		<!-- el plugin de CERTIFICAT-AFIRMA i el Plugin de CUSTODIA -->
-		<!-- CAIB. Hem d'excloure el jar de axis-jaxrpc ja que      -->
-		<!-- conté la classe QNAME que el JBoss no accepta i per    -->
-		<!-- això es substitueix per axis-jaxrpc-without-qname que  -->
-		<!-- no la conté.                                           -->
-		<!-- ====================================================== -->
-		<!--
+
+    <!-- =====================================================  -->
+    <!-- Necessitam les llibreries d'AXIS ja que ho requereix   -->
+    <!-- el plugin de CERTIFICAT-AFIRMA i el Plugin de CUSTODIA -->
+    <!-- CAIB. Hem d'excloure el jar de axis-jaxrpc ja que      -->
+    <!-- conté la classe QNAME que el JBoss no accepta i per    -->
+    <!-- això es substitueix per axis-jaxrpc-without-qname que  -->
+    <!-- no la conté.                                           -->
+    <!-- ====================================================== -->
+    <!--
 		<dependency>
 			<groupId>axis</groupId>
 			<artifactId>axis</artifactId>
@@ -136,131 +136,145 @@
 			<version>1.3</version>
 		</dependency>
 		-->
-		
-		<!-- WS de ${fullname} -->
-		<!--  http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld -->
-		<!--  http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity -->
-		<!--  ... -->
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-ws-server</artifactId>
-			<version>${project_version}</version>
-			<type>ejb</type>
-		</dependency>
 
-    </dependencies>
-	
-	
-	
-	<profiles>
-	
-		<profile>
-			<id>desenvolupament</id>
-			<dependencies>
+    <!-- WS de ${fullname} -->
+    <!--  http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld -->
+    <!--  http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity -->
+    <!--  ... -->
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-ws-server</artifactId>
+      <version>${project_version}</version>
+      <type>ejb</type>
+    </dependency>
 
-			    
-				
-			</dependencies>
-		</profile>
-
-		<!-- FRONT WEB ${fullname} AMB AUTENTICACIO CLIENT-CERT -->
-		<profile>
-			<id>clientcert</id>
-			
-			<dependencies>
-				<dependency>
-					<groupId>${package}</groupId>
-					<artifactId>${name}-back-clientcert</artifactId>
-					<version>${project_version}</version>
-					<type>war</type>
-				</dependency>
-			</dependencies>
-			
-            <build>
-                <plugins>
-				    <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-ear-plugin</artifactId>
-						<version>2.3.2</version>
-						<configuration>
-							<modules combine.children="append">
-								<webModule>
-								  <groupId>${package}</groupId>
-								  <artifactId>${name}-back-clientcert</artifactId>
-								  <contextRoot>${name}s</contextRoot>
-								</webModule>
-							</modules>
-						</configuration>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>1.3</version>
-						<executions>
-						  <execution>
-							<goals>
-							  <goal>run</goal>
-							</goals>
-							<phase>generate-sources</phase>
-							<configuration>
-							  <tasks>
-							    <mkdir dir="${clientcert_properties_dir}"/>
-								<echo file="${clientcert_properties}" message="# Indica si existeix mòdul amb authenticació CLIENTCERT (${name}s)${line_separator}"/>
-								<echo file="${clientcert_properties}" append="true" message="${name}.clientcert=true${line_separator}" />
-							  </tasks>
-							</configuration>
-						  </execution>
-						</executions>
-					</plugin>
-
-                </plugins>
-            </build>
-		</profile>
+  </dependencies>
 
 
 
-	</profiles>
-	
+  <profiles>
 
-    <build>
-        <finalName>${name}</finalName>
-		
-		<filters>
-            <filter>../config.properties</filter>
-        </filters>
-		
+    <profile>
+      <id>desenvolupament</id>
+      <dependencies>
+
+
+
+      </dependencies>
+    </profile>
+
+    <!-- FRONT WEB ${fullname} AMB AUTENTICACIO CLIENT-CERT -->
+    <profile>
+      <id>clientcert</id>
+
+      <dependencies>
+        <dependency>
+          <groupId>${package}</groupId>
+          <artifactId>${name}-back-clientcert</artifactId>
+          <version>${project_version}</version>
+          <type>war</type>
+        </dependency>
+      </dependencies>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-ear-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+              <modules combine.children="append">
+                <webModule>
+                  <groupId>${package}</groupId>
+                  <artifactId>${name}-back-clientcert</artifactId>
+                  <contextRoot>${name}s</contextRoot>
+                </webModule>
+              </modules>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.3</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <tasks>
+                    <mkdir dir="${clientcert_properties_dir}"/>
+                    <echo file="${clientcert_properties}" message="# Indica si existeix mòdul amb authenticació CLIENTCERT (${name}s)${line_separator}"/>
+                    <echo file="${clientcert_properties}" append="true" message="${name}.clientcert=true${line_separator}" />
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+
+  <build>
+    <finalName>${name}</finalName>
+
+    <filters>
+      <filter>../config.properties</filter>
+    </filters>
+
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+
     <plugins>
-	
-	
-		<plugin>
-			<artifactId>maven-clean-plugin</artifactId>
-			<version>2.5</version>
-			<!-- Aquest bloc força a netejar sempre -->
-			<executions>
-			  <execution>
-				<id>auto-clean</id>
-				<phase>initialize</phase>
-				<goals>
-				  <goal>clean</goal>
-				</goals>
-			  </execution>
-			</executions>
 
-			<configuration>
-			  <filesets>
-				<fileset>
-				  <directory>${clientcert_properties_dir}</directory>
-				  <includes>
-				  <include>**/${clientcert_properties_filename}</include>
-				  </includes>
-				  <followSymlinks>false</followSymlinks>
-				</fileset>
-			  </filesets>
-			</configuration>
-		</plugin>
-	
-	
+
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.5</version>
+        <!-- Aquest bloc força a netejar sempre -->
+        <executions>
+          <execution>
+            <id>auto-clean</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${clientcert_properties_dir}</directory>
+              <includes>
+                <include>**/${clientcert_properties_filename}</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-ear-plugin</artifactId>
@@ -270,26 +284,26 @@
 
           <displayName>${fullname}</displayName>
           <description>${fullname}</description>
-		  
-		  <archive>
-			<manifest>
-					<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-			</manifest>
-			<manifestEntries>
-					<${fullname}-Version>${project_version}</${fullname}-Version>
-					<${fullname}-Build-Date>${timestamp}</${fullname}-Build-Date>
-			</manifestEntries>
-	     </archive>
+
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+            <manifestEntries>
+              <${fullname}-Version>${project_version}</${fullname}-Version>
+              <${fullname}-Build-Date>${timestamp}</${fullname}-Build-Date>
+            </manifestEntries>
+          </archive>
 
           <defaultLibBundleDir>lib</defaultLibBundleDir>
-<!--
+          <!--
 		  <packagingExcludes>lib/axis-jaxrpc-1.4.jar</packagingExcludes>
 -->
           <jboss>
-              <version>5</version>
-              <loader-repository>${package}:loader=${name}.ear</loader-repository>
-              <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
-              <!--<security-domain>java:/jaas/seycon</security-domain>-->
+            <version>5</version>
+            <loader-repository>${package}:loader=${name}.ear</loader-repository>
+            <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
+            <!--<security-domain>java:/jaas/seycon</security-domain>-->
           </jboss>
 
           <modules>
@@ -305,7 +319,7 @@
               <artifactId>${name}-ejb</artifactId>
             </ejbModule>
 
-			<ejbModule>
+            <ejbModule>
               <groupId>${package}</groupId>
               <artifactId>${name}-logic</artifactId>
             </ejbModule>
@@ -314,23 +328,23 @@
               <groupId>${package}</groupId>
               <artifactId>${name}-persistence-jta</artifactId>
             </jarModule>
-			
-			<ejbModule>
-			  <groupId>${package}</groupId>
-			  <artifactId>${name}-ws-server</artifactId>
-			</ejbModule>
+
+            <ejbModule>
+              <groupId>${package}</groupId>
+              <artifactId>${name}-ws-server</artifactId>
+            </ejbModule>
 
           </modules>
 
         </configuration>
       </plugin>
-	  
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>jboss-maven-plugin</artifactId>
         <version>1.5.0</version>
         <configuration>
-         <!-- <jbossHome>D:\servers\jboss-eap-5.1\jboss-as</jbossHome>-->
+          <!-- <jbossHome>D:\servers\jboss-eap-5.1\jboss-as</jbossHome>-->
           <serverName>default</serverName>
           <fileName>target/${name}.ear</fileName> 
         </configuration>

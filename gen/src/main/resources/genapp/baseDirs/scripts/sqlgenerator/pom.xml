@@ -7,83 +7,83 @@
   <packaging>jar</packaging>
 
   <name>${fullname} - Scripts - SQL Generator</name>
-  
+
   <parent>
-		<groupId>${package}</groupId>
-		<artifactId>${name}-scripts</artifactId>
-		<version>${app_current_version}</version>
+    <groupId>${package}</groupId>
+    <artifactId>${name}-scripts</artifactId>
+    <version>${app_current_version}</version>
   </parent>
-  
+
 
   <properties>	
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
-	
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-model</artifactId>
-			<version>${project_version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-jpa</artifactId>
-			<version>${project_version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-	
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-persistence-jta</artifactId>
-			<version>${project_version}</version>
-			<type>jar</type>
-		</dependency>
 
-        <dependency>
-		  <groupId>org.fundaciobit.genapp</groupId>
-  		  <artifactId>genapp-gen</artifactId>
-		  <version>${genapp_version}</version>
-	  	</dependency>
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-model</artifactId>
+      <version>${project_version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
 
-        <dependency>
-          <groupId>javax.persistence</groupId>
-          <artifactId>persistence-api</artifactId>
-          <version>1.0</version>
-        </dependency>
-		
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>3.3.2.GA</version>
-        </dependency>
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-jpa</artifactId>
+      <version>${project_version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
 
-		<dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.14</version>
-        </dependency>
+    <dependency>
+      <groupId>${package}</groupId>
+      <artifactId>${name}-persistence-jta</artifactId>
+      <version>${project_version}</version>
+      <type>jar</type>
+    </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.5.4</version>
-		</dependency>
+    <dependency>
+      <groupId>org.fundaciobit.genapp</groupId>
+      <artifactId>genapp-gen</artifactId>
+      <version>${genapp_version}</version>
+    </dependency>
 
-		<dependency>
-			 <groupId>org.slf4j</groupId>
-			 <artifactId>slf4j-log4j12</artifactId>
-			 <version>1.5.4</version>			 
-		</dependency>
-	
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>persistence-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>3.3.2.GA</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.14</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.4</version>			 
+    </dependency>
+
   </dependencies>
-  
 
-  
+
+
   <build>
     <plugins>
       <plugin>
@@ -92,6 +92,21 @@
         <version>1.3.2</version>
       </plugin>
     </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
   </build>
-  
+
 </project>
