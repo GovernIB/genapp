@@ -1118,15 +1118,25 @@ public class CodeGenerator {
         prop.put("prefix", project.getPrefix().toUpperCase());
         
         File dstBaseDir = new File(projectDir, utilsName);
-        dstBaseDir.mkdirs();
         
+        boolean utilsExists = new File(dstBaseDir, "src/main/java/es/caib/portafib/utils").exists();
+        File constantsFile = new File(dstBaseDir, "src/main/java/es/caib/portafib/utils/Constants.java");
+        boolean constantsExists = constantsFile.exists();
+        
+        // NO MOURE D´AQUI !!!!
+        dstBaseDir.mkdirs();
+
         // ----- Tots fitxers de forma recursiva i substituint
         String resourceUtils = resourceBase + "/" + utilsName;
         {
           boolean overwrite = false;
           recursiveSubstitution(dstBaseDir,resourceUtils, prop, project, overwrite);
         }
-      
+        
+        if (utilsExists && !constantsExists) {
+          constantsFile.delete();
+        }
+
     }
   }
 

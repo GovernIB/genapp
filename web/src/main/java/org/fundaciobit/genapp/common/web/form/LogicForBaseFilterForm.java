@@ -19,6 +19,7 @@ import org.fundaciobit.genapp.common.query.BooleanField;
 import org.fundaciobit.genapp.common.query.ByteField;
 import org.fundaciobit.genapp.common.query.CustomField;
 import org.fundaciobit.genapp.common.query.DateField;
+import org.fundaciobit.genapp.common.query.DoubleField;
 import org.fundaciobit.genapp.common.query.Field;
 import org.fundaciobit.genapp.common.query.FieldHour;
 import org.fundaciobit.genapp.common.query.FieldMonth;
@@ -194,8 +195,8 @@ public class LogicForBaseFilterForm {
         // NUMBER 
         if ((f instanceof LongField) || (f instanceof IntegerField) ||
             (f instanceof ByteField) || (f instanceof FloatField) ||
-            (f instanceof ShortField)|| (f instanceof BigIntegerField) ||
-            (f instanceof BigDecimalField) ) {
+            (f instanceof DoubleField) || (f instanceof ShortField)|| 
+            (f instanceof BigIntegerField) || (f instanceof BigDecimalField) ) {
           Field<Number > ff = (Field<Number>) f;
           Number _valueDesde = (Number) Utils.getValueOfJavaField(this.filterForm,
               f.javaName + "Desde");
@@ -212,7 +213,7 @@ public class LogicForBaseFilterForm {
         }
   
         log.error(
-            "No s'ha trobat gestor en el mètode getFilterWhere de la classe " + this.getClass()
+            "No s'ha trobat gestor en el metode getFilterWhere de la classe " + this.getClass()
                 + " pel Field de tipus " + f.getClass(), new Exception());
   
       }
@@ -299,7 +300,10 @@ public class LogicForBaseFilterForm {
   
         // Boolean && String && Integer && LongField
         if (f instanceof BooleanField || f instanceof StringField 
-            || f instanceof IntegerField || f instanceof LongField) {
+            || f instanceof IntegerField || f instanceof LongField
+            || f instanceof DoubleField || f instanceof FloatField
+            || f instanceof ByteField || (f instanceof ShortField)
+            || f instanceof BigDecimalField || f instanceof BigIntegerField) {
           groupByItems.add(loadDataForGroupByField(f, atm, whereAdditionalCondition));
           continue;
         }
@@ -308,10 +312,9 @@ public class LogicForBaseFilterForm {
           // Gestionat per l'usuari
           continue;
         }
-        
-  
+
         // TODO Falten altres tipus ???
-        log.error("No s'ha trobat gestor en el mètode loadDataForGroupByFilterBy de la classe "
+        log.error("No s'ha trobat gestor en el metode loadDataForGroupByFilterBy de la classe "
             + this.getClass() + " pel Field de tipus " + f.getClass(), new Exception());
   
       }
