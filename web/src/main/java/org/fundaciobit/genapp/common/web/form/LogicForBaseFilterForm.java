@@ -452,6 +452,7 @@ public class LogicForBaseFilterForm {
     for (Field<?> f : filterForm.getGroupByFields()) {
 
       if (f.javaName.equals(groupBy)) {
+
         // BOOLEAN
         if (f instanceof BooleanField) {
           BooleanField bf = (BooleanField) f;
@@ -527,6 +528,72 @@ public class LogicForBaseFilterForm {
             return null;
           }
         }
+        
+        // DoubleField
+        if (f instanceof DoubleField) {
+          DoubleField sf = (DoubleField) f;
+          try {
+            String txt = filterForm.getGroupValue();
+            if (txt == null || "null".equals(txt)) {
+              return sf.isNull();
+            }
+            Double number = new Double(txt);
+            return sf.equal(number);
+          } catch (NumberFormatException nfe) {
+            log.error("Error " + nfe.getMessage(), nfe);
+            return null;
+          }
+        }
+        
+        // FloatField
+        if (f instanceof FloatField) {
+          FloatField sf = (FloatField) f;
+          try {
+            String txt = filterForm.getGroupValue();
+            if (txt == null || "null".equals(txt)) {
+              return sf.isNull();
+            }
+            Float number = new Float(txt);
+            return sf.equal(number);
+          } catch (NumberFormatException nfe) {
+            log.error("Error " + nfe.getMessage(), nfe);
+            return null;
+          }
+        }
+        
+        // ShortField
+        if (f instanceof ShortField) {
+          ShortField sf = (ShortField) f;
+          try {
+            String txt = filterForm.getGroupValue();
+            if (txt == null || "null".equals(txt)) {
+              return sf.isNull();
+            }
+            Short number = new Short(txt);
+            return sf.equal(number);
+          } catch (NumberFormatException nfe) {
+            log.error("Error " + nfe.getMessage(), nfe);
+            return null;
+          }
+        }
+        
+        
+        // ByteField
+        if (f instanceof ByteField) {
+          ByteField sf = (ByteField) f;
+          try {
+            String txt = filterForm.getGroupValue();
+            if (txt == null || "null".equals(txt)) {
+              return sf.isNull();
+            }
+            Byte number = new Byte(txt);
+            return sf.equal(number);
+          } catch (NumberFormatException nfe) {
+            log.error("Error " + nfe.getMessage(), nfe);
+            return null;
+          }
+        }
+        
         
         if (f instanceof CustomField) {
           // Ho gestionarà l'usuari dins algun mètode com postList o fillReferencesForList
