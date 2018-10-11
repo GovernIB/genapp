@@ -19,11 +19,19 @@ import org.fundaciobit.genapp.common.KeyValue.KeyValueComparator;
 import org.fundaciobit.genapp.common.StringKeyValue;
 import org.fundaciobit.genapp.common.filesystem.FileSystemManager;
 import org.fundaciobit.genapp.common.i18n.I18NException;
+import org.fundaciobit.genapp.common.query.BigDecimalField;
+import org.fundaciobit.genapp.common.query.BigIntegerField;
+import org.fundaciobit.genapp.common.query.ByteField;
+import org.fundaciobit.genapp.common.query.DoubleField;
 import org.fundaciobit.genapp.common.query.Field;
+import org.fundaciobit.genapp.common.query.FloatField;
 import org.fundaciobit.genapp.common.query.GroupByItem;
 import org.fundaciobit.genapp.common.query.GroupByValueItem;
 import org.fundaciobit.genapp.common.query.ITableManager;
+import org.fundaciobit.genapp.common.query.IntegerField;
+import org.fundaciobit.genapp.common.query.LongField;
 import org.fundaciobit.genapp.common.query.OrderBy;
+import org.fundaciobit.genapp.common.query.ShortField;
 import org.fundaciobit.genapp.common.query.Where;
 import org.fundaciobit.genapp.common.utils.ModelGenerator;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
@@ -215,13 +223,30 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
         AdditionalField<?,?> af = additionalFields.get(pos);
         Field<?> searchBy = af.getSearchBy(); 
         if (searchBy != null) {
-          
           af.setSearchByValue(request.getParameter(searchBy.fullName));
+          af.setSearchByValueFins(request.getParameter(searchBy.fullName + "Fins"));
           if (log.isDebugEnabled()) {
             log.debug("Cercant valor searchBy per ]" + searchBy.fullName  + "[ = " + af.getSearchByValue() );
           }
         }
       }
+    }
+  }
+  
+  /**
+   * Retorna true si la cerca del Field es fa en rang (from,to). 
+   * Un exemple serien Integer, Double, Short, Byte, BigDecimal i BigInteger)
+   * @param f
+   * @return
+   */
+  public static boolean isFieldSearchInRange(Field<?> f) {
+    if (f instanceof IntegerField || f instanceof LongField
+     || f instanceof DoubleField || f instanceof FloatField
+     || f instanceof ByteField || f instanceof ShortField
+     || f instanceof BigDecimalField || f instanceof BigIntegerField) {
+      return true;
+    } else {
+      return false;
     }
   }
   

@@ -1,5 +1,6 @@
 package org.fundaciobit.genapp.common.web.form;
 
+import java.lang.reflect.Constructor;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
@@ -89,29 +90,38 @@ public class LogicForBaseFilterForm {
       if (searchBy != null) {
         
         // Cerca
-        String _value = af.getSearchByValue();
-        
-        // Només Cerques per numeros i Strings
-        if (_value != null && _value.trim().length() != 0) {
-          _value = _value.trim();
-          if (searchBy instanceof StringField) {
+        if (searchBy instanceof StringField) {
+          // Cerques per String  
+          String _value = af.getSearchByValue();
+          if (_value != null && _value.trim().length() != 0) {
+            _value = _value.trim();
             __wheres.add(searchBy.like("%" + _value.replace(' ', '%') + "%"));
-          } else {
+          }          
+        } else {
+           String _valueFrom = af.getSearchByValue();
+           String _valueTo = af.getSearchByValueFins();
+        
+          // Només Cerques per numeros
+          if ( (_valueFrom != null && _valueFrom.trim().length() != 0)  
+            || (_valueTo != null && _valueTo.trim().length() != 0) ) {
+
             try {
               if ((searchBy instanceof LongField)) {
-                __wheres.add(((Field<Number>) searchBy).equal(new Long(_value)));
+                __wheres.add(getWhere(Long.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else if (searchBy instanceof IntegerField) {
-                __wheres.add(((Field<Number>) searchBy).equal(new Integer(_value)));
+                __wheres.add(getWhere(Integer.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else if (searchBy instanceof ByteField) {
-                __wheres.add(((Field<Number>) searchBy).equal(new Byte(_value)));
+                __wheres.add(getWhere(Byte.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else if (searchBy instanceof FloatField) {
-                __wheres.add(((Field<Number>) searchBy).equal(new Float(_value)));
+                __wheres.add(getWhere(Float.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
+              } else if (searchBy instanceof DoubleField) {
+                __wheres.add(getWhere(Double.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else if (searchBy instanceof ShortField) {
-                __wheres.add(((Field<Number>) searchBy).equal(new Short(_value)));
+                __wheres.add(getWhere(Short.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else if (searchBy instanceof BigIntegerField) {
-                __wheres.add(((Field<Number>) searchBy).equal(new BigInteger(_value)));
+                __wheres.add(getWhere(BigInteger.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else if (searchBy instanceof BigDecimalField) {
-                __wheres.add(((Field<Number>) searchBy).equal(new BigDecimal(_value)));
+                __wheres.add(getWhere(BigDecimal.class, (Field<Number>)searchBy, _valueFrom,_valueTo));
               } else {
                 log.warn("Només es por cercar sobre camps addicionals de tipus "
                     + "String o Numèric. Camp = " + searchBy.fullName, new Exception());
@@ -119,15 +129,13 @@ public class LogicForBaseFilterForm {
 
             } catch (Throwable e) {
               log.error("Error intentant filtrar pel camp " + searchBy.fullName
-                  + " amb el valor " + _value + ": " + e.getMessage(), e);
+                  + " amb el valors [FROM: {" + _valueFrom + "} | TO: {" + _valueTo  + "}]: "
+                  + e.getMessage(), e);
               af.setSearchByValue(e.getMessage());
             }
           }
         }
-        
       }
-      
-      
     }
     
 
@@ -263,6 +271,62 @@ public class LogicForBaseFilterForm {
    
     return new FilterFormData(where, getQueryOrderBy(), map);
   }
+  
+  
+  
+  
+  
+  protected <T extends Number> Where getWhere(Class<T> clazz, Field<Number> searchBy, String _valueFrom,
+      String _valueTo) throws Exception {
+    return new FilterSearchGeneratorOfNumber<T>(clazz, searchBy, _valueFrom,_valueTo).getWhere();
+  }
+  
+  
+  
+  /**
+   * 
+   * @author anadal
+   *
+   * @param <T>
+   */
+  public class FilterSearchGeneratorOfNumber<T extends Number> {
+    private final Class<T> clazz;
+    private final String from;
+    private final String to;
+    private final Field<Number> searchBy;
+
+    public FilterSearchGeneratorOfNumber(Class<T> clazz, Field<Number> searchBy, String from,
+        String to) {
+      this.clazz = clazz;
+      this.from = from;
+      this.to = to;
+      this.searchBy = searchBy;
+    }
+
+    protected T buildOne(String value) throws Exception {
+      Constructor<T> constructor = clazz.getConstructor(String.class);
+      return constructor.newInstance(value);
+    }
+
+    public Where getWhere() throws Exception {
+
+      if (from == null || from.trim().length() == 0) {
+        // Llavors "to" no es null
+        return ((Field<Number>) searchBy).lessThanOrEqual(buildOne(to));
+      }
+
+      if (to == null || to.trim().length() == 0) {
+        // Llavors "from" no es null
+        return ((Field<Number>) searchBy).greaterThan(buildOne(from));
+      }
+
+      // És el rang complet
+      return ((Field<Number>) searchBy).between(buildOne(from), buildOne(to));
+    }
+
+  }
+  
+  
   
 
   /**
