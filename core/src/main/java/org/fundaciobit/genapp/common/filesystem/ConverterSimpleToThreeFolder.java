@@ -2,8 +2,12 @@ package org.fundaciobit.genapp.common.filesystem;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-import org.fundaciobit.genapp.common.i18n.I18NException;
 
 /**
  * 
@@ -55,9 +59,9 @@ public class ConverterSimpleToThreeFolder {
       
       try {
         File destFile = new File(destDir, file.getName());
-        FileSystemManager.copy(file, destFile);
+        copy(file, destFile);
         System.out.println("Copia de " + file.getAbsolutePath() + " a " + destFile);
-      } catch (I18NException e) {
+      } catch (Exception e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
       }
@@ -74,6 +78,28 @@ public class ConverterSimpleToThreeFolder {
     dir.mkdirs();
     return dir;
 
+  }
+  
+  
+  public static void copy(File input, File output) throws Exception {
+    try {
+      FileInputStream fis = new FileInputStream(input);
+      FileOutputStream fos = new FileOutputStream(output);
+      copy(fis, fos);
+      fis.close();
+      fos.flush();
+      fos.close();
+    } catch (Exception e) {
+      throw new Exception(e);
+    }
+  }
+
+  public static void copy(InputStream input, OutputStream output) throws IOException {
+    byte[] buffer = new byte[4096];
+    int n = 0;
+    while (-1 != (n = input.read(buffer))) {
+      output.write(buffer, 0, n);
+    }
   }
   
   
