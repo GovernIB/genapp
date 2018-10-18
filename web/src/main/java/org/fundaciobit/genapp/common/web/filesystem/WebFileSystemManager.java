@@ -28,7 +28,7 @@ public class WebFileSystemManager extends FileSystemManager {
   }
 
   public static File crearFitxer(MultipartFile src, Long dstId) throws I18NException {
-    File newFile = new File(WebFileSystemManager.getFilesPath(), String.valueOf(dstId));
+    File newFile = getFile(dstId);
     try {
       src.transferTo(newFile);
     } catch (Exception e) {

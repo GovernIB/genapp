@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -111,7 +112,6 @@ public class FileSystemManager {
    * @return true si tots els arxius s'han borrat. false si algun fitxer no s'ha pogut borrar
    */
   public static boolean eliminarArxius(Set<Long> fitxers) {
-
     return fileSystemManager.eliminarArxius(getFilesPath(), fitxers);
   }
 
@@ -120,10 +120,13 @@ public class FileSystemManager {
   }
 
   public static byte[] getFileContent(long fitxerID) throws FileNotFoundException, IOException {
-
     return fileSystemManager.getFileContent(getFilesPath(), fitxerID);
-
   }
+  
+  public static Map<Long,File> getAllFiles() {
+    return fileSystemManager.getAllFiles(getFilesPath());
+  }
+  
 
   // ------------------------------------------------------------------
   // UTILITATS

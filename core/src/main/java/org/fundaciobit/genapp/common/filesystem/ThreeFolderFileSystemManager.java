@@ -1,9 +1,12 @@
 package org.fundaciobit.genapp.common.filesystem;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
@@ -90,21 +93,93 @@ public class ThreeFolderFileSystemManager extends SimpleFileSystemManager implem
   @Override
   public byte[] getFileContent(File filesPath, long id) throws FileNotFoundException,
       IOException {
-
-    return super.getFileContent(getTreeFolder(filesPath, id), id);
+    return FileSystemManager.readFileToByteArray(getFile(filesPath, id)); 
   }
+  
+  @Override
+  public Map<Long, File> getAllFiles(File filesPath) {
+    File[] rootDirs1 = filesPath.listFiles(new FileFilter() {
+
+      @Override
+      public boolean accept(File pathname) {
+
+        if (pathname.isDirectory()) {
+          String name = pathname.getName();
+          if (name.length() == 1 && Character.isDigit(name.charAt(0))) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+    });
+
+    Map<Long, File> map = new HashMap<Long, File>();
+
+    for (File rootDir1 : rootDirs1) {
+      
+      File[] rootDirs2 = rootDir1.listFiles();
+
+      for (File rootDir2 : rootDirs2) {
+        
+        File[] rootDirs3 = rootDir2.listFiles();
+
+        for (File rootDir3 : rootDirs3) {
+
+          File[] files = rootDir3.listFiles();
+          
+          for (File file : files) {
+            Long id;
+            try {
+              id = Long.parseLong(file.getName());
+  
+              map.put(id, file);
+  
+            } catch (Throwable th) {
+              th.printStackTrace();
+            }
+          }
+        }
+      }
+    }
+    
+    return map;
+
+  }
+  
 
   public static void main(String[] args) {
-    File filesPath = new File("C:\\tmp\\borrar");
+    
+    
+    File f = new File("C:\\tmp\\sql.sql");
+    
+    File dest = new File("D:\\sql.sql");
+    
+    System.out.println("Rename: " + f.renameTo(dest));
+    
+    /*
+    File filesPath = new File("D:\\dades\\dades\\CarpetesPersonals\\ProgramacioPortaFIB2\\portafib-files\\postgresql_2.0_three");
 
     ThreeFolderFileSystemManager tf = new ThreeFolderFileSystemManager();
 
-    Long[] ids = new Long[] { 1L, 25L, 123L, 56785345L, -2435666L };
-
-    for (Long id : ids) {
-      System.out.println("Path for " + id + "\t= " + tf.getTreeFolder(filesPath, id));
+//    Long[] ids = new Long[] { 1L, 25L, 123L, 56785345L, -2435666L };
+//
+//    for (Long id : ids) {
+//      System.out.println("Path for " + id + "\t= " + ThreeFolderFileSystemManager.getTreeFolder(filesPath, id));
+//    }
+    
+    Map<Long, File> fitxers = tf.getAllFiles(filesPath);
+    
+    for (Map.Entry<Long, File> fFisic : fitxers.entrySet()) {
+      System.out.println(fFisic.getKey() +  "=>\t" + fFisic.getValue().getAbsolutePath());
+      
     }
-
+    
+    
+    //D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB2\portafib-files\postgresql_2.0_three
+    
+*/
   }
 
 }

@@ -1,11 +1,14 @@
 package org.fundaciobit.genapp.common.filesystem;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -148,6 +151,43 @@ public class SimpleFileSystemManager implements IFileSystemManager {
       IOException {
 
     return FileSystemManager.readFileToByteArray(getFile(filesPath, fitxerID));
+
+  }
+
+  @Override
+  public Map<Long, File> getAllFiles(File filesPath) {
+    File[] rootFiles = filesPath.listFiles(new FileFilter() {
+
+      @Override
+      public boolean accept(File pathname) {
+
+        if (pathname.isFile()) {
+          try {
+            Long.parseLong(pathname.getName());
+            return true;
+          } catch (Throwable e) {
+          }
+        }
+        return false;
+      }
+
+    });
+
+    Map<Long, File> map = new HashMap<Long, File>();
+
+    for (File file : rootFiles) {
+      Long id;
+      try {
+        id = Long.parseLong(file.getName());
+
+        map.put(id, file);
+
+      } catch (Throwable th) {
+        th.printStackTrace();
+      }
+    }
+
+    return map;
 
   }
 

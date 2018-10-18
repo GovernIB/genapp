@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Set;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
@@ -53,4 +54,5 @@ public interface IFileSystemManager {
 
   public byte[] getFileContent(File filesPath, long fitxerID) throws FileNotFoundException, IOException;
 
+  public Map<Long,File> getAllFiles(File filesPath);
 }
