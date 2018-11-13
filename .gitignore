@@ -4,3 +4,5 @@ target
 .settings/
 /demo/appweb
 /demo/jboss-5.1.0.GA_cxf
+/demo/scripts/genapp/genapp.log
+/demo/scripts/genapp/lastconfig.properties

@@ -22,7 +22,7 @@ CREATE TABLE PFX_traduccio (
 );
 
 CREATE TABLE PFX_traducciomap (
-    traducciomapid bigint nextval('PFX_APPNAME_seq'::regclass) NOT NULL,
+    traducciomapid bigint NOT NULL,
     idiomaid character varying(10) NOT NULL,
     valor character varying(4000)
 );
@@ -52,4 +52,7 @@ CREATE INDEX PFX_traducciomap_pk_i ON PFX_traducciomap USING btree (traducciomap
 ALTER TABLE ONLY PFX_traducciomap
     ADD CONSTRAINT PFX_traducmap_traduccio_fk FOREIGN KEY (traducciomapid) REFERENCES PFX_traduccio(traduccioid);
 
-
+INSERT INTO PFX_idioma(idiomaid, nom, ordre) VALUES ('ca', 'Català', 0);
+INSERT INTO PFX_idioma(idiomaid, nom, ordre) VALUES ('es', 'Castellano', 1);
+    
+    
