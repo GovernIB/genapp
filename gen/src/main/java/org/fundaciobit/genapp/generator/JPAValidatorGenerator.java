@@ -146,11 +146,16 @@ public class JPAValidatorGenerator {
               
             } else {
                // Check pattern
+              
+              String nouPatro = pattern.replace("\\", "\\\\");
+              if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
+                nouPatro = "(" + nouPatro.replace(',', '|') + ")";
+              }
             
               code.append("    if (__vr.getFieldErrorCount(" + camp + ") == 0) {\n");           
               code.append("      String val = String.valueOf(__vr.getFieldValue(__target__," + camp + "));\n");
               code.append("      if (val != null && val.trim().length() != 0) {\n");
-              code.append("        java.util.regex.Pattern p = java.util.regex.Pattern.compile(\"" + pattern.replace("\\", "\\\\") + "\");\n");
+              code.append("        java.util.regex.Pattern p = java.util.regex.Pattern.compile(\"" + nouPatro + "\");\n");
               code.append("        if (!p.matcher(val).matches()) {\n");
               code.append("          __vr.rejectValue(" + camp + ", \"genapp.validation.malformed\",\n");
               code.append("             new " + I18NArgumentString.class.getName() + "(val), new " + I18NArgumentCode.class.getName() + "(get(" + camp  + ")));\n");

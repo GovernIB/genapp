@@ -30,11 +30,11 @@
             </snapshots>
       </repository>
 	
-		  <repository>
-		    <id>org.fundaciobit.genapp</id>
-		    <name>GenApp Maven Repository</name>
-		    <url>http://GovernIB.github.io/maven/maven/</url>
-	    </repository>
+      <repository>
+        <id>github_governib_maven</id>
+        <name>GitHub GovernIB Maven Repository</name>
+        <url>https://governib.github.io/maven/maven/</url>
+      </repository>
     </repositories>
 
     <dependencies>
