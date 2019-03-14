@@ -21,6 +21,12 @@ El projecte està partit en tres subprojectes:
 * genapp-web: classes base i d'utilitat per entorn Web (emprant Spring)
 * genapp-gen: generador de les diferent caps del projecte abans descrita i generador de sql a partir d'hibernate
 
+***Documentació***
+
+[Documentació de branca estable](../../tree/genapp-1.0/README.md#documentaci%C3%B3)
+
+
+
 ***Característiques***
 
 * Registered: 2013-02-19
@@ -34,3 +40,7 @@ El projecte està partit en tres subprojectes:
 * Programming Language: Java
 * Translations: Spanish, Catalan
 * User Interface: Java Swing, Console/Terminal
+
+
+
+
