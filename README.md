@@ -38,7 +38,6 @@ El projecte està partit en tres subprojectes:
 * Intended Audience:  Government
 * Operating System:  OS Independent (Written in an interpreted language)
 * Programming Language: Java
-* Translations: Spanish, Catalan
 * User Interface: Java Swing, Console/Terminal
 
 
