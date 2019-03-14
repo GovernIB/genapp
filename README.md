@@ -1,6 +1,12 @@
 # ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) Genapp (genapp)  
 *Generador d'Aplicacions*
 
+***Versions***
+
+> - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0))
+> - Versió en Desenvolupament: -
+
+
 ***Descripció***
 
 A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicació web: model, jpa, ejb, logica(ejb), web i webservices. Caracteristiques:
