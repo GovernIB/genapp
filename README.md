@@ -1,7 +1,7 @@
 # ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) Generador d'Aplicacions (genapp)  
 
 
-**Descripció**
+***Descripció***
 
 A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicació web: model, jpa, ejb, logica(ejb), web i webservices. Caracteristiques:
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
@@ -15,7 +15,7 @@ El projecte està partit en tres subprojectes:
 * genapp-web: classes base i d'utilitat per entorn Web (emprant Spring)
 * genapp-gen: generador de les diferent caps del projecte abans descrita i generador de sql a partir d'hibernate
 
-**Característiques**
+***Característiques***
 
 * Registered: 2013-02-19
 * Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java  JBoss 5.1  JBoss 5.2  
@@ -28,19 +28,3 @@ El projecte està partit en tres subprojectes:
 * Programming Language: Java
 * Translations: Spanish, Catalan
 * User Interface: Java Swing, Console/Terminal
-
-
-**Captures de pantalla**
-
-![Formulari Web Generat](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_form.png)
-Formulari Web Generat
-
-![Llistat Web Generat](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_llistat.png)
-Llistat Web Generat
-
-![Aplicació GenApp:  Menú principal](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_aplicacio_menu.png)
-Aplicació GenApp:  Menú principal
-
-![Aplicació GenApp: Edició de les propietats d'una taula](https://github.com/GovernIB/maven/raw/binaris/genapp/projectinfo_Attachments/screenshots/genapp_aplicacio_editar_projecte.png)
-Aplicació GenApp: Edició de les propietats d'una taula
-
