@@ -1,4 +1,4 @@
-# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) Genapp (genapp)  
+# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp (genapp)  
 *Generador d'Aplicacions*
 
 ***Versions***
