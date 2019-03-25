@@ -649,7 +649,7 @@ public class CodeGenerator {
       
       prop.put("maven_build_timestamp","${maven.build.timestamp}");
       
-      
+      prop.put("generatews", project.isGenerateWS());
 
        // ----- Tots fitxers de forma recursiva i substituint
       String resourceUtils = resourceBase + "/" + earName;

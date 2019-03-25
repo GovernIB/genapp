@@ -137,6 +137,8 @@
 		</dependency>
 		-->
 
+    <#if generatews>
+
     <!-- WS de ${fullname} -->
     <!--  http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld -->
     <!--  http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity -->
@@ -147,6 +149,8 @@
       <version>${project_version}</version>
       <type>ejb</type>
     </dependency>
+    
+    </#if>
 
   </dependencies>
 
@@ -329,11 +333,13 @@
               <artifactId>${name}-persistence-jta</artifactId>
             </jarModule>
 
+<#if generatews>
+
             <ejbModule>
               <groupId>${package}</groupId>
               <artifactId>${name}-ws-server</artifactId>
             </ejbModule>
-
+</#if>
           </modules>
 
         </configuration>

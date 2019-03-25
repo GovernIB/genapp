@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_45" class="java.beans.XMLDecoder"> 
+ <object class="org.fundaciobit.genapp.Project"> 
+  <void property="dataBaseInfo"> 
+   <object class="org.fundaciobit.genapp.common.db.DataBaseInfo"> 
+    <void property="driver"> 
+     <string>org.postgresql.Driver</string> 
+    </void> 
+    <void property="pwd"> 
+     <string>APPNAME</string> 
+    </void> 
+    <void property="url"> 
+     <string>jdbc:postgresql://localhost:5432/APPNAME</string> 
+    </void> 
+    <void property="usr"> 
+     <string>APPNAME</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="generateWS"> 
+   <boolean>false</boolean> 
+  </void> 
+  <void property="languages"> 
+   <array class="java.lang.String" length="4"> 
+    <void index="0"> 
+     <string>ca</string> 
+    </void> 
+    <void index="1"> 
+     <string>es</string> 
+    </void> 
+    <void index="2"> 
+     <string>en</string> 
+    </void> 
+    <void index="3"> 
+     <string>de</string> 
+    </void> 
+   </array> 
+  </void> 
+  <void property="modulSeguretat"> 
+   <string>seycon</string> 
+  </void> 
+  <void property="packageName"> 
+   <string>your.package.APPNAME</string> 
+  </void> 
+  <void property="prefix"> 
+   <string>PFX</string> 
+  </void> 
+  <void property="projectName"> 
+   <string>APPNAMEUP</string> 
+  </void> 
+  <void property="schema"> 
+   <string>public</string> 
+  </void> 
+  <void property="tables"> 
+   <array class="org.fundaciobit.genapp.TableInfo" length="4"> 
+    <void index="0"> 
+     <object class="org.fundaciobit.genapp.TableInfo"> 
+      <void property="fields"> 
+       <array class="org.fundaciobit.genapp.FieldInfo" length="5"> 
+        <void index="0"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="PK"> 
+           <string>PFX_fitxer_pk</string> 
+          </void> 
+          <void property="autoIncrement"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="defaultValue"> 
+           <string>nextval(&apos;PFX_APPNAME_seq&apos;::regclass)</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="index"> 
+           <string>PFX_fitxer_pk_i</string> 
+          </void> 
+          <void property="javaName"> 
+           <string>fitxerID</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>long</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>ID</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>19</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>fitxerid</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>-5</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"/> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>nom</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>nom</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>nom</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>nom</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>nom</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="showInReferenceList"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>255</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>nom</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>1</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="2"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>mime</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>mime</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>mime</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>mime</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>mime</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>255</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>mime</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>1</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="3"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>tamany</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>long</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>tamany</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>tamany</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>tamany</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>tamany</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>19</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>tamany</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>-5</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>14</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="4"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="defaultValue"> 
+           <string>NULL::character varying</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>descripcio</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>descripcio</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>descripcio</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>descripcio</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>descripcio</string> 
+           </void> 
+          </void> 
+          <void property="size"> 
+           <int>1000</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>descripcio</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>2</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="fileMappingEntity"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="generate"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="labels"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string>Datei</string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string>Fitxer</string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string>File</string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string>Fichero</string> 
+       </void> 
+      </void> 
+      <void property="labelsPlural"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string>Datein</string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string>Fitxers</string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string>Files</string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string>Ficheros</string> 
+       </void> 
+      </void> 
+      <void property="name"> 
+       <string>PFX_fitxer</string> 
+      </void> 
+      <void property="nameJava"> 
+       <string>Fitxer</string> 
+      </void> 
+      <void property="shortName"> 
+       <string>fitxer</string> 
+      </void> 
+     </object> 
+    </void> 
+    <void index="1"> 
+     <object class="org.fundaciobit.genapp.TableInfo"> 
+      <void property="fields"> 
+       <array class="org.fundaciobit.genapp.FieldInfo" length="4"> 
+        <void index="0"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="PK"> 
+           <string>PFX_idioma_pk</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="index"> 
+           <string>PFX_idioma_pk_i</string> 
+          </void> 
+          <void property="javaName"> 
+           <string>idiomaID</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>ID</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>5</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>idiomaid</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"/> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>nom</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>Name</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>Nom</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>Name</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>Nombre</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="showInReferenceList"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>50</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>nom</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>1</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="2"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="defaultValue"> 
+           <string>true</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>suportat</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>boolean</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>suportat</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>suportat</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>suportat</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>suportat</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>1</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>suportat</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>-7</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>4</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="3"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="defaultValue"> 
+           <string>0</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>ordre</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>int</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>ordre</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>ordre</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>ordre</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>ordre</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>10</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>ordre</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>4</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>14</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="generate"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="labels"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string>Sprache</string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string>Idioma</string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string>Language</string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string>Idioma</string> 
+       </void> 
+      </void> 
+      <void property="labelsPlural"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string>Idiom</string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string>Idioma</string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string>Language</string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string>Idioma</string> 
+       </void> 
+      </void> 
+      <void property="languageMappingEntity"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="name"> 
+       <string>PFX_idioma</string> 
+      </void> 
+      <void property="nameJava"> 
+       <string>Idioma</string> 
+      </void> 
+      <void property="shortName"> 
+       <string>idioma</string> 
+      </void> 
+     </object> 
+    </void> 
+    <void index="2"> 
+     <object class="org.fundaciobit.genapp.TableInfo"> 
+      <void property="fields"> 
+       <array class="org.fundaciobit.genapp.FieldInfo" length="1"> 
+        <void index="0"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="PK"> 
+           <string>PFX_traduccio_pk</string> 
+          </void> 
+          <void property="autoIncrement"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="defaultValue"> 
+           <string>nextval(&apos;PFX_APPNAME_seq&apos;::regclass)</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="foreignKeys"> 
+           <array class="org.fundaciobit.genapp.ForeignKey" length="1"> 
+            <void index="0"> 
+             <object class="org.fundaciobit.genapp.ForeignKey"> 
+              <void property="field"> 
+               <string>traducciomapid</string> 
+              </void> 
+              <void property="name"> 
+               <string>PFX_traducmap_traduccio_fk</string> 
+              </void> 
+              <void property="table"> 
+               <string>PFX_traducciomap</string> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="index"> 
+           <string>PFX_traduccio_pk_i</string> 
+          </void> 
+          <void property="javaName"> 
+           <string>traduccioID</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>long</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>ID</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="showInReferenceList"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>19</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>traduccioid</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>-5</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="label"> 
+             <array class="java.lang.String" length="1"> 
+              <void index="0"> 
+               <string>nom</string> 
+              </void> 
+             </array> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="generate"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="labels"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string>Übersetzung</string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string>Traducció</string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string>Translation</string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string>Traducción</string> 
+       </void> 
+      </void> 
+      <void property="labelsPlural"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string></string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string></string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string></string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string></string> 
+       </void> 
+      </void> 
+      <void property="name"> 
+       <string>PFX_traduccio</string> 
+      </void> 
+      <void property="nameJava"> 
+       <string>Traduccio</string> 
+      </void> 
+      <void property="shortName"> 
+       <string>traduccio</string> 
+      </void> 
+      <void property="translationEntity"> 
+       <boolean>true</boolean> 
+      </void> 
+     </object> 
+    </void> 
+    <void index="3"> 
+     <object class="org.fundaciobit.genapp.TableInfo"> 
+      <void property="fields"> 
+       <array class="org.fundaciobit.genapp.FieldInfo" length="3"> 
+        <void index="0"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="PK"> 
+           <string>PFX_traducmap_pk</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="foreignKeys"> 
+           <array class="org.fundaciobit.genapp.ForeignKey" length="1"> 
+            <void index="0"> 
+             <object id="ForeignKey0" class="org.fundaciobit.genapp.ForeignKey"> 
+              <void property="field"> 
+               <string>traduccioid</string> 
+              </void> 
+              <void property="name"> 
+               <string>PFX_traducmap_traduccio_fk</string> 
+              </void> 
+              <void property="table"> 
+               <string>PFX_traduccio</string> 
+              </void> 
+              <void property="type"> 
+               <int>1</int> 
+              </void> 
+             </object> 
+            </void> 
+           </array> 
+          </void> 
+          <void property="index"> 
+           <string>PFX_traducciomap_pk_i</string> 
+          </void> 
+          <void property="javaName"> 
+           <string>traduccioMapID</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>long</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>ID</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>ID</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>19</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>traducciomapid</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>-5</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="foreignKey"> 
+             <object idref="ForeignKey0"/> 
+            </void> 
+            <void property="webtype"> 
+             <int>3</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="1"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="PK"> 
+           <string>PFX_traducmap_pk</string> 
+          </void> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="index"> 
+           <string>PFX_traducciomap_idiomaid_fk_i</string> 
+          </void> 
+          <void property="javaName"> 
+           <string>idiomaID</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>idiomaid</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>idiomaid</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>idiomaid</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>idiomaid</string> 
+           </void> 
+          </void> 
+          <void property="notNullable"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="showInReferenceList"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>10</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>idiomaid</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"/> 
+          </void> 
+         </object> 
+        </void> 
+        <void index="2"> 
+         <object class="org.fundaciobit.genapp.FieldInfo"> 
+          <void property="digits"> 
+           <int>0</int> 
+          </void> 
+          <void property="javaName"> 
+           <string>valor</string> 
+          </void> 
+          <void property="javaType"> 
+           <class>java.lang.String</class> 
+          </void> 
+          <void property="labels"> 
+           <void method="put"> 
+            <string>de</string> 
+            <string>valor</string> 
+           </void> 
+           <void method="put"> 
+            <string>ca</string> 
+            <string>valor</string> 
+           </void> 
+           <void method="put"> 
+            <string>en</string> 
+            <string>valor</string> 
+           </void> 
+           <void method="put"> 
+            <string>es</string> 
+            <string>valor</string> 
+           </void> 
+          </void> 
+          <void property="showInReferenceList"> 
+           <boolean>true</boolean> 
+          </void> 
+          <void property="size"> 
+           <int>4000</int> 
+          </void> 
+          <void property="sqlName"> 
+           <string>valor</string> 
+          </void> 
+          <void property="sqlType"> 
+           <int>12</int> 
+          </void> 
+          <void property="webFieldInfo"> 
+           <object class="org.fundaciobit.genapp.WebFieldInfo"> 
+            <void property="webtype"> 
+             <int>2</int> 
+            </void> 
+           </object> 
+          </void> 
+         </object> 
+        </void> 
+       </array> 
+      </void> 
+      <void property="generate"> 
+       <boolean>true</boolean> 
+      </void> 
+      <void property="labels"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string>TraduccioMap</string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string>TraduccioMap</string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string>TraduccioMap</string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string>TraduccioMap</string> 
+       </void> 
+      </void> 
+      <void property="labelsPlural"> 
+       <void method="put"> 
+        <string>de</string> 
+        <string></string> 
+       </void> 
+       <void method="put"> 
+        <string>ca</string> 
+        <string></string> 
+       </void> 
+       <void method="put"> 
+        <string>en</string> 
+        <string></string> 
+       </void> 
+       <void method="put"> 
+        <string>es</string> 
+        <string></string> 
+       </void> 
+      </void> 
+      <void property="name"> 
+       <string>PFX_traducciomap</string> 
+      </void> 
+      <void property="nameJava"> 
+       <string>TraduccioMap</string> 
+      </void> 
+      <void property="shortName"> 
+       <string>traducmap</string> 
+      </void> 
+      <void property="translationMapEntity"> 
+       <boolean>true</boolean> 
+      </void> 
+     </object> 
+    </void> 
+   </array> 
+  </void> 
+ </object> 
+</java> 

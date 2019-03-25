@@ -385,31 +385,63 @@ public class RebApp extends JFrame {
           final String nomCamp = "Prefix";
           final Integer expectedSize = 3;
           String prefix = readField(nomCamp, "pfx", expectedSize);
+          prefix = prefix.toLowerCase();
           
           
-          final String nomCamp2 = "Nom";
+          final String nomCamp2 = "Nom Projecte";
           final Integer expectedSize2 = null;
-          String nomApp = readField(nomCamp2, "nomapp", expectedSize2);
+          String nomAppUp = readField(nomCamp2, "NomApp", expectedSize2);
+          
+          String nomApp = nomAppUp.toLowerCase();
           
 
-          ClassLoader classLoader = RebApp.class.getClassLoader();
-          InputStream is = classLoader.getResourceAsStream("genapp_required_tables.sql");
           
-          String content = IOUtils.toString(is);
+          final String[][] sourceDest = {
+                       {"genapp_required_tables.sql", prefix + "_" + nomApp + "_SCHEMA_BASE.sql" },
+                       {"template.genapp", nomAppUp + ".genapp"}
+          };
           
-          
-          content = content.replace("PFX", prefix);
-          
-          content = content.replace("APPNAME", nomApp);
+          File parent = null;;
+          for (int j = 0; j < sourceDest.length; j++) {
+            
+            String src = sourceDest[j][0];
+            String dest = sourceDest[j][1];
+            
+            ClassLoader classLoader = RebApp.class.getClassLoader();
+            InputStream is = classLoader.getResourceAsStream(src);
+            
+            String content = IOUtils.toString(is);
+            
+            
+            content = content.replace("PFX", prefix);
+            
+            content = content.replace("APPNAMEUP", nomApp);
+            
+            content = content.replace("APPNAME", nomApp);
+            
+            
 
+            
+            File f = new File(dest);
+            File tmp  = new File(f.getCanonicalPath());
+            System.out.println("tmp = " + tmp.getAbsolutePath());
+            parent = tmp.getParentFile();
+            System.out.println("PARENT = " + parent.getAbsolutePath());
+            
+            FileUtils.write(f, content);
+          }
           
-          File f = new File(prefix + "_" + nomApp + "_SCHEMA_BASE.sql");
-          
-          FileUtils.write(f, content);
+         
           
 
           JOptionPane.showMessageDialog(null,
-              "Fitxer SQL Base creat a: " + f.getAbsolutePath(),
+              "Fitxer de SQL i plantilla GenApp creats a: " + parent.getAbsolutePath()
+              + "\n Ara ha de fer el següent:\n"
+              + "(1) Crear una BBDD a partir del fitxer SQL generat (" + sourceDest[0][1] + ")\n"
+              + "(2) Executar genapp de nou i pitjar sobre el boto d'Actualitzar Projecte\n"
+              + "(3) Elegir el fitxer " + sourceDest[1][1] + "\n"
+              + "(4) Actualitzar els camps de connexio amb la BBBD i d'altres"
+              ,
               "Info", JOptionPane.INFORMATION_MESSAGE);
           
           System.exit(0);
@@ -450,7 +482,7 @@ public class RebApp extends JFrame {
             "Error",
             JOptionPane.ERROR_MESSAGE);
       } else {
-        return prefix.toLowerCase();
+        return prefix;
       }
         
     } while(true);
