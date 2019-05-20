@@ -12,10 +12,6 @@ if %errorlevel% EQU 0 (
 	  @echo on
 	  echo --------- COPIANT EAR %${name_uppercase}_VERSIO% ---------
 
-	  if exist "%${name_uppercase}_DEPLOY_DIR%\${name}_plugins.ear" ( 
-		del  "%${name_uppercase}_DEPLOY_DIR%\${name}_plugins.ear"
-	  )
-
 	  xcopy /Y ear\target\${name}.ear %${name_uppercase}_DEPLOY_DIR%
 
 	) ELSE (
