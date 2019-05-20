@@ -156,75 +156,6 @@
 
 
 
-  <profiles>
-
-    <profile>
-      <id>desenvolupament</id>
-      <dependencies>
-
-
-
-      </dependencies>
-    </profile>
-
-    <!-- FRONT WEB ${fullname} AMB AUTENTICACIO CLIENT-CERT -->
-    <profile>
-      <id>clientcert</id>
-
-      <dependencies>
-        <dependency>
-          <groupId>${package}</groupId>
-          <artifactId>${name}-back-clientcert</artifactId>
-          <version>${project_version}</version>
-          <type>war</type>
-        </dependency>
-      </dependencies>
-
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-ear-plugin</artifactId>
-            <version>2.3.2</version>
-            <configuration>
-              <modules combine.children="append">
-                <webModule>
-                  <groupId>${package}</groupId>
-                  <artifactId>${name}-back-clientcert</artifactId>
-                  <contextRoot>${name}s</contextRoot>
-                </webModule>
-              </modules>
-            </configuration>
-          </plugin>
-
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.3</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <tasks>
-                    <mkdir dir="${clientcert_properties_dir}"/>
-                    <echo file="${clientcert_properties}" message="# Indica si existeix mòdul amb authenticació CLIENTCERT (${name}s)${line_separator}"/>
-                    <echo file="${clientcert_properties}" append="true" message="${name}.clientcert=true${line_separator}" />
-                  </tasks>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-        </plugins>
-      </build>
-    </profile>
-
-  </profiles>
-
-
   <build>
     <finalName>${name}</finalName>
 
@@ -264,18 +195,6 @@
             </goals>
           </execution>
         </executions>
-
-        <configuration>
-          <filesets>
-            <fileset>
-              <directory>${clientcert_properties_dir}</directory>
-              <includes>
-                <include>**/${clientcert_properties_filename}</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
-          </filesets>
-        </configuration>
       </plugin>
 
 
@@ -334,7 +253,6 @@
             </jarModule>
 
 <#if generatews>
-
             <ejbModule>
               <groupId>${package}</groupId>
               <artifactId>${name}-ws-server</artifactId>

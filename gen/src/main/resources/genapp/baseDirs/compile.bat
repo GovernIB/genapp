@@ -2,7 +2,7 @@
 
 echo optional parameters -Dcaib -Psqlgen
 
-cmd /C mvn -DskipTests -Pdesenvolupament %* install
+cmd /C mvn -DskipTests %* install
 
 if %errorlevel% EQU 0 (
 

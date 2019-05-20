@@ -35,7 +35,6 @@
 
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version_template_file>../scripts/templates/Versio.java.template</version_template_file>
     <version_file>src/main/java/${packagePath}/versio/Versio.java</version_file>
   </properties>
@@ -45,20 +44,6 @@
     <filters>
       <filter>../config.properties</filter>
     </filters>
-
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
-            <encoding>UTF-8</encoding>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
 
     <plugins>
 
