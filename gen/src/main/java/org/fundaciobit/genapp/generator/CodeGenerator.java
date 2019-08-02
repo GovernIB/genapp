@@ -985,6 +985,7 @@ public class CodeGenerator {
       // (b) persistence.xml
       {
         Map<String, Object> prop = new HashMap<String, Object>();
+        prop.put("dollar", "$");
         prop.put("name", project.projectName.toLowerCase());
         prop.put("package", project.getPackageName());
 

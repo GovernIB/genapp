@@ -14,7 +14,8 @@ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
 		</#list>
 
         <properties>
-
+            <property name="hibernate.dialect" value="${dollar}{${package}.hibernate.dialect}" />
+            <property name="hibernate.query.substitutions" value="${dollar}{${package}.hibernate.query.substitutions}"/>
         </properties>
     </persistence-unit>
 </persistence>
