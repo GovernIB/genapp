@@ -4,10 +4,8 @@ import java.awt.*;
 import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.MultipleUnique;
+import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.generator.CodeGenUtils;
 import org.fundaciobit.genapp.generator.gui.SharedData.ProjectType;
@@ -530,13 +529,12 @@ public class Panel_5_StoreProject extends Paneable {
     
 
     now = System.currentTimeMillis();
-    FileOutputStream os;
+    
     try {
-      os = new FileOutputStream(SharedData.projectFile);
-      XMLEncoder encoder = new XMLEncoder(os);
-      encoder.writeObject(SharedData.data);
-	  encoder.flush();
-      encoder.close();
+      Project project = SharedData.data;
+      File file = SharedData.projectFile;
+      
+      RebApp.saveProjectToFile(file, project);
       
       finish = System.currentTimeMillis();
       
@@ -548,7 +546,7 @@ public class Panel_5_StoreProject extends Paneable {
       return false;
     }    
   }
-  
+ 
   protected static JDialog dialog;
   
   

@@ -3,6 +3,7 @@ package org.fundaciobit.genapp.generator.gui;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -316,9 +317,7 @@ public class RebApp extends JFrame {
             // gets file from dialog
             selectedFile = loadEmp.getSelectedFile();
   
-            FileInputStream fis = new FileInputStream(selectedFile);
-            XMLDecoder dec = new XMLDecoder(fis);
-            Project project = (Project) dec.readObject();
+            Project project = readProjectFromFile(selectedFile);
             
             saveLastFile(selectedFile);
             
@@ -333,43 +332,7 @@ public class RebApp extends JFrame {
             } else {
               SharedData.project = ((n == 2) ? ProjectType.OPEN : ProjectType.GENERATE);
 
-              for (int i = 0; i < project.tables.length; i++) {
-                
-                if (project.tables[i].getNameJava() == null) {
-                  project.tables[i].setNameJava(project.tables[i].getName());
-                }
-                String[] idiomes = project.getLanguages();
-                Map<String,String> labelsTaula = project.tables[i].getLabels(); 
-                if (labelsTaula == null || labelsTaula.size() == 0) {
-                  labelsTaula = new HashMap<String, String>();
-                  for (String lang : idiomes) {
-                    labelsTaula.put(lang,  project.tables[i].getName());
-                  }
-                  project.tables[i].setLabels(labelsTaula);
-                }
-                
-                log.info(project.tables[i].getNameJava() 
-                    + "\t" + project.tables[i].getName());
-
-                
-                for(FieldInfo fi : project.tables[i].fields) {
-                  Map<String, String> labels = fi.getLabels(); 
-                  for (String lang : idiomes) {
-                    if (labels.get(lang) == null) {
-                      labels.put(lang, fi.getJavaName() + "_XX_" + lang);
-                    }
-                  }
-                }
-                /*
-                for(int f=0;f< project.tables[i].fields.length; f++) {
-                  if (project.tables[i].fields[f].getLabel() == null) {
-                    project.tables[i].fields[f].setLabel(project.tables[i].fields[f].getJavaName());
-                  }
-                 
-                }
-                */
-                
-              }
+              cleanProject(project);
 
             }
             SharedData.data = project;
@@ -456,6 +419,65 @@ public class RebApp extends JFrame {
       e.printStackTrace();
     }
 
+  }
+
+  public static Project readProjectFromFile(File selectedFile)
+      throws FileNotFoundException {
+    FileInputStream fis = new FileInputStream(selectedFile);
+    XMLDecoder dec = new XMLDecoder(fis);
+    Project project = (Project) dec.readObject();
+    return project;
+  }
+  
+  
+  public static void saveProjectToFile(File file, Project project) throws FileNotFoundException {
+    FileOutputStream os = new FileOutputStream(file);
+    XMLEncoder encoder = new XMLEncoder(os);
+    encoder.writeObject(project);
+    encoder.flush();
+    encoder.close();
+  }
+  
+  
+
+  public static void cleanProject(Project project) {
+    for (int i = 0; i < project.tables.length; i++) {
+      
+      if (project.tables[i].getNameJava() == null) {
+        project.tables[i].setNameJava(project.tables[i].getName());
+      }
+      String[] idiomes = project.getLanguages();
+      Map<String,String> labelsTaula = project.tables[i].getLabels(); 
+      if (labelsTaula == null || labelsTaula.size() == 0) {
+        labelsTaula = new HashMap<String, String>();
+        for (String lang : idiomes) {
+          labelsTaula.put(lang,  project.tables[i].getName());
+        }
+        project.tables[i].setLabels(labelsTaula);
+      }
+      
+      log.info(project.tables[i].getNameJava() 
+          + "\t" + project.tables[i].getName());
+
+      
+      for(FieldInfo fi : project.tables[i].fields) {
+        Map<String, String> labels = fi.getLabels(); 
+        for (String lang : idiomes) {
+          if (labels.get(lang) == null) {
+            labels.put(lang, fi.getJavaName() + "_XX_" + lang);
+          }
+        }
+      }
+      /*
+      for(int f=0;f< project.tables[i].fields.length; f++) {
+        if (project.tables[i].fields[f].getLabel() == null) {
+          project.tables[i].fields[f].setLabel(project.tables[i].fields[f].getJavaName());
+        }
+       
+      }
+      */
+      
+    }
   }
 
   public static String readField(String nomCamp, String sample, Integer expectedSize) {
