@@ -125,7 +125,7 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
     }
 
-    FileUtils.writeLines(fdest, newLines, false);
+    FileUtils.writeLines(fdest,  "UTF-8", newLines, "\r\n" ,false);
   }
 
   @Override
