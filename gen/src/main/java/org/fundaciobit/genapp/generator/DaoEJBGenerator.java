@@ -59,7 +59,14 @@ public class DaoEJBGenerator {
 
         String model = CodeGenUtils.getModelName(table.getNameJava());
         String label = table.getLabels().get(lang).replace('\'', '´');
-        String labelPlural = table.getLabelsPlural().get(lang).replace('\'', '´');
+        String labelPlural = table.getLabelsPlural().get(lang);
+        
+        if (labelPlural == null) {
+          System.err.println(" Plural de la taula ]" + table.nameJava  + "[ per l'idioma {" + lang + "} val null");
+        }
+        
+        
+        labelPlural = labelPlural.replace('\'', '´');
 
         str.append(model + "." + model + "=" + label + "\n");
         str.append(model + "." + model + ".plural=" + labelPlural + "\n");

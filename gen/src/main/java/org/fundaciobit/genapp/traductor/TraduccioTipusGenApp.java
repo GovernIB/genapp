@@ -48,6 +48,11 @@ public class TraduccioTipusGenApp implements ITraduccioTipus {
 
       llista.add(trat);
 
+      TraduccioGenAppTablePluralItem trat2 = new TraduccioGenAppTablePluralItem(getTipus(), table,
+          table.nameJava.toLowerCase() + "." + table.nameJava.toLowerCase()+ ".plural");
+
+      llista.add(trat2);
+
       for (FieldInfo field : table.fields) {
         TraduccioGenAppFieldItem tra = new TraduccioGenAppFieldItem(getTipus(), field,
             table.nameJava.toLowerCase() + "." + field.getJavaName().toLowerCase());
