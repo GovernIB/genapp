@@ -1,0 +1,47 @@
+
+<#assign symbol_dollar = "$">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${package}</groupId>
+	<artifactId>${name}-model</artifactId>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>${package}</groupId>
+		<artifactId>${name}</artifactId>
+		<version>${app_current_version}</version>
+	</parent>
+
+	<name>${fullname} Model</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.fundaciobit.genapp</groupId>
+			<artifactId>genapp-core</artifactId>
+			<version>${symbol_dollar}{genapp.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>${symbol_dollar}{activation.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+	</dependencies>
+
+
+
+
+	<build>
+		<filters>
+			<filter>../config.properties</filter>
+		</filters>
+	</build>
+
+</project>

@@ -1,0 +1,65 @@
+
+<#assign symbol_dollar = "$">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${package}</groupId>
+	<artifactId>${name}-ejb</artifactId>
+	<packaging>ejb</packaging>
+
+	<parent>
+		<groupId>${package}</groupId>
+		<artifactId>${name}</artifactId>
+		<version>${app_current_version}</version>
+	</parent>
+
+	<name>${fullname} EJB</name>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-jpa</artifactId>
+			<version>${project_version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-utils</artifactId>
+			<version>${project_version}</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+
+		<finalName>${symbol_dollar}{project.artifactId}-${symbol_dollar}{project.version}</finalName>
+
+		 
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<configuration>
+					<ejbVersion>3.2</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
