@@ -1,20 +1,16 @@
-# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp (genapp)  
+# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp v2.0 (genapp)  
 *Generador d'Aplicacions*
-
-***Versions***
-
-> - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0))
-> - Versió en Desenvolupament: -
-
 
 ***Descripció***
 
-A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicació web: model, jpa, ejb, logica(ejb), web i webservices. Caracteristiques:
+A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicació web: model, jpa, ejb, logica(ejb), web i webservices, per Java 11 i JBoss 7.2.
+
+Caracteristiques:
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
 * Gestiona traduccions en multiples idiomes
 * Gestiona la pujada de fitxers
-* EJBs (lògica) extendibles
-* Llistats i formularis Webs extendibles i totalment configurables
+* EJBs (lògica) extensibles
+* Llistats i formularis Webs extensibles i totalment configurables
 
 El projecte està partit en tres subprojectes:
 * genapp-core: classes base i utilitats genèriques (classes del llenguatge de consultes a BBDD, classes d'excepcions de WebServices, ...)
@@ -30,7 +26,7 @@ El projecte està partit en tres subprojectes:
 ***Característiques***
 
 * Registered: 2013-02-19
-* Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java  JBoss 5.1  JBoss 5.2  
+* Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java 11  JBoss 7.2
 * Topic: Agile development tools,  Frameworks,  Templates
 * License:  European Union Public License, GNU General Public License version 3.0 (GPLv3)
 * Database Environment: JDBC
