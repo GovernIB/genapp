@@ -1,6 +1,7 @@
 # ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp (genapp)  
 *Generador d'Aplicacions*
 
+
 ***Versions***
 
 > - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0))
