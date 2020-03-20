@@ -15,12 +15,10 @@ import ${package}.utils.StaticVersion;
  */
 public class LogicUtils {
 
-  protected static Logger log = Logger.getLogger(LogicUtils.class);
-  
-  
-  public static String getVersio() {
-    return StaticVersion.VERSION + (Configuracio.isCAIB()?"-caib" : "");
-  }
+	protected static Logger log = Logger.getLogger(LogicUtils.class);
 
-  
+	public static String getVersio() {
+		return StaticVersion.VERSION + (Configuracio.isCAIB() ? "-caib" : "");
+	}
+
 }

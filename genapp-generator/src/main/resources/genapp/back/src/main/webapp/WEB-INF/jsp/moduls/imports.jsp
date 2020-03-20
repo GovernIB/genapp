@@ -1,55 +1,70 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<#assign symbol_dollar = "$">
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Benvingut a ${fullname}</title>
 
-<!-- Bootstrap CSS-->
-<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
-<link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet">
 
-
-<link href="<c:url value="/css/default.css"/>" rel="stylesheet">
-
-<link href="<c:url value="/css/genapp.css"/>" rel="stylesheet">
-
-<!-- Bootstrap FileUpload CSS -->
-<link href="<c:url value="/css/bootstrap-fileupload.css"/>" rel="stylesheet">
-
-<!-- Bootstrap TREE CSS-->
-<link href="<c:url value="/css/bootstrap-tree.css"/>" rel="stylesheet">
-
-<!-- Bootstrap DateTimepicker CSS -->
-<link href="<c:url value="/css/datepicker/bootstrap-datetimepicker.min.css"/>" rel="stylesheet">
-
-
-<!-- Bootstrap JS -->
-<script src="<c:url value="/js/jquery.js" />"></script>
-<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-
-<!-- Bootstrap FileUpload JS -->
-<script src="<c:url value="/js/bootstrap-fileupload.js"/>"></script>
-
- 
-<!-- Bootstrap DateTimepicker JS -->
-<script src="<c:url value="/js/datepicker/bootstrap-datetimepicker.min.js"/>"></script>
-<c:if test="${r"${not empty onlylang}"}">
-<script src="<c:url value="/js/datepicker/bootstrap-datetimepicker.${r"${onlylang}"}.js"/>"></script>
-</c:if>
-
-
-<!-- Bootstrap TREE JS-->
-<script src="<c:url value="/js/bootstrap-tree.js"/>"></script>
-
-<!-- CSS -->
+    <link rel="icon" type="image/vnd.microsoft.icon" href="<c:url value="/img/favicon.ico"/>">
+    
+    <!-- CSS -->
+    <link href="<c:url value="/css/styles.css"/>" rel="stylesheet">
+    <%-- XYZ ZZZ   --%>
+    <link href="<c:url value="/css/default.css"/>" rel="stylesheet">
    
-<!-- TinyMCE -->
-<script type="text/javascript">
-    var lang = '<c:out value="${r"${pageContext.response.locale.language}"}"/>';
-</script>
-<script src="<c:url value="/js/tiny_mce/tiny_mce.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/tinymce.js"/>" type="text/javascript"></script>
+    <link href="<c:url value="/css/genapp.css"/>" rel="stylesheet">
+    
+    <!-- Bootstrap CSS-->
+    <link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/datatables.min.css"/>" rel="stylesheet">
+
+
+
+    <!-- Bootstrap TREE CSS-->
+    <link href="<c:url value="/css/bootstrap-tree.css"/>" rel="stylesheet">
+
+    <!-- Bootstrap DateTimepicker CSS -->
+    <link href="<c:url value="/css/datetimepicker/tempusdominus-bootstrap-4.css"/>" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="<c:url value="/js/jquery.js"/>"></script>
+    <script src="<c:url value="/js/popper.min.js"/>"></script>
+
+    <!-- JS bootstrap -->
+    <script src="<c:url value="/js/bootstrap.js"/>"></script>
+
+    <%-- https://fontawesome.com/icons?d=gallery&m=free --%>
+    <script src="<c:url value="/js/fontawesome-all.js"/>"></script>
+
+<%-- XYZ ZZZ 
+    <!-- Bootstrap FileUpload JS -->
+    <script src="<c:url value="/js/bootstrap-fileupload.js"/>"></script>
+    --%>
+
+     
+    <!-- Bootstrap DateTimePicker JS -->
+    <script src="<c:url value="/js/datetimepicker/moment-with-locales.js"/>"></script>
+    <script src="<c:url value="/js/datetimepicker/tempusdominus-bootstrap-4.js"/>"></script>
+    <%-- XYZ ZZZ ZZZ
+    <c:if test="${symbol_dollar}{not empty onlylang}">
+    <script src="<c:url value="/js/datepicker/bootstrap-datetimepicker.${symbol_dollar}{onlylang}.js"/>"></script>
+    </c:if>
+    --%>
+
+
+    <!-- Bootstrap TREE JS-->
+    <script src="<c:url value="/js/bootstrap-tree.js"/>"></script>
+
+
+       
+    <!-- TinyMCE -->
+    <script type="text/javascript">
+        var lang = '<c:out value="${symbol_dollar}{pageContext.response.locale.language}"/>';
+    </script>
+    <script src="<c:url value="/js/tiny_mce/tiny_mce.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/js/tinymce.js"/>" type="text/javascript"></script>
 
 <script type="text/javascript">
 
@@ -100,20 +115,20 @@
     function openModal(url,accio) {
              createDivModal(traduccions.type['dialogoTituloEliminar'],
          traduccions.type['dialogoMensajeEliminar'],url);
-         $('#myModal').modal(accio);
+         ${symbol_dollar}('#myModal').modal(accio);
     }
 
 
     function openModalSubmit(url,accio, formName) {
           createDivModal(traduccions.type['dialogoTituloEliminar'],
       traduccions.type['dialogoMensajeEliminar'],url, formName);
-      $('#myModal').modal(accio);
+      ${symbol_dollar}('#myModal').modal(accio);
     }
     
     
 
     function createDivModal(tituloDialog, msgDialog,url, formName) {
-    $('body')
+    ${symbol_dollar}('body')
          .append(
                  '<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
                  + '<div class="modal-header">'
@@ -149,13 +164,4 @@
     }
 
 </script>
-
-<%--// Compatibilitat IE8  --%>
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
- 
- 
+  

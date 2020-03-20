@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -25,7 +25,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.FieldInfo;
-import org.fundaciobit.genapp.GenAppPackages;
 import org.fundaciobit.genapp.MultipleUnique;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
@@ -110,7 +109,7 @@ public class CodeGenerator {
 				if (skipSubstitutions(skipSubstitutions, dest)) {
 					FileUtils.writeByteArrayToFile(dest, data);
 				} else {
-					SourceFile persist = substitution(dest.getName(), new String(data), prop);
+					SourceFile persist = substitution(dest.getName(), new String(data, "UTF8"), prop);
 					persist.saveToPath(dest.getParentFile());
 				}
 			}
@@ -210,7 +209,7 @@ public class CodeGenerator {
 
 		} else { // Run with IDE
 
-			throw new Exception("DO NOT LAUNCH FROM ID !!!!");
+			throw new Exception("DO NOT LAUNCH FROM IDE !!!!");
 
 			/*
 			 * log.info("IS IDE" + System.getProperty("genapp_run"));
@@ -248,7 +247,7 @@ public class CodeGenerator {
 		// Path to .reb file
 		// Destination dir
 		if (args.length < 2) {
-			log.info("java " + GenAppPackages.PKG_BASE + ".generator.CodeGenerator "
+			log.info("java " + CodeGenerator.class.getName()
 					+ "<Path to .reb file> <Destination Dir.>)");
 			System.exit(-1);
 		}
@@ -334,11 +333,11 @@ public class CodeGenerator {
 		freemarker.template.Template tpl = cfg.getTemplate(name);
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		OutputStreamWriter output = new OutputStreamWriter(baos);
+		OutputStreamWriter output = new OutputStreamWriter(baos, StandardCharsets.UTF_8);
 
 		tpl.process(datamodel, output);
 
-		SourceFile sf = new SourceFile(name, baos.toString(Charset.defaultCharset()));
+		SourceFile sf = new SourceFile(name, baos.toString("UTF8"));
 
 		return sf;
 	}
@@ -368,7 +367,6 @@ public class CodeGenerator {
 			}
 			BeanCode beanGenCode;
 			beanGenCode = generateBeanPartialCode(tables[i].getNameJava(), tables[i].getFields());
-
 			beanCodeBySqlTableName.put(tables[i].name, beanGenCode);
 		}
 
@@ -376,7 +374,7 @@ public class CodeGenerator {
 
 		File cvFile = new File(projectDir, "versio.txt");
 		if (cvFile.exists()) {
-			appCurrentVersion = IOUtils.toString(new FileInputStream(cvFile), Charset.defaultCharset());
+			appCurrentVersion = IOUtils.toString(new FileInputStream(cvFile), "UTF8");
 		} else {
 			appCurrentVersion = "1.0.0";
 		}
@@ -657,6 +655,7 @@ public class CodeGenerator {
 				boolean overwrite = false;
 				final String[] ignoreSubstitution = new String[] {
 						// "onlycontentlayout.jsp",
+						"src/main/resources/",
 						"src/main/webapp/img/", "src/main/webapp/js/", "src/main/webapp/css/",
 						"src/main/webapp/WEB-INF/tld/", "src/main/webapp/WEB-INF/lib/" };
 				recursiveSubstitution(dstBaseDir, resourceUtils, prop, project, overwrite, ignoreSubstitution);
@@ -754,7 +753,7 @@ public class CodeGenerator {
 
 				String txt;
 				if (webdb_jsp.exists()) {
-					txt = FileUtils.readFileToString(webdb_jsp, "UTF-8");
+					txt = FileUtils.readFileToString(webdb_jsp, "UTF8");
 				} else {
 					txt = "<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\"%>\n"
 							+ " <%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n"
@@ -784,8 +783,7 @@ public class CodeGenerator {
 
 				str.append(txt.substring(endMark));
 
-				FileUtils.write(webdb_jsp, str.toString(), "UTF-8");
-
+				FileUtils.write(webdb_jsp, str.toString(), "UTF8");
 			}
 
 			// (10) tiles.xml
@@ -817,7 +815,7 @@ public class CodeGenerator {
 
 				str.append(txt.substring(endMark));
 
-				FileUtils.write(webdb_jsp, str.toString(), "UTF-8");
+				FileUtils.write(webdb_jsp, str.toString(), "UTF8");
 
 			}
 
@@ -1349,7 +1347,7 @@ public class CodeGenerator {
 						 * XYZ ZZZ String versioNumber;
 						 * 
 						 * File versio = new File(projectDir, "versio.txt"); if (versio.exists()) {
-						 * versioNumber = FileUtils.readFileToString(versio, "UTF-8").trim(); } else {
+						 * versioNumber = FileUtils.readFileToString(versio, "UTF8").trim(); } else {
 						 * log.error("No puc llegir versió de versio.txt"); versioNumber = "0.0.1"; }
 						 */
 

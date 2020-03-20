@@ -23,6 +23,11 @@ public class Version {
   private String jdkVersion;
   private String projectName;
 
+
+  public Version() {
+      init();
+  }
+
   /**
    * Inicialitza el bean amb els valors de Version.properties
    */
@@ -56,7 +61,7 @@ public class Version {
    */
   public String getScmRevision() {
     if ("${symbol_dollar}{buildNumber}".equals(this.scmRevision)) {
-        return "Recompile using profile revisionnumber (-Previsionnumber) to see this property";
+        return null;
     } else {
         return this.scmRevision;
     }

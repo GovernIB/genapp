@@ -85,7 +85,7 @@ public class DaoEJBGenerator {
 
 			// str.append("#\n");
 			// str.append(txt.substring(endMark));
-			FileUtils.write(missatges, str.toString(), "UTF-8");
+			FileUtils.write(missatges, str.toString(), "UTF8");
 
 		}
 	}

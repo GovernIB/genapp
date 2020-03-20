@@ -1,3 +1,4 @@
+<#assign symbol_dollar = "$">
 <%@page import="${package}.back.security.LoginException"
 %><%@page import="org.fundaciobit.genapp.common.web.i18n.I18NUtils"
 %><%@page import="org.apache.log4j.Logger"
@@ -48,11 +49,11 @@ try {
         String stipusError = request.getParameter("errortype");
 
         if (pageContext.getErrorData() != null) {
-            System.err.println("[[" + idError + "]] Requested getRequestURI: "
+            log.error("[[" + idError + "]] Requested getRequestURI: "
                     + pageContext.getErrorData().getRequestURI() );
-            System.err.println("[[" + idError + "]] Requested getServletName: "
+            log.error("[[" + idError + "]] Requested getServletName: "
                     + pageContext.getErrorData().getServletName() );
-            System.err.println("[[" + idError + "]] Requested getStatusCode: "
+            log.error("[[" + idError + "]] Requested getStatusCode: "
                     + pageContext.getErrorData().getStatusCode() );
         }
         int tipusError = !stipusError.isEmpty()?new Integer(stipusError).intValue():-1;
@@ -68,6 +69,8 @@ try {
                 missatgeTipusError = I18NUtils.tradueix("error.jsp.desconegut");
         }
     } else {
+    	
+      log.error("Error: " + e.getMessage(), e);
       // Si els errors són de perdua de sessio no mostram el botó per tornar a principal,
       // han de tancar navegador i tornar obrir sessió.
       boolean runAsException = ( e instanceof IllegalArgumentException
@@ -82,10 +85,10 @@ try {
             redirect = (String)request.getAttribute("javax.servlet.error.request_uri");
           }
       } else {
-         if (log.isDebugEnabled()) {
-           log.debug("[[" + idError + "]] Exceptio de tipus " + e.getClass() );
-           log.debug("[[" + idError + "]] Exceptio MSG " + e.getMessage() );
-         }
+         
+           log.error("[[" + idError + "]] Exceptio de tipus " + e.getClass() );
+           log.error("[[" + idError + "]] Exceptio MSG " + e.getMessage() );
+         
       }
     }
     // Definim les etiquetes que mostram traduides.
@@ -98,13 +101,12 @@ try {
 
 
 %>
-<fmt:setLocale value="${r"${locale}"}"/>
+<fmt:setLocale value="${symbol_dollar}{locale}"/>
 <html>
-<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" media="screen">
-<link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet">
+<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet" media="screen">
 <link href="<c:url value="/css/default.css"/>" rel="stylesheet">
 <script src="<c:url value="/js/jquery.js" />"></script>
-<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/js/bootstrap.js"/>"></script>
 
 <script type="text/javascript">
   function showError(){
@@ -114,21 +116,21 @@ try {
 <% if (redirect != null) {
       request.getSession().setAttribute("redirect", redirect);
 %>
-  setTimeout("location.href = '${r"${redirect}"}';",3500);
+  setTimeout("location.href = '${symbol_dollar}{redirect}';",3500);
 <% } %>
 </script>
 
 <body>
  <div class="alert alert-error">
-      <c:set var="stacktrace"  value="${r"${pageContext.exception.stackTrace}"}"/>
+      <c:set var="stacktrace"  value="${symbol_dollar}{pageContext.exception.stackTrace}"/>
       <div><h4><%=titolPagina%></h4></div>
       <br/>
       <% if (!sessioinvalida) { %>
-        <c:if test = "${r"${empty stacktrace}"}">
+        <c:if test = "${symbol_dollar}{empty stacktrace}">
             <%= missatgeTipusError%>
         </c:if>
-        <c:if test = "${r"${not empty stacktrace}"}">
-            <div><b>Error:</b>${r"${pageContext.exception.message}"}&nbsp;(${r"${requestScope['javax.servlet.forward.request_uri']}"})</div>
+        <c:if test = "${symbol_dollar}{not empty stacktrace}">
+            <div><b>Error:</b>${symbol_dollar}{pageContext.exception.message}&nbsp;(${symbol_dollar}{requestScope['javax.servlet.forward.request_uri']})</div>
         </c:if>
       <% } %>
       <div><b><%=missatgeSessioInvalida%></b></div>
@@ -137,20 +139,25 @@ try {
       <div>
         <!-- Botó de mostrar stacktrace en cas que hi hagi stacktrace -->
         <% if (!sessioinvalida) { %>
-        <c:if test="${r"${not empty stacktrace}"}">
+        <c:if test="${symbol_dollar}{not empty stacktrace}">
             <button class="btn btn-danger" onclick="showError()"><%=veureDetall%></button>
         </c:if>
 
         <!-- Mostram el botó de tornar a principal -->
         <a href="<c:url value="/common/principal.html"/>" class="btn"><%=etiquetaBoto%></a>
+        
+        <br/>
+        
+        
+        <b>[[[[ MESSAGE: ${symbol_dollar}{pageContext.exception.message}]]]</b>
 
         <br/>
         <br/>
         <!-- Mostram la traça de l'error -->
-        <c:if test="${r"${not empty stacktrace}"}">
+        <c:if test="${symbol_dollar}{not empty stacktrace}">
             <div class="trace"><b><%=detallError%></b></div>
-            <c:forEach var="trace" items="${r"${stacktrace}"}">
-              <p class="trace">${r"${trace}"}</p>
+            <c:forEach var="trace" items="${symbol_dollar}{stacktrace}">
+              <p class="trace">"${symbol_dollar}{trace}"</p>
             </c:forEach>
             <br/>
          </c:if>

@@ -2488,3 +2488,23 @@ INFO  2019-12-03 14:11:38,386 RebApp - UsuariEntitatFavorit	pfi_usuarientitatfav
 INFO  2019-12-03 14:11:38,386 RebApp - UsuariPersona	pfi_usuaripersona
 INFO  2020-02-25 12:49:24,213 CodeGenerator - java org.fundaciobit.genapp.generator.CodeGenerator <Path to .reb file> <Destination Dir.>)
 INFO  2020-02-25 12:50:09,206 RebApp -  NUMERO -> -1
+INFO  2020-03-16 10:10:51,950 CodeGenerator - DAO de Alumne
+INFO  2020-03-16 10:10:51,959 CodeGenerator - DAO de Fitxer
+INFO  2020-03-16 10:10:51,959 CodeGenerator - DAO de Idioma
+INFO  2020-03-16 10:10:51,959 CodeGenerator - DAO de Traduccio
+INFO  2020-03-16 10:10:51,959 CodeGenerator - DAO de TraduccioMap
+INFO  2020-03-16 10:10:51,996 CodeGenerator - genapp_run = null
+INFO  2020-03-16 10:18:41,613 CodeGenerator - DAO de Alumne
+INFO  2020-03-16 10:18:41,617 CodeGenerator - DAO de Fitxer
+INFO  2020-03-16 10:18:41,618 CodeGenerator - DAO de Idioma
+INFO  2020-03-16 10:18:41,618 CodeGenerator - DAO de Traduccio
+INFO  2020-03-16 10:18:41,618 CodeGenerator - DAO de TraduccioMap
+INFO  2020-03-16 10:18:41,625 CodeGenerator - genapp_run = true
+INFO  2020-03-16 10:18:41,627 CodeGenerator - IS FILE true
+INFO  2020-03-16 10:22:28,766 CodeGenerator - DAO de Alumne
+INFO  2020-03-16 10:22:28,771 CodeGenerator - DAO de Fitxer
+INFO  2020-03-16 10:22:28,771 CodeGenerator - DAO de Idioma
+INFO  2020-03-16 10:22:28,771 CodeGenerator - DAO de Traduccio
+INFO  2020-03-16 10:22:28,771 CodeGenerator - DAO de TraduccioMap
+INFO  2020-03-16 10:22:28,777 CodeGenerator - genapp_run = true
+INFO  2020-03-16 10:22:28,778 CodeGenerator - IS FILE true

@@ -160,7 +160,7 @@ public class GenAppUtils {
             }
           }
         } else
-          directories.add(new File(URLDecoder.decode(res.getPath(), "UTF-8")));
+          directories.add(new File(URLDecoder.decode(res.getPath(), "UTF8")));
       }
     } catch (NullPointerException x) {
       throw new ClassNotFoundException(pckgname + " does not appear to be "

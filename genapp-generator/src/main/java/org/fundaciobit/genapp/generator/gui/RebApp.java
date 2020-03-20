@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -373,7 +372,7 @@ public class RebApp extends JFrame {
             ClassLoader classLoader = RebApp.class.getClassLoader();
             InputStream is = classLoader.getResourceAsStream(src);
             
-            String content = IOUtils.toString(is, Charset.defaultCharset());
+            String content = IOUtils.toString(is, "UTF8");
             
             
             content = content.replace("PFX", prefix);
@@ -391,7 +390,7 @@ public class RebApp extends JFrame {
             parent = tmp.getParentFile();
             System.out.println("PARENT = " + parent.getAbsolutePath());
             
-            FileUtils.write(f, content, Charset.defaultCharset());
+            FileUtils.write(f, content, "UTF8");
           }
           
          

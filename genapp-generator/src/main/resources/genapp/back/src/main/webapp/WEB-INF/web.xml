@@ -40,6 +40,7 @@
 		<url-pattern>*.jpg</url-pattern>
 		<url-pattern>*.js</url-pattern>
 		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.map</url-pattern>		
 		<url-pattern>*.htm</url-pattern>
 		<url-pattern>*.txt</url-pattern>
 		<url-pattern>*.jar</url-pattern>

@@ -55,7 +55,7 @@ body {
 	font-style:italic;
 }
 .main {
-	padding-top: 75px;
+	padding-top: 80px;
 }
 
 
@@ -130,7 +130,7 @@ body {
 	-moz-box-shadow: 0 0 5px #888;
 	-webkit-box-shadow: 0 0 5px#888;
 	box-shadow: 0 0 5px #888;
-	margin: 0 20px;
+	margin: 0 10px;
 }
 .page-header {
 	margin:0 0 10px 0;
@@ -253,10 +253,7 @@ small {
 		border-right:1px solid #ccc;
 		border-top:1px solid #ccc;
 	}
-.expedient-description dd { margin-left:0;}
-.expedient-description dt { margin-bottom:5px;}
-.tasc-description dt { width:14px;}
-.tasc-description dd { margin-left: 25px;}
+
 .buttonList {
     padding-bottom: 17px;	
 }
@@ -425,7 +422,14 @@ width: 62%;
    padding-top: 15px;
  }
 
-
+.thumbnail {
+	display: block;
+	line-height: 20px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+	transition: all 0.2s ease-in-out;
+}
 
 
 

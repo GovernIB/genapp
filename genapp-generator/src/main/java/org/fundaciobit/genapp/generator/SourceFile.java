@@ -14,9 +14,9 @@ import java.nio.charset.Charset;
  */
 public class SourceFile {
   
-  private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
+  private final Charset UTF8_CHARSET = Charset.forName("UTF8");
   
-  boolean utf8 = false;
+  boolean utf8 = true;
 
   String fileName;
   

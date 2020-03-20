@@ -76,33 +76,31 @@ public final class I18NUtils {
   public static String fixPattern(String datetimepattern) {
     // JAVA d/MM/yyyy H:mm:ss a => PICKER dd/MM/yyyy hh:mm:ss PP
     // JAVA dd/M/yyyy h:mm:ss a => PICKER dd/MM/yyyy HH:mm:ss PP
-    if (datetimepattern.indexOf('h') != -1) {
-      if (datetimepattern.indexOf("hh") != -1) {
+    if (datetimepattern.indexOf("hh") != -1) {
         datetimepattern = datetimepattern.replace("hh", "HH");
-      } else {
+    } else if (datetimepattern.indexOf('h') != -1) {
         datetimepattern = datetimepattern.replace("h", "HH");
-      }
-    } else {
-      if (datetimepattern.indexOf('H') != -1) {
-        if (datetimepattern.indexOf("HH") != -1) {
-          datetimepattern = datetimepattern.replace("HH", "hh");
-        } else {
-          datetimepattern = datetimepattern.replace("H", "hh");
-        }
-      }
+    } if (datetimepattern.indexOf("HH") != -1) {
+    	// OK
+    } else  if (datetimepattern.indexOf('H') != -1) {
+        datetimepattern = datetimepattern.replace("H", "HH");
     }
+    
 
     if (datetimepattern.indexOf('a') != -1) {
       // TODO Replace aa => a fins que no hi hagi més aa
       datetimepattern = datetimepattern.replace("a", "PP");
     }
 
-    if (datetimepattern.indexOf('d') != -1) {
-      if (datetimepattern.indexOf("dd") != -1) {
-        datetimepattern = datetimepattern.replace("dd", "dd");
-      } else {
-        datetimepattern = datetimepattern.replace("d", "dd");
-      }
+    
+    if (datetimepattern.indexOf("dd") != -1) {
+        datetimepattern = datetimepattern.replace("dd", "DD");
+    } else if (datetimepattern.indexOf('d') != -1) {
+        datetimepattern = datetimepattern.replace("d", "DD");
+    } if (datetimepattern.indexOf("DD") != -1) {
+        // OK
+    } else if (datetimepattern.indexOf('D') != -1) {
+        datetimepattern = datetimepattern.replace("D", "DD");
     }
 
     if (datetimepattern.indexOf('M') != -1) {
@@ -112,6 +110,8 @@ public final class I18NUtils {
         datetimepattern = datetimepattern.replace("M", "MM");
       }
     }
+    
+    datetimepattern = datetimepattern.replace('y', 'Y');
 
     return datetimepattern;
   }

@@ -84,7 +84,7 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
   protected void processTranslationFile(Map<Integer, ITraduccioItem> traduccionsPerHashDeClau,
       final String idioma, File forig, File fdest) throws IOException {
-    List<String> originalLines = FileUtils.readLines(forig, "UTF-8");
+    List<String> originalLines = FileUtils.readLines(forig, "UTF8");
 
     List<String> newLines = new ArrayList<String>();
     
@@ -125,7 +125,7 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
     }
 
-    FileUtils.writeLines(fdest,  "UTF-8", newLines, "\r\n" ,false);
+    FileUtils.writeLines(fdest,  "UTF8", newLines, "\r\n" ,false);
   }
 
   @Override
@@ -146,7 +146,7 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
 
 
-      List<String> lines = FileUtils.readLines(fitxer, "UTF-8");
+      List<String> lines = FileUtils.readLines(fitxer, "UTF8");
 
       for (String line : lines) {
         
