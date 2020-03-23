@@ -10,10 +10,6 @@
   <modules>	
   </modules>
 
-  <properties>
-    <spring.version>3.1.2.RELEASE</spring.version>
-  </properties>
-
   <repositories>
     <repository>
       <id>genapp-maven-repos</id>
@@ -22,89 +18,7 @@
     </repository>
   </repositories>
 
-
-
   <dependencies>
-
-    <!--  CORE -->
-
-    <dependency>
-      <groupId>javax.persistence</groupId>
-      <artifactId>persistence-api</artifactId>
-      <version>1.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.fundaciobit.genapp</groupId>
-      <artifactId>genapp-core</artifactId>
-      <version>2.0.0</version>
-    </dependency>
-
-    <!--  WEB -->
-
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.fundaciobit.genapp</groupId>
-      <artifactId>genapp-web</artifactId>
-      <version>2.0.0</version>
-    </dependency>
-
-    <!-- GEN -->
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.14</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.6</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.freemarker</groupId>
-      <artifactId>freemarker</artifactId>
-      <version>2.3.19</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>com.oracle</groupId>
-      <artifactId>ojdbc6</artifactId>
-      <version>11.2.0.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.0-801.jdbc3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.13</version>
-    </dependency>
 
     <dependency>
       <groupId>org.fundaciobit.genapp</groupId>
@@ -114,9 +28,7 @@
 
   </dependencies>
 
-
   <build>
-
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -124,9 +36,6 @@
         <version>1.3.2</version>
       </plugin>
     </plugins>
-
-
   </build>
-
 
 </project>
