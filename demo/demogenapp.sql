@@ -27,9 +27,6 @@ CREATE SEQUENCE dem_demogenapp_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.dem_demogenapp_seq OWNER TO demogenapp;
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
