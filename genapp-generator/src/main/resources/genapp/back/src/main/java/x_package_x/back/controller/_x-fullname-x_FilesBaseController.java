@@ -23,13 +23,12 @@ import javax.ejb.EJB;
  * 
  */
 @Controller
-public abstract class ${fullname}FilesBaseController<I extends IGenAppEntity,PK extends Object,F extends BaseForm>extends CommonFilesBaseController<I,PK,F,${fitxer}>{
+public abstract class ${fullname}FilesBaseController<I extends IGenAppEntity,PK extends Object,F extends BaseForm> extends CommonFilesBaseController<I,PK,F,${fitxer}>{
 
 
 	@EJB(mappedName=${fitxer}Local.JNDI_NAME)
 	protected ${fitxer}Local fitxerEjb;
 
-	protected final Logger log = Logger.getLogger(getClass());
 
 	/**
 	 * 

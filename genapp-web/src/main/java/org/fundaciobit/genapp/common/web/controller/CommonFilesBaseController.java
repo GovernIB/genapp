@@ -17,8 +17,6 @@ import org.springframework.stereotype.Controller;
 public abstract class CommonFilesBaseController<I extends IGenAppEntity, PK extends Object, F extends BaseForm, E extends IFile> extends CommonBaseController<I,PK> {
 
 
-  protected final Logger log = Logger.getLogger(getClass());
-
   /**
    * 
    * @return
