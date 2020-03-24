@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -453,8 +455,9 @@ public class CodeGenerator {
 		// ================== PERSISTENCE ======================
 		// ===============================================
 
-		generatePersistence(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion,
-				jpaPackage);
+		// Integrar JPA i persistece #28
+		/* generatePersistence(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion,
+				jpaPackage); */
 
 		// ===============================================
 		// ================== UTILS ======================
@@ -1411,6 +1414,18 @@ public class CodeGenerator {
 
 			// (a) Copiar estructura directoris
 			final String jpaResource = resourceBase + "/" + jpaName;
+
+			// Integrar JPA i persistece #28
+			prop.put("dollar", "$");
+			prop.put("package", project.getPackageName());
+			prop.put("persistencename", project.projectName.toLowerCase() + "DB");
+			List<String> llistaJPABeans = Stream.of(tables)
+					.filter(TableInfo::isGenerate)
+					.map(table -> jpaPackage + "." + table.nameJava + "JPA")
+					.collect(Collectors.toList());
+			prop.put("classes", llistaJPABeans);
+			prop.put("jtadatasource", "java:/" + project.getPackageName() + ".db");
+			// end #28
 
 			boolean overwrite = false;
 			recursiveSubstitution(jpaDir, jpaResource, prop, project, overwrite);
