@@ -45,6 +45,7 @@
 		<url-pattern>*.txt</url-pattern>
 		<url-pattern>*.jar</url-pattern>
 		<url-pattern>*.pdf</url-pattern>
+        <url-pattern>*.ico</url-pattern>
 		<url-pattern>*.properties</url-pattern>
 	</servlet-mapping>
 

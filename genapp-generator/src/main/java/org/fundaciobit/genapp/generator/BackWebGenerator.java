@@ -2026,7 +2026,7 @@ public class BackWebGenerator extends IconUtils {
 
 		final String readOnlyCondition = "gen:contains(" + instanceForm + ".readOnlyFields ," + modelCampMay + ")";
 		final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'true' : 'false'}\"";
-		final String cssClass = "${" + readOnlyCondition + "? 'input uneditable-input' : 'input'}";
+		final String cssClass = "col-md-6 form-control ${" + readOnlyCondition + "? ' uneditable-input' : ''}";
 		final String formInputReadOnly = readOnlyAttribute + " cssClass=\"" + cssClass + "\" ";
 
 		if (fileFields.contains(field)) {
@@ -2045,16 +2045,16 @@ public class BackWebGenerator extends IconUtils {
 			code.append("            </c:if>\n");
 
 			code.append("            <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-
+			//code.append("              <div class=\"row\" style=\"margin-right: 0px;margin-left:0px;\"/>");
 			code.append("              <div class=\"input-group\">\n");
-			code.append("                <div class=\"custom-file\">\n");
+			code.append("                <div class=\"custom-file col-md-4\">\n");
 			// code.append(" <input type=\"file\" class=\"custom-file-input\"
 			// id=\"inputGroupFile02\">\n");
 			code.append("                  <form:input  " + formInputReadOnlyFile + "  path=\"" + modelCamp
 					+ "\" type=\"file\" />\n");
 			
 			code.append("                  <label class=\"custom-file-label\" for=\"" + modelCamp + "\">\n");
-			code.append("                  <fmt:message key=\"genapp.form.file.select\"/>\n");
+		//	code.append("                  <fmt:message key=\"genapp.form.file.select\"/>\n");
 			code.append("                  </label>\n");
 			
 			code.append("                </div>\n");
@@ -2068,20 +2068,20 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                <div class=\"input-group-append\">\n");
 			code.append("                  <span class=\"input-group-text\" id=\"\">\n");
 			//code.append("                        <fmt:message key=\"genapp.form.file.change\"/>\n");
-			code.append("                       <small>XYZ</small>");
-			code.append("                  " + getOnlyReadFileFieldWithoutCondition(project, model, modelCamp) + "\n");
+			code.append("                  <small>" + getOnlyReadFileFieldWithoutCondition(project, instanceForm + "." + model, fileObj) + "</small>\n");
 			
 			code.append("                  </span>\n");
 			if (!field.isNotNullable) {
 				code.append("                  <span class=\"input-group-text\" id=\"\">\n");
 				code.append("                        <form:checkbox path=\"" + modelCamp + "Delete\"/>\n");
-				code.append("                        <fmt:message key=\"genapp.form.file.delete\"/>\n");
+				code.append("                        <small><fmt:message key=\"genapp.form.file.delete\"/></small>\n");
 				code.append("                  </span>\n");
 				
 			}
 			code.append("                </div>\n");
 			code.append("                </c:if>\n");
 			code.append("              </div>\n");
+			//code.append("              </div>\n");
 			code.append("            </c:if>\n");
 
 			/*
@@ -2130,23 +2130,49 @@ public class BackWebGenerator extends IconUtils {
 			 */
 			return code.toString();
 		}
+		
+		
+		/* XYZ ZZZ
+		
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+		    <a class="nav-link active" href="#">Active</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#">Link</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#">Link</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link disabled" href="#">Disabled</a>
+		  </li>
+		</ul>
+		*/
+		
+		
+		
+		// \
 
 		if (translationFields.contains(field)) {
 			String simpleName = modelCamp.substring(0, modelCamp.length() - 2); // Llevar ID
 			String fullmodel = model + "." + simpleName;
-			code.append(
-					"       <form:errors path=\"" + fullmodel + "\" cssClass=\"errorField alert alert-error\" />\n");
-			code.append("       <div class=\"tabbable\">\n");
-			code.append("         <ul class=\"nav nav-tabs\" style=\"margin-bottom: 3px;\">\n");
+
+			code.append("       <form:errors path=\"" + fullmodel + "\" cssClass=\"errorField alert alert-error\" />\n");
+			code.append("       <div class=\"row-fluid  col-md-6\">\n");
+			code.append("         <ul class=\"nav nav-tabs\" style=\"margin: 0 15px -1px;\">\n");
 			code.append(
 					"             <c:forEach items=\"${__theForm.idiomesTraduccio}\" var=\"idioma\" varStatus=\"counter\">\n");
-			code.append(
-					"               <li class=\"${(counter.index == 0)? 'active':''}\"  ><a href=\"#${counter.index}_tab_"
-							+ simpleName + "_${idioma.idiomaID}\" data-toggle=\"tab\">${idioma.nom}</a></li>\n");
-			code.append("           </c:forEach>\n");
+			
+			// 
+			code.append("            <li class=\"nav-item \">\n");
+			code.append("                 <a class=\"nav-link ${(counter.index == 0)? 'active':''}\" href=\"#${counter.index}_tab_"
+							+ simpleName + "_${idioma.idiomaID}\" data-toggle=\"tab\">${idioma.nom}</a>\n");
+			code.append("            </li>\n");
+			code.append("          </c:forEach>\n");
 			code.append("           \n");
 			code.append("         </ul>\n");
-			code.append("         <div class=\"tab-content\">\n");
+			code.append("         <div class=\"tab-content well well-white\" style=\"padding:8px;margin:0px;\">\n");
 			code.append(
 					"           <c:forEach items=\"${__theForm.idiomesTraduccio}\" var=\"idioma\" varStatus=\"counter\">\n");
 			code.append(
@@ -2156,7 +2182,7 @@ public class BackWebGenerator extends IconUtils {
 					+ ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"errorField alert alert-error\"/>\n");
 			String maxlength = "maxlength=\"4000\"";
 			code.append("               <form:input path=\"" + fullmodel + ".traduccions['${idioma.idiomaID}'].valor\" "
-					+ formInputReadOnly.replace("'input", "'input-xxlarge") + " " + maxlength + " />\n");
+					+ "cssClass=\"" + cssClass + "\" " + maxlength + " />\n");
 			/*
 			 * code.append("               " + "<form:input path=\"" + fullmodel +
 			 * ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"${gen:contains(__theForm.readOnlyFields ,Prova2Fields.NOM2TRADUCCIOID)? 'input-xxlarge uneditable-input' : 'input-xxlarge'}\"/>\n"
@@ -2256,7 +2282,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("          <c:if test=\"${" + readOnlyCondition + "}\" >\n");
 			code.append("          <form:hidden path=\"" + model + "." + modelCamp + "\"/>\n");
 
-			code.append("          <input type=\"text\" readonly=\"true\" class=\"input-xxlarge uneditable-input\" "
+			code.append("          <input type=\"text\" readonly=\"true\" class=\"form-control input-xxlarge uneditable-input\" "
 					+ "value=\"");
 			/*
 			 * WWW if (traduir) { code.append("<fmt:message key=\""); }
@@ -2271,7 +2297,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("          <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
 
 			code.append("          <form:select id=\"" + id + "\"  onchange=\"if(typeof onChange" + name
-					+ " == 'function') {  onChange" + name + "(this); };\"  cssClass=\"input-xxlarge\" path=\"" + model
+					+ " == 'function') {  onChange" + name + "(this); };\"  cssClass=\"form-control col-md-4\" path=\"" + model
 					+ "." + modelCamp + "\">\n");
 			if (!field.isNotNullable()) {
 				code.append("          <%-- El camp pot ser null, per la qual cosa afegim una entrada buida --%>\n");
@@ -2303,9 +2329,9 @@ public class BackWebGenerator extends IconUtils {
 			code.append("              <form:textarea");
 			if (webType == WebType.RichText) {
 				code.append(
-						" cssClass=\"input-xxlarge ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\"");
+						" cssClass=\"col-md-8 ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\" ");
 			} else {
-				code.append(" rows=\"3\" wrap=\"soft\" style=\"overflow:auto;\" cssClass=\"input-xxlarge\" "
+				code.append(" rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;\" cssClass=\"form-control col-md-8\" "
 						+ readOnlyAttribute);
 				// formInputReadOnly.replace("'input", "'input-xxlarge") + " ");
 			}
@@ -2340,13 +2366,13 @@ public class BackWebGenerator extends IconUtils {
 				prefix = "genapp.checkbox";
 				code.append("              <form:errors path=\"" + model + "." + modelCamp
 						+ "\" cssClass=\"errorField alert alert-error\" />\n");
-				code.append("              <form:checkbox onclick=\"javascript:return ${ " + readOnlyCondition
+				code.append("              <form:checkbox cssClass=\"form-control\" onclick=\"javascript:return ${ " + readOnlyCondition
 						+ "? 'false' : 'true'}\" path=\"" + model + "." + modelCamp + "\" />\n");
 			} else {
 				if (prefix == null) {
 					prefix = "genapp.checkbox";
 				}
-				code.append("              <form:select cssClass=\"input-medium\" onchange=\"if(typeof onChange" + name2
+				code.append("              <form:select cssClass=\"form-control col-md-6\" onchange=\"if(typeof onChange" + name2
 						+ " == 'function') {  onChange" + name2 + "(this); };\"  path=\"" + model + "." + modelCamp
 						+ "\">\n");
 				if (!field.isNotNullable) {
@@ -2592,11 +2618,8 @@ public class BackWebGenerator extends IconUtils {
 		if (size < 26) {
 			return "input-large";
 		}
-		if (size < 33) {
-			return "input-xlarge";
-		}
-
-		return "input-xxlarge";
+		
+		return "col-md-8";
 
 	}
 

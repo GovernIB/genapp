@@ -52,6 +52,10 @@ CREATE TABLE dem_alumne (
     paginaweb character varying(255)
 );
 
+ALTER TABLE dem_alumne
+  ADD COLUMN descripcio character varying(4000);
+  
+
 
 --
 -- TOC entry 176 (class 1259 OID 46170)
@@ -66,7 +70,8 @@ CREATE TABLE dem_assignatura (
     hora time without time zone
 );
 
-
+ALTER TABLE dem_assignatura
+  ADD COLUMN descripcio character varying(4000);
 
 --
 -- TOC entry 177 (class 1259 OID 46179)
