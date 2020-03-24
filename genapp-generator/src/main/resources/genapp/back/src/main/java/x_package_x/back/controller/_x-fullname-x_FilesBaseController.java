@@ -3,7 +3,6 @@ package ${package}.back.controller;
 import ${package}.ejb.${fitxer}Local;
 import ${package}.model.entity.${fitxer};
 
-import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.IGenAppEntity;
 import org.fundaciobit.genapp.common.filesystem.FileSystemManager;
 import org.fundaciobit.genapp.common.i18n.I18NException;

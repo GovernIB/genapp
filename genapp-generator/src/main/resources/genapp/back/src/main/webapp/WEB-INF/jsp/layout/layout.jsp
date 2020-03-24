@@ -27,7 +27,7 @@
 	       <a class="nav-link ${dollar}{(empty pipella)?'active' : '' }" href="<c:url value="/canviarPipella/"/>"><fmt:message key="inici" /></a>
 	    </li> 
 	
-	<%--  DRAW MENU OPTIONS  
+	<%--  DRAW MENU OPTIONS  XYZ ZZZ
 	    <c:forEach var="rolG" items="${dollar}{loginInfo.roles}">
 	    <c:set var="rol" value="${dollar}{rolG.authority}"/>
 	    <c:if test="${dollar}{not(rol eq 'ROLE_USER')}">
