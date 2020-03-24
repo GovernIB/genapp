@@ -1,26 +1,16 @@
-call mvn -f D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\genapp-generator\pom.xml  clean install
+call mvn -f ..\genapp-generator\pom.xml  clean install
 
 if %errorlevel% EQU 0 (
 
-cd D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\demo\appweb
+    cd ..\demo\appweb
+    rmdir /Q /S logic jpa back ear ejb utils model scripts persistence
+    cd ..\..\run
 
-call neteja.bat
-
-cd D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\run
-
-call mvn exec:java -Dgenapp_run=true -Dexec.mainClass="org.fundaciobit.genapp.generator.CodeGenerator" -Dexec.args="D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\demo\DemoGenApp.genapp D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\demo\appweb"
+    call mvn exec:java -Dgenapp_run=true -Dexec.mainClass="org.fundaciobit.genapp.generator.CodeGenerator" -Dexec.args="..\demo\DemoGenApp.genapp ..\demo\appweb"
 
     if %errorlevel% EQU 0 (
-      cd D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\demo\appweb
-      call compile.bat clean
-
-    ) ELSE (
-    goto EXIT
+        cd ..\demo\appweb
+        call compile.bat clean
+        cd ..\..\run
     )
-) ELSE (
-    goto EXIT
 )
-:EXIT
-
-
-cd D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB3\genapp-2.0\run
