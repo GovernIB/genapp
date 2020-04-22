@@ -1806,6 +1806,7 @@ public class BackGenerator {
       if (fileFields.size() != 0) {
         code.append("        afm.processErrorFilesWithoutThrowException(); // FILE\n");
       }
+      code.append("        result.reject(\"error.form\");\n");
       code.append("        return getTileForm();\n");
       code.append("      } else {\n");
 
@@ -1935,6 +1936,7 @@ public class BackGenerator {
       if (fileFields.size() != 0) {
         code.append("        afm.processErrorFilesWithoutThrowException(); // FILE\n");
       }
+      code.append("        result.reject(\"error.form\");\n");
       code.append("        return getTileForm();\n");
       code.append("      } else {\n");
 

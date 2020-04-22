@@ -1848,7 +1848,11 @@ public class BackWebGenerator extends IconUtils {
 				code.append("        <form:hidden path=\"" + model + ".${hiddenField}\"/>\n");
 				code.append("      </c:if>\n");
 				code.append("    </c:forEach>\n");
-				code.append("    </c:if>");
+				code.append("    </c:if>\n\n");
+				
+			    // Errors Globals del Formulari
+			    code.append("    <form:errors cssClass=\"errorField alert alert-error\" delimiter=\"&lt;p/&gt;\" />\n");
+			    
 
 				code.append(
 						"    <table class=\"tdformlabel table-condensed table table-bordered table-striped marTop10  \" > \n");
