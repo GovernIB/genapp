@@ -48,13 +48,6 @@
 			<type>ejb</type>
 		</dependency>
 
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-persistence-jta</artifactId>
-			<version>${project_version}</version>
-			<type>jar</type>
-		</dependency>
-
 <#if generateback>
 		<dependency>
 			<groupId>${package}</groupId>
@@ -207,10 +200,6 @@
 							<bundleFileName>${name}-logic</bundleFileName>
 						</ejbModule>
 
-						<jarModule>
-							<groupId>${package}</groupId>
-							<artifactId>${name}-persistence-jta</artifactId>
-						</jarModule>
 
 						<#if generatews>
 						<ejbModule>
