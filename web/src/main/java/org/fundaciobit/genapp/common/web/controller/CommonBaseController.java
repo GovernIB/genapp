@@ -55,7 +55,19 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public abstract class CommonBaseController <I extends IGenAppEntity, PK extends Object> extends ModelGenerator {
 
+  /**
+   * @deprecated use 
+   * {@link #EMPTY_STRINGKEYVALUE_LIST_MODIFIABLE}
+   * or
+   * {@link #EMPTY_STRINGKEYVALUE_LIST_UNMODIFIABLE}
+   * instead
+   */  
+  @Deprecated  
   public static final List<StringKeyValue> EMPTY_STRINGKEYVALUE_LIST = Collections.unmodifiableList(new ArrayList<StringKeyValue>());
+  
+  public static final List<StringKeyValue> EMPTY_STRINGKEYVALUE_LIST_MODIFIABLE = new ArrayList<StringKeyValue>();
+  
+  public static final List<StringKeyValue> EMPTY_STRINGKEYVALUE_LIST_UNMODIFIABLE = Collections.unmodifiableList(new ArrayList<StringKeyValue>());
   
   public static final KeyValueComparator<String> STRINGKEYVALUE_COMPARATOR = new KeyValueComparator<String>();
   
