@@ -2511,7 +2511,7 @@ public class BackGenerator {
   
           
           code.append("    if (" + instanceForm + ".isHiddenField(" + field.javaName.toUpperCase() + ")) {\n");
-          code.append("      return EMPTY_STRINGKEYVALUE_LIST;\n");
+          code.append("      return EMPTY_STRINGKEYVALUE_LIST_MODIFIABLE;\n");
           code.append("    }\n");
 
           if (wfi.getWebtype() == WebType.Query) {
@@ -2538,7 +2538,7 @@ public class BackGenerator {
         //code.append("    final String _fieldName =  " + instanceFilterForm + ".getStringOfField(" + field.javaName.toUpperCase() +  ");\n");
         code.append("    if (" + instanceFilterForm + ".isHiddenField(" + field.javaName.toUpperCase() +  ")\n");
         code.append("      && !" + instanceFilterForm + ".isGroupByField(" + field.javaName.toUpperCase() +  ")) {\n");
-        code.append("      return EMPTY_STRINGKEYVALUE_LIST;\n");
+        code.append("      return EMPTY_STRINGKEYVALUE_LIST_MODIFIABLE;\n");
         code.append("    }\n");
         code.append("    Where _w = null;\n");
         if (wfi.getWebtype() == WebType.Query) {
