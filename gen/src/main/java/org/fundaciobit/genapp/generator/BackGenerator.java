@@ -2004,7 +2004,11 @@ public class BackGenerator {
         code.append("    // Comprovam si ja esta definida la llista\n");
         code.append("    if (" + instanceForm + "." + getmethod + "() == null) {\n");
         code.append("      List<StringKeyValue> _listSKV = getReferenceListFor" + name + "(request, mav, " + instanceForm + ", null);\n\n");
+        
+        code.append(" if (!_listSKV.isEmpty())    {\n");
         code.append("      java.util.Collections.sort(_listSKV, STRINGKEYVALUE_COMPARATOR);\n");
+        code.append("    }\n");
+        
         code.append("      " + instanceForm + "." + setmethod + "(_listSKV);\n");
         code.append("    }\n");
       }
@@ -2511,7 +2515,7 @@ public class BackGenerator {
   
           
           code.append("    if (" + instanceForm + ".isHiddenField(" + field.javaName.toUpperCase() + ")) {\n");
-          code.append("      return EMPTY_STRINGKEYVALUE_LIST_MODIFIABLE;\n");
+          code.append("      return EMPTY_STRINGKEYVALUE_LIST_UNMODIFIABLE;\n");
           code.append("    }\n");
 
           if (wfi.getWebtype() == WebType.Query) {
@@ -2538,7 +2542,7 @@ public class BackGenerator {
         //code.append("    final String _fieldName =  " + instanceFilterForm + ".getStringOfField(" + field.javaName.toUpperCase() +  ");\n");
         code.append("    if (" + instanceFilterForm + ".isHiddenField(" + field.javaName.toUpperCase() +  ")\n");
         code.append("      && !" + instanceFilterForm + ".isGroupByField(" + field.javaName.toUpperCase() +  ")) {\n");
-        code.append("      return EMPTY_STRINGKEYVALUE_LIST_MODIFIABLE;\n");
+        code.append("      return EMPTY_STRINGKEYVALUE_LIST_UNMODIFIABLE;\n");
         code.append("    }\n");
         code.append("    Where _w = null;\n");
         if (wfi.getWebtype() == WebType.Query) {
