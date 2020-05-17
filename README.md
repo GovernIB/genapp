@@ -5,7 +5,16 @@
 
 A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicació web: model, jpa, ejb, logica(ejb), web i webservices, per Java 11 i JBoss 7.2.
 
-Caracteristiques:
+***Requeriments***
+* JDK 11
+* JBoss 7.2
+
+***Com executar***
+
+<table><tr><td>mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
+-DarchetypeVersion=2.0.0 -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0</td></tr></table>
+
+***Caracteristiques:***
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
 * Gestiona traduccions en multiples idiomes
 * Gestiona la pujada de fitxers
@@ -21,9 +30,7 @@ El projecte està partit en tres subprojectes:
 
 [Documentació de branca estable](../../tree/genapp-1.0/README.md#documentaci%C3%B3)
 
-
-
-***Característiques***
+***Dades***
 
 * Registered: 2013-02-19
 * Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java 11  JBoss 7.2
@@ -35,7 +42,4 @@ El projecte està partit en tres subprojectes:
 * Operating System:  OS Independent (Written in an interpreted language)
 * Programming Language: Java
 * User Interface: Java Swing, Console/Terminal
-
-
-
 
