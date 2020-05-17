@@ -15,6 +15,7 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 <table><tr><td>mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
 -DarchetypeVersion=2.0.0 -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0</td></tr></table>
 (2) Anar al directori rungenapp, executar genapp.bat i pitjar sobre el boto "Generar Taules Base"
+
 (3) Seguir les instruccions del diàleg que apareixerà
 
 ***Caracteristiques:***
