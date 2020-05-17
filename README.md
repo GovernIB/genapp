@@ -11,8 +11,11 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 
 ***Com executar***
 
+(1) Executar la següent comanda
 <table><tr><td>mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
 -DarchetypeVersion=2.0.0 -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0</td></tr></table>
+
+(2) Seguir les instruccions del diàleg que apareixerà
 
 ***Caracteristiques:***
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
