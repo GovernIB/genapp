@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.demogenapp.back.security.LoginInfo;
+import ${package}.back.security.LoginInfo;
 
 import ${package}.back.security.LoginInfo;
 import org.springframework.context.ApplicationListener;

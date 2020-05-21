@@ -125,8 +125,6 @@ public class DaoEJBGenerator {
 
 		manager.append("\n");
 
-		// java:app/demogenapp-ejb-1.0.0/TraduccioEJB!org.fundaciobit.demogenapp.ejb.TraduccioLocal
-
 		manager.append(" public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
 				+ "-ejb/" + managerFileNameEJB + "!" + ejbPackage + "." + managerFileName + "\";\n\n");
 

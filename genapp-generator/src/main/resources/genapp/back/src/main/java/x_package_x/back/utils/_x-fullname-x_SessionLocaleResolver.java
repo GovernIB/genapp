@@ -5,7 +5,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.demogenapp.back.security.LoginInfo;
+import ${package}.back.security.LoginInfo;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.util.WebUtils;
@@ -32,7 +32,7 @@ public class ${fullname}SessionLocaleResolver extends SessionLocaleResolver{
 		try {
 
 			if (idioma == null) {
-				idioma = org.fundaciobit.demogenapp.utils.Configuracio.getDefaultLanguage();
+            idioma = ${package}.utils.Configuracio.getDefaultLanguage();
 			}
 
 			Locale loc = new Locale(idioma);

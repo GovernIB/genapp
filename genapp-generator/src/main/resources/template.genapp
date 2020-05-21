@@ -129,19 +129,19 @@
           <void property="labels"> 
            <void method="put"> 
             <string>de</string> 
-            <string>nom</string> 
+            <string>Name</string> 
            </void> 
            <void method="put"> 
             <string>ca</string> 
-            <string>nom</string> 
+            <string>Nom</string> 
            </void> 
            <void method="put"> 
             <string>en</string> 
-            <string>nom</string> 
+            <string>Name</string> 
            </void> 
            <void method="put"> 
             <string>es</string> 
-            <string>nom</string> 
+            <string>Nombre</string> 
            </void> 
           </void> 
           <void property="notNullable"> 
@@ -232,11 +232,11 @@
           <void property="labels"> 
            <void method="put"> 
             <string>de</string> 
-            <string>tamany</string> 
+            <string>Size</string> 
            </void> 
            <void method="put"> 
             <string>ca</string> 
-            <string>tamany</string> 
+            <string>Tamany</string> 
            </void> 
            <void method="put"> 
             <string>en</string> 
@@ -503,15 +503,15 @@
            </void> 
            <void method="put"> 
             <string>ca</string> 
-            <string>suportat</string> 
+            <string>Suportat</string> 
            </void> 
            <void method="put"> 
             <string>en</string> 
-            <string>suportat</string> 
+            <string>Suported</string> 
            </void> 
            <void method="put"> 
             <string>es</string> 
-            <string>suportat</string> 
+            <string>Suportado</string> 
            </void> 
           </void> 
           <void property="notNullable"> 
@@ -552,15 +552,15 @@
           <void property="labels"> 
            <void method="put"> 
             <string>de</string> 
-            <string>ordre</string> 
+            <string>Order</string> 
            </void> 
            <void method="put"> 
             <string>ca</string> 
-            <string>ordre</string> 
+            <string>Ordre</string> 
            </void> 
            <void method="put"> 
             <string>en</string> 
-            <string>ordre</string> 
+            <string>Order</string> 
            </void> 
            <void method="put"> 
             <string>es</string> 
@@ -759,19 +759,19 @@
       <void property="labelsPlural"> 
        <void method="put"> 
         <string>de</string> 
-        <string></string> 
+        <string>Translations</string> 
        </void> 
        <void method="put"> 
         <string>ca</string> 
-        <string></string> 
+        <string>Traduccions</string> 
        </void> 
        <void method="put"> 
         <string>en</string> 
-        <string></string> 
+        <string>Translations</string> 
        </void> 
        <void method="put"> 
         <string>es</string> 
-        <string></string> 
+        <string>Traducciones</string> 
        </void> 
       </void> 
       <void property="name"> 
@@ -895,15 +895,15 @@
            </void> 
            <void method="put"> 
             <string>ca</string> 
-            <string>idiomaid</string> 
+            <string>idiomaID</string> 
            </void> 
            <void method="put"> 
             <string>en</string> 
-            <string>idiomaid</string> 
+            <string>idiomaID</string> 
            </void> 
            <void method="put"> 
             <string>es</string> 
-            <string>idiomaid</string> 
+            <string>idiomaID</string> 
            </void> 
           </void> 
           <void property="notNullable"> 
@@ -940,19 +940,19 @@
           <void property="labels"> 
            <void method="put"> 
             <string>de</string> 
-            <string>valor</string> 
+            <string>Value</string> 
            </void> 
            <void method="put"> 
             <string>ca</string> 
-            <string>valor</string> 
+            <string>Valor</string> 
            </void> 
            <void method="put"> 
             <string>en</string> 
-            <string>valor</string> 
+            <string>Value</string> 
            </void> 
            <void method="put"> 
             <string>es</string> 
-            <string>valor</string> 
+            <string>Valor</string> 
            </void> 
           </void> 
           <void property="showInReferenceList"> 

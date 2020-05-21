@@ -11,7 +11,7 @@ import org.apache.tiles.AttributeContext;
 import org.apache.tiles.preparer.PreparerException;
 import org.apache.tiles.preparer.ViewPreparer;
 import org.apache.tiles.request.Request;
-import org.fundaciobit.demogenapp.utils.Version;
+import ${package}.utils.Version;
 import org.springframework.stereotype.Component;
 
 import ${package}.utils.Version;
