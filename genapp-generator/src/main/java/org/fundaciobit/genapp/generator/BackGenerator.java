@@ -1086,7 +1086,9 @@ public class BackGenerator {
         codeRefList.append("      StringKeyValue skv = new StringKeyValue(key, value);\n");
         codeRefList.append("      _list.add(skv);\n");
         codeRefList.append("    }\n");
-        codeRefList.append("    java.util.Collections.sort(_list, new " + KeyValue.class.getName() + ".KeyValueComparator<String>());\n");
+        codeRefList.append("    if (!_list.isEmpty()) {\n");
+        codeRefList.append("      java.util.Collections.sort(_list, new " + KeyValue.class.getName() + ".KeyValueComparator<String>());\n");
+        codeRefList.append("    }\n");
         codeRefList.append("    return _list;\n");
         codeRefList.append("\n");
 
@@ -1350,7 +1352,7 @@ public class BackGenerator {
       code.append("import javax.ejb.EJB;\n");
       code.append("import javax.servlet.http.HttpServletRequest;\n");
       code.append("import javax.servlet.http.HttpServletResponse;\n");
-      code.append("import javax.validation.Valid;\n");
+      //code.append("import javax.validation.Valid;\n");
       code.append("\n");
       code.append("import java.util.List;\n");
       code.append("import java.util.Map;\n");
@@ -1750,8 +1752,11 @@ public class BackGenerator {
         code.append("    // Comprovam si ja esta definida la llista\n");
         code.append("    if (" + instanceForm + "." + getmethod + "() == null) {\n");
         code.append("      List<StringKeyValue> _listSKV = getReferenceListFor" + name + "(request, mav, " + instanceForm + ", null);\n\n");
-        code.append("      java.util.Collections.sort(_listSKV, STRINGKEYVALUE_COMPARATOR);\n");
+        code.append("      if(_listSKV != null && !_listSKV.isEmpty()) { \n");
+        code.append("          java.util.Collections.sort(_listSKV, STRINGKEYVALUE_COMPARATOR);\n");
+        code.append("      }\n");
         code.append("      " + instanceForm + "." + setmethod + "(_listSKV);\n");
+        
         code.append("    }\n");
       }
       code.append("    \n");
@@ -2047,7 +2052,8 @@ public class BackGenerator {
         if (pk.getJavaType().equals(String.class)) {
           code.append("  return value;\n");
         } else {
-          code.append("  return new " + pkClass + "(value);\n"); // TODO
+          //code.append("  return new " + pkClass + "(value);\n"); // TODO
+        	code.append("  return " + pkClass + ".parse" + pkClass.substring(pkClass.lastIndexOf('.') + 1) + "(value, 10);\n"); // TODO
         }
         code.append("}\n");
         code.append("\n");

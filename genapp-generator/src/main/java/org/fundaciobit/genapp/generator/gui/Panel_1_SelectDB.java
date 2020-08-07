@@ -70,6 +70,9 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
   JLabel etiprefix = new JLabel();
   JTextField prefix = new JTextField();
   
+  JLabel etiprefixdirectori = new JLabel();
+  JTextField prefixdirectori = new JTextField();
+  
   
   JLabel etiIdiomes = new JLabel();
   JTextField idiomes = new JTextField();
@@ -80,6 +83,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
   
   JLabel etiGenerateWs = new JLabel();
   JCheckBox generateWs = new JCheckBox();
+  
 
   public Panel_1_SelectDB() {
     try {
@@ -220,20 +224,36 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     
     // Prefix
     {
-    etiprefix.setText("Prefix");
-    etiprefix.setHorizontalAlignment(SwingConstants.RIGHT);
-    panelCentro.add(etiprefix, null);
-
-    {
-      VerticalFlowLayout layout7 = new VerticalFlowLayout();
-      layout7.setAlignment(VerticalFlowLayout.MIDDLE);
-      JPanel jPanel7 = new JPanel();
-      jPanel7.setLayout(layout7);
-      panelCentro.add(jPanel7, null);
-      jPanel7.add(prefix,  BorderLayout.CENTER);
-    }
+	    etiprefix.setText("Prefix");
+	    etiprefix.setHorizontalAlignment(SwingConstants.RIGHT);
+	    panelCentro.add(etiprefix, null);
+	
+	    {
+	      VerticalFlowLayout layout7 = new VerticalFlowLayout();
+	      layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+	      JPanel jPanel7 = new JPanel();
+	      jPanel7.setLayout(layout7);
+	      panelCentro.add(jPanel7, null);
+	      jPanel7.add(prefix,  BorderLayout.CENTER);
+	    }
     }
     
+    
+    // Prefix directoris
+    {
+	    etiprefixdirectori.setText("Prefix Directoris");
+	    etiprefixdirectori.setHorizontalAlignment(SwingConstants.RIGHT);
+	    panelCentro.add(etiprefixdirectori, null);
+	
+	    {
+	      VerticalFlowLayout layout7 = new VerticalFlowLayout();
+	      layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+	      JPanel jPanel7 = new JPanel();
+	      jPanel7.setLayout(layout7);
+	      panelCentro.add(jPanel7, null);
+	      jPanel7.add(prefixdirectori,  BorderLayout.CENTER);
+	    }
+    }
     
     
     // Idiomes
@@ -411,6 +431,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         usr.setText(proj.dataBaseInfo.getUsr());
         pwd.setText(proj.dataBaseInfo.getPwd());
         prefix.setText(proj.getPrefix());
+        prefixdirectori.setText(proj.getPrefixDirectori());
         if (proj.getModulSeguretat() == null) {
           modulSeguretat.setText("");
         } else {
@@ -471,6 +492,10 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       return (false);
     }
     SharedData.data.setPrefix(prefixtxt.trim());
+    
+    
+    String prefixdirectoritxt = this.prefixdirectori.getText();
+    SharedData.data.setPrefixDirectori(prefixdirectoritxt.trim());
     
     // idiomes
     String idiomestxt = this.idiomes.getText();

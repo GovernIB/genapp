@@ -28,7 +28,6 @@
 		<dependency>
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
-			<version>${symbol_dollar}{activation.version}</version>
 			<scope>provided</scope>
 		</dependency>
 

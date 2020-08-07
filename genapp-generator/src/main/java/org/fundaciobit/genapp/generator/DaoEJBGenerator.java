@@ -115,7 +115,7 @@ public class DaoEJBGenerator {
 		if (dao.pkClass.endsWith("PK")) {
 			manager.append("import " + daoPackage + "." + dao.pkClass + ";\n\n");
 		}
-		manager.append("import " + packages.utilsPackage + ".StaticVersion;\n");
+		//manager.append("import " + packages.utilsPackage + ".StaticVersion;\n");
 		manager.append("import " + jpaPackage + "." + jpa + ";\n");
 		manager.append("import " + jpaPackage + "." + jpaIface+ ";\n");
 		manager.append("import " + daoPackage + "." + iface + ";\n\n");

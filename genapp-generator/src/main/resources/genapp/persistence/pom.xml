@@ -1,22 +1,80 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<#assign symbol_dollar = "$">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>${package}</groupId>
-  <artifactId>${name}-persistence</artifactId>  
-  <version>${app_current_version}</version>
-  <packaging>pom</packaging>
+	<groupId>${package}</groupId>
+	<artifactId>${name}-jpa</artifactId>
+	<packaging>jar</packaging>
 
-  <parent>
-    <groupId>${package}</groupId>
-    <artifactId>${name}</artifactId>
-    <version>${app_current_version}</version>
-  </parent>
+	<parent>
+		<groupId>${package}</groupId>
+		<artifactId>${name}</artifactId>
+		<version>${app_current_version}</version>
+	</parent>
 
-  <name>${persistencefullname}</name>
+	<name>${fullname} JPA</name>
 
-  <modules>	
-    <module>jta</module>
-    <module>reslocal</module>
-  </modules>
+	<dependencies>
+
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-model</artifactId>
+			<version>${project_version}</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-commons</artifactId>
+			<version>${project_version}</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fundaciobit.genapp</groupId>
+			<artifactId>genapp-core</artifactId>
+			<version>${symbol_dollar}{genapp.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<!-- Anotacions de documentació de openapi -->
+		<dependency>
+			<groupId>org.eclipse.microprofile.openapi</groupId>
+			<artifactId>microprofile-openapi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- Dependències de test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>${symbol_dollar}{project.artifactId}-${symbol_dollar}{project.version}</finalName>
+	</build>
+
 
 </project>

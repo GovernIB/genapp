@@ -35,6 +35,8 @@ public class Project implements Serializable {
   
   protected String prefix; // = "PFI";
   
+  protected String prefixDirectori; // = "PFI";
+  
   public String schema = null;
 
   public TableInfo[] tables = null;
@@ -71,7 +73,7 @@ public class Project implements Serializable {
   
 
   public Project(String packageName, String projectName,
-      DataBaseInfo databaseinfo, TableInfo[] tables, String prefix,  String[] languages) {
+      DataBaseInfo databaseinfo, TableInfo[] tables, String prefix, String prefixDirectori,  String[] languages) {
     super();
     this.packageName = packageName;
     this.projectName = projectName;
@@ -130,7 +132,16 @@ public class Project implements Serializable {
     this.prefix = prefix;
   }
     
-  public Properties getSecurity_LDAP_users() {
+
+  public String getPrefixDirectori() {
+	return prefixDirectori==null? "": prefixDirectori;
+}
+
+public void setPrefixDirectori(String prefixDirectori) {
+	this.prefixDirectori = prefixDirectori;
+}
+
+public Properties getSecurity_LDAP_users() {
     return security_LDAP_users;
   }
 

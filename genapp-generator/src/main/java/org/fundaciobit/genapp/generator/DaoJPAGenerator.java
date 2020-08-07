@@ -138,7 +138,10 @@ public class DaoJPAGenerator {
     
     String sequenceJPAName=project.projectName.toUpperCase() + "_SEQ";
       
-      
+    // XYZ ZZZ ZZZ 
+    beanCode.append("@SuppressWarnings(\"deprecation\")\n");
+    
+    
       if (table.isTranslationMapEntity()) {
         beanCode.append("@javax.persistence.Embeddable\n");
         
@@ -147,7 +150,10 @@ public class DaoJPAGenerator {
         beanCode.append("@Entity\n");
       }
       
+      
       beanCode.append("@Table(name = \"" + table.name + "\" ");
+      
+      
       
       if (!table.isTranslationMapEntity()) {
         MultipleUnique[] uniques = table.getMultipleUniques();
@@ -478,6 +484,9 @@ public class DaoJPAGenerator {
     beanCode.append("  static java.util.Set<" + codeBeanFileName + "> " + copyMethodName + "(java.util.Set<" + codeBeanFileName + "> __jpaSet,\n"
         + "    java.util.Map<" + entityBase + "," + entityBase + "> __alreadyCopied, String origenJPA) {\n");
     beanCode.append("    if (__jpaSet == null) { return null; }\n");
+  
+    beanCode.append("    @SuppressWarnings(\"unchecked\")\n");
+    
     beanCode.append("    java.util.Set<" + codeBeanFileName + "> __tmpSet = (java.util.Set<" + codeBeanFileName + ">) __alreadyCopied.get(__jpaSet);\n");
     beanCode.append("    if (__tmpSet != null) { return __tmpSet; };\n");
     beanCode.append("    __tmpSet = new java.util.HashSet<"+ codeBeanFileName + ">(__jpaSet.size());\n");
@@ -1218,7 +1227,7 @@ public class DaoJPAGenerator {
 //    manager.append("import javax.persistence.EntityManager;\n");
 //    manager.append("import javax.persistence.PersistenceContext;\n");
     manager.append("import " + packages.entityPackage + ".*;\n");
-    manager.append("import " + packages.fieldsPackage + ".*;\n");
+//    manager.append("import " + packages.fieldsPackage + ".*;\n");
 //    manager.append("import " + packages.daoPackage + ".*;\n");
 //    manager.append("import " + TableName.class.getName() + ";\n");
 //    manager.append("import " + I18NException.class.getName()+ ";\n");

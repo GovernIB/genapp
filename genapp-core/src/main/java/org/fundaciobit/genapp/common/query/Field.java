@@ -209,7 +209,7 @@ public abstract class Field<C> implements Serializable {
 		}
 
 		@Override
-		public String getSQL() {
+		public String getSQLZero() {
 			return "( " + fullName + " " + operation + " " + field.fullName + " )";
 		}
 		
@@ -224,7 +224,7 @@ public abstract class Field<C> implements Serializable {
 		}
 
 		@Override
-		public String getSQL() {
+		public String getSQLZero() {
 			return "( " + fullName + " IS NULL )";
 		}
 	}
@@ -236,7 +236,7 @@ public abstract class Field<C> implements Serializable {
 		}
 
 		@Override
-		public String getSQL() {
+		public String getSQLZero() {
 			return "( " + fullName + " IS NOT NULL )";
 		}
 
@@ -560,10 +560,10 @@ public abstract class Field<C> implements Serializable {
 		
 		@Override
 		public final QuerySQL toSQL(int index) {
-			return new QuerySQL(index, toSQL());
+			return new QuerySQL(index, getSQLZero());
 		}
 
-		public abstract String getSQL();
+		public abstract String getSQLZero();
 
 	}
 

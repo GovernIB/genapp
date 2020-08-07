@@ -431,8 +431,8 @@ public class CodeGenerator {
 		// ============= MAVEN MODUL JPA: pom.xml i Bean amb annotacions
 
 		String jpaPackage;
-		final String jpaName = "jpa";
-		jpaPackage = project.getPackageName() + "." + jpaName;
+		final String jpaName = "persistence";
+		jpaPackage = project.getPackageName() + "." + "jpa";
 		String validatorPackage = generateJPA(project, projectDir, packagePath, moduls, tables, resourceBase,
 				beanCodeBySqlTableName, appCurrentVersion, packages, fieldSrcDir, jpaPackage, jpaName);
 
@@ -504,11 +504,14 @@ public class CodeGenerator {
 		{
 			// (a) Afegir a la llista de mòduls a compilar
 
-			moduls.add("ear");
+			
 
 			String earName = "ear";
+			
+			moduls.add(project.getPrefixDirectori() + earName);
+			
 
-			File dstEarDir = new File(projectDir, earName);
+			File dstEarDir = new File(projectDir, project.getPrefixDirectori() + earName);
 			// File baseCode = new File(dstEarDir, "src/main/java");
 			// String backPackage = project.getPackageName() + "." + earName;
 			// File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
@@ -570,7 +573,7 @@ public class CodeGenerator {
 		{
 			// (0) Variables
 			final String backName = "back";
-			File dstBackDir = new File(projectDir, backName);
+			File dstBackDir = new File(projectDir,project.getPrefixDirectori() + backName);
 			File baseCode = new File(dstBackDir, "src/main/java");
 			String backPackage = project.getPackageName() + "." + backName;
 			// File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
@@ -649,8 +652,7 @@ public class CodeGenerator {
 				prop.put("fitxer", fileTable.getNameJava());
 			}
 
-			File dstBaseDir = new File(projectDir, backName);
-			dstBaseDir.mkdirs();
+
 
 			// ----- Tots fitxers de forma recursiva i substituint
 			String resourceUtils = resourceBase + "/" + backName;
@@ -661,7 +663,7 @@ public class CodeGenerator {
 						"src/main/resources/",
 						"src/main/webapp/img/", "src/main/webapp/js/", "src/main/webapp/css/",
 						"src/main/webapp/WEB-INF/tld/", "src/main/webapp/WEB-INF/lib/" };
-				recursiveSubstitution(dstBaseDir, resourceUtils, prop, project, overwrite, ignoreSubstitution);
+				recursiveSubstitution(dstBackDir, resourceUtils, prop, project, overwrite, ignoreSubstitution);
 			}
 
 			if (fileTable == null) {
@@ -683,7 +685,7 @@ public class CodeGenerator {
 			}
 
 			// (3) Afegir a la llista de mòduls a compilar
-			moduls.add(backName);
+			moduls.add(project.getPrefixDirectori() + backName);
 
 			// (4) Forms
 			String packageForm = backPackage + ".form";
@@ -858,130 +860,15 @@ public class CodeGenerator {
 		}
 	}
 
-	private static void generatePersistence(Project project, File projectDir, String packagePath, List<String> moduls,
-			TableInfo[] tables, String resourceBase, String appCurrentVersion, String jpaPackage)
-			throws Exception, FileNotFoundException, IOException {
-		{
-			// (a) Afegir a la llista de mòduls a compilar
-			final String persistName = "persistence";
-
-			moduls.add(persistName);
-
-			// (b) persistence.xml
-			{
-				Map<String, Object> prop = new HashMap<String, Object>();
-				prop.put("dollar", "$");
-				prop.put("name", project.projectName.toLowerCase());
-				prop.put("package", project.getPackageName());
-
-				prop.put("fullname", project.projectName);
-				prop.put("packagePath", packagePath);
-				prop.put("app_current_version", appCurrentVersion);
-
-				prop.put("artifactid", project.projectName.toLowerCase() + "-persistence");
-				prop.put("persistencefullname", project.projectName + " Persistence");
-
-				File dstBaseDir = new File(projectDir, persistName);
-				dstBaseDir.mkdirs();
-
-				// ----- POM pare
-				String resourcePersist = resourceBase + "/" + persistName;
-				{
-					final String pomPath = "pom.xml";
-					final String pomFileStr = new String(getResource(resourcePersist + "/" + pomPath));
-
-					File pomFileDst = new File(dstBaseDir, pomPath);
-					SourceFile persist = substitution(pomPath, pomFileStr, prop);
-					persist.saveToPath(pomFileDst.getParentFile());
-				}
-
-				// ------ Common data
-
-				String resourcePersistType = resourcePersist + "/" + "type";
-
-				final String pomPath = "pom.xml";
-				final String pomFileStr = new String(getResource(resourcePersistType + "/" + pomPath));
-
-				final String persistencePath = "src/main/resources/META-INF/persistence.xml";
-				final String persistenceFileStr = new String(getResource(resourcePersistType + "/" + persistencePath));
-
-				List<String> llistaJPABeans = new ArrayList<String>();
-
-				for (int i = 0; i < tables.length; i++) {
-					if (!tables[i].isGenerate()) {
-						continue;
-					}
-					llistaJPABeans.add(jpaPackage + "." + tables[i].nameJava + "JPA");
-				}
-				prop.put("classes", llistaJPABeans);
-
-				// ----- JTA Persistence
-				{
-					File dstPersistJTADir = new File(dstBaseDir, "jta");
-					dstPersistJTADir.mkdirs();
-
-					prop.put("genapp_version", Versio.VERSIO);
-
-					prop.put("persistencename", project.projectName.toLowerCase() + "DB");
-					prop.put("transactiontype", "JTA");
-					prop.put("jtadatasource",
-							"<jta-data-source>java:/" + project.getPackageName() + ".db</jta-data-source>");
-
-					prop.put("artifactid", project.projectName.toLowerCase() + "-persistence-jta");
-					prop.put("persistencefullname", project.projectName + " Persistence JTA");
-
-					{ // --- POM
-						File pomFileDst = new File(dstPersistJTADir, pomPath);
-						SourceFile persist = substitution(pomPath, pomFileStr, prop);
-						persist.saveToPath(pomFileDst.getParentFile());
-					}
-
-					{ // --- Persistence.xml
-						File persistenceFileDst = new File(dstPersistJTADir, persistencePath);
-						persistenceFileDst.getParentFile().mkdirs();
-						SourceFile persist = substitution(persistenceFileDst.getName(), persistenceFileStr, prop);
-						persist.saveToPath(persistenceFileDst.getParentFile());
-					}
-
-				}
-
-				// Standalone Persistence
-				{
-					File dstPersistResLocalDir = new File(dstBaseDir, "reslocal");
-					dstPersistResLocalDir.mkdirs();
-
-					prop.put("persistencename", project.projectName.toLowerCase() + "DBStandalone");
-					prop.put("transactiontype", "RESOURCE_LOCAL");
-					prop.put("jtadatasource", " ");
-
-					prop.put("artifactid", project.projectName.toLowerCase() + "-persistence-resourcelocal");
-					prop.put("persistencefullname", project.projectName + " Persistence Resource Local");
-
-					{ // --- POM
-						File pomFileDst = new File(dstPersistResLocalDir, pomPath);
-						SourceFile persist = substitution(pomFileDst.getName(), pomFileStr, prop);
-						persist.saveToPath(pomFileDst.getParentFile());
-					}
-					{ // --- Persistence.xml
-						File persistenceFileDst = new File(dstPersistResLocalDir, persistencePath);
-						persistenceFileDst.getParentFile().mkdirs();
-						SourceFile persist = substitution(persistenceFileDst.getName(), persistenceFileStr, prop);
-						persist.saveToPath(persistenceFileDst.getParentFile());
-					}
-				}
-
-			}
-
-		}
-	}
+	
 
 	private static void generateUtils(Project project, File projectDir, String packagePath, List<String> moduls,
 			String resourceBase, String appCurrentVersion) throws Exception {
 		{
 			// (a) Afegir a la llista de mòduls a compilar
-			final String utilsName = "utils";
+			final String utilsName = "commons";
 
-			moduls.add(utilsName);
+			moduls.add( project.getPrefixDirectori() + utilsName);
 
 			Map<String, Object> prop = new HashMap<String, Object>();
 			prop.put("name", project.projectName.toLowerCase());
@@ -992,10 +879,10 @@ public class CodeGenerator {
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
 
-			prop.put("artifactid", project.projectName.toLowerCase() + "-utils");
+			prop.put("artifactid", project.projectName.toLowerCase() + "-commons");
 			prop.put("prefix", project.getPrefix().toUpperCase());
 
-			File dstBaseDir = new File(projectDir, utilsName);
+			File dstBaseDir = new File(projectDir,  project.getPrefixDirectori() + utilsName);
 
 			boolean utilsExists = new File(dstBaseDir, "src/main/java/es/caib/portafib/utils").exists();
 			File constantsFile = new File(dstBaseDir, "src/main/java/es/caib/portafib/utils/Constants.java");
@@ -1112,10 +999,14 @@ public class CodeGenerator {
 	private static void generateWS(Project project, File projectDir, String packagePath, List<String> moduls,
 			TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
 		{
-			moduls.add("ws");
+			
 
 			// (1) Variables
 			final String wsName = "ws";
+			
+			
+			
+			moduls.add(project.getPrefixDirectori() + wsName);
 
 			// File dstWsDir = new File(projectDir, wsName);
 			// File baseCode = new File(dstWsDir, "src/main/java");
@@ -1235,12 +1126,11 @@ public class CodeGenerator {
 			String resourceBase, String appCurrentVersion) throws Exception {
 		{
 
-			// (1) Afegir a la llista de mòduls a compilar
-			moduls.add("logic");
 
-			// (2) Borrar Classes de prova
+
+			// (1) Borrar Classes de prova
 			final String logicName = "logic";
-			File dstBaseDir = new File(projectDir, logicName);
+			File dstBaseDir = new File(projectDir,  project.getPrefixDirectori() + logicName);
 			dstBaseDir.mkdirs();
 
 			File exampleCode = new File(dstBaseDir, "src/main/java/" + packagePath + "/logic/SampleLogicaEJB.java");
@@ -1251,6 +1141,9 @@ public class CodeGenerator {
 				// No s'ha de fer res.
 				exampleCode = null;
 			}
+			
+			// (2) Afegir a la llista de mòduls a compilar
+			moduls.add( project.getPrefixDirectori() +logicName);
 
 			// (3) Afegir a la llista de mòduls a compilar
 
@@ -1300,7 +1193,7 @@ public class CodeGenerator {
 			final String ejbName = "ejb";
 			ejbPackage = project.getPackageName() + "." + ejbName;
 
-			File ejbDir = new File(projectDir, ejbName);
+			File ejbDir = new File(projectDir,  project.getPrefixDirectori() + ejbName);
 			// XYZ ZZZ File pomFile = new File(ejbDir, "pom.xml");
 
 			// (a) Copiar estructura directoris
@@ -1377,7 +1270,7 @@ public class CodeGenerator {
 			DaoEJBGenerator.generaMissatges(project.projectName, project.getTables(), ejbDir, project.getLanguages());
 
 			// (d) Afegir a la llista de mòduls a compilar
-			moduls.add(ejbName);
+			moduls.add( project.getPrefixDirectori() + ejbName);
 
 		}
 		return ejbPackage;
@@ -1409,7 +1302,7 @@ public class CodeGenerator {
 
 			prop.put("package_jpa", jpaPackage);
 
-			File jpaDir = new File(projectDir, jpaName);
+			File jpaDir = new File(projectDir,  project.getPrefixDirectori() + jpaName);
 			// File pomFile = new File(jpaDir, "pom.xml");
 
 			// (a) Copiar estructura directoris
@@ -1504,7 +1397,7 @@ public class CodeGenerator {
 			}
 
 			// (d) Afegir a la llista de mòduls a compilar
-			moduls.add(jpaName);
+			moduls.add( project.getPrefixDirectori() + jpaName);
 
 			// (e) DaoManagers
 			{
@@ -1542,7 +1435,7 @@ public class CodeGenerator {
 		File fieldSrcDir;
 		{
 			final String modelName = "model";
-			File modelDir = new File(projectDir, modelName);
+			File modelDir = new File(projectDir, project.getPrefixDirectori() +  modelName);
 			File pomFile = new File(modelDir, "pom.xml");
 
 			// (a) Copiar estructura directoris
@@ -1642,7 +1535,7 @@ public class CodeGenerator {
 					.saveToPath(modelSrcDir);
 
 			// (e) Afegir a la llista de moduls a compilar
-			moduls.add(modelName);
+			moduls.add( project.getPrefixDirectori() + modelName);
 		}
 		return fieldSrcDir;
 	}

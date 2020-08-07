@@ -1,6 +1,6 @@
 package ${package}.ejb.utils;
 
-import ${package}.utils.StaticVersion;
+//import ${package}.utils.StaticVersion;
 
 /**
  * 
@@ -9,6 +9,7 @@ import ${package}.utils.StaticVersion;
  */
 public class EjbUtils {
 
+	/*
 	public static final String getJndiName(Class<?> ifaceEJB) {
 
 		String simpleName = ifaceEJB.getSimpleName();
@@ -33,5 +34,6 @@ public class EjbUtils {
 
 		return ejb.getSimpleName();
 	}
+	*/
 
 }
