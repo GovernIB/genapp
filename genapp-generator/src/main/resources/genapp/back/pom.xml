@@ -15,7 +15,7 @@
 		<version>${app_current_version}</version>
 	</parent>
 
-	<name>${fullname} Back</name>
+	<name>${fullname} - Back</name>
 
 	<repositories>
 		<repository>

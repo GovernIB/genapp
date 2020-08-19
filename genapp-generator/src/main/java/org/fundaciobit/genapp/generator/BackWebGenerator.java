@@ -350,7 +350,7 @@ public class BackWebGenerator extends IconUtils {
 				// BOTO DE NOU ELEMENT EN LLISTAT
 				codeHeaderButtons.append("      <%-- BOTO DE NOU ELEMENT EN LLISTAT  --%>\n");
 				codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".addButtonVisible}\">\n");
-				codeHeaderButtons.append("      <a class=\"btn btn-small btn-success float-right\" role=\"button\" \n"); /// data-toggle=\"modal\"
+				codeHeaderButtons.append("      <a class=\"btn btn-sm btn-success float-right\"  style=\"color: white;\" role=\"button\" \n"); /// data-toggle=\"modal\"
 				codeHeaderButtons.append("        href=\"<c:url value=\"${contexte}/new\"/>\"> <i class=\""
 						+ IconUtils.ICON_PLUS_SIGN + "\"></i>\n");
 				codeHeaderButtons.append("       <fmt:message key=\"genapp.createtitle\" >\n");
@@ -364,7 +364,7 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".deleteSelectedButtonVisible && "
 						+ instanceFilterForm + ".visibleMultipleSelection && not empty " + model + "Items}\">\n");
 				codeHeaderButtons.append(
-						"      <a class=\"btn btn-danger btn-small float-right\" style=\"color: white;\" href=\"#myModal\"\n");
+						"      <a class=\"btn btn-danger btn-sm float-right\" style=\"color: white;\" href=\"#myModal\"\n");
 				codeHeaderButtons.append(
 						"        onclick=\"openModalSubmit('<c:url value=\"${contexte}/deleteSelected\"/>','show', '"
 								+ model + "');\"\n");
@@ -395,7 +395,7 @@ public class BackWebGenerator extends IconUtils {
 				// #17 codeHeaderButtons.append(" <button type=\"button\" ");
 				codeHeaderButtons.append("<a ");
 				codeHeaderButtons.append(
-						"class=\"btn btn-small ${button.type} float-right\" style=\"${(empty button.type)? '' : 'color: white;'}\" "
+						"class=\"btn btn-sm ${button.type} float-right\" style=\"${(empty button.type)? '' : 'color: white;'}\" "
 								+ " href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
 				codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
 				codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
@@ -1358,11 +1358,11 @@ public class BackWebGenerator extends IconUtils {
 		public String getHeader(String instanceFilterForm) {
 
 			String botomenu = instanceFilterForm + ".additionalInfoForActionsRendererByPK[pk]";
-			return "    <div class=\"btn-group\">\n" + "      <a class=\"btn btn-small ${" + botomenu
+			return "    <div class=\"btn-group\">\n" + "      <a class=\"btn btn-sm ${" + botomenu
 					+ "}\" href=\"#\" style=\"${(empty " + botomenu + ")? '' : 'color: white;'}\"><i class=\""
 					+ ICON_LIST + " ${(empty " + botomenu
 					+ ")? '' : 'icon-white'}\"></i> <fmt:message key=\"genapp.actions\" /></a>\n"
-					+ "      <a class=\"btn btn-small ${" + botomenu
+					+ "      <a class=\"btn btn-sm ${" + botomenu
 					+ "} dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">&nbsp;<span class=\"caret\"> </span></a>\n"
 					+ "      <ul class=\"dropdown-menu float-right\" style=\"min-width:35px;padding:5px 5px 0px 5px;margin:0px;font-size: 12px\" >\n";
 		}
@@ -1387,7 +1387,7 @@ public class BackWebGenerator extends IconUtils {
 				style = "color: white;";
 			}
 
-			return tab + "<li>\n" + tab + "<a class=\"btn " + type + " btn-small a_item\" style=\"margin-bottom:5px;"
+			return tab + "<li>\n" + tab + "<a class=\"btn " + type + " btn-sm a_item\" style=\"margin-bottom:5px;"
 					+ style + "\" " + "href=\"" + href + "\" onclick=\"" + onclick + "\">\n" + getImage(icon, tab)
 					+ "\n" + tab + " <fmt:message key=\"" + codeMessage + "\"/>\n" + tab + "</a>\n" + tab + "</li>\n";
 		}

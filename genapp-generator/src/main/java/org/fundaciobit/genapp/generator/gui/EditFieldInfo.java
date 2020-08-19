@@ -126,7 +126,7 @@ public class EditFieldInfo extends javax.swing.JDialog {
     descripcio =  new JTextArea(this.fieldInfo.descripcio);
     descripcio.setRows(2);
     descripcio.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    defaultValue =  new JTextField(this.fieldInfo.defaultValue);
+    defaultValue =  new JTextField(this.fieldInfo.getDefaultValue());
     javaType= new JTextField(this.fieldInfo.getJavaType().getCanonicalName());
 
     isPK = new  JTextField(this.fieldInfo.getPK() == null? "" : this.fieldInfo.getPK());

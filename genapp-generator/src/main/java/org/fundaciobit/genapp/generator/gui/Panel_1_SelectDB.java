@@ -643,7 +643,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
           return (false);
         }
 
-        SharedData.data.tables = mergedTables;
+        SharedData.data.setTables(mergedTables);
 
       break;
       
@@ -782,9 +782,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
             if (fieldInfo_File.getDescripcio() != null) {
               fieldInfo_DB.setDescripcio(fieldInfo_File.getDescripcio());
             }
-            if (fieldInfo_File.getDefaultValue() != null) {
-              fieldInfo_DB.setDefaultValue(fieldInfo_File.getDefaultValue());
-            }
+
 
             WebFieldInfo[] webTypes;
             webTypes = WebFieldInfo.getWebTypesFromJavaType(nameBBDD, fieldInfo_DB);

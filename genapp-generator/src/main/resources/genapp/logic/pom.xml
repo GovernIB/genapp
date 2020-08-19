@@ -16,7 +16,7 @@
 	</parent>
 
 
-	<name>${fullname} Logic</name>
+	<name>${fullname} - Logic</name>
 
 
 	<dependencies>

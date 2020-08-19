@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
-    <persistence-unit name="${persistencename}" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="${persistencename}Local" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<#list classes as item>
@@ -17,8 +17,7 @@
         <validation-mode>NONE</validation-mode>
 
         <properties>
-            <property name="hibernate.dialect" value="${dollar}{${package}.hibernate.dialect}" />
-            <property name="hibernate.query.substitutions" value="${dollar}{${package}.hibernate.query.substitutions}"/>
+         
         </properties>
     </persistence-unit>
 </persistence>

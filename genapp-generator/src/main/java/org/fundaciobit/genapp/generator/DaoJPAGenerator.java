@@ -20,7 +20,7 @@ import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
 
 
 /**
- * Title:      GenApp 2015 (Rapit Entity Bean 2010)
+ * Title:      GenApp v2 2020 (Rapit Entity Bean 2010)
  * Description:
  * Copyright:    Copyright (c) 2014
  * Company:      XmasSoft
@@ -109,6 +109,28 @@ public class DaoJPAGenerator {
     + "      }\n"
     + "    }\n"
     + "\n"
+    + "\n"
+    + "    public static String encryptString(String value) {\r\n" + 
+    "        try {\r\n" + 
+    "          return encrypter.encrypt(value);\r\n" + 
+    "        } catch(Exception e) {\r\n" + 
+    "          System.err.print(\"Error executant File Encrypter: \" + e.getMessage());\r\n" + 
+    "          e.printStackTrace(System.err);\r\n" + 
+    "          return value;\r\n" + 
+    "        }\r\n" + 
+    "      }\r\n" + 
+    "\r\n" + 
+    "      public static String decryptString(String encryptedData)  {\r\n" + 
+    "        try {\r\n" + 
+    "          return encrypter.decrypt(encryptedData);\r\n" + 
+    "        } catch(Exception e) {\r\n" + 
+    "          System.err.print(\"Error executant File Decrypter: \" + e.getMessage());\r\n" + 
+    "          e.printStackTrace(System.err);\r\n" + 
+    "          return \"\";\r\n" + 
+    "        }\r\n" + 
+    "      }"
+    
+    + "\n"
     + "}\n";
     
     return new SourceFile[] {
@@ -136,7 +158,8 @@ public class DaoJPAGenerator {
       beanCode.append("/* " + table.getDescripcio() + " */\n");
     }
     
-    String sequenceJPAName=project.projectName.toUpperCase() + "_SEQ";
+    // project.projectName.toUpperCase()
+    String sequenceJPAName = table.nameJava.toUpperCase() + "_SEQ";
       
     // XYZ ZZZ ZZZ 
     beanCode.append("@SuppressWarnings(\"deprecation\")\n");
@@ -168,9 +191,8 @@ public class DaoJPAGenerator {
             }
             String[] columns = uniques[i].getSqlColumns();
             
-            beanCode.append(" @UniqueConstraint("
-                // TODO Descomentar quan es passi a JPA 2.0
-                //+ "name=\"" + uniques[i].getName()+ "\","
+            beanCode.append(" @UniqueConstraint("                
+                + "name=\"" + uniques[i].getName()+ "\","
                 + " columnNames={");
             
             for (int j = 0; j < columns.length; j++) {
@@ -190,11 +212,11 @@ public class DaoJPAGenerator {
       beanCode.append(")\n");
 
       if (!table.isTranslationMapEntity()) {
-        String sequenceSQLName=project.getPrefix() + "_" + project.projectName.toLowerCase() + "_seq";
+        String sequenceSQLName=/*project.getPrefix() + "_" + */ table.name.toLowerCase() + "_seq";
   
         imports.add("javax.persistence.SequenceGenerator");
         
-        beanCode.append("@SequenceGenerator(name=\"" + sequenceJPAName + "\", sequenceName=\"" + sequenceSQLName + "\", allocationSize=1)\n"); 
+        beanCode.append("@SequenceGenerator(name=\"" + sequenceJPAName + "\", sequenceName=\"" + sequenceSQLName + "\", allocationSize=1, initialValue=1000)\n"); 
       }
       
       beanCode.append("@javax.xml.bind.annotation.XmlRootElement\n");
@@ -269,7 +291,9 @@ public class DaoJPAGenerator {
             beanCode.append(",length = " + size);
             // CLOB
             if (size > 65532 && String.class.equals(field.getJavaType())) {
-               clob = "  @Lob\n";
+               clob = "    @Lob\n"
+                    + "    @Type(type = \"org.hibernate.type.TextType\")\n";
+               imports.add("org.hibernate.annotations.Type");
                imports.add("javax.persistence.Lob");
             }
           }

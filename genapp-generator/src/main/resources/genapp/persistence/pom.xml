@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>${package}</groupId>
-	<artifactId>${name}-jpa</artifactId>
+	<artifactId>${name}-persistence</artifactId>
 	<packaging>jar</packaging>
 
 	<parent>
@@ -14,7 +14,7 @@
 		<version>${app_current_version}</version>
 	</parent>
 
-	<name>${fullname} JPA</name>
+	<name>${fullname} - persistence</name>
 
 	<dependencies>
 

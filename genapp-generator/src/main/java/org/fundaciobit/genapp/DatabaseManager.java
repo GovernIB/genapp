@@ -394,7 +394,10 @@ public final class DatabaseManager {
         newRow.descripcio = ((desc == null)? "" : desc);
         
         // Valor per defecte
-        newRow.defaultValue = resultSet.getString(DB_COLUMN_DEF_VALUE);
+        newRow.setDefaultValue(resultSet.getString(DB_COLUMN_DEF_VALUE));
+        
+        log.info(" \n\n\n   VALOR PER DEFECTE => " +  newRow.getDefaultValue() + " \n\n\n   ");
+        
         
       }
 

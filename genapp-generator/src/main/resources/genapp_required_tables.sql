@@ -1,9 +1,10 @@
 
 
-CREATE SEQUENCE PFX_APPNAME_seq INCREMENT 1  MINVALUE 1  MAXVALUE 9223372036854775807  START 1000;
+CREATE SEQUENCE PFX_fitxer_seq INCREMENT 1  MINVALUE 1  MAXVALUE 9223372036854775807  START 1000;
+CREATE SEQUENCE PFX_traduccio_seq INCREMENT 1  MINVALUE 1  MAXVALUE 9223372036854775807  START 1000;
 
 CREATE TABLE PFX_fitxer (
-    fitxerid bigint DEFAULT nextval('PFX_APPNAME_seq'::regclass) NOT NULL,
+    fitxerid bigint DEFAULT nextval('PFX_fitxer_seq'::regclass) NOT NULL,
     descripcio character varying(1000) DEFAULT NULL::character varying,
     mime character varying(255) NOT NULL,
     nom character varying(255) NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE PFX_idioma (
 );
 
 CREATE TABLE PFX_traduccio (
-    traduccioid bigint DEFAULT nextval('PFX_APPNAME_seq'::regclass) NOT NULL
+    traduccioid bigint DEFAULT nextval('PFX_traduccio_seq'::regclass) NOT NULL
 );
 
 CREATE TABLE PFX_traducciomap (

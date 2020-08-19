@@ -1311,16 +1311,16 @@ public class CodeGenerator {
 			// Integrar JPA i persistece #28
 			prop.put("dollar", "$");
 			prop.put("package", project.getPackageName());
-			prop.put("persistencename", project.projectName.toLowerCase() + "DB");
+			prop.put("persistencename", project.projectName.toLowerCase() + "PU");
 			List<String> llistaJPABeans = Stream.of(tables)
 					.filter(TableInfo::isGenerate)
 					.map(table -> jpaPackage + "." + table.nameJava + "JPA")
 					.collect(Collectors.toList());
 			prop.put("classes", llistaJPABeans);
-			prop.put("jtadatasource", "java:/" + project.getPackageName() + ".db");
+			prop.put("jtadatasource", "java:jboss/datasources/" + project.getProjectName().toLowerCase() + "DS"); //"java:/" + project.getPackageName() + ".db");
 			// end #28
 
-			boolean overwrite = false;
+			boolean overwrite = true;
 			recursiveSubstitution(jpaDir, jpaResource, prop, project, overwrite);
 
 			File jpaBaseSrcDir = new File(jpaDir, "src/main/java/");
