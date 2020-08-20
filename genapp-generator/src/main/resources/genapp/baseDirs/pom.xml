@@ -97,6 +97,7 @@
 			- 3.2.10.RELEASE -->
 		<spring.version>4.3.26.RELEASE</spring.version>
 		<springsecurity.version>4.2.14.RELEASE</springsecurity.version>
+        <spring-data-jpa>1.6.6.RELEASE</spring-data-jpa>
 		
 		<tiles.version>3.0.8</tiles.version>
 		
@@ -107,7 +108,7 @@
 		<cglib.version>2.2.2</cglib.version>
 
 		<!-- XYZ ZZZ S'ha de fer la substitució -->
-		<genapp.version>2.0.0</genapp.version>
+		<genapp.version>2.0.0-SNAPSHOT</genapp.version>
 		
 		<version_txt_template_file>./scripts/templates/versio.txt.template</version_txt_template_file>
 

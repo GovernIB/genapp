@@ -14,7 +14,7 @@
 		<version>${app_current_version}</version>
 	</parent>
 
-	<name>${fullname} - persistence</name>
+	<name>${fullname} - Persistence</name>
 
 	<dependencies>
 

@@ -1,43 +1,32 @@
-package es.caib.projectebase.sqlgenerator;
+package org.fundaciobit.genapp.sqlgenerator;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.EnumSet;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.stream.Stream;
 
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.boot.spi.MetadataImplementor;
-import org.hibernate.cfg.Configuration;
+import javax.persistence.Persistence;
+
 import org.hibernate.dialect.Dialect;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
-import org.hibernate.tool.hbm2ddl.SchemaExport.Action;
-import org.hibernate.tool.schema.TargetType;
 
 /**
  * 
@@ -58,21 +47,20 @@ public class SqlGenerator {
 
     public static void main(String[] args) {
 
-        if (args.length < 1) {
-            System.err.println("Usage:     Sqlgenerator [persistentunit] [dialect](optional) ");
+        final int NUM_PARAMS = 2;
+
+        if (args.length < NUM_PARAMS || args.length > (NUM_PARAMS + 1)) {
+            System.err.println("Usage:   Sqlgenerator [projectName] [persistentUnit] [dialect(optional)] ");
             System.exit(-1);
         }
-        String persistenceunit2 = args[0];
 
-        String projectName = System.getProperty("sqlgenerator.project.name");
-        if (projectName == null) {
-            projectName = persistenceunit2;
-        }
+        String projectName = args[0];
+        String persistenceUnit = args[1];
 
         try {
             String dialect;
-            if (args.length > 1) {
-                dialect = args[1];
+            if (args.length > NUM_PARAMS) {
+                dialect = args[NUM_PARAMS];
             } else {
                 Class<?> dialecte = selectDialect();
                 dialect = dialecte.getName();
@@ -111,22 +99,72 @@ public class SqlGenerator {
                 System.exit(-1);
             }
 
-            String[] packagesToScan = { "es.caib.projectebase.persistence" };
-
-            SchemaGenerator gen = new SchemaGenerator(packagesToScan);
             File schemaFile = new File("create_schema.sql");
-            {
-                File dropFile = new File("drop_schema.sql");
-                File[] files = new File[] { schemaFile, dropFile };
-                Action[] actions = { Action.CREATE, Action.DROP };
-                gen.generate(dialect, files, actions);
-            }
+            File dropFile = new File("drop_schema.sql");
+
+            createSchema(dialect, persistenceUnit, schemaFile, dropFile);
 
             oracleCaib(schemaFile, dialect, projectName);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public static void createSchema(String dialect, String persistenceUnit, File schemaFile, File dropFile) {
+        // Les propietats per la generació es poden indicar dins el persistence.xml o es
+        // poden
+        // passar dins el Map.
+
+        Map<String, String> map = new HashMap<String, String>();
+
+        if (schemaFile.exists()) {
+            schemaFile.delete();
+        }
+
+        if (dropFile.exists()) {
+            dropFile.delete();
+        }
+
+        // Configuració per generar els scripts de creació de la base de dades -->
+        map.put("javax.persistence.schema-generation.scripts.action", "drop-and-create");
+        map.put("javax.persistence.schema-generation.scripts.create-target", schemaFile.getAbsolutePath());
+        map.put("javax.persistence.schema-generation.scripts.drop-target", dropFile.getAbsolutePath());
+
+        /*
+         * Propietats específiques de Hibernate
+         * https://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/
+         * Hibernate_User_Guide.html#configurations
+         */
+        map.put("hibernate.show_sql", "true");
+        map.put("hibernate.format_sql", "true");
+        map.put("hibernate.hbm2ddl.delimiter", ";");
+        
+        
+        
+        map.put("hibernate.connection.SetBigStringTryClob", "true");
+        map.put("hibernate.jdbc.batch_size", "0");
+        
+        
+        // map.put("provider", "org.hibernate.jpa.HibernatePersistenceProvider");
+
+        /*
+         * Si no indicam una connexió de bdd (per la generació no cal), Hibernate
+         * necessita que indiquem el dialecte que emprarà per la generació. Postgresql:
+         * org.hibernate.dialect.PostgreSQL95Dialect Oracle:
+         * org.hibernate.dialect.Oracle12cDialect
+         */
+
+        // String dialect = "org.hibernate.dialect.PostgreSQL95Dialect";
+        // String dialect = "org.hibernate.dialect.Oracle12cDialect";
+
+        map.put("hibernate.dialect", dialect);
+        if (dialect.indexOf("Oracle") != -1) {
+            map.put("hibernate.query.substitutions", "true 1, false 0");
+        }
+
+        Persistence.generateSchema(persistenceUnit, map);
 
     }
 
@@ -251,22 +289,48 @@ public class SqlGenerator {
 
     }
 
-    public static void oracleCaib(File schemaFile2, String dialect, String projectName) throws Exception {
+    public static void oracleCaib(File schemaFile, String dialect, String projectName) throws Exception {
 
-        String filename = schemaFile2.getName();
-        int punt = filename.lastIndexOf('.');
-        String caibFileName = filename.substring(0, punt) + "_caib." + filename.substring(punt + 1);
+        File parent = schemaFile.getParentFile();
+
+        File file_seq = new File(parent, "01_sequences.sql");
+
+        File file_tab = new File(parent, "02_tables.sql"); // (inclouen clau primaria)
+
+        File file_ind = new File(parent, "03_indexes.sql");
+
+        File file_con = new File(parent, "04_constraints.sql"); // (foreignkeys i unikes)
+
+        File file_blo = new File(parent, "05_blobs.sql");
+
+        File file_gra = new File(parent, "06_grants.sql");
+
+        StringBuffer allSequences = new StringBuffer();
+        StringBuffer allTables = new StringBuffer();
+        StringBuffer allIndexes = new StringBuffer();
+        StringBuffer allConstraints = new StringBuffer();
+        StringBuffer allLOBs = new StringBuffer();
+        StringBuffer allGrants = new StringBuffer();
+
+        File[] files = { file_seq, file_tab, file_ind, file_con, file_blo, file_gra };
+        StringBuffer[] buffers = { allSequences, allTables, allIndexes, allConstraints, allLOBs, allGrants };
+
+        for (File file : files) {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+
+        // String filename = schemaFile2.getName();
+        // int punt = filename.lastIndexOf('.');
+        // String caibFileName = filename.substring(0, punt) + "_caib." +
+        // filename.substring(punt + 1);
 
         Map<Integer, String> tagsReplacer = new HashMap<Integer, String>();
         int tagCounter = 0;
 
         if (dialect == null || dialect.indexOf("Oracle") == -1) {
             System.out.println("------------ No Dialect ORACLE");
-            // Borram versio ORACLE-CAIB de sql
-            File f = new File(caibFileName);
-            if (f.exists()) {
-                f.delete();
-            }
             return;
         }
 
@@ -297,18 +361,13 @@ public class SqlGenerator {
             }
         }
 
-        StringBuffer out = new StringBuffer();
-
-        BufferedReader br = new BufferedReader(new FileReader(schemaFile2));
+        BufferedReader br = new BufferedReader(new FileReader(schemaFile));
         try {
             String table = null;
 
             StringBuffer allUniques = new StringBuffer();
             StringBuffer allPKs = new StringBuffer();
             StringBuffer allFKs = new StringBuffer();
-            StringBuffer allIndexes = new StringBuffer();
-            StringBuffer allGrants = new StringBuffer();
-            StringBuffer allLOBs = new StringBuffer();
 
             final String uk = "unique (";
             final String pk = "primary key (";
@@ -334,7 +393,7 @@ public class SqlGenerator {
                     allGrants.append(
                             "    grant select,insert,delete,update on " + table + " to www_" + projectName + ";\n");
 
-                    out.append(l).append('\n');
+                    allTables.append(l).append('\n');
                     continue;
                 }
 
@@ -342,10 +401,6 @@ public class SqlGenerator {
                 // add constraint STR_DNV_PK primary key (DNV_CODIGO);
                 if (line.startsWith(pk)) {
 
-                    /*
-                     * String pkC = table + "_pk"; if (pkC.length() > 30) { pkC = projectPrefix
-                     * + "_"+ shortName + "_pk"; }
-                     */
                     String pkC = checkValue(table + "_pk", shortnames);
                     allPKs.append("    alter table " + table + " add constraint " + pkC + " ");
                     if (line.endsWith(",")) {
@@ -378,13 +433,13 @@ public class SqlGenerator {
                 }
 
                 // Unique Simple (d'una columna)
-                if (line.endsWith(" unique,") || line.endsWith(" unique")) {
+                if (line.indexOf(" unique ") != -1) { // line.endsWith(" unique,") || line.endsWith(" unique")) {
 
-                    out.append(l.substring(0, l.lastIndexOf(" unique")));
+                    allTables.append(l.substring(0, l.lastIndexOf(" unique")));
                     if (line.endsWith(" unique,")) {
-                        out.append(",\n");
+                        allTables.append(",\n");
                     } else {
-                        out.append("\n");
+                        allTables.append("\n");
                     }
 
                     String column = line.substring(0, line.indexOf(' '));
@@ -397,15 +452,27 @@ public class SqlGenerator {
                 }
 
                 if (line.startsWith("alter table ")) {
-                    allFKs.append("\n").append(l).append("\n");
+
+                    StringBuffer unknown = new StringBuffer();
+
+                    unknown.append("\n").append(l).append("\n");
                     while ((l = br.readLine()) != null) {
-                        allFKs.append(l).append("\n");
+                        unknown.append(l).append("\n");
                         if (l.endsWith(";")) {
                             br.readLine(); // Retorn de carro
 
                             break;
                         }
                     }
+
+                    String u = unknown.toString();
+
+                    if (u.indexOf(" unique (") == -1) {
+                        allFKs.append(u);
+                    } else {
+                        allUniques.append(u);
+                    }
+
                     continue;
                 }
 
@@ -428,27 +495,27 @@ public class SqlGenerator {
                 // Final taula
                 if (line.startsWith(");")) {
 
-                    if (out.toString().endsWith(",\n")) {
+                    if (allTables.toString().endsWith(",\n")) {
                         // Hem de llevar la coma
-                        out.setLength(out.length() - 2);
-                        out.append('\n');
+                        allTables.setLength(allTables.length() - 2);
+                        allTables.append('\n');
                     }
 
                     String postStr = shortnames.get("__post_" + table);
                     // hem d'afegir alguna cosa al final de la taula (p.e. Partitions) ?
                     if (postStr == null) {
-                        out.append(l);
+                        allTables.append(l);
                     } else {
 
                         final int c = tagCounter++;
                         tagsReplacer.put(c, postStr);
 
-                        out.append(l.replace(";", ""));
-                        out.append(getFormat(c));
-                        out.append(";");
+                        allTables.append(l.replace(";", ""));
+                        allTables.append(getFormat(c));
+                        allTables.append(";");
                     }
 
-                    out.append("\n");
+                    allTables.append("\n");
 
                     table = null;
                     // shortName = null;
@@ -457,9 +524,11 @@ public class SqlGenerator {
 
                 // Create sequence
                 if (line.startsWith(cs)) {
-                    String seqname = line.substring(line.indexOf(cs) + cs.length(), line.indexOf(";"));
+                    int to = line.indexOf(' ', line.indexOf(cs) + cs.length() + 2);
+                    String seqname = line.substring(line.indexOf(cs) + cs.length(), to);
                     allGrants.append("    grant select on " + seqname + " to www_" + projectName + ";\n");
-
+                    allSequences.append(line).append('\n');
+                    continue;
                 }
 
                 // Mirar si és CLOB o BLOB
@@ -467,7 +536,7 @@ public class SqlGenerator {
                     String lineLowerCase = line.toLowerCase();
                     if (lineLowerCase.indexOf(" blob,") != -1 || lineLowerCase.indexOf(" blob ") != -1
                             || lineLowerCase.indexOf(" clob,") != -1 || lineLowerCase.indexOf(" clob ") != -1
-                            || lineLowerCase.indexOf(" nclob,") != -1 || lineLowerCase.indexOf(" nclob ") != -1) {
+                            || lineLowerCase.indexOf(" nclob,") != -1 || lineLowerCase.indexOf(" nclob ") != -1)  {
 
                         String field = line.substring(0, line.indexOf(' '));
 
@@ -475,75 +544,49 @@ public class SqlGenerator {
 
                         allLOBs.append("    alter table " + table + " move lob (" + field + ")" + " store as " + lobname
                                 + " (tablespace " + projectName + "_lob index " + lobname + "_i);\n");
+
+                        continue;
                     }
+                } else {
+                    
+                    String lineLowerCase = line.toLowerCase();
+                    if (lineLowerCase.indexOf(" long") != -1) {
+                        allTables.append(l.replace(" long",  " clob")).append("\n");
+                        continue;
+                    }
+                    
                 }
 
                 // Afegir la linia original
-                out.append(l).append("\n");
+                if (table == null && l.trim().length() != 0) {
+                    System.err.println("AFEGIDA LINIA INCONTROLADA: ]" + l + "[");
+                }
+
+                allTables.append(l).append("\n");
             }
 
-            out.append("\n");
-            out.append("\n");
+            allTables.append("\n");
+            allTables.append("\n");
 
-            out.append(" -- INICI Indexes\n");
-            out.append(allIndexes.toString());
-            out.append(" -- FINAL Indexes\n\n");
+            allConstraints.append("\n -- INICI PKs\n");
+            allConstraints.append(allPKs.toString());
+            allConstraints.append(" -- FINAL PKs\n\n");
 
-            out.append(" -- INICI PK's\n");
-            out.append(allPKs.toString());
-            out.append(" -- FINAL PK's\n\n");
-
-            out.append(" -- INICI FK's\n");
-            out.append(allFKs.toString());
-            out.append(" -- FINAL FK's\n\n");
+            allConstraints.append("\n -- INICI FKs\n");
+            allConstraints.append(allFKs.toString());
+            allConstraints.append(" -- FINAL FKs\n\n");
 
             if (allUniques.length() != 0) {
-                out.append(" -- INICI UNIQUES\n");
-                out.append(allUniques.toString());
-                out.append(" -- FINAL UNIQUES\n\n");
+                allConstraints.append("\n -- INICI UNIQUEs\n");
+                allConstraints.append(allUniques.toString());
+                allConstraints.append(" -- FINAL UNIQUEs\n\n");
             }
 
-            // String filenameBase = schemaFile2.getAbsolutePath();
-
-            schemaFile2.renameTo(new File(filename + "_original"));
-
-            {
-                FileOutputStream fos = new FileOutputStream(filename);
-
-                String toWrite = out.toString(); // .replace(",\n );", "\n );");
-
-                for (int c : tagsReplacer.keySet()) {
-                    toWrite = toWrite.replace(getFormat(c), "");
-                }
-
-                fos.write(toWrite.getBytes());
-                fos.flush();
-                fos.close();
+            for (int i = 0; i < buffers.length; i++) {
+                guardarFitxer(files[i], tagsReplacer, buffers[i].toString());
             }
 
-            out.append(" -- INICI GRANTS\n");
-            out.append(allGrants.toString());
-            out.append(" -- FINAL GRANTS\n\n");
 
-            if (allLOBs.length() != 0) {
-                out.append(" -- INICI LOBS\n");
-                out.append(allLOBs.toString());
-                out.append(" -- FINAL LOBS\n\n");
-            }
-
-            {
-                FileOutputStream fos = new FileOutputStream(caibFileName);
-
-                String toWrite = out.toString().replace(",\n    );", "\n    );");
-
-                for (int c : tagsReplacer.keySet()) {
-                    toWrite = toWrite.replace(getFormat(c), tagsReplacer.get(c));
-                }
-
-                fos.write(toWrite.getBytes());
-                fos.flush();
-                fos.close();
-            }
         } finally {
             try {
                 br.close();
@@ -552,6 +595,28 @@ public class SqlGenerator {
 
         }
 
+    }
+
+    private static void guardarFitxer(File file, Map<Integer, String> tagsReplacer, String out)
+            throws FileNotFoundException, IOException {
+        {
+
+            if (out == null || out.trim().length() == 0) {
+                return;
+            }
+
+            FileOutputStream fos = new FileOutputStream(file);
+
+            String toWrite = out.replace(",\n    );", "\n    );");
+
+            for (int c : tagsReplacer.keySet()) {
+                toWrite = toWrite.replace(getFormat(c), tagsReplacer.get(c));
+            }
+
+            fos.write(toWrite.getBytes());
+            fos.flush();
+            fos.close();
+        }
     }
 
     public static String getFormat(final int c) {
@@ -583,7 +648,15 @@ public class SqlGenerator {
         @Override
         protected void registerNumericTypeMappings() {
             super.registerNumericTypeMappings();
+            
+            
+            System.out.println("getTypeName(Types.BLOB) => " + super.getTypeName(Types.BLOB));
+            System.out.println("getTypeName(Types.CLOB) => " + super.getTypeName(Types.CLOB));
+           System.out.println("getTypeName(Types.NCLOB) => " + super.getTypeName(Types.NCLOB));
+            
             registerColumnType(Types.NUMERIC, "number");
+            
+
         }
 
     }
@@ -617,96 +690,8 @@ public class SqlGenerator {
         }
 
     }
+    
+    
 
-    /**
-     * 
-     * @author anadal
-     *
-     */
-    public static class SchemaGenerator {
-
-        private final Configuration cfg;
-
-        private final List<Class<?>> classes = new ArrayList<Class<?>>();
-
-        @SuppressWarnings("rawtypes")
-        public SchemaGenerator(String[] packagesName) throws Exception {
-            cfg = new Configuration();
-            cfg.setProperty("hibernate.hbm2ddl.auto", "create");
-
-            for (String packageName : packagesName) {
-                List<Class<?>> cls = collectClasses(packageName);
-                classes.addAll(cls);
-
-                for (Class clazz : cls) {
-                    cfg.addAnnotatedClass(clazz);
-                }
-            }
-        }
-
-        private ClassLoader getClassLoader() throws ClassNotFoundException {
-            ClassLoader cld = Thread.currentThread().getContextClassLoader();
-            if (cld == null) {
-                throw new ClassNotFoundException("Can't get class loader.");
-            }
-            return cld;
-        }
-
-        private List<Class<?>> collectClasses(String packageName) throws Exception {
-
-            List<Class<?>> classes = new ArrayList<Class<?>>();
-
-            {
-                ClassLoader cld = getClassLoader();
-                URI uri = cld.getResource(packageName.replace('.', '/')).toURI();
-                Path myPath;
-                if (uri.getScheme().equals("jar")) {
-                    FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object> emptyMap());
-                    myPath = fileSystem.getPath(packageName.replace('.', '/'));
-                } else {
-                    myPath = Paths.get(uri);
-                }
-                Stream<Path> walk = Files.walk(myPath, 1);
-                for (Iterator<Path> it = walk.iterator(); it.hasNext();) {
-                    Path p = it.next();
-                    String file = p.getFileName().toString();
-                    if (file.endsWith(".class")) {
-                        String name = packageName + '.' + file.substring(0, file.length() - 6);
-                        classes.add(Class.forName(name));
-                    }
-                }
-                walk.close();
-
-            }
-
-            return classes;
-        }
-
-        public void generate(String dialect, File[] files, Action[] actions) throws Exception {
-
-            MetadataSources metadata = new MetadataSources(
-                    new StandardServiceRegistryBuilder().applySetting("hibernate.dialect", dialect).build());
-
-            for (Class<?> clazz : classes) {
-                System.out.println("Class: " + clazz);
-                metadata.addAnnotatedClass(clazz);
-            }
-
-            SchemaExport export = new SchemaExport();
-
-            export.setDelimiter(";");
-
-            export.setFormat(true);
-
-            EnumSet<TargetType> targetTypes = EnumSet.of(TargetType.SCRIPT);
-
-            for (int i = 0; i < actions.length; i++) {
-                export.setOutputFile(files[i].getAbsolutePath());
-                export.execute(targetTypes, actions[i], (MetadataImplementor) metadata.buildMetadata());
-            }
-
-        }
-
-    }
 
 }
