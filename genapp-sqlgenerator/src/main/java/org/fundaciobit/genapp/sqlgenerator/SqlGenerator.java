@@ -295,11 +295,11 @@ public class SqlGenerator {
 
         File file_seq = new File(parent, "01_sequences.sql");
 
-        File file_tab = new File(parent, "02_tables.sql"); // (inclouen clau primaria)
+        File file_tab = new File(parent, "02_tables.sql"); 
 
-        File file_ind = new File(parent, "03_indexes.sql");
-
-        File file_con = new File(parent, "04_constraints.sql"); // (foreignkeys i unikes)
+        File file_con = new File(parent, "03_constraints.sql"); // (clau primaria, foreignkeys i unikes)
+        
+        File file_ind = new File(parent, "04_indexes.sql");
 
         File file_blo = new File(parent, "05_blobs.sql");
 
@@ -312,8 +312,8 @@ public class SqlGenerator {
         StringBuffer allLOBs = new StringBuffer();
         StringBuffer allGrants = new StringBuffer();
 
-        File[] files = { file_seq, file_tab, file_ind, file_con, file_blo, file_gra };
-        StringBuffer[] buffers = { allSequences, allTables, allIndexes, allConstraints, allLOBs, allGrants };
+        File[] files = { file_seq, file_tab, file_con, file_ind,  file_blo, file_gra };
+        StringBuffer[] buffers = { allSequences, allTables, allConstraints, allIndexes, allLOBs, allGrants };
 
         for (File file : files) {
             if (file.exists()) {
@@ -355,7 +355,7 @@ public class SqlGenerator {
         {
             String genblobvalue = System.getProperty("sqlgenerator.oracle.generatelob");
             if (genblobvalue == null) {
-                generatelob = true;
+                generatelob = false;
             } else {
                 generatelob = "true".equals(genblobvalue.trim());
             }
@@ -536,7 +536,9 @@ public class SqlGenerator {
                     String lineLowerCase = line.toLowerCase();
                     if (lineLowerCase.indexOf(" blob,") != -1 || lineLowerCase.indexOf(" blob ") != -1
                             || lineLowerCase.indexOf(" clob,") != -1 || lineLowerCase.indexOf(" clob ") != -1
-                            || lineLowerCase.indexOf(" nclob,") != -1 || lineLowerCase.indexOf(" nclob ") != -1)  {
+                            || lineLowerCase.indexOf(" nclob,") != -1 || lineLowerCase.indexOf(" nclob ") != -1
+                            // XYZ ZZZ 
+                            || lineLowerCase.indexOf(" long") != -1)  {
 
                         String field = line.substring(0, line.indexOf(' '));
 
@@ -550,6 +552,7 @@ public class SqlGenerator {
                 } else {
                     
                     String lineLowerCase = line.toLowerCase();
+                    // XYZ ZZZ
                     if (lineLowerCase.indexOf(" long") != -1) {
                         allTables.append(l.replace(" long",  " clob")).append("\n");
                         continue;
@@ -650,9 +653,9 @@ public class SqlGenerator {
             super.registerNumericTypeMappings();
             
             
-            System.out.println("getTypeName(Types.BLOB) => " + super.getTypeName(Types.BLOB));
-            System.out.println("getTypeName(Types.CLOB) => " + super.getTypeName(Types.CLOB));
-           System.out.println("getTypeName(Types.NCLOB) => " + super.getTypeName(Types.NCLOB));
+//            System.out.println("getTypeName(Types.BLOB) => " + super.getTypeName(Types.BLOB));
+//            System.out.println("getTypeName(Types.CLOB) => " + super.getTypeName(Types.CLOB));
+//            System.out.println("getTypeName(Types.NCLOB) => " + super.getTypeName(Types.NCLOB));
             
             registerColumnType(Types.NUMERIC, "number");
             
