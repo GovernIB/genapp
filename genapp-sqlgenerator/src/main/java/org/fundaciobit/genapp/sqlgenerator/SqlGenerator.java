@@ -479,11 +479,17 @@ public class SqlGenerator {
                 if (line.startsWith("create index ")) {
 
                     if (postIndex == null) {
+                        if (l.indexOf("_pk_i") != -1) {
+                          allIndexes.append("-- ");
+                        } 
                         allIndexes.append(l).append("\n");
                     } else {
                         final int c = tagCounter++;
                         tagsReplacer.put(c, postIndex);
                         final int pos = l.lastIndexOf(';');
+                        if (l.indexOf("_pk_i") != -1) {
+                            allIndexes.append("-- ");
+                        } 
                         allIndexes.append(l.substring(0, pos));
                         allIndexes.append(getFormat(c));
                         allIndexes.append(l.substring(pos)).append("\n");
