@@ -2065,7 +2065,9 @@ public class BackWebGenerator extends IconUtils {
 			// code.append(" <div class=\"input-group-append\">\n");
 			// code.append(" <span class=\"input-group-text\" id=\"\">Upload</span>\n");
 
-			code.append("                <c:if test=\"${not empty " + instanceForm + "." + model + "." + fileObj
+
+			code.append("                <c:choose>\n");
+			code.append("                <c:when test=\"${not empty " + instanceForm + "." + model + "." + fileObj
 					+ "}\">\n");
 
 			// code.append(" <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
@@ -2083,7 +2085,25 @@ public class BackWebGenerator extends IconUtils {
 				
 			}
 			code.append("                </div>\n");
-			code.append("                </c:if>\n");
+			code.append("                </c:when>\n");
+			code.append("                </c:otherwise>\n");
+
+			code.append("                <div class=\"input-group-append input-group-append-file\">\n");
+			code.append("                  <span class=\"input-group-text\" id=\"" + modelCamp + "-custom-file-label\" style=\"display:none\">\n");
+			code.append("                  <small></small>\n");
+			code.append("                  </span>\n");
+			code.append("                </div>\n");
+			code.append("                <script type=\"text/javascript\">
+											$('#"+modelCamp+"').on('change', function(){ 
+												var ruta = $('#"+modelCamp+"').val(); 
+												var rutaArray = ruta.split('\\\\');
+												$('#"+modelCamp+"-custom-file-label').css('display','block');
+												$('#"+modelCamp+"-custom-file-label small').html(rutaArray[rutaArray.length - 1]);
+											});
+										</script>");
+
+			code.append("                </c:otherwise>\n");
+			code.append("                </c:choose>\n");
 			code.append("              </div>\n");
 			//code.append("              </div>\n");
 			code.append("            </c:if>\n");
