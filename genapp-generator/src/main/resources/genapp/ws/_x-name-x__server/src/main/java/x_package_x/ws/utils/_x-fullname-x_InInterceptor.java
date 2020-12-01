@@ -23,7 +23,7 @@ import org.fundaciobit.genapp.common.i18n.I18NValidationException;
 import org.fundaciobit.genapp.common.ws.WsI18NException;
 import org.fundaciobit.genapp.common.ws.WsValidationException;
 
-import ${package}.utils.Configuracio;
+import ${package}.commons.utils.Configuracio;
 import ${package}.utils.Constants;
 import org.apache.cxf.service.Service;
 

@@ -1,6 +1,6 @@
 package ${package}.back.controller.common;
 
-import ${package}.utils.Configuracio;
+import ${package}.commons.utils.Configuracio;
 import ${package}.utils.Constants;
 
 import org.apache.log4j.Logger;

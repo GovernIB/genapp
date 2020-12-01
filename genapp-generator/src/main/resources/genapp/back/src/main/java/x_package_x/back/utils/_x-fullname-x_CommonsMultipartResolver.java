@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import ${package}.utils.Configuracio;
+import ${package}.commons.utils.Configuracio;
 
 /**
  * 
