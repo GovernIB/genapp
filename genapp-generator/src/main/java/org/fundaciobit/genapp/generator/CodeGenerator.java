@@ -884,8 +884,8 @@ public class CodeGenerator {
 
 			File dstBaseDir = new File(projectDir,  project.getPrefixDirectori() + utilsName);
 
-			boolean utilsExists = new File(dstBaseDir, "src/main/java/es/caib/portafib/utils").exists();
-			File constantsFile = new File(dstBaseDir, "src/main/java/es/caib/portafib/utils/Constants.java");
+			boolean utilsExists = new File(dstBaseDir, "src/main/java/"+packagePath+"/utils").exists();
+			File constantsFile = new File(dstBaseDir, "src/main/java/"+packagePath+"/utils/Constants.java");
 			boolean constantsExists = constantsFile.exists();
 
 			// NO MOURE D´AQUI !!!!
@@ -1423,6 +1423,33 @@ public class CodeGenerator {
 
 				}
 
+			}
+			
+			// (g) CustomHibernatePersistenceProvider
+			{
+				File hibernateSrcDir = new File(jpaDir, "src/main/java/" + hibernatePackage.replace('.', '/'));
+				hibernateSrcDir.mkdirs();
+				String hibernateName = "CustomHibernatePersistenceProvider";
+				String hibernateFileName = "CustomHibernatePersistenceProvider";
+				{
+					SourceFile[] files;
+					files = DaoJPAGenerator.generateCustomHibernatePersistenceProvider(hibernatePackage, hibernateName, hibernateFileName);
+					for (int i = 0; i < files.length; i++) {
+						files[i].saveToPath(hibernateSrcDir);
+					}
+
+				}
+
+			}
+			
+			// (h) register service javax.persistence.spi.PersistenceProvider
+			{
+				File hibernateSrcDir = new File(jpaDir, "src/main/resources/META-INF/services/");
+				hibernateSrcDir.mkdirs();
+				{
+					SourceFile file = new SourceFile("javax.persistence.spi.PersistenceProvider", hibernatePackage + "CustomHibernatePersistenceProvider");
+					file.saveToPath(hibernateSrcDir);
+				}
 			}
 
 		}

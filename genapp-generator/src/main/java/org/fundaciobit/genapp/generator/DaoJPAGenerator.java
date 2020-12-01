@@ -140,7 +140,71 @@ public class DaoJPAGenerator {
   }
   
   
-  
+  public static SourceFile[] generateCustomHibernatePersistenceProvider(String hibernatePackage,
+	      String hibernateName, String hibernateFileName) {
+	  
+	    String code2 = 
+	    		"package " + hibernatePackage + ";\r\n" + 
+	    		"\r\n" + 
+	    		"import java.util.HashMap;\r\n" + 
+	    		"import java.util.Map;\r\n" + 
+	    		"import java.util.Properties;\r\n" + 
+	    		"\r\n" + 
+	    		"import javax.persistence.EntityManagerFactory;\r\n" + 
+	    		"import javax.persistence.spi.PersistenceUnitInfo;\r\n" + 
+	    		"\r\n" + 
+	    		"import org.hibernate.jpa.HibernatePersistenceProvider;\r\n" + 
+	    		"import org.slf4j.Logger;\r\n" + 
+	    		"import org.slf4j.LoggerFactory;\r\n" + 
+	    		"\r\n" + 
+	    		"import " + GenAppPackages.PKG_BASE + ".commons.utils.Configuracio;\r\n" + 
+	    		"import " + GenAppPackages.PKG_BASE + ".commons.utils.Constants;\r\n" + 
+	    		"\r\n" + 
+	    		"/**\r\n" + 
+	    		" * ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!!\r\n" + 
+	    		" * @author jagarcia\r\n" + 
+	    		" */\r\n" + 
+	    		"public class " + hibernateFileName + " extends HibernatePersistenceProvider {\r\n" + 
+	    		"	\r\n" + 
+	    		"	private static final Logger log = LoggerFactory.getLogger(Configuracio.class);\r\n" + 
+	    		"	\r\n" + 
+	    		"	@Override\r\n" + 
+	    		"	public EntityManagerFactory createContainerEntityManagerFactory(PersistenceUnitInfo info, Map properties) {\r\n" + 
+	    		"		\r\n" + 
+	    		"		Map carpetaProperties = new HashMap<String,String>();\r\n" + 
+	    		"		\r\n" + 
+	    		"		if(!properties.isEmpty()) {\r\n" + 
+	    		"			carpetaProperties.putAll(properties);\r\n" + 
+	    		"		}\r\n" + 
+	    		"		\r\n" + 
+	    		"		Properties fitxerProperties = Configuracio.getSystemAndFileProperties();\r\n" + 
+	    		"		if(fitxerProperties != null) {\r\n" + 
+	    		"			fitxerProperties.forEach((k,v) -> {\r\n" + 
+	    		"	        	if (k.toString().startsWith(Constants.CARPETA_PROPERTY_BASE_HIBERNATE)) {\r\n" + 
+	    		"	        		// Propietats que comencen per es.caib.carpeta.hibernate.\r\n" + 
+	    		"	        		carpetaProperties.put(k.toString().replace(Constants.CARPETA_PROPERTY_BASE,\"\"), v.toString());\r\n" + 
+	    		"	        	}else if(k.toString().startsWith(Constants.CARPETA_PROPERTY_HIBERNATE)) {\r\n" + 
+	    		"	        		// Propietats que comencen per hibernate. Les de carpeta sobreescriuen a les de sistema.\r\n" + 
+	    		"	        		if (!carpetaProperties.containsKey(k.toString())) {\r\n" + 
+	    		"	        			carpetaProperties.put(k.toString(), v.toString());\r\n" + 
+	    		"	        		}\r\n" + 
+	    		"	        	}\r\n" + 
+	    		"	        });\r\n" + 
+	    		"		}\r\n" + 
+	    		"		if (Configuracio.isDesenvolupament()) {\r\n" + 
+	    		"			carpetaProperties.forEach((k,v) -> {\r\n" + 
+	    		"	        	log.info(\"HibernateProperties: \" + k + \", Value : \" + v);\r\n" + 
+	    		"	        });\r\n" + 
+	    		"		}\r\n" + 
+	    		"		return super.createContainerEntityManagerFactory(info, carpetaProperties);\r\n" + 
+	    		"	}\r\n" + 
+	    		"}";
+	    
+	    return new SourceFile[] {
+	        // XYZ ZZZ new SourceFile(hibernateName + ".java", code),
+	        new SourceFile(hibernateFileName + ".java", code2),
+	    };
+	  }
   
   
   public static SourceFile generateJPABeanCode(Project project, TableInfo table,
