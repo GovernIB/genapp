@@ -1844,14 +1844,14 @@ public class BackWebGenerator extends IconUtils {
 				code.append("      <c:set  var=\"hiddenField\" value=\"${hiddenFieldF.javaName}\" />\n");
 				code.append("      <c:if test=\"${gen:hasProperty(__theForm." + model + ",hiddenField)}\">\n");
 				code.append("        <form:errors path=\"" + model
-						+ ".${hiddenField}\" cssClass=\"errorField alert alert-error\" />\n");
+						+ ".${hiddenField}\" cssClass=\"errorField alert alert-danger\" />\n");
 				code.append("        <form:hidden path=\"" + model + ".${hiddenField}\"/>\n");
 				code.append("      </c:if>\n");
 				code.append("    </c:forEach>\n");
 				code.append("    </c:if>\n\n");
 				
 			    // Errors Globals del Formulari
-			    code.append("    <form:errors cssClass=\"errorField alert alert-error\" delimiter=\"&lt;p/&gt;\" />\n");
+			    code.append("    <form:errors cssClass=\"errorField alert alert-danger\" delimiter=\"&lt;p/&gt;\" />\n");
 			    
 
 				code.append(
@@ -2042,7 +2042,7 @@ public class BackWebGenerator extends IconUtils {
 				fileObj = modelCamp.substring(0, modelCamp.length() - 2);
 			}
 			code.append("              <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 
 			code.append("            <c:if test=\"${" + readOnlyCondition + "}\" >\n");
 			code.append(getOnlyReadFileFieldWithoutCondition(project, modelCamp, modelCamp));
@@ -2181,7 +2181,7 @@ public class BackWebGenerator extends IconUtils {
 			String simpleName = modelCamp.substring(0, modelCamp.length() - 2); // Llevar ID
 			String fullmodel = model + "." + simpleName;
 
-			code.append("       <form:errors path=\"" + fullmodel + "\" cssClass=\"errorField alert alert-error\" />\n");
+			code.append("       <form:errors path=\"" + fullmodel + "\" cssClass=\"errorField alert alert-danger\" />\n");
 			code.append("       <div class=\"row-fluid  col-md-6\">\n");
 			code.append("         <ul class=\"nav nav-tabs\" style=\"margin: 0 15px -1px;\">\n");
 			code.append(
@@ -2202,7 +2202,7 @@ public class BackWebGenerator extends IconUtils {
 					"           <div class=\"tab-pane ${(counter.index == 0)? 'active':'' }\" id=\"${counter.index}_tab_"
 							+ simpleName + "_${idioma.idiomaID}\">\n");
 			code.append("               <form:errors path=\"" + fullmodel
-					+ ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"errorField alert alert-error\"/>\n");
+					+ ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"errorField alert alert-danger\"/>\n");
 			String maxlength = "maxlength=\"4000\"";
 			code.append("               <form:input path=\"" + fullmodel + ".traduccions['${idioma.idiomaID}'].valor\" "
 					+ "cssClass=\"" + cssClass + "\" " + maxlength + " />\n");
@@ -2264,7 +2264,7 @@ public class BackWebGenerator extends IconUtils {
 			}
 
 			code.append("            <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			// code.append(" <div class=\"input-append\">\n");
 			code.append("            <form:input " + formInputReadOnly.replace("'input", "'" + newInputSize) + " "
 					+ maxlength + " path=\"" + model + "." + modelCamp + "\" "
@@ -2300,7 +2300,7 @@ public class BackWebGenerator extends IconUtils {
 			String name = Character.toUpperCase(field.javaName.charAt(0)) + field.javaName.substring(1);
 
 			code.append("          <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 
 			code.append("          <c:if test=\"${" + readOnlyCondition + "}\" >\n");
 			code.append("          <form:hidden path=\"" + model + "." + modelCamp + "\"/>\n");
@@ -2348,7 +2348,7 @@ public class BackWebGenerator extends IconUtils {
 		case WebType.TextArea:
 		case WebType.RichText:
 			code.append("              <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			code.append("              <form:textarea");
 			if (webType == WebType.RichText) {
 				code.append(
@@ -2388,7 +2388,7 @@ public class BackWebGenerator extends IconUtils {
 			if (field.isNotNullable && prefix == null) {
 				prefix = "genapp.checkbox";
 				code.append("              <form:errors path=\"" + model + "." + modelCamp
-						+ "\" cssClass=\"errorField alert alert-error\" />\n");
+						+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 				code.append("              <form:checkbox cssClass=\"form-control\" onclick=\"javascript:return ${ " + readOnlyCondition
 						+ "? 'false' : 'true'}\" path=\"" + model + "." + modelCamp + "\" />\n");
 			} else {
@@ -2417,7 +2417,7 @@ public class BackWebGenerator extends IconUtils {
 
 		case WebType.Date:
 			code.append("    <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			
 			code.append("    <div class=\"container\">\n");
 			code.append("      <div class=\"row\">\n");
@@ -2478,7 +2478,7 @@ public class BackWebGenerator extends IconUtils {
 
 		case WebType.Time:
 			code.append("    <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 
 
 			code.append("    <div class=\"container\">\n");
@@ -2540,7 +2540,7 @@ public class BackWebGenerator extends IconUtils {
 
 		case WebType.DateTime:
 			code.append("              <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-error\" />\n");
+					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			
 			code.append("    <div class=\"container\">\n");
 			code.append("      <div class=\"row\">\n");

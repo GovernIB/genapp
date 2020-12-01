@@ -121,7 +121,7 @@ try {
 </script>
 
 <body>
- <div class="alert alert-error">
+ <div class="alert alert-danger">
       <c:set var="stacktrace"  value="${symbol_dollar}{pageContext.exception.stackTrace}"/>
       <div><h4><%=titolPagina%></h4></div>
       <br/>
