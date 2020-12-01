@@ -16,7 +16,7 @@
 		<version>${app_current_version}</version>
 	</parent>
 
-	<name>${fullname} Ear</name>
+	<name>${fullname} - Ear</name>
 
 
 	<properties>

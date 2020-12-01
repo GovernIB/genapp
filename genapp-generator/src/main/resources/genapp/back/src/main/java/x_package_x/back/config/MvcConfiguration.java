@@ -2,7 +2,7 @@ package ${package}.back.config;
 
 import java.util.Locale;
 
-import ${package}.utils.Configuracio;
+import ${package}.commons.utils.Configuracio;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

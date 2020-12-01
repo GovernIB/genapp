@@ -17,7 +17,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import ${package}.hibernate.HibernateFileUtil;
 import ${package}.logic.utils.I18NLogicUtils;
 import ${package}.logic.utils.LogicUtils;
-import ${package}.utils.Configuracio;
+import ${package}.commons.utils.Configuracio;
 
 
 /**

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import ${package}.utils.Configuracio;
+import ${package}.commons.utils.Configuracio;
 
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.StringKeyValue;
