@@ -49,7 +49,7 @@
     <dependency>
       <groupId>org.fundaciobit.genapp</groupId>
       <artifactId>genapp-sqlgenerator</artifactId>
-      <version>${${symbol_dollar}{genapp_version}</version>
+      <version>${symbol_dollar}{genapp_version}</version>
     </dependency>
 
     <dependency>
