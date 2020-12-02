@@ -1082,7 +1082,16 @@ public class BackGenerator {
         } else {
           codeRefList.append("      String key = keysMap.get(String.valueOf(traduccioJPA.getTraduccioID()));\n");
         }
-        codeRefList.append("      String value = traduccioJPA.getTraduccio(_lang).getValor();\n");
+        //codeRefList.append("      String value = traduccioJPA.getTraduccio(_lang).getValor();\n");
+        
+        codeRefList.append("      " + jpaPackage + ".TraduccioMapJPA _tm = traduccioJPA.getTraduccio(_lang);\n");
+        codeRefList.append("      String value;\n");
+        codeRefList.append("      if (_tm == null) {\n");
+        codeRefList.append("          value = \"NO_TRADUCCIO_PER_CODI_\" + traduccio.getTraduccioID() + \"_[\" + _lang + \"]\";\n");
+        codeRefList.append("      } else {\n");
+        codeRefList.append("          value= _tm.getValor();\n");
+        codeRefList.append("      }\n");
+        
         codeRefList.append("      StringKeyValue skv = new StringKeyValue(key, value);\n");
         codeRefList.append("      _list.add(skv);\n");
         codeRefList.append("    }\n");
