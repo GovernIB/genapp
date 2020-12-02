@@ -45,7 +45,7 @@
 
 		<dependency>
 			<groupId>${package}</groupId>
-			<artifactId>${name}-utils</artifactId>
+			<artifactId>${name}-commons</artifactId>
 			<version>${project_version}</version>
 			<scope>provided</scope>
 		</dependency>

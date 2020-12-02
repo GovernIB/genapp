@@ -1433,7 +1433,7 @@ public class CodeGenerator {
 				String hibernateFileName = "CustomHibernatePersistenceProvider";
 				{
 					SourceFile[] files;
-					files = DaoJPAGenerator.generateCustomHibernatePersistenceProvider(hibernatePackage, hibernateName, hibernateFileName);
+					files = DaoJPAGenerator.generateCustomHibernatePersistenceProvider(hibernatePackage, hibernateName, hibernateFileName, project);
 					for (int i = 0; i < files.length; i++) {
 						files[i].saveToPath(hibernateSrcDir);
 					}

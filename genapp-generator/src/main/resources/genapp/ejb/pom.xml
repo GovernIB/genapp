@@ -21,7 +21,7 @@
 
 		<dependency>
 			<groupId>${package}</groupId>
-			<artifactId>${name}-jpa</artifactId>
+			<artifactId>${name}-persistence</artifactId>
 			<version>${project_version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
@@ -29,7 +29,7 @@
 
 		<dependency>
 			<groupId>${package}</groupId>
-			<artifactId>${name}-utils</artifactId>
+			<artifactId>${name}-commons</artifactId>
 			<version>${project_version}</version>
 			<type>jar</type>
 		</dependency>

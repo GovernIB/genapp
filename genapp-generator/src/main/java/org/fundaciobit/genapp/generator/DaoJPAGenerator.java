@@ -141,7 +141,7 @@ public class DaoJPAGenerator {
   
   
   public static SourceFile[] generateCustomHibernatePersistenceProvider(String hibernatePackage,
-	      String hibernateName, String hibernateFileName) {
+	      String hibernateName, String hibernateFileName, Project project) {
 	  
 	    String code2 = 
 	    		"package " + hibernatePackage + ";\r\n" + 
@@ -157,8 +157,8 @@ public class DaoJPAGenerator {
 	    		"import org.slf4j.Logger;\r\n" + 
 	    		"import org.slf4j.LoggerFactory;\r\n" + 
 	    		"\r\n" + 
-	    		"import " + GenAppPackages.PKG_BASE + ".commons.utils.Configuracio;\r\n" + 
-	    		"import " + GenAppPackages.PKG_BASE + ".commons.utils.Constants;\r\n" + 
+	    		"import " + project.getPackageName() + ".commons.utils.Configuracio;\r\n" + 
+	    		"import " + project.getPackageName() + ".utils.Constants;\r\n" + 
 	    		"\r\n" + 
 	    		"/**\r\n" + 
 	    		" * ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!!\r\n" + 
@@ -171,32 +171,30 @@ public class DaoJPAGenerator {
 	    		"	@Override\r\n" + 
 	    		"	public EntityManagerFactory createContainerEntityManagerFactory(PersistenceUnitInfo info, Map properties) {\r\n" + 
 	    		"		\r\n" + 
-	    		"		Map carpetaProperties = new HashMap<String,String>();\r\n" + 
+	    		"		Map projecteProperties = new HashMap<String,String>();\r\n" + 
 	    		"		\r\n" + 
 	    		"		if(!properties.isEmpty()) {\r\n" + 
-	    		"			carpetaProperties.putAll(properties);\r\n" + 
+	    		"			projecteProperties.putAll(properties);\r\n" + 
 	    		"		}\r\n" + 
 	    		"		\r\n" + 
 	    		"		Properties fitxerProperties = Configuracio.getSystemAndFileProperties();\r\n" + 
 	    		"		if(fitxerProperties != null) {\r\n" + 
 	    		"			fitxerProperties.forEach((k,v) -> {\r\n" + 
-	    		"	        	if (k.toString().startsWith(Constants.CARPETA_PROPERTY_BASE_HIBERNATE)) {\r\n" + 
-	    		"	        		// Propietats que comencen per es.caib.carpeta.hibernate.\r\n" + 
-	    		"	        		carpetaProperties.put(k.toString().replace(Constants.CARPETA_PROPERTY_BASE,\"\"), v.toString());\r\n" + 
-	    		"	        	}else if(k.toString().startsWith(Constants.CARPETA_PROPERTY_HIBERNATE)) {\r\n" + 
-	    		"	        		// Propietats que comencen per hibernate. Les de carpeta sobreescriuen a les de sistema.\r\n" + 
-	    		"	        		if (!carpetaProperties.containsKey(k.toString())) {\r\n" + 
-	    		"	        			carpetaProperties.put(k.toString(), v.toString());\r\n" + 
+	    		"	        	if (k.toString().startsWith(Constants." + project.getProjectName().toUpperCase() + "_PROPERTY_BASE_HIBERNATE)) {\r\n" + 
+	    		"	        		projecteProperties.put(k.toString().replace(Constants." + project.getProjectName().toUpperCase() + "_PROPERTY_BASE,\"\"), v.toString());\r\n" + 
+	    		"	        	}else if(k.toString().startsWith(Constants." + project.getProjectName().toUpperCase() +  "_PROPERTY_HIBERNATE)) {\r\n" + 
+	    		"	        		if (!projecteProperties.containsKey(k.toString())) {\r\n" + 
+	    		"	        			projecteProperties.put(k.toString(), v.toString());\r\n" + 
 	    		"	        		}\r\n" + 
 	    		"	        	}\r\n" + 
 	    		"	        });\r\n" + 
 	    		"		}\r\n" + 
 	    		"		if (Configuracio.isDesenvolupament()) {\r\n" + 
-	    		"			carpetaProperties.forEach((k,v) -> {\r\n" + 
+	    		"			projecteProperties.forEach((k,v) -> {\r\n" + 
 	    		"	        	log.info(\"HibernateProperties: \" + k + \", Value : \" + v);\r\n" + 
 	    		"	        });\r\n" + 
 	    		"		}\r\n" + 
-	    		"		return super.createContainerEntityManagerFactory(info, carpetaProperties);\r\n" + 
+	    		"		return super.createContainerEntityManagerFactory(info, projecteProperties);\r\n" + 
 	    		"	}\r\n" + 
 	    		"}";
 	    

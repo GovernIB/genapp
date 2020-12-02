@@ -32,7 +32,7 @@ public class ${fullname}SessionLocaleResolver extends SessionLocaleResolver{
 		try {
 
 			if (idioma == null) {
-            idioma = ${package}.utils.Configuracio.getDefaultLanguage();
+            idioma = ${package}.commons.utils.Configuracio.getDefaultLanguage();
 			}
 
 			Locale loc = new Locale(idioma);
