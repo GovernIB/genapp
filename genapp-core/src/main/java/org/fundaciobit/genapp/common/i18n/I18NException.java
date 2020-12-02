@@ -6,7 +6,7 @@ package org.fundaciobit.genapp.common.i18n;
  * 
  *
  */
-public class I18NException extends Throwable {
+public class I18NException extends Exception {
 
   /**
    * 
