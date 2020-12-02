@@ -9,8 +9,6 @@ package ${package}.utils;
 public interface Constants {
 
   public static final String ${name_uppercase}_PROPERTY_BASE = "${package}.";
-  public static final String ${name_uppercase}_PROPERTY_HIBERNATE = "hibernate.";
-  public static final String ${name_uppercase}_PROPERTY_BASE_HIBERNATE = ${name_uppercase}_PROPERTY_BASE + ${name_uppercase}_PROPERTY_HIBERNATE;
 
   public static final String MAIL_SERVICE = "java:/${package}.mail";
  

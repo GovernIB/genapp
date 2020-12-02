@@ -110,24 +110,24 @@ public class DaoJPAGenerator {
     + "    }\n"
     + "\n"
     + "\n"
-    + "    public static String encryptString(String value) {\r\n" + 
-    "        try {\r\n" + 
-    "          return encrypter.encrypt(value);\r\n" + 
-    "        } catch(Exception e) {\r\n" + 
-    "          System.err.print(\"Error executant File Encrypter: \" + e.getMessage());\r\n" + 
-    "          e.printStackTrace(System.err);\r\n" + 
-    "          return value;\r\n" + 
-    "        }\r\n" + 
-    "      }\r\n" + 
-    "\r\n" + 
-    "      public static String decryptString(String encryptedData)  {\r\n" + 
-    "        try {\r\n" + 
-    "          return encrypter.decrypt(encryptedData);\r\n" + 
-    "        } catch(Exception e) {\r\n" + 
-    "          System.err.print(\"Error executant File Decrypter: \" + e.getMessage());\r\n" + 
-    "          e.printStackTrace(System.err);\r\n" + 
-    "          return \"\";\r\n" + 
-    "        }\r\n" + 
+    + "    public static String encryptString(String value) {\n" + 
+    "        try {\n" + 
+    "          return encrypter.encrypt(value);\n" + 
+    "        } catch(Exception e) {\n" + 
+    "          System.err.print(\"Error executant File Encrypter: \" + e.getMessage());\n" + 
+    "          e.printStackTrace(System.err);\n" + 
+    "          return value;\n" + 
+    "        }\n" + 
+    "      }\n" + 
+    "\n" + 
+    "      public static String decryptString(String encryptedData)  {\n" + 
+    "        try {\n" + 
+    "          return encrypter.decrypt(encryptedData);\n" + 
+    "        } catch(Exception e) {\n" + 
+    "          System.err.print(\"Error executant File Decrypter: \" + e.getMessage());\n" + 
+    "          e.printStackTrace(System.err);\n" + 
+    "          return \"\";\n" + 
+    "        }\n" + 
     "      }"
     
     + "\n"
@@ -144,58 +144,58 @@ public class DaoJPAGenerator {
 	      String hibernateName, String hibernateFileName, Project project) {
 	  
 	    String code2 = 
-	    		"package " + hibernatePackage + ";\r\n" + 
-	    		"\r\n" + 
-	    		"import java.util.HashMap;\r\n" + 
-	    		"import java.util.Map;\r\n" + 
-	    		"import java.util.Properties;\r\n" + 
-	    		"\r\n" + 
-	    		"import javax.persistence.EntityManagerFactory;\r\n" + 
-	    		"import javax.persistence.spi.PersistenceUnitInfo;\r\n" + 
-	    		"\r\n" + 
-	    		"import org.hibernate.jpa.HibernatePersistenceProvider;\r\n" + 
-	    		"import org.slf4j.Logger;\r\n" + 
-	    		"import org.slf4j.LoggerFactory;\r\n" + 
-	    		"\r\n" + 
-	    		"import " + project.getPackageName() + ".commons.utils.Configuracio;\r\n" + 
-	    		"import " + project.getPackageName() + ".utils.Constants;\r\n" + 
-	    		"\r\n" + 
-	    		"/**\r\n" + 
-	    		" * ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!!\r\n" + 
-	    		" * @author jagarcia\r\n" + 
-	    		" */\r\n" + 
-	    		"public class " + hibernateFileName + " extends HibernatePersistenceProvider {\r\n" + 
-	    		"	\r\n" + 
-	    		"	private static final Logger log = LoggerFactory.getLogger(Configuracio.class);\r\n" + 
-	    		"	\r\n" + 
-	    		"	@Override\r\n" + 
-	    		"	public EntityManagerFactory createContainerEntityManagerFactory(PersistenceUnitInfo info, Map properties) {\r\n" + 
-	    		"		\r\n" + 
-	    		"		Map projecteProperties = new HashMap<String,String>();\r\n" + 
-	    		"		\r\n" + 
-	    		"		if(!properties.isEmpty()) {\r\n" + 
-	    		"			projecteProperties.putAll(properties);\r\n" + 
-	    		"		}\r\n" + 
-	    		"		\r\n" + 
-	    		"		Properties fitxerProperties = Configuracio.getSystemAndFileProperties();\r\n" + 
-	    		"		if(fitxerProperties != null) {\r\n" + 
-	    		"			fitxerProperties.forEach((k,v) -> {\r\n" + 
-	    		"	        	if (k.toString().startsWith(Constants." + project.getProjectName().toUpperCase() + "_PROPERTY_BASE_HIBERNATE)) {\r\n" + 
-	    		"	        		projecteProperties.put(k.toString().replace(Constants." + project.getProjectName().toUpperCase() + "_PROPERTY_BASE,\"\"), v.toString());\r\n" + 
-	    		"	        	}else if(k.toString().startsWith(Constants." + project.getProjectName().toUpperCase() +  "_PROPERTY_HIBERNATE)) {\r\n" + 
-	    		"	        		if (!projecteProperties.containsKey(k.toString())) {\r\n" + 
-	    		"	        			projecteProperties.put(k.toString(), v.toString());\r\n" + 
-	    		"	        		}\r\n" + 
-	    		"	        	}\r\n" + 
-	    		"	        });\r\n" + 
-	    		"		}\r\n" + 
-	    		"		if (Configuracio.isDesenvolupament()) {\r\n" + 
-	    		"			projecteProperties.forEach((k,v) -> {\r\n" + 
-	    		"	        	log.info(\"HibernateProperties: \" + k + \", Value : \" + v);\r\n" + 
-	    		"	        });\r\n" + 
-	    		"		}\r\n" + 
-	    		"		return super.createContainerEntityManagerFactory(info, projecteProperties);\r\n" + 
-	    		"	}\r\n" + 
+	    		"package " + hibernatePackage + ";\n" + 
+	    		"\n" + 
+	    		"import java.util.HashMap;\n" + 
+	    		"import java.util.Map;\n" + 
+	    		"import java.util.Properties;\n" + 
+	    		"\n" + 
+	    		"import javax.persistence.EntityManagerFactory;\n" + 
+	    		"import javax.persistence.spi.PersistenceUnitInfo;\n" + 
+	    		"\n" + 
+	    		"import org.hibernate.jpa.HibernatePersistenceProvider;\n" + 
+	    		"import org.slf4j.Logger;\n" + 
+	    		"import org.slf4j.LoggerFactory;\n" + 
+	    		"\n" + 
+	    		"import " + project.getPackageName() + ".commons.utils.Configuracio;\n" + 
+	    		"/**\n" + 
+	    		" * ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!!\n" + 
+	    		" * @author jagarcia\n" + 
+	    		" */\n" + 
+	    		"@SuppressWarnings(\"unchecked\")\n" +
+	    		"public class " + hibernateFileName + " extends HibernatePersistenceProvider {\n" + 
+	    		"	\n" + 
+	    		"	private final Logger log = LoggerFactory.getLogger(this.getClass());\n" + 
+	    		"	\n" + 
+	    		"	@Override\n" + 
+	    		"	public EntityManagerFactory createContainerEntityManagerFactory(PersistenceUnitInfo info, @SuppressWarnings(\"rawtypes\") Map properties) {\n" + 
+	    		"		\n" + 
+	    		"		Map<String,String> projecteProperties = new HashMap<String,String>();\n" + 
+	    		"		\n" + 
+	    		"		if(!properties.isEmpty()) {\n" + 
+	    		"			projecteProperties.putAll(properties);\n" + 
+	    		"		}\n" + 
+	    		"		\n" + 
+	    		"		Properties fitxerProperties = Configuracio.getSystemAndFileProperties();\n" + 
+	    		"		if(fitxerProperties != null) {\n" + 
+	    		"			fitxerProperties.forEach((k,v) -> {\n" + 
+	    		"               String kStr = k.toString();\n" +
+	    		"	        	if (kStr.startsWith(\"" +  project.getPackageName()  + ".hibernate\")) {\n" + 
+	    		"	        		projecteProperties.put(kStr.replace(\""+  project.getPackageName()  + "\",\"\"), v.toString());\n" + 
+	    		"	        	} else if(kStr.startsWith(\"hibernate.\")) {\n" + 
+	    		"	        		//if (!projecteProperties.containsKey(kStr)) {\n" + 
+	    		"	        			projecteProperties.put(kStr, v.toString());\n" + 
+	    		"	        		//}\n" + 
+	    		"	        	}\n" + 
+	    		"	        });\n" + 
+	    		"		}\n" + 
+	    		"		if (Configuracio.isDesenvolupament()) {\n" + 
+	    		"			projecteProperties.forEach((k,v) -> {\n" + 
+	    		"	        	log.info(\"HibernateProperties: \" + k + \", Value : \" + v);\n" + 
+	    		"	        });\n" + 
+	    		"		}\n" + 
+	    		"		return super.createContainerEntityManagerFactory(info, projecteProperties);\n" + 
+	    		"	}\n" + 
 	    		"}";
 	    
 	    return new SourceFile[] {

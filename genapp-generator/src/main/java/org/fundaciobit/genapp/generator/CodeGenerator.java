@@ -1447,7 +1447,7 @@ public class CodeGenerator {
 				File hibernateSrcDir = new File(jpaDir, "src/main/resources/META-INF/services/");
 				hibernateSrcDir.mkdirs();
 				{
-					SourceFile file = new SourceFile("javax.persistence.spi.PersistenceProvider", hibernatePackage + "CustomHibernatePersistenceProvider");
+					SourceFile file = new SourceFile("javax.persistence.spi.PersistenceProvider", hibernatePackage + ".CustomHibernatePersistenceProvider");
 					file.saveToPath(hibernateSrcDir);
 				}
 			}
