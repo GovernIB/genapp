@@ -896,7 +896,7 @@ public class BackWebGenerator extends IconUtils {
 				        "      var tree = $('#tree').tree({\n" + 
 				        "          dataSource: treedata,\n" + 
 				        "          primaryKey: 'id',\n" + 
-				        "          uiLibrary: 'bootstrap',\n" + 
+				        "          uiLibrary: 'bootstrap4',\n" + 
 				        "          select: function (e, node, id) {\n" + 
 				        "              var nodedata = tree.getDataById(id);\n" + 
 				        "              if (!nodedata.hasChildren) {\n" + 

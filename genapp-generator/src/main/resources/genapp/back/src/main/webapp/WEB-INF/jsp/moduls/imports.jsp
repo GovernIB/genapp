@@ -36,27 +36,14 @@
     <%-- https://fontawesome.com/icons?d=gallery&m=free --%>
     <script src="<c:url value="/js/fontawesome-all.js"/>"></script>
 
-<%-- XYZ ZZZ 
-    <!-- Bootstrap FileUpload JS -->
-    <script src="<c:url value="/js/bootstrap-fileupload.js"/>"></script>
-    --%>
-
-     
-    <!-- Bootstrap DateTimePicker JS -->
-    <script src="<c:url value="/js/datetimepicker/moment-with-locales.js"/>"></script>
-    <script src="<c:url value="/js/datetimepicker/tempusdominus-bootstrap-4.js"/>"></script>
-    <%-- XYZ ZZZ ZZZ
-    <c:if test="${symbol_dollar}{not empty onlylang}">
-    <script src="<c:url value="/js/datepicker/bootstrap-datetimepicker.${symbol_dollar}{onlylang}.js"/>"></script>
-    </c:if>
-    --%>
-
 
     <!-- Bootstrap TREE JS-->
     <script src="<c:url value="/js/gijgo.min.js"/>"></script>
 
+    <!-- Bootstrap DateTimePicker JS -->
+    <script src="<c:url value="/js/datetimepicker/moment-with-locales.js"/>"></script>
+    <script src="<c:url value="/js/datetimepicker/tempusdominus-bootstrap-4.js"/>"></script>
 
-       
     <!-- TinyMCE -->
     <script type="text/javascript">
         var lang = '<c:out value="${symbol_dollar}{pageContext.response.locale.language}"/>';
