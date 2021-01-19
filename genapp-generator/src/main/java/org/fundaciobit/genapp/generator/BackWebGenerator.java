@@ -817,6 +817,116 @@ public class BackWebGenerator extends IconUtils {
 				codeGroupBy.append("      </div>\n");
 				codeGroupBy.append("\n");
 				codeGroupBy.append("\n");
+				
+				
+				
+				
+				
+				codeGroupBy.append("      <div id=\"tree\"></div>\n" + 
+				        "      \n" + 
+				        "      <script>\n" + 
+				        "      \n" + 
+				        "      \n" + 
+				        "      <c:set var=\"expandID\" value=\"-\" />\n" + 
+				        "      \n" + 
+				        "      var treedata =\n" + 
+				        "            [{\n" + 
+				        "                \"id\": '-1',\n" + 
+				        "                \"text\": \"<b><fmt:message key=\"genapp.form.groupby\"/></b>\",\n" + 
+				        "                \"field\": null,\n" + 
+				        "                \"hasChildren\": true,\n" + 
+				        "                \"children\": [{\n" + 
+				        "                        \"id\": '${groupby_item.value}',\n" + 
+				        "                        \"text\": \"&#8811; <span style='${(__theFilterForm.groupBy eq null)? \"font-weight: bold;\" : \"\"}'><fmt:message key=\"genapp.form.groupby.noneitem\"/></span>\",\n" + 
+				        "                        \"field\": ' ',\n" + 
+				        "                        \"hasChildren\": false,\n" + 
+				        "                        \"children\": []\n" + 
+				        "                    }\n" + 
+				        "                    \n" + 
+				        "                    <c:forEach  var=\"groupby_item\"  items=\"${groupby_items}\">\n" + 
+				        "                    \n" + 
+				        "                        <c:set var=\"code\" value=\"${(empty __theFilterForm.labels[groupby_item.field])? groupby_item.codeLabel:__theFilterForm.labels[groupby_item.field]}\" />\n" + 
+				        "                        <c:if test=\"${!fn:startsWith(code,'=')}\" >\n" + 
+				        "                        <fmt:message var=\"thetext\" key=\"${code}\">\n" + 
+				        "                              <fmt:param><fmt:message key=\"${groupby_item.codeParamLabel}\"/></fmt:param>\n" + 
+				        "                        </fmt:message>\n" + 
+				        "                        </c:if>\n" + 
+				        "                        <c:if test=\"${fn:startsWith(code,'=')}\" >\n" + 
+				        "                        <c:set var=\"thetext\" value=\"${fn:substringAfter(code, '=')}\" />\n" + 
+				        "                        </c:if>\n" + 
+				        "                    \n" + 
+				        "                    ,{\n" + 
+				        "                        \"id\": '${groupby_item.value}',\n" + 
+				        "                        \"text\": \"<span style='${groupby_item.selected? \"font-weight: bold;\" : \"\"}'>${thetext}</span>\",\n" + 
+				        "                        \"field\": '${groupby_item.value}',\n" + 
+				        "                        \"hasChildren\": true,\n" + 
+				        "                        \"children\": [\n" + 
+				        "                            \n" + 
+				        "                            <c:set var=\"counterG\" value=\"0\" />\n" + 
+				        "                            \n" + 
+				        "                            <c:forEach  var=\"groupbyvalue_item\"  items=\"${groupby_item.values}\">\n" + 
+				        "                            \n" + 
+				        "                            \n" + 
+				        "                            \n" + 
+				        "                            <c:if test=\"${counterG ne 0}\">,</c:if>\n" + 
+				        "                            <c:set var=\"counterG\" value=\"${counterG + 1}\" />\n" + 
+				        "                            {\n" + 
+				        "                                \"id\": '${groupby_item.value}_${counterG}',\n" + 
+				        "                                \"text\": \"<span style='${groupbyvalue_item.selected? \"font-weight: bold;\" : \"\"}' >${ (empty groupbyvalue_item.codeLabel) ? buit : groupbyvalue_item.codeLabel } (${groupbyvalue_item.count})</span>\",\n" + 
+				        "                                \"field\": '${groupby_item.value}',\n" + 
+				        "                                \"value\" : '${groupbyvalue_item.value}',\n" + 
+				        "                                \"hasChildren\": false,\n" + 
+				        "                                \"children\": []\n" + 
+				        "                            }\n" + 
+				        "                            \n" + 
+				        "                          </c:forEach>\n" + 
+				        "                            \n" + 
+				        "                        ]\n" + 
+				        "                    }   \n" + 
+				        "                    \n" + 
+				        "                    <c:if test=\"${groupby_item.selected}\" >\n" + 
+				        "                        <c:set var=\"expandID\" value=\"${groupby_item.value}\"/>\n" + 
+				        "                    </c:if>\n" + 
+				        "                    \n" + 
+				        "                    </c:forEach>\n" + 
+				        "\n" + 
+				        "                ]\n" + 
+				        "            }];\n" + 
+				        "\n" + 
+				        "      var tree = $('#tree').tree({\n" + 
+				        "          dataSource: treedata,\n" + 
+				        "          primaryKey: 'id',\n" + 
+				        "          uiLibrary: 'bootstrap',\n" + 
+				        "          select: function (e, node, id) {\n" + 
+				        "              var nodedata = tree.getDataById(id);\n" + 
+				        "              if (!nodedata.hasChildren) {\n" + 
+				        //"                  //alert('select is fired for node with id=' + id + \"::\" + nodedata.text + \" | Field:  \" + nodedata.field + \" | Value: \" + nodedata.value);\n" + 
+				        "                  groupByFieldValue(nodedata.field, nodedata.value);                  \n" + 
+				        "              }\n" + 
+				        "          },\n" + 
+				        "          icons: {\n" + 
+				        "              expand: '<i class=\"far fa-plus-square\"></i>',\n" + 
+				        "              collapse: '<i class=\"far fa-minus-square\"></i>'\n" + 
+				        "          }\n" + 
+				        "        });\n" + 
+				        "      \n" + 
+				        "       <c:if test=\"${expandID ne '-'}\" >\n" + 
+				        "          var node = tree.getNodeById('${expandID}');\n" + 
+				        "          tree.expand(node);\n" + 
+				        "          \n" + 
+				        "          node = tree.getNodeById('-1');\n" + 
+				        "          tree.expand(node);\n" + 
+				        "       </c:if>\n" + 
+				        "      \n" + 
+				        "      \n" + 
+				        "      </script>");
+				
+				
+				
+				
+				
+				/*
+				
 				codeGroupBy.append("      <ul class=\"tree\" style=\"margin:3px; padding:0px; float: left; \">\n");
 				codeGroupBy.append("\n");
 				codeGroupBy.append("        <li>\n");
@@ -886,6 +996,8 @@ public class BackWebGenerator extends IconUtils {
 				codeGroupBy.append("          </ul>\n");
 				codeGroupBy.append("        </li>\n");
 				codeGroupBy.append("      </ul>\n");
+				*/
+				
 				codeGroupBy.append("\n");
 				codeGroupBy.append("  </div>\n");
 				codeGroupBy.append(" </c:if>\n");
@@ -2423,7 +2535,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
-			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\r\n");
+			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\n");
 			code.append("                      <form:input " + readOnlyAttribute + " cssClass=\"form-control datetimepicker-input\" "
 					+ " data-target=\"#"  + model + "_" + modelCamp + "\""
 			        + " path=\"" + model + "." + modelCamp + "\" />\n");
@@ -2485,7 +2597,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
-			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\r\n");
+			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\n");
 			code.append("                      <form:input " + readOnlyAttribute + " cssClass=\"form-control datetimepicker-input\" "
 					+ " data-target=\"#"  + model + "_" + modelCamp + "\""
 			        + " path=\"" + model + "." + modelCamp + "\" />\n");
@@ -2546,7 +2658,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
-			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\r\n");
+			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\n");
 			code.append("                      <form:input " + readOnlyAttribute + " cssClass=\"form-control datetimepicker-input\" "
 					+ " data-target=\"#"  + model + "_" + modelCamp + "\""
 			        + " path=\"" + model + "." + modelCamp + "\" />\n");
