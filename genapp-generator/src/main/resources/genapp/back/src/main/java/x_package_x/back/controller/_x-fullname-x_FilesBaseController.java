@@ -1,6 +1,6 @@
 package ${package}.back.controller;
 
-import ${package}.ejb.${fitxer}Local;
+import ${package}.ejb.${fitxer}Service;
 import ${package}.model.entity.${fitxer};
 
 import org.fundaciobit.genapp.common.IGenAppEntity;
@@ -25,8 +25,8 @@ import javax.ejb.EJB;
 public abstract class ${fullname}FilesBaseController<I extends IGenAppEntity,PK extends Object,F extends BaseForm> extends CommonFilesBaseController<I,PK,F,${fitxer}>{
 
 
-	@EJB(mappedName=${fitxer}Local.JNDI_NAME)
-	protected ${fitxer}Local fitxerEjb;
+	@EJB(mappedName=${fitxer}Service.JNDI_NAME)
+	protected ${fitxer}Service fitxerEjb;
 
 
 	/**

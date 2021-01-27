@@ -90,7 +90,7 @@ public class DaoEJBGenerator {
 		}
 	}
 
-	public static SourceFile generateCodeForManagerLocal(Project projecte, String tableNameJava, String jpaPackage,
+	public static SourceFile generateCodeForManagerService(Project projecte, String tableNameJava, String jpaPackage,
 			String ejbPackage, BasicPackages packages, BeanCode beanCode) {
 
 		String daoPackage = packages.daoPackage;
@@ -98,7 +98,7 @@ public class DaoEJBGenerator {
 		final String jpa = tableNameJava + "JPA";
 		final String iface = "I" + tableNameJava + "Manager";
 		final String jpaIface =  tableNameJava + "IJPAManager";
-		final String managerFileName = tableNameJava + "Local";
+		final String managerFileName = tableNameJava + "Service";
 		final String managerFileNameEJB = tableNameJava + "EJB";
 
 		StringBuffer manager = new StringBuffer("");
@@ -143,7 +143,7 @@ public class DaoEJBGenerator {
 		final String jpaManager = tableNameJava + "JPAManager";
 		final String jpa = tableNameJava + "JPA";
 
-		final String local = tableNameJava + "Local";
+		final String local = tableNameJava + "Service";
 
 		StringBuffer manager = new StringBuffer("");
 
@@ -168,14 +168,7 @@ public class DaoEJBGenerator {
 
 		// TODO falta DOC
 
-		manager.append("@Stateless\n"); //(mappedName = \"" + managerFileName + "\")\n");
-		/*
-		 * manager.append("@LocalBinding(jndiBinding=\"" +
-		 * projecte.getProjectName().toLowerCase() + "/" + managerFileName +
-		 * "/local\")\n");
-		 */
-		// XYZ ZZZ manager.append("@SecurityDomain(\"" + projecte.getModulSeguretat() +
-		// "\")\n");
+		manager.append("@Stateless\n"); 
 		manager.append("public class " + managerFileName + " extends " + jpaManager + " implements " + local + " {\n");
 		manager.append("\n");
 

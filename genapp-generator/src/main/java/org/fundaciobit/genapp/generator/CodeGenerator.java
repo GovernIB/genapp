@@ -440,7 +440,7 @@ public class CodeGenerator {
 		// ========================== EJB ===============================
 		// ==============================================================
 
-		// ============= MAVEN MODUL EJB: pom.xml, Manager EJB i Interficie Local
+		// ============= MAVEN MODUL EJB: pom.xml, Manager EJB i Interficie Service
 
 		String ejbPackage;
 		ejbPackage = generateEJB(project, projectDir, packagePath, moduls, tables, resourceBase, beanCodeBySqlTableName,
@@ -1176,7 +1176,7 @@ public class CodeGenerator {
 				if (!exampleCode.delete()) {
 					exampleCode.deleteOnExit();
 				}
-				File exampleCode2 = new File(exampleCode.getParentFile(), "SampleLogicaLocal.java");
+				File exampleCode2 = new File(exampleCode.getParentFile(), "SampleLogicaService.java");
 				if (!exampleCode2.delete()) {
 					exampleCode2.deleteOnExit();
 				}
@@ -1226,7 +1226,7 @@ public class CodeGenerator {
 			boolean overwrite = false;
 			recursiveSubstitution(ejbDir, resourcesEJB, prop, project, overwrite);
 
-			// (c) Crear Local i EJB
+			// (c) Crear Service i EJB
 			File ejbSrcDir = new File(ejbDir, "src/main/java/" + ejbPackage.replace('.', '/'));
 			ejbSrcDir.mkdirs();
 
@@ -1238,7 +1238,7 @@ public class CodeGenerator {
 					}
 					BeanCode beanGenCode = beanCodeBySqlTableName.get(tables[i].name);
 					{
-						log.info("Generating EJB Code for " + " " + tables[i].getNameJava() + "Local ");
+						log.info("Generating EJB Code for " + " " + tables[i].getNameJava() + "Service ");
 						/*
 						 * XYZ ZZZ String versioNumber;
 						 * 
@@ -1247,7 +1247,7 @@ public class CodeGenerator {
 						 * log.error("No puc llegir versió de versio.txt"); versioNumber = "0.0.1"; }
 						 */
 
-						SourceFile manager = DaoEJBGenerator.generateCodeForManagerLocal(project,
+						SourceFile manager = DaoEJBGenerator.generateCodeForManagerService(project,
 								tables[i].getNameJava(), jpaPackage, ejbPackage, packages, beanGenCode);
 						// File file =
 						manager.saveToPath(ejbSrcDir);

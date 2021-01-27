@@ -134,10 +134,10 @@ public class BackGenerator {
       code.append("\n");
       code.append("  // EJB's\n");
       for (String tableName : ejbs) {
-        final String ejb = ejbPackage + "." + tableName + "Local.JNDI_NAME";
+        final String ejb = ejbPackage + "." + tableName + "Service.JNDI_NAME";
         final String instance = CodeGenUtils.getModelName(tableName) + "Ejb";
         code.append("  @javax.ejb.EJB(mappedName = " + ejb+ ")\n");
-        code.append("  protected " + ejbPackage + "." + tableName + "Local " + instance + ";\n");
+        code.append("  protected " + ejbPackage + "." + tableName + "Service " + instance + ";\n");
         code.append("\n");
       }
       code.append("\n");
@@ -694,7 +694,7 @@ public class BackGenerator {
       final String tableJavaName = table.getNameJava();
       final String model = CodeGenUtils.getModelName(tableJavaName);
       final String form = tableJavaName + "FilterForm";
-      final String local = tableJavaName + "Local";
+      final String local = tableJavaName + "Service";
       
 
       final String fieldsClass = tableJavaName + "Fields";
@@ -985,7 +985,7 @@ public class BackGenerator {
       codeRefList.append("\n");
       codeRefList.append("import " + ejbPackage + "." + local + ";\n");
       if (transFields != null && transFields.size() != 0) {
-        codeRefList.append("import " + ejbPackage + ".TraduccioLocal;\n");
+        codeRefList.append("import " + ejbPackage + ".TraduccioService;\n");
       }
       codeRefList.append("import " + I18NException.class.getName() + ";\n");
       codeRefList.append("import " + packages.fieldsPackage + "." + fieldsClass + ";\n");
@@ -1006,9 +1006,9 @@ public class BackGenerator {
       
       
       if (transFields != null && transFields.size() != 0) {
-          // TODO TraducioLocal llegir-ho de CodeGenutils
-        codeRefList.append("  @EJB(mappedName = TraduccioLocal.JNDI_NAME)\n");
-        codeRefList.append("  private TraduccioLocal traduccioEjb;\n");
+          // TODO TraducioService llegir-ho de CodeGenutils
+        codeRefList.append("  @EJB(mappedName = TraduccioService.JNDI_NAME)\n");
+        codeRefList.append("  private TraduccioService traduccioEjb;\n");
       }
       
       
@@ -1170,7 +1170,7 @@ public class BackGenerator {
       final String refList = tableJavaName + "RefList";
       final String instanceRefList = CodeGenUtils.getModelName(refList);
 
-      final String local = tableJavaName + "Local";
+      final String local = tableJavaName + "Service";
       final String instanceEjb = model + "Ejb";
       final String validator = tableJavaName + "WebValidator";
       final String instanceValidator = CodeGenUtils.getModelName(validator);
@@ -1432,8 +1432,8 @@ public class BackGenerator {
       
       // TODO reeemplaçar Idioma per la taula de mapping d'idioma
       if (transFields != null && transFields.size() != 0  && !"Idioma".equals(table.getNameJava())) {
-        code.append("  @EJB(mappedName = " + ejbPackage+ ".IdiomaLocal.JNDI_NAME)\n");
-        code.append("  protected " + ejbPackage+ ".IdiomaLocal idiomaEjb;\n");
+        code.append("  @EJB(mappedName = " + ejbPackage+ ".IdiomaService.JNDI_NAME)\n");
+        code.append("  protected " + ejbPackage+ ".IdiomaService idiomaEjb;\n");
         code.append("\n");
       }
 

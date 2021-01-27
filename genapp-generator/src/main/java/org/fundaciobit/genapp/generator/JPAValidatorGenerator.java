@@ -58,11 +58,6 @@ public class JPAValidatorGenerator {
       final String validatorBean = tableJavaName + "BeanValidator";
       
       final String managerPkg = packages.daoPackage;
-      /*
-      final String ivalidator = tableJavaName + "ValidatorResult";
-      final String validatorEJB = tableJavaName + "LogicValidatorEJB";
-      final String validatorLocal = tableJavaName + "LogicValidatorLocal";
-      */
       
       List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(tables, table);
       if (fileFields == null) {
@@ -772,7 +767,6 @@ public class JPAValidatorGenerator {
   
   //TODO Canviar-ho per Managers JPA
   public static String getJPAManagerClass(String packageStr, String tableName) {
-    //return packageStr + "." + tableName + "Local";
     return packageStr + ".I" + tableName + "Manager";
   }
   

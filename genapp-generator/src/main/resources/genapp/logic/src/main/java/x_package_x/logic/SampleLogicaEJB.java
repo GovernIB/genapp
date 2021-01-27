@@ -3,7 +3,7 @@ package ${package}.logic;
 
 /*
 import ${package}.ejb.AnnexEJB;
-import ${package}.ejb.FitxerLocal;
+import ${package}.ejb.FitxerService;
 import ${package}.jpa.AnnexJPA;
 import ${package}.model.entity.AnnexFirmat;
 import ${package}.model.fields.AnnexFields;
@@ -22,22 +22,22 @@ import javax.ejb.Stateless;
  *
  */
 @Stateless(name = "SampleLogicaEJB")
-public class SampleLogicaEJB implements SampleLogicaLocal {
+public class SampleLogicaEJB implements SampleLogicaService {
 
 
 }
  
  /**
 @Stateless(name = "AnnexLogicaEJB")
-public class AnnexLogicaEJB extends AnnexEJB implements AnnexLogicaLocal,
+public class AnnexLogicaEJB extends AnnexEJB implements AnnexLogicaService,
     AnnexFields {
 
 
-  @EJB(mappedName = FitxerLocal.JNDI_NAME)
-  private FitxerLocal fitxerEjb;
+  @EJB(mappedName = FitxerService.JNDI_NAME)
+  private FitxerService fitxerEjb;
 
-  @EJB(mappedName = ${package}.ejb.AnnexFirmatLocal.JNDI_NAME)
-  protected ${package}.ejb.AnnexFirmatLocal annexFirmatEjb;
+  @EJB(mappedName = ${package}.ejb.AnnexFirmatService.JNDI_NAME)
+  protected ${package}.ejb.AnnexFirmatServiceannexFirmatEjb;
   
   
   @Override

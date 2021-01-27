@@ -49,16 +49,6 @@ public class BackWebGenerator extends IconUtils {
 
 			String fieldsClass = packages.fieldsPackage + "." + instanceFields;
 
-			/*
-			 * final String validator = tableJavaName + "Validator"; final String form =
-			 * tableJavaName + "Form"; final String jpa = tableJavaName + "JPA"; final
-			 * String instanceForm = CodeGenUtils.getModelName(form); final String local =
-			 * tableJavaName + "Local"; final String instanceEjb = model + "Ejb"; final
-			 * String instanceValidator = CodeGenUtils.getModelName(validator); final String
-			 * fieldsClass = tableJavaName + "Fields"; final String controller =
-			 * tableJavaName + "Controller"; final String tileForm = model + "Form"; final
-			 * String tileList = model + "List";
-			 */
 
 			// BeanCode beanGenCode = beanCodeBySqlTableName.get(tables[i].name);
 
