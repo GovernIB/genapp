@@ -31,37 +31,7 @@ public class DaoJPAGenerator {
 
   public static SourceFile[] generateHibernateUtils(String hibernatePackage,
       String hibernateName, String hibernateFileName) {
-    /* XYZ ZZZ
-    String code = 
-    "package " + hibernatePackage + ";\n"
-    + "\n"
-    + "import org.hibernate.SessionFactory;\n"
-    + "import org.hibernate.cfg.AnnotationConfiguration;\n"
-    + "\n"
-    + "public class " + hibernateName +" {\n"    
-    + "  \n"
-    + "    private static final SessionFactory sessionFactory = buildSessionFactory();\n"
-    + "    \n"
-    + "    private static SessionFactory buildSessionFactory() {\n"
-    + "        try {\n"
-    + "            return new AnnotationConfiguration().configure().buildSessionFactory();\n"
-    + "        } catch (Throwable ex) {\n"
-    + "            System.err.println(\"Initial SessionFactory creation failed.\" + ex);\n"
-    + "            throw new ExceptionInInitializerError(ex);\n"
-    + "        }\n"
-    + "   }\n"
-    + "   \n"
-    + "    public static SessionFactory getSessionFactory() {\n"
-    + "        return sessionFactory;\n"
-    + "    }\n"
-    + "\n"
-    + "    public static void shutdown() {\n"
-    + "      // Close caches and connection pools\n"
-    + "      getSessionFactory().close();\n"
-    + "    }\n"
-    + "    \n"
-    + "}\n";
-    */
+
     
     String code2 =      
     "package " + hibernatePackage + ";\n"

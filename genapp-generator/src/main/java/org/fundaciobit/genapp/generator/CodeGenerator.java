@@ -432,7 +432,7 @@ public class CodeGenerator {
 
 		String jpaPackage;
 		final String jpaName = "persistence";
-		jpaPackage = project.getPackageName() + "." + "jpa";
+		jpaPackage = project.getPackageName() + "." + "persistence";
 		String validatorPackage = generateJPA(project, projectDir, packagePath, moduls, tables, resourceBase,
 				beanCodeBySqlTableName, appCurrentVersion, packages, fieldSrcDir, jpaPackage, jpaName);
 
