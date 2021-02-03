@@ -151,7 +151,7 @@ public class DaoJPAGenerator {
 	    		"			fitxerProperties.forEach((k,v) -> {\n" + 
 	    		"               String kStr = k.toString();\n" +
 	    		"	        	if (kStr.startsWith(\"" +  project.getPackageName()  + ".hibernate\")) {\n" + 
-	    		"	        		projecteProperties.put(kStr.replace(\""+  project.getPackageName()  + "\",\"\"), v.toString());\n" + 
+	    		"	        		projecteProperties.put(kStr.replace(\""+  project.getPackageName()  + ".\",\"\"), v.toString());\n" + 
 	    		"	        	} else if(kStr.startsWith(\"hibernate.\")) {\n" + 
 	    		"	        		//if (!projecteProperties.containsKey(kStr)) {\n" + 
 	    		"	        			projecteProperties.put(kStr, v.toString());\n" + 
