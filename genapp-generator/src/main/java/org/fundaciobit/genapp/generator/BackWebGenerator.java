@@ -431,7 +431,7 @@ public class BackWebGenerator extends IconUtils {
 				codeFilterBy.append("        <div class=\"float-right\">\n");
 				codeFilterBy.append("\n");
 				codeFilterBy.append(
-						"           <a class=\"float-right\" style=\"margin-left:10px\" href=\"#\"> <i title=\"<fmt:message key=\"genapp.form.hidefilter\"/>\" onclick=\"document.getElementById('FilterDiv').style.display='none'; document.getElementById('FilterButton').style.display='inline';\" class=\"icon-remove\"></i></a>\n");
+						"           <a class=\"float-right\" style=\"margin-left:10px\" href=\"#\"> <i title=\"<fmt:message key=\"genapp.form.hidefilter\"/>\" onclick=\"document.getElementById('FilterDiv').style.display='none'; document.getElementById('FilterButton').style.display='inline';\" class=\"fas fa-trash\"></i></a>\n");
 				codeFilterBy.append(
 						"           <input style=\"margin-left: 3px\" class=\"btn btn-warning float-right\" type=\"button\" onclick=\"clear_form_elements(this.form)\" value=\"<fmt:message key=\"genapp.form.clean\"/>\"/>\n");
 				codeFilterBy.append(
@@ -802,7 +802,7 @@ public class BackWebGenerator extends IconUtils {
 				codeGroupBy.append("      <div class=\"float-right\" style=\"padding-left:2px\">\n");
 				codeGroupBy.append("            <div class=\"span10\">\n");
 				codeGroupBy.append(
-						"               <i title=\"<fmt:message key=\"genapp.form.hidegroupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline';\" class=\"icon-remove\"></i>\n");
+						"               <i title=\"<fmt:message key=\"genapp.form.hidegroupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline';\" class=\"fas fa-trash\"></i>\n");
 				codeGroupBy.append("            </div>\n");
 				codeGroupBy.append("      </div>\n");
 				codeGroupBy.append("\n");
@@ -1108,14 +1108,7 @@ public class BackWebGenerator extends IconUtils {
 
 					// BOTO D'EDITAR
 					codeButtons.append("            <c:if test=\"${" + instanceFilterForm + ".editButtonVisible}\">\n");
-					/*
-					 * codeButtons.append("            <a class=\"btn\" href=\"#\" \n");
-					 * codeButtons.append("              onclick=\"goTo('<c:url value=\"${contexte}"
-					 * + pkMapping + "/edit\"/>')\"\n"); codeButtons.
-					 * append("              title=\"<fmt:message key=\"genapp.edit\"/>\">\n");
-					 * codeButtons.append("              <i class=\"icon-pencil\"></i>\n");
-					 * codeButtons.append("            </a>\n");
-					 */
+
 					codeButtons.append(render.getActionButtonCode("            ", "btn-warning",
 							"<c:url value=\"${contexte}" + pkMapping + "/edit\"/>", null, ICON_EDIT, "genapp.edit"));
 					codeButtons.append("            </c:if>\n");
@@ -1123,16 +1116,7 @@ public class BackWebGenerator extends IconUtils {
 					// BOTO DE BORRAR
 					codeButtons
 							.append("            <c:if test=\"${" + instanceFilterForm + ".deleteButtonVisible}\">\n");
-					/*
-					 * codeButtons.
-					 * append("            <a class=\"btn btn-danger\" href=\"#myModal\"\n");
-					 * codeButtons.
-					 * append("               onclick=\"openModal('<c:url value=\"${contexte}" +
-					 * pkMapping + "/delete\"/>','show');\"\n"); codeButtons.
-					 * append("               title=\"<fmt:message key=\"genapp.delete\"/>\">\n");
-					 * codeButtons.append("               <i class=\"icon-trash icon-white\"></i>\n"
-					 * ); codeButtons.append("            </a>\n");
-					 */
+			
 					codeButtons.append(render.getActionButtonCode("            ", "btn-danger", "#myModal",
 							"openModal('<c:url value=\"${contexte}" + pkMapping + "/delete\"/>','show');",
 							getWhite(ICON_TRASH), "genapp.delete"));
@@ -2209,75 +2193,9 @@ public class BackWebGenerator extends IconUtils {
 			//code.append("              </div>\n");
 			code.append("            </c:if>\n");
 
-			/*
-			 * code.append(
-			 * "              <div class=\"fileupload fileupload-new\" data-provides=\"fileupload\" style=\"margin-bottom: 0px\">\n"
-			 * ); code.append("                <div class=\"input-append\">\n");
-			 * code.append("                <c:if test=\"${!" + readOnlyCondition +
-			 * "}\" >\n");
-			 * code.append("                    <div class=\"uneditable-input span3\">\n");
-			 * code.
-			 * append("                      <i class=\"icon-file fileupload-exists\"></i>\n"
-			 * ); code.
-			 * append("                      <span class=\"fileupload-preview\"></span>\n");
-			 * code.append("                    </div>\n");
-			 * code.append("                    <span class=\"btn btn-file\">\n");
-			 * code.append(
-			 * "                      <span class=\"fileupload-new\"><fmt:message key=\"genapp.form.file.select\"/></span>\n"
-			 * ); code.append(
-			 * "                      <span class=\"fileupload-exists\"><fmt:message key=\"genapp.form.file.change\"/></span>\n"
-			 * ); code.append("                      <form:input " + formInputReadOnly +
-			 * " path=\"" + modelCamp + "\" type=\"file\" />\n");
-			 * code.append("                    </span>\n"); code.append(
-			 * "                    <a href=\"#\" class=\"btn fileupload-exists\" data-dismiss=\"fileupload\"><fmt:message key=\"genapp.form.file.unselect\"/></a>\n"
-			 * ); code.append("                    <span class=\"add-on\">&nbsp;</span>\n");
-			 * code.append("                </c:if>\n");
-			 * code.append("                <c:if test=\"${not empty " + instanceForm + "."
-			 * + model + "." + fileObj + "}\">\n"); if (!field.isNotNullable) {
-			 * code.append("                <c:if test=\"${!" + readOnlyCondition +
-			 * "}\" >\n"); code.append("                    <span class=\"add-on\">\n");
-			 * code.append("                        <form:checkbox path=\"" + modelCamp +
-			 * "Delete\"/>\n"); code.
-			 * append("                        <fmt:message key=\"genapp.form.file.delete\"/>\n"
-			 * ); code.append("                    </span>\n");
-			 * code.append("                    <span class=\"add-on\">&nbsp;</span>   \n");
-			 * code.append("                </c:if>\n"); }
-			 * 
-			 * code.append("                    <span class=\"add-on\">\n"); // TODO FER UN
-			 * MÈTODE QUE PASSAT UN FITXER RETORNI EL NOM code.
-			 * append("                        <a target=\"_blank\" href=\"<c:url value=\"${"
-			 * + project.getPrefix().toLowerCase() + ":fileUrl(" + instanceForm + "." +
-			 * model + "." + fileObj + ")}\"/>\">${" + instanceForm + "." + model + "." +
-			 * fileObj + ".nom}</a>\n"); code.append("                    </span>\n");
-			 * code.append("                </c:if>\n");
-			 * code.append("                </div>\n");
-			 * code.append("              </div>\n");
-			 */
 			return code.toString();
 		}
-		
-		
-		/* XYZ ZZZ
-		
-		<ul class="nav nav-tabs">
-		  <li class="nav-item">
-		    <a class="nav-link active" href="#">Active</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Link</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Link</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link disabled" href="#">Disabled</a>
-		  </li>
-		</ul>
-		*/
-		
-		
-		
-		// \
+
 
 		if (translationFields.contains(field)) {
 			String simpleName = modelCamp.substring(0, modelCamp.length() - 2); // Llevar ID
@@ -2288,8 +2206,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("         <ul class=\"nav nav-tabs\" style=\"margin: 0 15px -1px;\">\n");
 			code.append(
 					"             <c:forEach items=\"${__theForm.idiomesTraduccio}\" var=\"idioma\" varStatus=\"counter\">\n");
-			
-			// 
+
 			code.append("            <li class=\"nav-item \">\n");
 			code.append("                 <a class=\"nav-link ${(counter.index == 0)? 'active':''}\" href=\"#${counter.index}_tab_"
 							+ simpleName + "_${idioma.idiomaID}\" data-toggle=\"tab\">${idioma.nom}</a>\n");
@@ -2550,30 +2467,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("            });\n");
 			code.append("        </script>");
 			code.append("      </div>\n");
-			/*  XYZ ZZZ
-			
-			code.append("              <div id=\"" + modelCamp + "\" class=\"input-append\">\n");
-			code.append("                <form:input " + formInputReadOnly.replace("'input", "'input-small")
-					+ " path=\"" + model + "." + modelCamp + "\" />\n");
-			code.append("                <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-			code.append("                <span class=\"add-on\">\n");
-			code.append("                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-			code.append("                  </i>\n");
-			code.append("                </span>\n");
-			code.append("              </c:if>\n");
-			code.append("              </div>\n");
-			code.append("              <script type=\"text/javascript\">                \n");
-			code.append("                $(function() {\n");
-			code.append("                  $('#" + modelCamp + "').datetimepicker({\n");
-			code.append("                    language: '${lang}',\n");
-			code.append("                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getDatePattern(), 'a')?'true' : 'false'}\"/>,\n");
-			code.append("                    format:  '${gen:getJSDatePattern()}',\n");
-			code.append("                    pickTime: false,\n");
-			code.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
-			code.append("                  });\n");
-			code.append("                });\n");
-			code.append("              </script>\n");
-			*/
+
 			
 			return code.toString();
 

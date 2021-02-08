@@ -96,12 +96,12 @@ public class Utils {
             + I18NUtils
                 .tradueix(!isOrderedAsc ? "genapp.form.sort.asc" : "genapp.form.sort.desc")
             + "\" >" + getText(code) + "<i class=\""
-            + (isOrderedAsc ? "icon-chevron-up" : "icon-chevron-down")
+            + (isOrderedAsc ? "fas fa-sort-alpha-up" : "fas fa-sort-alpha-up-alt")
             + "\"></i></span>";
       } else {
         html = "<span style=\"cursor:row-resize\" onclick=\"javascript:executeOrderBy('" + field + "', true);\" "
             + " title=\"" + I18NUtils.tradueix("genapp.form.sort.asc") + "\">"
-            + getText(code) + "<i class=\"icon-resize-vertical\"></i></span>";
+            + getText(code) + "<i class=\"fas fa-sort\"></i></span>";
       }
       return html;
     } else {
