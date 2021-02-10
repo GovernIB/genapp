@@ -2337,27 +2337,25 @@ public class BackWebGenerator extends IconUtils {
 			code.append("\"  />\n");
 			code.append("          </c:if>\n");
 			code.append("          <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-
+			code.append("          <c:set var=\"containEmptyValue\"  value=\"false\" />\n");
 			code.append("          <form:select id=\"" + id + "\"  onchange=\"if(typeof onChange" + name
 					+ " == 'function') {  onChange" + name + "(this); };\"  cssClass=\"form-control col-md-8\" path=\"" + model
 					+ "." + modelCamp + "\">\n");
-			if (!field.isNotNullable()) {
-				code.append("          <%-- El camp pot ser null, per la qual cosa afegim una entrada buida --%>\n");
-				code.append("          <form:option value=\"\" ></form:option>\n");
-			}
-			code.append("            <c:forEach items=\"${" + instanceForm + ".listOf" + fkTableName + "For" + name
-					+ "}\" var=\"tmp\">\n");
-			code.append("            <form:option value=\"${tmp.key}\" >");
-		/*
-		 * WWW if (traduir) { code.append("<fmt:message key=\"${tmp.value}\" />"); }
-		 * else
-		 */ {
-			code.append("${tmp.value}");
-		}
-			code.append("</form:option>\n");
-			// selected=\"${(" + model + "Form." + model + "." + field.getJavaName()+ " eq
-			// tmp.key)? 'selected' : '' }
+			
+			code.append("            <c:forEach items=\"${" + instanceForm + ".listOf" + fkTableName + "For" + name	+ "}\" var=\"tmp\">\n");
+			code.append("                <form:option value=\"${tmp.key}\">${tmp.value}</form:option>\n");
+			code.append("                <c:if test=\"${empty tmp.key}\">\n");
+            code.append("                  <c:set var=\"containEmptyValue\"  value=\"true\" />\n");
+            code.append("                </c:if>\n");  
 			code.append("            </c:forEach>\n");
+		    if (!field.isNotNullable()) {
+                code.append("            <%-- El camp pot ser null, per la qual cosa afegim una entrada buida si no s'ha definit abans --%>\n");
+                code.append("            <c:if test=\"${not containEmptyValue}\">\n");
+                code.append("            <form:option value=\"\" ></form:option>\n");
+                code.append("            </c:if>\n");
+            }
+
+			
 			code.append("          </form:select>\n");
 			code.append("          </c:if>\n");
 			// code.append(generateReadOnlySelect(" ", id, readOnlyCondition));

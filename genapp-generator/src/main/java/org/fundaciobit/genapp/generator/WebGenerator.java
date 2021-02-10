@@ -1172,85 +1172,11 @@ public class WebGenerator {
 
     case WebType.RoleID:
       throw new Exception("Aquest tipus web no està suportat !!! " + field.getJavaName());
-      /*
-      /*
-      switch (mode) {
-      case LIST:
-        return "<% if (bean." + CodeGenUtils.get(field)
-            + " == null) {%>\n" + "<%=" + NULL_IMG + "%>\n" + "<% } else {"
-            + "  ISecurity __security = "
-            + Project.getSecManagerName(project.projectName) + ".getSecurity();\n"
-            + "  String fn = __security.getFullNameOfRole(bean."
-            + CodeGenUtils.get(field) + ");%>\n"
-            + "  <%=(fn == null) ? " + NULL_IMG + " : fn %>\n" + "<% } %>\n";
-      case EDIT:
-      default:
-      case NEW:
-        //String id = ;
-        String txt = "<select name=\""
-            + field.getJavaName()
-            + "\" "
-            + (field.isNotNullable ? " onchange=\"checks()\"" : "")
-            + " >\n"
-            + "<option value=\"\" >=== No Definit ===</option>\n"
-            + "<% {\n"
-            + "  ISecurity __security = "
-            + Project.getSecManagerName(project.projectName)
-            + ".getSecurity();\n"
-            + "  java.util.List<KeyValue<String>> __roles" +
-            		" = __security.getAllRoleNames();\n"
-            + "  String __def;\n"
-            + "  for(KeyValue<String> kv : __roles) {\n"
-            + "    __def = RebUtils.equals(kv.key, bean."
-            + CodeGenUtils.get(field)
-            + ") ? \"selected\" : \"\";\n"
-            + "  %>\n"
-            + "     <option value=\"<%=kv.key%>\" <%=__def%> ><%=kv.value%></option>\n"
-            + "<% } %>\n" + "<% } %>\n" + "</select>\n";
-        return txt;
-      }
-      */
 
       
     case WebType.UserID:
       throw new Exception("Aquest tipus web no està suportat !!! " + field.getJavaName());
-      /*
-      switch (mode) {
-      case LIST:
-        return "<% if (bean." + CodeGenUtils.get(field)
-            + " == null) {%>\n" + "<%=" + NULL_IMG + "%>\n" + "<% } else {"
-            + "  ISecurity __security = "
-            + Project.getSecManagerName(project.projectName) + ".getSecurity();\n"
-            + "  String fn = __security.getFullNameOfUser(bean."
-            + CodeGenUtils.get(field) + ");%>\n"
-            + "  <%=(fn == null) ? " + NULL_IMG + " : fn %>\n" + "<% } %>\n";
-      case EDIT:
-      default:
-      case NEW:
-        
-        String txt = "<select name=\""
-            + field.getJavaName()
-            + "\" "
-            + (field.isNotNullable ? " onchange=\"checks()\"" : "")
-            + " >\n"
-            + "<option value=\"\" >=== No Definit ===</option>\n"
-            + "<% {\n"
-            + "  ISecurity __security = "
-            + Project.getSecManagerName(project.projectName)
-            + ".getSecurity();\n"
-            + "  java.util.List<KeyValue<String>> __users" +
-            		" = __security.getAllUserNames();\n"
-            + "  String __def;\n"
-            + "  for(KeyValue<String> kv : __users) {\n"
-            + "    __def = RebUtils.equals(kv.key, bean."
-            + CodeGenUtils.get(field)
-            + ") ? \"selected\" : \"\";\n"
-            + "  %>\n"
-            + "     <option value=\"<%=kv.key%>\" <%=__def%> ><%=kv.value%></option>\n"
-            + "<% } %>\n" + "<% } %>\n" + "</select>\n";
-        return txt;
-      }
-      */
+   
 
     case WebType.File: {
       String txt = "";
