@@ -1,8 +1,9 @@
-target
+target/
 .classpath
 .project
 .settings/
 .idea/
+*.iml
 /demo/appweb
 /demo/jboss-5.1.0.GA_cxf
 /demo/scripts/genapp/genapp.log
