@@ -1357,7 +1357,7 @@ public class DaoJPAGenerator {
     
     for (int i = 0; i < versionBeanParams.length; i++) {
       if ( versionParams[i] == null) continue;
-      manager.append("\tpublic synchronized " + tableNameJava + " create("
+      manager.append("\tpublic " + tableNameJava + " create("
           + versionParams[i] + ") throws I18NException {\n");
       
       manager.append("\t\t" + className + " __bean =  new " + className + "("
