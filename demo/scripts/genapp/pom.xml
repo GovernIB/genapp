@@ -8,7 +8,7 @@
   <name>FundacioBit GenApp - Run</name>
 
   <properties>
-    <spring.version>3.1.2.RELEASE</spring.version>
+    <spring.version>3.1.4.RELEASE</spring.version>
   </properties>
 
   <repositories>
