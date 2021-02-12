@@ -1129,24 +1129,17 @@ public class CodeGenerator {
 
 
 			// (1) Borrar Classes de prova
-			final String logicName = "logic";
-			File dstBaseDir = new File(projectDir,  project.getPrefixDirectori() + logicName);
+			final String moduleName = "ejb";
+			final String logicPackage = "logic";
+			File dstBaseDir = new File(projectDir,  project.getPrefixDirectori() + moduleName);
 			dstBaseDir.mkdirs();
 
-			File exampleCode = new File(dstBaseDir, "src/main/java/" + packagePath + "/logic/SampleLogicaEJB.java");
-
-			if (!exampleCode.exists() && exampleCode.getParentFile().exists()) {
-				// OK: S'ha de borrar
-			} else {
-				// No s'ha de fer res.
-				exampleCode = null;
-			}
 			
 			// (2) Afegir a la llista de mòduls a compilar
-			moduls.add( project.getPrefixDirectori() +logicName);
+			//moduls.add( project.getPrefixDirectori() +logicName);
 
 			// (3) Afegir a la llista de mòduls a compilar
-
+/*
 			Map<String, Object> prop = new HashMap<String, Object>();
 			prop.put("name", project.projectName.toLowerCase());
 			prop.put("package", project.getPackageName());
@@ -1163,24 +1156,17 @@ public class CodeGenerator {
 			prop.put("basedir", "${basedir}");
 
 			prop.put("prefix", project.getPrefix().toUpperCase());
-
+*/
 			// ----- Tots fitxers de forma recursiva i substituint
+			/*
 			String resourceUtils = resourceBase + "/" + logicName;
 			{
 				boolean overwrite = false;
 				recursiveSubstitution(dstBaseDir, resourceUtils, prop, project, overwrite);
 			}
+			*/
 
-			// (3) Borrar codi innecesari
-			if (exampleCode != null) {
-				if (!exampleCode.delete()) {
-					exampleCode.deleteOnExit();
-				}
-				File exampleCode2 = new File(exampleCode.getParentFile(), "SampleLogicaService.java");
-				if (!exampleCode2.delete()) {
-					exampleCode2.deleteOnExit();
-				}
-			}
+
 		}
 	}
 
@@ -1218,6 +1204,23 @@ public class CodeGenerator {
 			prop.put("app_current_version", appCurrentVersion);
 
 			prop.put("package_ejb", ejbPackage);
+			
+			final String logicPackage = "logic";
+			
+            File exampleCode = new File(ejbDir, "src/main/java/" + packagePath + "/" + logicPackage + "/SampleLogicaEJB.java");
+            
+            System.out.println(" EXCAMPLE CODI LOGIC: " + exampleCode.getAbsolutePath());
+            System.out.println(" EXCAMPLE CODI LOGIC EXISTS: " + exampleCode.exists());
+            
+
+            if (!exampleCode.exists() && exampleCode.getParentFile().exists()) {
+                // OK: S'ha d'esborrar
+            } else {
+                // No s'ha de fer res.
+                exampleCode = null;
+            }
+            
+			
 
 			/*
 			 * SourceFile pom = substitution(pomFile, prop); pom.saveToPath(ejbDir);
@@ -1271,6 +1274,17 @@ public class CodeGenerator {
 
 			// (d) Afegir a la llista de mòduls a compilar
 			moduls.add( project.getPrefixDirectori() + ejbName);
+			
+	         // (3) Borrar codi innecesari
+            if (exampleCode != null) {
+                if (!exampleCode.delete()) {
+                    exampleCode.deleteOnExit();
+                }
+                File exampleCode2 = new File(exampleCode.getParentFile(), "SampleLogicaService.java");
+                if (!exampleCode2.delete()) {
+                    exampleCode2.deleteOnExit();
+                }
+            }
 
 		}
 		return ejbPackage;

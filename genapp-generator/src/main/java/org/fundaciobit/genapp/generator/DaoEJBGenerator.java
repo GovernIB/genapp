@@ -41,6 +41,11 @@ public class DaoEJBGenerator {
 			// str.append(txt.substring(0, startMark));
 			str.append("\n");
 			str.append("#\n");
+			
+
+			str.append("##################################\n");
+			str.append("#  NO MODIFICAR - DO NOT MODIFY  #\n");
+			str.append("##################################\n");
 			str.append("# NOTA: La següent secció està generada, per la qual cosa qualsevol modificació\n");
 			str.append("# que es desitgi s´ha de fer sobre l´arxiu .genapp o serà borrat en la pròxima generació\n");
 			// str.append("# ==== GENAPP MARK START\n");
@@ -107,6 +112,8 @@ public class DaoEJBGenerator {
 		manager.append("\n");
 
 		manager.append("package " + ejbPackage + ";\n\n");
+		
+		manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
 
 		manager.append("import javax.ejb.Local;\n\n");
 		
@@ -152,8 +159,9 @@ public class DaoEJBGenerator {
 
 		manager.append("package " + ejbPackage + ";\n\n");
 
+		manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
 		manager.append("import javax.ejb.Stateless;\n");
-		// manager.append("import org.jboss.ejb3.annotation.SecurityDomain;\n");
+		
 		manager.append("import javax.annotation.security.RolesAllowed;\n");
 		manager.append("import " + I18NException.class.getName() + ";\n");
 		manager.append("import " + basicPackages.entityPackage + "." + tableNameJava + ";\n");
