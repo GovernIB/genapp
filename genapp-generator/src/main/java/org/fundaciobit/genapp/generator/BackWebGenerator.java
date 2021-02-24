@@ -2395,9 +2395,9 @@ public class BackWebGenerator extends IconUtils {
 			code.append(" path=\"" + path + "\"  />\n");
 			// Wrap
 			if (webType == WebType.TextArea) {
-				code.append("      <div class=\"dropdown\" style=\"vertical-align:top;display:inline;\">\n");
-				code.append("        <button id=\"dropdownMenuButton_" + modelCamp+ "\" class=\"btn btn-sm dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" style=\"margin-left:0px;\"><span class=\"caret\"></span></button>\n");
-				code.append("        <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton_" + modelCamp + "\">\n");
+				code.append("      <div id=\"dropdownMenuButton_" + modelCamp+ "\" style=\"vertical-align:top;display:inline;position:relative;\">\n");
+				code.append("        <button  class=\"btn btn-sm dropdown-toggle\" type=\"button\" style=\"margin-left:0px;\"><span class=\"caret\"></span></button>\n");
+				code.append("        <div id=\"dropdownMenuContainer_" + modelCamp+ "\" class=\"dropdown-menu\">\n");
 				code.append("          <a class=\"dropdown-item\" href=\"#\" onclick=\"javascript:var ta=document.getElementById('"
 						+ path + "'); ta.wrap='off';\" >No Wrap</a>\n");
 				code.append("          <a class=\"dropdown-item\"  href=\"#\" onclick=\"javascript:var ta=document.getElementById('"
@@ -2406,6 +2406,13 @@ public class BackWebGenerator extends IconUtils {
 						+ path + "'); ta.wrap='hard';\">Hard Wrap</a>\n");
 				code.append("        </div>\n");
 				code.append("      </div>\n");
+				code.append("      <script type=\"text/javascript\">\n");
+				code.append("			$('#dropdownMenuButton_" + modelCamp+ "').on('click', function(){\n" 
+						+ "					var valor = ($('#dropdownMenuContainer_" + modelCamp+ "').css('display') != 'none') ? 'none' : 'block';\n"
+						+ "                 $('#dropdownMenuContainer_" + modelCamp+ "').css('display', valor);\n"
+						+ "                 return false;\n"
+						+ "				});\n"
+						+ "      </script>");
 			}
 
 			return code.toString();
