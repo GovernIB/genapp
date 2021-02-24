@@ -2222,9 +2222,25 @@ public class BackWebGenerator extends IconUtils {
 							+ simpleName + "_${idioma.idiomaID}\">\n");
 			code.append("               <form:errors path=\"" + fullmodel
 					+ ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"errorField alert alert-danger\"/>\n");
-			String maxlength = "maxlength=\"4000\"";
-			code.append("               <form:input path=\"" + fullmodel + ".traduccions['${idioma.idiomaID}'].valor\" "
-					+ "cssClass=\"" + cssClass + "\" " + maxlength + " />\n");
+			String maxlength = "maxlength=\"4000\" ";
+			
+			
+			boolean textarea= "textarea".equalsIgnoreCase(field.getMinAllowedValue());
+			
+			
+			String type;
+			String config;
+			if (textarea) {
+			  type = "<form:textarea";
+			  config = " rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;resize:both;max-width:90%;\" ";
+			  // cssClass=\"form-control \" 
+			} else {
+			  type = "<form:input";
+			  config = "";
+			}
+			
+			code.append("               " + type + " path=\"" + fullmodel + ".traduccions['${idioma.idiomaID}'].valor\" "
+					+ "cssClass=\"" + cssClass + "\" " + maxlength + config + "/>\n");
 			/*
 			 * code.append("               " + "<form:input path=\"" + fullmodel +
 			 * ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"${gen:contains(__theForm.readOnlyFields ,Prova2Fields.NOM2TRADUCCIOID)? 'input-xxlarge uneditable-input' : 'input-xxlarge'}\"/>\n"
