@@ -2232,7 +2232,7 @@ public class BackWebGenerator extends IconUtils {
 			String config;
 			if (textarea) {
 			  type = "<form:textarea";
-			  config = " rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;resize:both;max-width:90%;\" ";
+			  config = " rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;resize:both;\" ";
 			  // cssClass=\"form-control \" 
 			} else {
 			  type = "<form:input";
