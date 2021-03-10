@@ -2349,9 +2349,16 @@ public class BackWebGenerator extends IconUtils {
             code.append("                </c:if>\n");  
 			code.append("            </c:forEach>\n");
 		    if (!field.isNotNullable()) {
+		        
                 code.append("            <%-- El camp pot ser null, per la qual cosa afegim una entrada buida si no s'ha definit abans --%>\n");
                 code.append("            <c:if test=\"${not containEmptyValue}\">\n");
-                code.append("            <form:option value=\"\" ></form:option>\n");
+                // No funciona el seleccionar automàticamernt un valor buit o null
+                code.append("              <c:if test=\"${empty __theForm." + model + "." + modelCamp + " }\">\n");
+                code.append("                  <form:option value=\"\" selected=\"true\" ></form:option>\n");
+                code.append("              </c:if>\n");
+                code.append("              <c:if test=\"${not empty __theForm." + model + "." + modelCamp + " }\">\n");
+                code.append("                  <form:option value=\"\" ></form:option>\n");
+                code.append("              </c:if>\n");
                 code.append("            </c:if>\n");
             }
 
