@@ -47,7 +47,7 @@
 <function>
         <name>isDesenvolupament</name>
         <description>Retorna si estam en mode desenvolupament</description>
-        <function-class>${package}.utils.Configuracio</function-class>
+        <function-class>${package}.commons.utils.Configuracio</function-class>
         <function-signature>boolean isDesenvolupament()</function-signature>
 </function>
 

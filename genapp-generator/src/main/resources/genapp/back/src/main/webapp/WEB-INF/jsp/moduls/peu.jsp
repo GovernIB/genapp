@@ -1,6 +1,6 @@
 <#assign symbol_dollar = "$">
 <%@page import="${package}.logic.utils.LogicUtils"%>
-<%@page import="${package}.utils.Configuracio"%>
+<%@page import="${package}.commons.utils.Configuracio"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%><%@ include
 	file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
@@ -62,30 +62,38 @@
 
 	</div>
 
-	<!-- Modal -->
-	<div id="modalAjuda" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="<fmt:message key="ajuda.titol" />"
-		aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">
-				<fmt:message key="ajuda.titol" />
-			</h3>
-		</div>
-		<div class="modal-body">
-			<p>
-				<fmt:message key="ajuda.missatge" />
-			</p>
-			<ul>
-
-				<li><fmt:message key="ajuda.viatelefon" /> 123456789</li>
-				<li><fmt:message key="ajuda.viaweb" /> http://www.help.hl/help</li>
-				<li><fmt:message key="ajuda.viaemail" /><a
-					href="mailto: help@help.hl"> help@help.hl</a></li>
-
-			</ul>
-
-		</div>
-	</div>
+	
+    <!-- Modal -->
+    <div id="modalAjuda" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title h5">
+                        <fmt:message key="ajuda.titol" />
+                    </div>
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <fmt:message key="ajuda.missatge" />
+                    </p>
+                    <ul>
+                        <li><fmt:message key="ajuda.viatelefon" /> 123456789</li>
+                        <li><fmt:message key="ajuda.viaweb" /> http://www.help.hl/help</li>
+                        <li><fmt:message key="ajuda.viaemail" /><a
+                    href="mailto: help@help.hl"> help@help.hl</a></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">
+                        <fmt:message key="tancar" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>

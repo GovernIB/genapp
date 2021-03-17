@@ -41,12 +41,6 @@
 			<type>ejb</type>
 		</dependency>
 
-		<dependency>
-			<groupId>${package}</groupId>
-			<artifactId>${name}-logic</artifactId>
-			<version>${project_version}</version>
-			<type>ejb</type>
-		</dependency>
 
 <#if generateback>
 		<dependency>
@@ -185,21 +179,15 @@
 							<groupId>${package}</groupId>
 							<artifactId>${name}-back</artifactId>
 							<contextRoot>${name}</contextRoot>
+                            <bundleFileName>${name}-back.war</bundleFileName>
 						</webModule>
 						</#if>
 
 						<ejbModule>
 							<groupId>${package}</groupId>
 							<artifactId>${name}-ejb</artifactId>
-							<bundleFileName>${name}-ejb</bundleFileName>
+							<bundleFileName>${name}-ejb.jar</bundleFileName>
 						</ejbModule>
-
-						<ejbModule>
-							<groupId>${package}</groupId>
-							<artifactId>${name}-logic</artifactId>
-							<bundleFileName>${name}-logic</bundleFileName>
-						</ejbModule>
-
 
 						<#if generatews>
 						<ejbModule>

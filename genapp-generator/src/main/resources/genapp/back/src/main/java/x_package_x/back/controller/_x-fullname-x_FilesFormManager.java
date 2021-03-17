@@ -1,6 +1,6 @@
 package ${package}.back.controller;
 
-import ${package}.jpa.${fitxer}JPA;
+import ${package}.persistence.${fitxer}JPA;
 import ${package}.model.entity.${fitxer};
 
 import org.fundaciobit.genapp.common.filesystem.IFileManager;

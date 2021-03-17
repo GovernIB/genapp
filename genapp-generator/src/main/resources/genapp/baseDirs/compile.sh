@@ -18,7 +18,7 @@ if [ $? == 0 ]; then
   
     echo on
     echo --------- COPIANT EAR ---------
-    cp ./ear/target/${name}.ear $${name_uppercase}_DEPLOY_DIR
+    cp ./${prefixdirectori}ear/target/${name}.ear $${name_uppercase}_DEPLOY_DIR
 
   fi
 fi

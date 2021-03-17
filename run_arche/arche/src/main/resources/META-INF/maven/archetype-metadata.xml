@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="projectebase"
+    xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <requiredProperties>
+
+        <requiredProperty key="package">
+            <defaultValue>rungenapp</defaultValue>
+        </requiredProperty>
+
+
+        <requiredProperty key="groupId">
+            <defaultValue>rungenapp</defaultValue>
+        </requiredProperty>
+
+
+        <requiredProperty key="artifactId">
+            <defaultValue>rungenapp</defaultValue>
+        </requiredProperty>
+
+
+        <requiredProperty key="version">
+            <defaultValue>2.0.0</defaultValue>
+        </requiredProperty>
+
+
+    </requiredProperties>
+
+
+    <fileSets>
+
+        <fileSet encoding="UTF-8" packaged="false">
+            <directory/>
+            <excludes>
+                <exclude>pom.xml</exclude>
+            </excludes>
+        </fileSet>
+
+
+        <fileSet filtered="true" packaged="false">
+            <directory>.</directory>
+
+            <excludes>
+                <exclude>pom.xml</exclude>
+            </excludes> 
+        </fileSet>
+
+    </fileSets>
+    <!--
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>gitignore</include>
+        <include>compile.bat</include>
+        <include>compile.sh</include>
+        <include>help.bat</include>
+        <include>help.sh</include>
+        <include>help.txt</include>
+        <include>novaversio.bat</include>
+        <include>novaversio.sh</include>
+        <include>README.md</include>
+      </includes>
+    </fileSet>
+-->
+
+</archetype-descriptor>

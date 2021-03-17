@@ -38,13 +38,6 @@
 
 		<dependency>
 			<groupId>${package}</groupId>
-			<artifactId>${name}-logic</artifactId>
-			<version>${project_version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>${package}</groupId>
 			<artifactId>${name}-commons</artifactId>
 			<version>${project_version}</version>
 			<scope>provided</scope>
@@ -308,7 +301,7 @@
 							<outputDirectory>${basedir}/src/main/resources</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${basedir}/../logic/src/main/resources</directory>
+									<directory>${basedir}/../${prefixdirectori}ejb/src/main/resources</directory>
 									<includes>
 										<include>logicmissatges_*.properties</include>
 										<include>genapp_*.properties</include>

@@ -526,6 +526,7 @@ public class CodeGenerator {
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
 
+			prop.put("prefixdirectori", project.getPrefixDirectori());
 			prop.put("genapp_version", Versio.VERSIO);
 
 			prop.put("artifactid", project.projectName.toLowerCase() + "-back");
@@ -622,6 +623,7 @@ public class CodeGenerator {
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
 
+			prop.put("prefixdirectori", project.getPrefixDirectori());
 			prop.put("genapp_version", Versio.VERSIO);
 
 			prop.put("artifactid", project.projectName.toLowerCase() + "-back");
@@ -878,7 +880,7 @@ public class CodeGenerator {
 			prop.put("packagePath", packagePath);
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
-
+			prop.put("prefixdirectori", project.getPrefixDirectori());
 			prop.put("artifactid", project.projectName.toLowerCase() + "-commons");
 			prop.put("prefix", project.getPrefix().toUpperCase());
 
@@ -934,6 +936,8 @@ public class CodeGenerator {
 			prop.put("project_basedir", "${project.basedir}");
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
+			
+			prop.put("prefixdirectori", project.getPrefixDirectori());
 
 			prop.put("prefix", project.getPrefix().toUpperCase());
 
@@ -1072,7 +1076,7 @@ public class CodeGenerator {
 			prop.put("packagePath", packagePath);
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
-
+			prop.put("prefixdirectori", project.getPrefixDirectori());
 			prop.put("prefix", project.getPrefix().toUpperCase());
 			prop.put("dollar", "$");
 
@@ -1148,7 +1152,7 @@ public class CodeGenerator {
 			prop.put("packagePath", packagePath);
 			prop.put("app_current_version", appCurrentVersion);
 			prop.put("name_uppercase", project.projectName.toUpperCase());
-
+            prop.put("prefixdirectori", project.getPrefixDirectori());
 			prop.put("artifactid", project.projectName.toLowerCase() + "-logic");
 
 			prop.put("project_version", "${project.version}");

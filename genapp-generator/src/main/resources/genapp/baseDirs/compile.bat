@@ -12,7 +12,7 @@ if %errorlevel% EQU 0 (
 	  @echo on
 	  echo --------- COPIANT EAR %${name_uppercase}_VERSIO% ---------
 
-	  xcopy /Y ear\target\${name}.ear %${name_uppercase}_DEPLOY_DIR%
+	  xcopy /Y ${prefixdirectori}ear\target\${name}.ear %${name_uppercase}_DEPLOY_DIR%
 
 	) ELSE (
 	  echo  =================================================================
