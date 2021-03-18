@@ -3,7 +3,7 @@
 echo off
 cat help.txt
 
-env mvn -DskipTests $@ install 
+env mvn -DskipTests $@ clean install 
 
 if [ $? == 0 ]; then
   if [ "${name_uppercase}_DEPLOY_DIR" == "" ];  then
