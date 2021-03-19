@@ -1663,6 +1663,20 @@ public class BackWebGenerator extends IconUtils {
 		code.append("        <put-attribute name=\"contingut\" value=\"/error.jsp\" />\n");
 		code.append("    </definition>\n");
 		code.append("\n");
+		
+		
+		code.append("    <!--  ==================PUBLIC =============== -->\n");
+		code.append("\n");
+		code.append("    <definition name=\"all\" extends=\"base.definition\">\n");
+		code.append("        <put-attribute name=\"menu\" value=\"/WEB-INF/jsp/moduls/menu_inici.jsp\" />\n");
+		code.append("        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/all/homepublic.jsp\" />\n");
+		code.append("    </definition>\n");
+		code.append("\n");
+		code.append("\n");
+		code.append("    <definition name=\"homepublic\" extends=\"all\">\n");
+		code.append("        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/all/homepublic.jsp\" />\n");
+		code.append("    </definition>\n");
+		
 		code.append("    <!--  ===========  COMMON  ================== -->\n");
 		code.append("\n");
 		code.append("    <definition name=\"common\" extends=\"base.definition\">\n");

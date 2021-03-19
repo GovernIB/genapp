@@ -5,6 +5,15 @@
 <div>
   <h5><fmt:message key="menuinici" /></h5>
   <ul class="tree" style="margin: 3px; padding: 0px;">
+  
+  <c:if test="${dollar}{empty loginInfo}">
+        <li style="list-style-type: disc; list-style-position: inside;">
+          <a href="<c:url value="/public/index.html"/>">
+            <span style="${dollar}{(fn:contains(url, 'principal'))? "font-weight: bold;" : ""}">Pàgina Inicial</span>
+          </a>
+        </li>
+    </c:if>
+    <c:if test="${dollar}{not empty loginInfo}">
 
     <li style="list-style-type: disc; list-style-position: inside;">
       <a href="<c:url value="/common/principal.html"/>">
@@ -37,6 +46,7 @@
       </a>
     </li>
    
+   </c:if>
   </ul>
 </div>
 

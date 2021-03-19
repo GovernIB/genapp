@@ -35,9 +35,10 @@
 			</div>
 			<div>
 				<div>
-					<strong class="subtitol llevarMobil"><fmt:message
-							key="usuari" />: </strong> <span class="subtitolMay"> <%=request.getUserPrincipal().getName()%>
-						| <%= request.getRemoteUser() %>
+					<strong class="subtitol llevarMobil"><fmt:message key="usuari" />: </strong>
+					<span class="subtitolMay">
+                        <%=request.getUserPrincipal()== null? "ANONIM": request.getUserPrincipal().getName()%>
+						|   <%= request.getRemoteUser() %>
 					</span>
 				</div>
 			</div>
@@ -108,12 +109,24 @@
 					<div class="dropdown-menu  dropdown-menu-right"
 						aria-labelledby="dropdownMenu3">
 
-						<a class="dropdown-item"
-							href="<c:url value="/configuracio"></c:url>"> <i
-							class="fas fa-cog"></i> <fmt:message key="configuracio" />
-						</a> <a class="dropdown-item" href="<c:url value="/logout"></c:url>">
-							<i class="fas fa-sign-out-alt"></i> <fmt:message key="sortir" />
-						</a>
+
+
+                        <c:if test="${symbol_dollar}{ empty loginInfo  }">
+                            <a class="dropdown-item" href="<c:url value="/common/principal.html"></c:url>">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </c:if>
+                        <c:if test="${symbol_dollar}{ not empty loginInfo  }">
+						
+							<a class="dropdown-item"
+								href="<c:url value="/configuracio"></c:url>"> <i
+								class="fas fa-cog"></i> <fmt:message key="configuracio" />
+							</a>
+						
+                            <a class="dropdown-item" href="<c:url value="/logout"></c:url>">
+    							<i class="fas fa-sign-out-alt"></i> <fmt:message key="sortir" />
+    						</a>
+                        </c:if>
 
 
 					</div>

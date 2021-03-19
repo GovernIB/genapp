@@ -39,9 +39,13 @@ public class BasePreparer implements ViewPreparer, Constants {
 		Map<String, Object> request = tilesRequest.getContext("request");
 
 		// Informació de Login
-		LoginInfo loginInfo = LoginInfo.getInstance();
-		// Posa dins la sessió la informació de Login
-		request.put("loginInfo", loginInfo);
+		try {
+    		LoginInfo loginInfo = LoginInfo.getInstance();
+    		// Posa dins la sessió la informació de Login
+    		request.put("loginInfo", loginInfo);
+		} catch(Exception e) {
+		    // Anònim
+		}
 
 		// URL
 		// TODO ficarho dins cache (veure Capperpare.java)
