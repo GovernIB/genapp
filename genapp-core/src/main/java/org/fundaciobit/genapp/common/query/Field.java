@@ -294,10 +294,19 @@ public abstract class Field<C> implements Serializable {
 
 	}
 
-	protected class Equal<T> extends OneParameterOperation<T> {
-		public Equal(T value) {
-			super(value);
-		}
+	protected class Equal<T extends Object> extends Where {
+
+        final T value;
+
+
+        /**
+         * @param value
+         */
+        public Equal(T value) {
+            super();
+            this.value = value;
+        }
+	    
 
 		@Override
 		public int setValues(Query query, int index) throws I18NException {
@@ -309,8 +318,19 @@ public abstract class Field<C> implements Serializable {
 				return index;
 			}
 		}
+		
+		
+		 @Override
+         public final QuerySQL toSQL(int index) {
+		     
+		     if (this.value == null) {
+		         return new QuerySQL(index, toSQL((long)index));
+		     } else {
+                 return new QuerySQL(index + 1, toSQL((long)index));
+		     }
+         }
 
-		@Override
+
 		public String toSQL(long index) {
 			if (this.value == null) {
 				return "( " + fullName + " IS NULL )";
@@ -318,6 +338,11 @@ public abstract class Field<C> implements Serializable {
 				return "( " + fullName + " = ?" + index + " )";
 			}
 		}
+		
+
+	     
+		
+		
 	}
 
 	protected class NotEqual<T> extends OneParameterOperation<T> {

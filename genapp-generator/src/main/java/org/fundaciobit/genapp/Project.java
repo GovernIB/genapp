@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.common.db.DataBaseInfo;
 
 

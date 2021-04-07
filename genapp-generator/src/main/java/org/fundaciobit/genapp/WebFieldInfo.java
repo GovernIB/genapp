@@ -8,8 +8,6 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-import org.fundaciobit.genapp.FieldInfo;
-import org.fundaciobit.genapp.ForeignKey;
 
 /**
  * Title:        Rapit Entity Bean 2010

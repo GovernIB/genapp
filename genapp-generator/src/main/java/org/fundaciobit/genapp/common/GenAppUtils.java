@@ -26,7 +26,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.genapp.common.AbstractKeyValue;
 import org.fundaciobit.genapp.common.query.OrderType;
 import org.fundaciobit.genapp.generator.CodeGenUtils;
 

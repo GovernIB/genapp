@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.fundaciobit.genapp.FieldInfo;
 /**
  * Title:        Rapit Entity Bean 2010
  * Description:

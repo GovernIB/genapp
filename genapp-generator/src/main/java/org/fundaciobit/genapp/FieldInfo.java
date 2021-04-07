@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.fundaciobit.genapp.ForeignKey;
-import org.fundaciobit.genapp.TraduibleInfo;
-import org.fundaciobit.genapp.WebFieldInfo;
 
 
 /**

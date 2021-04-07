@@ -144,7 +144,7 @@ try {
         </c:if>
 
         <!-- Mostram el botó de tornar a principal -->
-        <a href="<c:url value="/common/principal.html"/>" class="btn"><%=etiquetaBoto%></a>
+        <a href="<c:url value="/"/>" class="btn"><%=etiquetaBoto%></a>
         
         <br/>
         
