@@ -2358,14 +2358,14 @@ public class BackGenerator {
       code.append("\n");
       code.append("    binder.setValidator(getWebValidator());\n");
       code.append("\n");
-      // Si és autogenerat llavors s'ha de posar la següent linia per ignorar el camp
+      // Els camps autogernats s'han d'ignorar.
+      StringBuilder autoFields = new StringBuilder();
       for (FieldInfo field : fields) {
         if (field.isAutoIncrement()) {
-          code.append("    binder.setDisallowedFields(\"" + field.getJavaName() + "\");\n");
+          autoFields.append(", \"").append(model).append(".").append(field.getJavaName()).append("\"");
         }
       }
-      // TODO EDITORS DE TOTES LES DEPENDENCIES
-      //code.append("    // binder.registerCustomEditor(Producto.class, new ProductoEditor());\n");
+      code.append("    initDisallowedFields(binder" + autoFields.toString() + ");");
       code.append("\n");
       code.append("  }\n");
       code.append("\n");
