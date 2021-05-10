@@ -1,7 +1,7 @@
 package ${package}.back.controller.common;
 
 import ${package}.commons.utils.Configuracio;
-import ${package}.utils.Constants;
+import ${package}.commons.utils.Constants;
 
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;

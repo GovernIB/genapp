@@ -15,10 +15,6 @@
         <artifactId>genapp</artifactId>
     </parent>
 
-    <properties>
-        <spring.version>5.0.0.RELEASE</spring.version>
-    </properties>
-
     <dependencies>
 
         <dependency>

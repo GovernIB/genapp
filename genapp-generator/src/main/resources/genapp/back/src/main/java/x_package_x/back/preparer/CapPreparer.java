@@ -8,12 +8,13 @@ import org.apache.tiles.preparer.PreparerException;
 import org.apache.tiles.preparer.ViewPreparer;
 import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Component;
+import ${package}.commons.utils.Constants;
 
 /**
  * @author GenApp
  *
  */
-@RunAs("${prefix}_USER")
+@RunAs(Constants.${prefix}_USER)
 @Component
 public class CapPreparer implements ViewPreparer {
 

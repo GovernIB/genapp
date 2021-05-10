@@ -1,5 +1,5 @@
 <#assign symbol_dollar = "$">
-package ${package}.utils;
+package ${package}.commons.utils;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

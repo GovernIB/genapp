@@ -132,7 +132,7 @@ public class DaoEJBGenerator {
 
 		manager.append("\n");
 
-		manager.append(" public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
+		manager.append("    public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
 				+ "-ejb/" + managerFileNameEJB + "!" + ejbPackage + "." + managerFileName + "\";\n\n");
 
 		// Sobre escriure findByPrimaryKey
@@ -179,43 +179,40 @@ public class DaoEJBGenerator {
 		manager.append("@Stateless\n"); 
 		manager.append("public class " + managerFileName + " extends " + jpaManager + " implements " + local + " {\n");
 		manager.append("\n");
+		
+		//String prefix = projecte.getPrefix().toUpperCase();
+		final String allRoles = "{Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS}"; 
+		        //"{" + prefix + "_ADMIN," + "Constants." + prefix + "_USER}";
 
-		String prefix = projecte.getPrefix().toUpperCase();
+		
 
-		manager.append("  @Override\n");
-		manager.append(
-				"\t@RolesAllowed({Constants." + prefix + "_ADMIN,\r\n" + "        Constants." + prefix + "_USER})\n");
-		manager.append("\tpublic void delete(" + tableNameJava + " instance) {\n");
-		manager.append("\t\tsuper.delete(instance);\n");
-		manager.append("\t}\n\n");
+		manager.append("    @Override\n");
+		manager.append("    @RolesAllowed(" + allRoles + ")\n");
+		manager.append("    public void delete(" + tableNameJava + " instance) {\n");
+		manager.append("        super.delete(instance);\n");
+		manager.append("    }\n\n");
 
 		// public I create(I transientInstance) throws Exception
-		manager.append("  @Override\n");
-		manager.append("\t@RolesAllowed({Constants." + prefix + "_ADMIN," + "Constants." + prefix + "_USER})\n");
-		// manager.append("\t@PreAuthorize(\"hasRole('ROLE_USER')\")\n");
+		manager.append("    @Override\n");
+		manager.append("    @RolesAllowed(" + allRoles + ")\n");
 		manager.append(
-				"\tpublic " + tableNameJava + " create(" + tableNameJava + " instance) throws I18NException {\n");
-		manager.append("\t\treturn super.create(instance);\n");
-		manager.append("\t}\n\n");
+				"    public " + tableNameJava + " create(" + tableNameJava + " instance) throws I18NException {\n");
+		manager.append("        return super.create(instance);\n");
+		manager.append("    }\n\n");
 
-		// super.update(instance)
-		manager.append("  @Override\n");
-		manager.append(
-				"\t@RolesAllowed({Constants." + prefix + "_ADMIN,\r\n" + "        Constants." + prefix + "_USER})\n");
-		// manager.append("\t@PreAuthorize(\"hasRole('ROLE_USER')\")\n");
-		manager.append(
-				"\tpublic " + tableNameJava + " update(" + tableNameJava + " instance) throws I18NException {\n");
-		manager.append("\t\t return super.update(instance);\n");
-		manager.append("\t}\n\n");
+
+		manager.append("    @Override\n");
+		manager.append("    @RolesAllowed(" + allRoles + ")\n");
+		manager.append("    public " + tableNameJava + " update(" + tableNameJava + " instance) throws I18NException {\n");
+		manager.append("         return super.update(instance);\n");
+		manager.append("    }\n\n");
 
 		// Sobre escriure findByPrimaryKey
-		manager.append("  @Override\n");
-		manager.append(
-				"\t@RolesAllowed({Constants." + prefix + "_ADMIN,\r\n" + "        Constants." + prefix + "_USER})\n");
-		// manager.append("\t@PreAuthorize(\"hasRole('ROLE_USER')\")\n");
-		manager.append("  public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_) {\n");
-		manager.append("    return (" + jpa + ")super.findByPrimaryKey(_ID_);\n");
-		manager.append("  }\n\n");
+		manager.append("    @Override\n");
+		manager.append("    @RolesAllowed(" + allRoles + ")\n");
+		manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_) {\n");
+		manager.append("        return (" + jpa + ")super.findByPrimaryKey(_ID_);\n");
+		manager.append("    }\n\n");
 
 		manager.append("}\n");
 

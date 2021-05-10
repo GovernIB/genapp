@@ -17,7 +17,7 @@ import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 import ${package}.hibernate.HibernateFileUtil;
-import ${package}.utils.Constants;
+import ${package}.commons.utils.Constants;
 import ${package}.logic.utils.I18NLogicUtils;
 import ${package}.logic.utils.LogicUtils;
 import ${package}.commons.utils.Configuracio;

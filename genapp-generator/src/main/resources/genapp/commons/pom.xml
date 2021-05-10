@@ -21,7 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version_template_file>./templates/StaticVersion.java.template</version_template_file>
-		<version_file>src/main/java/${packagePath}/utils/StaticVersion.java</version_file>
+		<version_file>src/main/java/${packagePath}/commons/utils/StaticVersion.java</version_file>
         <project.buildtime>${symbol_dollar}{maven.build.timestamp}</project.buildtime>
         <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
 	</properties>

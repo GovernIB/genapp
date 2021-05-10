@@ -21,13 +21,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import ${package}.back.security.LoginInfo;
 
-import ${package}.utils.Constants;
+import ${package}.commons.utils.Constants;
 
 /**
  * @author anadal
  *
  */
-@RunAs("${prefix}_USER")
+@RunAs(Constants.${prefix}_USER)
 @Component
 public class BasePreparer implements ViewPreparer, Constants {
 

@@ -20,7 +20,7 @@ import javax.naming.InitialContext;
 import org.fundaciobit.genapp.common.i18n.I18NArgumentString;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 
-import ${package}.utils.Constants;
+import ${package}.commons.utils.Constants;
 
 /**
  * 

@@ -278,13 +278,13 @@ public class DaoJPAGenerator {
 
         if (field.isTransientField()) {
           imports.add("javax.persistence.Transient");
-          beanCode.append("\t" +"@Transient\n");
+          beanCode.append("    " +"@Transient\n");
         } else {
 
           // Atributos
           if (field.isPrimaryKey()) {
             imports.add("javax.persistence.Id");
-            beanCode.append("\t" +"@Id\n");         
+            beanCode.append("    " +"@Id\n");         
           }
           if (field.isAutoIncrement) {
             // AUTONUMERIC
@@ -292,15 +292,15 @@ public class DaoJPAGenerator {
             //beanCode.append("\t" +"@GeneratedValue(strategy = IDENTITY)\n");
             imports.add("javax.persistence.GeneratedValue");
             imports.add("javax.persistence.GenerationType");
-            beanCode.append("\t" + "@GeneratedValue(strategy = GenerationType.SEQUENCE," +
+            beanCode.append("    " + "@GeneratedValue(strategy = GenerationType.SEQUENCE," +
             		" generator=\"" + sequenceJPAName + "\")\n");
           }
 
           if (field.getIndex() != null) {
             imports.add("org.hibernate.annotations.Index");
-            beanCode.append("\t" + "@Index(name=\"" + field.getIndex() + "\")\n");
+            beanCode.append("    " + "@Index(name=\"" + field.getIndex() + "\")\n");
           }
-          beanCode.append("\t" + "@Column(name=\"" + field.sqlName + "\"");
+          beanCode.append("    " + "@Column(name=\"" + field.sqlName + "\"");
           
           
           // Si té IMP foreign keys llavors no es por modificar, només de lectura
@@ -340,7 +340,7 @@ public class DaoJPAGenerator {
         }
         
         // Definicio
-        beanCode.append("\t" + type + " " + name + ";\n\n");
+        beanCode.append("    " + type + " " + name + ";\n\n");
       }
       
       
@@ -749,8 +749,8 @@ public class DaoJPAGenerator {
           typeForeign = javax.persistence.OneToOne.class;
           
           // Codi Antic
-          // jpaCode.append("\t@OneToOne\n");
-          // jpaCode.append("\t@JoinColumn(name = \"" + field.getSqlName() + "\")\n");
+          // jpaCode.append("    @OneToOne\n");
+          // jpaCode.append("    @JoinColumn(name = \"" + field.getSqlName() + "\")\n");
           
           // Codi nou
           // Hem de llevar el ID de la foreigKey (si no te ID, llavors no ens agrada)
@@ -764,7 +764,7 @@ public class DaoJPAGenerator {
           }
           
           javaNameField= javaNameField.substring(0, javaNameField.length() - 2);
-          jpaCode.append("\t@OneToOne(mappedBy=\"" + javaNameField + "\")\n");
+          jpaCode.append("    @OneToOne(mappedBy=\"" + javaNameField + "\")\n");
           
 
           methodname = expTable.getNameJava();
@@ -783,25 +783,25 @@ public class DaoJPAGenerator {
           
           
           
-          beanCode.append("\tprivate " + javaName + " " + newfield + ";\n"); 
-          interfaceCode.append("\tpublic " + pre + javaName + " " + CodeGenUtils.get(methodname));
+          beanCode.append("    private " + javaName + " " + newfield + ";\n"); 
+          interfaceCode.append("    public " + pre + javaName + " " + CodeGenUtils.get(methodname));
           if (codeType == CodeType.INTERFACE) {
             interfaceCode.append(";\n"); 
           } else {
-            beanCode.append(" {\n"); 
-            beanCode.append("\t  return this." + newfield + ";\n"); 
-            beanCode.append("\t}\n\n");
+            beanCode.append("    {\n"); 
+            beanCode.append("      return this." + newfield + ";\n"); 
+            beanCode.append("    }\n\n");
           }
           
-          beanCode.append("\tpublic " + pre + " void " + CodeGenUtils.set(methodname) + "(" + javaName + " " + newfield + ")");
+          beanCode.append("    public " + pre + " void " + CodeGenUtils.set(methodname) + "(" + javaName + " " + newfield + ")");
           // TODO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           /*
           if (codeType == CodeType.INTERFACE) {
             interfaceCode.append(";\n"); 
           } else */ {
             beanCode.append(" {\n"); 
-            beanCode.append("\t  this." + newfield + " = " + newfield + ";\n"); 
-            beanCode.append("\t}\n");
+            beanCode.append("      this." + newfield + " = " + newfield + ";\n"); 
+            beanCode.append("    }\n");
           }
           interfaceCode.append("\n\n"); 
           
@@ -850,13 +850,13 @@ public class DaoJPAGenerator {
           String collectionType1 = isFileMappingTable?"java.util.List" : "Set";
           String collectionType2 = isFileMappingTable?"java.util.ArrayList" : "HashSet";
           
-          jpaCode.append("\t@OneToMany(fetch = FetchType." + fetchType + ", mappedBy = \"" + mappedBy + "\")\n");
+          jpaCode.append("    @OneToMany(fetch = FetchType." + fetchType + ", mappedBy = \"" + mappedBy + "\")\n");
           typeForeign = javax.persistence.OneToMany.class;
           
           // Obtenir el nom java del camp de la taula fk.
           
-          //beanCode.append("\t@OneToMany(fetch = FetchType.LAZY)\n");          
-          //beanCode.append("\t@JoinTable(name = \"" + fk.getTable() + "\"," +
+          //beanCode.append("    @OneToMany(fetch = FetchType.LAZY)\n");          
+          //beanCode.append("    @JoinTable(name = \"" + fk.getTable() + "\"," +
           //    " joinColumns = @JoinColumn(name = \"" + expField.javaName + "\"))\n");
           // TODO afegir inverseJoinColumn????
           
@@ -871,8 +871,8 @@ public class DaoJPAGenerator {
           }
           
           
-          beanCode.append("\tprivate " + collectionType1+ "<" + javaName + "> " + newfield + " = new " + collectionType2+ "<" + javaName + ">(0);\n"); 
-          interfaceCode.append("\tpublic " + pre + " " + collectionType1+ "<" + javaName + "> " + CodeGenUtils.get(methodname));
+          beanCode.append("    private " + collectionType1+ "<" + javaName + "> " + newfield + " = new " + collectionType2+ "<" + javaName + ">(0);\n"); 
+          interfaceCode.append("    public " + pre + " " + collectionType1+ "<" + javaName + "> " + CodeGenUtils.get(methodname));
           if (codeType == CodeType.INTERFACE) {
             interfaceCode.append(";\n");
           } else {
@@ -881,12 +881,12 @@ public class DaoJPAGenerator {
             beanCode.append("  }\n");
           }
           interfaceCode.append("\n");
-          beanCode.append("\tpublic void " + CodeGenUtils.set(methodname) + "(" + collectionType1+ "<" + javaName + "> " + newfield + ")");
+          beanCode.append("    public void " + CodeGenUtils.set(methodname) + "(" + collectionType1+ "<" + javaName + "> " + newfield + ")");
           // TODO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
           {
             beanCode.append(" {\n");  
-            beanCode.append("\t  this." + newfield + " = " + newfield + ";\n"); 
-            beanCode.append("\t}\n");
+            beanCode.append("      this." + newfield + " = " + newfield + ";\n"); 
+            beanCode.append("    }\n");
             beanCode.append("\n\n"); 
           }
         }
@@ -1077,7 +1077,7 @@ public class DaoJPAGenerator {
         }
         
         if (codeType == CodeType.JPA) {
-          jpaCode.append("\t@" + relType + "(fetch = FetchType." + fetchType + ")\n");
+          jpaCode.append("    @" + relType + "(fetch = FetchType." + fetchType + ")\n");
 
           String fkName = fk.getName();
           
@@ -1087,9 +1087,9 @@ public class DaoJPAGenerator {
           }
           
           imports.add("org.hibernate.annotations.ForeignKey");
-          jpaCode.append("\t@ForeignKey(name=\"" + fkName + "\")\n");
+          jpaCode.append("    @ForeignKey(name=\"" + fkName + "\")\n");
 
-          jpaCode.append("\t@JoinColumn(name = \"" + field.getSqlName() 
+          jpaCode.append("    @JoinColumn(name = \"" + field.getSqlName() 
               + ("ManyToOne".equals(relType)? ( "\", referencedColumnName =\"" + expField.getJavaName() ) : "")
               + "\", nullable = " + !field.isNotNullable() +
             ", insertable=false, updatable=false)" + "\n");
@@ -1098,7 +1098,7 @@ public class DaoJPAGenerator {
         
         
         
-        beanCode.append("\tprivate " + javaName + " " + newfield + ";\n");
+        beanCode.append("    private " + javaName + " " + newfield + ";\n");
         interfaceCode.append("\n");
         
         String pre;
@@ -1110,7 +1110,7 @@ public class DaoJPAGenerator {
         }
         
         
-        interfaceCode.append("\tpublic " + pre + javaName + " " + CodeGenUtils.get(methodname));
+        interfaceCode.append("    public " + pre + javaName + " " + CodeGenUtils.get(methodname));
         if (codeType == CodeType.INTERFACE) {
           interfaceCode.append(";\n");
         } else {
@@ -1119,7 +1119,7 @@ public class DaoJPAGenerator {
           beanCode.append("  }\n");
         }
         beanCode.append("\n"); 
-        beanCode.append("\tpublic " +  pre + " void " + CodeGenUtils.set(methodname) + "(" + javaName + " " + newfield + ")");
+        beanCode.append("    public " +  pre + " void " + CodeGenUtils.set(methodname) + "(" + javaName + " " + newfield + ")");
         ////  TODO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         /*
         if (codeType == CodeType.INTERFACE) {
@@ -1372,14 +1372,14 @@ public class DaoJPAGenerator {
     }
     
     manager.append("public class " + managerFileName 
-        + "\n\t\t extends AbstractJPAManager<" + tableNameJava + ", " + pkClass +">"
-        + "\n\t\t implements "  + tableNameJava+  "IJPAManager, I"  + tableNameJava + "Manager, " + tableNameJava + "Fields {\n\n\n");
+        + "\n         extends AbstractJPAManager<" + tableNameJava + ", " + pkClass +">"
+        + "\n         implements "  + tableNameJava+  "IJPAManager, I"  + tableNameJava + "Manager, " + tableNameJava + "Fields {\n\n\n");
     
     manager.append("\n\n");
-    manager.append("  private static final long serialVersionUID = "
+    manager.append("    private static final long serialVersionUID = "
         + managerFileName.hashCode() + "L;\n\n");
 
-    manager.append("\t public static final TableName<" + tableNameJava
+    manager.append("    public static final TableName<" + tableNameJava
         + "> _TABLENAME =  new TableName<" + tableNameJava + ">(\"" + tableNameJava + "JPA\");\n");
     manager.append("\n");
 
@@ -1399,44 +1399,44 @@ public class DaoJPAGenerator {
     // ENTITI MANAGER
     manager.append("\n");
     
-    manager.append("  @PersistenceContext\n");
-    manager.append("  protected EntityManager __em;\n\n");
+    manager.append("    @PersistenceContext\n");
+    manager.append("    protected EntityManager __em;\n\n");
 
     // CONSTRUCTOR
-    manager.append("  public " + managerFileName + "() {\n");
-    manager.append("  }\n\n");
+    manager.append("    public " + managerFileName + "() {\n");
+    manager.append("    }\n\n");
         
-    manager.append("  protected " + managerFileName + "(EntityManager __em) {\n");
-    manager.append("    this.__em = __em;\n");
-    manager.append("  }\n");
+    manager.append("    protected " + managerFileName + "(EntityManager __em) {\n");
+    manager.append("      this.__em = __em;\n");
+    manager.append("    }\n");
     
     manager.append("\n");
-    manager.append("  @Override\n");
-    manager.append("  public EntityManager getEntityManager() {\n");
-    manager.append("    return this.__em;\n");
-    manager.append("  }\n");
+    manager.append("    @Override\n");
+    manager.append("    public EntityManager getEntityManager() {\n");
+    manager.append("      return this.__em;\n");
+    manager.append("    }\n");
     
     
     // ===========================================
     // (15) getInstance Of TableManager
     /*
-    manager.append("\tpublic static " + managerFileName + " getInstance() {\n");
-    manager.append("\t  return __manager;\n");
-    manager.append("\t};\n\n");
+    manager.append("    public static " + managerFileName + " getInstance() {\n");
+    manager.append("      return __manager;\n");
+    manager.append("    };\n\n");
     */
     
    
     // (1) Parent Abstract Methods
     /*
-    manager.append("\tpublic Connection getConnection() throws Exception {\n");
-    manager.append("\t\t return " + databaseManager + ".getConnection();\n");
-    manager.append("\t}\n\n");
+    manager.append("    public Connection getConnection() throws Exception {\n");
+    manager.append("         return " + databaseManager + ".getConnection();\n");
+    manager.append("    }\n\n");
     */
 // XYZ ZZZ
     
-    manager.append("\tpublic Class<?> getJPAClass() {\n");
-    manager.append("\t\treturn " + tableNameJava + "JPA. class;\n");
-    manager.append("\t}\n\n");
+    manager.append("    public Class<?> getJPAClass() {\n");
+    manager.append("        return " + tableNameJava + "JPA. class;\n");
+    manager.append("    }\n\n");
 
     // ========================================
     // (8) GetEventManager
@@ -1444,36 +1444,35 @@ public class DaoJPAGenerator {
     manager.append("\n");
     manager.append("\n");
     
-    manager.append("\tpublic ModificationManager<" + tableNameJava + "> getEventManager() {\n");
-    manager.append("\treturn __eventManager;\n");
-    manager.append("\t}\n");
+    manager.append("    public ModificationManager<" + tableNameJava + "> getEventManager() {\n");
+    manager.append("    return __eventManager;\n");
+    manager.append("    }\n");
     */
     
     
  // ========================================
     // (8) GetTableName && getTableNameVariable
-    manager.append("\n");
-    manager.append("\n");
+    manager.append("\n\n");
     
-    manager.append("\tpublic TableName<" + tableNameJava + "> getTableName() {\n");
-    manager.append("\t\treturn _TABLENAME;\n");
-    manager.append("\t}\n\n\n");
+    manager.append("    public TableName<" + tableNameJava + "> getTableName() {\n");
+    manager.append("        return _TABLENAME;\n");
+    manager.append("    }\n\n\n");
     
     
-    manager.append("\t@Override\n");
-    manager.append("\tprotected String getTableNameVariable() {\n");
-    manager.append("\t\treturn _TABLE_MODEL;\n");
-    manager.append("\t}\n\n\n");
+    manager.append("    @Override\n");
+    manager.append("    protected String getTableNameVariable() {\n");
+    manager.append("        return _TABLE_MODEL;\n");
+    manager.append("    }\n\n\n");
     
 
     // ===========================================
     // (14) List to Array
     
-    manager.append("\tpublic " + tableNameJava + "[] listToArray" +
+    manager.append("    public " + tableNameJava + "[] listToArray" +
        "(List<" + tableNameJava + "> list)  {\n");
-    manager.append("\t\tif(list == null) { return null; };\n");
-    manager.append("\t\treturn list.toArray(new " + tableNameJava + "[list.size()]);\n");
-    manager.append("\t};\n\n");
+    manager.append("        if(list == null) { return null; };\n");
+    manager.append("        return list.toArray(new " + tableNameJava + "[list.size()]);\n");
+    manager.append("    };\n\n");
     
     
    // Creates from parameters
@@ -1487,14 +1486,14 @@ public class DaoJPAGenerator {
     
     for (int i = 0; i < versionBeanParams.length; i++) {
       if ( versionParams[i] == null) continue;
-      manager.append("\tpublic synchronized " + tableNameJava + " create("
+      manager.append("    public synchronized " + tableNameJava + " create("
           + versionParams[i] + ") throws I18NException {\n");
       
-      manager.append("\t\t" + className + " __bean =  new " + className + "("
+      manager.append("        " + className + " __bean =  new " + className + "("
           + versionBeanParams[i] + ");\n");
-      manager.append("\t\treturn create(__bean);\n");
+      manager.append("        return create(__bean);\n");
 
-      manager.append("\t}\n\n");
+      manager.append("    }\n\n");
     }
 
      
@@ -1515,58 +1514,58 @@ public class DaoJPAGenerator {
     // (9) findByPrimaryKey
     manager.append("\n");
     manager.append("\n");
-    manager.append("\tpublic " + tableNameJava + " findByPrimaryKey("
+    manager.append("    public " + tableNameJava + " findByPrimaryKey("
         + dao.findParams + ") {\n");
     if (dao.pkClass.endsWith("PK")) {
-      manager.append("\t  return __em.find(" + tableNameJava + "JPA.class, new " + dao.pkClass + "(" + dao.findParamsCall + "));\n");
+      manager.append("        return __em.find(" + tableNameJava + "JPA.class, new " + dao.pkClass + "(" + dao.findParamsCall + "));\n");
     } else {
-      manager.append("\t  return __em.find(" + tableNameJava + "JPA.class, " + dao.findParamsCall + ");  \n");
+      manager.append("        return __em.find(" + tableNameJava + "JPA.class, " + dao.findParamsCall + ");  \n");
     }
-    manager.append("\t}\n");
+    manager.append("    }\n");
     
     
     // ========================================
     // (9) selectList I i II
     /*
     manager.append("\n");
-    manager.append("\t@SuppressWarnings(\"unchecked\")\n"); 
-    manager.append("\tpublic List<" + tableNameJava 
+    manager.append("    @SuppressWarnings(\"unchecked\")\n"); 
+    manager.append("    public List<" + tableNameJava 
         + "> select(Where where, OrderBy ... orderBy) throws Exception {\n");
-    manager.append("\t  return select(where, null, null, orderBy);\n");
-    manager.append("\t}\n\n");
+    manager.append("      return select(where, null, null, orderBy);\n");
+    manager.append("    }\n\n");
     
 
     manager.append("\n");
-    manager.append("\t@SuppressWarnings(\"unchecked\")\n"); 
-    manager.append("\tpublic List<" + tableNameJava 
+    manager.append("    @SuppressWarnings(\"unchecked\")\n"); 
+    manager.append("    public List<" + tableNameJava 
         + "> select(Where where, Integer firstResult, Integer maxResults, OrderBy ... orderBy) throws Exception {\n");
     String instance = tableNameJava.toLowerCase();
 
-    manager.append("\t  StringBuffer __query = new StringBuffer();\n");
-    manager.append("\t  __query.append(\"SELECT " + instance + " FROM " + className + " " + instance + " \");\n");
+    manager.append("      StringBuffer __query = new StringBuffer();\n");
+    manager.append("      __query.append(\"SELECT " + instance + " FROM " + className + " " + instance + " \");\n");
 
-    manager.append("\t  if (where != null) {\n");
-    manager.append("\t    __query.append(\" where \" + where.toSQL());\n");
-    manager.append("\t  }\n");
-    manager.append("\t  __query.append(OrderBy.processOrderBy(orderBy));\n");
+    manager.append("      if (where != null) {\n");
+    manager.append("        __query.append(\" where \" + where.toSQL());\n");
+    manager.append("      }\n");
+    manager.append("      __query.append(OrderBy.processOrderBy(orderBy));\n");
 
-    manager.append("\t  Query q = __em.createQuery(__query.toString());\n");
-    manager.append("\t  if (where != null) {\n");
-    manager.append("\t    where.setValues(q);\n");
-    manager.append("\t  }\n");
+    manager.append("      Query q = __em.createQuery(__query.toString());\n");
+    manager.append("      if (where != null) {\n");
+    manager.append("        where.setValues(q);\n");
+    manager.append("      }\n");
 
-    manager.append("\t  if (firstResult != null) { q.setFirstResult(firstResult); }\n");
-    manager.append("\t  if (maxResults != null) {\n");
-    manager.append("\t     q.setMaxResults(maxResults);\n");    
-    manager.append("\t  }\n");
-    manager.append("\t  try {\n");
-    manager.append("\t    return q.getResultList();\n");
-    manager.append("\t  } catch(Exception e) {\n");
-    manager.append("\t     log.error(\"Error executant la sentència SQL: \" + __query.toString());\n");
-    manager.append("\t     throw e;\n");
-    manager.append("\t  }\n");
+    manager.append("      if (firstResult != null) { q.setFirstResult(firstResult); }\n");
+    manager.append("      if (maxResults != null) {\n");
+    manager.append("         q.setMaxResults(maxResults);\n");    
+    manager.append("      }\n");
+    manager.append("      try {\n");
+    manager.append("        return q.getResultList();\n");
+    manager.append("      } catch(Exception e) {\n");
+    manager.append("         log.error(\"Error executant la sentència SQL: \" + __query.toString());\n");
+    manager.append("         throw e;\n");
+    manager.append("      }\n");
 
-    manager.append("\t}\n\n");
+    manager.append("    }\n\n");
     */
     
 
@@ -1575,21 +1574,21 @@ public class DaoJPAGenerator {
 
     // ========================================
     // (9) getJPAInstance
-    manager.append("\t@Override\n");
-    manager.append("\tprotected " + tableNameJava + " getJPAInstance(" + tableNameJava + " __bean) {\n");
-    manager.append("\t\treturn convertToJPA(__bean);\n");
-    manager.append("\t}\n\n\n");
+    manager.append("    @Override\n");
+    manager.append("    protected " + tableNameJava + " getJPAInstance(" + tableNameJava + " __bean) {\n");
+    manager.append("        return convertToJPA(__bean);\n");
+    manager.append("    }\n\n\n");
     
-    manager.append("\tpublic static " + className + " convertToJPA(" + tableNameJava + " __bean) {\n");
-    manager.append("\t  if (__bean == null) {\n");
-    manager.append("\t    return null;\n");
-    manager.append("\t  }\n");
-    manager.append("\t  if(__bean instanceof " + className + ") {\n");
-    manager.append("\t    return (" + className + ")__bean;\n");    
-    manager.append("\t  }\n");
-    manager.append("\t  \n");
-    manager.append("\t  return " + className + ".toJPA(__bean);\n");
-    manager.append("\t}\n\n");
+    manager.append("    public static " + className + " convertToJPA(" + tableNameJava + " __bean) {\n");
+    manager.append("      if (__bean == null) {\n");
+    manager.append("        return null;\n");
+    manager.append("      }\n");
+    manager.append("      if(__bean instanceof " + className + ") {\n");
+    manager.append("        return (" + className + ")__bean;\n");    
+    manager.append("      }\n");
+    manager.append("      \n");
+    manager.append("      return " + className + ".toJPA(__bean);\n");
+    manager.append("    }\n\n");
     
     
     List<FieldInfo> transFields = CodeGenUtils.getTranslationFieldsOfTable(project.getTables(), tableInfo);
@@ -1711,9 +1710,9 @@ public class DaoJPAGenerator {
       }
       
       String managerFileName = project.tables[i].getNameJava() + "Manager";
-      manager.append("\tpublic I" + managerFileName + " get" + managerFileName + "() {\n");
-      manager.append("\t  return this." + project.tables[i].name + ";\n");
-      manager.append("\t};\n");
+      manager.append("    public I" + managerFileName + " get" + managerFileName + "() {\n");
+      manager.append("        return this." + project.tables[i].name + ";\n");
+      manager.append("    };\n");
       manager.append("\n");
     }
     

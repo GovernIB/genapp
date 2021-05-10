@@ -20,6 +20,6 @@ public class BasicPackages {
 		daoPackage = modelPackage + ".dao";
 		fieldsPackage = modelPackage + ".fields";
 		beanPackage = modelPackage + ".bean";
-		utilsPackage = packageName + ".utils";
+		utilsPackage = packageName + ".commons.utils";
 	}
 }
