@@ -1134,7 +1134,7 @@ public class CodeGenerator {
 
 			// (1) Borrar Classes de prova
 			final String moduleName = "ejb";
-			final String logicPackage = "logic";
+			//final String logicPackage = "logic";
 			File dstBaseDir = new File(projectDir,  project.getPrefixDirectori() + moduleName);
 			dstBaseDir.mkdirs();
 
