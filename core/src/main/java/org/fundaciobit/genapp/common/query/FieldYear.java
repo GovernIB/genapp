@@ -2,8 +2,6 @@ package org.fundaciobit.genapp.common.query;
 
 import java.util.Date;
 
-import org.fundaciobit.genapp.common.query.Field;
-import org.fundaciobit.genapp.common.query.IntegerField;
 
 /**
  * 

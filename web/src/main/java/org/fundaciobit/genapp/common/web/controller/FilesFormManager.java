@@ -5,7 +5,6 @@ import org.fundaciobit.genapp.common.filesystem.IFile;
 import org.fundaciobit.genapp.common.filesystem.IFileManager;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.utils.Utils;
-import org.fundaciobit.genapp.common.web.controller.ContainerException;
 import org.fundaciobit.genapp.common.web.filesystem.WebFileSystemManager;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
 import org.springframework.web.multipart.MultipartFile;

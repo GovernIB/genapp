@@ -4,8 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
-import org.fundaciobit.genapp.common.query.Field;
-import org.fundaciobit.genapp.common.query.Select;
+
 
 /**
  *

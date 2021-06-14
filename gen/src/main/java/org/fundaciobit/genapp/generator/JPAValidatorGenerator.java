@@ -129,7 +129,10 @@ public class JPAValidatorGenerator {
 
           // Mira si s'ha definit un patro
           String pattern = field.getMinAllowedValue();
-          if (pattern != null) {
+          
+          
+          
+          if (pattern != null && field.getJavaType().equals(String.class)) {
             if (CodeGenUtils.isInteger(pattern)) {
                // Check min len
               code.append("    if (__vr.getFieldErrorCount(" + camp + ") == 0) {\n");
@@ -146,22 +149,32 @@ public class JPAValidatorGenerator {
               
             } else {
                // Check pattern
-              
+              boolean ignore = false;
               String nouPatro = pattern.replace("\\", "\\\\");
               if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
-                nouPatro = "(" + nouPatro.replace(',', '|') + ")";
+                
+                if (field.getJavaType().equals(String.class)) {
+                  ignore = true;
+                } else {
+                  nouPatro = "(" + nouPatro.replace(',', '|') + ")";
+                }
               }
             
-              code.append("    if (__vr.getFieldErrorCount(" + camp + ") == 0) {\n");           
-              code.append("      String val = String.valueOf(__vr.getFieldValue(__target__," + camp + "));\n");
-              code.append("      if (val != null && val.trim().length() != 0) {\n");
-              code.append("        java.util.regex.Pattern p = java.util.regex.Pattern.compile(\"" + nouPatro + "\");\n");
-              code.append("        if (!p.matcher(val).matches()) {\n");
-              code.append("          __vr.rejectValue(" + camp + ", \"genapp.validation.malformed\",\n");
-              code.append("             new " + I18NArgumentString.class.getName() + "(val), new " + I18NArgumentCode.class.getName() + "(get(" + camp  + ")));\n");
-              code.append("        }\n");
-              code.append("      }\n");
-              code.append("    }\n");
+              if (!ignore) { 
+                
+                code.append("    //" + field.getJavaType().getClass() + "\n");
+                
+                code.append("    if (__vr.getFieldErrorCount(" + camp + ") == 0) {\n");           
+                code.append("      String val = String.valueOf(__vr.getFieldValue(__target__," + camp + "));\n");
+                code.append("      if (val != null && val.trim().length() != 0) {\n");
+                code.append("        java.util.regex.Pattern p = java.util.regex.Pattern.compile(\"" + nouPatro + "\");\n");
+                code.append("        if (!p.matcher(val).matches()) {\n");
+                code.append("          __vr.rejectValue(" + camp + ", \"genapp.validation.malformed\",\n");
+                code.append("             new " + I18NArgumentString.class.getName() + "(val), new " + I18NArgumentCode.class.getName() + "(get(" + camp  + ")));\n");
+                code.append("        }\n");
+                code.append("      }\n");
+                code.append("    }\n");
+              }
               code.append("\n");
             }
           }
