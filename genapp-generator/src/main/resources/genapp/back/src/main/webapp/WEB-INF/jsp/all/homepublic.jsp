@@ -43,6 +43,6 @@ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
 lang = ${dollar}{lang} <br/>
 <br/>
 
-<c:if test="${dollar}{ghg:isDesenvolupament()}">
+<c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
 Only in Development Mode
 </c:if>

@@ -22,16 +22,14 @@
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-		
         <spring.version>4.3.26.RELEASE</spring.version>
-
     </properties>
 
     <repositories>
         <repository>
             <id>github-governib-maven-repos</id>
             <name>GitHub GovernIB Maven Repository</name>
-            <url>http://GovernIB.github.io/maven/maven/</url>
+            <url>https://governib.github.io/maven/maven/</url>
         </repository>
     </repositories>
 
@@ -144,7 +142,7 @@
         <repository>
             <id>github-governib-maven-repos</id>
             <name>GitHub GovernIB Maven Repository</name>
-            <url>http://GovernIB.github.io/maven/maven/</url>
+            <url>https://governib.github.io/maven/maven/</url>
         </repository>
     </repositories>
     -->
