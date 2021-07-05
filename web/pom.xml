@@ -4,12 +4,12 @@
     <groupId>org.fundaciobit.genapp</groupId>
     <artifactId>genapp-web</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>FundacioBit GenApp - Web</name>
 
     <parent>
         <groupId>org.fundaciobit.genapp</groupId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <artifactId>genapp</artifactId>
     </parent>
 
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>org.fundaciobit.genapp</groupId>
             <artifactId>genapp-core</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
             <scope>provided</scope>
         </dependency>
 
