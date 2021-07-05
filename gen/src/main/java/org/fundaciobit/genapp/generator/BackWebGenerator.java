@@ -1129,7 +1129,7 @@ public class BackWebGenerator {
                 + "${" +  model + "." + modelCamp + "}</a>\n");
               codeCoreContent.append("             </c:if>\n");
             } else {
-              codeCoreContent.append("${" + model + "." + modelCamp + "}");
+              codeCoreContent.append("<c:out value=\"${" + model + "." + modelCamp + "}\" />");
             }
             /* WWW if (field.traduible) {
               code.append("\"/>");
