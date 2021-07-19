@@ -1,4 +1,4 @@
-package ${package}.utils;
+package ${package}.commons.utils;
 /**
 * Codi autogenerat a partir del fitxer StaticVersion.java.template.
 */
