@@ -444,7 +444,7 @@ public abstract class Field<C> implements Serializable {
 					if (i != 0) {
 						str.append(", ");
 					}
-					str.append("?" + i + " ");
+					str.append("?" + (i + index) + " ");
 				}
 				return new QuerySQL(index, "( " + fullName + " " + oper + " ( " + str.toString() + " ) )");
 			} else {
