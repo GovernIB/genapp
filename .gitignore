@@ -11,3 +11,6 @@ target
 /demo/scripts
 /demo/backup
 /demo/demogenappfiles
+/genapp-sqltutorial/scripts/genapp/genapp.log
+/genapp-sqltutorial/gensqlschema
+/genapp-sqltutorial/genappsqltutorialfiles
