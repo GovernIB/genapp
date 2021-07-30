@@ -27,7 +27,7 @@ public class PublicController {
 		Boolean initialized = (Boolean) session.getAttribute("inicialitzat");
 
 		if (initialized == null) {
-			HtmlUtils.saveMessageInfo(request, "MessageInfo : Benvingut a GithubGantt");
+			HtmlUtils.saveMessageInfo(request, "MessageInfo : Benvingut a ${fullname}");
 			session.setAttribute("inicialitzat", true);
 		}
 

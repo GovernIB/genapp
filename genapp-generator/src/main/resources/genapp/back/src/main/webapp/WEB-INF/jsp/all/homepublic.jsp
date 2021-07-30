@@ -10,7 +10,7 @@
 <div>
 <br/>
 <center>
-<img src="<c:url value="/img/app-logo.png"/>"  alt="GithubGantt" title="GithubGantt"/>
+<img src="<c:url value="/img/app-logo.png"/>"  alt="${fullname}" title="${fullname}"/>
 
 <br/>
 <br/>

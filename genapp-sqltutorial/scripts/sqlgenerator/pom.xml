@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.fundaciobit.genappsqltutorial</groupId>
+  <artifactId>genappsqltutorial-sqlgenerator</artifactId>
+  <packaging>jar</packaging>
+
+  <name>GenAppSqlTutorial - Scripts - SQL Generator</name>
+
+  <parent>
+    <groupId>org.fundaciobit.genappsqltutorial</groupId>
+    <artifactId>genappsqltutorial-scripts</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+
+  <properties>	
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.fundaciobit.genappsqltutorial</groupId>
+      <artifactId>genappsqltutorial-model</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.fundaciobit.genappsqltutorial</groupId>
+      <artifactId>genappsqltutorial-persistence</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.fundaciobit.genappsqltutorial</groupId>
+      <artifactId>genappsqltutorial-persistence</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+      <classifier>jdbc</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.fundaciobit.genapp</groupId>
+      <artifactId>genapp-sqlgenerator</artifactId>
+      <version>${genapp_version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>			 
+    </dependency>
+
+  </dependencies>
+
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.3.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
