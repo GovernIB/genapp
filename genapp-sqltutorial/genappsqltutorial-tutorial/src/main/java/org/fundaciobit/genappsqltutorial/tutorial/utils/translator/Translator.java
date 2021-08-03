@@ -12,7 +12,11 @@ import org.json.JSONArray;
 public class Translator {
 
    
-    public static String translate(String lang, String text) throws Exception {
+    public static String translate(String lang, String text)  {
+        
+        if (lang.equals("en")) {
+            return text;
+        }
         
         
         final String[][] ignoreWords= {
@@ -20,6 +24,7 @@ public class Translator {
             {"\"Customers\"",  "\"Cústomers\""},
             { "\"CustomerName\"", "\"CústomerName\""} ,
             { "\"City\"", "\"Cíty\"" },
+            { "SELECT", "SÉLECT" },
             { "result-set", "résult-set" }
         };
         
@@ -28,15 +33,26 @@ public class Translator {
             t = t.replace(c[0], c[1]);
         }
         
-        String result = callUrlAndParseResult("en", lang, t);
-        
-        
-        t = result;
-        for (String[] c : ignoreWords) {
-            t = t.replace(c[1], c[0]);
+        String result;
+        try {
+            result = callUrlAndParseResult("en", lang, t);
+
+            t = result;
+            for (String[] c : ignoreWords) {
+                t = t.replace(c[1], c[0]);
+            }
+
+            return t;
+
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+            return lang.toUpperCase() + "::" + text;
+            
         }
         
-        return t;
+        
         
     }
     
@@ -78,7 +94,7 @@ public class Translator {
         JSONArray jsonArray2 = (JSONArray) jsonArray.get(0);
         JSONArray jsonArray3 = (JSONArray) jsonArray2.get(0);
 
-        return jsonArray3.get(0).toString();
+        return new String(jsonArray3.get(0).toString().getBytes(),"UTF-8");
     }
 }
 

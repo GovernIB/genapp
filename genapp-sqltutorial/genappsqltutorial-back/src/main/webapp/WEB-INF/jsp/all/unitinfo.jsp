@@ -7,17 +7,21 @@
 <div class="clear"></div>
 <div class="spacer"></div>
 
-<h2> Informaci&oacute; Unitat SQL</h2>
+<h2>${unitInfo.index }: ${unitInfo.titol} </h2>
 
 <ul>
-    <li> Index: <b>${unitInfo.index }</b> </li>
-    <li> T&iacute;tol: <b>${unitInfo.titol}</b> </li>
-    <li> Descripci&oacute;: <b>${unitInfo.descripcio }</b> </li>
+ <%--   <li> Index: <b>${unitInfo.index }</b> </li>
+    <li> T&iacute;tol: <b>${unitInfo.titol}</b> </li>  
+    <li> Descripci&oacute;:  </li>
+  
     <li> Nom Curt: <b>${unitInfo.nomCurt }</b> </li>
     <li> Nom de la Classe: <b>${unitInfo.classeNom }</b> </li>
+     --%>
     <li> Classe: <b>${unitInfo.classe }</b> </li>
     <li> URL W3schools: <b><a href="${unitInfo.url}" target="_blank">${unitInfo.url}</a></b> </li>
 </ul>
+
+<b>${unitInfo.descripcio }</b>
 
 <c:forEach var="p" items="${unitInfo.parts}">
     <br/>

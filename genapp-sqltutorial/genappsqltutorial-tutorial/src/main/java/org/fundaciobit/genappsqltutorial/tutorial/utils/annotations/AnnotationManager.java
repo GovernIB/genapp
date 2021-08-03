@@ -14,6 +14,7 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL01Select;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.PartInfo;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.UnitInfo;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.javaparser.JavaParser;
+import org.fundaciobit.genappsqltutorial.tutorial.utils.translator.Translator;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
@@ -66,7 +67,7 @@ public class AnnotationManager {
      * 
      * @return
      */
-    public static List<UnitInfo> getAllUnits() {
+    public static List<UnitInfo> getAllUnits(String language)  {
 
         Map<Class<?>, TutorialUnit> units = AnnotationManager.getUnits(packbase);
 
@@ -74,8 +75,12 @@ public class AnnotationManager {
 
         for (Entry<Class<?>, TutorialUnit> entry : units.entrySet()) {
 
-            list.add(new UnitInfo(entry.getKey(), entry.getValue().title(),
-                    entry.getValue().description(), entry.getValue().url()));
+            TutorialUnit tu = entry.getValue();
+            
+            String title = Translator.translate(language, tu.title());
+            String desc =  Translator.translate(language, tu.description());
+            
+            list.add(new UnitInfo(entry.getKey(), title, desc, tu.url()));
         }
 
         Collections.sort(list);

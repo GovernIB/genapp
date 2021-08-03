@@ -1,3 +1,4 @@
+<%@page import="org.springframework.context.i18n.LocaleContextHolder"%>
 <%@page import="java.util.Collection"%>
 <%@page import="org.fundaciobit.genappsqltutorial.tutorial.utils.UnitInfo"%>
 <%@page import="java.util.List"%>
@@ -12,7 +13,7 @@
   <c:if test="${empty loginInfo}">
         <li style="list-style-type: disc; list-style-position: inside;">
           <a href="<c:url value="/public/index.html"/>">
-            <span style="${(fn:contains(url, 'principal'))? "font-weight: bold;" : ""}">Pàgina Inicial</span>
+            <span style="${(fn:contains(url, 'principal'))? "font-weight: bold;" : ""}">P&agrave;gina Inicial</span>
           </a>
         </li>
         
@@ -20,9 +21,7 @@
         
         <%
             
-        Collection<UnitInfo> unitats = UnitsManager.getAllUnits();
-        
-        //
+        Collection<UnitInfo> unitats = UnitsManager.getAllUnits(LocaleContextHolder.getLocale().getLanguage());
         
         for(UnitInfo unitat: unitats) {
             session.setAttribute("classenom", unitat.getClasseNom() );

@@ -14,3 +14,11 @@ target
 /genapp-sqltutorial/scripts/genapp/genapp.log
 /genapp-sqltutorial/gensqlschema
 /genapp-sqltutorial/genappsqltutorialfiles
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/genapp_ca.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/genapp_en.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/genapp_es.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/genappsqltutorial_genapp_ca.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/genappsqltutorial_genapp_es.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/logicmissatges_ca.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/logicmissatges_en.properties
+/genapp-sqltutorial/genappsqltutorial-back/src/main/resources/logicmissatges_es.properties

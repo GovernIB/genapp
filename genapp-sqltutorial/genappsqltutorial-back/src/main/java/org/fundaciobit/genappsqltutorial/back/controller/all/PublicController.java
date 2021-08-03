@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.UnitInfo;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.UnitsManager;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,9 @@ public class PublicController {
         HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    
 	    
-	    UnitInfo unitInfo = UnitsManager.getPartsOfUnit(unitClassName);
+	    
+	    
+	    UnitInfo unitInfo = UnitsManager.getPartsOfUnit(unitClassName, LocaleContextHolder.getLocale().getLanguage());
 	    
 	    
 	    ModelAndView mav = new ModelAndView("unitinfo");
