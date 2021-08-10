@@ -124,13 +124,37 @@ function makeAceEditorResizable(editor){
             //enableLiveAutocompletion: true,
             wrap: true
         });
+        editor_${p.metode}.setReadOnly(true);
         editor_${p.metode}.resize();
         editor_${p.metode}.setAutoScrollEditorIntoView(true);
         
         makeAceEditorResizable(editor_${p.metode});
         
+        
+        function execute_${p.metode}() {
+            $.ajax({
+                'type': 'get',
+                'contentType': 'text/plain',
+                'url': '<c:url value="/public/unit/test"/>',
+                'dataType': 'html',
+                'timeout': 10000
+            }).done(function (data) {
+                // success
+                //$('testdiv_${p.metode}').html(data);
+                
+            	document.getElementById('testdiv_${p.metode}').innerHTML = data;
+                
+            }).fail(function (error) {
+                // something went wrong
+                alert(error);
+            });
+        };
+        
     </script>
-    <button class="btn btn-primary" onclick="alert('hola')">Executar test</button>     
+    <button class="btn btn-primary" onclick="execute_${p.metode}()">Executar test</button>
+    
+    <div id="testdiv_${p.metode}" style="display: inline-block;height:auto; width:auto; background-color: white; border-style: 1px dotted;" ></div>
+
     <br/>
     <br/>
 </c:forEach>

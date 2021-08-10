@@ -30,5 +30,7 @@ public interface IPrinterResults {
 
     public <T> void print(StringField columnTitle1, StringField columnTitle2, List<KeyValue<T>> values)
             throws Exception;
+    
+    public void reset();
 
 }

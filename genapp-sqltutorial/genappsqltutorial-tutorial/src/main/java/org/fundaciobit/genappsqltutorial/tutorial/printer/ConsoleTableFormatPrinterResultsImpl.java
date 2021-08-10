@@ -157,6 +157,13 @@ public class ConsoleTableFormatPrinterResultsImpl implements IPrinterResults {
 
         mfc.print();
     }
+
+
+
+    @Override
+    public void reset() {
+        // No fa res
+    }
     
     
 }

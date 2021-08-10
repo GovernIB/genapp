@@ -18,6 +18,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.fundaciobit.genappsqltutorial.hibernate.HibernateFileUtil;
 import org.fundaciobit.genappsqltutorial.logic.utils.I18NLogicUtils;
 import org.fundaciobit.genappsqltutorial.logic.utils.LogicUtils;
+import org.fundaciobit.genappsqltutorial.tutorial.printer.PrinterResultsManager;
 import org.fundaciobit.genappsqltutorial.commons.utils.Configuracio;
 
 /**
@@ -120,6 +121,15 @@ public class InitServlet extends HttpServlet {
          * } catch(Throwable e) { log.error("Error inicialitzant els DataExporters: " +
          * e.getMessage(), e); }
          */
+        
+        
+        // Inicialitzar PrinterResults
+        try {
+            PrinterResultsManager.setPrinterResults(new WebFormatPrinterResultsImpl());
+        } catch (Exception e) {
+            log.error("Error assignant el formatejador web  de resultats: " + e.getMessage(), e);
+        }
+        
 
         // Mostrar Versió
         String ver = LogicUtils.getVersio();

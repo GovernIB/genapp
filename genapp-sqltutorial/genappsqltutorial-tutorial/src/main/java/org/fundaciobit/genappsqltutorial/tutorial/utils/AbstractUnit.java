@@ -72,4 +72,8 @@ public abstract class AbstractUnit implements IPrinterResults, IDAOProvider {
         PrinterResultsManager.getPrinterResults().print(columnTitle1, columnTitle2, values);        
     }
 
+    @Override
+    public void reset() {
+    }
+
 }

@@ -113,7 +113,7 @@ public class AnnotationManager {
         List<PartInfo> parts = new ArrayList<PartInfo>();
 
         for (Method method : resources) {
-            System.out.println("============== " + method.getName() + " ================");
+            //System.out.println("============== " + method.getName() + " ================");
 
             String metode = method.getName();
 
