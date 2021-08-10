@@ -105,7 +105,7 @@ public class DaoEJBGenerator {
 
     StringBuffer manager = new StringBuffer("");
 
-    /** Cabecera */
+    /* Cabecera */
     manager.append("\n");
 
     manager.append("package " + ejbPackage + ";\n\n");
@@ -124,9 +124,9 @@ public class DaoEJBGenerator {
     manager.append("public interface " + managerFileName + " extends " + iface + " {\n");
     
     manager.append("\n");
-    
-    manager.append(" public static final String JNDI_NAME = \"" + projecte.getProjectName().toLowerCase()
-        +  "/" + managerFileNameEJB + "/local\";\n");
+
+    manager.append("  public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
+            + "-ejb/" + managerFileNameEJB + "\";\n\n");
     
     // Sobre escriure findByPrimaryKey   
     manager.append("  public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_);\n");    
