@@ -8,7 +8,7 @@ import java.util.List;
  * @author anadal
  * 
  */
-public class I18NValidationException extends Throwable {
+public class I18NValidationException extends Exception {
 
   private final List<I18NFieldError> fieldErrorList;
 
