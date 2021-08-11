@@ -843,19 +843,12 @@ public class DaoJPAGenerator {
       
       
       if (table.isTranslationEntity() && codeType == CodeType.JPA) {
-        /*
-        beanCode.append("  @CollectionOfElements(fetch=FetchType.EAGER)\n");
-        beanCode.append("  @OneToMany(fetch = FetchType.EAGER, mappedBy = \"traduccio\")\n");
-        beanCode.append("  @JoinColumn(name = \"traduccioID\")\n");
-        beanCode.append("  @JoinTable( joinColumns=@JoinColumn(name=\"traduccioGrupID\"))\n"); 
-        beanCode.append("  @MapKey(name = \"idiomaID\")\n");
-        */
-        beanCode.append("  @CollectionOfElements(fetch= FetchType.EAGER,targetElement = " + jpaPackage + ".TraduccioMapJPA.class)\n");
+        beanCode.append("  @ElementCollection(fetch = FetchType.EAGER, targetClass = " + jpaPackage + ".TraduccioMapJPA.class)\n");
         beanCode.append("  @Cascade(value=org.hibernate.annotations.CascadeType.ALL)\n");
         beanCode.append("  @LazyCollection(value= LazyCollectionOption.FALSE)\n");
         // TODO {prefix]_traducciomap -> Extreure de project.tables
         beanCode.append("  @JoinTable(name=\"" + project.getPrefix().toLowerCase() + "_traducciomap\",joinColumns={@JoinColumn(name=\"traducciomapid\")})\n");
-        beanCode.append("  @org.hibernate.annotations.MapKey(columns={@Column(name=\"idiomaid\")})\n");
+        beanCode.append("  @MapKeyColumn(name = \"idiomaid\")\n");
         // TODO FK ->   Extreure de project.tables foreig keys
         beanCode.append("  @ForeignKey(name=\"" + project.getPrefix().toLowerCase() + "_traducmap_traduccio_fk\") \n");
         beanCode.append("  private Map<String, " + jpaPackage + ".TraduccioMapJPA> traduccions =  new HashMap<String, " + jpaPackage + ".TraduccioMapJPA>();\n");
@@ -893,8 +886,8 @@ public class DaoJPAGenerator {
         imports.add("java.util.HashMap");
         imports.add("javax.persistence.JoinColumn");
         imports.add("javax.persistence.JoinTable");
-        //imports.add("javax.persistence.MapKey");
-        imports.add("org.hibernate.annotations.CollectionOfElements");
+        imports.add("javax.persistence.ElementCollection");
+        imports.add("javax.persistence.MapKeyColumn");
         imports.add("org.hibernate.annotations.Cascade");
         imports.add("org.hibernate.annotations.ForeignKey");
         imports.add("org.hibernate.annotations.Index");
