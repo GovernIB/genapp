@@ -1,4 +1,4 @@
-# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp 1.0 (genapp-1.0)  
+# ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp 1.1 (genapp-1.1)  
 *Generador d'Aplicacions*
 
 ***Descripció***
@@ -26,7 +26,7 @@ Manual_de_GenApp.odt | Manual de funcionament i utilització de l'aplicació | [
 ***Característiques***
 
 * Registered: 2013-02-19
-* Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java  JBoss 5.1  JBoss 5.2  
+* Project Labels: Generador  JPA  EJB 3.0  Spring  Web  WebServices  WS  Java  JBoss EAP 7.2  
 * Topic: Agile development tools,  Frameworks,  Templates
 * License:  European Union Public License, GNU General Public License version 3.0 (GPLv3)
 * Database Environment: JDBC
