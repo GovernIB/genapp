@@ -21,7 +21,7 @@
         
         <%
             
-        Collection<UnitInfo> unitats = UnitsManager.getAllUnits(LocaleContextHolder.getLocale().getLanguage());
+        Collection<UnitInfo> unitats = UnitsManager.getAllUnits("en"); // LocaleContextHolder.getLocale().getLanguage());
         
         for(UnitInfo unitat: unitats) {
             session.setAttribute("classenom", unitat.getClasseNom() );

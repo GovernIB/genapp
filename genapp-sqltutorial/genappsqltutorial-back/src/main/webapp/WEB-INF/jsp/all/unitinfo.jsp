@@ -69,6 +69,17 @@ function makeAceEditorResizable(editor){
 }
 
 
+function b64EncodeUnicode(str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+    }));
+}
+
+
 
 </script>
 
@@ -132,10 +143,20 @@ function makeAceEditorResizable(editor){
         
         
         function execute_${p.metode}() {
+        	
+        	<%-- 
+        	var sourceCode = editor_${p.metode}.getValue();
+        	
+        	alert(sourceCode);
+        	
+            ?code=+ b64EncodeUnicode(sourceCode)
+            
+            --%>
+        	
             $.ajax({
                 'type': 'get',
                 'contentType': 'text/plain',
-                'url': '<c:url value="/public/unit/test"/>',
+                'url': '<c:url value="/public/unit/test/${unitInfo.classeNom }/${p.metode}"/>',
                 'dataType': 'html',
                 'timeout': 10000
             }).done(function (data) {
@@ -151,9 +172,9 @@ function makeAceEditorResizable(editor){
         };
         
     </script>
-    <button class="btn btn-primary" onclick="execute_${p.metode}()">Executar test</button>
+    <button class="btn btn-primary" onclick="execute_${p.metode}()">Executar test</button><br/>
     
-    <div id="testdiv_${p.metode}" style="display: inline-block;height:auto; width:auto; background-color: white; border-style: 1px dotted;" ></div>
+    <div id="testdiv_${p.metode}" style="display:inline-block;height:auto; width:auto; background-color: white; border-style: 1px dotted;" ></div>
 
     <br/>
     <br/>

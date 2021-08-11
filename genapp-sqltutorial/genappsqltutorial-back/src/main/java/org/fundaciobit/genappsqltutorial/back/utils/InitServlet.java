@@ -18,6 +18,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.fundaciobit.genappsqltutorial.hibernate.HibernateFileUtil;
 import org.fundaciobit.genappsqltutorial.logic.utils.I18NLogicUtils;
 import org.fundaciobit.genappsqltutorial.logic.utils.LogicUtils;
+import org.fundaciobit.genappsqltutorial.tutorial.dao.DAOManager;
 import org.fundaciobit.genappsqltutorial.tutorial.printer.PrinterResultsManager;
 import org.fundaciobit.genappsqltutorial.commons.utils.Configuracio;
 
@@ -128,6 +129,13 @@ public class InitServlet extends HttpServlet {
             PrinterResultsManager.setPrinterResults(new WebFormatPrinterResultsImpl());
         } catch (Exception e) {
             log.error("Error assignant el formatejador web  de resultats: " + e.getMessage(), e);
+        }
+        
+        // Inicialitzar DAOProvider
+        try {
+            DAOManager.setDAOProvider(new DAOProviderEjb());
+        } catch (Exception e) {
+            log.error("Error assignant el DAOProvider: " + e.getMessage(), e);
         }
         
 

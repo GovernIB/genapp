@@ -156,7 +156,7 @@ public class WebFormatPrinterResultsImpl implements IPrinterResults {
             List<KeyValue<T>> values) {
         String[] titles = new String[] { columnTitle1.javaName, columnTitle2.javaName };
 
-        String[][] data = new String[2][];
+        String[][] data = new String[values.size()][];
 
         int count = 0;
 

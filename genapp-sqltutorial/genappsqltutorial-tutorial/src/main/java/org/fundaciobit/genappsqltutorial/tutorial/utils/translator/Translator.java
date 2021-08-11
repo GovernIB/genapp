@@ -28,10 +28,15 @@ public class Translator {
         if (lang.equals("en")) {
             return text;
         }
+        
+        if (text == null || text.trim().length() == 0) {
+            return text;
+        }
+        
 
         if (System.currentTimeMillis() - lastTranslation < 1000) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
             }
         }
@@ -39,7 +44,8 @@ public class Translator {
         final String[][] ignoreWords = { { "\"Country\"", "\"Cóuntry\"" },
                 { "\"Customers\"", "\"Cústomers\"" }, { "\"CustomerName\"", "\"CústomerName\"" },
                 { "\"City\"", "\"Cíty\"" }, { "SELECT", "SÉLECT" },
-                { "result-set", "résult-set" } };
+                { "result-set", "résult-set" }, { "LIKE", "LÏKE"}, { "BETWEEN", "BËTWEEN"},
+                { "OR", "ÖR"}, { "NOT", "NÖT"}, { "AND" , "ÄND"}  };
 
         String t = text;
         for (String[] c : ignoreWords) {

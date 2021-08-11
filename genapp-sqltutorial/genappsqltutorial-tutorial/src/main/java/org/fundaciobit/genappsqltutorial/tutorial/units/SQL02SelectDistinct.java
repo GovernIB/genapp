@@ -53,7 +53,7 @@ public class SQL02SelectDistinct extends AbstractUnit {
     public void countCountries() throws I18NException, Exception {
         SelectCount sc = new SelectCount(CustomersFields.COUNTRY);
         Long countdisctintcountries = this.getCustomerManager().executeQueryOne(sc, null);
-        print(countdisctintcountries, "Count Counties ");
+        print(countdisctintcountries, "Count Countries ");
     }
 
     @TutorialPart(
@@ -65,7 +65,7 @@ public class SQL02SelectDistinct extends AbstractUnit {
         SelectDistinct<String> sd = new SelectDistinct<String>(CustomersFields.COUNTRY);
         SelectCount sc = new SelectCount(sd);
         Long countdisctintcountries = this.getCustomerManager().executeQueryOne(sc, null);
-        print(countdisctintcountries, "Count DISTINCT Counties ");
+        print(countdisctintcountries, "Count DISTINCT Countries ");
     }
 
 }
