@@ -58,15 +58,13 @@ public class LoginInfo {
 		return grantedAuthorities;
 	}
 
-	public static boolean hasRole(String role) {
-
-		if (LoginInfo.getInstance() != null) {
-			return LoginInfo.getInstance().getRoles().contains(role);
-		} else {
-			return false;
-		}
-
-	}
+    public static boolean hasRole(String role) {
+        try {
+            return LoginInfo.getInstance().getRoles().contains(role);
+        } catch (Throwable th) {
+            return false;
+        }
+    }
 
 	public String getUsername() {
 		return this.username;
