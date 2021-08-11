@@ -7,35 +7,34 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
 
 
 /**
- * TODO Classe base per a la generaci� de Where's per a consultes SQL.
+ * Classe base per a la generació de Where's per a consultes SQL.
  * Title:        Rapit Entity Bean 2010
  * Description:
  * Copyright:    Copyright (c) 2010
  * Company:      XmasSoft
- * @author Xmas
- * @version 1.0
- * 
+ * @author anadal
+ *
  */
 public abstract class Where {
 
   /**
-   * Mètode d'utilitat per juntar varis Where mitjan�ant una OR 
+   * Mètode d'utilitat per juntar varis Where mitjan�ant una OR
    * @param wheres
-   * @return 
+   * @return
    */
   public static Where OR(Where... wheres) {
     return checkNulls("OR", wheres);
   }
 
   /**
-   * Mètode d'utilitat per juntar varis Where mitjan�ant una AND 
+   * Mètode d'utilitat per juntar varis Where mitjan�ant una AND
    * @param wheres
-   * @return 
+   * @return
    */
   public static Where AND(Where... wheres) {
     return checkNulls("AND", wheres);
   }
-  
+
   private static Where checkNulls(String andor, Where... wheres) {
     if (wheres == null || wheres.length == 0) {
       return null;
@@ -56,30 +55,40 @@ public abstract class Where {
       }
     }
   }
-  
-  
+
+
   public final int setValues(javax.persistence.Query query)  throws I18NException {
     return setValues(query, 1);
   }
-  
+
 
   /**
-   * M�todo per assignar els valors als camps '?' detallats en el SQL.
+   * Métode per assignar els valors als camps '?x' detallats en el SQL.
    * @param ps Instancia de PreparedStatement per afegir els valors
-   * @param index Posici� inicial on afeger
-   * @return Darrera posici� insertada
+   * @param index Posició inicial on afeger
+   * @return Darrera posició insertada
    * @throws SQLException Si error
    */
   protected abstract int setValues(javax.persistence.Query query, int index)
-      throws I18NException;
+          throws I18NException;
 
-  public abstract String toSQL();
+  public abstract QuerySQL toSQL(int index);
+
+  public final String toSQL() {
+    QuerySQL qs = toSQL(1);
+    if (qs == null) {
+      return null;
+    } else {
+      return qs.sql;
+    }
+  }
+
 
   /**
-   * 
+   *
    * Classe d'utilitat per juntar varis Where mitjan�ant una OR o una AND
    * @author anadal
-   * 
+   *
    */
   private static class AND_OR extends Where {
 
@@ -98,16 +107,20 @@ public abstract class Where {
     }
 
     @Override
-    public String toSQL() {
+    public QuerySQL toSQL(int index) {
       StringBuffer sql = new StringBuffer("( ");
-      for (int i = 0; i < wheres.length; i++) {        
+      for (int i = 0; i < wheres.length; i++) {
         if (i != 0) {
           sql.append(' ').append(andor).append(' ');
         }
-        sql.append(" ( ").append(wheres[i].toSQL()).append(" ) ");
+
+        QuerySQL s = wheres[i].toSQL(index);
+        index = s.nextIndex;
+
+        sql.append(" ( ").append(s.sql).append(" ) ");
       }
       sql.append(" )");
-      return sql.toString();
+      return new QuerySQL(index,sql.toString());
     }
 
     @Override
