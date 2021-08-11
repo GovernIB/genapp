@@ -81,6 +81,7 @@ public class BackGenerator {
       
       code.append("\n");
       
+      code.append("import javax.ejb.EJB;\n");
       code.append("import " + Field.class.getName() + ";\n");
       code.append("import " + WebValidationResult.class.getName() + ";\n");
       
@@ -124,10 +125,9 @@ public class BackGenerator {
       code.append("\n");
       code.append("  // EJB's\n");
       for (String tableName : ejbs) {
-        final String ejb = tableName + "EJB";
+        final String local = tableName + "Local";
         final String instance = CodeGenUtils.getModelName(tableName) + "Ejb";
-        code.append("  @javax.ejb.EJB(mappedName = \""
-            + project.getProjectName().toLowerCase() + "/" + ejb + "/local\")\n");
+        code.append("  @EJB(mappedName = " + ejbPackage + "." + local + ".JNDI_NAME)\n");
         code.append("  protected " + ejbPackage + "." + tableName + "Local " + instance + ";\n");
         code.append("\n");
       }
@@ -602,26 +602,6 @@ public class BackGenerator {
       */
 
       code.append("  } // Final de metode\n\n");
-/*
-      code.append("\n\n");
-      code.append("  // EJB's\n");
-      for (String tableName : ejbs) {
-        final String ejb = tableName + "EJB";
-        final String instance = CodeGenUtils.getModelName(tableName) + "Ejb";
-        code.append("  @javax.ejb.EJB(mappedName = \""
-            + project.getProjectName().toLowerCase() + "/" + ejb + "/local\")\n");
-        code.append("  private " + ejbPackage + "." + tableName + "Local " + instance + ";\n");
-        code.append("\n");
-      }
-      code.append("\n");
-
-      code.append("  @Override\n");
-      code.append("  public String getTableModelName() {\n");
-      code.append("    return _TABLE_MODEL;\n");
-      code.append("  }\n");
-      code.append("  \n");
-      code.append("}");
-      */
 
       code.append("  public String get(Field<?> field) {\n");
       code.append("    return field.fullName;\n");
@@ -1680,8 +1660,6 @@ public class BackGenerator {
         code.append("\n");
       }
 
-      
-      //code.append("  @EJB(mappedName = \"" + project.getProjectName().toLowerCase() + "/" + tableJavaName + "EJB/local\")\n");
       code.append("  @EJB(mappedName = " + ejbPackage + "." + local + ".JNDI_NAME)\n");
       code.append("  protected " + ejbPackage + "." + local + " " + instanceEjb + ";\n");
       code.append("\n");
