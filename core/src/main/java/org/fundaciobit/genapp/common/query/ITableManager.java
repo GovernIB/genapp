@@ -78,7 +78,7 @@ public interface ITableManager<I extends IGenAppEntity, PK extends Object> {
   //public String generateQueryString(Select<?> select, Where where, OrderBy[] orderBy);
   
   public String generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy);
-    
-  public String generateWhereQueryString(Where where);
+
+  public QuerySQL generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy, int index);
 
 }

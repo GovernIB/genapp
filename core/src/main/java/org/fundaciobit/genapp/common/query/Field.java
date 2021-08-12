@@ -546,7 +546,8 @@ public abstract class Field<C> implements Serializable {
     @Override
     public QuerySQL toSQL(int index) {
       if (query != null) {
-        return new QuerySQL(index, "( " + fullName + " " + (inQueryType == InQueryType.IN ? "IN" : "NOT IN") + " ( " + query.toSQL()
+        QuerySQL subquerySQL = query.toSQL(index);
+        return new QuerySQL(subquerySQL.nextIndex, "( " + fullName + " " + (inQueryType == InQueryType.IN ? "IN" : "NOT IN") + " ( " + subquerySQL.sql
                 + " ) )");
       } else {
         return new QuerySQL(index, "1=0"); // FALSE CONDITION
