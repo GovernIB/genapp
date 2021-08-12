@@ -4,6 +4,7 @@ package org.fundaciobit.genapp.common.query;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.persistence.EntityManager;
 
 import org.fundaciobit.genapp.common.IGenAppEntity;
@@ -33,7 +34,8 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
 
   // ===========================================
   // (10) select tots
-  
+
+  @PermitAll
   public List<I> select() throws I18NException {
     return this.select((Where)null,(OrderBy[]) null);
   }
@@ -59,20 +61,23 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
   
   
   // (12) select ordenats
-  
+
+  @PermitAll
   public List<I> select(OrderBy ... orderBy) throws I18NException {
     return this.select((Where)null,(OrderBy[]) orderBy);
   };
   
   
   // (12B) select condicio
-  
+
+  @PermitAll
   public List<I> select(Where where) throws I18NException {
     return this.select((Where)where,(OrderBy[]) null);
   }
-  
-  
 
+
+
+  @PermitAll
   public Long count(Where where) throws I18NException {
     List<Long> list = executeQuery(new SelectCount(), where);
     if (list == null || list.size() == 0) {
@@ -81,8 +86,8 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
       return list.get(0);
     }
   }
-  
-  
+
+  @PermitAll
   public <T> T max(Field<T> field, Where where) throws I18NException {
     List<T> list = executeQuery(new SelectMax<T>(field), where);
     if (list == null || list.size() == 0) {
@@ -91,7 +96,8 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
       return list.get(0);
     }
   }
-  
+
+  @PermitAll
   public <T> T min(Field<T> field, Where where) throws I18NException {
     List<T> list = executeQuery(new SelectMin<T>(field), where);
     if (list == null || list.size() == 0) {
@@ -103,8 +109,8 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
   
   
   protected abstract EntityManager getEntityManager();
-  
-  
+
+  @PermitAll
   public <T extends Object> T executeQueryOne(Select<T> select, Where where) throws I18NException {
     List<T> list = executeQuery(select, where);
     if (list == null || list.size() == 0) {
@@ -114,8 +120,8 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
       return list.get(0);
     }
   }
-  
 
+  @PermitAll
   public <T extends Object> T executeQueryOne(Field<T> field, Where where) throws I18NException {
     List<T> list = executeQuery(field, where);
     if (list == null || list.size() == 0) {
@@ -125,16 +131,16 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
       return list.get(0);
     }
   }
-  
-  
 
-  
+
+
+  @PermitAll
   public <T extends Object> List<T> executeQuery(Field<T> field, Where where,
       OrderBy ... orderBy) throws I18NException {
     return executeQuery(field.select, where, orderBy);
   }
-  
-  
+
+  @PermitAll
   public <T extends Object> List<T> executeQuery(Select<T> select, Where where,
       OrderBy ... orderBy) throws I18NException {
    
@@ -158,12 +164,14 @@ public abstract class AbstractTableManager <I extends IGenAppEntity, PK extends 
     
 
   }
-  
+
+  @PermitAll
   public <T extends Object> SubQuery<I,T> getSubQuery(Field<T> field, Where where) throws I18NException {
     return getSubQuery(field.select, where);
   }
-  
-  
+
+
+  @PermitAll
   public <T extends Object> SubQuery<I,T> getSubQuery(Select<T> select, Where where) throws I18NException {
     return new SubQuery<I, T>(select, this, where);
   }
