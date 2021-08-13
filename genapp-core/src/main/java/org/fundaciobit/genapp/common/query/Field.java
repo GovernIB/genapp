@@ -438,19 +438,20 @@ public abstract class Field<C> implements Serializable {
 
 		@Override
 		public QuerySQL toSQL(int index) {
-			StringBuffer str = new StringBuffer();
 			if (list != null) {
-				for (int i = 0; i < list.length; i++) {
-					if (i != 0) {
+				StringBuilder str = new StringBuilder();
+				int nextIndex = index + list.length;
+				for (int i = index; i < nextIndex; i++) {
+					if (i != index) {
 						str.append(", ");
 					}
-					str.append("?" + (i + index) + " ");
+					str.append("?").append(i).append(" ");
 				}
-				return new QuerySQL(index, "( " + fullName + " " + oper + " ( " + str.toString() + " ) )");
+
+				return new QuerySQL(nextIndex, "( " + fullName + " " + oper + " ( " + str + " ) )");
 			} else {
 				return new QuerySQL(index, "1=0"); // FALSE CONDITION
 			}
-
 		}
 
 		@Override
