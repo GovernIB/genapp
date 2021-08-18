@@ -1584,7 +1584,6 @@ public class BackGenerator {
       code.append("import javax.ejb.EJB;\n");
       code.append("import javax.servlet.http.HttpServletRequest;\n");
       code.append("import javax.servlet.http.HttpServletResponse;\n");
-      code.append("import javax.validation.Valid;\n");
       code.append("\n");
       code.append("import java.util.List;\n");
       code.append("import java.util.Map;\n");
@@ -2135,7 +2134,7 @@ public class BackGenerator {
       code.append("   * Editar un " + tableJavaName + " existent\n");
       code.append("   */\n");
       code.append("  @RequestMapping(value = \"" + pkMapping + "/edit\", method = RequestMethod.POST)\n");
-      code.append("  public String editar" + tableJavaName + "Post(@ModelAttribute @Valid " + form + " " + instanceForm + ",\n");
+      code.append("  public String editar" + tableJavaName + "Post(@ModelAttribute " + form + " " + instanceForm + ",\n");
       code.append("      BindingResult result, SessionStatus status, HttpServletRequest request,\n");
       code.append("      HttpServletResponse response) throws I18NException {\n");
       code.append("\n");
