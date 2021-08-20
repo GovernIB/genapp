@@ -101,7 +101,7 @@ public class BackWebGenerator {
         code.append("\n");
         
         code.append("<form:form name=\"" + model + "\" cssClass=\"form-search\"  modelAttribute=\"" + instanceFilterForm + "\" \n");
-        code.append("        method=\"${method}\"  enctype=\"multipart/form-data\">\n");
+        code.append("        method=\"${(empty method)?'post':method}\"  enctype=\"multipart/form-data\">\n");
         code.append("\n");
 
         code.append("  <%@include file=\"" + model + "ListCommon.jsp\" %>\n");
@@ -1660,7 +1660,8 @@ return sourceFiles;
   
       codeBase.append("\n\n");
       
-      codeBase.append("<form:form modelAttribute=\"" + instanceForm + "\" method=\"${method}\"\n");
+      codeBase.append("<form:form modelAttribute=\"" + instanceForm
+              + "\" method=\"${(empty method)?'post':method}\"\n");
       codeBase.append("  enctype=\"multipart/form-data\">\n");
       codeBase.append("  \n");
       codeBase.append("  <c:set var=\"contexte\" value=\"${" + instanceForm + ".contexte}\"/>\n");
