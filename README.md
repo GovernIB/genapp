@@ -1,6 +1,9 @@
 # ![Logo](https://github.com/GovernIB/maven/blob/binaris/genapp/projectinfo_Attachments/icon.jpg) GenApp 1.1 (genapp-1.1)  
 *Generador d'Aplicacions*
 
+## ATENCIÓ!! Per crear una aplicació sobre JBoss 7.2 /Java 11 no emprar aquesta versió, emprar genapp-2.0
+## El proposit de genapp-1.1 no és crear aplicacions noves, únicament serveix per adaptar aplicacions ja desenvolupades amb genapp-1.0 per tal de migrar-les a JBoss 7.2/Java 11
+
 ***Descripció***
 
 A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicació web: model, jpa, ejb, logica(ejb), web i webservices. Caracteristiques:
