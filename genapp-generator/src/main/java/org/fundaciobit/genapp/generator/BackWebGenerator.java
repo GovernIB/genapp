@@ -2254,7 +2254,7 @@ public class BackWebGenerator extends IconUtils {
 			}
 			
 			code.append("               " + type + " path=\"" + fullmodel + ".traduccions['${idioma.idiomaID}'].valor\" "
-					+ "cssClass=\"" + cssClass + "\" " + maxlength + config + "/>\n");
+					+ "cssClass=\"" + cssClass + "\" " +  "readonly=\"${" + readOnlyCondition + "}\" " + maxlength + config + "/>\n");
 			/*
 			 * code.append("               " + "<form:input path=\"" + fullmodel +
 			 * ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"${gen:contains(__theForm.readOnlyFields ,Prova2Fields.NOM2TRADUCCIOID)? 'input-xxlarge uneditable-input' : 'input-xxlarge'}\"/>\n"
