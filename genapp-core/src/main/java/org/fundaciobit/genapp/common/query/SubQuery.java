@@ -53,7 +53,10 @@ public class SubQuery<I extends IGenAppEntity, R> {
   public String toSQL()  {
     return manager.generateSelectQueryString(select, where, orderBy);
   }
-  
+
+  public QuerySQL toSQL(int index) {
+    return manager.generateSelectQueryString(select, where, orderBy, index);
+  }
 
   public ITableManager<I, ? extends Object> getManager() {
     return manager;

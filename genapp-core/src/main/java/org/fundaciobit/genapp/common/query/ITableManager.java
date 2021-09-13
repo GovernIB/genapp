@@ -79,6 +79,8 @@ public interface ITableManager<E extends IGenAppEntity, PK extends Object> {
 
 	public String generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy);
 
+	public QuerySQL generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy, int index);
+
 	/**
 	 * Obté una entitat en forma de referència, per tant sense carregar les seves
 	 * dades. Emprat bàsicament per fixar claus foranes.

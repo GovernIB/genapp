@@ -279,31 +279,44 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
 
 	@Override
 	public String generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy) {
+		return generateSelectQueryString(select, where, orderBy, 1).sql;
+	}
+
+	@Override
+	public QuerySQL generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy, int index) {
 		// select
-		StringBuffer query = new StringBuffer("select " + select.getSelectString());
+		StringBuilder query = new StringBuilder("select " + select.getSelectString());
 		// from i where
-		query.append(generateWhereQueryString(where));
+		QuerySQL whereSQL = generateWhereQueryString(where, index);
+		query.append(whereSQL.sql);
 		// group by
 		if (select instanceof GroupBy) {
 			String groupby = ((GroupBy) select).getGroupBy();
 			if (groupby != null && groupby.trim().length() != 0) {
-				query.append(" group by " + groupby);
+				query.append(" group by ").append(groupby);
 			}
 		}
 		// order by
 		query.append(OrderBy.processOrderBy(orderBy));
-		return query.toString();
+		return new QuerySQL(whereSQL.nextIndex, query.toString());
 	}
 
 	protected String generateWhereQueryString(Where where) {
-		StringBuffer query = new StringBuffer();
+		return generateWhereQueryString(where, 1).sql;
+	}
+
+	protected QuerySQL generateWhereQueryString(Where where, int index) {
+		int nextIndex = index;
+		StringBuilder query = new StringBuilder();
 		// from
-		query.append(" from " + getTableName() + " " + getTableNameVariable());
+		query.append(" from ").append(getTableName()).append(" ").append(getTableNameVariable());
 		// where
 		if (where != null) {
-			query.append(" where " + where.toSQL());
+			QuerySQL whereSQL = where.toSQL(index);
+			nextIndex = whereSQL.nextIndex;
+			query.append(" where ").append(whereSQL.sql);
 		}
-		return query.toString();
+		return new QuerySQL(nextIndex, query.toString());
 	}
 
 	@SuppressWarnings("unchecked")
