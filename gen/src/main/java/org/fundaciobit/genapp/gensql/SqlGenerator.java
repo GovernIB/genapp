@@ -85,6 +85,8 @@ public class SqlGenerator {
               + " per BigDecinal o BigInteger");
           System.err.println("===========================================");
         }
+      } else if (dialect.equals("org.hibernate.dialect.PostgreSQLDialect")) {
+        dialect = PostgreSQLDialectCAIB.class.getName();
       }
       
       
