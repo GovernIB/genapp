@@ -1668,6 +1668,7 @@ public class CodeGenerator {
       }
       */
       // (i) HibernateUtil
+	  /*
       { 
         File hibernateSrcDir = new File(jpaDir, "src/main/java/" + hibernatePackage.replace('.','/'));
         hibernateSrcDir.mkdirs(); 
@@ -1684,6 +1685,7 @@ public class CodeGenerator {
         }
 
       }
+	  */
       
     }
     return validatorPackage;

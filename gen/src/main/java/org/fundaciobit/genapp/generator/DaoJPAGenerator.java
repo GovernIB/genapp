@@ -29,7 +29,7 @@ import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
  */
 public class DaoJPAGenerator {
   
-
+/*
   public static SourceFile[] generateHibernateUtils(String hibernatePackage,
       String hibernateName, String hibernateFileName) {
     
@@ -117,7 +117,7 @@ public class DaoJPAGenerator {
         new SourceFile(hibernateFileName + ".java", code2),
     };
   }
-  
+  */
   
   
   
@@ -264,7 +264,9 @@ public class DaoJPAGenerator {
             beanCode.append(",length = " + size);
             // CLOB
             if (size > 65532 && String.class.equals(field.getJavaType())) {
-               clob = "  @Lob\n";
+               clob = "    @Lob\n"
+                    + "    @Type(type = \"org.hibernate.type.TextType\")\n";
+               imports.add("org.hibernate.annotations.Type");
                imports.add("javax.persistence.Lob");
             }
           }
