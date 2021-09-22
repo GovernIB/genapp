@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsystem xmlns="urn:jboss:domain:mail:3.0">
+
+  <!-- ..... -->
+
+  <mail-session name="${package}.mail" jndi-name="java:/${package}.mail" from="${name}@${name}.com">
+    <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+  </mail-session>
+
+  <!-- ..... -->
+
+</subsystem>
