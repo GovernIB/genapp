@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 
 import ${package}.commons.utils.Configuracio;
-import ${package}.utils.StaticVersion;
+import ${package}.commons.utils.StaticVersion;
 
 /**
  * 
