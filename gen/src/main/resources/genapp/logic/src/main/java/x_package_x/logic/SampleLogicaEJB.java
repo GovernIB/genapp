@@ -24,7 +24,6 @@ import org.jboss.ejb3.annotation.SecurityDomain;
  *
  */
 @Stateless(name = "SampleLogicaEJB")
-@SecurityDomain("seycon")
 public class SampleLogicaEJB implements SampleLogicaLocal {
 
 
@@ -32,7 +31,6 @@ public class SampleLogicaEJB implements SampleLogicaLocal {
  
  /**
 @Stateless(name = "AnnexLogicaEJB")
-@SecurityDomain("seycon")
 public class AnnexLogicaEJB extends AnnexEJB implements AnnexLogicaLocal,
     AnnexFields {
 

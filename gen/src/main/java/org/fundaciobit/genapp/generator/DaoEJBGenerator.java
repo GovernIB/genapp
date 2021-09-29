@@ -157,7 +157,6 @@ public class DaoEJBGenerator {
     manager.append("package " + ejbPackage + ";\n\n");
 
     manager.append("import javax.ejb.Stateless;\n");
-    manager.append("import org.jboss.ejb3.annotation.SecurityDomain;\n");
     manager.append("import javax.annotation.security.RolesAllowed;\n");
     manager.append("import " + I18NException.class.getName() + ";\n");
     manager.append("import " + basicPackages.entityPackage + "." + tableNameJava + ";\n");
@@ -177,7 +176,6 @@ public class DaoEJBGenerator {
     manager.append("@LocalBinding(jndiBinding=\"" + projecte.getProjectName().toLowerCase()
          +  "/" + managerFileName + "/local\")\n");
          */
-    manager.append("@SecurityDomain(\"" + projecte.getModulSeguretat() + "\")\n");
     manager.append("public class " + managerFileName + " extends " + jpaManager 
         + " implements " + local +  " {\n");
     manager.append("\n");

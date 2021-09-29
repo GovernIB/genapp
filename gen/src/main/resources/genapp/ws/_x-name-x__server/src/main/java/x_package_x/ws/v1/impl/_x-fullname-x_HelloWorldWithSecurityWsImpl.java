@@ -9,7 +9,6 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.WebServiceContext;
 
-import org.jboss.ejb3.annotation.SecurityDomain;
 import org.jboss.wsf.spi.annotation.TransportGuarantee;
 import org.jboss.wsf.spi.annotation.WebContext;
 
@@ -27,7 +26,6 @@ import ${package}.ws.utils.AuthenticatedBaseWsImpl;
  * @author anadal
  * 
  */
-@SecurityDomain(Constants.SECURITY_DOMAIN)
 @Stateless(name = ${fullname}HelloWorldWithSecurityWsImpl.NAME + "Ejb")
 @RolesAllowed({ Constants.${prefix}_USER, Constants.${prefix}_ADMIN })
 @SOAPBinding(style = SOAPBinding.Style.RPC)
