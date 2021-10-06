@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
 import org.fundaciobit.genappsqltutorial.back.utils.DAOProviderEjb;
 import org.fundaciobit.genappsqltutorial.back.utils.WebFormatPrinterResultsImpl;
+import org.fundaciobit.genappsqltutorial.commons.utils.Constants;
+import org.fundaciobit.genappsqltutorial.logic.CustomersAllPermissionsService;
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 import org.fundaciobit.genappsqltutorial.tutorial.dao.IDAOProvider;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.lang.reflect.Method;
 import java.util.Base64;
 
+import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,12 +34,13 @@ import javax.servlet.http.HttpSession;
  * 
  */
 @Controller
+@RunAs(Constants.GAS_ADMIN)
 public class PublicController implements IDAOProvider {
 
     protected final Logger log = Logger.getLogger(getClass());
 
-    @EJB(mappedName = org.fundaciobit.genappsqltutorial.ejb.CustomersService.JNDI_NAME)
-    protected org.fundaciobit.genappsqltutorial.ejb.CustomersService customersEjb;
+    @EJB(mappedName = CustomersAllPermissionsService.JNDI_NAME)
+    protected CustomersAllPermissionsService customersEjb;
 
     @EJB(mappedName = org.fundaciobit.genappsqltutorial.ejb.ProductsService.JNDI_NAME)
     protected org.fundaciobit.genappsqltutorial.ejb.ProductsService productsEjb;

@@ -1,11 +1,18 @@
 package org.fundaciobit.genappsqltutorial.tutorial.utils.translator;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Properties;
 
+import org.fundaciobit.genappsqltutorial.commons.utils.Configuracio;
 import org.json.JSONArray;
 
 /**
@@ -28,11 +35,10 @@ public class Translator {
         if (lang.equals("en")) {
             return text;
         }
-        
+
         if (text == null || text.trim().length() == 0) {
             return text;
         }
-        
 
         if (System.currentTimeMillis() - lastTranslation < 1000) {
             try {
@@ -43,9 +49,9 @@ public class Translator {
 
         final String[][] ignoreWords = { { "\"Country\"", "\"Cóuntry\"" },
                 { "\"Customers\"", "\"Cústomers\"" }, { "\"CustomerName\"", "\"CústomerName\"" },
-                { "\"City\"", "\"Cíty\"" }, { "SELECT", "SÉLECT" },
-                { "result-set", "résult-set" }, { "LIKE", "LÏKE"}, { "BETWEEN", "BËTWEEN"},
-                { "OR", "ÖR"}, { "NOT", "NÖT"}, { "AND" , "ÄND"}  };
+                { "\"City\"", "\"Cíty\"" }, { "SELECT", "SÉLECT" }, { "result-set", "résult-set" },
+                { "LIKE", "LÏKE" }, { "BETWEEN", "BËTWEEN" }, { "OR", "ÖR" }, { "NOT", "NÖT" },
+                { "AND", "ÄND" } };
 
         String t = text;
         for (String[] c : ignoreWords) {
@@ -63,17 +69,13 @@ public class Translator {
 
             return t;
 
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            return lang.toUpperCase() + "::" + text;
-
         } finally {
             lastTranslation = System.currentTimeMillis();
         }
 
     }
+
+    private static java.util.Properties translations = null;
 
     /**
      * 
@@ -83,26 +85,84 @@ public class Translator {
      * @return
      * @throws Exception
      */
-    private static String callUrlAndParseResult(String langFrom, String langTo,
-            String word) throws Exception  {
+    private static String callUrlAndParseResult(String langFrom, String langTo, String word) {
 
-        String url = "https://translate.googleapis.com/translate_a/single?" + "client=gtx&" + "sl="
-                + langFrom + "&tl=" + langTo + "&dt=t&q=" + URLEncoder.encode(word, "UTF-8");
+        try {
+            final String key = word + "[" + langFrom + "][" + langTo + "]";
 
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            if (translations == null) {
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
+                File f = new File(Configuracio.getTranslationsProperties());
+                Properties prop = new Properties();
+                if (f.exists()) {
+                    InputStream is = null;
+                    try {
+                        is = new FileInputStream(f);
+                        prop.load(is);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (is != null) {
+                            is.close();
+                        }
+                    }
+                }
 
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+                translations = prop;
+
+            } else {
+
+                String val = translations.getProperty(key);
+
+                if (val != null) {
+                    return val;
+                }
+
+            }
+
+            /* TODO CERCAR UNA NOVA API DE TRADUCCIÓ */
+
+            String url = "https://translate.googleapis.com/translate_a/single?" + "client=gtx&"
+                    + "sl=" + langFrom + "&tl=" + langTo + "&dt=t&q="
+                    + URLEncoder.encode(word, "UTF-8");
+
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            String result = parseResult(response.toString());
+
+            translations.put(key, result);
+
+            File f = new File(Configuracio.getTranslationsProperties());
+
+            OutputStream os = null;
+            try {
+                os = new FileOutputStream(f);
+                translations.save(os, "Traduccions");
+            } finally {
+                os.close();
+            }
+            
+            return result;
+
+        } catch (Throwable th) {
+
+            th.printStackTrace();
+
+            return langTo.toUpperCase() + "::" + word;
+
         }
-        in.close();
 
-        return parseResult(response.toString());
     }
 
     private static String parseResult(String inputJson) throws Exception {

@@ -16,7 +16,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
 @Local
 public interface SampleLogicaService /* extends AnnexService */ {
 	
-	public static final String JNDI_NAME = "java:app/genappsqltutorial-logic/SampleLogicaEJB!org.fundaciobit.genappsqltutorial.logic.SampleLogicaService";
+	public static final String JNDI_NAME = "java:app/genappsqltutorial-ejb/SampleLogicaEJB!org.fundaciobit.genappsqltutorial.logic.SampleLogicaService";
 
 /*
   public Set<Long> deleteFull(AnnexJPA annex) throws I18NException;

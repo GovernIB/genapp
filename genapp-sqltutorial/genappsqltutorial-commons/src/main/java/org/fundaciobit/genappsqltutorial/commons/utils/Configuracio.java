@@ -115,5 +115,9 @@ public class Configuracio implements Constants {
     public static String getFileSystemManager() {
         return getProperty(GENAPPSQLTUTORIAL_PROPERTY_BASE + "filesystemmanagerclass");
     }
+    
+    public static String getTranslationsProperties() {
+        return getProperty(GENAPPSQLTUTORIAL_PROPERTY_BASE + "translationsfile");
+    }
 
 }

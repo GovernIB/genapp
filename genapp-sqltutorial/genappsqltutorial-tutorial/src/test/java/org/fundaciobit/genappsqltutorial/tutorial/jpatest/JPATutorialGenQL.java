@@ -8,6 +8,7 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL01Select;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL02SelectDistinct;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL03Where;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL04AndOrNot;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL06Insert;
 
 /**
  * 
@@ -23,13 +24,15 @@ public class JPATutorialGenQL {
             DAOManager.setDAOProvider(dao);
             PrinterResultsManager.setPrinterResults(new ConsoleTableFormatPrinterResultsImpl());
 
-            unitSQL01Select(args);
+            //unitSQL01Select(args);
 
             // unitSQL02SelectDistinct(args);
 
             // unitSQL03Where(args);
 
             // unitSQL04AndOrNot(args);
+            
+            unitSQL06Insert(args);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +93,18 @@ public class JPATutorialGenQL {
 
         s.combiningAndOrNot1();
         s.combiningAndOrNot2();
+
+    }
+    
+    
+    public static void unitSQL06Insert(String[] args) throws Exception {
+        SQL06Insert s = null;
+
+        s = new SQL06Insert();
+
+        s.insertCustomer();
+        
+        s.insertPartialCustomer();
 
     }
 
