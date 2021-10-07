@@ -3,7 +3,6 @@ package org.fundaciobit.genappsqltutorial.tutorial.units;
 import java.util.List;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
-import org.fundaciobit.genappsqltutorial.model.bean.CustomersBean;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
 import org.fundaciobit.genappsqltutorial.model.fields.CustomersFields;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.AbstractUnit;

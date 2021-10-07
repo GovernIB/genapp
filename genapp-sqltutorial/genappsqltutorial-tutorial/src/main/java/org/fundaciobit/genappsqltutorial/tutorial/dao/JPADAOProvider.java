@@ -21,7 +21,14 @@ import org.fundaciobit.genappsqltutorial.tutorial.printer.ConsoleTableFormatPrin
  */
 public class JPADAOProvider extends ConsoleTableFormatPrinterResultsImpl implements IDAOProvider  {
 
+    private boolean showSql = false;
+    
     public JPADAOProvider() {
+        getEntityManagerFactory();
+    }
+    
+    public JPADAOProvider(boolean showSql) {
+        this.showSql = showSql;
         getEntityManagerFactory();
     }
 
@@ -29,6 +36,7 @@ public class JPADAOProvider extends ConsoleTableFormatPrinterResultsImpl impleme
 
     private EntityManagerFactory emf;
 
+    @Override
     public EntityManager getEntityManagerFactory() {
 
         if (em == null) {
@@ -47,7 +55,7 @@ public class JPADAOProvider extends ConsoleTableFormatPrinterResultsImpl impleme
             prop.put("hibernate.connection.username", "genappsqltutorial");
             prop.put("hibernate.connection.password", "genappsqltutorial");
 
-            prop.put("hibernate.show_sql", "false");
+            prop.put("hibernate.show_sql", this.showSql);
 
             // Veure persistence.xml
             emf = Persistence.createEntityManagerFactory("genappsqltutorialPULocal", prop);

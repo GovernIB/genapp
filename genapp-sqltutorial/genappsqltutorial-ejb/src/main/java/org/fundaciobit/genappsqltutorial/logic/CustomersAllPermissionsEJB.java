@@ -2,6 +2,7 @@
 package org.fundaciobit.genappsqltutorial.logic;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.annotation.security.PermitAll;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
@@ -41,6 +42,12 @@ public class CustomersAllPermissionsEJB extends CustomersEJB
     @PermitAll
     public CustomersJPA findByPrimaryKey(Long _ID_) {
         return (CustomersJPA) super.findByPrimaryKey(_ID_);
+    }
+    
+    @Override
+    @PermitAll
+    public EntityManager getEntityManagerFactory() {
+        return super.getEntityManager();
     }
 
 }

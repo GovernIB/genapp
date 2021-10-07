@@ -24,6 +24,7 @@ import java.util.Base64;
 
 import javax.annotation.security.RunAs;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -213,6 +214,12 @@ public class PublicController implements IDAOProvider {
     @Override
     public IProductsManager getProductsManager() throws Exception {
         return this.productsEjb;
+    }
+
+    @Override
+    public EntityManager getEntityManagerFactory() throws Exception {
+        // TODO Auto-generated method stub
+        return customersEjb.getEntityManagerFactory();
     }
 
 }

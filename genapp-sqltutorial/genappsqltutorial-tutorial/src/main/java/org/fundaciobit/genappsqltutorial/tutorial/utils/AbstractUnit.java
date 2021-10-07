@@ -2,6 +2,8 @@ package org.fundaciobit.genappsqltutorial.tutorial.utils;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.fundaciobit.genapp.common.KeyValue;
 import org.fundaciobit.genapp.common.query.StringField;
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
@@ -32,6 +34,11 @@ public abstract class AbstractUnit implements IPrinterResults, IDAOProvider {
     @Override
     public IProductsManager getProductsManager() throws Exception {
         return DAOManager.getDAOProvider().getProductsManager();
+    }
+    
+    @Override
+    public EntityManager getEntityManagerFactory() throws Exception {
+        return DAOManager.getDAOProvider().getEntityManagerFactory();
     }
     
     @Override

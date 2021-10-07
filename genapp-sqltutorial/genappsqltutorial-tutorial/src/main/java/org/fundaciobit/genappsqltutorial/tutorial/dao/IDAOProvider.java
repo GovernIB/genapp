@@ -1,5 +1,7 @@
 package org.fundaciobit.genappsqltutorial.tutorial.dao;
 
+import javax.persistence.EntityManager;
+
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 
@@ -15,5 +17,7 @@ public interface IDAOProvider {
     public ICustomersManager getCustomerManager() throws Exception;
 
     public IProductsManager getProductsManager() throws Exception;
+    
+    public EntityManager getEntityManagerFactory() throws Exception; 
 
 }

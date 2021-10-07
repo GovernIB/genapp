@@ -9,6 +9,7 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL02SelectDistinct;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL03Where;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL04AndOrNot;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL06Insert;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL08Update;
 
 /**
  * 
@@ -32,7 +33,9 @@ public class JPATutorialGenQL {
 
             // unitSQL04AndOrNot(args);
             
-            unitSQL06Insert(args);
+            // unitSQL06Insert(args);
+            
+            unitSQL08Update(args);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,6 +108,16 @@ public class JPATutorialGenQL {
         s.insertCustomer();
         
         s.insertPartialCustomer();
+
+    }
+    
+    
+    public static void unitSQL08Update(String[] args) throws Exception {
+        SQL08Update s = null;
+
+        s = new SQL08Update();
+
+        s.updateMultipleRecordsNative();
 
     }
 

@@ -1,5 +1,6 @@
 package org.fundaciobit.genappsqltutorial.back.utils;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -58,6 +59,11 @@ public class DAOProviderEjb implements IDAOProvider {
         HttpSession session = request.getSession();
         session.setAttribute("IDAOProvider_SESSION", dao);
 
+    }
+
+    @Override
+    public EntityManager getEntityManagerFactory() throws Exception {
+        return getIDAOProviderOfSession().getEntityManagerFactory();
     }
 
     
