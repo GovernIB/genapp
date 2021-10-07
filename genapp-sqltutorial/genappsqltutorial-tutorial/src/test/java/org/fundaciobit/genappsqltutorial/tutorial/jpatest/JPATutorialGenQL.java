@@ -117,7 +117,9 @@ public class JPATutorialGenQL {
 
         s = new SQL08Update();
 
-        s.updateMultipleRecordsNative();
+        //s.updateMultipleRecordsNative();
+        
+        s.updateMultipleRecordsGenQL();
 
     }
 
