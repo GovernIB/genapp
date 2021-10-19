@@ -2,8 +2,10 @@ package org.fundaciobit.genapp.common.web.controller;
 
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -40,6 +42,7 @@ import org.fundaciobit.genapp.common.web.exportdata.DataExporterManager;
 import org.fundaciobit.genapp.common.web.exportdata.IDataExporter;
 import org.fundaciobit.genapp.common.web.form.AdditionalField;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
+import org.fundaciobit.genapp.common.web.form.BaseForm;
 import org.fundaciobit.genapp.common.web.form.FilterFormData;
 import org.fundaciobit.genapp.common.web.form.LogicForBaseFilterForm;
 import org.fundaciobit.genapp.common.web.i18n.CustomDateI18NEditor;
@@ -113,6 +116,33 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
     // tell spring to set empty values as null instead of empty string.
     binder.registerCustomEditor( String.class, new StringTrimmerEditor( true ));
   }
+  
+  
+  /**
+   * Fixa els camps disallowedFields que no es llegiran de la petició HTTP per ficar dins el formulari.
+   * Seran els camps indicats als paràmetres, més, sí va dirigit a un atribut de tipus {@link BaseForm}
+   * s'inclourà tots els camps readonly i tots els camps hidden.
+   * @param binder
+   * @param additionalFields
+   */
+  protected void initDisallowedFields(WebDataBinder binder, String... additionalFields) {
+    Set<String> fieldNames = new HashSet<String>();
+
+    if (binder.getTarget() instanceof BaseForm) {
+      BaseForm form = (BaseForm) binder.getTarget();
+
+      for (Field<?> field : form.getReadOnlyFields()) {
+        fieldNames.add(field.fullName);
+      }
+      for (Field<?> field : form.getHiddenFields()) {
+        fieldNames.add(field.fullName);
+      }
+    }
+
+    fieldNames.addAll(Arrays.asList(additionalFields));
+    binder.setDisallowedFields(fieldNames.toArray(new String[0]));
+  }
+  
   
   
   public abstract String[] getArgumentsMissatge(Object pk, Throwable e);

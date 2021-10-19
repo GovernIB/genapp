@@ -4,7 +4,7 @@ package ${package}.logic;
 /*
 import ${package}.ejb.AnnexEJB;
 import ${package}.ejb.FitxerService;
-import ${package}.jpa.AnnexJPA;
+import ${package}.persistence.AnnexJPA;
 import ${package}.model.entity.AnnexFirmat;
 import ${package}.model.fields.AnnexFields;
 import ${package}.model.fields.AnnexFirmatFields;

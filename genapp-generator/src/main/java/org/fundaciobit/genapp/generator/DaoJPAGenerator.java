@@ -123,7 +123,7 @@ public class DaoJPAGenerator {
 	    		"import javax.persistence.EntityManagerFactory;\n" + 
 	    		"import javax.persistence.spi.PersistenceUnitInfo;\n" + 
 	    		"\n" + 
-	    		"import org.hibernate.jpa.HibernatePersistenceProvider;\n" + 
+	    		"import org.hibernate.persistence.HibernatePersistenceProvider;\n" + 
 	    		"import org.slf4j.Logger;\n" + 
 	    		"import org.slf4j.LoggerFactory;\n" + 
 	    		"\n" + 

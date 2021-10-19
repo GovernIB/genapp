@@ -19,7 +19,7 @@ import org.fundaciobit.genapp.common.ws.WsI18NException;
 import org.fundaciobit.genapp.common.ws.WsValidationException;
 
 import ${package}.hibernate.HibernateFileUtil;
-import ${package}.jpa.${fitxer}JPA;
+import ${package}.persistence.${fitxer}JPA;
 import ${package}.model.bean.${fitxer}Bean;
 import ${package}.model.entity.${fitxer};
 import ${package}.model.fields.${fitxer}Fields;

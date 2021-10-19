@@ -11,7 +11,7 @@ import org.fundaciobit.genapp.common.filesystem.FileSystemManager;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.query.Field;
 
-import ${package}.jpa.${fitxer}JPA;
+import ${package}.persistence.${fitxer}JPA;
 import ${package}.model.bean.${fitxer}Bean;
 import ${package}.model.entity.${fitxer};
 import ${package}.ejb.${fitxer}Local;

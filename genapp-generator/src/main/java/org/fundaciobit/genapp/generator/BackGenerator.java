@@ -2120,6 +2120,19 @@ public class BackGenerator {
       code.append("    binder.setValidator(getWebValidator());\n");
       code.append("\n");
       // Si és autogenerat llavors s'ha de posar la següent linia per ignorar el camp
+      code.append("\n");
+      // Els camps autogernats s'han d'ignorar.
+      StringBuilder autoFields = new StringBuilder();
+      for (FieldInfo field : fields) {
+        if (field.isAutoIncrement()) {
+          autoFields.append(", \"").append(model).append(".").append(field.getJavaName()).append("\"");
+        }
+      }
+      code.append("    initDisallowedFields(binder" + autoFields.toString() + ");");
+      code.append("\n");
+      code.append("  }\n");
+      code.append("\n");
+      /*
       for (FieldInfo field : fields) {
         if (field.isAutoIncrement()) {
           code.append("    binder.setDisallowedFields(\"" + field.getJavaName() + "\");\n");
@@ -2130,6 +2143,7 @@ public class BackGenerator {
       code.append("\n");
       code.append("  }\n");
       code.append("\n");
+      */
       
       
       // ------------ VALIDADORS

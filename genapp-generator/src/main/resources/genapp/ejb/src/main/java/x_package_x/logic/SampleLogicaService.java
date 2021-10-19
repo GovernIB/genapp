@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.ejb.Local;
 /*
 import ${package}.ejb.AnnexService;
-import ${package}.jpa.AnnexJPA;
+import ${package}.persistence.AnnexJPA;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
 */
