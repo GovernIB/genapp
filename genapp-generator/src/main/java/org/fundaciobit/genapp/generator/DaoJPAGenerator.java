@@ -123,7 +123,7 @@ public class DaoJPAGenerator {
 	    		"import javax.persistence.EntityManagerFactory;\n" + 
 	    		"import javax.persistence.spi.PersistenceUnitInfo;\n" + 
 	    		"\n" + 
-	    		"import org.hibernate.persistence.HibernatePersistenceProvider;\n" + 
+	    		"import org.hibernate.jpa.HibernatePersistenceProvider;\n" + 
 	    		"import org.slf4j.Logger;\n" + 
 	    		"import org.slf4j.LoggerFactory;\n" + 
 	    		"\n" + 
@@ -541,7 +541,7 @@ public class DaoJPAGenerator {
         + "    java.util.Map<" + entityBase + "," + entityBase + "> __alreadyCopied, String origenJPA) {\n");
     beanCode.append("    if (__jpaSet == null) { return null; }\n");
   
-    beanCode.append("    @SuppressWarnings(\"unchecked\")\n");
+    //beanCode.append("    @SuppressWarnings(\"unchecked\")\n");
     
     beanCode.append("    java.util.Set<" + codeBeanFileName + "> __tmpSet = (java.util.Set<" + codeBeanFileName + ">) __alreadyCopied.get(__jpaSet);\n");
     beanCode.append("    if (__tmpSet != null) { return __tmpSet; };\n");
