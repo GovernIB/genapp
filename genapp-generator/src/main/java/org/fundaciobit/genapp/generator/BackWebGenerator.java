@@ -189,7 +189,7 @@ public class BackWebGenerator extends IconUtils {
 				code.append("  <c:if test=\"${not empty " + model + "Items}\">\n\n");
 				code.append("  <div class=\"row\" style=\"margin-left: 0px;\">\n");
 				code.append(
-						"  <table class=\"table table-condensed table-bordered table-striped\" style=\"width:auto;\"> \n");
+						"  <table class=\"table table-sm table-bordered table-striped table-responsive\" style=\"width:auto;\"> \n");
 				code.append("    <thead>\n");
 				code.append("      <tr>\n\n");
 
@@ -273,7 +273,7 @@ public class BackWebGenerator extends IconUtils {
 				codeSubtitle.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
 				codeSubtitle.append("\n");
 				codeSubtitle.append("  <c:if test=\"${not empty " + instanceFilterForm + ".subTitleCode}\">\n");
-				codeSubtitle.append("<h5 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px;\">\n");
+				codeSubtitle.append("<h6 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px;\">\n");
 				codeSubtitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceFilterForm
 						+ ".subTitleCode,'=')}\" />\n");
 				codeSubtitle.append("<c:if test=\"${subtitleTranslated}\">\n");
@@ -283,7 +283,7 @@ public class BackWebGenerator extends IconUtils {
 				codeSubtitle.append("<c:if test=\"${not subtitleTranslated}\">\n");
 				codeSubtitle.append("  <fmt:message key=\"${" + instanceFilterForm + ".subTitleCode}\" />\n");
 				codeSubtitle.append("</c:if>\n");
-				codeSubtitle.append("</h5>\n");
+				codeSubtitle.append("</h6>\n");
 
 				codeSubtitle.append("  </c:if>\n");
 
@@ -316,7 +316,7 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("      <c:set var=\"displayGroupBut\" value=\"${" + instanceFilterForm
 						+ ".visibleGroupBy?'display:none;':''}\" />\n");
 				codeHeaderButtons.append(
-						"      <a id=\"GroupButton\" style=\"${displayGroupBut}\" title=\"<fmt:message key=\"genapp.form.groupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display = 'inherit'; document.getElementById('GroupButton').style.display = 'none';\" class=\"btn\" role=\"button\" data-toggle=\"modal\">\n");
+						"      <a id=\"GroupButton\" style=\"${displayGroupBut}\" title=\"<fmt:message key=\"genapp.form.groupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display = 'inherit'; document.getElementById('GroupButton').style.display = 'none';\" class=\"btn btn-sm btn-secondary\" role=\"button\" data-toggle=\"modal\">\n");
 				codeHeaderButtons.append("         <img src=\"<c:url value=\"/img/treeicon.png\"/>\"/>\n");
 				codeHeaderButtons.append("      </a>\n");
 				codeHeaderButtons.append("  </c:if>\n");
@@ -328,7 +328,7 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("      <c:set var=\"displayFilterBut\" value=\"${" + instanceFilterForm
 						+ ".visibleFilterBy?'display:none;':''}\" />\n");
 				codeHeaderButtons.append(
-						"      <a id=\"FilterButton\" style=\"${displayFilterBut}\" title=\"<fmt:message key=\"genapp.form.filterby\"/>\" onclick=\"document.getElementById('FilterDiv').style.display = 'inherit'; document.getElementById('FilterButton').style.display = 'none';\" class=\"btn\" role=\"button\" data-toggle=\"modal\">\n");
+						"      <a id=\"FilterButton\" style=\"${displayFilterBut}\" title=\"<fmt:message key=\"genapp.form.filterby\"/>\" onclick=\"document.getElementById('FilterDiv').style.display = 'inherit'; document.getElementById('FilterButton').style.display = 'none';\" class=\"btn btn-sm btn-secondary\" role=\"button\" data-toggle=\"modal\">\n");
 				codeHeaderButtons.append("         <i class=\"" + IconUtils.ICON_SEARCH + "\"></i>\n");
 				codeHeaderButtons.append("      </a>\n");
 				codeHeaderButtons.append("      </c:if>\n");
@@ -340,7 +340,7 @@ public class BackWebGenerator extends IconUtils {
 				// BOTO DE NOU ELEMENT EN LLISTAT
 				codeHeaderButtons.append("      <%-- BOTO DE NOU ELEMENT EN LLISTAT  --%>\n");
 				codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".addButtonVisible}\">\n");
-				codeHeaderButtons.append("      <a class=\"btn btn-sm btn-success float-right\"  style=\"color: white;\" role=\"button\" \n"); /// data-toggle=\"modal\"
+				codeHeaderButtons.append("      <a class=\"btn btn-sm btn-success float-right botoselecciolist\"  style=\"\" role=\"button\" \n"); /// data-toggle=\"modal\"
 				codeHeaderButtons.append("        href=\"<c:url value=\"${contexte}/new\"/>\"> <i class=\""
 						+ IconUtils.ICON_PLUS_SIGN + "\"></i>\n");
 				codeHeaderButtons.append("       <fmt:message key=\"genapp.createtitle\" >\n");
@@ -354,7 +354,7 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".deleteSelectedButtonVisible && "
 						+ instanceFilterForm + ".visibleMultipleSelection && not empty " + model + "Items}\">\n");
 				codeHeaderButtons.append(
-						"      <a class=\"btn btn-danger btn-sm float-right\" style=\"color: white;\" href=\"#myModal\"\n");
+						"      <a class=\"btn btn-danger btn-sm float-right botoselecciolist\" style=\"\" href=\"#myModal\"\n");
 				codeHeaderButtons.append(
 						"        onclick=\"openModalSubmit('<c:url value=\"${contexte}/deleteSelected\"/>','show', '"
 								+ model + "');\"\n");
@@ -385,7 +385,7 @@ public class BackWebGenerator extends IconUtils {
 				// #17 codeHeaderButtons.append(" <button type=\"button\" ");
 				codeHeaderButtons.append("<a ");
 				codeHeaderButtons.append(
-						"class=\"btn btn-sm ${button.type} float-right\" style=\"${(empty button.type)? '' : 'color: white;'}\" "
+						"class=\"btn btn-sm ${button.type} float-right botoselecciolist\" style=\"\" "
 								+ " href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
 				codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
 				codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
@@ -423,7 +423,7 @@ public class BackWebGenerator extends IconUtils {
 						+ ".visibleFilterBy?'':'display:none;'}\" />  \n");
 				codeFilterBy.append("  \n");
 				codeFilterBy.append(
-						"  <div id=\"FilterDiv\" class=\"well formbox\" style=\"${displayFilterDiv} margin-bottom:3px; margin-left: 1px; padding:3px;\">\n");
+						"  <div id=\"FilterDiv\" class=\"wellgroupfilter formbox\" style=\"${displayFilterDiv} margin-bottom:3px; margin-left: 1px; padding:3px;\">\n");
 				codeFilterBy.append("\n");
 				codeFilterBy.append("      <div class=\"page-header\">\n");
 				codeFilterBy.append("        <fmt:message key=\"genapp.form.filterby\"/>\n");
@@ -431,13 +431,13 @@ public class BackWebGenerator extends IconUtils {
 				codeFilterBy.append("        <div class=\"float-right\">\n");
 				codeFilterBy.append("\n");
 				codeFilterBy.append(
-						"           <a class=\"float-right\" style=\"margin-left:10px\" href=\"#\"> <i title=\"<fmt:message key=\"genapp.form.hidefilter\"/>\" onclick=\"document.getElementById('FilterDiv').style.display='none'; document.getElementById('FilterButton').style.display='inline';\" class=\"fas fa-trash\"></i></a>\n");
+						"           <a class=\"float-right\" style=\"margin-left:10px\" href=\"#\"> <i title=\"<fmt:message key=\"genapp.form.hidefilter\"/>\" onclick=\"document.getElementById('FilterDiv').style.display='none'; document.getElementById('FilterButton').style.display='inline';\" class=\"far fa-window-close\"></i></a>\n");
 				codeFilterBy.append(
-						"           <input style=\"margin-left: 3px\" class=\"btn btn-warning float-right\" type=\"button\" onclick=\"clear_form_elements(this.form)\" value=\"<fmt:message key=\"genapp.form.clean\"/>\"/>\n");
+						"           <input style=\"margin-left: 3px\" class=\"btn btn-sm btn-warning float-right\" type=\"button\" onclick=\"clear_form_elements(this.form)\" value=\"<fmt:message key=\"genapp.form.clean\"/>\"/>\n");
 				codeFilterBy.append(
-						"           <input style=\"margin-left: 3px\" class=\"btn btn-warning float-right\" type=\"reset\" value=\"<fmt:message key=\"genapp.form.reset\"/>\"/>\n");
+						"           <input style=\"margin-left: 3px\" class=\"btn btn-sm btn-warning float-right\" type=\"reset\" value=\"<fmt:message key=\"genapp.form.reset\"/>\"/>\n");
 				codeFilterBy.append(
-						"           <input style=\"margin-left: 3px\" class=\"btn btn-primary float-right\" type=\"submit\" value=\"<fmt:message key=\"genapp.form.search\"/>\"/>\n");
+						"           <input style=\"margin-left: 3px\" class=\"btn btn-sm btn-primary float-right\" type=\"submit\" value=\"<fmt:message key=\"genapp.form.search\"/>\"/>\n");
 				codeFilterBy.append("\n");
 				codeFilterBy.append("        </div>\n");
 				codeFilterBy.append("      </div>\n");
@@ -797,7 +797,7 @@ public class BackWebGenerator extends IconUtils {
 				codeGroupBy.append(" <fmt:message var=\"buit\" key=\"genapp.notdefined\" />\n");
 				codeGroupBy.append("  \n");
 				codeGroupBy.append(
-						"  <div id=\"GroupDiv\" class=\"well\" style=\"${displayGroupDiv} padding: 1px; margin-right: 4px;  float: left; \">\n");
+						"  <div id=\"GroupDiv\" class=\"wellgroupfilter\" style=\"${displayGroupDiv} padding: 1px; margin-right: 4px;  float: left; \">\n");
 				codeGroupBy.append("      \n");
 				codeGroupBy.append("      <div class=\"float-right\" style=\"padding-left:2px\">\n");
 				codeGroupBy.append("            <div class=\"span10\">\n");
@@ -1444,13 +1444,14 @@ public class BackWebGenerator extends IconUtils {
 		public String getHeader(String instanceFilterForm) {
 
 			String botomenu = instanceFilterForm + ".additionalInfoForActionsRendererByPK[pk]";
-			return "    <div class=\"btn-group\">\n" + "      <a class=\"btn btn-sm ${" + botomenu
-					+ "}\" href=\"#\" style=\"${(empty " + botomenu + ")? '' : 'color: white;'}\"><i class=\""
-					+ ICON_LIST + " ${(empty " + botomenu
-					+ ")? '' : 'icon-white'}\"></i> <fmt:message key=\"genapp.actions\" /></a>\n"
-					+ "      <a class=\"btn btn-sm ${" + botomenu
-					+ "} dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">&nbsp;<span class=\"caret\"> </span></a>\n"
-					+ "      <ul class=\"dropdown-menu float-right\" style=\"min-width:35px;padding:5px 5px 0px 5px;margin:0px;font-size: 12px\" >\n";
+			return "    <div class=\"btn-group\">\n" 
+			        + "      <a class=\"btn btn-sm "
+			        + " ${(empty " + botomenu+ ")?'btn-secondary' : " + botomenu + "}\" href=\"#\" style=\"${(empty " + botomenu + ")? '' : 'color: white;'}\">"
+					+ "<i class=\""	+ ICON_LIST + " ${(empty " + botomenu + ")? '' : 'icon-white'}\"></i>"
+					+ " <fmt:message key=\"genapp.actions\" /></a>\n"
+					+ "      <a class=\"btn btn-sm ${(empty " + botomenu+ ")?'btn-secondary' : " + botomenu + "} dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">"
+				    + "&nbsp;<span class=\"caret\"> </span></a>\n"
+					+ "  <ul class=\"dropdown-menu float-right\" style=\"min-width:35px;padding:5px 5px 0px 5px;margin:0px;font-size: 12px\" >\n";
 		}
 
 		@Override
@@ -1955,7 +1956,7 @@ public class BackWebGenerator extends IconUtils {
 			    
 
 				code.append(
-						"    <table class=\"tdformlabel table-condensed table table-bordered table-striped marTop10  \" > \n");
+						"    <table class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-responsive\" > \n");
 				code.append("    <tbody>      \n");
 				code.append("\n");
 				sourceFiles.add(new SourceFile(model + "FormCorePre.jsp", code.toString()));
@@ -2130,7 +2131,7 @@ public class BackWebGenerator extends IconUtils {
 
 		final String readOnlyCondition = "gen:contains(" + instanceForm + ".readOnlyFields ," + modelCampMay + ")";
 		final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'true' : 'false'}\"";
-		final String cssClass = "form-control ${" + readOnlyCondition + "? ' uneditable-input' : ''}";
+		final String cssClass = "form-control col-md-9-optional ${" + readOnlyCondition + "? ' uneditable-input' : ''}";
 		final String formInputReadOnly = readOnlyAttribute + " cssClass=\"" + cssClass + "\" ";
 
 		if (fileFields.contains(field)) {
@@ -2150,8 +2151,8 @@ public class BackWebGenerator extends IconUtils {
 
 			code.append("            <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
 			//code.append("              <div class=\"row\" style=\"margin-right: 0px;margin-left:0px;\"/>");
-			code.append("              <div class=\"input-group\">\n");
-			code.append("                <div class=\"custom-file col-md-8\">\n");
+			code.append("              <div class=\"input-group col-md-9-optional\" style=\"padding: 0px\">\n");
+			code.append("                <div class=\"custom-file\">\n");
 			// code.append(" <input type=\"file\" class=\"custom-file-input\"
 			// id=\"inputGroupFile02\">\n");
 			code.append("                  <form:input  " + formInputReadOnlyFile + "  path=\"" + modelCamp
@@ -2216,7 +2217,7 @@ public class BackWebGenerator extends IconUtils {
 			String fullmodel = model + "." + simpleName;
 
 			code.append("       <form:errors path=\"" + fullmodel + "\" cssClass=\"errorField alert alert-danger\" />\n");
-			code.append("       <div class=\"row-fluid  col-md-8\">\n");
+			code.append("       <div class=\"row-fluid col-md-9-optional\">\n");
 			code.append("         <ul class=\"nav nav-tabs\" style=\"margin: 0 15px -1px;\">\n");
 			code.append(
 					"             <c:forEach items=\"${__theForm.idiomesTraduccio}\" var=\"idioma\" varStatus=\"counter\">\n");
@@ -2255,11 +2256,7 @@ public class BackWebGenerator extends IconUtils {
 			
 			code.append("               " + type + " path=\"" + fullmodel + ".traduccions['${idioma.idiomaID}'].valor\" "
 					+ "cssClass=\"" + cssClass + "\" " +  "readonly=\"${" + readOnlyCondition + "}\" " + maxlength + config + "/>\n");
-			/*
-			 * code.append("               " + "<form:input path=\"" + fullmodel +
-			 * ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"${gen:contains(__theForm.readOnlyFields ,Prova2Fields.NOM2TRADUCCIOID)? 'input-xxlarge uneditable-input' : 'input-xxlarge'}\"/>\n"
-			 * );
-			 */
+
 			code.append("           </div>\n");
 			code.append("           </c:forEach>\n");
 			code.append("         </div>\n");
@@ -2354,7 +2351,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("          <c:if test=\"${" + readOnlyCondition + "}\" >\n");
 			code.append("          <form:hidden path=\"" + model + "." + modelCamp + "\"/>\n");
 
-			code.append("          <input type=\"text\" readonly=\"true\" class=\"form-control input-xxlarge uneditable-input\" "
+			code.append("          <input type=\"text\" readonly=\"true\" class=\"form-control col-md-9-optional uneditable-input\" "
 					+ "value=\"");
 			/*
 			 * WWW if (traduir) { code.append("<fmt:message key=\""); }
@@ -2369,7 +2366,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("          <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
 			code.append("          <c:set var=\"containEmptyValue\"  value=\"false\" />\n");
 			code.append("          <form:select id=\"" + id + "\"  onchange=\"if(typeof onChange" + name
-					+ " == 'function') {  onChange" + name + "(this); };\"  cssClass=\"form-control col-md-8\" path=\"" + model
+					+ " == 'function') {  onChange" + name + "(this); };\"  cssClass=\"form-control col-md-9-optional\" path=\"" + model
 					+ "." + modelCamp + "\">\n");
 			
 			code.append("            <c:forEach items=\"${" + instanceForm + ".listOf" + fkTableName + "For" + name	+ "}\" var=\"tmp\">\n");
@@ -2406,11 +2403,10 @@ public class BackWebGenerator extends IconUtils {
 			code.append("              <form:textarea");
 			if (webType == WebType.RichText) {
 				code.append(
-						" cssClass=\"col-md-8 ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\" ");
+						" cssClass=\" ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\" "); // col-md-9-optional
 			} else {
-				code.append(" rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;resize:both;max-width:90%;\" cssClass=\"form-control \" "  // col-md-8
+				code.append(" rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;resize:both;\" cssClass=\"form-control col-md-9-optional\" "
 						+ readOnlyAttribute);
-				// formInputReadOnly.replace("'input", "'input-xxlarge") + " ");
 			}
 			String path = model + "." + modelCamp;
 			code.append(" path=\"" + path + "\"  />\n");
@@ -2449,8 +2445,8 @@ public class BackWebGenerator extends IconUtils {
 				prefix = "genapp.checkbox";
 				code.append("              <form:errors path=\"" + model + "." + modelCamp
 						+ "\" cssClass=\"errorField alert alert-danger\" />\n");
-				code.append("              <form:checkbox cssClass=\"form-control\" onclick=\"javascript:return ${ " + readOnlyCondition
-						+ "? 'false' : 'true'}\" path=\"" + model + "." + modelCamp + "\"  style=\"width:1%\"/>\n");
+				code.append("              <form:checkbox cssClass=\"\" onclick=\"javascript:return ${ " + readOnlyCondition
+						+ "? 'false' : 'true'}\" path=\"" + model + "." + modelCamp + "\" />\n"); //  style=\"width:1%\" ????
 			} else {
 				if (prefix == null) {
 					prefix = "genapp.checkbox";

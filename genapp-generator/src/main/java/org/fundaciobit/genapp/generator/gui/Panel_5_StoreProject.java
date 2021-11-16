@@ -94,8 +94,8 @@ public class Panel_5_StoreProject extends Paneable {
       
       if( fileChooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
         return true;
-      }
-  
+      }   
+      
       SharedData.projectFile = fileChooser.getSelectedFile();
       
       RebApp.saveLastFile(SharedData.projectFile);

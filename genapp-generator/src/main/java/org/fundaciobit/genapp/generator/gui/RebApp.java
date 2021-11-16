@@ -305,8 +305,9 @@ public class RebApp extends JFrame {
           // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB");
           
           FileNameExtensionFilter filterm3u = new FileNameExtensionFilter(  
-              "GenApp file (.genapp)", "genapp");  
-          loadEmp.addChoosableFileFilter(filterm3u);  
+              "GenApp file (.genapp)", "genapp");
+          loadEmp.addChoosableFileFilter(filterm3u);
+          loadEmp.setFileFilter(filterm3u);
           
           loadEmp.setDialogTitle("Seleccioni un arxiu .genapp");
           File selectedFile;
