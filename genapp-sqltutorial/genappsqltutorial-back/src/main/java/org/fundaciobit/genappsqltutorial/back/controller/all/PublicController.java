@@ -6,7 +6,9 @@ import org.fundaciobit.genappsqltutorial.back.utils.DAOProviderEjb;
 import org.fundaciobit.genappsqltutorial.back.utils.WebFormatPrinterResultsImpl;
 import org.fundaciobit.genappsqltutorial.commons.utils.Constants;
 import org.fundaciobit.genappsqltutorial.logic.CustomersAllPermissionsService;
+import org.fundaciobit.genappsqltutorial.logic.OrderDetailsAllPermissionsService;
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 import org.fundaciobit.genappsqltutorial.tutorial.dao.IDAOProvider;
 import org.fundaciobit.genappsqltutorial.tutorial.printer.PrinterResultsManager;
@@ -45,6 +47,9 @@ public class PublicController implements IDAOProvider {
 
     @EJB(mappedName = org.fundaciobit.genappsqltutorial.ejb.ProductsService.JNDI_NAME)
     protected org.fundaciobit.genappsqltutorial.ejb.ProductsService productsEjb;
+    
+    @EJB(mappedName = OrderDetailsAllPermissionsService.JNDI_NAME)
+    protected OrderDetailsAllPermissionsService orderDetailsEjb;
 
     @RequestMapping(value = "/public/index.html")
     public ModelAndView principal(HttpSession session, HttpServletRequest request,
@@ -215,6 +220,12 @@ public class PublicController implements IDAOProvider {
     public IProductsManager getProductsManager() throws Exception {
         return this.productsEjb;
     }
+    
+    @Override
+    public IOrderDetailsManager getOrderDetailsManager() throws Exception {
+        return this.orderDetailsEjb;
+    }
+    
 
     @Override
     public EntityManager getEntityManagerFactory() throws Exception {

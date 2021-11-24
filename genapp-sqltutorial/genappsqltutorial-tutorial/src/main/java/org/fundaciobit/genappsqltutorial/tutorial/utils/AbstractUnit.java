@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.fundaciobit.genapp.common.KeyValue;
 import org.fundaciobit.genapp.common.query.StringField;
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
 import org.fundaciobit.genappsqltutorial.model.entity.Products;
@@ -24,6 +25,12 @@ public abstract class AbstractUnit implements IPrinterResults, IDAOProvider {
 
     
     public AbstractUnit() {
+    }
+    
+    
+    @Override
+    public IOrderDetailsManager getOrderDetailsManager() throws Exception {
+        return DAOManager.getDAOProvider().getOrderDetailsManager();
     }
 
     @Override

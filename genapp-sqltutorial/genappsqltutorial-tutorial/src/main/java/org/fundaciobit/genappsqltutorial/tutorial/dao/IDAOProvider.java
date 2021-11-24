@@ -3,6 +3,7 @@ package org.fundaciobit.genappsqltutorial.tutorial.dao;
 import javax.persistence.EntityManager;
 
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 
 /**
@@ -13,6 +14,8 @@ import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 public interface IDAOProvider {
 
     public void close() throws Exception;
+
+    public IOrderDetailsManager getOrderDetailsManager() throws Exception;
 
     public ICustomersManager getCustomerManager() throws Exception;
 

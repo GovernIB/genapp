@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 import org.fundaciobit.genappsqltutorial.model.GenAppSqlTutorialDaoManager;
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 import org.fundaciobit.genappsqltutorial.persistence.GenAppSqlTutorialJPADaoManagers;
 import org.fundaciobit.genappsqltutorial.tutorial.printer.ConsoleTableFormatPrinterResultsImpl;
@@ -86,5 +87,9 @@ public class JPADAOProvider extends ConsoleTableFormatPrinterResultsImpl impleme
     public IProductsManager getProductsManager() throws Exception {
         return GenAppSqlTutorialDaoManager.getDaoManagers().getProductsManager();
     }
-
+    
+    public IOrderDetailsManager getOrderDetailsManager() throws Exception {
+        return GenAppSqlTutorialDaoManager.getDaoManagers().getOrderDetailsManager();
+    }
+    
 }

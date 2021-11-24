@@ -10,6 +10,7 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL03Where;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL04AndOrNot;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL06Insert;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL08Update;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL09Delete;
 
 /**
  * 
@@ -35,7 +36,9 @@ public class JPATutorialGenQL {
             
             // unitSQL06Insert(args);
             
-            unitSQL08Update(args);
+            //unitSQL08Update(args);
+            
+            unitSQL09Delete(args);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,6 +123,14 @@ public class JPATutorialGenQL {
         //s.updateMultipleRecordsNative();
         
         s.updateMultipleRecordsGenQL();
+
+    }
+    
+    
+    public static void unitSQL09Delete(String[] args) throws Exception {
+        SQL09Delete d =  new SQL09Delete();
+
+        d.deleteAllRecords();
 
     }
 

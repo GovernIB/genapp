@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
 import org.fundaciobit.genappsqltutorial.tutorial.dao.IDAOProvider;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -32,6 +33,11 @@ public class DAOProviderEjb implements IDAOProvider {
     @Override
     public IProductsManager getProductsManager() throws Exception {
         return getIDAOProviderOfSession().getProductsManager();
+    }
+    
+    
+    public IOrderDetailsManager getOrderDetailsManager() throws Exception {
+        return getIDAOProviderOfSession().getOrderDetailsManager();
     }
     
     

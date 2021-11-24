@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.FlushModeType;
 import javax.persistence.Query;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
