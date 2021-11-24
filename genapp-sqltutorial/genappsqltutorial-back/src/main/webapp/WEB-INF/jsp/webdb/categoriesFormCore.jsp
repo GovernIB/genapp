@@ -14,7 +14,7 @@
             </td>
             <td>
             <form:errors path="categories.categoryName" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="categories.categoryName"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="categories.categoryName"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
             <td>
               <form:errors path="categories.description" cssClass="errorField alert alert-danger" />
-              <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;max-width:90%;" cssClass="form-control " readonly="${ gen:contains(__theForm.readOnlyFields ,CategoriesFields.DESCRIPTION)? 'true' : 'false'}" path="categories.description"  />
+              <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${ gen:contains(__theForm.readOnlyFields ,CategoriesFields.DESCRIPTION)? 'true' : 'false'}" path="categories.description"  />
       <div id="dropdownMenuButton_description" style="vertical-align:top;display:inline;position:relative;">
         <button  class="btn btn-sm dropdown-toggle" type="button" style="margin-left:0px;"><span class="caret"></span></button>
         <div id="dropdownMenuContainer_description" class="dropdown-menu">

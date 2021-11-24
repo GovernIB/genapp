@@ -558,8 +558,8 @@ public java.lang.Long stringToPK(String value) {
 
     binder.setValidator(getWebValidator());
 
-    binder.setDisallowedFields("orderid");
 
+    initDisallowedFields(binder, "orders.orderid");
   }
 
   public OrdersWebValidator getWebValidator() {

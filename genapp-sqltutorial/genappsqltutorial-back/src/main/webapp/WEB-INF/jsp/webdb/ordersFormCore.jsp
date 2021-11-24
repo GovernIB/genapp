@@ -16,11 +16,11 @@
           <form:errors path="orders.customerid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrdersFields.CUSTOMERID)}" >
           <form:hidden path="orders.customerid"/>
-          <input type="text" readonly="true" class="form-control input-xxlarge uneditable-input" value="${gen:findValue(__theForm.orders.customerid,__theForm.listOfCustomersForCustomerid)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.orders.customerid,__theForm.listOfCustomersForCustomerid)}"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,OrdersFields.CUSTOMERID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="orders_customerid"  onchange="if(typeof onChangeCustomerid == 'function') {  onChangeCustomerid(this); };"  cssClass="form-control col-md-8" path="orders.customerid">
+          <form:select id="orders_customerid"  onchange="if(typeof onChangeCustomerid == 'function') {  onChangeCustomerid(this); };"  cssClass="form-control col-md-9-optional" path="orders.customerid">
             <c:forEach items="${__theForm.listOfCustomersForCustomerid}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -56,11 +56,11 @@
           <form:errors path="orders.employeeid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrdersFields.EMPLOYEEID)}" >
           <form:hidden path="orders.employeeid"/>
-          <input type="text" readonly="true" class="form-control input-xxlarge uneditable-input" value="${gen:findValue(__theForm.orders.employeeid,__theForm.listOfEmployeesForEmployeeid)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.orders.employeeid,__theForm.listOfEmployeesForEmployeeid)}"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,OrdersFields.EMPLOYEEID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="orders_employeeid"  onchange="if(typeof onChangeEmployeeid == 'function') {  onChangeEmployeeid(this); };"  cssClass="form-control col-md-8" path="orders.employeeid">
+          <form:select id="orders_employeeid"  onchange="if(typeof onChangeEmployeeid == 'function') {  onChangeEmployeeid(this); };"  cssClass="form-control col-md-9-optional" path="orders.employeeid">
             <c:forEach items="${__theForm.listOfEmployeesForEmployeeid}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -136,11 +136,11 @@
           <form:errors path="orders.shipperid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrdersFields.SHIPPERID)}" >
           <form:hidden path="orders.shipperid"/>
-          <input type="text" readonly="true" class="form-control input-xxlarge uneditable-input" value="${gen:findValue(__theForm.orders.shipperid,__theForm.listOfSuppliersForShipperid)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.orders.shipperid,__theForm.listOfSuppliersForShipperid)}"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,OrdersFields.SHIPPERID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="orders_shipperid"  onchange="if(typeof onChangeShipperid == 'function') {  onChangeShipperid(this); };"  cssClass="form-control col-md-8" path="orders.shipperid">
+          <form:select id="orders_shipperid"  onchange="if(typeof onChangeShipperid == 'function') {  onChangeShipperid(this); };"  cssClass="form-control col-md-9-optional" path="orders.shipperid">
             <c:forEach items="${__theForm.listOfSuppliersForShipperid}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">

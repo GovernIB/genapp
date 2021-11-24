@@ -212,7 +212,6 @@ private static final long serialVersionUID = 1613280918L;
   static java.util.Set<OrdersJPA> copyJPA(java.util.Set<OrdersJPA> __jpaSet,
     java.util.Map<Object,Object> __alreadyCopied, String origenJPA) {
     if (__jpaSet == null) { return null; }
-    @SuppressWarnings("unchecked")
     java.util.Set<OrdersJPA> __tmpSet = (java.util.Set<OrdersJPA>) __alreadyCopied.get(__jpaSet);
     if (__tmpSet != null) { return __tmpSet; };
     __tmpSet = new java.util.HashSet<OrdersJPA>(__jpaSet.size());

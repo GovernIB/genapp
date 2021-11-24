@@ -16,11 +16,11 @@
           <form:errors path="orderDetails.orderid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.ORDERID)}" >
           <form:hidden path="orderDetails.orderid"/>
-          <input type="text" readonly="true" class="form-control input-xxlarge uneditable-input" value="${gen:findValue(__theForm.orderDetails.orderid,__theForm.listOfOrdersForOrderid)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.orderDetails.orderid,__theForm.listOfOrdersForOrderid)}"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.ORDERID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="orderDetails_orderid"  onchange="if(typeof onChangeOrderid == 'function') {  onChangeOrderid(this); };"  cssClass="form-control col-md-8" path="orderDetails.orderid">
+          <form:select id="orderDetails_orderid"  onchange="if(typeof onChangeOrderid == 'function') {  onChangeOrderid(this); };"  cssClass="form-control col-md-9-optional" path="orderDetails.orderid">
             <c:forEach items="${__theForm.listOfOrdersForOrderid}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -56,11 +56,11 @@
           <form:errors path="orderDetails.productid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.PRODUCTID)}" >
           <form:hidden path="orderDetails.productid"/>
-          <input type="text" readonly="true" class="form-control input-xxlarge uneditable-input" value="${gen:findValue(__theForm.orderDetails.productid,__theForm.listOfProductsForProductid)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.orderDetails.productid,__theForm.listOfProductsForProductid)}"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.PRODUCTID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="orderDetails_productid"  onchange="if(typeof onChangeProductid == 'function') {  onChangeProductid(this); };"  cssClass="form-control col-md-8" path="orderDetails.productid">
+          <form:select id="orderDetails_productid"  onchange="if(typeof onChangeProductid == 'function') {  onChangeProductid(this); };"  cssClass="form-control col-md-9-optional" path="orderDetails.productid">
             <c:forEach items="${__theForm.listOfProductsForProductid}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -94,7 +94,7 @@
             </td>
             <td>
             <form:errors path="orderDetails.quantity" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? ' uneditable-input' : ''}"  style=""  path="orderDetails.quantity"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? ' uneditable-input' : ''}"  style=""  path="orderDetails.quantity"   />
 
            </td>
         </tr>

@@ -14,7 +14,7 @@
             </td>
             <td>
             <form:errors path="products.productname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.PRODUCTNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ProductsFields.PRODUCTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="products.productname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.PRODUCTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ProductsFields.PRODUCTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="products.productname"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
             <td>
             <form:errors path="products.supplierid" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.SUPPLIERID)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ProductsFields.SUPPLIERID)? ' uneditable-input' : ''}"  style=""  path="products.supplierid"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.SUPPLIERID)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ProductsFields.SUPPLIERID)? ' uneditable-input' : ''}"  style=""  path="products.supplierid"   />
 
            </td>
         </tr>
@@ -50,7 +50,7 @@
             </td>
             <td>
             <form:errors path="products.categoryid" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.CATEGORYID)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ProductsFields.CATEGORYID)? ' uneditable-input' : ''}"  style=""  path="products.categoryid"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.CATEGORYID)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ProductsFields.CATEGORYID)? ' uneditable-input' : ''}"  style=""  path="products.categoryid"   />
 
            </td>
         </tr>
@@ -68,7 +68,7 @@
             </td>
             <td>
             <form:errors path="products.unit" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.UNIT)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ProductsFields.UNIT)? ' uneditable-input' : ''}"  style="" maxlength="255" path="products.unit"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.UNIT)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ProductsFields.UNIT)? ' uneditable-input' : ''}"  style="" maxlength="255" path="products.unit"   />
 
            </td>
         </tr>
@@ -86,7 +86,7 @@
             </td>
             <td>
             <form:errors path="products.price" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.PRICE)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ProductsFields.PRICE)? ' uneditable-input' : ''}"  style=""  path="products.price"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ProductsFields.PRICE)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ProductsFields.PRICE)? ' uneditable-input' : ''}"  style=""  path="products.price"   />
 
            </td>
         </tr>

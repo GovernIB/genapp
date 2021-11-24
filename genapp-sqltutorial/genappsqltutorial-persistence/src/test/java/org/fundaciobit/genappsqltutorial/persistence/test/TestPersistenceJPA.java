@@ -3,6 +3,7 @@ package org.fundaciobit.genappsqltutorial.persistence.test;
 
 import java.util.Properties;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,6 +11,7 @@ import javax.persistence.FlushModeType;
 import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
+
 
 import org.fundaciobit.genappsqltutorial.persistence.GenAppSqlTutorialJPADaoManagers;
 import org.fundaciobit.genappsqltutorial.model.GenAppSqlTutorialDaoManager;
@@ -27,7 +29,6 @@ public class TestPersistenceJPA {
 
 
     public static final void main(String[] args) {
-        EntityManagerFactory emf = null;
         try {
             log.info(">>>>>>>>>>>>  Hello World!");
 
@@ -50,7 +51,7 @@ public class TestPersistenceJPA {
 
             prop.put("hibernate.show_sql", "true");
 
-            
+            EntityManagerFactory emf;
 
             // Veure persistence.xml
             emf = Persistence.createEntityManagerFactory("genappsqltutorialPULocal", prop);
@@ -122,15 +123,10 @@ public class TestPersistenceJPA {
 
             tx.commit();
             log.info("<<<<<<<<<<<  Good Bye!");
-            System.out.println("FINAL");
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } finally {
-            if (emf != null) {
-                emf.close();
-            }
         }
     }
 

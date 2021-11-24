@@ -14,7 +14,7 @@
             </td>
             <td>
             <form:errors path="shippers.shippername" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ShippersFields.SHIPPERNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ShippersFields.SHIPPERNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="shippers.shippername"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ShippersFields.SHIPPERNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ShippersFields.SHIPPERNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="shippers.shippername"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
             <td>
             <form:errors path="shippers.phone" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ShippersFields.PHONE)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,ShippersFields.PHONE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="shippers.phone"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,ShippersFields.PHONE)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,ShippersFields.PHONE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="shippers.phone"   />
 
            </td>
         </tr>

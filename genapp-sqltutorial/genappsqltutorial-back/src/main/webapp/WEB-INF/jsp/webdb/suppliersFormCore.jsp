@@ -14,7 +14,7 @@
             </td>
             <td>
             <form:errors path="suppliers.suppliername" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.suppliername"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.suppliername"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
             <td>
             <form:errors path="suppliers.contactname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.contactname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.contactname"   />
 
            </td>
         </tr>
@@ -50,7 +50,7 @@
             </td>
             <td>
               <form:errors path="suppliers.address" cssClass="errorField alert alert-danger" />
-              <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;max-width:90%;" cssClass="form-control " readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.ADDRESS)? 'true' : 'false'}" path="suppliers.address"  />
+              <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.ADDRESS)? 'true' : 'false'}" path="suppliers.address"  />
       <div id="dropdownMenuButton_address" style="vertical-align:top;display:inline;position:relative;">
         <button  class="btn btn-sm dropdown-toggle" type="button" style="margin-left:0px;"><span class="caret"></span></button>
         <div id="dropdownMenuContainer_address" class="dropdown-menu">
@@ -81,7 +81,7 @@
             </td>
             <td>
             <form:errors path="suppliers.city" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.city"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.city"   />
 
            </td>
         </tr>
@@ -99,7 +99,7 @@
             </td>
             <td>
             <form:errors path="suppliers.postalcode" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.postalcode"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.postalcode"   />
 
            </td>
         </tr>
@@ -117,7 +117,7 @@
             </td>
             <td>
             <form:errors path="suppliers.country" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.country"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.country"   />
 
            </td>
         </tr>
@@ -135,7 +135,7 @@
             </td>
             <td>
             <form:errors path="suppliers.phone" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.phone"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.phone"   />
 
            </td>
         </tr>

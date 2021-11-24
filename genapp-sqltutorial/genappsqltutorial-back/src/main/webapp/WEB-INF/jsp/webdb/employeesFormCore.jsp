@@ -14,7 +14,7 @@
             </td>
             <td>
             <form:errors path="employees.lastname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.lastname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.lastname"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
             <td>
             <form:errors path="employees.firstname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.firstname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.firstname"   />
 
            </td>
         </tr>
@@ -90,7 +90,7 @@
             </td>
             <td>
             <form:errors path="employees.photo" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? 'true' : 'false'}" cssClass="form-control ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.photo"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.photo"   />
 
            </td>
         </tr>
@@ -108,7 +108,7 @@
             </td>
             <td>
               <form:errors path="employees.notes" cssClass="errorField alert alert-danger" />
-              <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;max-width:90%;" cssClass="form-control " readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.NOTES)? 'true' : 'false'}" path="employees.notes"  />
+              <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.NOTES)? 'true' : 'false'}" path="employees.notes"  />
       <div id="dropdownMenuButton_notes" style="vertical-align:top;display:inline;position:relative;">
         <button  class="btn btn-sm dropdown-toggle" type="button" style="margin-left:0px;"><span class="caret"></span></button>
         <div id="dropdownMenuContainer_notes" class="dropdown-menu">
