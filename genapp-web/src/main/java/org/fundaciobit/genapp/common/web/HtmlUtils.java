@@ -17,7 +17,7 @@ public class HtmlUtils {
   
   public static final String MISSATGES = "missatges";
   
-  public static final String ERROR = "error";
+  public static final String ERROR = "danger";
   
   public static final String WARN = "warn";
   
