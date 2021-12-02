@@ -44,8 +44,8 @@ private static final long serialVersionUID = 177130423L;
     @Column(name="unit",length = 255)
     java.lang.String unit;
 
-    @Column(name="price",length = 10)
-    java.lang.Integer price;
+    @Column(name="price",length = 17,precision = 17)
+    java.lang.Double price;
 
 
 
@@ -54,7 +54,7 @@ private static final long serialVersionUID = 177130423L;
   }
 
   /** Constructor amb tots els camps  */
-  public ProductsJPA(long productid , java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Integer price) {
+  public ProductsJPA(long productid , java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Double price) {
     this.productid=productid;
     this.productname=productname;
     this.supplierid=supplierid;
@@ -63,7 +63,7 @@ private static final long serialVersionUID = 177130423L;
     this.price=price;
 }
   /** Constructor sense valors autoincrementals */
-  public ProductsJPA(java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Integer price) {
+  public ProductsJPA(java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Double price) {
     this.productname=productname;
     this.supplierid=supplierid;
     this.categoryid=categoryid;
@@ -118,10 +118,10 @@ private static final long serialVersionUID = 177130423L;
 		this.unit = _unit_;
 	};
 
-	public java.lang.Integer getPrice() {
+	public java.lang.Double getPrice() {
 		return(price);
 	};
-	public void setPrice(java.lang.Integer _price_) {
+	public void setPrice(java.lang.Double _price_) {
 		this.price = _price_;
 	};
 

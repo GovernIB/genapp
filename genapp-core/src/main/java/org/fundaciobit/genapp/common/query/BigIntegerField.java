@@ -10,7 +10,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class BigIntegerField extends Field<BigInteger> {
+public class BigIntegerField extends AbstractIntegerField<BigInteger> {
 
   private static final long serialVersionUID = 52983456345612L;
 

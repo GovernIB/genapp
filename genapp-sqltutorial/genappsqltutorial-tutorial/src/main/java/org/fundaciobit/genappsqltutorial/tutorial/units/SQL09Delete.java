@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.query.Where;
-import org.fundaciobit.genappsqltutorial.model.bean.OrderDetailsBean;
 import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
 import org.fundaciobit.genappsqltutorial.model.entity.OrderDetails;
 import org.fundaciobit.genappsqltutorial.model.fields.OrderDetailsFields;

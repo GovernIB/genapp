@@ -41,6 +41,15 @@ public interface ITableManager<E extends IGenAppEntity, PK extends Object> {
 	public E findByPrimaryKey(PK primaryKey) throws I18NException;
 
 	public Long count(Where where) throws I18NException;
+	
+	public Double avg(Field<? extends Object> field, Where where) throws I18NException;
+	
+	//public Long sumInteger(AbstractIntegerField<? extends Number> field, Where where) throws I18NException;
+	public <T extends AbstractIntegerField<? extends Number>> Long sumInteger(T field, Where where)
+            throws I18NException;
+	
+	//public Double sumDecimal(AbstractDecimalField<? extends Number> field, Where where) throws I18NException;
+	public <T extends AbstractDecimalField<? extends Number>> Double sumDecimal(T field, Where where) throws I18NException;
 
 	public <T> T max(Field<T> field, Where where) throws I18NException;
 

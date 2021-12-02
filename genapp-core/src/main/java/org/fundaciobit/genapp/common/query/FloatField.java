@@ -8,7 +8,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class FloatField extends Field<Float> {
+public class FloatField extends AbstractDecimalField<Float> {
 
   private static final long serialVersionUID = 529835444916618L;
 

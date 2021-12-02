@@ -262,7 +262,7 @@ CREATE TABLE public.gas_products (
     supplierid bigint,
     categoryid bigint,
     unit character varying(255),
-    price integer
+    price double precision
 );
 
 

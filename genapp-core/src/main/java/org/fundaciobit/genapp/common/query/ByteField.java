@@ -7,7 +7,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  * 
  */
-public class ByteField extends Field<Byte> {
+public class ByteField extends AbstractIntegerField<Byte> {
 
   private static final long serialVersionUID = 529835444916614L;
 

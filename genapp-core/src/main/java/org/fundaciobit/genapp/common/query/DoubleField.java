@@ -7,7 +7,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class DoubleField extends Field<Double> {
+public class DoubleField extends AbstractDecimalField<Double> {
   
   private static final long serialVersionUID = 529835444916617L;
   

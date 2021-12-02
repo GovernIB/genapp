@@ -108,24 +108,24 @@ public class ProductsFilterForm extends GenAppSqlTutorialBaseFilterForm implemen
   }
 
 
-  private java.lang.Integer priceDesde;
+  private java.lang.Double priceDesde;
 
-  public java.lang.Integer getPriceDesde() {
+  public java.lang.Double getPriceDesde() {
     return this.priceDesde;
   }
 
-  public void setPriceDesde(java.lang.Integer priceDesde) {
+  public void setPriceDesde(java.lang.Double priceDesde) {
     this.priceDesde = priceDesde;
   }
 
 
-  private java.lang.Integer priceFins;
+  private java.lang.Double priceFins;
 
-  public java.lang.Integer getPriceFins() {
+  public java.lang.Double getPriceFins() {
     return this.priceFins;
   }
 
-  public void setPriceFins(java.lang.Integer priceFins) {
+  public void setPriceFins(java.lang.Double priceFins) {
     this.priceFins = priceFins;
   }
 

@@ -7,7 +7,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class IntegerField extends Field<Integer> {
+public class IntegerField extends AbstractIntegerField<Integer> {
 
   private static final long serialVersionUID = 529835444916612L;
 

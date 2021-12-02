@@ -17,7 +17,7 @@ public interface ProductsFields extends java.io.Serializable {
 	 public static final LongField SUPPLIERID = new LongField(_TABLE_MODEL, "supplierid", "supplierid");
 	 public static final LongField CATEGORYID = new LongField(_TABLE_MODEL, "categoryid", "categoryid");
 	 public static final StringField UNIT = new StringField(_TABLE_MODEL, "unit", "unit");
-	 public static final IntegerField PRICE = new IntegerField(_TABLE_MODEL, "price", "price");
+	 public static final DoubleField PRICE = new DoubleField(_TABLE_MODEL, "price", "price");
 
 
   public static final Field<?>[] ALL_PRODUCTS_FIELDS = {

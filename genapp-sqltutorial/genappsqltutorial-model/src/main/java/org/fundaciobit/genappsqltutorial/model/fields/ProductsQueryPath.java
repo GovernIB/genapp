@@ -31,8 +31,8 @@ public class ProductsQueryPath extends org.fundaciobit.genapp.common.query.Query
     return new StringField(getQueryPath(), ProductsFields.UNIT);
   }
 
-  public IntegerField PRICE() {
-    return new IntegerField(getQueryPath(), ProductsFields.PRICE);
+  public DoubleField PRICE() {
+    return new DoubleField(getQueryPath(), ProductsFields.PRICE);
   }
 
 

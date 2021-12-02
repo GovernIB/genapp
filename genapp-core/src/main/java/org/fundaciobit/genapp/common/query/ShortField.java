@@ -8,7 +8,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class ShortField extends Field<Short> {
+public class ShortField extends AbstractIntegerField<Short> {
   
   private static final long serialVersionUID = 529835444916613L;
   

@@ -15,7 +15,7 @@ private static final long serialVersionUID = 1195858772L;
 	java.lang.Long supplierid;
 	java.lang.Long categoryid;
 	java.lang.String unit;
-	java.lang.Integer price;
+	java.lang.Double price;
 
 
   /** Constructor Buit */
@@ -23,7 +23,7 @@ private static final long serialVersionUID = 1195858772L;
   }
 
   /** Constructor amb tots els camps  */
-  public ProductsBean(long productid , java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Integer price) {
+  public ProductsBean(long productid , java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Double price) {
     this.productid=productid;
     this.productname=productname;
     this.supplierid=supplierid;
@@ -32,7 +32,7 @@ private static final long serialVersionUID = 1195858772L;
     this.price=price;
 }
   /** Constructor sense valors autoincrementals */
-  public ProductsBean(java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Integer price) {
+  public ProductsBean(java.lang.String productname , java.lang.Long supplierid , java.lang.Long categoryid , java.lang.String unit , java.lang.Double price) {
     this.productname=productname;
     this.supplierid=supplierid;
     this.categoryid=categoryid;
@@ -87,10 +87,10 @@ private static final long serialVersionUID = 1195858772L;
 		this.unit = _unit_;
 	};
 
-	public java.lang.Integer getPrice() {
+	public java.lang.Double getPrice() {
 		return(price);
 	};
-	public void setPrice(java.lang.Integer _price_) {
+	public void setPrice(java.lang.Double _price_) {
 		this.price = _price_;
 	};
 

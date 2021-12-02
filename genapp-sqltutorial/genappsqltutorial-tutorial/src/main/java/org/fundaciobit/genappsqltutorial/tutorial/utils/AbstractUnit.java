@@ -58,7 +58,7 @@ public abstract class AbstractUnit implements IPrinterResults, IDAOProvider {
     
     @Override
     public <T> void print(List<T> listString) throws Exception {
-        PrinterResultsManager.getPrinterResults().print(listString);
+        PrinterResultsManager.getPrinterResults().print(listString,"List");
     }
 
     @Override

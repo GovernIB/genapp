@@ -9,7 +9,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  * 
  */
-public class BigDecimalField extends Field<BigDecimal> {
+public class BigDecimalField extends AbstractDecimalField<BigDecimal> {
   private static final long serialVersionUID = 529835444916616L;
 
   public BigDecimalField(String table, String javaName, String sqlName) {

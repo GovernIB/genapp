@@ -17,8 +17,8 @@ public interface Products extends org.fundaciobit.genapp.common.IGenAppEntity {
 	public java.lang.String getUnit();
 	public void setUnit(java.lang.String _unit_);
 
-	public java.lang.Integer getPrice();
-	public void setPrice(java.lang.Integer _price_);
+	public java.lang.Double getPrice();
+	public void setPrice(java.lang.Double _price_);
 
 
 

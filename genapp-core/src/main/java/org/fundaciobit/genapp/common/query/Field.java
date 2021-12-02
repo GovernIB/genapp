@@ -16,8 +16,6 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  *
  *
  * @param <C> Java Class associated to Field.
- * @param <I> Represents the Table or interface mapped table of database
- *            (I{TableName})
  */
 public abstract class Field<C> implements Serializable {
 

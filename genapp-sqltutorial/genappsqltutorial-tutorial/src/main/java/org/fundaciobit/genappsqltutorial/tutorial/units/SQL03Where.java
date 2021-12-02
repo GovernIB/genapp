@@ -65,7 +65,7 @@ public class SQL03Where extends AbstractUnit {
             sql = " SELECT * FROM Products WHERE Price = 18;",
             order = 10)
     public void whereOperatorsEqual() throws I18NException, Exception {
-        List<Products> products = this.getProductsManager().select(ProductsFields.PRICE.equal(18));
+        List<Products> products = this.getProductsManager().select(ProductsFields.PRICE.equal(18.0));
         print(products);
     }
 
@@ -76,7 +76,7 @@ public class SQL03Where extends AbstractUnit {
             order = 11)
     public void whereOperatorsGreaterThan() throws I18NException, Exception {
         List<Products> products = this.getProductsManager()
-                .select(ProductsFields.PRICE.greaterThan(30));
+                .select(ProductsFields.PRICE.greaterThan(30.0));
         print(products);
     }
 
@@ -87,7 +87,7 @@ public class SQL03Where extends AbstractUnit {
             order = 12)
     public void whereOperatorsLessThan() throws I18NException, Exception {
         List<Products> products = this.getProductsManager()
-                .select(ProductsFields.PRICE.lessThan(30));
+                .select(ProductsFields.PRICE.lessThan(30.0));
         print(products);
     }
 
@@ -98,7 +98,7 @@ public class SQL03Where extends AbstractUnit {
             order = 13)
     public void whereOperatorsGreaterThanOrEqual() throws I18NException, Exception {
         List<Products> products = this.getProductsManager()
-                .select(ProductsFields.PRICE.greaterThanOrEqual(30));
+                .select(ProductsFields.PRICE.greaterThanOrEqual(30.0));
         print(products);
     }
 
@@ -109,7 +109,7 @@ public class SQL03Where extends AbstractUnit {
             order = 14)
     public void whereOperatorsLessThanOrEqual() throws I18NException, Exception {
         List<Products> products = this.getProductsManager()
-                .select(ProductsFields.PRICE.lessThanOrEqual(30));
+                .select(ProductsFields.PRICE.lessThanOrEqual(30.0));
         print(products);
     }
 
@@ -120,7 +120,7 @@ public class SQL03Where extends AbstractUnit {
             order = 15)
     public void whereOperatorsNotEqual() throws I18NException, Exception {
         List<Products> products = this.getProductsManager()
-                .select(ProductsFields.PRICE.notEqual(18));
+                .select(ProductsFields.PRICE.notEqual(18.0));
         print(products);
     }
 
@@ -131,7 +131,7 @@ public class SQL03Where extends AbstractUnit {
             order = 16)
     public void whereOperatorsBETWEEN() throws I18NException, Exception {
         List<Products> products = this.getProductsManager()
-                .select(ProductsFields.PRICE.between(50, 60));
+                .select(ProductsFields.PRICE.between(50.0, 60.0));
         print(products);
     }
 

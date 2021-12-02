@@ -11,6 +11,7 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL04AndOrNot;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL06Insert;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL08Update;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL09Delete;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL11CountAvgSum;
 
 /**
  * 
@@ -38,7 +39,9 @@ public class JPATutorialGenQL {
             
             //unitSQL08Update(args);
             
-            unitSQL09Delete(args);
+            //unitSQL09Delete(args);
+            
+            unitSQL11CountAvgSum(args);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,6 +134,16 @@ public class JPATutorialGenQL {
         SQL09Delete d =  new SQL09Delete();
 
         d.deleteAllRecords();
+
+    }
+    
+    
+    public static void unitSQL11CountAvgSum(String[] args) throws Exception {
+        SQL11CountAvgSum s = new SQL11CountAvgSum();
+
+        //s.updateMultipleRecordsNative();
+        
+        s.avgExample();
 
     }
 

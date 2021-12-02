@@ -7,7 +7,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  * 
  */
-public class LongField extends Field<Long> {
+public class LongField extends AbstractIntegerField<Long> {
   private static final long serialVersionUID = 529835444916615L;
 
   public LongField(String table, String javaName, String sqlName) {
