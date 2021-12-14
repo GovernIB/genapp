@@ -6,8 +6,6 @@
 
 	<groupId>${package}</groupId>
 	<artifactId>${name}-commons</artifactId>
-	<version>${app_current_version}</version>
-
 	<packaging>jar</packaging>
 
 	<parent>

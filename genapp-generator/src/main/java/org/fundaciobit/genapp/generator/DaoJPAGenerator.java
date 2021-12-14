@@ -131,8 +131,9 @@ public class DaoJPAGenerator {
 	    		"/**\n" + 
 	    		" * ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!!\n" + 
 	    		" * @author jagarcia\n" + 
-	    		" */\n" + 
-	    		"@SuppressWarnings(\"unchecked\")\n" +
+	    		" */\n" +
+	    		// XYZ ZZZ ZZZ
+	    		//"@SuppressWarnings(\"unchecked\")\n" +
 	    		"public class " + hibernateFileName + " extends HibernatePersistenceProvider {\n" + 
 	    		"	\n" + 
 	    		"	private final Logger log = LoggerFactory.getLogger(this.getClass());\n" + 
@@ -194,7 +195,7 @@ public class DaoJPAGenerator {
     String sequenceJPAName = table.nameJava.toUpperCase() + "_SEQ";
       
     // XYZ ZZZ ZZZ 
-    beanCode.append("@SuppressWarnings(\"deprecation\")\n");
+    //beanCode.append("@SuppressWarnings(\"deprecation\")\n");
     
     
       if (table.isTranslationMapEntity()) {
