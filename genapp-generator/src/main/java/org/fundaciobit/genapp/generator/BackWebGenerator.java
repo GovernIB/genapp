@@ -1988,7 +1988,7 @@ public class BackWebGenerator extends IconUtils {
 				codeButton.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
 				codeButton.append("  \n");
 
-				codeButton.append("  <div class=\"navbar-form float-right\">\n");
+				codeButton.append("  <div class=\"navbar-form\" style=\"text-align:right\">\n");
 				// BOTO GUARDAR
 				codeButton.append("    <c:if test=\"${" + instanceForm + ".saveButtonVisible}\">\n");
 				codeButton.append(
