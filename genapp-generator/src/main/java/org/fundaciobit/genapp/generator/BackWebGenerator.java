@@ -14,6 +14,7 @@ import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.WebType;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
+import org.fundaciobit.genapp.common.web.html.HtmlCSS;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
 
 /**
@@ -189,7 +190,7 @@ public class BackWebGenerator extends IconUtils {
 				code.append("  <c:if test=\"${not empty " + model + "Items}\">\n\n");
 				code.append("  <div class=\"row\" style=\"margin-left: 0px;\">\n");
 				code.append(
-						"  <table class=\"table table-sm table-bordered table-striped table-responsive\" style=\"width:auto;\"> \n");
+						"  <table class=\"table table-sm table-bordered table-striped table-genapp\" style=\"width:auto;\"> \n");
 				code.append("    <thead>\n");
 				code.append("      <tr>\n\n");
 
@@ -273,7 +274,7 @@ public class BackWebGenerator extends IconUtils {
 				codeSubtitle.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
 				codeSubtitle.append("\n");
 				codeSubtitle.append("  <c:if test=\"${not empty " + instanceFilterForm + ".subTitleCode}\">\n");
-				codeSubtitle.append("<h6 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px;\">\n");
+				codeSubtitle.append("<h6 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px; font-style:italic;\">\n");
 				codeSubtitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceFilterForm
 						+ ".subTitleCode,'=')}\" />\n");
 				codeSubtitle.append("<c:if test=\"${subtitleTranslated}\">\n");
@@ -300,6 +301,7 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
 				codeHeaderButtons.append("\n");
 
+				codeHeaderButtons.append(HtmlCSS.TITOL_BEGIN  + "\n");
 				codeHeaderButtons.append("  <c:if test=\"${not empty " + instanceFilterForm + ".titleCode}\">\n");
 				codeHeaderButtons.append("      <fmt:message key=\"${" + instanceFilterForm + ".titleCode}\">\n");
 				codeHeaderButtons.append("        <fmt:param value=\"${" + instanceFilterForm + ".titleParam}\" />\n");
@@ -310,6 +312,7 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("      <fmt:param value=\"${entitynameplural}\"/>\n");
 				codeHeaderButtons.append("    </fmt:message>\n");
 				codeHeaderButtons.append("  </c:if>\n");
+				codeHeaderButtons.append("  </label>\n");
 				codeHeaderButtons.append("\n");
 				codeHeaderButtons.append("      <%-- AGRUPAR PER BOTO - INICI  --%>\n");
 				codeHeaderButtons.append("  <c:if test=\"${fn:length(groupby_items) > 0}\">\n");
@@ -443,10 +446,12 @@ public class BackWebGenerator extends IconUtils {
 				codeFilterBy.append("      </div>\n");
 				codeFilterBy.append("      <div class=\"form-inline\">\n");
 				codeFilterBy.append("      \n");
+				
+				final String inputgroupcss = "input-group";
 
 				final String searchByAdditional = "      <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
 						+ "      <c:if test=\"${ __entry.key < 0 && not empty __entry.value.searchBy }\">\n"
-						+ "      <div class=\"input-prepend input-append\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n"
+						+ "      <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n"
 						+ "        <span class=\"add-on\"><fmt:message key=\"${__entry.value.codeName}\" />:</span>\n"
 						+ "        <fmt:message key=\"genapp.form.searchby\" var=\"cercaperAF\" >\n"
 						+ "          <fmt:param>\n" + "            <fmt:message key=\"${__entry.value.codeName}\" />\n"
@@ -495,7 +500,7 @@ public class BackWebGenerator extends IconUtils {
 						if (Number.class.isAssignableFrom(cls) || cls.isPrimitive()) {
 							codeFilterBy.append("            <%-- FILTRE NUMERO --%>      \n");
 							codeFilterBy.append(
-									"            <div class=\"input-prepend input-append\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append("\n");
@@ -540,7 +545,7 @@ public class BackWebGenerator extends IconUtils {
 						if (cls.equals(Time.class)) {
 							codeFilterBy.append("            <%-- FILTRE TIME --%>      \n");
 							codeFilterBy.append(
-									"            <div class=\"input-prepend input-append\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append("\n");
@@ -602,7 +607,7 @@ public class BackWebGenerator extends IconUtils {
 
 							codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
 							codeFilterBy.append(
-									"            <div class=\"input-prepend input-append\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append(
@@ -663,7 +668,7 @@ public class BackWebGenerator extends IconUtils {
 
 							codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
 							codeFilterBy.append(
-									"            <div class=\"input-prepend input-append\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append(
@@ -796,21 +801,25 @@ public class BackWebGenerator extends IconUtils {
 				codeGroupBy.append("  <c:if test=\"${fn:length(groupby_items) > 0}\">\n");
 				codeGroupBy.append(" <fmt:message var=\"buit\" key=\"genapp.notdefined\" />\n");
 				codeGroupBy.append("  \n");
+				codeGroupBy.append("  <div id=\"GroupDiv\" class=\"wellgroupfilter\" style=\"${displayGroupDiv} padding:1px; margin-right:4px; float:left; \">\n");
+				codeGroupBy.append("      <div  style=\"text-align:right\">" + "\n");    // class=\"float-right\" >\n"); // style=\"padding-left:2px\"
+				
+				//codeGroupBy.append("          <div class=\"span10\">\n"); 
+				//codeFilterBy.append("        <div class=\"float-right\">\n");
+                //codeFilterBy.append("\n");
+				codeGroupBy.append("           <a style=\"margin-right:4px\" href=\"#\">" + "\n"); 
 				codeGroupBy.append(
-						"  <div id=\"GroupDiv\" class=\"wellgroupfilter\" style=\"${displayGroupDiv} padding: 1px; margin-right: 4px;  float: left; \">\n");
-				codeGroupBy.append("      \n");
-				codeGroupBy.append("      <div class=\"float-right\" style=\"padding-left:2px\">\n");
-				codeGroupBy.append("            <div class=\"span10\">\n");
-				codeGroupBy.append(
-						"               <i title=\"<fmt:message key=\"genapp.form.hidegroupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline';\" class=\"fas fa-trash\"></i>\n");
-				codeGroupBy.append("            </div>\n");
+						"               <i title=\"<fmt:message key=\"genapp.form.hidegroupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline';\" class=\"far fa-window-close\"></i>\n");
+				codeGroupBy.append("            </a>\n");
 				codeGroupBy.append("      </div>\n");
 				codeGroupBy.append("\n");
 				codeGroupBy.append("\n");
 				
 				
-				
-				
+				codeGroupBy.append("<style>"
+				        + " ul.gj-list-bootstrap li [data-role=display]{padding:0px 0px 0px 0px;} "
+				        + " ul.gj-list-bootstrap li [data-role=expander].gj-tree-material-icons-expander { padding-top: 0px; padding-bottom: 0px; }"
+				        + " </style>");
 				
 				codeGroupBy.append("      <div id=\"tree\"></div>\n" + 
 				        "      \n" + 
@@ -1867,7 +1876,7 @@ public class BackWebGenerator extends IconUtils {
 				codeTitle.append("  \n");
 
 				codeTitle.append("<div class=\"lead\" style=\"margin-bottom:10px\">\n");
-
+				codeTitle.append( HtmlCSS.TITOL_BEGIN + "\n");
 				codeTitle.append(" <c:choose>\n");
 				codeTitle.append("  <c:when test=\"${fn:startsWith(" + instanceForm + ".titleCode,'=')}\">\n");
 				codeTitle.append("       <c:out value=\"${fn:substringAfter(" + instanceForm
@@ -1897,11 +1906,11 @@ public class BackWebGenerator extends IconUtils {
 				codeTitle.append("    </fmt:message>\n");
 				// codeTitle.append(" </c:when>\n");
 				codeTitle.append("    </c:otherwise>\n");
-				codeTitle.append(" </c:choose>\n");
-				codeTitle.append("  \n");
+				codeTitle.append(" </c:choose>");
+				codeTitle.append(HtmlCSS.TITOL_END + "\n");
 
 				codeTitle.append("  <c:if test=\"${not empty " + instanceForm + ".subTitleCode}\">\n");
-				codeTitle.append("  <br/><h5 style=\"line-height: 10px; margin-top: 0px; margin-bottom: 0px;\">\n");
+				codeTitle.append(HtmlCSS.SUBTITOL_BEGIN +  "\n");
 				codeTitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceForm
 						+ ".subTitleCode,'=')}\" />\n");
 				codeTitle.append("<c:if test=\"${subtitleTranslated}\">\n");
@@ -1911,7 +1920,7 @@ public class BackWebGenerator extends IconUtils {
 				codeTitle.append("<c:if test=\"${not subtitleTranslated}\">\n");
 				codeTitle.append("  <fmt:message key=\"${" + instanceForm + ".subTitleCode}\" />\n");
 				codeTitle.append("</c:if>\n");
-				codeTitle.append("</h5>\n");
+				codeTitle.append(HtmlCSS.SUBTITOL_END + "\n");
 				codeTitle.append("  </c:if>\n");
 
 				codeTitle.append("</div>");
@@ -1956,7 +1965,7 @@ public class BackWebGenerator extends IconUtils {
 			    
 
 				code.append(
-						"    <table class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-responsive\" > \n");
+						"    <table class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-genapp\" > \n");
 				code.append("    <tbody>      \n");
 				code.append("\n");
 				sourceFiles.add(new SourceFile(model + "FormCorePre.jsp", code.toString()));
@@ -2098,12 +2107,13 @@ public class BackWebGenerator extends IconUtils {
 						code.append("              <fmt:message key=\"" + "${(empty " + instanceForm + ".labels["
 								+ modelCampMay + "])?'" + model + "." + modelCamp + "':" + instanceForm + ".labels["
 								+ modelCampMay + "]}" + "\" />" + required + "\n");
+						code.append("             </label>\n");
 						code.append("              <c:if test=\"${not empty " + instanceForm + ".help[" + modelCampMay
 								+ "]}\">\n");
 						code.append("              <i class=\"" + ICON_INFO + "\" title=\"${" + instanceForm + ".help["
 								+ modelCampMay + "]}\" ></i>\n");
 						code.append("              </c:if>\n");
-						code.append("             </label>\n");
+						
 						code.append("            </td>\n");
 						code.append("            <td>\n");
 						code.append(codeField);
@@ -2131,7 +2141,7 @@ public class BackWebGenerator extends IconUtils {
 
 		final String readOnlyCondition = "gen:contains(" + instanceForm + ".readOnlyFields ," + modelCampMay + ")";
 		final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'true' : 'false'}\"";
-		final String cssClass = "form-control col-md-9-optional ${" + readOnlyCondition + "? ' uneditable-input' : ''}";
+		final String cssClass = "form-control  ${" + readOnlyCondition + "? ' uneditable-input' : ''}"; //  col-md-9-optional
 		final String formInputReadOnly = readOnlyAttribute + " cssClass=\"" + cssClass + "\" ";
 
 		if (fileFields.contains(field)) {
@@ -2312,7 +2322,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("            <form:errors path=\"" + model + "." + modelCamp
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			// code.append(" <div class=\"input-append\">\n");
-			code.append("            <form:input " + formInputReadOnly.replace("'input", "'" + newInputSize) + " style=\"\" "
+			code.append("            <form:input " + formInputReadOnly.replace("cssClass=\"", "cssClass=\"" + newInputSize + " ") + " style=\"\" "
 					+ maxlength + " path=\"" + model + "." + modelCamp + "\" "
 					// + ((webType == WebType.URL)?" onClick=\"${__onClick}\" ": "")
 					+ "  />\n\n");
@@ -2662,24 +2672,26 @@ public class BackWebGenerator extends IconUtils {
 	 */
 
 	protected static String getCssInputTypeBySize(int size) {
-	    return "";
+	    //return "";
 	    
-	    /*
+	    
 		if (size < 8) {
-			return "input-mini";
+			return "w-25";
 		}
-		if (size < 11) {
-			return "input-small";
+		/*
+		if (size < 10) {
+			return "w-25";
 		}
+		*/
 		if (size < 18) {
-			return "input-medium";
+			return "w-50";
 		}
 		if (size < 26) {
-			return "input-large";
+			return "w-75";
 		}
 		
-		return "col-md-8";
-		*/
+		return "w-100";
+		
 
 	}
 

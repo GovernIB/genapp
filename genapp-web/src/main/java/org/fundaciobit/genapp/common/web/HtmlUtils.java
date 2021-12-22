@@ -19,7 +19,7 @@ public class HtmlUtils {
   
   public static final String ERROR = "danger";
   
-  public static final String WARN = "warn";
+  public static final String WARN = "warning";
   
   public static final String SUCCESS = "success";
   
