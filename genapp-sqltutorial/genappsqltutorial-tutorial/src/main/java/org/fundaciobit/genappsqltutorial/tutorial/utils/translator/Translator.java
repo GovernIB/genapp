@@ -1,11 +1,9 @@
 package org.fundaciobit.genappsqltutorial.tutorial.utils.translator;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -31,6 +29,18 @@ public class Translator {
      * @return
      */
     public static String translate(String lang, String text) {
+        String lines[] = text.split("\\r?\\n");
+        String trad[] = new String[lines.length];
+
+        for (int i = 0; i < lines.length; i++) {
+            trad[i] = translateOneLine(lang, lines[i]);
+        }
+
+        return String.join("\n", trad);
+
+    }
+
+    private static String translateOneLine(String lang, String text) {
 
         if (lang.equals("en")) {
             return text;
@@ -49,11 +59,14 @@ public class Translator {
 
         final String[][] ignoreWords = { { "\"Country\"", "\"Cóuntry\"" },
                 { "\"Customers\"", "\"Cústomers\"" }, { "\"CustomerName\"", "\"CústomerName\"" },
-                { "\"City\"", "\"Cíty\"" }, { "SELECT", "SÉLECT" }, { "result-set", "résult-set" },
-                { "LIKE", "LÏKE" }, { "BETWEEN", "BËTWEEN" }, { "OR", "ÖR" }, { "NOT", "NÖT" },
-                { "AND", "ÄND" } };
+                { "\"City\"", "\"Cíty\"" }, { "SELECT", "SéLECT" }, { "result-set", "résult-set" },
+                { "LIKE", "LëKE" }, { "BETWEEN", "BëTWEEN" }, { "OR", "öR" }, { "NOT", "NöT" },
+                { "AND", "äND" }, { "\"where\"", "\"whërë\"" },
+                { "\"Not Like\"", "\"Nöt Lïke\"" } };
 
-        String t = text;
+        final String NEW_LINE_ENCODED = "@@@@@@@";
+
+        String t = text.replaceAll("\n", NEW_LINE_ENCODED);
         for (String[] c : ignoreWords) {
             t = t.replace(c[0], c[1]);
         }
@@ -66,6 +79,8 @@ public class Translator {
             for (String[] c : ignoreWords) {
                 t = t.replace(c[1], c[0]);
             }
+
+            t = t.replaceAll(NEW_LINE_ENCODED, "\n");
 
             return t;
 
@@ -92,8 +107,10 @@ public class Translator {
 
             if (translations == null) {
 
-                File f = new File(Configuracio.getTranslationsProperties());
                 Properties prop = new Properties();
+
+                File f = new File(Configuracio.getTranslationsFileProperties());
+
                 if (f.exists()) {
                     InputStream is = null;
                     try {
@@ -130,20 +147,26 @@ public class Translator {
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
             StringBuffer response = new StringBuffer();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            InputStream is = con.getInputStream();
+
+            int i;
+            while ((i = is.read()) != -1) {
+                response.append((char) i);
             }
-            in.close();
+
+            /*
+             * BufferedReader in = new BufferedReader(new
+             * InputStreamReader(con.getInputStream())); String inputLine; while ((inputLine
+             * = in.readLine()) != null) { response.append(inputLine); } in.close();
+             */
 
             String result = parseResult(response.toString());
 
             translations.put(key, result);
 
-            File f = new File(Configuracio.getTranslationsProperties());
+            File f = new File(Configuracio.getTranslationsFileProperties());
 
             OutputStream os = null;
             try {
@@ -152,7 +175,7 @@ public class Translator {
             } finally {
                 os.close();
             }
-            
+
             return result;
 
         } catch (Throwable th) {

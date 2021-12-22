@@ -27,24 +27,34 @@ public class Configuracio implements Constants {
      * Seguim els estandars de la CAIB 
      */
     public static Properties getFilesProperties() {
-        
+
         if (fileProperties.isEmpty()) {
             // matches the property name as defined in the system-properties element in
             // WildFly
-            String propertyFile = System.getProperty(Constants.GENAPPSQLTUTORIAL_PROPERTY_BASE + "properties");
-            File file = new File(propertyFile);
-    
-            String propertySystemFile = System.getProperty(Constants.GENAPPSQLTUTORIAL_PROPERTY_BASE + "system.properties");
-            File systemFile = new File(propertySystemFile);
-    
-            try {
-                fileProperties.load(new FileInputStream(file));
-                fileProperties.load(new FileInputStream(systemFile));
-            } catch (IOException e) {
-                LOG.error("No es pot carregar algun dels fitxers de propietats ... ", e);
+            String propertyFile = System
+                    .getProperty(Constants.GENAPPSQLTUTORIAL_PROPERTY_BASE + "properties");
+            if (propertyFile != null) {
+                File file = new File(propertyFile);
+                try {
+                    fileProperties.load(new FileInputStream(file));
+                } catch (IOException e) {
+                    LOG.error("No es pot carregar algun dels fitxers de propietats ... ", e);
+                }
+            }
+
+            String propertySystemFile = System
+                    .getProperty(Constants.GENAPPSQLTUTORIAL_PROPERTY_BASE + "system.properties");
+            if (propertySystemFile != null) {
+                File systemFile = new File(propertySystemFile);
+
+                try {
+                    fileProperties.load(new FileInputStream(systemFile));
+                } catch (IOException e) {
+                    LOG.error("No es pot carregar algun dels fitxers de propietats ... ", e);
+                }
             }
         }
-        
+
         return fileProperties;
 
     }
@@ -60,7 +70,7 @@ public class Configuracio implements Constants {
 
     public static String getProperty(String key) {
 
-        return  getFilesProperties().getProperty(key);
+        return  getSystemAndFileProperties().getProperty(key);
 
     }
 
@@ -116,7 +126,7 @@ public class Configuracio implements Constants {
         return getProperty(GENAPPSQLTUTORIAL_PROPERTY_BASE + "filesystemmanagerclass");
     }
     
-    public static String getTranslationsProperties() {
+    public static String getTranslationsFileProperties() {
         return getProperty(GENAPPSQLTUTORIAL_PROPERTY_BASE + "translationsfile");
     }
 

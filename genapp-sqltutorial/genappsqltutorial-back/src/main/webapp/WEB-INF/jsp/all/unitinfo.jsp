@@ -78,12 +78,7 @@ function b64EncodeUnicode(str) {
             return String.fromCharCode('0x' + p1);
     }));
 }
-
-
-
 </script>
-
-
 
 <div class="clear"></div>
 <div class="spacer"></div>
@@ -102,7 +97,10 @@ function b64EncodeUnicode(str) {
     <li> URL W3schools: <b><a href="${unitInfo.url}" target="_blank">${unitInfo.url}</a></b> </li>
 </ul>
 
-<b>${unitInfo.descripcio }</b>
+<b>
+   <c:set var="DESCRIPCIO" value="${unitInfo.descripcio}"/>
+   <%= ((String)pageContext.getAttribute("DESCRIPCIO")).replaceAll("\n", "<br/>") %>
+</b>
 
 <script src="<c:url value="/js/ace/ace.js"/>" type="text/javascript" charset="utf-8"></script>
 

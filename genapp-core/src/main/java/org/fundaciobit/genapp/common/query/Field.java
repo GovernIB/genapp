@@ -112,6 +112,10 @@ public abstract class Field<C> implements Serializable {
 	public Where like(String like) {
 		return new Like(like);
 	}
+	
+    public Where notLike(String like) {
+        return new NotLike(like);
+    }
 
 	public Where equal(C value) {
 		return new Equal<C>(value);
@@ -243,15 +247,23 @@ public abstract class Field<C> implements Serializable {
 	protected class Like extends Where {
 
 		final String like;
+		
+		final String operator;
 
 		public Like(String like) {
 			this.like = like;
+			this.operator = "LIKE";
 		}
+		
+        public Like(String like, boolean isNot) {
+            this.like = like;
+            this.operator = isNot?"NOT LIKE" : "LIKE";
+        }
 
 		@Override
 		public QuerySQL toSQL(int index) {
 			// JPA lower
-			return new QuerySQL(index + 1, "( LOWER(" + fullName + ") LIKE ?" + index +" )");
+			return new QuerySQL(index + 1, "( LOWER(" + fullName + ") " + this.operator + " ?" + index +" )");
 		}
 
 		@Override
@@ -262,6 +274,17 @@ public abstract class Field<C> implements Serializable {
 		}
 
 	}
+	
+	
+	
+	protected class NotLike extends Like {
+	    
+	    public NotLike(String like) {
+            super(like, true);
+        }
+	}
+	
+	
 
 	/*
 	 * protected class Like extends ZeroParameterOperation {
