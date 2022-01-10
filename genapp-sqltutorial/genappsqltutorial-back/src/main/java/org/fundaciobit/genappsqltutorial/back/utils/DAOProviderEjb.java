@@ -6,11 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrdersManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
+import org.fundaciobit.genappsqltutorial.model.dao.ISuppliersManager;
 import org.fundaciobit.genappsqltutorial.tutorial.dao.IDAOProvider;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 
 /**
  * 
@@ -24,23 +25,6 @@ public class DAOProviderEjb implements IDAOProvider {
         // no fer res
     }
 
-    @Override
-    public ICustomersManager getCustomerManager() throws Exception {
-        
-        return getIDAOProviderOfSession().getCustomerManager();
-    }
-
-    @Override
-    public IProductsManager getProductsManager() throws Exception {
-        return getIDAOProviderOfSession().getProductsManager();
-    }
-    
-    
-    public IOrderDetailsManager getOrderDetailsManager() throws Exception {
-        return getIDAOProviderOfSession().getOrderDetailsManager();
-    }
-    
-    
     private static IDAOProvider getIDAOProviderOfSession() {
 
         HttpServletRequest request;
@@ -54,8 +38,7 @@ public class DAOProviderEjb implements IDAOProvider {
         return str;
 
     }
-    
-    
+
     public static void setIDAOProviderOfSession(IDAOProvider dao) {
 
         HttpServletRequest request;
@@ -72,6 +55,29 @@ public class DAOProviderEjb implements IDAOProvider {
         return getIDAOProviderOfSession().getEntityManagerFactory();
     }
 
-    
+    @Override
+    public ICustomersManager getCustomerManager() throws Exception {
+        return getIDAOProviderOfSession().getCustomerManager();
+    }
+
+    @Override
+    public IProductsManager getProductsManager() throws Exception {
+        return getIDAOProviderOfSession().getProductsManager();
+    }
+
+    @Override
+    public IOrderDetailsManager getOrderDetailsManager() throws Exception {
+        return getIDAOProviderOfSession().getOrderDetailsManager();
+    }
+
+    @Override
+    public ISuppliersManager getSuppliersManager() throws Exception {
+        return getIDAOProviderOfSession().getSuppliersManager();
+    }
+
+    @Override
+    public IOrdersManager getOrdersManager() throws Exception {
+        return getIDAOProviderOfSession().getOrdersManager();
+    }
 
 }

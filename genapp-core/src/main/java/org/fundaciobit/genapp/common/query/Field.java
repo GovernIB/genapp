@@ -168,6 +168,10 @@ public abstract class Field<C> implements Serializable {
 	public Where between(C from, C to) {
 		return new Between<C>(from, to);
 	}
+	
+    public Where notBetween(C from, C to) {
+        return new NotBetween<C>(from, to);
+    }
 
 	public Where in(C[] values) {
 		return new In<C>(values);
@@ -430,6 +434,21 @@ public abstract class Field<C> implements Serializable {
 		}
 
 	}
+	
+	
+	protected class NotBetween<T> extends TwoParameterOperation<T> {
+
+        public NotBetween(T from, T to) {
+            super(from, to);
+        }
+
+        @Override
+        public String toSQL(int p1, int p2) {
+            return  "( " + fullName + " NOT BETWEEN ?" + p1 + " AND ?" + p2 + " )";
+        }
+
+    }
+	
 
 	protected class NotIn<T extends Object> extends In<T> {
 		public NotIn(T[] listOfItems) {

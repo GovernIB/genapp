@@ -12,6 +12,7 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL06Insert;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL08Update;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL09Delete;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL11CountAvgSum;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL15Joins;
 
 /**
  * 
@@ -27,21 +28,23 @@ public class JPATutorialGenQL {
             DAOManager.setDAOProvider(dao);
             PrinterResultsManager.setPrinterResults(new ConsoleTableFormatPrinterResultsImpl());
 
-            //unitSQL01Select(args);
+            // unitSQL01Select(args);
 
             // unitSQL02SelectDistinct(args);
 
             // unitSQL03Where(args);
 
             // unitSQL04AndOrNot(args);
-            
+
             // unitSQL06Insert(args);
-            
-            //unitSQL08Update(args);
-            
-            //unitSQL09Delete(args);
-            
-            unitSQL11CountAvgSum(args);
+
+            // unitSQL08Update(args);
+
+            // unitSQL09Delete(args);
+
+            // unitSQL11CountAvgSum(args);
+
+            unitSQL15Joins(args);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,46 +107,53 @@ public class JPATutorialGenQL {
         s.combiningAndOrNot2();
 
     }
-    
-    
+
     public static void unitSQL06Insert(String[] args) throws Exception {
         SQL06Insert s = null;
 
         s = new SQL06Insert();
 
         s.insertCustomer();
-        
+
         s.insertPartialCustomer();
 
     }
-    
-    
+
     public static void unitSQL08Update(String[] args) throws Exception {
         SQL08Update s = null;
 
         s = new SQL08Update();
 
-        //s.updateMultipleRecordsNative();
-        
+        // s.updateMultipleRecordsNative();
+
         s.updateMultipleRecordsGenQL();
 
     }
-    
-    
+
     public static void unitSQL09Delete(String[] args) throws Exception {
-        SQL09Delete d =  new SQL09Delete();
+        SQL09Delete d = new SQL09Delete();
 
         d.deleteAllRecords();
 
     }
-    
-    
+
     public static void unitSQL11CountAvgSum(String[] args) throws Exception {
         SQL11CountAvgSum s = new SQL11CountAvgSum();
 
-        //s.updateMultipleRecordsNative();
-        
+        // s.updateMultipleRecordsNative();
+
         s.avgExample();
+
+    }
+
+    public static void unitSQL15Joins(String[] args) throws Exception {
+        SQL15Joins s = new SQL15Joins();
+
+        //s.joinKeyValue();
+
+        s.joinSelect3Columns();
+        
+        //s.joinSelect4Columns();
 
     }
 

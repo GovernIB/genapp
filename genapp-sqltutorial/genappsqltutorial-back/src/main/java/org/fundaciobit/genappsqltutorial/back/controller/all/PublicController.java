@@ -9,7 +9,9 @@ import org.fundaciobit.genappsqltutorial.logic.CustomersAllPermissionsService;
 import org.fundaciobit.genappsqltutorial.logic.OrderDetailsAllPermissionsService;
 import org.fundaciobit.genappsqltutorial.model.dao.ICustomersManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IOrderDetailsManager;
+import org.fundaciobit.genappsqltutorial.model.dao.IOrdersManager;
 import org.fundaciobit.genappsqltutorial.model.dao.IProductsManager;
+import org.fundaciobit.genappsqltutorial.model.dao.ISuppliersManager;
 import org.fundaciobit.genappsqltutorial.tutorial.dao.IDAOProvider;
 import org.fundaciobit.genappsqltutorial.tutorial.printer.PrinterResultsManager;
 import org.fundaciobit.genappsqltutorial.tutorial.utils.UnitInfo;
@@ -47,9 +49,15 @@ public class PublicController implements IDAOProvider {
 
     @EJB(mappedName = org.fundaciobit.genappsqltutorial.ejb.ProductsService.JNDI_NAME)
     protected org.fundaciobit.genappsqltutorial.ejb.ProductsService productsEjb;
-    
+
     @EJB(mappedName = OrderDetailsAllPermissionsService.JNDI_NAME)
     protected OrderDetailsAllPermissionsService orderDetailsEjb;
+
+    @EJB(mappedName = org.fundaciobit.genappsqltutorial.ejb.SuppliersService.JNDI_NAME)
+    protected org.fundaciobit.genappsqltutorial.ejb.SuppliersService suppliersEjb;
+    
+    @EJB(mappedName = org.fundaciobit.genappsqltutorial.ejb.OrdersService.JNDI_NAME)
+    protected org.fundaciobit.genappsqltutorial.ejb.OrdersService ordersEjb;
 
     @RequestMapping(value = "/public/index.html")
     public ModelAndView principal(HttpSession session, HttpServletRequest request,
@@ -212,6 +220,11 @@ public class PublicController implements IDAOProvider {
     }
 
     @Override
+    public EntityManager getEntityManagerFactory() throws Exception {
+        return customersEjb.getEntityManagerFactory();
+    }
+
+    @Override
     public ICustomersManager getCustomerManager() throws Exception {
         return this.customersEjb;
     }
@@ -220,17 +233,20 @@ public class PublicController implements IDAOProvider {
     public IProductsManager getProductsManager() throws Exception {
         return this.productsEjb;
     }
-    
+
     @Override
     public IOrderDetailsManager getOrderDetailsManager() throws Exception {
         return this.orderDetailsEjb;
     }
-    
 
     @Override
-    public EntityManager getEntityManagerFactory() throws Exception {
-        // TODO Auto-generated method stub
-        return customersEjb.getEntityManagerFactory();
+    public ISuppliersManager getSuppliersManager() throws Exception {
+        return this.suppliersEjb;
+    }
+    
+    @Override
+    public IOrdersManager getOrdersManager() throws Exception {
+        return this.ordersEjb;
     }
 
 }

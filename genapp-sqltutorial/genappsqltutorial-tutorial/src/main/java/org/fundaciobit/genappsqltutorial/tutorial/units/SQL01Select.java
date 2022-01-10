@@ -35,7 +35,7 @@ public class SQL01Select extends AbstractUnit {
         select = new SelectMultipleKeyValue<String>(CustomersFields.CUSTOMERNAME.select, CustomersFields.CITY.select);
         List<KeyValue<String>> customersFields = this.getCustomerManager().executeQuery(select,
                 null);
-        print(CustomersFields.CUSTOMERNAME, CustomersFields.CITY, customersFields);
+        print(CustomersFields.CUSTOMERNAME.javaName, CustomersFields.CITY.javaName, customersFields);
     }
 
     /**

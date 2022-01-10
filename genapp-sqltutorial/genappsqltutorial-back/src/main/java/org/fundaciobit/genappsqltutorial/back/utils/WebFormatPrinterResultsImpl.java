@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 import org.fundaciobit.genapp.common.KeyValue;
 import org.fundaciobit.genapp.common.query.Field;
-import org.fundaciobit.genapp.common.query.StringField;
+import org.fundaciobit.genapp.common.query.selectcolumn.ISelectNValues;
+import org.fundaciobit.genapp.common.query.selectcolumn.SelectNValues;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
 import org.fundaciobit.genappsqltutorial.model.entity.Products;
 import org.fundaciobit.genappsqltutorial.model.fields.CustomersFields;
 import org.fundaciobit.genappsqltutorial.model.fields.ProductsFields;
 import org.fundaciobit.genappsqltutorial.persistence.CustomersJPA;
 import org.fundaciobit.genappsqltutorial.persistence.ProductsJPA;
+import org.fundaciobit.genappsqltutorial.tutorial.printer.ConsoleTableFormatPrinterResultsImpl;
 import org.fundaciobit.genappsqltutorial.tutorial.printer.IPrinterResults;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -152,9 +154,9 @@ public class WebFormatPrinterResultsImpl implements IPrinterResults {
     }
 
     @Override
-    public <T> void print(StringField columnTitle1, StringField columnTitle2,
+    public <T> void print(String columnTitle1, String columnTitle2,
             List<KeyValue<T>> values) {
-        String[] titles = new String[] { columnTitle1.javaName, columnTitle2.javaName };
+        String[] titles = new String[] { columnTitle1, columnTitle2 };
 
         String[][] data = new String[values.size()][];
 
@@ -174,6 +176,30 @@ public class WebFormatPrinterResultsImpl implements IPrinterResults {
 
         printTableWeb(titles, data);
     }
+    
+    
+    
+    @SuppressWarnings("rawtypes")
+    @Override
+    public void print(List<? extends ISelectNValues> values, String ... titles) throws Exception {
+
+        String[][] data = new String[values.size()][];
+
+        int count = 0;
+
+        for (ISelectNValues kv : values) {
+
+            SelectNValues snv = kv.getSelectNValues();
+
+            data[count] = ConsoleTableFormatPrinterResultsImpl.getRows(snv);
+            count++;
+
+        }
+
+        printTableWeb(titles, data);
+        
+    }
+    
 
     private void printTableWeb(String[] titles, String[][] data) {
 
@@ -248,5 +274,7 @@ public class WebFormatPrinterResultsImpl implements IPrinterResults {
 
         return str.toString();
     }
+
+   
 
 }

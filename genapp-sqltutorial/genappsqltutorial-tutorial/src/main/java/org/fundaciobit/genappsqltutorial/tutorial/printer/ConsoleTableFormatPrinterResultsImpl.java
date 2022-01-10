@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 import org.fundaciobit.genapp.common.KeyValue;
 import org.fundaciobit.genapp.common.query.Field;
-import org.fundaciobit.genapp.common.query.StringField;
+import org.fundaciobit.genapp.common.query.selectcolumn.ISelectNValues;
+import org.fundaciobit.genapp.common.query.selectcolumn.SelectNValues;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
 import org.fundaciobit.genappsqltutorial.model.entity.Products;
 import org.fundaciobit.genappsqltutorial.model.fields.CustomersFields;
@@ -16,7 +17,6 @@ import org.fundaciobit.genappsqltutorial.tutorial.printer.utils.MultiColumnPrint
 
 import java.util.List;
 
-
 /**
  * 
  * @author anadal
@@ -25,31 +25,29 @@ import java.util.List;
 public class ConsoleTableFormatPrinterResultsImpl implements IPrinterResults {
 
     // ================== METODES DE IPRINTRESULTS INTERFACE =====================
-    
+
     @Override
     public <T> void print(List<T> list) {
         String titol = " LIST ";
         print(list, titol);
     }
-    
-    
-    
+
     @Override
     public <T> void print(List<T> list, String titol) {
         System.out.println(" ========== " + titol + " =============");
-        
+
         if (list.isEmpty()) {
             return;
         }
-        
-        //System.out.println(" list.get(0).getClass() => " +  list.get(0).getClass());
-        
+
+        // System.out.println(" list.get(0).getClass() => " + list.get(0).getClass());
+
         Class<?> type = list.get(0).getClass();
-       
+
         if (type.equals(CustomersJPA.class)) {
-            printCustomers((List<Customers>)list);
+            printCustomers((List<Customers>) list);
         } else if (type.equals(ProductsJPA.class)) {
-            printProducts((List<Products>)list);
+            printProducts((List<Products>) list);
         } else {
             for (T c : list) {
                 System.out.println(String.valueOf(c));
@@ -138,8 +136,8 @@ public class ConsoleTableFormatPrinterResultsImpl implements IPrinterResults {
     }
 
     @Override
-    public <T> void print(StringField columnTitle1, StringField columnTitle2, List<KeyValue<T>> values) {
-        String[] titles = new String[] { columnTitle1.javaName, columnTitle2.javaName };
+    public <T> void print(String columnTitle1, String columnTitle2, List<KeyValue<T>> values) {
+        String[] titles = new String[] { columnTitle1, columnTitle2 };
 
         PrintStream printStream = System.out;
 
@@ -158,12 +156,53 @@ public class ConsoleTableFormatPrinterResultsImpl implements IPrinterResults {
         mfc.print();
     }
 
-
-
     @Override
     public void reset() {
         // No fa res
     }
+
+    @Override
+    public void print(List<? extends ISelectNValues> values, String... titles) throws Exception {
+
+        PrintStream printStream = System.out;
+
+        MultiColumnPrinter mfc = new MultiColumnPrinter(printStream, titles);
+
+        for (ISelectNValues kv : values) {
+
+            @SuppressWarnings("rawtypes")
+            SelectNValues snv = kv.getSelectNValues();
+
+            mfc.add(getRows(snv));
+
+        }
+
+        mfc.print();
+
+    }
     
     
+    public static String[] getRows(@SuppressWarnings("rawtypes") SelectNValues rowValues) {
+
+        String[] row = new String[rowValues.getColumns()];
+        
+        switch (rowValues.getColumns()) {
+
+            case 5:
+                row[4] = String.valueOf(rowValues.getValue5());
+            case 4:
+                row[3] = String.valueOf(rowValues.getValue4());
+            case 3:
+                row[2] = String.valueOf(rowValues.getValue3());
+            case 2:
+                row[1] = String.valueOf(rowValues.getValue2());
+            case 1:
+                row[0] = String.valueOf(rowValues.getValue1());
+
+        }
+        
+
+        return row;
+    }
+
 }

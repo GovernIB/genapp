@@ -3,7 +3,7 @@ package org.fundaciobit.genappsqltutorial.tutorial.printer;
 import java.util.List;
 
 import org.fundaciobit.genapp.common.KeyValue;
-import org.fundaciobit.genapp.common.query.StringField;
+import org.fundaciobit.genapp.common.query.selectcolumn.ISelectNValues;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
 import org.fundaciobit.genappsqltutorial.model.entity.Products;
 
@@ -13,8 +13,7 @@ import org.fundaciobit.genappsqltutorial.model.entity.Products;
  *
  */
 public interface IPrinterResults {
-    
-   
+
     @Deprecated
     public <T> void print(List<T> listString) throws Exception;
 
@@ -28,9 +27,11 @@ public interface IPrinterResults {
 
     public void printProducts(List<Products> list) throws Exception;
 
-    public <T> void print(StringField columnTitle1, StringField columnTitle2, List<KeyValue<T>> values)
+    public <T> void print(String columnTitle1, String columnTitle2, List<KeyValue<T>> values)
             throws Exception;
     
+    public void print(List<? extends ISelectNValues> values, String ... columnsTitles) throws Exception;
+
     public void reset();
 
 }
