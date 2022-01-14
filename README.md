@@ -57,10 +57,11 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 * EJBs (lògica) extensibles
 * Llistats i formularis Webs extensibles i totalment configurables
 
-El projecte està partit en tres subprojectes:
+El projecte està partit en 4 subprojectes:
 * genapp-core: classes base i utilitats genèriques (classes del llenguatge de consultes a BBDD, classes d'excepcions de WebServices, ...)
 * genapp-web: classes base i d'utilitat per entorn Web (emprant Spring)
 * genapp-gen: generador de les diferent caps del projecte abans descrita i generador de sql a partir d'hibernate
+* genapp-ws: Centralitza les classes necessaries per fer feina amb WS. utilitzat quan es generen els projectes amb "Generar WS"
 
 ***Documentació***
 
