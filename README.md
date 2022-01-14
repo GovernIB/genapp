@@ -4,9 +4,8 @@
 
 ***Versions***
 
-> - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0))
-> - Versió en Desenvolupament: -
-
+> - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0)) (Obsoleta)
+> - Versió en Desenvolupament: __genapp-2.0__ (branca [genapp-2.0](../../tree/genapp-2.0)) (Correcta)
 
 ***Descripció***
 
@@ -16,16 +15,6 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 * Gestiona la pujada de fitxers
 * EJBs (lògica) extendibles
 * Llistats i formularis Webs extendibles i totalment configurables
-
-El projecte està partit en tres subprojectes:
-* genapp-core: classes base i utilitats genèriques (classes del llenguatge de consultes a BBDD, classes d'excepcions de WebServices, ...)
-* genapp-web: classes base i d'utilitat per entorn Web (emprant Spring)
-* genapp-gen: generador de les diferent caps del projecte abans descrita i generador de sql a partir d'hibernate
-
-***Documentació***
-
-[Documentació de branca estable](../../tree/genapp-1.0/README.md#documentaci%C3%B3)
-
 
 
 ***Característiques***
