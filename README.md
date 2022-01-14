@@ -44,9 +44,10 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
 	
-	
 (2) Es crearà un directori rungenapp, entrar-hi i executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
 
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp.png)
+	
 (3) Seguir les instruccions del diàleg que apareixerà al final.
 
 ***Caracteristiques:***
