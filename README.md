@@ -42,6 +42,9 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 -DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
 ```
 
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
+	
+	
 (2) Es crearà un directori rungenapp, entrar-hi i executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
 
 (3) Seguir les instruccions del diàleg que apareixerà al final.
@@ -60,7 +63,7 @@ El projecte està partit en tres subprojectes:
 
 ***Documentació***
 
-[Documentació](../../tree/genapp-2.0/README.md#documentaci%C3%B3)
+[Accedir a Documentació en linia](../../tree/genapp-2.0/README.md#documentaci%C3%B3)
 
 ***Dades***
 
