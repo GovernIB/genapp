@@ -11,12 +11,44 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 
 ***Com executar***
 
-(1) Executar la següent comanda
-<table><tr><td>mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
--DarchetypeVersion=2.0.0 -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT</td></tr></table>
-(2) Anar al directori rungenapp, executar genapp.bat i pitjar sobre el boto "Generar Taules Base"
+(0) Afegir al fitxer settings.xml ([HOME]/.m2/) la següent entrada dins <settings>\<profiles>:
 
-(3) Seguir les instruccions del diàleg que apareixerà
+```
+<settings  ...>
+  ...
+	<profiles>
+		<profile>
+			<id>governib-maven-repos</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+				<repository>
+					<id>github-governib-maven-repos</id>
+					<name>GitHub GovernIB Maven Repository</name>
+					<url>https://governib.github.io/maven/maven/</url>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+  ...
+</settings>
+```
+
+(1) Executar la següent comanda
+
+```
+mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
+-DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
+```
+
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
+	
+(2) Es crearà un directori rungenapp, entrar-hi i executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
+
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp.png)
+	
+(3) Seguir les instruccions del diàleg que apareixerà al final.
 
 ***Caracteristiques:***
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
@@ -25,14 +57,15 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 * EJBs (lògica) extensibles
 * Llistats i formularis Webs extensibles i totalment configurables
 
-El projecte està partit en tres subprojectes:
+El projecte està partit en 4 subprojectes:
 * genapp-core: classes base i utilitats genèriques (classes del llenguatge de consultes a BBDD, classes d'excepcions de WebServices, ...)
 * genapp-web: classes base i d'utilitat per entorn Web (emprant Spring)
 * genapp-gen: generador de les diferent caps del projecte abans descrita i generador de sql a partir d'hibernate
+* genapp-ws: Centralitza les classes necessaries per fer feina amb WS. utilitzat quan es generen els projectes amb "Generar WS"
 
 ***Documentació***
 
-[Documentació de branca estable](../../tree/genapp-1.0/README.md#documentaci%C3%B3)
+[Accedir a Documentació en linia](../../tree/genapp-2.0/README.md#documentaci%C3%B3)
 
 ***Dades***
 
@@ -46,4 +79,3 @@ El projecte està partit en tres subprojectes:
 * Operating System:  OS Independent (Written in an interpreted language)
 * Programming Language: Java
 * User Interface: Java Swing, Console/Terminal
-
