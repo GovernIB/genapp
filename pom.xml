@@ -10,7 +10,9 @@
     <modules>    
         <module>genapp-core</module>
         <module>genapp-web</module>
-        <module>genapp-ws</module>
+
+      <!--    <module>genapp-ws</module> -->
+
         <module>genapp-sqlgenerator</module>
         <module>genapp-generator</module>
     </modules>
@@ -31,6 +33,43 @@
             <name>GitHub GovernIB Maven Repository</name>
             <url>https://governib.github.io/maven/maven/</url>
         </repository>
+
+		<repository>
+            <id>jboss-releases</id>
+            <name>JBoss Releases Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>jboss-thirdparty-releases</id>
+            <name>JBoss 3rd-party Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>redhat-repository</id>
+            <name>Redhat Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+        </repository>
+
+        <repository>
+            <id>maven2</id>
+            <name>maven2</name>
+            <url>http://maven.geomajas.org/</url>
+        </repository>
+
     </repositories>
 
     <dependencies>
