@@ -7,14 +7,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[EmployeesFields.LASTNAME])?'employees.lastname':__theForm.labels[EmployeesFields.LASTNAME]}" />
+             </label>
               <c:if test="${not empty __theForm.help[EmployeesFields.LASTNAME]}">
               <i class="fas fa-info-circle" title="${__theForm.help[EmployeesFields.LASTNAME]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="employees.lastname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.lastname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.LASTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.lastname"   />
 
            </td>
         </tr>
@@ -25,14 +25,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[EmployeesFields.FIRSTNAME])?'employees.firstname':__theForm.labels[EmployeesFields.FIRSTNAME]}" />
+             </label>
               <c:if test="${not empty __theForm.help[EmployeesFields.FIRSTNAME]}">
               <i class="fas fa-info-circle" title="${__theForm.help[EmployeesFields.FIRSTNAME]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="employees.firstname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.firstname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.FIRSTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.firstname"   />
 
            </td>
         </tr>
@@ -43,10 +43,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[EmployeesFields.BIRTHDATE])?'employees.birthdate':__theForm.labels[EmployeesFields.BIRTHDATE]}" />
+             </label>
               <c:if test="${not empty __theForm.help[EmployeesFields.BIRTHDATE]}">
               <i class="fas fa-info-circle" title="${__theForm.help[EmployeesFields.BIRTHDATE]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
     <form:errors path="employees.birthdate" cssClass="errorField alert alert-danger" />
@@ -83,14 +83,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[EmployeesFields.PHOTO])?'employees.photo':__theForm.labels[EmployeesFields.PHOTO]}" />
+             </label>
               <c:if test="${not empty __theForm.help[EmployeesFields.PHOTO]}">
               <i class="fas fa-info-circle" title="${__theForm.help[EmployeesFields.PHOTO]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="employees.photo" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.photo"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,EmployeesFields.PHOTO)? ' uneditable-input' : ''}"  style="" maxlength="255" path="employees.photo"   />
 
            </td>
         </tr>
@@ -101,10 +101,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[EmployeesFields.NOTES])?'employees.notes':__theForm.labels[EmployeesFields.NOTES]}" />
+             </label>
               <c:if test="${not empty __theForm.help[EmployeesFields.NOTES]}">
               <i class="fas fa-info-circle" title="${__theForm.help[EmployeesFields.NOTES]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
               <form:errors path="employees.notes" cssClass="errorField alert alert-danger" />

@@ -7,14 +7,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.SUPPLIERNAME])?'suppliers.suppliername':__theForm.labels[SuppliersFields.SUPPLIERNAME]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.SUPPLIERNAME]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.SUPPLIERNAME]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="suppliers.suppliername" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.suppliername"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.SUPPLIERNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.suppliername"   />
 
            </td>
         </tr>
@@ -25,14 +25,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.CONTACTNAME])?'suppliers.contactname':__theForm.labels[SuppliersFields.CONTACTNAME]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.CONTACTNAME]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.CONTACTNAME]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="suppliers.contactname" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.contactname"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CONTACTNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.contactname"   />
 
            </td>
         </tr>
@@ -43,10 +43,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.ADDRESS])?'suppliers.address':__theForm.labels[SuppliersFields.ADDRESS]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.ADDRESS]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.ADDRESS]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
               <form:errors path="suppliers.address" cssClass="errorField alert alert-danger" />
@@ -74,14 +74,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.CITY])?'suppliers.city':__theForm.labels[SuppliersFields.CITY]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.CITY]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.CITY]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="suppliers.city" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.city"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.CITY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.city"   />
 
            </td>
         </tr>
@@ -92,14 +92,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.POSTALCODE])?'suppliers.postalcode':__theForm.labels[SuppliersFields.POSTALCODE]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.POSTALCODE]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.POSTALCODE]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="suppliers.postalcode" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.postalcode"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.POSTALCODE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.postalcode"   />
 
            </td>
         </tr>
@@ -110,14 +110,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.COUNTRY])?'suppliers.country':__theForm.labels[SuppliersFields.COUNTRY]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.COUNTRY]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.COUNTRY]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="suppliers.country" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.country"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.COUNTRY)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.country"   />
 
            </td>
         </tr>
@@ -128,14 +128,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[SuppliersFields.PHONE])?'suppliers.phone':__theForm.labels[SuppliersFields.PHONE]}" />
+             </label>
               <c:if test="${not empty __theForm.help[SuppliersFields.PHONE]}">
               <i class="fas fa-info-circle" title="${__theForm.help[SuppliersFields.PHONE]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="suppliers.phone" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.phone"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,SuppliersFields.PHONE)? ' uneditable-input' : ''}"  style="" maxlength="255" path="suppliers.phone"   />
 
            </td>
         </tr>

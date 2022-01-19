@@ -7,14 +7,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[CategoriesFields.CATEGORYNAME])?'categories.categoryName':__theForm.labels[CategoriesFields.CATEGORYNAME]}" />
+             </label>
               <c:if test="${not empty __theForm.help[CategoriesFields.CATEGORYNAME]}">
               <i class="fas fa-info-circle" title="${__theForm.help[CategoriesFields.CATEGORYNAME]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
             <form:errors path="categories.categoryName" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="categories.categoryName"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,CategoriesFields.CATEGORYNAME)? ' uneditable-input' : ''}"  style="" maxlength="255" path="categories.categoryName"   />
 
            </td>
         </tr>
@@ -25,10 +25,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[CategoriesFields.DESCRIPTION])?'categories.description':__theForm.labels[CategoriesFields.DESCRIPTION]}" />
+             </label>
               <c:if test="${not empty __theForm.help[CategoriesFields.DESCRIPTION]}">
               <i class="fas fa-info-circle" title="${__theForm.help[CategoriesFields.DESCRIPTION]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
               <form:errors path="categories.description" cssClass="errorField alert alert-danger" />

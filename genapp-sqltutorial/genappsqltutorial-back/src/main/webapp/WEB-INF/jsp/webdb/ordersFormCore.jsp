@@ -7,10 +7,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.CUSTOMERID])?'orders.customerid':__theForm.labels[OrdersFields.CUSTOMERID]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.CUSTOMERID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.CUSTOMERID]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
           <form:errors path="orders.customerid" cssClass="errorField alert alert-danger" />
@@ -47,10 +47,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.EMPLOYEEID])?'orders.employeeid':__theForm.labels[OrdersFields.EMPLOYEEID]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.EMPLOYEEID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.EMPLOYEEID]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
           <form:errors path="orders.employeeid" cssClass="errorField alert alert-danger" />
@@ -87,10 +87,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.ORDERDATE])?'orders.orderdate':__theForm.labels[OrdersFields.ORDERDATE]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.ORDERDATE]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.ORDERDATE]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
     <form:errors path="orders.orderdate" cssClass="errorField alert alert-danger" />
@@ -127,10 +127,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.SHIPPERID])?'orders.shipperid':__theForm.labels[OrdersFields.SHIPPERID]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.SHIPPERID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.SHIPPERID]}" ></i>
               </c:if>
-             </label>
             </td>
             <td>
           <form:errors path="orders.shipperid" cssClass="errorField alert alert-danger" />
