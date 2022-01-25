@@ -45,8 +45,11 @@ public class SelectGroupByAndCountForYearMonth extends SelectMultiple<GroupByVal
     Object year = objects[1];
     Object month = objects[2];
     
-    final String label = (year == null)? null : (year + "-" + month);
-    final String value = (year == null)? "-" : (year + "-" + month);
+   
+    String additionalZero = (month == null)?"": ( (String.valueOf(month).length() == 1)? "0" : "");
+    
+    final String label = (year == null)? null : (year + "-" + additionalZero + month);
+    final String value = (year == null)? "-" : (year + "-" + additionalZero + month);
 
     return new GroupByValueItem(field, label, value, false, SelectCount.objectToLong(objects[0]));
   }
