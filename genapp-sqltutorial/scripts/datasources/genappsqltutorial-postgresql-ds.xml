@@ -1,10 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<datasources>
-    <local-tx-datasource>
-        <jndi-name>org.fundaciobit.genappsqltutorial.db</jndi-name>
-        <connection-url>jdbc:postgresql://localhost:5432/genappsqltutorial</connection-url>
-        <driver-class>org.postgresql.Driver</driver-class>
-        <user-name>genappsqltutorial</user-name>
-        <password>genappsqltutorial</password>
-    </local-tx-datasource>
-</datasources>
+﻿<datasource jndi-name="java:jboss/datasources/genappsqltutorialDS" pool-name="genappsqltutorialDS" enabled="true" use-java-context="true">
+	<connection-url>jdbc:postgresql://localhost:5432/genappsqltutorial</connection-url>
+	<driver>postgresql</driver>
+	<security>
+		<user-name>genappsqltutorial</user-name>
+		<password>genappsqltutorial</password>
+	</security>
+	<new-connection-sql>
+	BEGIN
+	EXECUTE IMMEDIATE 'ALTER SESSION SET CURRENT_SCHEMA = genappsqltutorial';
+	END;
+	</new-connection-sql>
+</datasource>
