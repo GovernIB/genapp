@@ -1,7 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<datasources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns="http://www.ironjacamar.org/doc/schema"
-             xsi:schemaLocation="http://www.ironjacamar.org/doc/schema http://www.ironjacamar.org/doc/schema/datasources_1_2.xsd">          
+﻿<datasources>
+    ...
     <datasource jndi-name="java:jboss/datasources/genappsqltutorialDS" pool-name="genappsqltutorialDS" enabled="true"
                 use-java-context="true">
         <connection-url>jdbc:postgresql://localhost:5432/genappsqltutorial</connection-url>
@@ -11,5 +9,5 @@
             <password>genappsqltutorial</password>
         </security>
     </datasource>
+    ...
 </datasources>
-
