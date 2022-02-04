@@ -17,6 +17,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Id;
 
 
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "gas_employees" )
 @SequenceGenerator(name="EMPLOYEES_SEQ", sequenceName="gas_employees_seq", allocationSize=1, initialValue=1000)

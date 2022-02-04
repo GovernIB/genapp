@@ -16,6 +16,7 @@ import org.fundaciobit.genappsqltutorial.commons.utils.Configuracio;
  * ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!!
  * @author jagarcia
  */
+@SuppressWarnings("unchecked")
 public class CustomHibernatePersistenceProvider extends HibernatePersistenceProvider {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());

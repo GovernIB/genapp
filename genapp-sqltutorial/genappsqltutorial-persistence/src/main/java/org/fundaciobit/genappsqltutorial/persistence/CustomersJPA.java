@@ -15,6 +15,7 @@ import java.util.Set;
 import javax.persistence.Id;
 
 
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "gas_customers" )
 @SequenceGenerator(name="CUSTOMERS_SEQ", sequenceName="gas_customers_seq", allocationSize=1, initialValue=1000)

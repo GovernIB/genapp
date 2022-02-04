@@ -18,6 +18,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 
 
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "gas_orders" )
 @SequenceGenerator(name="ORDERS_SEQ", sequenceName="gas_orders_seq", allocationSize=1, initialValue=1000)

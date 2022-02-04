@@ -21,6 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.Id;
 
 
+@SuppressWarnings("deprecation")
 @Entity
 @Table(name = "gas_traduccio" )
 @SequenceGenerator(name="TRADUCCIO_SEQ", sequenceName="gas_traduccio_seq", allocationSize=1, initialValue=1000)

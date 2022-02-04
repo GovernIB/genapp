@@ -7,10 +7,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrderDetailsFields.ORDERID])?'orderDetails.orderid':__theForm.labels[OrderDetailsFields.ORDERID]}" />
-             </label>
               <c:if test="${not empty __theForm.help[OrderDetailsFields.ORDERID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrderDetailsFields.ORDERID]}" ></i>
               </c:if>
+             </label>
             </td>
             <td>
           <form:errors path="orderDetails.orderid" cssClass="errorField alert alert-danger" />
@@ -47,10 +47,10 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrderDetailsFields.PRODUCTID])?'orderDetails.productid':__theForm.labels[OrderDetailsFields.PRODUCTID]}" />
-             </label>
               <c:if test="${not empty __theForm.help[OrderDetailsFields.PRODUCTID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrderDetailsFields.PRODUCTID]}" ></i>
               </c:if>
+             </label>
             </td>
             <td>
           <form:errors path="orderDetails.productid" cssClass="errorField alert alert-danger" />
@@ -87,14 +87,14 @@
           <td>
             <label>
               <fmt:message key="${(empty __theForm.labels[OrderDetailsFields.QUANTITY])?'orderDetails.quantity':__theForm.labels[OrderDetailsFields.QUANTITY]}" />
-             </label>
               <c:if test="${not empty __theForm.help[OrderDetailsFields.QUANTITY]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrderDetailsFields.QUANTITY]}" ></i>
               </c:if>
+             </label>
             </td>
             <td>
             <form:errors path="orderDetails.quantity" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? 'true' : 'false'}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? ' uneditable-input' : ''}"  style=""  path="orderDetails.quantity"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? 'true' : 'false'}" cssClass="form-control col-md-9-optional ${gen:contains(__theForm.readOnlyFields ,OrderDetailsFields.QUANTITY)? ' uneditable-input' : ''}"  style=""  path="orderDetails.quantity"   />
 
            </td>
         </tr>
