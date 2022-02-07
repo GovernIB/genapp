@@ -2408,7 +2408,14 @@ public class BackWebGenerator extends IconUtils {
 		case WebType.RichText:
 			code.append("              <form:errors path=\"" + model + "." + modelCamp
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
-			code.append("              <form:textarea");
+			
+			if (webType == WebType.TextArea) {
+			    code.append("  <table style=\"width:100%\">\n");
+			    code.append("  <tr>\n");
+			    code.append("  <td>\n");
+			}
+			
+			code.append("       <form:textarea");
 			if (webType == WebType.RichText) {
 				code.append(
 						" cssClass=\" ${" + readOnlyCondition + "? 'mceEditorReadOnly':'mceEditor'}\" "); // col-md-9-optional
@@ -2420,9 +2427,11 @@ public class BackWebGenerator extends IconUtils {
 			code.append(" path=\"" + path + "\"  />\n");
 			// Wrap
 			if (webType == WebType.TextArea) {
+			    code.append("   </td>\n");
+			    code.append("   <td style=\"width:40px\">\n");
 				code.append("      <div id=\"dropdownMenuButton_" + modelCamp+ "\" style=\"vertical-align:top;display:inline;position:relative;\">\n");
-				code.append("        <button  class=\"btn btn-sm dropdown-toggle\" type=\"button\" style=\"margin-left:0px;\"><span class=\"caret\"></span></button>\n");
-				code.append("        <div id=\"dropdownMenuContainer_" + modelCamp+ "\" class=\"dropdown-menu\">\n");
+				code.append("        <button  class=\"btn btn-secondary btn-sm dropdown-toggle\" type=\"button\" style=\"margin-left:0px;\"><span class=\"caret\"></span></button>\n");
+				code.append("        <div id=\"dropdownMenuContainer_" + modelCamp+ "\" class=\"dropdown-menu dropdown-menu-right\">\n");
 				code.append("          <a class=\"dropdown-item\" href=\"#\" onclick=\"javascript:var ta=document.getElementById('"
 						+ path + "'); ta.wrap='off';\" >No Wrap</a>\n");
 				code.append("          <a class=\"dropdown-item\"  href=\"#\" onclick=\"javascript:var ta=document.getElementById('"
@@ -2438,6 +2447,9 @@ public class BackWebGenerator extends IconUtils {
 						+ "                 return false;\n"
 						+ "				});\n"
 						+ "      </script>");
+				code.append("   </td>\n"); 
+				code.append("   </tr>\n");
+				code.append("   </table>\n"); 
 			}
 
 			return code.toString();
