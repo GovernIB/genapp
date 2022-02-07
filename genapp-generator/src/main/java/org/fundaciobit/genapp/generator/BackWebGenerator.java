@@ -217,7 +217,7 @@ public class BackWebGenerator extends IconUtils {
 
 				code.append("          <%@include file=\"" + model + "ListButtons.jsp\" %>\n\n");
 
-				code.append("            \n");
+				code.append("\n");
 				code.append("        </tr>\n");
 				code.append("\n");
 
@@ -2102,7 +2102,7 @@ public class BackWebGenerator extends IconUtils {
 						// code.append(" <tr>\n");
 						code.append("        <tr id=\"" + model + "_" + modelCamp + "_rowid\">\n");
 
-						code.append("          <td>\n");
+						code.append("          <td id=\"" + model + "_" + modelCamp + "_columnlabelid\">\n");
 						code.append("            <label>\n");
 						code.append("              <fmt:message key=\"" + "${(empty " + instanceForm + ".labels["
 								+ modelCampMay + "])?'" + model + "." + modelCamp + "':" + instanceForm + ".labels["
@@ -2115,7 +2115,7 @@ public class BackWebGenerator extends IconUtils {
 						code.append("              </c:if>\n");
 						
 						code.append("            </td>\n");
-						code.append("            <td>\n");
+						code.append("          <td id=\"" + model + "_" + modelCamp + "_columnvalueid\">\n");
 						code.append(codeField);
 						code.append("           </td>\n");
 						code.append("        </tr>\n");
@@ -2248,11 +2248,9 @@ public class BackWebGenerator extends IconUtils {
 			code.append("               <form:errors path=\"" + fullmodel
 					+ ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"errorField alert alert-danger\"/>\n");
 			String maxlength = "maxlength=\"4000\" ";
-			
-			
+
 			boolean textarea= "textarea".equalsIgnoreCase(field.getMinAllowedValue());
-			
-			
+
 			String type;
 			String config;
 			if (textarea) {
@@ -2485,8 +2483,8 @@ public class BackWebGenerator extends IconUtils {
 			code.append("    <form:errors path=\"" + model + "." + modelCamp
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			
-			code.append("    <div class=\"container\">\n");
-			code.append("      <div class=\"row\">\n");
+			//code.append("    <div class=\"\">\n"); // "    <div class=\"container\">\n"
+			//code.append("      <div class=\"row\">\n");
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
@@ -2501,7 +2499,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                    </c:if>\n");
 			code.append("                </div>\n");
 			code.append("            </div>\n");
-			code.append("        </div>\n");
+			//code.append("        </div>\n");
 
 			code.append("        <script type=\"text/javascript\">\n");
 			code.append("            $(function () {\n");
@@ -2514,7 +2512,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                });\n");
 			code.append("            });\n");
 			code.append("        </script>");
-			code.append("      </div>\n");
+			//code.append("      </div>\n");
 
 			
 			return code.toString();
@@ -2524,8 +2522,8 @@ public class BackWebGenerator extends IconUtils {
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 
 
-			code.append("    <div class=\"container\">\n");
-			code.append("      <div class=\"row\">\n");
+			//code.append("    <div class=\"container\">\n");
+			//code.append("      <div class=\"row\">\n");
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
@@ -2540,7 +2538,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                    </c:if>\n");
 			code.append("                </div>\n");
 			code.append("            </div>\n");
-			code.append("        </div>\n");
+			//code.append("        </div>\n");
 		
 			code.append("        <script type=\"text/javascript\">\n");
 			code.append("            $(function () {\n");
@@ -2553,40 +2551,17 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                });\n");
 			code.append("            });\n");
 			code.append("        </script>");
-			code.append("      </div>\n");
+			//code.append("      </div>\n");
 
-			
-			/* XYZ ZZZ
-			code.append("              <div id=\"" + modelCamp + "\" class=\"input-append\">\n");
-			code.append("                <form:input " + formInputReadOnly.replace("'input", "'input-small")
-					+ " path=\"" + model + "." + modelCamp + "\" />\n");
-			code.append("                <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-			code.append("                <span class=\"add-on\">\n");
-			code.append("                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-			code.append("                  </i>\n");
-			code.append("                </span>\n");
-			code.append("              </c:if>\n");
-			code.append("              </div>            \n");
-			code.append("              <script type=\"text/javascript\">                \n");
-			code.append("                $(function() {\n");
-			code.append("                  $('#" + modelCamp + "').datetimepicker({\n");
-			code.append("                    language: '${lang}', \n");
-			code.append(
-					"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getTimePattern(), 'a')?'true' : 'false'}\"/>,\n");
-			code.append("                    format:  '${gen:getJSTimePattern()}',\n");
-			code.append("                    pickDate: false,\n");
-			code.append("                  });\n");
-			code.append("                });\n");
-			code.append("              </script>\n");
-			*/
+
 			return code.toString();
 
 		case WebType.DateTime:
 			code.append("              <form:errors path=\"" + model + "." + modelCamp
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			
-			code.append("    <div class=\"container\">\n");
-			code.append("      <div class=\"row\">\n");
+			//code.append("    <div class=\"container\">\n");
+			//code.append("      <div class=\"row\">\n");
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
@@ -2613,33 +2588,10 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                });\n");
 			code.append("            });\n");
 			code.append("          </script>");
-			code.append("        </div>\n");
-			code.append("      </div>\n");
+			//code.append("        </div>\n");
+			//code.append("      </div>\n");
 			
-			/* XYZ ZZZ
-			code.append("              <div id=\"" + modelCamp + "\" class=\"input-append\">\n");
-			code.append("                <form:input " + formInputReadOnly.replace("'input", "'input-medium")
-					+ " path=\"" + model + "." + modelCamp + "\" />\n");
-			code.append("                <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-			code.append("                <span class=\"add-on\">\n");
-			code.append("                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-			code.append("                  </i>\n");
-			code.append("                </span>\n");
-			code.append("              </c:if>\n");
-			code.append("              </div>\n");
-			code.append("              <script type=\"text/javascript\">                \n");
-			code.append("                $(function() {\n");
-			code.append("                  $('#" + modelCamp + "').datetimepicker({\n");
-			code.append("                    language: '${lang}',\n");
-			code.append(
-					"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getDateTimePattern(), 'a')?'true' : 'false'}\"/>,\n");
-			code.append("                    format:  '${gen:getJSDateTimePattern()}',\n");
-			code.append("                    pickTime: true,\n");
-			code.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
-			code.append("                  });\n");
-			code.append("                });\n");
-			code.append("              </script>\n");
-			*/
+
 			return code.toString();
 
 		// TODO S'han de fer que tots els camps que referenciin a la taula fitxer
@@ -2675,7 +2627,7 @@ public class BackWebGenerator extends IconUtils {
 	    //return "";
 	    
 	    
-		if (size < 8) {
+		if (size < 10) {
 			return "w-25";
 		}
 		/*
@@ -2683,10 +2635,10 @@ public class BackWebGenerator extends IconUtils {
 			return "w-25";
 		}
 		*/
-		if (size < 18) {
+		if (size < 40) {
 			return "w-50";
 		}
-		if (size < 26) {
+		if (size < 80) {
 			return "w-75";
 		}
 		
