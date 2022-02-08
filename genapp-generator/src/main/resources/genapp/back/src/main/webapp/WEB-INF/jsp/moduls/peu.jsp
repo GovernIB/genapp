@@ -1,12 +1,13 @@
 <#assign symbol_dollar = "$">
 <%@page import="${package}.logic.utils.LogicUtils"%>
 <%@page import="${package}.commons.utils.Configuracio"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%><%@ include
-	file="/WEB-INF/jsp/moduls/includes.jsp"%>
-
+<%@page contentType="text/html;charset=UTF-8" language="java"%>
+<%@include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
 <footer id="footer">
+
 	<div class="row mr-auto ml-3 mr-3 peuResponsive">
+
 		<!-- Esquerra -->
 		<div class="col-4 pt-2 elementPeuResponsive">
 			<strong class="font-weight-bold h6">
@@ -27,12 +28,10 @@
 			<span style="padding-top: 2px">
 			 <i><fmt:message key="desenvolupatper" /></i></span>
 			 </small>
-
-
 		</div>
+
 		<!-- Centre esquerra -->
-		<div
-			class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
+		<div class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
 
 			<a styleClass="text-dark linkPeu" href="/mapaweb"> <fmt:message
 					key="labels.mapaweb" />
@@ -47,8 +46,7 @@
 		</div>
 
 		<!-- Dreta -->
-		<div class="col-4 text-center" >
-		  <center>
+		<div class="col-4 text-right" >
 			<a href="http://otaeweb.ibit.org/" style="padding-top: 10px" target="_blank"> <img
 				src="<c:url value="/img/fundaciobit-logo-peu.png"/>"
 				alt="Fundacio Bit" />
@@ -57,7 +55,6 @@
 			<!-- Button to trigger modal -->
 			<small><a href="#modalAjuda" role="button"
 				data-toggle="modal"><fmt:message key="ajuda.necessitau" /></a></small>
-		  </center>
 		</div>
 
 	</div>
@@ -81,10 +78,11 @@
                         <fmt:message key="ajuda.missatge" />
                     </p>
                     <ul>
-                        <li><fmt:message key="ajuda.viatelefon" /> 123456789</li>
-                        <li><fmt:message key="ajuda.viaweb" /> http://www.help.hl/help</li>
-                        <li><fmt:message key="ajuda.viaemail" /><a
-                    href="mailto: help@help.hl"> help@help.hl</a></li>
+                        <li><fmt:message key="ajuda.viatelefon" />123456789</li>
+                        <li><fmt:message key="ajuda.viaweb" />http://www.help.hl/help</li>
+                        <li><fmt:message key="ajuda.viaemail" />
+                            <a href="mailto: help@help.hl"> help@help.hl</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="modal-footer">

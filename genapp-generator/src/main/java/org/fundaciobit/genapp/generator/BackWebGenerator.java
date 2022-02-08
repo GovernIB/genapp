@@ -2005,7 +2005,7 @@ public class BackWebGenerator extends IconUtils {
 				codeButton.append("    </c:if>\n");
 				// BOTO CANCEL.LAR
 				codeButton.append("    <c:if test=\"${" + instanceForm + ".cancelButtonVisible}\">\n");
-				codeButton.append("    <input type=\"button\" class=\"btn\" onclick=\"goTo('<c:url value=\"${contexte}"
+				codeButton.append("    <input type=\"button\" class=\"btn btn-secondary\" onclick=\"goTo('<c:url value=\"${contexte}"
 						+ pkMapping + "/cancel\"/>')\" value=\"<fmt:message key=\"genapp.cancel\"/>\">\n");
 				codeButton.append("    </c:if>\n");
 				// BOTO DELETE
