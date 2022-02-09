@@ -26,7 +26,7 @@ function reassignAction() {
 }
 </script>
 <div class="row" id="${dollar}{formName}_pagination"
-    style="width: 100%; text-align: center;">
+    style="width: 100%;">
 
     <div class="col-3" style="text-align: left;"
         id="${dollar}{formName}_pagination_left">
@@ -48,7 +48,8 @@ function reassignAction() {
     </div>
 
 
-    <div class="col-6 text-center">
+    <div class="col-6 text-center"
+        id="${dollar}{formName}_pagination_center">
         <c:if test="${dollar}{not empty __theFilterForm.itemsPerPage}">
 
             <c:url var="firstUrl" value="${dollar}{contexte}/list/1" />
@@ -61,8 +62,7 @@ function reassignAction() {
 
 
             <nav aria-label="Page navigation">
-                <ul class="pagination pagination-sm"
-                    id="${dollar}{formName}_pagination_center">
+                <ul class="pagination pagination-sm" style="display:inline-flex;">
                     <c:choose>
                         <c:when test="${dollar}{currentIndex == 1}">
                             <li class="page-item disabled"><a
@@ -93,8 +93,9 @@ function reassignAction() {
                             <c:otherwise>
                                 <li class="page-item"><a
                                     class="page-link" href="#"
-                                    onclick="submitForm('${dollar}{pageUrl}', false)"><c:out
-                                            value="${dollar}{i}" /></a></li>
+                                    onclick="submitForm('${dollar}{pageUrl}', false)">
+                                        <c:out value="${dollar}{i}" />
+                                </a></li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
