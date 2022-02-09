@@ -15,6 +15,11 @@ import javax.swing.JScrollPane;
 
 import org.fundaciobit.genapp.TableInfo;
 
+/**
+ * 
+ * @author anadal
+ *
+ */
 public class SelectionTablesDialog extends JDialog implements ActionListener {
   
   /**
@@ -37,7 +42,7 @@ public class SelectionTablesDialog extends JDialog implements ActionListener {
   }
   
   public SelectionTablesDialog(TableInfo[] items, String[] selectedItems) {
-    super((Frame)null, "Select tables",true);
+    super((Frame)null, "Selecciona totes les taules del projecte",true);
     //this.items = items;
     setSize(300, 600);
     
