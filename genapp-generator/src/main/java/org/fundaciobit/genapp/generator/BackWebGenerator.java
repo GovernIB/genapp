@@ -553,29 +553,7 @@ public class BackWebGenerator extends IconUtils {
 									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 							
 							codeFilterBy.append(generateTimePicker(modelCamp + "Desde", modelCamp + "Desde"));
-							/*
-							codeFilterBy.append(
-									"              <div id=\"" + modelCamp + "Desde\" class=\"input-append\">\n");
-							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
-									+ modelCamp + "Desde\" />\n");
-							codeFilterBy.append("                <span class=\"add-on\">\n");
-							codeFilterBy.append(
-									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-							codeFilterBy.append("                  </i>\n");
-							codeFilterBy.append("                </span>\n");
-							codeFilterBy.append("              </div>\n");
-							codeFilterBy.append("              <script type=\"text/javascript\">                \n");
-							codeFilterBy.append("                $(function() {\n");
-							codeFilterBy.append("                  $('#" + modelCamp + "Desde').datetimepicker({\n");
-							codeFilterBy.append("                    language: '${lang}', \n");
-							codeFilterBy.append(
-									"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getTimePattern(), 'a')?'true' : 'false'}\"/>,\n");
-							codeFilterBy.append("                    format:  '${gen:getJSTimePattern()}',\n");
-							codeFilterBy.append("                    pickDate: false,\n");
-							codeFilterBy.append("                  });\n");
-							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");
-							*/
+
 							codeFilterBy.append("              \n");
 							codeFilterBy.append("              \n");
 							
@@ -584,33 +562,7 @@ public class BackWebGenerator extends IconUtils {
 							
 							
 							codeFilterBy.append(generateTimePicker(modelCamp + "Fins", modelCamp + "Fins"));
-                            /* XYZ ZZZ TODO
-							
-							
-							codeFilterBy.append(
-									"              <div id=\"" + modelCamp + "Fins\" class=\"input-append\">\n");
-							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
-									+ modelCamp + "Fins\" />\n");
-							codeFilterBy.append("                <span class=\"add-on\">\n");
-							
-							
-							codeFilterBy.append(
-									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-							codeFilterBy.append("                  </i>\n");
-							codeFilterBy.append("                </span>\n");
-							codeFilterBy.append("              </div>            \n");
-							codeFilterBy.append("              <script type=\"text/javascript\">                \n");
-							codeFilterBy.append("                $(function() {\n");
-							codeFilterBy.append("                  $('#" + modelCamp + "Fins').datetimepicker({\n");
-							codeFilterBy.append("                    language: '${lang}', \n");
-							codeFilterBy.append(
-									"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getTimePattern(), 'a')?'true' : 'false'}\"/>,\n");
-							codeFilterBy.append("                    format:  '${gen:getJSTimePattern()}',\n");
-							codeFilterBy.append("                    pickDate: false,\n");
-							codeFilterBy.append("                  });\n");
-							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");
-							codeFilterBy.append("              \n");*/
+
 							codeFilterBy.append("            </div>\n");
 							
 							codeFilterBy.append("\n");
@@ -629,59 +581,13 @@ public class BackWebGenerator extends IconUtils {
 									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 							
 							codeFilterBy.append(generateDatePicker(modelCamp + "Desde", modelCamp + "Desde"));
-							/*
-							codeFilterBy.append(
-									"              <div id=\"" + modelCamp + "Desde\" class=\"input-append\">\n");
-							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
-									+ modelCamp + "Desde\" />\n");
-							codeFilterBy.append("                <span class=\"add-on\">\n");
-							codeFilterBy.append(
-									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-							codeFilterBy.append("                  </i>\n");
-							codeFilterBy.append("                </span>\n");
-							codeFilterBy.append("              </div>\n");
-							codeFilterBy.append("              <script type=\"text/javascript\">                \n");
-							codeFilterBy.append("                $(function() {\n");
-							codeFilterBy.append("                  $('#" + modelCamp + "Desde').datetimepicker({\n");
-							codeFilterBy.append("                    language: '${lang}',\n");
-							codeFilterBy.append(
-									"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getDatePattern(), 'a')?'true' : 'false'}\"/>,\n");
-							codeFilterBy.append("                    format:  '${gen:getJSDatePattern()}',\n");
-							codeFilterBy.append("                    pickTime: false,\n");
-							codeFilterBy.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
-							codeFilterBy.append("                  });\n");
-							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");
-							codeFilterBy.append("              </script>\n");
-							*/
+
 							codeFilterBy.append("\n");
 							codeFilterBy.append(
 									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
 							
 							codeFilterBy.append(generateDatePicker(modelCamp + "Fins", modelCamp + "Fins"));
-							/*
-							codeFilterBy.append(
-									"              <div id=\"" + modelCamp + "Fins\" class=\"input-append\">\n");
-							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
-									+ modelCamp + "Fins\" />\n");
-							codeFilterBy.append("                <span class=\"add-on\">\n");
-							codeFilterBy.append(
-									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-							codeFilterBy.append("                  </i>\n");
-							codeFilterBy.append("                </span>\n");
-							codeFilterBy.append("              </div>\n");
-							codeFilterBy.append("              <script type=\"text/javascript\">                \n");
-							codeFilterBy.append("                $(function() {\n");
-							codeFilterBy.append("                  $('#" + modelCamp + "Fins').datetimepicker({\n");
-							codeFilterBy.append("                    language: '${lang}',\n");
-							codeFilterBy.append(
-									"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getDatePattern(), 'a')?'true' : 'false'}\"/>,\n");
-							codeFilterBy.append("                    format:  '${gen:getJSDatePattern()}',\n");
-							codeFilterBy.append("                    pickTime: false,\n");
-							codeFilterBy.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
-							codeFilterBy.append("                  });\n");
-							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");*/
+
 							codeFilterBy.append("            </div>\n");
 							
 
@@ -700,62 +606,12 @@ public class BackWebGenerator extends IconUtils {
 									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 							
 							codeFilterBy.append(generateDateTimePicker(modelCamp + "Desde", modelCamp + "Desde"));
-							/*
-							codeFilterBy.append(
-									"              <div id=\"" + modelCamp + "Desde\" class=\"input-append\">\n");
-							codeFilterBy.append("                <form:input cssClass=\"input-large\" path=\""
-									+ modelCamp + "Desde\" />\n");
-							codeFilterBy.append("                <span class=\"add-on\">\n");
-							codeFilterBy.append(
-									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-							codeFilterBy.append("                  </i>\n");
-							codeFilterBy.append("                </span>\n");
-							codeFilterBy.append("              </div>\n");
-							codeFilterBy.append("              <script type=\"text/javascript\">                \n");
-							codeFilterBy.append("                $(function() {\n");
-							codeFilterBy.append("                  $('#" + modelCamp + "Desde').datetimepicker({\n");
-							codeFilterBy.append("                    language: '${lang}',\n");
-							codeFilterBy.append(
-									"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getDateTimePattern(), 'a')?'true' : 'false'}\"/>,\n");
-							codeFilterBy.append("                    format:  '${gen:getJSDateTimePattern()}',\n");
-							codeFilterBy.append("                    pickTime: true,\n");
-							codeFilterBy.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
-							codeFilterBy.append("                  });\n");
-							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");
-							*/
-							
-							
+
 							codeFilterBy.append(
 									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
-							
-							
+
 							codeFilterBy.append(generateDateTimePicker(modelCamp + "Fins", modelCamp + "Fins"));
-							
-							/*
-							codeFilterBy.append(
-									"              <div id=\"" + modelCamp + "Fins\" class=\"input-append\">\n");
-							codeFilterBy.append("                <form:input cssClass=\"input-large\" path=\""
-									+ modelCamp + "Fins\" />\n");
-							codeFilterBy.append("                <span class=\"add-on\">\n");
-							codeFilterBy.append(
-									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
-							codeFilterBy.append("                  </i>\n");
-							codeFilterBy.append("                </span>\n");
-							codeFilterBy.append("              </div>\n");
-							codeFilterBy.append("              <script type=\"text/javascript\">                \n");
-							codeFilterBy.append("                $(function() {\n");
-							codeFilterBy.append("                  $('#" + modelCamp + "Fins').datetimepicker({\n");
-							codeFilterBy.append("                    language: '${lang}',\n");
-							codeFilterBy.append(
-									"                    pick12HourFormat: <c:out value=\"${fn:contains(gen:getDateTimePattern(), 'a')?'true' : 'false'}\"/>,\n");
-							codeFilterBy.append("                    format:  '${gen:getJSDateTimePattern()}',\n");
-							codeFilterBy.append("                    pickTime: true,\n");
-							codeFilterBy.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
-							codeFilterBy.append("                  });\n");
-							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");
-							*/
+
 							codeFilterBy.append("            </div>\n");
 							
 							codeFilterBy.append("\n");
@@ -960,80 +816,6 @@ public class BackWebGenerator extends IconUtils {
 				
 				
 				
-				
-				
-				/*
-				
-				codeGroupBy.append("      <ul class=\"tree\" style=\"margin:3px; padding:0px; float: left; \">\n");
-				codeGroupBy.append("\n");
-				codeGroupBy.append("        <li>\n");
-				codeGroupBy.append(
-						"          <a href=\"#\" role=\"branch\" class=\"tree-toggle\" data-toggle=\"branch\" data-value=\" \"><b><fmt:message key=\"genapp.form.groupby\"/></b></a>\n");
-				codeGroupBy.append("          <ul class=\"branch in\">\n");
-				// Compatibilitat IE8
-				codeGroupBy.append("              <c:if test=\"${IE8}\">\n");
-				codeGroupBy.append(
-						"                <c:set var=\"linkItem\" value=\"onclick=\\\"groupByFieldValue(' ',' ')\\\"\" />\n");
-				codeGroupBy.append("              </c:if>\n");
-				codeGroupBy.append(
-						"              <li><a href=\"#\" role=\"leaf\" data-value=\"\" ${linkItem} >&raquo; <span style=\"${("
-								+ instanceFilterForm
-								+ ".groupBy eq null)? \"font-weight: bold;\" : \"\"}\"><fmt:message key=\"genapp.form.groupby.noneitem\"/></span></a></li>\n");
-				codeGroupBy.append("\n");
-				codeGroupBy.append("\n");
-				codeGroupBy.append("              <c:forEach  var=\"groupby_item\"  items=\"${groupby_items}\"> \n");
-				codeGroupBy.append("                <li>\n");
-				codeGroupBy.append(
-						"                  <a href=\"#\" role=\"branch\" class=\"tree-toggle ${groupby_item.selected? \"\" : \"closed\"}\" data-toggle=\"branch\" data-value=\"${groupby_item.value}\">\n");
-				codeGroupBy.append(
-						"                    <span style=\"${groupby_item.selected? \"font-weight: bold;\" : \"\"}\">\n");
-				codeGroupBy.append("                    <c:set var=\"code\" value=\"${(empty " + instanceFilterForm
-						+ ".labels[groupby_item.field])? groupby_item.codeLabel:" + instanceFilterForm
-						+ ".labels[groupby_item.field]}\" />\n");
-				codeGroupBy.append("                        <c:if test=\"${!fn:startsWith(code,'=')}\" >\n");
-				codeGroupBy.append("                        <fmt:message key=\"${code}\">\n");
-				codeGroupBy.append(
-						"                              <fmt:param><fmt:message key=\"${groupby_item.codeParamLabel}\"/></fmt:param>\n");
-				codeGroupBy.append("                        </fmt:message>\n");
-				codeGroupBy.append("                        </c:if>\n");
-				codeGroupBy.append("                        <c:if test=\"${fn:startsWith(code,'=')}\" >\n");
-				codeGroupBy.append(
-						"                        <c:out value=\"${fn:substringAfter(code, '=')}\" escapeXml=\"false\" />\n");
-				codeGroupBy.append("                        </c:if>\n");
-				codeGroupBy.append("                    </span>\n");
-				codeGroupBy.append("                  </a>\n");
-				codeGroupBy.append("                  <%-- AQUI VANS ELS VALUES --%>\n");
-				// Compatibilitat IE8
-				codeGroupBy.append(
-						"                  <ul class=\"${(groupby_item.selected || IE8)? \"branch in\" : \"branch\"}\">\n");
-				codeGroupBy.append(
-						"                  <c:forEach  var=\"groupbyvalue_item\"  items=\"${groupby_item.values}\">\n");
-				codeGroupBy.append("                    <li>\n");
-				// Compatibilitat IE8
-				codeGroupBy.append("                      <c:if test=\"${IE8}\">\n");
-				codeGroupBy.append(
-						"                        <c:set var=\"linkItem\" value=\"onclick=\\\"groupByFieldValue('${groupby_item.value}','${groupbyvalue_item.value}')\\\"\" />\n");
-				codeGroupBy.append("                      </c:if>\n");
-				codeGroupBy.append(
-						"                      <a href=\"#\" role=\"leaf\" data-value=\"${groupbyvalue_item.value}\" ${linkItem} >\n");
-				codeGroupBy.append(
-						"                        &raquo; <span style=\"${groupbyvalue_item.selected? \"font-weight: bold;\" : \"\"}\" >\n");
-				codeGroupBy.append(
-						"                          ${ (empty groupbyvalue_item.codeLabel) ? buit : groupbyvalue_item.codeLabel } (${groupbyvalue_item.count})\n");
-				// code.append(" ${groupbyvalue_item.codeLabel}
-				// (${groupbyvalue_item.count})\n");
-				codeGroupBy.append("                      </span>\n");
-				codeGroupBy.append("                      </a>\n");
-				codeGroupBy.append("                    </li>\n");
-				codeGroupBy.append("                  </c:forEach>\n");
-				codeGroupBy.append("                  </ul>\n");
-				codeGroupBy.append("                </li>\n");
-				codeGroupBy.append("              </c:forEach>\n");
-				codeGroupBy.append("\n");
-				codeGroupBy.append("          </ul>\n");
-				codeGroupBy.append("        </li>\n");
-				codeGroupBy.append("      </ul>\n");
-				*/
 				
 				codeGroupBy.append("\n");
 				codeGroupBy.append("  </div>\n");
@@ -1291,80 +1073,88 @@ public class BackWebGenerator extends IconUtils {
 					case WebType.PrimaryKey:
 					case WebType.Query: // TODO FALTA FER REFERENCIA A NOM de la taula desti
 					case WebType.ComboBox:
-
-						codeCoreContent.append("          <td>\n");
-						ForeignKey fk = field.getWebFieldInfo().getForeignKey();
-						if (fk == null && field.getWebFieldInfo().getWebtype() != WebType.ComboBox) {
-							// System.out.println(" ERROR DE QUERY: " + table.getNameJava() + "::" +
-							// field.getJavaName());
-							// throw new Exception();
-							codeCoreContent.append("          ");
-							/*
-							 * WWW if (field.traduible) { code.append("<fmt:message key=\""); }
-							 */
-
-							if (field.getWebFieldInfo().getWebtype() == WebType.URL) {
-								codeCoreContent.append(
-										"             <c:if test=\"${ not empty " + model + "." + modelCamp + "}\">\n");
-								codeCoreContent.append("               <a href=\"${" + model + "." + modelCamp
-										+ "}\" target=\"_blank\">" + "${" + model + "." + modelCamp + "}</a>\n");
-								codeCoreContent.append("             </c:if>\n");
-							} else {
-								codeCoreContent.append("${" + model + "." + modelCamp + "}");
-							}
-							/*
-							 * WWW if (field.traduible) { code.append("\"/>"); }
-							 */
-							codeCoreContent.append("\n");
-
-						} else {
-							TableInfo transTable = CodeGenUtils.getSqlTableTranslation(project.getTables());
-
-							if (transTable != null && fk != null && transTable.getName().equals(fk.getTable())) {
-								codeCoreContent.append(
-										"          <c:set var=\"tmp\">${" + model + "." + modelCamp + "}</c:set>\n");
-								codeCoreContent.append("          <c:if test=\"${not empty tmp}\">\n");
-
-								if (modelCamp.endsWith("ID")) {
-									modelCamp = modelCamp.substring(0, modelCamp.length() - 2);
-								}
-
-								codeCoreContent.append(
-										"          ${" + model + "." + modelCamp + ".traduccions[lang].valor}\n");
-								codeCoreContent.append("          </c:if>\n");
-
-							} else {
-								// Mostram d'un mapping
-								String fkTableName = "Values";
-								if (field.getWebFieldInfo().getWebtype() == WebType.Query) {
-									TableInfo fkTable = CodeGenUtils.findTableInfoByTableSQLName(project,
-											fk.getTable());
-									fkTableName = fkTable.getNameJava();
-								}
-
-								// <fmt:message key="${estatsInicials[estatTxt]}" />
-								// boolean traduir = BackGenerator.fillReferences(fkTable, new StringBuffer());
-								codeCoreContent.append(
-										"          <c:set var=\"tmp\">${" + model + "." + modelCamp + "}</c:set>\n");
-								codeCoreContent.append("          <c:if test=\"${not empty tmp}\">\n");
-								codeCoreContent.append("          ");
-								/*
-								 * if (traduir) { code.append("<fmt:message key=\""); }
-								 */
-								String name = Character.toUpperCase(field.javaName.charAt(0))
-										+ field.javaName.substring(1);
-
-								codeCoreContent.append(
-										"${" + instanceFilterForm + ".mapOf" + fkTableName + "For" + name + "[tmp]}");
-								/*
-								 * if (traduir) { code.append("\"/>"); }
-								 */
-								codeCoreContent.append("\n");
-								codeCoreContent.append("          </c:if>\n");
-							}
-						}
-						codeCoreContent.append("          </td>\n");
-						continue;
+						/*
+						// CAS ESPECIAL ÉS COMBOBOX DE BOOLEAN
+			            if (field.getJavaType().equals(Boolean.class) || field.getJavaType().equals(Boolean.TYPE)) {
+			                // SALTAM A L'APARTAT DE CHECKBOX
+			            } else*/ 
+			            {
+						
+			                codeCoreContent.append("          <td>\n");
+    						ForeignKey fk = field.getWebFieldInfo().getForeignKey();
+    						if (fk == null && field.getWebFieldInfo().getWebtype() != WebType.ComboBox) {
+    							// System.out.println(" ERROR DE QUERY: " + table.getNameJava() + "::" +
+    							// field.getJavaName());
+    							// throw new Exception();
+    							codeCoreContent.append("          ");
+    							/*
+    							 * WWW if (field.traduible) { code.append("<fmt:message key=\""); }
+    							 */
+    
+    							if (field.getWebFieldInfo().getWebtype() == WebType.URL) {
+    								codeCoreContent.append(
+    										"             <c:if test=\"${ not empty " + model + "." + modelCamp + "}\">\n");
+    								codeCoreContent.append("               <a href=\"${" + model + "." + modelCamp
+    										+ "}\" target=\"_blank\">" + "${" + model + "." + modelCamp + "}</a>\n");
+    								codeCoreContent.append("             </c:if>\n");
+    							} else {
+    								codeCoreContent.append("${" + model + "." + modelCamp + "}");
+    							}
+    							/*
+    							 * WWW if (field.traduible) { code.append("\"/>"); }
+    							 */
+    							codeCoreContent.append("\n");
+    
+    						} else {
+    							TableInfo transTable = CodeGenUtils.getSqlTableTranslation(project.getTables());
+    
+    							if (transTable != null && fk != null && transTable.getName().equals(fk.getTable())) {
+    							    // Es un camp de Traducció
+    								codeCoreContent.append(
+    										"          <c:set var=\"tmp\">${" + model + "." + modelCamp + "}</c:set>\n");
+    								codeCoreContent.append("          <c:if test=\"${not empty tmp}\">\n");
+    
+    								if (modelCamp.endsWith("ID")) {
+    									modelCamp = modelCamp.substring(0, modelCamp.length() - 2);
+    								}
+    
+    								codeCoreContent.append(
+    										"          ${" + model + "." + modelCamp + ".traduccions[lang].valor}\n");
+    								codeCoreContent.append("          </c:if>\n");
+    
+    							} else {
+    								// Mostram d'un mapping
+    								String fkTableName = "Values";
+    								if (field.getWebFieldInfo().getWebtype() == WebType.Query) {
+    									TableInfo fkTable = CodeGenUtils.findTableInfoByTableSQLName(project,
+    											fk.getTable());
+    									fkTableName = fkTable.getNameJava();
+    								}
+    
+    								// <fmt:message key="${estatsInicials[estatTxt]}" />
+    								// boolean traduir = BackGenerator.fillReferences(fkTable, new StringBuffer());
+    								codeCoreContent.append(
+    										"          <c:set var=\"tmp\">${" + model + "." + modelCamp + "}</c:set>\n");
+    								codeCoreContent.append("          <c:if test=\"${not empty tmp}\">\n");
+    								codeCoreContent.append("          ");
+    								/*
+    								 * if (traduir) { code.append("<fmt:message key=\""); }
+    								 */
+    								String name = Character.toUpperCase(field.javaName.charAt(0))
+    										+ field.javaName.substring(1);
+    
+    								codeCoreContent.append(
+    										"${" + instanceFilterForm + ".mapOf" + fkTableName + "For" + name + "[tmp]}");
+    								/*
+    								 * if (traduir) { code.append("\"/>"); }
+    								 */
+    								codeCoreContent.append("\n");
+    								codeCoreContent.append("          </c:if>\n");
+    							}
+    						}
+    						codeCoreContent.append("          </td>\n");
+    						continue;
+			            }
 
 					case WebType.Checkbox:
 						codeCoreContent.append("          <td>\n");

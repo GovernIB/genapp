@@ -1273,7 +1273,7 @@ public class BackGenerator {
         
         
         Class<?> type = field.getJavaType(); 
-        if (type.equals(Boolean.class) || type.equals(Boolean.TYPE)) {
+        if (wfi.getWebtype() == WebType.Checkbox && (  type.equals(Boolean.class) || type.equals(Boolean.TYPE) )) {
           codeTmp.append("\n");
           String prefix = field.getMinAllowedValue();
           
@@ -2360,21 +2360,57 @@ public class BackGenerator {
             + fkInfo.getJavaName().toUpperCase()
             + ", where );\n");
         } else {
-          // MinAllowedValue conte la llista de possibles valors separats per coma
-          // Si va null o un string buit llavors 
-          String values = field.getMinAllowedValue();
-          if (values == null || values.trim().length() == 0) {
-            throw new Exception("El camp " + field.javaName + " de la taula " + 
-                tableJavaName + " ha de definir la llista de valors separats per comes " +
-                " en el camp 'MinAllowedValue'");
-          }
-          String[] split = values.split(",");
-          
-          code.append("    List<StringKeyValue> __tmp = new java.util.ArrayList<StringKeyValue>();\n");
-          for (int j = 0; j < split.length; j++) {
-            code.append("    __tmp.add(new StringKeyValue(\"" + split[j] + "\" , \"" + split[j] + "\"));\n");            		
-          }
-          code.append("    return __tmp;\n");
+            String values = field.getMinAllowedValue();
+            // CAS ESPECIAL ÉS COMBOBOX DE BOOLEAN
+            if (field.getJavaType().equals(Boolean.class) ||  field.getJavaType().equals(Boolean.TYPE)) {
+                
+                String baseTraduccio;
+                if (values == null) {
+                    baseTraduccio = "genapp.checkbox";
+                } else {
+                    String[] split = values.split(",");
+                    
+                    if (split.length != 1) {
+                        
+                        throw new Exception("El camp " + field.javaName + " de la taula " + 
+                                tableJavaName + ", que es de tipus booleà, en l'apartat 'MinAllowedValue' "
+                                 + "només pot definir una cadena que representa la base de traducció:"
+                                 + " Per exemple: 'sexe' i en els fixers de traduccions tindriem "
+                                 + "sexe.=No definit , sexe.true=Home, sexe.false=Dona"
+                                );
+                    }
+                    
+                    baseTraduccio = values.trim();
+                }
+                
+                code.append("    List<StringKeyValue> __tmp = new java.util.ArrayList<StringKeyValue>();\n");
+                if (field.getJavaType().equals(Boolean.class)) {
+                  code.append("    __tmp.add(new StringKeyValue(\"\" , \"I18NUtils.tradueix(\"" + baseTraduccio + ".\")));\n");                   
+                }
+                code.append("    __tmp.add(new StringKeyValue(\"false\" , I18NUtils.tradueix(\"" + baseTraduccio + ".false\")));\n");
+                code.append("    __tmp.add(new StringKeyValue(\"true\" , I18NUtils.tradueix(\"" + baseTraduccio + ".true\")));\n");
+                code.append("    return __tmp;\n");
+                
+                
+                
+            } else {
+            
+              // MinAllowedValue conte la llista de possibles valors separats per coma
+              // Si va null o un string buit llavors 
+              
+              if (values == null || values.trim().length() == 0) {
+                throw new Exception("El camp " + field.javaName + " de la taula " + 
+                    tableJavaName + " ha de definir la llista de valors separats per comes " +
+                    " en el camp 'MinAllowedValue'");
+              }
+              String[] split = values.split(",");
+              
+              code.append("    List<StringKeyValue> __tmp = new java.util.ArrayList<StringKeyValue>();\n");
+              for (int j = 0; j < split.length; j++) {
+                code.append("    __tmp.add(new StringKeyValue(\"" + split[j] + "\" , \"" + split[j] + "\"));\n");            		
+              }
+              code.append("    return __tmp;\n");
+            }
         }
         code.append("  }\n\n");
         
