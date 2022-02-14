@@ -505,7 +505,7 @@ public class BackWebGenerator extends IconUtils {
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append("\n");
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.from\" /></span>\n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 							codeFilterBy.append("              \n");
 							codeFilterBy
 									.append("              <form:input cssClass=\"input-append input-small\" path=\""
@@ -513,7 +513,7 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("\n");
 							codeFilterBy.append("\n");
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.to\" /></span>\n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
 							codeFilterBy.append("\n");
 							codeFilterBy.append(
 									"              <form:input cssClass=\"input-append input-small search-query\" path=\""
@@ -545,12 +545,15 @@ public class BackWebGenerator extends IconUtils {
 						if (cls.equals(Time.class)) {
 							codeFilterBy.append("            <%-- FILTRE TIME --%>      \n");
 							codeFilterBy.append(
-									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right:4px;padding-bottom:4px;align-items:center;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append("\n");
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.from\" /></span>\n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
+							
+							codeFilterBy.append(generateTimePicker(modelCamp + "Desde", modelCamp + "Desde"));
+							/*
 							codeFilterBy.append(
 									"              <div id=\"" + modelCamp + "Desde\" class=\"input-append\">\n");
 							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
@@ -572,15 +575,25 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("                  });\n");
 							codeFilterBy.append("                });\n");
 							codeFilterBy.append("              </script>\n");
+							*/
 							codeFilterBy.append("              \n");
 							codeFilterBy.append("              \n");
+							
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.to\" /></span>\n");
+                                    "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
+							
+							
+							codeFilterBy.append(generateTimePicker(modelCamp + "Fins", modelCamp + "Fins"));
+                            /* XYZ ZZZ TODO
+							
+							
 							codeFilterBy.append(
 									"              <div id=\"" + modelCamp + "Fins\" class=\"input-append\">\n");
 							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
 									+ modelCamp + "Fins\" />\n");
 							codeFilterBy.append("                <span class=\"add-on\">\n");
+							
+							
 							codeFilterBy.append(
 									"                  <i data-time-icon=\"icon-time\" data-date-icon=\"icon-calendar\">\n");
 							codeFilterBy.append("                  </i>\n");
@@ -597,9 +610,11 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("                  });\n");
 							codeFilterBy.append("                });\n");
 							codeFilterBy.append("              </script>\n");
-							codeFilterBy.append("              \n");
+							codeFilterBy.append("              \n");*/
 							codeFilterBy.append("            </div>\n");
-							codeFilterBy.append("            \n");
+							
+							codeFilterBy.append("\n");
+							
 							continue;
 						}
 
@@ -607,11 +622,14 @@ public class BackWebGenerator extends IconUtils {
 
 							codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
 							codeFilterBy.append(
-									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right:4px;padding-bottom:4px;align-items:center;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.from\" /></span>\n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
+							
+							codeFilterBy.append(generateDatePicker(modelCamp + "Desde", modelCamp + "Desde"));
+							/*
 							codeFilterBy.append(
 									"              <div id=\"" + modelCamp + "Desde\" class=\"input-append\">\n");
 							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
@@ -634,8 +652,14 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("                  });\n");
 							codeFilterBy.append("                });\n");
 							codeFilterBy.append("              </script>\n");
+							codeFilterBy.append("              </script>\n");
+							*/
+							codeFilterBy.append("\n");
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.to\" /></span>              \n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
+							
+							codeFilterBy.append(generateDatePicker(modelCamp + "Fins", modelCamp + "Fins"));
+							/*
 							codeFilterBy.append(
 									"              <div id=\"" + modelCamp + "Fins\" class=\"input-append\">\n");
 							codeFilterBy.append("                <form:input cssClass=\"input-small\" path=\""
@@ -657,8 +681,9 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("                    weekStart: ${gen:getFirstDayOfTheWeek()}\n");
 							codeFilterBy.append("                  });\n");
 							codeFilterBy.append("                });\n");
-							codeFilterBy.append("              </script>\n");
+							codeFilterBy.append("              </script>\n");*/
 							codeFilterBy.append("            </div>\n");
+							
 
 							codeFilterBy.append("    \n");
 							continue;
@@ -666,13 +691,16 @@ public class BackWebGenerator extends IconUtils {
 
 						if (cls.equals(Timestamp.class)) {
 
-							codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
+							codeFilterBy.append("<%-- FILTRE DATE-TIME --%>\n");
 							codeFilterBy.append(
-									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+									"            <div class=\"" + inputgroupcss + "\" style=\"padding-right:4px;padding-bottom:4px;align-items:center;\">\n");
 							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
 									+ modelCamp + "\" />:</span>\n");
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.from\" /></span>\n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
+							
+							codeFilterBy.append(generateDateTimePicker(modelCamp + "Desde", modelCamp + "Desde"));
+							/*
 							codeFilterBy.append(
 									"              <div id=\"" + modelCamp + "Desde\" class=\"input-append\">\n");
 							codeFilterBy.append("                <form:input cssClass=\"input-large\" path=\""
@@ -695,8 +723,16 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("                  });\n");
 							codeFilterBy.append("                });\n");
 							codeFilterBy.append("              </script>\n");
+							*/
+							
+							
 							codeFilterBy.append(
-									"              <span class=\"add-on\"><fmt:message key=\"genapp.to\" /></span>              \n");
+									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
+							
+							
+							codeFilterBy.append(generateDateTimePicker(modelCamp + "Fins", modelCamp + "Fins"));
+							
+							/*
 							codeFilterBy.append(
 									"              <div id=\"" + modelCamp + "Fins\" class=\"input-append\">\n");
 							codeFilterBy.append("                <form:input cssClass=\"input-large\" path=\""
@@ -719,7 +755,9 @@ public class BackWebGenerator extends IconUtils {
 							codeFilterBy.append("                  });\n");
 							codeFilterBy.append("                });\n");
 							codeFilterBy.append("              </script>\n");
+							*/
 							codeFilterBy.append("            </div>\n");
+							
 							codeFilterBy.append("\n");
 
 							codeFilterBy.append("    \n");
@@ -2492,11 +2530,10 @@ public class BackWebGenerator extends IconUtils {
 			return code.toString();
 
 		case WebType.Date:
+		    /*
 			code.append("    <form:errors path=\"" + model + "." + modelCamp
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 			
-			//code.append("    <div class=\"\">\n"); // "    <div class=\"container\">\n"
-			//code.append("      <div class=\"row\">\n");
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
@@ -2511,35 +2548,25 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                    </c:if>\n");
 			code.append("                </div>\n");
 			code.append("            </div>\n");
-			//code.append("        </div>\n");
-
-			code.append("        <script type=\"text/javascript\">\n");
-			code.append("            $(function () {\n");
-			code.append("                $('#"   + model + "_" + modelCamp +  "').datetimepicker({\n"); 
-			code.append("                    format: '${gen:getJSDatePattern()}',\n");
-			code.append("                    locale: '${lang}',\n");
-			code.append("                    icons: {\n");
-			code.append("                       time: '" + ICON_CALENDAR+ "'\n");
-			code.append("                    }\n");
-			code.append("                });\n");
-			code.append("            });\n");
-			code.append("        </script>");
-			//code.append("      </div>\n");
+		
+            {
+	           String componentID = model + "_" + modelCamp;
+	           code.append(generateDatePicker(componentID));
+	        }
 
 			
 			return code.toString();
-
+*/
 		case WebType.Time:
+		    /*
 			code.append("    <form:errors path=\"" + model + "." + modelCamp
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 
 
-			//code.append("    <div class=\"container\">\n");
-			//code.append("      <div class=\"row\">\n");
 			code.append("            <div class=\"form-group\">\n");
 			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
 			
-			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\n");
+
 			code.append("                      <form:input " + readOnlyAttribute + " cssClass=\"form-control datetimepicker-input\" "
 					+ " data-target=\"#"  + model + "_" + modelCamp + "\""
 			        + " path=\"" + model + "." + modelCamp + "\" />\n");
@@ -2550,61 +2577,27 @@ public class BackWebGenerator extends IconUtils {
 			code.append("                    </c:if>\n");
 			code.append("                </div>\n");
 			code.append("            </div>\n");
-			//code.append("        </div>\n");
+
 		
-			code.append("        <script type=\"text/javascript\">\n");
-			code.append("            $(function () {\n");
-			code.append("                $('#"   + model + "_" + modelCamp +  "').datetimepicker({\n"); 
-			code.append("                    format: '${gen:getJSTimePattern()}',\n");
-			code.append("                    locale: '${lang}',\n");
-			code.append("                    icons: {\n");
-			code.append("                       time: '" + ICON_CLOCK+ "'\n");
-			code.append("                    }\n");
-			code.append("                });\n");
-			code.append("            });\n");
-			code.append("        </script>");
-			//code.append("      </div>\n");
+			{
+			    String componentID = model + "_" + modelCamp;
+			    code.append(generateTimePicker(componentID));
+			}
+
 
 
 			return code.toString();
-
+*/
 		case WebType.DateTime:
-			code.append("              <form:errors path=\"" + model + "." + modelCamp
-					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
-			
-			//code.append("    <div class=\"container\">\n");
-			//code.append("      <div class=\"row\">\n");
-			code.append("            <div class=\"form-group\">\n");
-			code.append("                <div class=\"input-group date\" id=\"" + model + "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
-			
-			//code.append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\n");
-			code.append("                      <form:input " + readOnlyAttribute + " cssClass=\"form-control datetimepicker-input\" "
-					+ " data-target=\"#"  + model + "_" + modelCamp + "\""
-			        + " path=\"" + model + "." + modelCamp + "\" />\n");
-			code.append("                    <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-			code.append("                    <div class=\"input-group-append\"  data-target=\"#"  + model + "_" + modelCamp + "\"  data-toggle=\"datetimepicker\">\n");
-			code.append("                        <div class=\"input-group-text\"><i class=\"" + IconUtils.ICON_CALENDAR + "\"></i></div>\n"); 
-			code.append("                    </div>\n");
-			code.append("                    </c:if>\n");
-			code.append("                </div>\n");
-			code.append("            </div>\n");
-			
-			code.append("          <script type=\"text/javascript\">\n");
-			code.append("            $(function () {\n");
-			code.append("                $('#"   + model + "_" + modelCamp +  "').datetimepicker({\n"); 
-			code.append("                    format: '${gen:getJSDateTimePattern()}',\n");
-			code.append("                    locale: '${lang}',\n");
-			code.append("                    icons: {\n");
-			code.append("                       time: '" + ICON_CLOCK+ "'\n");
-			code.append("                    }\n");
-			code.append("                });\n");
-			code.append("            });\n");
-			code.append("          </script>");
-			//code.append("        </div>\n");
-			//code.append("      </div>\n");
-			
-
-			return code.toString();
+		{
+		    String pathID = model + "." + modelCamp;
+		    code.append("    <form:errors path=\"" + pathID
+                    + "\" cssClass=\"errorField alert alert-danger\" />\n");
+		    String componentID = model + "_" + modelCamp;
+	        code.append(generateCommonDateTimePicker(webType, readOnlyCondition,
+	                   readOnlyAttribute, componentID, pathID));
+	        return code.toString();
+	     }
 
 		// TODO S'han de fer que tots els camps que referenciin a la taula fitxer
 		// canviin el tipus web a FILE
@@ -2620,6 +2613,99 @@ public class BackWebGenerator extends IconUtils {
 		} // Final Switch
 
 	}
+
+
+
+    protected static String generateTimePicker(String componentID, String path) throws Exception {
+        final int webType = WebType.Time;
+        final String readOnlyCondition = "false";
+        final String readOnlyAttribute = "";        
+        return generateCommonDateTimePicker(webType,
+                readOnlyCondition, readOnlyAttribute, componentID, path);
+    }
+    
+    protected static String generateDateTimePicker(String componentID, String path) throws Exception {
+        final int webType = WebType.DateTime;
+        final String readOnlyCondition = "false";
+        final String readOnlyAttribute = "";        
+        return generateCommonDateTimePicker(webType,
+                readOnlyCondition, readOnlyAttribute, componentID, path);
+    }
+    
+    
+    protected static String generateDatePicker(String componentID, String path) throws Exception {
+        
+        final int webType = WebType.Date;
+        final String readOnlyCondition = "false";
+        final String readOnlyAttribute = "";        
+        return generateCommonDateTimePicker(webType,
+                readOnlyCondition, readOnlyAttribute, componentID, path);
+    }
+
+    protected static String generateCommonDateTimePicker(int webType,
+            final String readOnlyCondition, final String readOnlyAttribute,
+            String componentID, String path) throws Exception {
+        
+        
+        String pattern;
+        String icon;
+        
+        switch(webType) {
+            
+            case WebType.DateTime:
+                pattern = "${gen:getJSDateTimePattern()}";
+                icon = IconUtils.ICON_CALENDAR;
+            break;
+            
+            case WebType.Date:
+                pattern = "${gen:getJSDatePattern()}";
+                icon = IconUtils.ICON_CALENDAR;
+            break;
+            
+            case WebType.Time:
+                pattern = "${gen:getJSTimePattern()}";
+                icon = IconUtils.ICON_CLOCK;
+            break;
+            
+            default:
+               throw new Exception("S'ha enviat un tipus de DATE-WEB no suportat:" + webType);    
+            
+            
+        }
+        
+        
+        
+        StringBuffer code = new StringBuffer();
+        
+       
+        code.append("            <div class=\"form-group\">\n");
+        code.append("                <div class=\"input-group date\" id=\"" + componentID + "\" data-target-input=\"nearest\">\n");
+        
+        code.append("                      <form:input " + readOnlyAttribute + " cssClass=\"form-control datetimepicker-input\" "
+                + " data-target=\"#"  + componentID + "\""
+                + " path=\"" + path + "\" />\n");
+        code.append("                    <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
+        code.append("                    <div class=\"input-group-append\"  data-target=\"#"  + componentID + "\"  data-toggle=\"datetimepicker\">\n");
+        code.append("                        <div class=\"input-group-text\"><i class=\"" + icon + "\"></i></div>\n"); 
+        code.append("                    </div>\n");
+        code.append("                    </c:if>\n");
+        code.append("                </div>\n");
+        code.append("            </div>\n");
+    
+        
+        code.append("        <script type=\"text/javascript\">\n");
+        code.append("            $(function () {\n");
+        code.append("                $('#"   + componentID +  "').datetimepicker({\n"); 
+        code.append("                    format: '" + pattern + "',\n");
+        code.append("                    locale: '${lang}',\n");
+        code.append("                    icons: {\n");
+        code.append("                       time: '" + ICON_CLOCK+ "'\n");
+        code.append("                    }\n");
+        code.append("                });\n");
+        code.append("            });\n");
+        code.append("        </script>");
+        return code.toString();
+    }
 
 	/*
 	 * public static String generateReadOnlySelect(String tab, String id, String
