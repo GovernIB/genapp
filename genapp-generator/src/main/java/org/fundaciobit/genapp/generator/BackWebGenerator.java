@@ -1987,7 +1987,7 @@ public class BackWebGenerator extends IconUtils {
 					+ "\" cssClass=\"errorField alert alert-danger\" />\n");
 
 			code.append("            <c:if test=\"${" + readOnlyCondition + "}\" >\n");
-			code.append(getOnlyReadFileFieldWithoutCondition(project, modelCamp, modelCamp));
+			code.append(getOnlyReadFileFieldWithoutCondition(project, instanceForm + "." + model, fileObj));
 			code.append("            </c:if>\n");
 
 			code.append("            <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
