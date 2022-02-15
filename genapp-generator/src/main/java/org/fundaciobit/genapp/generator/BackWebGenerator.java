@@ -735,7 +735,7 @@ public class BackWebGenerator extends IconUtils {
 				        "                        \"hasChildren\": false,\n" + 
 				        "                        \"children\": []\n" + 
 				        "                    }\n" + 
-				        "                    \n" + 
+				        "                    <c:set var=\"counterParent\" value=\"0\" />\n" + 
 				        "                    <c:forEach  var=\"groupby_item\"  items=\"${groupby_items}\">\n" + 
 				        "                    \n" + 
 				        "                        <c:set var=\"code\" value=\"${(empty __theFilterForm.labels[groupby_item.field])? groupby_item.codeLabel:__theFilterForm.labels[groupby_item.field]}\" />\n" + 
@@ -748,8 +748,14 @@ public class BackWebGenerator extends IconUtils {
 				        "                        <c:set var=\"thetext\" value=\"${fn:substringAfter(code, '=')}\" />\n" + 
 				        "                        </c:if>\n" + 
 				        "                    \n" + 
+                        "                    <c:set var=\"ParentID\" value=\"${groupby_item.value}_${counterParent}\" />\n" + 
+                        "                    <c:set var=\"counterParent\" value=\"${counterParent + 1}\" />\n" + 
+                        "                    \n" + 
+                        "                    <c:if test=\"${groupby_item.selected}\" >\n" + 
+                        "                      <c:set var=\"expandID\" value=\"${ParentID}\"/>\n" + 
+                        "                    </c:if>\n" + 
 				        "                    ,{\n" + 
-				        "                        \"id\": '${groupby_item.value}',\n" + 
+				        "                        \"id\": '${ParentID}',\n" + 
 				        "                        \"text\": \"<span style='${groupby_item.selected? \"font-weight: bold;\" : \"\"}'>${thetext}</span>\",\n" + 
 				        "                        \"field\": '${groupby_item.value}',\n" + 
 				        "                        \"hasChildren\": true,\n" + 
@@ -764,7 +770,7 @@ public class BackWebGenerator extends IconUtils {
 				        "                            <c:if test=\"${counterG ne 0}\">,</c:if>\n" + 
 				        "                            <c:set var=\"counterG\" value=\"${counterG + 1}\" />\n" + 
 				        "                            {\n" + 
-				        "                                \"id\": '${groupby_item.value}_${counterG}',\n" + 
+				        "                                \"id\": '${groupby_item.value}_${groupbyvalue_item.value}_${counterG}',\n" + 
 				        "                                \"text\": \"<span style='${groupbyvalue_item.selected? \"font-weight: bold;\" : \"\"}' >${ (empty groupbyvalue_item.codeLabel) ? buit : groupbyvalue_item.codeLabel } (${groupbyvalue_item.count})</span>\",\n" + 
 				        "                                \"field\": '${groupby_item.value}',\n" + 
 				        "                                \"value\" : '${groupbyvalue_item.value}',\n" + 
@@ -776,10 +782,6 @@ public class BackWebGenerator extends IconUtils {
 				        "                            \n" + 
 				        "                        ]\n" + 
 				        "                    }   \n" + 
-				        "                    \n" + 
-				        "                    <c:if test=\"${groupby_item.selected}\" >\n" + 
-				        "                        <c:set var=\"expandID\" value=\"${groupby_item.value}\"/>\n" + 
-				        "                    </c:if>\n" + 
 				        "                    \n" + 
 				        "                    </c:forEach>\n" + 
 				        "\n" + 
@@ -803,12 +805,13 @@ public class BackWebGenerator extends IconUtils {
 				        "          }\n" + 
 				        "        });\n" + 
 				        "      \n" + 
+                        "          var noderoot = tree.getNodeById('-1');\n" + 
+                        "          tree.expand(noderoot);\n" + 
 				        "       <c:if test=\"${expandID ne '-'}\" >\n" + 
 				        "          var node = tree.getNodeById('${expandID}');\n" + 
 				        "          tree.expand(node);\n" + 
 				        "          \n" + 
-				        "          node = tree.getNodeById('-1');\n" + 
-				        "          tree.expand(node);\n" + 
+
 				        "       </c:if>\n" + 
 				        "      \n" + 
 				        "      \n" + 
