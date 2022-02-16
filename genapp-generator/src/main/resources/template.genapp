@@ -44,7 +44,10 @@
   </void> 
   <void property="prefix"> 
    <string>PFX</string> 
-  </void> 
+  </void>
+  <void property="prefixDirectori">
+   <string>APPNAME</string>
+  </void>
   <void property="projectName"> 
    <string>APPNAMEUP</string> 
   </void> 

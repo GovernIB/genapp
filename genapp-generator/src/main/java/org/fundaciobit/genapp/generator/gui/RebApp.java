@@ -275,8 +275,8 @@ public class RebApp extends JFrame {
 
     try {
       final Object[] options = { 
-          "Nou Projecte", "Actualitzar Projecte", 
-          "Obrir Projecte" , "Generar Projecte", "Generar taules base" };
+          /*"Nou Projecte", */"Nou projecte i SQL generació de taules base" , "Actualitzar Projecte (Canvis BBDD)", 
+          "Editar Projecte" , "Generar Codi Font"};
       int n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", "GenApp v2 2015-2020",
           JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
           options, options[0]);
@@ -289,6 +289,7 @@ public class RebApp extends JFrame {
           break;
       
         // ================= NEW PROJECT
+        /*  
         case 0: {
           SharedData.project = ProjectType.NEW;
           SharedData.data = new Project();
@@ -296,6 +297,7 @@ public class RebApp extends JFrame {
           (new RebApp()).setVisible(true);
           break;
         }
+        */
         // ================= UPDATE & OPEN & GENERATE PROJECT
         case 1:
         case 2:
@@ -342,7 +344,7 @@ public class RebApp extends JFrame {
         }
 
         // generate taules base
-        case 4: 
+        case 0: 
         {
          
           final String nomCamp = "Prefix";
