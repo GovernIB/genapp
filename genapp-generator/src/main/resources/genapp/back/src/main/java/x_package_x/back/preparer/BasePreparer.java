@@ -1,10 +1,12 @@
 package ${package}.back.preparer;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.security.RunAs;
+import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -12,12 +14,13 @@ import org.apache.tiles.AttributeContext;
 import org.apache.tiles.preparer.PreparerException;
 import org.apache.tiles.preparer.ViewPreparer;
 import org.apache.tiles.request.Request;
-
+import ${package}.ejb.IdiomaService;
+import ${package}.model.entity.Idioma;
+import ${package}.model.fields.IdiomaFields;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 
 import ${package}.back.security.LoginInfo;
 
@@ -32,6 +35,8 @@ import ${package}.commons.utils.Constants;
 public class BasePreparer implements ViewPreparer, Constants {
 
 	protected final Logger log = Logger.getLogger(getClass());
+
+	protected static IdiomaService idiomaService;
 
 	@Override
 	public void execute(Request tilesRequest, AttributeContext attributeContext) throws PreparerException {
@@ -88,6 +93,19 @@ public class BasePreparer implements ViewPreparer, Constants {
 		// avisos.put(rol, <<Number of warnings>>);
 		request.put("avisos", avisos);
 
+		// Idiomes
+		try {
+			if (idiomaService == null) {
+				idiomaService = (IdiomaService) new InitialContext().lookup(IdiomaService.JNDI_NAME);
+			}
+
+			List<Idioma> idiomes = idiomaService.select(IdiomaFields.SUPORTAT.equal(true));
+			httpRequest.getSession().setAttribute("idiomes", idiomes);
+
+		} catch (Throwable e) {
+			log.error("Preparer:: Error agafant idiomes de la base de dades: " + e.getMessage(), e);
+		}
+		
 		if (attributeContext.getAttribute("menu") != null) {
 			request.put("menu_tile", attributeContext.getAttribute("menu").toString());
 		}

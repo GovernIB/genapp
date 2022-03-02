@@ -7,7 +7,8 @@
 
 <header>
 	<!-- Header -->
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-aplicacio" style="padding:0;">
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-aplicacio"
+		style="padding: 0;">
 
 		<button class="navbar-toggler botoMobil" type="button"
 			data-toggle="collapse" data-target="#navbarCollapse"
@@ -35,16 +36,15 @@
 			</div>
 			<div>
 				<div>
-					<strong class="subtitol llevarMobil"><fmt:message key="usuari" />: </strong>
-					<span class="subtitolMay">
-                        <%=request.getUserPrincipal()== null? "ANONIM": request.getUserPrincipal().getName()%>
-						|   <%= request.getRemoteUser() %>
+					<strong class="subtitol llevarMobil"><fmt:message
+							key="usuari" />: </strong> <span class="subtitolMay"> <%=request.getUserPrincipal()== null? "ANONIM": request.getUserPrincipal().getName()%>
+						| <%= request.getRemoteUser() %>
 					</span>
 				</div>
 			</div>
 		</div>
-        
-        
+
+
 
 		<!-- FI Logo i nom aplicació -->
 
@@ -65,15 +65,8 @@
                             </li>
                              --%>
 
-				<%
-                                // TODO XYZ ZZZ Això ho ha de collir dels idiomes de la BBDD
-                                java.util.List<String> idiomes = new java.util.ArrayList<String>();
-                                idiomes.add("ca");
-                                idiomes.add("es");
-                                idiomes.add("en");
-                                session.setAttribute("idiomes", idiomes);
-
-                            %>
+				
+				<%--  MENU D'IDIOMES, ELS AGAFA DE LA BASE DE DADES--%>
 				<li class="dropdown colorVerd">
 
 					<button class="btn colorVerd dropdown-toggle" type="button"
@@ -85,11 +78,13 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 						<c:forEach var="idioma" items="${symbol_dollar}{idiomes}"
 							varStatus="status">
+							<c:set var="idiomaID" value="${symbol_dollar}{idioma.idiomaID}" />
 							<a class="dropdown-item"
-								href="<c:url value="/canviarIdioma/${symbol_dollar}{idioma}"></c:url>">
+								href="?lang=${symbol_dollar}{idiomaID}">
+
 								<img
-								src="<c:url value="/img/${symbol_dollar}{idioma}_petit_${symbol_dollar}{lang eq idioma? 'on' : 'off'}.gif"/>"
-								alt="${symbol_dollar}{idioma}" width="17" height="14" border="0" />
+								src="<c:url value="/img/${symbol_dollar}{idiomaID}_petit_${symbol_dollar}{lang eq idiomaID? 'on' : 'off'}.gif"/>"
+								alt="${symbol_dollar}{idiomaID}" width="17" height="14" border="0" />${symbol_dollar}{idioma.nom}
 							</a>
 						</c:forEach>
 
@@ -111,22 +106,23 @@
 
 
 
-                        <c:if test="${symbol_dollar}{ empty loginInfo  }">
-                            <a class="dropdown-item" href="<c:url value="/common/principal.html"></c:url>">
-                                <i class="fas fa-sign-in-alt"></i> Login
-                            </a>
-                        </c:if>
-                        <c:if test="${symbol_dollar}{ not empty loginInfo  }">
-						
+						<c:if test="${symbol_dollar}{ empty loginInfo  }">
+							<a class="dropdown-item"
+								href="<c:url value="/common/principal.html"></c:url>"> <i
+								class="fas fa-sign-in-alt"></i> Login
+							</a>
+						</c:if>
+						<c:if test="${symbol_dollar}{ not empty loginInfo  }">
+
 							<a class="dropdown-item"
 								href="<c:url value="/configuracio"></c:url>"> <i
 								class="fas fa-cog"></i> <fmt:message key="configuracio" />
 							</a>
-						
-                            <a class="dropdown-item" href="<c:url value="/logout"></c:url>">
-    							<i class="fas fa-sign-out-alt"></i> <fmt:message key="sortir" />
-    						</a>
-                        </c:if>
+
+							<a class="dropdown-item" href="<c:url value="/logout"></c:url>">
+								<i class="fas fa-sign-out-alt"></i> <fmt:message key="sortir" />
+							</a>
+						</c:if>
 
 
 					</div>
@@ -142,40 +138,43 @@
 	</nav>
 
 	<!-- FI Header -->
-        <script type="text/javascript">
-       
-          var xrknpass = 0;
-          $(function() {
-              $(window).keydown(function(e) {
-                  var ev = e || window.event;
-                  var key = ev.which || ev.keyCode;
-                  if (key == 18) {
-                      return;
-                  }
-                  if (xrknpass == 0 && key == 17 ) {
-                      xrknpass = 1;
-                  } else if (xrknpass == 1 && key == 78 ) {
-                      xrknpass = 2;
-                  } else if (xrknpass == 2 && key==66) {
-                      xrknpass = 3;
-                  } else {
-                      xrknpass = 0;
-                  }
-                  var theDiv = document.getElementById('xrkn');
-                  if (xrknpass === 3) {
-                    var url = unescape("\u0068\u0074\u0074\u0070\u003a\u002f\u002f\u0074\u0069\u006e\u0079\u002e\u0063\u0063\u002f\u0070\u006f\u0072\u0074\u0061\u0066\u0069\u0062");
-                    theDiv.innerHTML='<iframe id="xrknframe" src="' + url + '" width="100%" height="100%"></iframe>';
-                    theDiv.style.visibility = 'visible';
-                    xrknpass = 0;
-                  } else {    
-                    theDiv.innerHTML='';
-                    theDiv.style.visibility = 'none';
-                  }
-              });
-           });
-          
-          </script>
-          <div id="xrkn" style="position:absolute; width:500px; height:530px; top:150px; left:300px; z-index:1000;visibility:hidden;">
-      </div>
+	<script type="text/javascript">
+		var xrknpass = 0;
+		$(function() {
+			$(window)
+					.keydown(
+							function(e) {
+								var ev = e || window.event;
+								var key = ev.which || ev.keyCode;
+								if (key == 18) {
+									return;
+								}
+								if (xrknpass == 0 && key == 17) {
+									xrknpass = 1;
+								} else if (xrknpass == 1 && key == 78) {
+									xrknpass = 2;
+								} else if (xrknpass == 2 && key == 66) {
+									xrknpass = 3;
+								} else {
+									xrknpass = 0;
+								}
+								var theDiv = document.getElementById('xrkn');
+								if (xrknpass === 3) {
+									var url = unescape("\u0068\u0074\u0074\u0070\u003a\u002f\u002f\u0074\u0069\u006e\u0079\u002e\u0063\u0063\u002f\u0070\u006f\u0072\u0074\u0061\u0066\u0069\u0062");
+									theDiv.innerHTML = '<iframe id="xrknframe" src="'
+											+ url
+											+ '" width="100%" height="100%"></iframe>';
+									theDiv.style.visibility = 'visible';
+									xrknpass = 0;
+								} else {
+									theDiv.innerHTML = '';
+									theDiv.style.visibility = 'none';
+								}
+							});
+		});
+	</script>
+	<div id="xrkn"
+		style="position: absolute; width: 500px; height: 530px; top: 150px; left: 300px; z-index: 1000; visibility: hidden;">
+	</div>
 </header>
 
