@@ -2385,7 +2385,7 @@ public class BackGenerator {
                 
                 code.append("    List<StringKeyValue> __tmp = new java.util.ArrayList<StringKeyValue>();\n");
                 if (field.getJavaType().equals(Boolean.class)) {
-                  code.append("    __tmp.add(new StringKeyValue(\"\" , \"I18NUtils.tradueix(\"" + baseTraduccio + ".\")));\n");                   
+                  code.append("    __tmp.add(new StringKeyValue(\"\" , I18NUtils.tradueix(\"" + baseTraduccio + ".\")));\n");                   
                 }
                 code.append("    __tmp.add(new StringKeyValue(\"false\" , I18NUtils.tradueix(\"" + baseTraduccio + ".false\")));\n");
                 code.append("    __tmp.add(new StringKeyValue(\"true\" , I18NUtils.tradueix(\"" + baseTraduccio + ".true\")));\n");
