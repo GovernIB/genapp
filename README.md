@@ -51,6 +51,13 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp_v2.png)
 	
 (3) Seguir les instruccions del diàleg que apareixerà al final.
+	
+(4) Afegir Taules a la BBDD  seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
+	
+(5) Tornar a executar genapp.bat i pitjar sobre "Actualitzar Projecte".
+	
+(6) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Generar Codi Font"
+
 
 ***Caracteristiques:***
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
