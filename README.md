@@ -41,8 +41,7 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 (1) Executar la següent comanda
 
 ```
-mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
--DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
+mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
 ```
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
