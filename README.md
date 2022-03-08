@@ -32,7 +32,7 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 		</profile>
 	</profiles>
 	<activeProfiles>
-	        <activeProfile>repositorigovernib</activeProfile>
+	        <activeProfile>governib-maven-repos</activeProfile>
 	</activeProfiles>
   ...
 </settings>
