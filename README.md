@@ -52,7 +52,7 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 	
 (3) Seguir les instruccions del diàleg que apareixerà al final.
 	
-(4) Afegir Taules a la BBDD  seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
+(4) Afegir noves taules del nou projecte a la BBDD seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
 	
 (5) Tornar a executar genapp.bat i pitjar sobre "Actualitzar Projecte".
 	
