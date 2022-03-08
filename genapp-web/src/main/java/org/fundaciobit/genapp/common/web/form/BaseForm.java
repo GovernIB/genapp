@@ -1,7 +1,9 @@
 package org.fundaciobit.genapp.common.web.form;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,118 +16,137 @@ import org.fundaciobit.genapp.common.query.Field;
  */
 public abstract class BaseForm extends CommonBaseForm {
 
-  /**
-   * Conte la llista de javaName de Field que volem que siguin només de lectura
-   */
-  private Set<Field<?>> readOnlyFields = new HashSet<Field<?>>();
+	/**
+	 * Conte la llista de javaName de Field que volem que siguin només de lectura
+	 */
+	private Set<Field<?>> readOnlyFields = new HashSet<Field<?>>();
 
-  private boolean cancelButtonVisible = true;
+	private boolean cancelButtonVisible = true;
 
-  private boolean saveButtonVisible = true;
-  
-  private Map<Field<?>, String> help = new HashMap<Field<?>, String>();
-  
-  private boolean view=false;
+	private boolean saveButtonVisible = true;
 
-  public BaseForm() {
-  }
+	private Map<Field<?>, String> help = new HashMap<Field<?>, String>();
 
-  public BaseForm(boolean nou) {
-    super(nou);
-  }
+	private boolean view = false;
 
-  public BaseForm(BaseForm toClone) {
-    super(toClone);
+	private List<Section> sections = null;
 
-    if (toClone == null) {
-      return;
-    }
+	public BaseForm() {
+	}
 
-    this.readOnlyFields = toClone.getReadOnlyFields();
-    this.cancelButtonVisible = toClone.cancelButtonVisible;
-    this.saveButtonVisible = toClone.saveButtonVisible;
-    this.help = toClone.help;
-    this.view = toClone.view;
-  }
+	public BaseForm(boolean nou) {
+		super(nou);
+	}
 
-  public Set<Field<?>> getReadOnlyFields() {
-    return readOnlyFields;
-  }
+	public BaseForm(BaseForm toClone) {
+		super(toClone);
 
-  public void setReadOnlyFields(Set<Field<?>> readOnlyFields) {
-    this.readOnlyFields = readOnlyFields;
-  }
+		if (toClone == null) {
+			return;
+		}
 
-  public void addReadOnlyField(Field<?> field) {
-    if (field != null) {
-      this.readOnlyFields.add(field);
-    }
-  }
-  
-  
-  public boolean isReadOnlyField(Field<?> field) {
-    return this.readOnlyFields.contains(field);
-  }
-  
-  // XYZ ZZZ TODO Eliminar en propera versió
-  @Deprecated
-  public boolean isReadOnlyField(String javaName) {
-    for(Field<?> readField : this.readOnlyFields) {
-      String jn = getStringOfField(readField);
-      if (jn.equals(javaName)) {
-        return true;
-      }
-    }
-    return false;
-  }
-  
-  public void setAllFieldsReadOnly(Field<?> ... fieldToSetReadOnly) {
-    if (fieldToSetReadOnly == null || fieldToSetReadOnly.length == 0) {
-      return;
-    }
-    for (Field<?> field : fieldToSetReadOnly) {
-      addReadOnlyField(field);
-    }
-  }
+		this.readOnlyFields = toClone.getReadOnlyFields();
+		this.cancelButtonVisible = toClone.cancelButtonVisible;
+		this.saveButtonVisible = toClone.saveButtonVisible;
+		this.help = toClone.help;
+		this.view = toClone.view;
+		this.sections = toClone.sections;
+	}
 
-  public boolean isCancelButtonVisible() {
-    return cancelButtonVisible;
-  }
+	public Set<Field<?>> getReadOnlyFields() {
+		return readOnlyFields;
+	}
 
-  public void setCancelButtonVisible(boolean cancelButtonVisible) {
-    this.cancelButtonVisible = cancelButtonVisible;
-  }
+	public void setReadOnlyFields(Set<Field<?>> readOnlyFields) {
+		this.readOnlyFields = readOnlyFields;
+	}
 
-  public boolean isSaveButtonVisible() {
-    return saveButtonVisible;
-  }
+	public void addReadOnlyField(Field<?> field) {
+		if (field != null) {
+			this.readOnlyFields.add(field);
+		}
+	}
 
-  public void setSaveButtonVisible(boolean saveButtonVisible) {
-    this.saveButtonVisible = saveButtonVisible;
-  }
+	public boolean isReadOnlyField(Field<?> field) {
+		return this.readOnlyFields.contains(field);
+	}
 
-  public Map<Field<?>, String> getHelp() {
-    return help;
-  }
+	// XYZ ZZZ TODO Eliminar en propera versió
+	@Deprecated
+	public boolean isReadOnlyField(String javaName) {
+		for (Field<?> readField : this.readOnlyFields) {
+			String jn = getStringOfField(readField);
+			if (jn.equals(javaName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-  public void setHelp(Map<Field<?>, String> help) {
-    this.help = help;
-  }
+	public void setAllFieldsReadOnly(Field<?>... fieldToSetReadOnly) {
+		if (fieldToSetReadOnly == null || fieldToSetReadOnly.length == 0) {
+			return;
+		}
+		for (Field<?> field : fieldToSetReadOnly) {
+			addReadOnlyField(field);
+		}
+	}
 
-  public void addHelpToField(Field<?> field, String message) {
-    if (field != null && message != null) { 
-      help.put(field, message);
-    }
-  }
+	public boolean isCancelButtonVisible() {
+		return cancelButtonVisible;
+	}
 
-  public boolean isView() {
-    return view;
-  }
+	public void setCancelButtonVisible(boolean cancelButtonVisible) {
+		this.cancelButtonVisible = cancelButtonVisible;
+	}
 
-  public void setView(boolean view) {
-    this.view = view;
-  }
+	public boolean isSaveButtonVisible() {
+		return saveButtonVisible;
+	}
 
-  
- 
+	public void setSaveButtonVisible(boolean saveButtonVisible) {
+		this.saveButtonVisible = saveButtonVisible;
+	}
+
+	public Map<Field<?>, String> getHelp() {
+		return help;
+	}
+
+	public void setHelp(Map<Field<?>, String> help) {
+		this.help = help;
+	}
+
+	public void addHelpToField(Field<?> field, String message) {
+		if (field != null && message != null) {
+			help.put(field, message);
+		}
+	}
+
+	public boolean isView() {
+		return view;
+	}
+
+	public void setView(boolean view) {
+		this.view = view;
+	}
+
+	public List<Section> getSections() {
+		return this.sections;
+	}
+
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
+	}
+
+	public void addSection(Section section) {
+		if (section == null) {
+			return;
+		}
+
+		if (this.sections == null) {
+			this.sections = new ArrayList<Section>();
+		}
+		this.sections.add(section);
+	}
+
 }

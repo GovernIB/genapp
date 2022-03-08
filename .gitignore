@@ -24,3 +24,6 @@ target
 /genapp-sqltutorial/genappsqltutorial-back/src/main/resources/logicmissatges_es.properties
 /genapp-generator/genapp.log
 /demo/generat
+/genapp-sqltutorial/scripts/genapp/lastconfig.properties
+/run_arche/arche/src/main/resources/archetype-resources/genapp.log
+/run_arche/arche/src/main/resources/archetype-resources/lastconfig.properties
