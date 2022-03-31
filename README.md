@@ -31,6 +31,9 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 			</repositories>
 		</profile>
 	</profiles>
+	<activeProfiles>
+	        <activeProfile>governib-maven-repos</activeProfile>
+	</activeProfiles>
   ...
 </settings>
 ```
@@ -38,17 +41,23 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 (1) Executar la següent comanda
 
 ```
-mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec
--DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
+mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
 ```
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
 	
 (2) Es crearà un directori rungenapp, entrar-hi i executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
 
-![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp.png)
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp_v2.png)
 	
 (3) Seguir les instruccions del diàleg que apareixerà al final.
+	
+(4) Afegir noves taules del nou projecte a la BBDD seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
+	
+(5) Tornar a executar genapp.bat i pitjar sobre "Actualitzar Projecte".
+	
+(6) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Generar Codi Font"
+
 
 ***Caracteristiques:***
 * Incorpora un llenguatge d'alt nivell generat per realitzar consultes a bbdd de forma que l'aplicació es pot construir sense haver d'escriure ni una linia de codi SQL. D'aqui que qualsevol canvi produeixi errors de compilació i no d'execució com passava amb el codi SQL.
