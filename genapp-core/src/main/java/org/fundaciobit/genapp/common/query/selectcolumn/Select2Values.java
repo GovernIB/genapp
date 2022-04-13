@@ -33,7 +33,7 @@ public class Select2Values<A, B> extends Select1Values<A> implements ISelectNVal
         this.value2 = value2;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public SelectNValues getSelectNValues() {
         return new SelectNValues(value1, value2);

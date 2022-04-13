@@ -33,7 +33,7 @@ public class Select8Values<A, B, C, D, E, F, G, H> extends Select7Values<A, B, C
         this.value8 = value8;
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes"})
     @Override
     public SelectNValues getSelectNValues() {
         return new SelectNValues(value1, value2, value3, value4, value5, value6, value7, value8);

@@ -185,7 +185,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         int index = 1;
         subquery.setValues(query, index);
 
-        @SuppressWarnings("unchecked")
+        
         List<Object> results = query.getResultList();
 
         List<T> list = new ArrayList<T>();
@@ -246,7 +246,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         }
     }
 
-    @SuppressWarnings("unchecked")
+
     @PermitAll
     @Override
     public E findByPrimaryKey(PK id) {
@@ -275,14 +275,12 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             return getTableNameVariable();
         }
 
-        @SuppressWarnings("unchecked")
         public E getFromObject(Object rs) throws I18NException {
             return (E) rs;
         }
     }
 
     @PermitAll
-    @SuppressWarnings("unchecked")
     @Override
     public List<E> select(Where where, Integer firstResult, Integer maxResults, OrderBy... orderBy)
             throws I18NException {
@@ -373,7 +371,6 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         return new QuerySQL(nextIndex, query.toString());
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public E getReference(PK id) {
         return (E) getEntityManager().getReference(getJPAClass(), id);

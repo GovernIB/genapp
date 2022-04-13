@@ -20,7 +20,7 @@ public class SelectMax<R> extends Select<R> {
 		return "MAX( " + field.fullName + ")";
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public R getFromObject(Object obj) throws I18NException {
 		return (R) obj;

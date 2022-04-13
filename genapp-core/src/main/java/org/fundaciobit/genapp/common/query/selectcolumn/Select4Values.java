@@ -32,7 +32,8 @@ public class Select4Values<A, B, C, D> extends Select3Values<A, B, C>
         this.value4 = value4;
     }
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+
+    @SuppressWarnings("rawtypes")
     @Override
     public SelectNValues getSelectNValues() {
         return new SelectNValues(value1, value2, value3, value4);

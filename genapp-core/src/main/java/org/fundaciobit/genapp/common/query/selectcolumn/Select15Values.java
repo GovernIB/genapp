@@ -40,7 +40,7 @@ public class Select15Values<A, B, C, D, E, F, G, H, I, J, K, L, M, N, P>
         this.value15 = value15;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public SelectNValues getSelectNValues() {
         return new SelectNValues(value1, value2, value3, value4, value5, value6, value7, value8,

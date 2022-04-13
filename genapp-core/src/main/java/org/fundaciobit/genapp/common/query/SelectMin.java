@@ -20,7 +20,6 @@ public class SelectMin<R> extends Select<R> {
 		return "MIN( " + field.fullName + ")";
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public R getFromObject(Object obj) throws I18NException {
 		return ((R) obj);

@@ -8,6 +8,6 @@ package org.fundaciobit.genapp.common.query.selectcolumn;
  */
 public interface ISelectNValues {
 
-    SelectNValues getSelectNValues();
+    SelectNValues<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> getSelectNValues();
     
 }

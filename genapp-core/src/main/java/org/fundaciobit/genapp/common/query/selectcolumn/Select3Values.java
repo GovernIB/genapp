@@ -34,7 +34,7 @@ public class Select3Values<A, B, C> extends Select2Values<A, B> implements ISele
         this.value3 = value3;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public SelectNValues getSelectNValues() {
         return new SelectNValues(value1, value2, value3);

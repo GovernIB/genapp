@@ -27,7 +27,7 @@ public class Select1Values<A> implements ISelectNValues {
         this.value1 = value1;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public SelectNValues getSelectNValues() {
         return new SelectNValues(value1);
