@@ -1,7 +1,7 @@
 <%@page import="org.fundaciobit.genapp.common.web.html.HtmlCSS"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+ --%>
 <script type="text/javascript">
 	function splitTable(secciones, tag, rowformat, tableid) {
 

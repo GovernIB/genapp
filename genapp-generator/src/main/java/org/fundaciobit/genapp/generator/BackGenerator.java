@@ -205,7 +205,7 @@ public class BackGenerator {
     code.append("        if (objNou == null) {\n");
     code.append("            isNou = false;\n");
     code.append("        } else { \n");
-    code.append("         Boolean nou = Boolean.parseBoolean((String)objNou);\n");
+    code.append("         Boolean nou = Boolean.parseBoolean(String.valueOf(objNou));\n");
     code.append("         isNou =  nou != null && nou.booleanValue();\n");
     code.append("        }\n");
     code.append("    }\n");
