@@ -207,7 +207,30 @@ public class DaoJPAGenerator {
       }
       
       
-      beanCode.append("@Table(name = \"" + table.name + "\" ");
+      StringBuffer strIndexes = new StringBuffer();
+      
+      for (int r = 0; r < fields.length; r++) {
+          FieldInfo field = fields[r];
+          if (!field.isTransientField()) {
+            if (field.getIndex() != null) {
+              
+              if (strIndexes.length() == 0) {
+                  strIndexes.append(", indexes = { ");
+              } else {
+                  strIndexes.append(",");
+              }
+              strIndexes.append("\n        @Index(name=\"" + field.getIndex() + "\", columnList = \"" + field.sqlName +"\")");
+            }
+          }
+      }
+      
+      if (strIndexes.length() != 0) {
+          imports.add("javax.persistence.Index");
+          strIndexes.append("}");
+      }
+      
+      
+      beanCode.append("@Table(name = \"" + table.name + "\" " + strIndexes.toString());
       
       
       
@@ -216,7 +239,7 @@ public class DaoJPAGenerator {
         
         if (uniques != null && uniques.length != 0) {
           imports.add("javax.persistence.UniqueConstraint");
-          beanCode.append(" , uniqueConstraints = {\n");
+          beanCode.append(",\n           uniqueConstraints = {\n");
           for (int i = 0; i < uniques.length; i++) {
             beanCode.append("           ");
             if (i != 0) {
@@ -297,10 +320,10 @@ public class DaoJPAGenerator {
             		" generator=\"" + sequenceJPAName + "\")\n");
           }
 
-          if (field.getIndex() != null) {
-            imports.add("org.hibernate.annotations.Index");
-            beanCode.append("    " + "@Index(name=\"" + field.getIndex() + "\")\n");
-          }
+//          if (field.getIndex() != null) {
+//            imports.add("javax.persistence.Index");
+//            beanCode.append("    " + "@Index(name=\"" + field.getIndex() + "\")\n");
+//          }
           beanCode.append("    " + "@Column(name=\"" + field.sqlName + "\"");
           
           
@@ -913,12 +936,12 @@ public class DaoJPAGenerator {
         beanCode.append("  @Cascade(value=org.hibernate.annotations.CascadeType.ALL)\n");
         beanCode.append("  @LazyCollection(value= LazyCollectionOption.FALSE)\n");
         // TODO {prefix]_traducciomap -> Extreure de project.tables
-        beanCode.append("  @JoinTable(name=\"" + project.getPrefix().toLowerCase() + "_traducciomap\",joinColumns={@JoinColumn(name=\"traducciomapid\")})\n");
+        beanCode.append("  @JoinTable(name=\"" + project.getPrefix().toLowerCase() + "_traducciomap\",joinColumns={@JoinColumn(name=\"traducciomapid\")}, foreignKey=@ForeignKey(name=\"" + project.getPrefix().toLowerCase() + "_traducmap_traduccio_fk\"))\n");
         // XYZ ZZZ
         //beanCode.append("  @javax.persistence.MapKeyColumn(columns={@Column(name=\"idiomaid\")})\n");
         beanCode.append("  @javax.persistence.MapKeyColumn(name=\"idiomaid\")\n");
         // TODO FK ->   Extreure de project.tables foreig keys
-        beanCode.append("  @ForeignKey(name=\"" + project.getPrefix().toLowerCase() + "_traducmap_traduccio_fk\") \n");
+        //beanCode.append("  @ForeignKey(name=\"" + project.getPrefix().toLowerCase() + "_traducmap_traduccio_fk\") \n");
         beanCode.append("  private Map<String, " + jpaPackage + ".TraduccioMapJPA> traduccions =  new HashMap<String, " + jpaPackage + ".TraduccioMapJPA>();\n");
         beanCode.append("\n");
         beanCode.append("  public Map<String, " + jpaPackage + ".TraduccioMapJPA> getTraduccions() {\n");
@@ -957,8 +980,8 @@ public class DaoJPAGenerator {
         //imports.add("javax.persistence.MapKey");
         imports.add("javax.persistence.ElementCollection");
         imports.add("org.hibernate.annotations.Cascade");
-        imports.add("org.hibernate.annotations.ForeignKey");
-        imports.add("org.hibernate.annotations.Index");
+        imports.add("javax.persistence.ForeignKey");
+        imports.add("javax.persistence.Index");
         imports.add("org.hibernate.annotations.LazyCollection");
         imports.add("org.hibernate.annotations.LazyCollectionOption");
       }
@@ -1065,7 +1088,7 @@ public class DaoJPAGenerator {
         } else {
           if (codeType == CodeType.JPA) {
             imports.add("javax.persistence.ManyToOne");
-            imports.add("org.hibernate.annotations.ForeignKey");
+            imports.add("javax.persistence.ForeignKey");
           }
           relType = "ManyToOne";
           typeForeign = javax.persistence.ManyToOne.class;
@@ -1087,14 +1110,14 @@ public class DaoJPAGenerator {
               fkName = project.getPrefix() + "_" + table.getNameJava().toLowerCase() + "_" + expTable.getNameJava().toLowerCase() + "_fk";
           }
           
-          imports.add("org.hibernate.annotations.ForeignKey");
-          jpaCode.append("    @ForeignKey(name=\"" + fkName + "\")\n");
+          imports.add("javax.persistence.ForeignKey");
+          //jpaCode.append("    @ForeignKey(name=\"" + fkName + "\")\n");
 
           jpaCode.append("    @JoinColumn(name = \"" + field.getSqlName() 
               + ("ManyToOne".equals(relType)? ( "\", referencedColumnName =\"" + expField.getJavaName() ) : "")
               + "\", nullable = " + !field.isNotNullable() +
-            ", insertable=false, updatable=false)" + "\n");
-            //(isFiletable? ")" : ", insertable=false, updatable=false)") + "\n");
+            ", insertable=false, updatable=false, foreignKey=@ForeignKey(name=\"" + fkName + "\"))" + "\n");
+            //
         }
         
         
