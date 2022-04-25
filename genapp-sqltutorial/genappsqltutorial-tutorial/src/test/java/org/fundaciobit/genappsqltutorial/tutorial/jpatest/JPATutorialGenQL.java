@@ -13,6 +13,9 @@ import org.fundaciobit.genappsqltutorial.tutorial.units.SQL08Update;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL09Delete;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL11CountAvgSum;
 import org.fundaciobit.genappsqltutorial.tutorial.units.SQL15Joins;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL17Union;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL18GroupBy;
+import org.fundaciobit.genappsqltutorial.tutorial.units.SQL19Having;
 
 /**
  * 
@@ -44,7 +47,13 @@ public class JPATutorialGenQL {
 
             // unitSQL11CountAvgSum(args);
 
-            unitSQL15Joins(args);
+            //unitSQL15Joins(args);
+            
+            //unitSQL17Union(args);
+            
+            //unitSQL18GroupBy(args);
+            
+            unitSQL19Having(args);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,6 +163,34 @@ public class JPATutorialGenQL {
         s.joinSelect3Columns();
         
         //s.joinSelect4Columns();
+
+    }
+    
+    
+    public static void unitSQL17Union(String[] args) throws Exception {
+        SQL17Union s = new SQL17Union();
+
+        s.anotherUnionExample();
+
+    }
+    
+    
+    public static void unitSQL18GroupBy(String[] args) throws Exception {
+        SQL18GroupBy s = new SQL18GroupBy();
+
+        //s.exampleGroupBy2();
+        
+        s.groupByWithJoin();
+
+    }
+    
+    
+    public static void unitSQL19Having(String[] args) throws Exception {
+        SQL19Having s = new SQL19Having();
+
+        //s.exampleGroupBy2();
+        
+        s.exampleHaving4();
 
     }
 

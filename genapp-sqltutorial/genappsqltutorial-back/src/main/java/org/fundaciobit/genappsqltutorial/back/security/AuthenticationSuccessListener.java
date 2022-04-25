@@ -47,16 +47,16 @@ public class AuthenticationSuccessListener implements
 
     // Cercam si té el ROLE_USER o ROLE_ADMIN
     Collection<GrantedAuthority> realAuthorities = user.getAuthorities();
-    boolean containsRoleUser = false;
-    boolean containsRoleAdmin = false;
+    //boolean containsRoleUser = false;
+    //boolean containsRoleAdmin = false;
     for (GrantedAuthority grantedAuthority : realAuthorities) {
       String rol = grantedAuthority.getAuthority();
       log.info("Rol REAL : " + rol);
       if (Constants.ROLE_USER.equals(rol)) {
-        containsRoleUser = true;
+        //containsRoleUser = true;
       }
       if (Constants.ROLE_ADMIN.equals(rol)) {
-        containsRoleAdmin = true;
+        //containsRoleAdmin = true;
       }
     }
 

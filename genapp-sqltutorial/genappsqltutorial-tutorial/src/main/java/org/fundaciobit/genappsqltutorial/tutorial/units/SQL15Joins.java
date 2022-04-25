@@ -93,7 +93,7 @@ public class SQL15Joins extends AbstractUnit {
 
         OrderBy orderby = new OrderBy(OrdersFields.CUSTOMERID, OrderType.ASC); 
         List<Select4Values<Long, Long, String, Date>> list;
-        list = getOrdersManager().executeQuery(s4c, null, orderby);
+        list = getOrdersManager().executeQuery(s4c, orderby);
 
         print(list, OrdersFields.ORDERID.javaName, OrdersFields.CUSTOMERID.javaName,
                 CustomersFields.CUSTOMERNAME.javaName, OrdersFields.ORDERDATE.javaName);

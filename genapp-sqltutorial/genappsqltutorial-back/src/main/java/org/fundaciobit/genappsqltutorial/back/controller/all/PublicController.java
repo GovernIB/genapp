@@ -167,11 +167,11 @@ public class PublicController implements IDAOProvider {
         String paquet = "genappsqltutorial";
         String className = "ExecuteSql" + +System.currentTimeMillis();
         String methodName = "execute";
-
+/*
         String codeOK = "package " + paquet + ";\n\n" + imports + "public class " + className
                 + " extends AbstractUnit {\n" + "    public void " + methodName
                 + "() throws Exception {\n" + test + "    }\n" + "}\n";
-
+*/
         String code = "package " + paquet + ";\n\n" + "import java.util.List;\r\n" + "\r\n"
                 + "import org.fundaciobit.genapp.common.KeyValue;\r\n"
                 + "import org.fundaciobit.genapp.common.query.SelectMultipleKeyValue;\r\n"

@@ -112,7 +112,10 @@ function b64EncodeUnicode(str) {
     <p style="box-sizing: border-box;color: rgb(0, 0, 0);font-family: Verdana, sans-serif;font-size: 15px;line-height: 22.5px;margin-bottom: 18px;">
     <c:out value="${p.descripcio}"></c:out>
     </p>
-    SQL: <code>${p.sql}</code><br/>
+    SQL: <code>
+    <c:set var="SQL" value="${p.sql}"/>
+   <%= ((String)pageContext.getAttribute("SQL")).replaceAll("\n", "<br/>") %>
+    </code><br/>
     GenQL:<br/>
     <%-- 
     <textarea rows="4" cols="90"><c:out value="${p.sourcecode}" escapeXml="true"/></textarea>
