@@ -103,7 +103,7 @@ public class ${fullname}CommonsMultipartResolver extends
     return maxUploadSize;
   }
 
-  private Long getMaxFitxerAdaptatSize() {
+  protected Long getMaxFitxerAdaptatSize() {
     Long maxFitxerAdaptatSizeGlobal = Configuracio.getMaxFitxerAdaptatSizeInBytes();
     if (log.isDebugEnabled()) {
       if (maxFitxerAdaptatSizeGlobal == null) {

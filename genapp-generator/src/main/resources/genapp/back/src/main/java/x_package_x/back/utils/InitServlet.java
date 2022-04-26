@@ -21,14 +21,14 @@ import org.fundaciobit.pluginsib.exportdata.IExportDataPlugin;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 import ${package}.hibernate.HibernateFileUtil;
-import ${package}.commons.utils.Constants;
+//import ${package}.commons.utils.Constants;
 import ${package}.logic.utils.I18NLogicUtils;
 import ${package}.logic.utils.LogicUtils;
 import ${package}.commons.utils.Configuracio;
 
-import org.fundaciobit.pluginsib.core.utils.PluginsManager;
-import org.fundaciobit.pluginsib.exportdata.IExportDataPlugin;
-import org.fundaciobit.genapp.common.web.exportdata.DataExporterManager;
+//import org.fundaciobit.pluginsib.core.utils.PluginsManager;
+//import org.fundaciobit.pluginsib.exportdata.IExportDataPlugin;
+//import org.fundaciobit.genapp.common.web.exportdata.DataExporterManager;
 
 /**
  * Servlet emprat per inicialitzar el Back
