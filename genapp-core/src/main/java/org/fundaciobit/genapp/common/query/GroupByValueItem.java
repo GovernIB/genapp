@@ -52,5 +52,12 @@ public class GroupByValueItem extends GroupByAbstractItem {
     }
 
   };
+  
+  
+  @Override
+    public String toString() {
+     
+        return "[" + this.getField().fullName + "\t" + this.getCodeLabel() + "\t" + this.getValue() + "\t" + this.getCount() + "]";
+    }
 
 }

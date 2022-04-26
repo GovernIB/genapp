@@ -33,8 +33,7 @@ public class SQL01Select extends AbstractUnit {
     public void fieldsSelect() throws Exception {
         SelectMultipleKeyValue<String> select;
         select = new SelectMultipleKeyValue<String>(CustomersFields.CUSTOMERNAME.select, CustomersFields.CITY.select);
-        List<KeyValue<String>> customersFields = this.getCustomerManager().executeQuery(select,
-                null);
+        List<KeyValue<String>> customersFields = this.getCustomerManager().executeQuery(select);
         print(CustomersFields.CUSTOMERNAME.javaName, CustomersFields.CITY.javaName, customersFields);
     }
 

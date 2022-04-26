@@ -44,9 +44,9 @@ public class SQL17Union extends AbstractUnit {
 
         Set<String> cities = new TreeSet<String>();
 
-        cities.addAll(getCustomerManager().executeQuery(CustomersFields.CITY, null));
+        cities.addAll(getCustomerManager().executeQuery(CustomersFields.CITY));
 
-        cities.addAll(getSuppliersManager().executeQuery(SuppliersFields.CITY, null));
+        cities.addAll(getSuppliersManager().executeQuery(SuppliersFields.CITY));
 
         print(new ArrayList<String>(cities), SuppliersFields.CITY.javaName);
     }
@@ -61,9 +61,9 @@ public class SQL17Union extends AbstractUnit {
 
         List<String> cities = new ArrayList<String>();
 
-        cities.addAll(getCustomerManager().executeQuery(CustomersFields.CITY, null));
+        cities.addAll(getCustomerManager().executeQuery(CustomersFields.CITY));
 
-        cities.addAll(getSuppliersManager().executeQuery(SuppliersFields.CITY, null));
+        cities.addAll(getSuppliersManager().executeQuery(SuppliersFields.CITY));
 
         Collections.sort(cities);
         print(cities, SuppliersFields.CITY.javaName);
@@ -194,7 +194,7 @@ public class SQL17Union extends AbstractUnit {
                     CustomersFields.CONTACTNAME.select, CustomersFields.CITY.select,
                     CustomersFields.COUNTRY.select);
 
-            cityCountryList.addAll(getCustomerManager().executeQuery(s4c, null));
+            cityCountryList.addAll(getCustomerManager().executeQuery(s4c));
         }
         {
             Select4Columns<String, String, String, String> s4c;
@@ -202,7 +202,7 @@ public class SQL17Union extends AbstractUnit {
                     SuppliersFields.CONTACTNAME.select, SuppliersFields.CITY.select,
                     SuppliersFields.COUNTRY.select);
 
-            cityCountryList.addAll(getSuppliersManager().executeQuery(s4c, null));
+            cityCountryList.addAll(getSuppliersManager().executeQuery(s4c));
         }
 
         print(new ArrayList<Select2Values<String, String>>(cityCountryList), "Tipus",

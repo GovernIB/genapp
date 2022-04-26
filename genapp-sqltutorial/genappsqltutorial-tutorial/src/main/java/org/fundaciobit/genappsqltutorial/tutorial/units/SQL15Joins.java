@@ -46,7 +46,7 @@ public class SQL15Joins extends AbstractUnit {
                 OrdersFields.ORDERDATE.select);
 
         List<KeyValue<Long>> list;
-        list = getOrdersManager().executeQuery(smskv, null);
+        list = getOrdersManager().executeQuery(smskv);
 
         print(OrdersFields.ORDERID.javaName,
                 CustomersFields.CUSTOMERNAME.javaName + SEPARATOR + OrdersFields.ORDERDATE.javaName,
@@ -69,7 +69,7 @@ public class SQL15Joins extends AbstractUnit {
                 OrdersFields.ORDERDATE.select);
 
         List<Select3Values<Long, String, Date>> list;
-        list = getOrdersManager().executeQuery(s3c, null);
+        list = getOrdersManager().executeQuery(s3c);
 
         print(list, OrdersFields.ORDERID.javaName, CustomersFields.CUSTOMERNAME.javaName,
                 OrdersFields.ORDERDATE.javaName);

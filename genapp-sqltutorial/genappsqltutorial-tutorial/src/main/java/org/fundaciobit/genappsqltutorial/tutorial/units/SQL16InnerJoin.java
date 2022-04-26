@@ -39,7 +39,7 @@ public class SQL16InnerJoin extends AbstractUnit {
                 new OrdersQueryPath().CUSTOMERS().CUSTOMERNAME().select);
 
         List<Select2Values<Long, String>> list;
-        list = getOrdersManager().executeQuery(s2c, null);
+        list = getOrdersManager().executeQuery(s2c);
 
         print(list, OrdersFields.ORDERID.javaName, CustomersFields.CUSTOMERNAME.javaName);
     }
@@ -60,7 +60,7 @@ public class SQL16InnerJoin extends AbstractUnit {
                 new OrdersQueryPath().SHIPPERID().select);
 
         List<Select3Values<Long, Long, Long>> list;
-        list = getOrdersManager().executeQuery(s3c, null);
+        list = getOrdersManager().executeQuery(s3c);
 
         print(list, OrdersFields.ORDERID.javaName, CustomersFields.CUSTOMERID.javaName,
                 ShippersFields.SHIPPERID.javaName);

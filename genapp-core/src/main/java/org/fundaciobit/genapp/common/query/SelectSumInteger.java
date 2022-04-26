@@ -7,7 +7,8 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class SelectSumInteger<T extends AbstractIntegerField<? extends Number>>  extends Select<Long> {
+public class SelectSumInteger<T extends AbstractIntegerField<? extends Number>> extends Select<Long>
+        implements AggregateFunction<T> {
 
     protected final T field;
 
@@ -25,4 +26,13 @@ public class SelectSumInteger<T extends AbstractIntegerField<? extends Number>> 
         return (Long) obj;
     }
 
+    @Override
+    public int length() {
+        return 1;
+    }
+
+    @Override
+    public Having<T> having() {
+        return new Having<T>(getSelectString());
+    }
 }

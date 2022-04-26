@@ -22,6 +22,11 @@ public class SelectDistinct<T extends Object>
   public T getFromObject(Object obj) throws I18NException {
     return field.select.getFromObject(obj);
   }
+  
+  @Override
+  public int length() {
+      return 1;
+  }
 
 }
 

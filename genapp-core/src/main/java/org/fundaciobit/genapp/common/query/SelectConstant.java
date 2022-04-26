@@ -26,12 +26,21 @@ public class SelectConstant extends Select<String> {
   @Override
   public String getSelectString() {
     // Indicam que aquest valor no serà visible en la sentència SQL
-    return null;
+    if(value == null) {
+        return "'null'";
+    } else {
+      return "'" + value.replace("'", "''")  + "'";
+    }
   }
 
   @Override
   public String getFromObject(Object obj) throws I18NException {
     return value;
+  }
+  
+  @Override
+  public int length() {
+      return 1;
   }
   
   

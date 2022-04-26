@@ -32,11 +32,27 @@ public class SelectGroupByAndCountForField extends SelectMultiple<GroupByValueIt
     return (obj == null)? null : String.valueOf(obj);
   }
 
+  
+  @Override
+  public final GroupByValueItem getFromObject(Object obj) throws I18NException {
+      
+      if (obj instanceof GroupByValueItem) {
+          return (GroupByValueItem)obj;
+      }
+      
+      return super.getFromObject(obj);
+      
+      
+  }
+  
+  
 
   @Override
   public GroupByValueItem objectArrayToI(Object[] objects) throws I18NException {
     return new GroupByValueItem(field, getStringValue(objects[1]), getStringValue(objects[1]), false,
         SelectCount.objectToLong(objects[0]));
   };
+  
+  
 
 }

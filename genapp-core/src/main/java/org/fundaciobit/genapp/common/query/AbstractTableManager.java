@@ -149,10 +149,24 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             return list.get(0);
         }
     }
+    
+    @PermitAll
+    @Override
+    public <T extends Object> List<T> executeQuery(Field<T> field, OrderBy... orderBy)
+            throws I18NException {
+        return executeQuery(field.select, null, orderBy);
+    }
 
     @PermitAll
     @Override
     public <T extends Object> List<T> executeQuery(Field<T> field, Where where, OrderBy... orderBy)
+            throws I18NException {
+        return executeQuery(field.select, where, orderBy);
+    }
+    
+    @PermitAll
+    @Override
+    public <T extends Object> List<T> executeQuery(Field<T> field, Where where, Where having, OrderBy... orderBy)
             throws I18NException {
         return executeQuery(field.select, where, orderBy);
     }
@@ -163,6 +177,10 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             throws I18NException {
         return getSubQuery(field.select, where);
     }
+    
+    
+
+    
 
     @PermitAll
     @Override
@@ -170,13 +188,27 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             throws I18NException {
         return new SubQuery<E, T>(select, this, where);
     }
+    
+    @PermitAll
+    @Override
+    public <T extends Object> List<T> executeQuery(Select<T> select, OrderBy... orderBy) throws I18NException {
+        return executeQuery(select, null, null, orderBy);
+    }
+    
+    @PermitAll
+    @Override
+    public <T extends Object> List<T> executeQuery(Select<T> select, Where where,
+           OrderBy... orderBy) throws I18NException {
+        return executeQuery(select, where, null, orderBy);
+    }
+    
 
     @PermitAll
     @Override
     public <T extends Object> List<T> executeQuery(Select<T> select, Where where,
-            OrderBy... orderBy) throws I18NException {
+           Where having, OrderBy... orderBy) throws I18NException {
 
-        SubQuery<E, T> subquery = new SubQuery<E, T>(select, this, where, orderBy);
+        SubQuery<E, T> subquery = new SubQuery<E, T>(select, this, where, having, orderBy);
 
         String queryStr = subquery.toSQL();
 
@@ -268,15 +300,28 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
     public List<E> select(Where where, OrderBy... orderBy) throws I18NException {
         return select(where, null, null, orderBy);
     }
+    
+    @PermitAll
+    @Override
+    public List<E> select(Where where, Where having, OrderBy... orderBy) throws I18NException {
+        return select(where, having, null, null, orderBy);
+    }
 
     public class SelectAll extends Select<E> {
 
+        @Override
         public String getSelectString() {
             return getTableNameVariable();
         }
 
+        @Override
         public E getFromObject(Object rs) throws I18NException {
             return (E) rs;
+        }
+        
+        @Override
+        public int length() {
+            return -1;
         }
     }
 
@@ -284,8 +329,15 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
     @Override
     public List<E> select(Where where, Integer firstResult, Integer maxResults, OrderBy... orderBy)
             throws I18NException {
+        return select(where, null, firstResult, maxResults, orderBy);
+    }
+        
+    @PermitAll
+    @Override
+    public List<E> select(Where where, Where having, Integer firstResult, Integer maxResults, OrderBy... orderBy)
+            throws I18NException {
 
-        String __query = generateQueryString(new SelectAll(), where, orderBy);
+        String __query = generateQueryString(new SelectAll(), where, having, orderBy);
 
         Query q = getEntityManager().createQuery(__query);
         if (where != null) {
@@ -306,7 +358,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         }
     }
 
-    protected String generateQueryString(Select<?> select, Where where, OrderBy[] orderBy) {
+    protected String generateQueryString(Select<?> select, Where where, Where having, OrderBy[] orderBy) {
         // select
         StringBuffer query = new StringBuffer("select " + select.getSelectString());
         // from
@@ -316,57 +368,75 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             query.append(" where " + where.toSQL());
         }
         // group by
-        if (select instanceof GroupBy) {
-            String groupby = ((GroupBy) select).getGroupBy();
-            if (groupby != null && groupby.trim().length() != 0) {
-                query.append(" group by " + groupby);
-            }
-        }
+        query.append(processGroupBy(select));
+        // having
+        query.append(processHaving(having));
         // order by
         query.append(OrderBy.processOrderBy(orderBy));
 
         return query.toString();
     }
 
+    protected String processGroupBy(Select<?> select) {
+        if (select instanceof GroupBy) {
+            String groupby = ((GroupBy) select).getGroupBy();
+            if (groupby != null && groupby.trim().length() != 0) {
+                return " group by " + groupby;
+            }
+        }
+        return "";
+    }
+    
+    
+    protected String processHaving(Where having) {
+        return having==null? "" : having.toSQL();
+    }
+    
+
     @Override
-    public String generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy) {
-        return generateSelectQueryString(select, where, orderBy, 1).sql;
+    public String generateSelectQueryString(Select<?> select, Where where, Where having, OrderBy[] orderBy) {
+        return generateSelectQueryString(select, where, having, orderBy, 1).sql;
     }
 
     @Override
-    public QuerySQL generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy,
+    public QuerySQL generateSelectQueryString(Select<?> select, Where where, Where having, OrderBy[] orderBy,
             int index) {
         // select
         StringBuilder query = new StringBuilder("select " + select.getSelectString());
         // from i where
-        QuerySQL whereSQL = generateWhereQueryString(where, index);
+        QuerySQL whereSQL = generateWhereQueryString(where, index, false);
         query.append(whereSQL.sql);
         // group by
-        if (select instanceof GroupBy) {
-            String groupby = ((GroupBy) select).getGroupBy();
-            if (groupby != null && groupby.trim().length() != 0) {
-                query.append(" group by ").append(groupby);
-            }
-        }
+        query.append(processGroupBy(select));
+        // having
+        QuerySQL havingSQL = generateWhereQueryString(having, whereSQL.nextIndex, true);
+        query.append(havingSQL.sql);
         // order by
         query.append(OrderBy.processOrderBy(orderBy));
-        return new QuerySQL(whereSQL.nextIndex, query.toString());
+        return new QuerySQL(havingSQL.nextIndex, query.toString());
     }
 
     protected String generateWhereQueryString(Where where) {
-        return generateWhereQueryString(where, 1).sql;
+        return generateWhereQueryString(where, 1, false).sql;
     }
 
-    protected QuerySQL generateWhereQueryString(Where where, int index) {
+    protected QuerySQL generateWhereQueryString(Where where, int index, boolean isHaving) {
         int nextIndex = index;
         StringBuilder query = new StringBuilder();
-        // from
-        query.append(" from ").append(getTableName()).append(" ").append(getTableNameVariable());
+        if (!isHaving) {
+          // from
+          query.append(" from ").append(getTableName()).append(" ").append(getTableNameVariable());
+        }
         // where
         if (where != null) {
             QuerySQL whereSQL = where.toSQL(index);
             nextIndex = whereSQL.nextIndex;
-            query.append(" where ").append(whereSQL.sql);
+            if (isHaving) {
+              query.append(" having ");
+            } else {
+              query.append(" where ");
+            }
+            query.append(whereSQL.sql);
         }
         return new QuerySQL(nextIndex, query.toString());
     }

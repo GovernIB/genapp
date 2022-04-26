@@ -10,7 +10,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class SelectSumDecimal<T extends AbstractDecimalField<? extends Number>> extends Select<Double> {
+public class SelectSumDecimal<T extends AbstractDecimalField<? extends Number>> extends Select<Double> implements AggregateFunction<T> {
 
     public final T  field;
 
@@ -51,6 +51,16 @@ public class SelectSumDecimal<T extends AbstractDecimalField<? extends Number>> 
                 + obj.getClass() + " [ " + obj + " ]");
         throw new I18NException("genapp.unknowtype", String.valueOf(obj.getClass().getName()),
                 String.valueOf(obj));
+    }
+    
+    @Override
+    public int length() {
+        return 1;
+    }
+    
+    @Override
+    public Having<T> having() {
+        return new Having<T>(getSelectString());
     }
 
 }

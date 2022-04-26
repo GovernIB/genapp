@@ -19,5 +19,9 @@ public abstract class SelectField<R> extends Select<R> {
     return fullName;
   }
 
+  @Override
+  public int length() {
+      return 1;
+  }
   
 }

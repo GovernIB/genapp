@@ -30,7 +30,7 @@ public class SQL02SelectDistinct extends AbstractUnit {
             order = 1)
     public void selectWithoutDistinct() throws I18NException, Exception {
         List<String> allcountriesrepeat = this.getCustomerManager()
-                .executeQuery(CustomersFields.COUNTRY, null);
+                .executeQuery(CustomersFields.COUNTRY);
         print(allcountriesrepeat, "Countries Without DISTINCT");
     }
 
@@ -41,7 +41,7 @@ public class SQL02SelectDistinct extends AbstractUnit {
             order = 2)
     public void selectDistinct() throws I18NException, Exception {
         SelectDistinct<String> sd = new SelectDistinct<String>(CustomersFields.COUNTRY);
-        List<String> distinctcountries = this.getCustomerManager().executeQuery(sd, null);
+        List<String> distinctcountries = this.getCustomerManager().executeQuery(sd);
         print(distinctcountries, "Countries With DISTINCT");
     }
 

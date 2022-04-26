@@ -62,9 +62,14 @@ public interface ITableManager<E extends IGenAppEntity, PK extends Object> {
 	public List<E> select(Where where) throws I18NException;
 
 	public List<E> select(Where where, OrderBy... orderBy) throws I18NException;
+	
+	public List<E> select(Where where, Where having, OrderBy... orderBy) throws I18NException;
 
 	public List<E> select(Where where, Integer firstResult, Integer maxResults, OrderBy... orderBy)
 			throws I18NException;
+	
+	public List<E> select(Where where, Where having, Integer firstResult, Integer maxResults, OrderBy... orderBy)
+            throws I18NException;
 
 	public E[] listToArray(List<E> list);
 
@@ -72,11 +77,22 @@ public interface ITableManager<E extends IGenAppEntity, PK extends Object> {
 
 	public <T extends Object> T executeQueryOne(Select<T> select, Where where) throws I18NException;
 
+	public <T extends Object> List<T> executeQuery(Field<T> field, OrderBy... orderBy) throws I18NException;
+	
 	public <T extends Object> List<T> executeQuery(Field<T> field, Where where, OrderBy... orderBy)
 			throws I18NException;
+	
+	public <T extends Object> List<T> executeQuery(Field<T> field, Where where, Where having, OrderBy... orderBy)
+            throws I18NException;
+	
+	public <T extends Object> List<T> executeQuery(Select<T> select, OrderBy... orderBy)
+            throws I18NException;
 
 	public <T extends Object> List<T> executeQuery(Select<T> select, Where where, OrderBy... orderBy)
 			throws I18NException;
+	
+	public <T extends Object> List<T> executeQuery(Select<T> select, Where where, Where having, OrderBy... orderBy)
+            throws I18NException;
 
 	public <T extends Object> SubQuery<E, T> getSubQuery(Select<T> select, Where where) throws I18NException;
 
@@ -86,9 +102,9 @@ public interface ITableManager<E extends IGenAppEntity, PK extends Object> {
 
 	public EntityManager getEntityManager();
 
-	public String generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy);
+	public String generateSelectQueryString(Select<?> select, Where where, Where having, OrderBy[] orderBy);
 
-	public QuerySQL generateSelectQueryString(Select<?> select, Where where, OrderBy[] orderBy, int index);
+	public QuerySQL generateSelectQueryString(Select<?> select, Where where, Where having, OrderBy[] orderBy, int index);
 
 	/**
 	 * Obté una entitat en forma de referència, per tant sense carregar les seves

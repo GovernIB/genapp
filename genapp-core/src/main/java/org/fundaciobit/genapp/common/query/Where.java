@@ -27,7 +27,7 @@ public abstract class Where {
   }
 
   /**
-   * Mètode d'utilitat per juntar varis Where mitjan�ant una AND 
+   * Mètode d'utilitat per juntar varis Where mitjançant una AND 
    * @param wheres
    * @return 
    */

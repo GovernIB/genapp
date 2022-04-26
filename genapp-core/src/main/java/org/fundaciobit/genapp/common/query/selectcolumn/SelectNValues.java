@@ -9,6 +9,16 @@ package org.fundaciobit.genapp.common.query.selectcolumn;
  * @param <C>
  * @param <D>
  * @param <E>
+ * @param <F>
+ * @param <G>
+ * @param <H>
+ * @param <I>
+ * @param <J>
+ * @param <K>
+ * @param <L>
+ * @param <M>
+ * @param <N>
+ * @param <P>
  */
 public class SelectNValues<A, B, C, D, E, F, G, H, I, J, K, L, M, N, P> {
     //

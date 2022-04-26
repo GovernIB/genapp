@@ -1,8 +1,10 @@
 package org.fundaciobit.genapp.common.query;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 
 /**
@@ -11,6 +13,8 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  *
  */
 public abstract class SelectMultiple<I> extends Select<I> implements GroupBy {
+    
+    protected Logger log = Logger.getLogger(this.getClass()); 
 
   final Select<?>[] selects;
 
@@ -90,7 +94,7 @@ public abstract class SelectMultiple<I> extends Select<I> implements GroupBy {
   }
 
   @Override
-  public final I getFromObject(Object obj) throws I18NException {
+  public I getFromObject(Object obj) throws I18NException {
     if (obj == null) {
       throw new I18NException("genapp.selectmultiple.returnednull");
     }
@@ -98,12 +102,30 @@ public abstract class SelectMultiple<I> extends Select<I> implements GroupBy {
     Class<?> c = obj.getClass();
 
     if (!c.isArray()) {
+        
+        log.error("ERROR NO ARRAY: CLass: " + this.getClass());
+        log.error("ERROR NO ARRAY: Value: " + obj);
+        log.error("ERROR NO ARRAY: Value Class: " + obj.getClass());
+        
       throw new I18NException("genapp.selectmultiple.notarray", c.getName());
     }
 
     Object[] rs_objects = (Object[]) obj;
-
-    if ((rs_objects.length + numberOfEmptySelects) != this.selects.length) {
+    
+    int numberOfItems = 0;
+    for (Select<?> s : this.selects) {
+        numberOfItems = numberOfItems + s.length();
+    }
+    
+    
+    if ((rs_objects.length + numberOfEmptySelects) != numberOfItems) {
+        
+        log.error("numberOfItems: " + numberOfItems);
+        log.error("rs_objects.length: " + rs_objects.length);
+        log.error("numberOfEmptySelects: " + numberOfEmptySelects);
+        log.error("this.selects.length: " + this.selects.length);
+        log.error("(rs_objects.length + numberOfEmptySelects) != this.selects.length");
+        
       throw new I18NException("genapp.selectmultiple.incorrectsize",
           String.valueOf(this.selects.length - numberOfEmptySelects),
           String.valueOf(rs_objects.length));
@@ -117,8 +139,20 @@ public abstract class SelectMultiple<I> extends Select<I> implements GroupBy {
       if (emptySelects[i]) {
         objects[i] = this.selects[i].getFromObject(null); // No existeix en la bbdd
       } else {
-        objects[i] = this.selects[i].getFromObject(rs_objects[rsCounter]);
-        rsCounter ++;
+          if (this.selects[i].length() == 1) {
+              //log.info("XYZ ZZZ ["+ i + "] Passant un object ... " + this.selects[i].getClass());
+             objects[i] = this.selects[i].getFromObject(rs_objects[rsCounter]);
+             rsCounter ++;
+          } else {
+              // És un select multiple, li hem de passar un array
+              
+              Object[] arrayRS = Arrays.copyOfRange(rs_objects ,rsCounter,rsCounter + this.selects[i].length());
+              
+              //log.info("XYZ ZZZ ["+ i + "] Passant un array ... " +  this.selects[i].getClass());
+              objects[i] = this.selects[i].getFromObject(arrayRS);
+
+              rsCounter = rsCounter + this.selects[i].length();
+          }
       }
     }
     
@@ -126,6 +160,10 @@ public abstract class SelectMultiple<I> extends Select<I> implements GroupBy {
 
   }
   
+  @Override
+  public int length() {
+      return this.selects.length;
+  }
   
   public abstract I objectArrayToI(Object[] objects) throws I18NException;
 

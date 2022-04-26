@@ -45,7 +45,7 @@ public class SQL18GroupBy extends AbstractUnit {
         Select2Columns<Long, String> s2c;
         s2c = new Select2Columns<Long, String>(customerCount, countryGroupBy);
 
-        List<Select2Values<Long, String>> list = getCustomerManager().executeQuery(s2c, null);
+        List<Select2Values<Long, String>> list = getCustomerManager().executeQuery(s2c);
 
         print(list, customerCount.getSelectString(), CustomersFields.COUNTRY.javaName);
     }
@@ -91,7 +91,7 @@ public class SQL18GroupBy extends AbstractUnit {
         Select2Columns<String, Long> s2c;
         s2c = new Select2Columns<String, Long>(shipperNameGroupBy, orderCount);
 
-        List<Select2Values<String, Long>> list = getOrdersManager().executeQuery(s2c, null);
+        List<Select2Values<String, Long>> list = getOrdersManager().executeQuery(s2c);
 
         print(list, ShippersFields.SHIPPERNAME.javaName, orderCount.getSelectString());
     }

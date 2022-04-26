@@ -68,6 +68,11 @@ public class SelectMultipleKeyValue<T> extends SelectMultiple<KeyValue<T>> {
 
     return list;
   }
+  
+  @Override
+  public int length() {
+      return this.valueSelects.length + 1;
+  }
 
 }
 

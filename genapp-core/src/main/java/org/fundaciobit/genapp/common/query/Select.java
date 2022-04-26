@@ -8,5 +8,7 @@ public abstract class Select<R> {
   public abstract String getSelectString();
   
   public abstract R getFromObject(Object rs) throws I18NException;
+  
+  public abstract int length();
 
 }

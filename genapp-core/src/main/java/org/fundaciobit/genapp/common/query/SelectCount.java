@@ -10,30 +10,25 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class SelectCount extends Select<Long> {
+public class SelectCount extends Select<Long> implements AggregateFunction<Long> {
 
     final String countParam;
-    
+
     public SelectCount() {
         this.countParam = "*";
     }
-    
-    
+
     public SelectCount(Field<?> field) {
         this.countParam = field.fullName;
     }
-    
-    
+
     public SelectCount(Select<?> select) {
         this.countParam = select.getSelectString().replace('(', ' ').replace(')', ' ');
     }
-    
-    
-    
-    
+
     @Override
     public String getSelectString() {
-        return "count(" + countParam+ ")";
+        return "count(" + countParam + ")";
     }
 
     @Override
@@ -57,8 +52,20 @@ public class SelectCount extends Select<Long> {
             Number number = (Number) obj;
             return number.longValue();
         }
-        System.err.println("Valor desconegut retornat per la funcio count(??): " + obj.getClass() + " [ " + obj + " ]");
-        throw new I18NException("genapp.unknowtype", String.valueOf(obj.getClass().getName()), String.valueOf(obj));
+        System.err.println("Valor desconegut retornat per la funcio count(??): " + obj.getClass()
+                + " [ " + obj + " ]");
+        throw new I18NException("genapp.unknowtype", String.valueOf(obj.getClass().getName()),
+                String.valueOf(obj));
+    }
+
+    @Override
+    public int length() {
+        return 1;
+    }
+
+    @Override
+    public Having<Long> having() {
+        return new Having<Long>(getSelectString());
     }
 
 }
