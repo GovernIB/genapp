@@ -5,14 +5,14 @@ import java.util.Comparator;
 import java.util.HashSet;
 
 import org.apache.log4j.Logger;
-import ${package}.back.security.LoginInfo;
+//import ${package}.back.security.LoginInfo;
 
-import ${package}.back.security.LoginInfo;
+//import ${package}.back.security.LoginInfo;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -64,6 +64,10 @@ public class AuthenticationSuccessListener implements
       }
     }
 
+    if(log.isDebugEnabled()) {
+    	log.debug("containsRoleUser: " + containsRoleUser);
+    	log.debug("containsRoleAdmin: " + containsRoleAdmin);
+    }
 
     // TODO GENAPP Obtenir idioma de l'usuari. Null = idioma per defecte.
     String language = null;
