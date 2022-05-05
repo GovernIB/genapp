@@ -616,6 +616,10 @@ public class JPAValidatorGenerator {
     if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
       return "";
     }
+    
+    if (field.getWebFieldInfo().getWebtype() == WebType.Query) {
+        return "";
+    }
       
     BigDecimal value;
     try {
