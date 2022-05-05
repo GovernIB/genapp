@@ -202,8 +202,8 @@ public class DaoJPAGenerator {
         beanCode.append("@javax.persistence.Embeddable\n");
         
       } else {
-        imports.add("javax.persistence.Entity");        
-        beanCode.append("@Entity\n");
+        imports.add("javax.persistence.Entity");
+        beanCode.append("@Entity(name = \"" + table.nameJava + "\")\n");
       }
       
       
