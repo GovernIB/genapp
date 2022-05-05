@@ -1,10 +1,12 @@
 package ${package}.commons.utils;
 
+import org.fundaciobit.instanciagenerica.commons.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -29,26 +31,45 @@ public class Configuracio implements Constants {
     public static Properties getFilesProperties() {
         
         if (fileProperties.isEmpty()) {
-            // matches the property name as defined in the system-properties element in
-            // WildFly
-            String propertyFile = System.getProperty(Constants.${name_uppercase}_PROPERTY_BASE + "properties");
-            File file = new File(propertyFile);
-    
-            String propertySystemFile = System.getProperty(Constants.${name_uppercase}_PROPERTY_BASE + "system.properties");
-            File systemFile = new File(propertySystemFile);
-    
-            try {
-                fileProperties.load(new FileInputStream(file));
-                fileProperties.load(new FileInputStream(systemFile));
-            } catch (IOException e) {
-                LOG.error("No es pot carregar algun dels fitxers de propietats ... ", e);
-            }
+			// matches the property name as defined in the system-properties element in
+			// WildFly
+			try {
+				String property = Constants.${name_uppercase}_PROPERTY_BASE + "properties";
+				loadPropertyFile(property);
+				
+				String propertySystem = Constants.${name_uppercase}_PROPERTY_BASE + "system.properties";
+				loadPropertyFile(propertySystem);
+				
+			} catch (FileNotFoundException e) {
+				LOG.error("El fitxer de propietats no esta definit", e);
+
+			} catch (NullPointerException e) {
+				LOG.error("Propietat sense valor", e);
+				
+			} catch (IOException e) {
+				LOG.error("No es pot carregar algun dels fitxers de propietats ... ", e);
+			}
         }
         
         return fileProperties;
 
     }
 
+	public static void loadPropertyFile(String property) throws FileNotFoundException, IOException {
+		String propertyFile = System.getProperty(property);
+
+		if (propertyFile.equals("")) {
+			throw new NullPointerException("No esta definida la propietat: " + property);
+		}
+
+		File File = new File(propertyFile);
+		if (!File.exists()) {
+			throw new FileNotFoundException(File.getAbsolutePath());
+		}
+		fileProperties.load(new FileInputStream(File));
+	}
+
+    
     public static Properties getSystemAndFileProperties() {
 
         if (fileAndSystemProperties.isEmpty()) {
