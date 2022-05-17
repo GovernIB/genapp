@@ -2060,6 +2060,8 @@ public class BackGenerator {
         FieldInfo pk = PKs.get(0);
         if (pk.getJavaType().equals(String.class)) {
           code.append("  return value;\n");
+        }else if(pk.getJavaType().equals(java.math.BigDecimal.class)) {
+        	code.append("  return new java.math.BigDecimal(value);\n"); // TODO
         } else {
           //code.append("  return new " + pkClass + "(value);\n"); // TODO
         	code.append("  return " + pkClass + ".parse" + pkClass.substring(pkClass.lastIndexOf('.') + 1) + "(value, 10);\n"); // TODO
