@@ -1,6 +1,5 @@
 package ${package}.commons.utils;
 
-import org.fundaciobit.instanciagenerica.commons.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,45 +28,54 @@ public class Configuracio implements Constants {
 	 * Seguim els estandars de la CAIB
 	 */
 	public static Properties getFilesProperties() {
-        
-        if (fileProperties.isEmpty()) {
+
+		if (fileProperties.isEmpty()) {
 			// matches the property name as defined in the system-properties element in
 			// WildFly
-			try {
-				String property = Constants.${name_uppercase}_PROPERTY_BASE + "properties";
-				loadPropertyFile(property);
-				
+			String property = Constants.${name_uppercase}_PROPERTY_BASE + "properties";
+			loadPropertyFile(property);
+
 				String propertySystem = Constants.${name_uppercase}_PROPERTY_BASE + "system.properties";
-				loadPropertyFile(propertySystem);
-				
-			} catch (FileNotFoundException e) {
-				LOG.error("El fitxer de propietats no esta definit", e);
+			loadPropertyFile(propertySystem);
+		}
 
-			} catch (NullPointerException e) {
-				LOG.error("Propietat sense valor", e);
-				
-			} catch (IOException e) {
-				LOG.error("No es pot carregar algun dels fitxers de propietats ... ", e);
-			}
-        }
-        
-        return fileProperties;
+		return fileProperties;
 
-    }
+	}
 
-	public static void loadPropertyFile(String property) throws FileNotFoundException, IOException {
+	public static void loadPropertyFile(String property) {
+
 		String propertyFile = System.getProperty(property);
 
-		if (propertyFile.equals("")) {
-			throw new NullPointerException("No esta definida la propietat: " + property);
+		if (propertyFile == null) {
+			throw new RuntimeException("No existeix la propietat: " + property
+					+ " al fitxer standalone.xml. S'hauria d'incloure aquesta propietat a l'etiqueta <system-properties> del fitxer standalone");
+		}
+
+		if (propertyFile.trim().length() == 0) {
+			throw new RuntimeException("La propietat: " + property
+					+ " del fitxer standalone.xml no te valor. Se li ha de posar el fitxer corresponent a la propietat al fitxer standalone");
 		}
 
 		File File = new File(propertyFile);
-		if (!File.exists()) {
-			throw new FileNotFoundException(File.getAbsolutePath());
+//		if (!File.exists()) {
+//			throw new RuntimeException("La propietat "File.getAbsolutePath());
+//		}
+
+		try {
+			fileProperties.load(new FileInputStream(File));
+
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("La propietat: " + property
+					+ " del fitxer standalone apunta a un fitxer que no existeix (" + propertyFile + ")");
+
+		} catch (IOException e) {
+			throw new RuntimeException("La propietat: " + property + " del fitxer standalone apunta a un fitxer("
+					+ propertyFile + ") que no es pot llegir:" + e.getMessage(), e);
 		}
-		fileProperties.load(new FileInputStream(File));
 	}
+
+
 
 	public static Properties getSystemAndFileProperties() {
 
@@ -129,7 +137,25 @@ public class Configuracio implements Constants {
 
 	public static File getFilesDirectory() {
         String path = getProperty(${name_uppercase}_PROPERTY_BASE + "filesdirectory");
+        if(path == null) {
+        	throw new RunTimeException("No existeix la propietat 'filesdirectory' al fitxer 'system.properties'.\n"
+        			+ "S'hauria d'anar al fitxer '.system.properties' de JBoss standalone/deployments i incloure la propietat 'filesdirectory' amb una ruta al directori on l'aplició gestionara els fitxers.");
+        }else if(path.isEmpty()){
+        	throw new RunTimeException("No s'ha definit la propietat 'filesdirectory' al fitxer 'system.properties'.\n"
+        			+ "S'hauria d'anar al fitxer '.system.properties' de JBoss standalone/deployments i donar valor a la propietat 'filesdirectory' amb una ruta al directori on l'aplició gestionara els fitxers.");
+        }
+        
+        File filesFolder = new File(path);
+        
+        if(!filesFolder.exists()) {
+        	throw new RunTimeException("El directori indicat a la propietat 'filesdirectory' del fitxer 'system.properties' no existeix.\n"
+        			+ "S'hauria de modificar la ruta indicada al fitxer '.system.properties' de JBoss standalone/deployments per la d'un directori existent, o crear un directori amb la ruta: " + path);
+        }else if(!filesFolder.isDirectory()) {
+        	throw new RunTimeException("El directori indicat a la propietat 'filesdirectory' del fitxer 'system.properties' no es un directori, probablement es tracti d'un fitxer.\n"
+        			+ "S'hauria de modificar la ruta indicada al fitxer '.system.properties' de JBoss standalone/deployments per la d'un directori existent.");
+        }
         return new File(path);
+    	
     }
 
 	public static String getFileSystemManager() {

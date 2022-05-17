@@ -203,7 +203,7 @@ public class DaoJPAGenerator {
         
       } else {
         imports.add("javax.persistence.Entity");
-        beanCode.append("@Entity(name = \"" + table.nameJava + "\")\n");
+        beanCode.append("@Entity(name = \"" + codeBeanFileName + "\")\n");
       }
       
       

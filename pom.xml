@@ -64,12 +64,6 @@
             <url>https://maven.repository.redhat.com/ga/</url>
         </repository>
 
-        <repository>
-            <id>maven2</id>
-            <name>maven2</name>
-            <url>http://maven.geomajas.org/</url>
-        </repository>
-
     </repositories>
 
     <dependencies>
