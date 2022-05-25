@@ -16,8 +16,6 @@ import java.util.Properties;
  */
 public class Configuracio implements Constants {
 
-	private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
-
 	private static final Properties fileProperties = new Properties();
 
 	private static final Properties fileAndSystemProperties = new Properties();
@@ -35,7 +33,7 @@ public class Configuracio implements Constants {
 			String property = Constants.${name_uppercase}_PROPERTY_BASE + "properties";
 			loadPropertyFile(property);
 
-				String propertySystem = Constants.${name_uppercase}_PROPERTY_BASE + "system.properties";
+			String propertySystem = Constants.${name_uppercase}_PROPERTY_BASE + "system.properties";
 			loadPropertyFile(propertySystem);
 		}
 
