@@ -16,16 +16,16 @@ import java.util.Properties;
  */
 public class Configuracio implements Constants {
 
-	private static final Properties fileProperties = new Properties();
+    private static final Properties fileProperties = new Properties();
 
-	private static final Properties fileAndSystemProperties = new Properties();
+    private static final Properties fileAndSystemProperties = new Properties();
 
-	/*
-	 * Agafa els fitxers de propietats definits a l'standalone
-	 *
-	 * Seguim els estandars de la CAIB
-	 */
-	public static Properties getFilesProperties() {
+    /*
+     * Agafa els fitxers de propietats definits a l'standalone
+     *
+     * Seguim els estandars de la CAIB
+     */
+    public static Properties getFilesProperties() {
 
 		if (fileProperties.isEmpty()) {
 			// matches the property name as defined in the system-properties element in
@@ -41,99 +41,95 @@ public class Configuracio implements Constants {
 
 	}
 
-	public static void loadPropertyFile(String property) {
+    public static void loadPropertyFile(String property) {
 
-		String propertyFile = System.getProperty(property);
+        String propertyFile = System.getProperty(property);
 
-		if (propertyFile == null) {
-			throw new RuntimeException("No existeix la propietat: " + property
-					+ " al fitxer standalone.xml. S'hauria d'incloure aquesta propietat a l'etiqueta <system-properties> del fitxer standalone");
-		}
+        if (propertyFile == null) {
+            String msg = "No existeix la propietat: " + property
+                    + " al fitxer standalone. S'hauria d'incloure aquesta propietat a l'etiqueta <system-properties> del fitxer standalone";
+            throw new RuntimeException(msg);
+        }
 
-		if (propertyFile.trim().length() == 0) {
-			throw new RuntimeException("La propietat: " + property
-					+ " del fitxer standalone.xml no te valor. Se li ha de posar el fitxer corresponent a la propietat al fitxer standalone");
-		}
+        if (propertyFile.trim().length() == 0) {
+            String msg = "La propietat: " + property
+                    + " del fitxer standalone no té valor. Se li ha de posar el fitxer corresponent a la propietat al fitxer standalone";
+            throw new RuntimeException(msg);
+        }
 
-		File File = new File(propertyFile);
-//		if (!File.exists()) {
-//			throw new RuntimeException("La propietat "File.getAbsolutePath());
-//		}
+        File File = new File(propertyFile);
+        try {
+            fileProperties.load(new FileInputStream(File));
 
-		try {
-			fileProperties.load(new FileInputStream(File));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("La propietat: " + property
+                    + " del fitxer standalone apunta a un fitxer que no existeix (" + propertyFile + ")");
 
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException("La propietat: " + property
-					+ " del fitxer standalone apunta a un fitxer que no existeix (" + propertyFile + ")");
+        } catch (IOException e) {
+            throw new RuntimeException("La propietat: " + property + " del fitxer standalone apunta a un fitxer("
+                    + propertyFile + ") que no es pot llegir:" + e.getMessage(), e);
+        }
+    }
 
-		} catch (IOException e) {
-			throw new RuntimeException("La propietat: " + property + " del fitxer standalone apunta a un fitxer("
-					+ propertyFile + ") que no es pot llegir:" + e.getMessage(), e);
-		}
-	}
+    public static Properties getSystemAndFileProperties() {
 
+        if (fileAndSystemProperties.isEmpty()) {
+            fileAndSystemProperties.putAll(getFilesProperties());
+            fileAndSystemProperties.putAll(System.getProperties());
+        }
+        return fileAndSystemProperties;
+    }
 
+    public static String getProperty(String key) {
 
-	public static Properties getSystemAndFileProperties() {
+        return getFilesProperties().getProperty(key);
 
-		if (fileAndSystemProperties.isEmpty()) {
-			fileAndSystemProperties.putAll(getFilesProperties());
-			fileAndSystemProperties.putAll(System.getProperties());
-		}
-		return fileAndSystemProperties;
-	}
+    }
 
-	public static String getProperty(String key) {
+    public static String getProperty(String key, String def) {
 
-		return getFilesProperties().getProperty(key);
+        return getFilesProperties().getProperty(key, def);
 
-	}
+    }
 
-	public static String getProperty(String key, String def) {
-
-		return getFilesProperties().getProperty(key, def);
-
-	}
-
-	public static boolean isDesenvolupament() {
+    public static boolean isDesenvolupament() {
 
         return Boolean.parseBoolean(getProperty(${name_uppercase}_PROPERTY_BASE + "development"));
     }
 
-	public static boolean isCAIB() {
+    public static boolean isCAIB() {
         return Boolean.parseBoolean(getProperty(${name_uppercase}_PROPERTY_BASE + "iscaib"));
     }
 
-	public static String getAppUrl() {
+    public static String getAppUrl() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "url");
     }
 
-	public static String getAppEmail() {
+    public static String getAppEmail() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "email.from");
     }
 
-	public static String getAppName() {
+    public static String getAppName() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "name", "${fullname}");
     }
 
-	public static String getDefaultLanguage() {
+    public static String getDefaultLanguage() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "defaultlanguage", "ca");
     }
 
-	public static byte[] getEncryptKey() {
+    public static byte[] getEncryptKey() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes();
     }
 
-	public static Long getMaxUploadSizeInBytes() {
+    public static Long getMaxUploadSizeInBytes() {
         return Long.getLong(${name_uppercase}_PROPERTY_BASE + "maxuploadsizeinbytes");
     }
 
-	public static Long getMaxFitxerAdaptatSizeInBytes() {
+    public static Long getMaxFitxerAdaptatSizeInBytes() {
         return Long.getLong(${name_uppercase}_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes");
     }
 
-	public static File getFilesDirectory() {
+    public static File getFilesDirectory() {
         String path = getProperty(${name_uppercase}_PROPERTY_BASE + "filesdirectory");
         if (path == null) {
             throw new RuntimeException("No existeix la propietat '" + ${name_uppercase}_PROPERTY_BASE + "filesdirectory'"
@@ -178,9 +174,8 @@ public class Configuracio implements Constants {
 
     }
 
-	public static String getFileSystemManager() {
+    public static String getFileSystemManager() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "filesystemmanagerclass");
     }
 
-	
 }
