@@ -52,7 +52,7 @@
    <string>APPNAMEUP</string> 
   </void> 
   <void property="schema"> 
-   <string>public</string> 
+   <string></string> 
   </void> 
   <void property="tables"> 
    <array class="org.fundaciobit.genapp.TableInfo" length="4"> 
