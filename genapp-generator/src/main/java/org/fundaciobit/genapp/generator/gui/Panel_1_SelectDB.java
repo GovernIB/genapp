@@ -550,14 +550,12 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       manager = new DatabaseManager(SharedData.data.dataBaseInfo);
       
       
+      log.info("SharedData.project: " + SharedData.project);
       
       switch(SharedData.project) {
-      
-        
-        
         case NEW:
         {
-          TableInfo tmp[] = manager.getTablesOfDataBase(null, true, SharedData.data.getLanguages());
+          TableInfo tmp[] = manager.getTablesOfDataBase(null, SharedData.data.getLanguages());
           SelectionTablesDialog dlg = new SelectionTablesDialog(tmp);
           dlg.setVisible(true);
           tablesFromDB = dlg.getSelecteds();
@@ -573,7 +571,13 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
           for (int i = 0; i < ti.length; i++) {
             selected[i] = ti[i].name;
           }
-          TableInfo tmp[] = manager.getTablesOfDataBase(SharedData.data.schema, false, SharedData.data.getLanguages());
+          
+          TableInfo tmp[] = manager.getTablesOfDataBase(SharedData.data.schema, SharedData.data.getLanguages());
+
+          if(DatabaseManager.schemaName != null) {
+              SharedData.data.setSchema(DatabaseManager.schemaName);
+          }
+          
           SelectionTablesDialog dlg = new SelectionTablesDialog(tmp, selected);
           dlg.setVisible(true);
           tablesFromDB = dlg.getSelecteds();
@@ -582,7 +586,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
 
         default:
         case OPEN:
-          TableInfo tmp[] = manager.getTablesOfDataBase(SharedData.data.schema, false, SharedData.data.getLanguages());
+          TableInfo tmp[] = manager.getTablesOfDataBase(SharedData.data.schema, SharedData.data.getLanguages());
           tablesFromDB = TableInfo.tableInfoToTableName(tmp);
         break;
         

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.db.DataBaseInfo;
 import org.fundaciobit.genapp.generator.SQL2Java;
+import org.fundaciobit.genapp.generator.gui.SharedData;
 
 
 /**
@@ -131,13 +132,17 @@ public final class DatabaseManager {
   public static String schemaName = null;
 
 
-  public TableInfo[] getTablesOfDataBase(String schema, boolean isNew, String[] idiomes) throws Exception, SQLException {
+  public TableInfo[] getTablesOfDataBase(String schema, String[] idiomes) throws Exception, SQLException {
 
-    Connection conn = this.databaseInfo.getConnection();
+      log.info("Empieza getTablesOfDataBase()");
+      log.info("schema: " + schema);
+      
+      Connection conn = this.databaseInfo.getConnection();
     DatabaseMetaData dMeta = conn.getMetaData();
     
     // Seleccionar Schema
-    if (isNew) {
+    if (schema==null || schema.trim().length() == 0) {
+        log.info("Estamos dentro");
       ResultSet res = dMeta.getSchemas();
       log.info("List of schemas: "); 
       List<String> schemas = new ArrayList<String>();
@@ -164,6 +169,7 @@ public final class DatabaseManager {
                           possibilities[0]);
       
       schema = schemaName;
+//      SharedData.data.setSchema(schema);
     }
 
     log.info("FINAL SCHEMA SELECCIONAT = " + schema); 
