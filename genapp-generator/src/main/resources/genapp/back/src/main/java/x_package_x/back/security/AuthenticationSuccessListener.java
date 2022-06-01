@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.fundaciobit.demogenapp.commons.utils.Configuracio;
-import org.fundaciobit.demogenapp.commons.utils.Constants;
+import ${package}.commons.utils.Configuracio;
+import ${package}.commons.utils.Constants;
 import org.fundaciobit.genapp.common.i18n.I18NArgumentCode;
 //import ${package}.back.security.LoginInfo;
 import org.fundaciobit.genapp.common.i18n.I18NException;
@@ -28,6 +28,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import ${package}.commons.utils.Constants;
 import ${package}.back.security.LoginException;
 
 /**
