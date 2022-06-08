@@ -41,7 +41,18 @@ Username: ${dollar}{loginInfo.username}<br/>
 &#36;{${prefixLowercase}:hasRole(ROLE_USER) }= ${dollar}{${prefixLowercase}:hasRole('ROLE_USER') }<br/>
 Locale = <%=LocaleContextHolder.getLocale() %> <br/>
 lang = ${symbol_dollar}{lang} <br/>
-<br/>
+> UserInformation:<br/>
+ <c:if test="${dollar}{not empty loginInfo.userInfo}">
+	name= ${dollar}{loginInfo.userInfo.name} <br/> 
+ 	surname1= ${dollar}{loginInfo.userInfo.surname1} <br/>
+ 	surname2= ${dollar}{loginInfo.userInfo.surname2} <br/>
+ 	email= ${dollar}{loginInfo.userInfo.email} <br/>
+ 	nif= ${dollar}{loginInfo.userInfo.attributes["nif"]} <br/> 
+  <br/>
+</c:if>
+<c:if test="${dollar}{empty loginInfo.userInfo}">
+	Error carregant Plugin UserInfo. Revisar logs per mes informacio.<br/>
+</c:if>
 
 <c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
 Only in Development Mode

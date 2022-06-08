@@ -61,6 +61,63 @@
 
 
 		<!-- Externes -->
+		
+		<!-- ====================================== -->
+		<!-- ===== PLUGINS DE USERINFORMATION ===== -->
+		<!-- ====================================== -->
+		<dependency>
+			<groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+			<artifactId>pluginsib-userinformation-keycloak</artifactId>
+			<version>${symbol_dollar}{pluginsib.userinformation.impl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-multipart-provider</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jaxrs</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jaxb-provider</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jackson2-provider</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+			<artifactId>pluginsib-userinformation-database</artifactId>
+			<version>${symbol_dollar}{pluginsib.userinformation.impl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+			<artifactId>pluginsib-userinformation-ldap</artifactId>
+			<version>${symbol_dollar}{pluginsib.userinformation.impl.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 <#if generateback>
       <!-- ============================================ -->
@@ -72,6 +129,12 @@
         <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
         <artifactId>pluginsib-exportdata-api</artifactId>
         <version>2.0.0</version>
+		<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+		</exclusions>
       </dependency>
 
 
@@ -81,6 +144,12 @@
         <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
         <artifactId>pluginsib-exportdata-excel</artifactId>
         <version>2.0.0</version>
+		<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+		</exclusions>
       </dependency>
 
       <dependency>
@@ -94,6 +163,12 @@
         <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
         <artifactId>pluginsib-exportdata-ods</artifactId>
         <version>2.0.0</version>
+		<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+		</exclusions>
       </dependency>
 
       <dependency>
@@ -107,6 +182,12 @@
         <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
         <artifactId>pluginsib-exportdata-csv</artifactId>
         <version>2.0.0</version>
+		<exclusions>
+				<exclusion>
+					<groupId>org.fundaciobit.pluginsib.core</groupId>
+					<artifactId>pluginsib-core</artifactId>
+				</exclusion>
+		</exclusions>
       </dependency>
 </#if>
 

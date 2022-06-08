@@ -22,5 +22,4 @@ public interface Constants {
     // EJB HIGH LEVEL ROLES
     public static final String ROLE_EJB_FULL_ACCESS  = ${prefix}_ADMIN;
     public static final String ROLE_EJB_BASIC_ACCESS = ${prefix}_USER;
-
 }
