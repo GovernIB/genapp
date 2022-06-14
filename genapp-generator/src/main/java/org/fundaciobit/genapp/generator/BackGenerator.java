@@ -2417,6 +2417,16 @@ public class BackGenerator {
         code.append("  }\n\n");
         
       }
+      
+      
+      code.append("\n");
+      code.append("  @Override\n");
+      code.append("  /** Ha de ser igual que el RequestMapping de la Classe */\n");
+      code.append("  public String getContextWeb() {\n");
+      code.append("    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);\n");
+      code.append("    return rm.value()[0];\n");
+      code.append("  }\n");
+      
 
       code.append("\n");
       code.append("  public void preValidate(HttpServletRequest request," + form + " " + instanceForm 
@@ -2477,15 +2487,6 @@ public class BackGenerator {
       code.append("    return \"" + model + "ListWebDB\";\n");
       code.append("  }\n");
 
-      
-      code.append("\n");
-      code.append("  @Override\n");
-      code.append("  /** Ha de ser igual que el RequestMapping de la Classe */\n");
-      code.append("  public String getContextWeb() {\n");
-      code.append("    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);\n");
-      code.append("    return rm.value()[0];\n");
-      code.append("  }\n");
-      
       code.append("\n");
       code.append("  public String getSessionAttributeFilterForm() {\n");
       code.append("    return \"" + tableJavaName + "WebDB_FilterForm\";\n");
@@ -2521,20 +2522,20 @@ public class BackGenerator {
       
       code.append("\n");
       code.append("  public " + jpa + " create(HttpServletRequest request, " + jpa + " " + model + ")\n");
-      code.append("    throws Exception,I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
+      code.append("    throws I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
       code.append("    return (" + jpa + ") " + instanceEjb + ".create(" + model + ");\n");
       code.append("  }\n");
       code.append("\n");
       
       code.append("\n");
       code.append("  public " + jpa + " update(HttpServletRequest request, " + jpa + " " + model + ")\n");
-      code.append("    throws Exception,I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
+      code.append("    throws I18NException, " + I18NValidationException.class.getSimpleName() + " {\n");
       code.append("    return (" + jpa + ") " + instanceEjb + ".update(" + model + ");\n");
       code.append("  }\n");
       code.append("\n");
       
       code.append("\n");
-      code.append("  public void delete(HttpServletRequest request, " + tableJavaName + " " + model + ") throws Exception,I18NException {\n");
+      code.append("  public void delete(HttpServletRequest request, " + tableJavaName + " " + model + ") throws I18NException {\n");
       code.append("    " + instanceEjb + ".delete(" + model + ");\n");
       //code.append("    return true;\n");
       code.append("  }\n");
