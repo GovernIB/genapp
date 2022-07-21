@@ -84,7 +84,7 @@
 
 								<img
 								src="<c:url value="/img/${symbol_dollar}{idiomaID}_petit_${symbol_dollar}{lang eq idiomaID? 'on' : 'off'}.gif"/>"
-								alt="${symbol_dollar}{idiomaID}" width="17" height="14" border="0" />${symbol_dollar}{idioma.nom}
+								alt="${symbol_dollar}{idiomaID}" style="margin-right: 0.5rem;" width="17" height="14" border="0" />${symbol_dollar}{idioma.nom}
 							</a>
 						</c:forEach>
 
