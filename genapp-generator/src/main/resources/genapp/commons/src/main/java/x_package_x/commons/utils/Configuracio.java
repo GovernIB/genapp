@@ -11,7 +11,7 @@ import java.util.Properties;
 
 /**
  * 
- * @author anadal
+ * @author GenApp
  * 
  */
 public class Configuracio implements Constants {
@@ -99,10 +99,6 @@ public class Configuracio implements Constants {
 
     public static boolean isCAIB() {
         return Boolean.parseBoolean(getProperty(${name_uppercase}_PROPERTY_BASE + "iscaib"));
-    }
-
-    public static String getAppUrl() {
-        return getProperty(${name_uppercase}_PROPERTY_BASE + "url");
     }
 
     public static String getAppEmail() {

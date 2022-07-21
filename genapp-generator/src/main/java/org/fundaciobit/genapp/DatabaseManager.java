@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.db.DataBaseInfo;
 import org.fundaciobit.genapp.generator.SQL2Java;
-import org.fundaciobit.genapp.generator.gui.SharedData;
 
 
 /**
