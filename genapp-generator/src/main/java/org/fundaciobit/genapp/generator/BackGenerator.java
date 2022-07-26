@@ -315,34 +315,6 @@ public class BackGenerator {
       
       
 
-      if (fileFields != null && fileFields.size() != 0) {
-      
-        code.append("    if (isNou) { // Creacio\n");
-  
-        code.append("      // ================ CREATION\n");
-  
-        code.append("      // Fitxers \n");
-        for (FieldInfo field : fileFields) {
-  
-          if (field.isNotNullable() && !field.isAutoIncrement()) {
-            
-            //if (fileFields.contains(field)) 
-            {
-              String camp = field.javaName.toUpperCase();
-              code.append("      CommonsMultipartFile " + field.javaName + " = ((" + form + ")__form)." + CodeGenUtils.get(field)+ ";\n");
-              code.append("      if (" + field.javaName + " == null || " + field.javaName + ".isEmpty()) {\n");
-              code.append("        errors.rejectValue(get(" + camp + "), \"genapp.validation.required\",\n");
-              code.append("          new String[]{ " + I18NUtils.class.getName() + ".tradueix(get(" + camp + ")) },\n");
-              code.append("          null);\n");
-              code.append("      }\n");
-              code.append("\n");
-            }
-          }
-        }
-  
-        code.append("    }\n");
-      }
-      
       code.append("    BeanValidatorResult<" + interfaceBeanModel+ "> __vr = new BeanValidatorResult<" + interfaceBeanModel+ ">();\n");
       
       code.append("    validator.validate(__vr, __bean,\n");
@@ -361,12 +333,37 @@ public class BackGenerator {
       code.append("    }\n");
       code.append("\n");
       
-      
+      if (fileFields != null && fileFields.size() != 0) {
+          
+          code.append("    if (isNou) { // Creacio\n");
+          code.append("      // ================ CREATION\n");
+          code.append("      // Fitxers \n");
+          for (FieldInfo field : fileFields) {
+    
+            if (field.isNotNullable() && !field.isAutoIncrement()) {
+              
+              //if (fileFields.contains(field)) 
+              {
+                String camp = field.javaName.toUpperCase();
+                code.append("        if (!errors.hasFieldErrors(get("+ camp + "))){\n");
+                code.append("            CommonsMultipartFile " + field.javaName + " = ((" + form + ")__form)." + CodeGenUtils.get(field)+ ";\n");
+                code.append("            if (" + field.javaName + " == null || " + field.javaName + ".isEmpty()) {\n");
+                code.append("                errors.rejectValue(get(" + camp + "), \"genapp.validation.required\",\n");
+                code.append("                new String[]{ " + I18NUtils.class.getName() + ".tradueix(get(" + camp + ")) },\n");
+                code.append("                null);\n");
+                code.append("            }\n");
+                code.append("        }\n");
+                code.append("\n");
+              }
+            }
+          }
+    
+          code.append("    }\n");
+        }
+        
+
       
       code.append("\n");
-
-
-
       code.append("  } // Final de metode\n\n");
 
 
