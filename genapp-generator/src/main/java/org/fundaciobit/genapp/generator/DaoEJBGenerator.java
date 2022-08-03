@@ -2,11 +2,15 @@ package org.fundaciobit.genapp.generator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
+import org.fundaciobit.genapp.common.GenAppUtils;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
 
@@ -17,205 +21,263 @@ import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
  */
 public class DaoEJBGenerator {
 
-	public static void generaMissatges(String projectName, TableInfo[] tables, File dstEjbDir, String[] idiomes)
-			throws IOException, Exception {
-		File resourcesBack = new File(dstEjbDir, "src/main/resources");
-		// String[] langs = new String[] { "ca" };
+    public static void generaMissatges(String projectName, TableInfo[] tables, File dstEjbDir, String[] idiomes)
+            throws IOException, Exception {
+        File resourcesBack = new File(dstEjbDir, "src/main/resources");
+        // String[] langs = new String[] { "ca" };
 
-		for (String lang : idiomes) {
-			File missatges = new File(resourcesBack, projectName.toLowerCase() + "_genapp_" + lang + ".properties");
+        for (String lang : idiomes) {
+            File missatges = new File(resourcesBack, projectName.toLowerCase() + "_genapp_" + lang + ".properties");
 
-			/*
-			 * String txt = FileUtils.readFileToString(missatges, "UTF-8");
-			 * 
-			 * int startMark = txt.indexOf("# ==== GENAPP MARK START"); int endMark =
-			 * txt.indexOf("# ==== GENAPP MARK END");
-			 * 
-			 * if (startMark == -1 || endMark == -1) { throw new
-			 * Exception("El fitxer de misstages " + missatges +
-			 * " no conté l'start i/o l'end tag"); }
-			 */
+            /*
+             * String txt = FileUtils.readFileToString(missatges, "UTF-8");
+             * 
+             * int startMark = txt.indexOf("# ==== GENAPP MARK START"); int endMark =
+             * txt.indexOf("# ==== GENAPP MARK END");
+             * 
+             * if (startMark == -1 || endMark == -1) { throw new
+             * Exception("El fitxer de misstages " + missatges +
+             * " no conté l'start i/o l'end tag"); }
+             */
 
-			StringBuffer str = new StringBuffer();
+            StringBuffer str = new StringBuffer();
 
-			// str.append(txt.substring(0, startMark));
-			str.append("\n");
-			str.append("#\n");
-			
+            // str.append(txt.substring(0, startMark));
+            str.append("\n");
+            str.append("#\n");
 
-			str.append("##################################\n");
-			str.append("#  NO MODIFICAR - DO NOT MODIFY  #\n");
-			str.append("##################################\n");
-			str.append("# NOTA: La següent secció està generada, per la qual cosa qualsevol modificació\n");
-			str.append("# que es desitgi s´ha de fer sobre l´arxiu .genapp o serà borrat en la pròxima generació\n");
-			// str.append("# ==== GENAPP MARK START\n");
-			str.append("#\n");
-			str.append("\n\n");
+            str.append("##################################\n");
+            str.append("#  NO MODIFICAR - DO NOT MODIFY  #\n");
+            str.append("##################################\n");
+            str.append("# NOTA: La següent secció està generada, per la qual cosa qualsevol modificació\n");
+            str.append("# que es desitgi s´ha de fer sobre l´arxiu .genapp o serà borrat en la pròxima generació\n");
+            // str.append("# ==== GENAPP MARK START\n");
+            str.append("#\n");
+            str.append("\n\n");
 
-			for (TableInfo table : tables) {
+            for (TableInfo table : tables) {
 
-				str.append("##############################################\n");
-				str.append("# Classe " + table.getNameJava() + "\n");
-				str.append("##############################################\n");
-				str.append("\n");
+                str.append("##############################################\n");
+                str.append("# Classe " + table.getNameJava() + "\n");
+                str.append("##############################################\n");
+                str.append("\n");
 
-				String model = CodeGenUtils.getModelName(table.getNameJava());
-				String label = table.getLabels().get(lang).replace('\'', '´');
-				String labelPlural = table.getLabelsPlural().get(lang);
+                String model = CodeGenUtils.getModelName(table.getNameJava());
+                String label = table.getLabels().get(lang).replace('\'', '´');
+                String labelPlural = table.getLabelsPlural().get(lang);
 
-				if (labelPlural == null) {
-					System.err.println(
-							" Plural de la taula ]" + table.nameJava + "[ per l'idioma {" + lang + "} val null");
-				}
+                if (labelPlural == null) {
+                    System.err.println(
+                            " Plural de la taula ]" + table.nameJava + "[ per l'idioma {" + lang + "} val null");
+                }
 
-				labelPlural = labelPlural.replace('\'', '´');
+                labelPlural = labelPlural.replace('\'', '´');
 
-				str.append(model + "." + model + "=" + label + "\n");
-				str.append(model + "." + model + ".plural=" + labelPlural + "\n");
-				// str.append(model + ".crear=Crear " + label + "\n");
-				// str.append(model + ".creat=Creat " + label + " correctament\n");
-				// str.append(model + ".llistar=Llistar " + label + "\n");
-				// str.append(model + ".llistat=Llistat de " + label + "\n");
-				// str.append(model + ".llistat.buit=No hi ha cap " + label + "\n");
-				// str.append(model + ".modificar=Modificar " + label + "\n");
-				str.append("#Camps\n");
-				for (FieldInfo field : table.getFields()) {
-					str.append(
-							model + "." + field.javaName + "=" + field.getLabels().get(lang).replace('\'', '´') + "\n");
-				}
+                str.append(model + "." + model + "=" + label + "\n");
+                str.append(model + "." + model + ".plural=" + labelPlural + "\n");
+                // str.append(model + ".crear=Crear " + label + "\n");
+                // str.append(model + ".creat=Creat " + label + " correctament\n");
+                // str.append(model + ".llistar=Llistar " + label + "\n");
+                // str.append(model + ".llistat=Llistat de " + label + "\n");
+                // str.append(model + ".llistat.buit=No hi ha cap " + label + "\n");
+                // str.append(model + ".modificar=Modificar " + label + "\n");
+                str.append("#Camps\n");
+                for (FieldInfo field : table.getFields()) {
+                    str.append(
+                            model + "." + field.javaName + "=" + field.getLabels().get(lang).replace('\'', '´') + "\n");
+                }
 
-				str.append("\n\n\n");
+                str.append("\n\n\n");
 
-			}
+            }
 
-			// str.append("#\n");
-			// str.append(txt.substring(endMark));
-			FileUtils.write(missatges, str.toString(), "UTF8");
+            // str.append("#\n");
+            // str.append(txt.substring(endMark));
+            FileUtils.write(missatges, str.toString(), "UTF8");
 
-		}
-	}
+        }
+    }
 
-	public static SourceFile generateCodeForManagerService(Project projecte, String tableNameJava, String jpaPackage,
-			String ejbPackage, BasicPackages packages, BeanCode beanCode) {
+    public static SourceFile generateCodeForManagerService(Project projecte, String tableNameJava, String jpaPackage,
+            String ejbPackage, BasicPackages packages, BeanCode beanCode) {
 
-		String daoPackage = packages.daoPackage;
+        String daoPackage = packages.daoPackage;
 
-		final String jpa = tableNameJava + "JPA";
-		final String iface = "I" + tableNameJava + "Manager";
-		final String jpaIface =  tableNameJava + "IJPAManager";
-		final String managerFileName = tableNameJava + "Service";
-		final String managerFileNameEJB = tableNameJava + "EJB";
+        final String jpa = tableNameJava + "JPA";
+        final String iface = "I" + tableNameJava + "Manager";
+        final String jpaIface = tableNameJava + "IJPAManager";
+        final String managerFileName = tableNameJava + "Service";
+        final String managerFileNameEJB = tableNameJava + "EJB";
 
-		StringBuffer manager = new StringBuffer("");
+        StringBuffer manager = new StringBuffer("");
 
-		/** Cabecera */
-		manager.append("\n");
+        /** Cabecera */
+        manager.append("\n");
 
-		manager.append("package " + ejbPackage + ";\n\n");
-		
-		manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
+        manager.append("package " + ejbPackage + ";\n\n");
 
-		manager.append("import javax.ejb.Local;\n\n");
-		
+        manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
 
-		DaoCommonCode dao = beanCode.daoCommonCode;
-		if (dao.pkClass.endsWith("PK")) {
-			manager.append("import " + daoPackage + "." + dao.pkClass + ";\n\n");
-		}
-		//manager.append("import " + packages.utilsPackage + ".StaticVersion;\n");
-		manager.append("import " + jpaPackage + "." + jpa + ";\n");
-		manager.append("import " + jpaPackage + "." + jpaIface+ ";\n");
-		manager.append("import " + daoPackage + "." + iface + ";\n\n");
+        manager.append("import javax.ejb.Local;\n\n");
 
-		manager.append("@Local\n");
-		manager.append("public interface " + managerFileName + " extends " + jpaIface+ "," + iface + " {\n");
+        DaoCommonCode dao = beanCode.daoCommonCode;
+        if (dao.pkClass.endsWith("PK")) {
+            manager.append("import " + daoPackage + "." + dao.pkClass + ";\n\n");
+        }
+        // manager.append("import " + packages.utilsPackage + ".StaticVersion;\n");
+        manager.append("import " + jpaPackage + "." + jpa + ";\n");
+        manager.append("import " + jpaPackage + "." + jpaIface + ";\n");
+        manager.append("import " + daoPackage + "." + iface + ";\n\n");
 
-		manager.append("\n");
+        manager.append("@Local\n");
+        manager.append("public interface " + managerFileName + " extends " + jpaIface + "," + iface + " {\n");
 
-		manager.append("    public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
-				+ "-ejb/" + managerFileNameEJB + "!" + ejbPackage + "." + managerFileName + "\";\n\n");
+        manager.append("\n");
 
-		// Sobre escriure findByPrimaryKey
-		manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_);\n");
-		manager.append("}\n");
+        manager.append("    public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
+                + "-ejb/" + managerFileNameEJB + "!" + ejbPackage + "." + managerFileName + "\";\n\n");
 
-		return new SourceFile(managerFileName + ".java", manager.toString());
+        // Sobre escriure findByPrimaryKey
+        manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_);\n");
+        manager.append("}\n");
 
-	}
+        return new SourceFile(managerFileName + ".java", manager.toString());
 
-	public static SourceFile generateCodeForManagerEJB(Project projecte, String tableNameJava, String jpaPackage,
-			String ejbPackage, BasicPackages basicPackages, BeanCode beanCode) {
+    }
 
-		final String managerFileName = tableNameJava + "EJB";
-		final String jpaManager = tableNameJava + "JPAManager";
-		final String jpa = tableNameJava + "JPA";
+    public static SourceFile generateCodeForManagerEJB(Project projecte, TableInfo taula, String jpaPackage,
+            String ejbPackage, BasicPackages basicPackages, BeanCode beanCode) {
 
-		final String local = tableNameJava + "Service";
+        String tableNameJava = taula.getNameJava();
+        
+        final String managerFileName = tableNameJava + "EJB";
+        final String jpaManager = tableNameJava + "JPAManager";
+        final String jpa = tableNameJava + "JPA";
 
-		StringBuffer manager = new StringBuffer("");
+        final String local = tableNameJava + "Service";
 
-		/** Cabecera */
-		manager.append("\n");
+        StringBuffer manager = new StringBuffer("");
 
-		manager.append("package " + ejbPackage + ";\n\n");
+        /** Cabecera */
+        manager.append("\n");
 
-		manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
-		manager.append("import javax.ejb.Stateless;\n");
-		
-		manager.append("import javax.annotation.security.RolesAllowed;\n");
-		manager.append("import " + I18NException.class.getName() + ";\n");
-		manager.append("import " + basicPackages.entityPackage + "." + tableNameJava + ";\n");
-		manager.append("import " + jpaPackage + "." + jpa + ";\n");
-		manager.append("import " + jpaPackage + "." + jpaManager + ";\n\n");
-		manager.append("import " + basicPackages.utilsPackage + ".Constants;\n\n");
+        manager.append("package " + ejbPackage + ";\n\n");
 
-		DaoCommonCode dao = beanCode.daoCommonCode;
-		if (dao.pkClass.endsWith("PK")) {
-			manager.append("import " + basicPackages.daoPackage + "." + dao.pkClass + ";\n\n");
-		}
+        manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
+        manager.append("import javax.ejb.Stateless;\n");
 
-		// TODO falta DOC
+        manager.append("import java.util.ArrayList;\n");
 
-		manager.append("@Stateless\n"); 
-		manager.append("public class " + managerFileName + " extends " + jpaManager + " implements " + local + " {\n");
-		manager.append("\n");
-		
-		//String prefix = projecte.getPrefix().toUpperCase();
-		final String allRoles = "{Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS}"; 
-		        //"{" + prefix + "_ADMIN," + "Constants." + prefix + "_USER}";
+        manager.append("import javax.annotation.security.RolesAllowed;\n");
+        manager.append("import " + I18NException.class.getName() + ";\n");
+        manager.append("import " + basicPackages.entityPackage + "." + tableNameJava + ";\n");
+        manager.append("import " + jpaPackage + "." + jpa + ";\n");
+        manager.append("import " + jpaPackage + "." + jpaManager + ";\n\n");
+        manager.append("import " + basicPackages.utilsPackage + ".Constants;\n\n");
 
-		
+     //   manager.append("import " + ejbPackage + ".utils.CleanFilesSynchronization;\n\n");
 
-		manager.append("    @Override\n");
-		manager.append("    @RolesAllowed(" + allRoles + ")\n");
-		manager.append("    public void delete(" + tableNameJava + " instance) {\n");
-		manager.append("        super.delete(instance);\n");
-		manager.append("    }\n\n");
+        
+        DaoCommonCode dao = beanCode.daoCommonCode;
+        if (dao.pkClass.endsWith("PK")) {
+            manager.append("import " + basicPackages.daoPackage + "." + dao.pkClass + ";\n\n");
+        }
 
-		// public I create(I transientInstance) throws Exception
-		manager.append("    @Override\n");
-		manager.append("    @RolesAllowed(" + allRoles + ")\n");
-		manager.append(
-				"    public " + tableNameJava + " create(" + tableNameJava + " instance) throws I18NException {\n");
-		manager.append("        return super.create(instance);\n");
-		manager.append("    }\n\n");
+        // TODO falta DOC
 
+        manager.append("@Stateless\n");
+        manager.append("public class " + managerFileName + " extends " + jpaManager + " implements " + local + " {\n");
+        manager.append("\n");
 
-		manager.append("    @Override\n");
-		manager.append("    @RolesAllowed(" + allRoles + ")\n");
-		manager.append("    public " + tableNameJava + " update(" + tableNameJava + " instance) throws I18NException {\n");
-		manager.append("         return super.update(instance);\n");
-		manager.append("    }\n\n");
+        // String prefix = projecte.getPrefix().toUpperCase();
+        final String allRoles = "{Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS}";
+        // "{" + prefix + "_ADMIN," + "Constants." + prefix + "_USER}";
 
-		// Sobre escriure findByPrimaryKey
-		manager.append("    @Override\n");
-		manager.append("    @RolesAllowed(" + allRoles + ")\n");
-		manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_) {\n");
-		manager.append("        return (" + jpa + ")super.findByPrimaryKey(_ID_);\n");
-		manager.append("    }\n\n");
+        TableInfo[] tables = projecte.getTables();
 
-		manager.append("}\n");
+        List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(tables, taula);
 
-		return new SourceFile(managerFileName + ".java", manager.toString());
-	}
+        final boolean hasFileFields = fileFields!= null && fileFields.size() != 0;
+        
+        if (hasFileFields) {
+            manager.append("    @javax.annotation.Resource\n");
+            manager.append("    protected javax.transaction.TransactionSynchronizationRegistry __tsRegistry;\n\n");
+        }
+
+        manager.append("    @Override\n");
+        manager.append("    @RolesAllowed(" + allRoles + ")\n");
+        manager.append("    public void delete(" + tableNameJava + " instance) {\n");
+        manager.append("        super.delete(instance);\n");
+        manager.append("    }\n\n");
+
+        // public I create(I transientInstance) throws Exception
+        manager.append("    @Override\n");
+        manager.append("    @RolesAllowed(" + allRoles + ")\n");
+        manager.append(
+                "    public " + tableNameJava + " create(" + tableNameJava + " instance) throws I18NException {\n");
+        manager.append("        return super.create(instance);\n");
+        manager.append("    }\n\n");
+
+        manager.append("    @Override\n");
+        manager.append("    @RolesAllowed(" + allRoles + ")\n");
+        manager.append(
+                "    public " + tableNameJava + " update(" + tableNameJava + " instance) throws I18NException {\n");
+        manager.append("         return super.update(instance);\n");
+        manager.append("    }\n\n");
+
+        if (fileFields != null) {
+            
+            manager.append("    public void deleteIncludingFiles(" + tableNameJava + " instance, " + ejbPackage + ".FitxerService fitxerEjb)\n");
+            manager.append("            throws I18NException {\n\n");
+            
+            if (hasFileFields) {
+                manager.append("        ArrayList<Long> fitxers = new ArrayList<Long>();\n");
+
+                for (FieldInfo field : fileFields) {
+                    if (fileFields.contains(field)) {
+                        String getter = GenAppUtils.getOnlyName(field, "get");
+                        manager.append("        fitxers.add(instance."+ getter + "());\n");
+                    }
+                }
+                
+                manager.append("\n");
+            }
+            
+            manager.append("        this.delete(instance);\n");
+
+            if (hasFileFields) {
+                manager.append("\n");
+                manager.append("        java.util.Set<Long> fitxersEsborrar = new java.util.HashSet<Long>();\n");
+                manager.append("\n");
+                manager.append("        // Borram fitxers a BD\n");
+                
+                manager.append("        for (Long f : fitxers) {\n");
+                manager.append("            if (f != null) {\n");
+                manager.append("                fitxerEjb.delete(f);\n");
+                manager.append("                fitxersEsborrar.add(f);\n");
+                manager.append("            }\n");
+                manager.append("        }\n");
+                
+                manager.append("\n");
+                manager.append("        // Borram fitxers fisic\n");
+                manager.append("        __tsRegistry.registerInterposedSynchronization(new " + ejbPackage + ".utils.CleanFilesSynchronization(fitxersEsborrar));\n");
+            }            
+            manager.append("    }\n");
+            manager.append("\n");
+        }
+        
+    
+        
+        
+        // Sobre escriure findByPrimaryKey
+        manager.append("    @Override\n");
+        manager.append("    @RolesAllowed(" + allRoles + ")\n");
+        manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_) {\n");
+        manager.append("        return (" + jpa + ")super.findByPrimaryKey(_ID_);\n");
+        manager.append("    }\n\n");
+
+        manager.append("}\n");
+
+        return new SourceFile(managerFileName + ".java", manager.toString());
+    }
 }

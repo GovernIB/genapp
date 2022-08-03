@@ -1262,7 +1262,7 @@ public class CodeGenerator {
 					}
 					{
 						log.info("Generating EJB Code for " + " " + tables[i].getNameJava() + "EJB ");
-						SourceFile manager = DaoEJBGenerator.generateCodeForManagerEJB(project, tables[i].getNameJava(),
+						SourceFile manager = DaoEJBGenerator.generateCodeForManagerEJB(project, tables[i],
 								jpaPackage, ejbPackage, packages, beanGenCode);
 						// File file =
 						manager.saveToPath(ejbSrcDir);
