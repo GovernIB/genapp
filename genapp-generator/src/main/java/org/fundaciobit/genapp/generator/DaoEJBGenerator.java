@@ -2,8 +2,6 @@ package org.fundaciobit.genapp.generator;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -166,7 +164,7 @@ public class DaoEJBGenerator {
         manager.append("// NO MODIFICAR - DO NOT MODIFY;\n");
         manager.append("import javax.ejb.Stateless;\n");
 
-        manager.append("import java.util.ArrayList;\n");
+//        manager.append("import java.util.ArrayList;\n");
 
         manager.append("import javax.annotation.security.RolesAllowed;\n");
         manager.append("import " + I18NException.class.getName() + ";\n");
@@ -231,7 +229,7 @@ public class DaoEJBGenerator {
             manager.append("            throws I18NException {\n\n");
             
             if (hasFileFields) {
-                manager.append("        ArrayList<Long> fitxers = new ArrayList<Long>();\n");
+                manager.append("        java.util.ArrayList<Long> fitxers = new java.util.ArrayList<Long>();\n");
 
                 for (FieldInfo field : fileFields) {
                     if (fileFields.contains(field)) {
