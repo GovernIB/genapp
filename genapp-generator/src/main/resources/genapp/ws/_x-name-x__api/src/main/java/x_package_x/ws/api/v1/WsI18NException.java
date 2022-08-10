@@ -13,7 +13,6 @@ import javax.xml.ws.WebFault;
 
 @WebFault(name = "WsI18NError", targetNamespace = "http://impl.v1.ws.${packageInverse}/")
 public class WsI18NException extends Exception {
-    public static final long serialVersionUID = 20140704084846L;
     
     private ${package}.ws.api.v1.WsI18NError wsI18NError;
 

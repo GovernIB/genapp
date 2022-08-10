@@ -28,11 +28,6 @@ import org.fundaciobit.genapp.FieldInfo;
  * GenApp
 */
 public class EditFieldInfo extends javax.swing.JDialog {
-  
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 7757800816477474814L;
 
   private final FieldInfo fieldInfo;
   
@@ -135,7 +130,7 @@ public class EditFieldInfo extends javax.swing.JDialog {
     isUnique.setEditable(false);
     index = new  JTextField(this.fieldInfo.getIndex() == null ? "" : this.fieldInfo.getIndex());
     index.setEditable(false);
-    isAutoIncrement = new  JCheckBox("",this.fieldInfo.isAutoIncrement);
+    isAutoIncrement = new  JCheckBox("",this.fieldInfo.isAutoIncrement());
     isNotNullable = new  JCheckBox("",this.fieldInfo.isNotNullable);
     traduible = new  JCheckBox("",this.fieldInfo.traduible);
     showInWebList  = new  JCheckBox("",this.fieldInfo.showInWebList);

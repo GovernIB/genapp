@@ -1,28 +1,25 @@
 package org.fundaciobit.genapp.generator.gui;
 
-
 import java.io.File;
 
 import org.fundaciobit.genapp.Project;
 
-
 /**
- * Title:        Rapit Entity Bean 2010
- * Description:
- * Copyright:    Copyright (c) 2014
- * Company:      XmasSoft
+ * Title: Rapit Entity Bean 2010 Description: Copyright: Copyright (c) 2014
+ * Company: XmasSoft
+ * 
  * @author anadal
  */
-public class SharedData  {
-  
-  public enum ProjectType { NEW, UPDATE, OPEN, GENERATE };
+public class SharedData {
 
-  //private static final long serialVersionUID = -6992336889553331811L;
-  
-  public static ProjectType project;
+    public enum ProjectType {
+        NEW, UPDATE, OPEN, GENERATE
+    };
 
-  public static Project data = null;
+    public static ProjectType project;
 
-  public static File projectFile = null;
+    public static Project data = null;
+
+    public static File projectFile = null;
 
 }

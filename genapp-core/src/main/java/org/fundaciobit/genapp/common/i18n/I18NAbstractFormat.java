@@ -17,73 +17,67 @@ import org.apache.log4j.Logger;
  *
  */
 public abstract class I18NAbstractFormat extends DateFormat {
-  
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -6834323958134711507L;
 
-  protected final Logger log = Logger.getLogger(getClass());
+    protected final Logger log = Logger.getLogger(getClass());
 
-  private Map<String, SimpleDateFormat> dateFormatByLangCountry = new HashMap<String, SimpleDateFormat>();
+    private Map<String, SimpleDateFormat> dateFormatByLangCountry = new HashMap<String, SimpleDateFormat>();
 
-  public abstract Locale getLocale();
-  
-  @Override
-  public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
-    Locale loc = getLocale();
-    
-    if (log.isDebugEnabled()) {
-       log.debug(" [format] [" + loc + "] [" + date + "]");
+    public abstract Locale getLocale();
+
+    @Override
+    public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
+        Locale loc = getLocale();
+
+        if (log.isDebugEnabled()) {
+            log.debug(" [format] [" + loc + "] [" + date + "]");
+        }
+
+        SimpleDateFormat simpleDateFormat = getSimpleDateFormat(loc);
+
+        return simpleDateFormat.format(date, toAppendTo, fieldPosition);
     }
 
-    SimpleDateFormat simpleDateFormat = getSimpleDateFormat(loc);
+    public SimpleDateFormat getSimpleDateFormat(Locale loc) {
+        final String langCountry = loc.toString();
+        SimpleDateFormat simpleDateFormat = dateFormatByLangCountry.get(langCountry);
+        if (simpleDateFormat == null) {
+            String pattern = getInstanceOfSimpleDateFormat(loc).toPattern();
 
-    return simpleDateFormat.format(date, toAppendTo, fieldPosition);
-  }
+            // L'any sempre es mostrarà amb 4 digits
+            if (pattern.indexOf("yyyy") == -1) {
+                pattern = pattern.replace("yy", "yyyy");
+            }
 
-  public SimpleDateFormat getSimpleDateFormat(Locale loc) {
-    final String langCountry = loc.toString();
-    SimpleDateFormat simpleDateFormat = dateFormatByLangCountry.get(langCountry);
-    if (simpleDateFormat == null) {
-      String pattern = getInstanceOfSimpleDateFormat(loc).toPattern();
-
-      // L'any sempre es mostrarà amb 4 digits
-      if (pattern.indexOf("yyyy") == -1) {
-        pattern = pattern.replace("yy", "yyyy");
-      }
-
-      simpleDateFormat = new SimpleDateFormat(pattern, loc);
-      simpleDateFormat.setLenient(false);
-      dateFormatByLangCountry.put(langCountry, simpleDateFormat);
+            simpleDateFormat = new SimpleDateFormat(pattern, loc);
+            simpleDateFormat.setLenient(false);
+            dateFormatByLangCountry.put(langCountry, simpleDateFormat);
+        }
+        return simpleDateFormat;
     }
-    return simpleDateFormat;
-  }
 
-  protected abstract SimpleDateFormat getInstanceOfSimpleDateFormat(Locale loc);
+    protected abstract SimpleDateFormat getInstanceOfSimpleDateFormat(Locale loc);
 
-  protected abstract Date convertToSql(Date d);
+    protected abstract Date convertToSql(Date d);
 
-  @Override
-  public Date parse(String source, ParsePosition pos) {
-    Locale loc = getLocale();
-    if (log.isDebugEnabled()) {
-      log.debug(getClass().getName() + " [parse] [" + loc.toString() + "] ["    + source + "]");
+    @Override
+    public Date parse(String source, ParsePosition pos) {
+        Locale loc = getLocale();
+        if (log.isDebugEnabled()) {
+            log.debug(getClass().getName() + " [parse] [" + loc.toString() + "] [" + source + "]");
+        }
+
+        try {
+            SimpleDateFormat simpleDateFormat = getSimpleDateFormat(loc);
+            Date d = convertToSql(simpleDateFormat.parse(source, pos));
+            if (log.isDebugEnabled()) {
+                log.debug(getClass().getName() + " [parse.return] = ]" + simpleDateFormat.format(d) + "]");
+            }
+            return d;
+        } catch (Throwable e) {
+            log.error("Error en missatge: " + e.getMessage(), e);
+            return new Date();
+        }
+
     }
-    
-    try {
-      SimpleDateFormat simpleDateFormat = getSimpleDateFormat(loc);
-      Date d = convertToSql(simpleDateFormat.parse(source, pos));
-      if (log.isDebugEnabled()) {
-        log.debug(getClass().getName() + " [parse.return] = ]"
-           + simpleDateFormat.format(d) + "]");
-      }
-      return d;
-    } catch (Throwable e) {
-       log.error("Error en missatge: " + e.getMessage(), e);
-       return new Date();
-    }
-   
-  }
 
 }

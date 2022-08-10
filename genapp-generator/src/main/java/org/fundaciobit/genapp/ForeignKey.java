@@ -11,13 +11,8 @@ import java.io.Serializable;
  */
 public class ForeignKey implements Serializable {
   
-  public static final int EXPORTED = 0;
-  public static final int IMPORTED = 1; 
-
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -8516666830084572081L;
+  public static transient final int EXPORTED = 0;
+  public static transient final int IMPORTED = 1; 
   
   String name;
 

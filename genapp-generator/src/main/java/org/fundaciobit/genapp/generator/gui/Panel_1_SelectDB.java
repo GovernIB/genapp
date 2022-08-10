@@ -10,6 +10,7 @@ import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.WebFieldInfo;
 import org.fundaciobit.genapp.DatabaseManager.Fields;
+import org.fundaciobit.genapp.common.DataBaseInfoUtils;
 import org.fundaciobit.genapp.common.db.DataBaseInfo;
 
 import java.awt.event.*;
@@ -31,10 +32,6 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
   
   private final Logger log = Logger.getLogger(getClass().getSimpleName());
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 1074349763078514825L;
 
   JPanel fullPanel = new JPanel();
 
@@ -546,7 +543,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     String[] tablesFromDB;
     DatabaseManager manager;
     try {
-      DataBaseInfo.reuseConnection = true;
+      DataBaseInfoUtils.reuseConnection = true;
       manager = new DatabaseManager(SharedData.data.dataBaseInfo);
       
       

@@ -311,7 +311,8 @@ public class CodeGenerator {
 
 	public static SourceFile substitution(String name, String template, Map<String, Object> datamodel)
 			throws Exception {
-		Configuration cfg = new Configuration();
+		Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+		
 
 		StringTemplateLoader ftl1 = new StringTemplateLoader();
 		ftl1.putTemplate(name, template);
@@ -321,7 +322,7 @@ public class CodeGenerator {
 	}
 
 	public static SourceFile substitution(File template, Map<String, Object> datamodel) throws Exception {
-		Configuration cfg = new Configuration();
+		Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
 
 		FileTemplateLoader ftl1 = new FileTemplateLoader(template.getParentFile());
 		cfg.setTemplateLoader(ftl1);
@@ -1721,7 +1722,7 @@ public class CodeGenerator {
 			paramsAll.append(param);
 			bodyAll.append(assign);
 
-			if (!fields[i].isAutoIncrement) {
+			if (!fields[i].isAutoIncrement()) {
 
 				if (bodyNotAuto.length() != 0) {
 					paramsNotAuto.append(" , ");
@@ -1839,7 +1840,7 @@ public class CodeGenerator {
 				typeClass = field.getJavaType();
 				type = typeClass.getName();
 
-				if (!field.isAutoIncrement) {
+				if (!field.isAutoIncrement()) {
 					createParamsNotNull.append(", " + type + " _" + name + "_");
 				}
 				createVariableNamesNotNull.append(", _" + name + "_");
@@ -1866,7 +1867,7 @@ public class CodeGenerator {
 				}
 
 				// Parametros de create
-				if (field.isAutoIncrement) {
+				if (field.isAutoIncrement()) {
 					existAutoIncrementKey = name;
 					createVariableNames.append(",_" + existAutoIncrementKey + "_");
 					//

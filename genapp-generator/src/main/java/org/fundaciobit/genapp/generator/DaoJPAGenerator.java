@@ -278,9 +278,6 @@ public class DaoJPAGenerator {
       beanCode.append("@javax.xml.bind.annotation.XmlRootElement\n");
       beanCode.append("public class " + codeBeanFileName
           + " implements " + tableNameJava + " {\n\n");
-      beanCode.append("\n\n");
-      beanCode.append("private static final long serialVersionUID = "
-          + codeBeanFileName.hashCode() + "L;\n\n");
       //  Llista d'Atributs
      
       for (int r = 0; r < fields.length; r++) {
@@ -310,7 +307,7 @@ public class DaoJPAGenerator {
             imports.add("javax.persistence.Id");
             beanCode.append("    " +"@Id\n");         
           }
-          if (field.isAutoIncrement) {
+          if (field.isAutoIncrement()) {
             // AUTONUMERIC
             //imports.add("static javax.persistence.GenerationType.IDENTITY");
             //beanCode.append("\t" +"@GeneratedValue(strategy = IDENTITY)\n");
@@ -1399,9 +1396,8 @@ public class DaoJPAGenerator {
         + "\n         extends AbstractJPAManager<" + tableNameJava + ", " + pkClass +">"
         + "\n         implements "  + tableNameJava+  "IJPAManager, I"  + tableNameJava + "Manager, " + tableNameJava + "Fields {\n\n\n");
     
-    manager.append("\n\n");
-    manager.append("    private static final long serialVersionUID = "
-        + managerFileName.hashCode() + "L;\n\n");
+    manager.append("\n");
+
 
     manager.append("    public static final TableName<" + tableNameJava
         + "> _TABLENAME =  new TableName<" + tableNameJava + ">(\"" + tableNameJava + "JPA\");\n");

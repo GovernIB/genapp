@@ -14,6 +14,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
+import org.fundaciobit.genapp.common.DataBaseInfoUtils;
 import org.fundaciobit.genapp.common.db.DataBaseInfo;
 import org.fundaciobit.genapp.generator.SQL2Java;
 
@@ -136,7 +137,7 @@ public final class DatabaseManager {
       log.info("Empieza getTablesOfDataBase()");
       log.info("schema: " + schema);
       
-      Connection conn = this.databaseInfo.getConnection();
+      Connection conn = DataBaseInfoUtils.getConnection(this.databaseInfo);
     DatabaseMetaData dMeta = conn.getMetaData();
     
     // Seleccionar Schema
@@ -204,6 +205,7 @@ public final class DatabaseManager {
       tableInfos.setMultipleUniques(getMultipleUniques(fields));
       
       tables.add(tableInfos);
+
     }
 
     result.close();
@@ -249,7 +251,7 @@ public final class DatabaseManager {
 
   public Fields getFieldsInfoOfTable(String schema, String tableName, String[] idiomes) throws Exception {
 
-    Connection conn = this.databaseInfo.getConnection();
+    Connection conn = DataBaseInfoUtils.getConnection(this.databaseInfo);
     DatabaseMetaData dMeta = conn.getMetaData();
 
     Vector<FieldInfo> rows = new Vector<FieldInfo>();
@@ -291,6 +293,7 @@ public final class DatabaseManager {
       ResultSet rs = s.executeQuery("SELECT * FROM " + tableName
           + " WHERE 1 = 0");
       ResultSetMetaData meta = rs.getMetaData();
+      
       int columnCount = meta.getColumnCount();
 
       for (int i = 1; i <= columnCount; i++) {
@@ -362,6 +365,10 @@ public final class DatabaseManager {
       // (2.1) Rellenamos el campo de Java Name
       columnName = (String) resultSet.getObject(DB_COLUMN_NAME);
       newRow.javaName = columnName; // POS=1 --> Java Name
+      
+      
+      newRow.setDefaultValue(resultSet.getString("COLUMN_DEF"));
+      
       
       for (int i = 0; i < idiomes.length; i++) {
         newRow.getLabels().put(idiomes[i], columnName);
@@ -439,7 +446,7 @@ public final class DatabaseManager {
 
       // AUTO INCREMENT
       Boolean autoInc =  autoIncrement.get(newRow.sqlName); 
-      newRow.isAutoIncrement = autoInc == null? false : autoInc.booleanValue();
+      newRow.setIsAutoIncrement(autoInc == null? false : autoInc.booleanValue());
 
       newRow.webFieldInfo =
         WebFieldInfo.getDefaultWebTypeFromFieldInfo(tableName, newRow);
@@ -725,7 +732,7 @@ public final class DatabaseManager {
   public String[][] execConsulta(String query) throws Exception {
     String[][] dades = null;
 
-    Connection connection = this.databaseInfo.getConnection();
+    Connection connection = DataBaseInfoUtils.getConnection(this.databaseInfo);
     Statement statement = connection.createStatement();
     ResultSet resultSet = statement.executeQuery(query);
     ResultSetMetaData metaData = resultSet.getMetaData();
@@ -768,7 +775,7 @@ public final class DatabaseManager {
   
   public int execute(String exec) {
     try {
-      Connection conn = this.databaseInfo.getConnection();
+      Connection conn = DataBaseInfoUtils.getConnection(this.databaseInfo);
       Statement stmnt = conn.createStatement();
       int num = stmnt.executeUpdate(exec);
       stmnt.close();
@@ -785,7 +792,7 @@ public final class DatabaseManager {
 
   public int count(String exec) {
     try {
-      Connection con = this.databaseInfo.getConnection();
+      Connection con = DataBaseInfoUtils.getConnection(this.databaseInfo);
       Statement statement = con.createStatement();
       try {
         return (statement.getUpdateCount());

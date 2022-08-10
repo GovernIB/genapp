@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 public class EmailInfo implements Serializable {
 
-  private static final long serialVersionUID = 1L;
-
   private Long idObjectSent;
 
   private String email;

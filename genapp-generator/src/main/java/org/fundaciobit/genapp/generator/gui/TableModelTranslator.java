@@ -196,10 +196,6 @@ public class TableModelTranslator extends AbstractTableModel {
   
   static class JTableTranslator extends JTable {
     
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -4553177104014699622L;
 
     @Override
     public TableCellEditor getCellEditor(int row, int column) {

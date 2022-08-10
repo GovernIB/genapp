@@ -75,7 +75,7 @@ public class TraduccioTipusGenApp implements ITraduccioTipus {
     
     // GUARDAR  !!!!
     try {
-      RebApp.saveProjectToFile(SharedData.projectFile, SharedData.data);
+      RebApp.saveProjectToFileJson(SharedData.projectFile, SharedData.data);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       JOptionPane.showMessageDialog(null, "Error guardant fitxer: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);

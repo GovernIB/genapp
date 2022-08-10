@@ -10,6 +10,7 @@ import org.fundaciobit.genapp.GenAppPackages;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.WebType;
+import org.fundaciobit.genapp.common.ProjectUtils;
 import org.fundaciobit.genapp.common.query.OrderType;
 import org.fundaciobit.genapp.generator.TableGenerator.ConditionalColumn;
 
@@ -94,8 +95,6 @@ public class WebGenerator {
             + "  */\n"
             + "  public class " + name + " extends HttpServlet {\n"
             + "\n"
-            + "    private static final long serialVersionUID =" +
-            		" -8622399301396312624L;\n\n"
             + "    public " + name + "() throws NamingException {\n"
             + "    }\n"
             + "\n"
@@ -370,9 +369,9 @@ public class WebGenerator {
           
           //log.info("fk.getTable() = " + fk.getTable() + " | fk.getField() = " + fk.getField());
           
-          FieldInfo fkField = project.searchFieldInfo(fk.getTable(),
+          FieldInfo fkField = ProjectUtils.searchFieldInfo(project, fk.getTable(),
               fk.getField());
-          String select = project.createSelect(fk.getTable(), fkField,
+          String select = ProjectUtils.createSelect(fk.getTable(), fkField,
               " where " + fkField.sqlName + " = ?");
           tableContent.append("    if (__orderField == " + tableJavaName + "Fields."
               + fields[i].javaName.toUpperCase() + ".fieldID) {\n");
@@ -788,7 +787,7 @@ public class WebGenerator {
             + "$$\"," + value + ");\n");
         countPK++;
       }
-      if (fields[i].isAutoIncrement) {
+      if (fields[i].isAutoIncrement()) {
         continue;
       }
       if (added) {
@@ -955,7 +954,7 @@ public class WebGenerator {
       
 
     case WebType.PrimaryKey:
-      if (field.isAutoIncrement && mode == ModeWeb.NEW) {
+      if (field.isAutoIncrement() && mode == ModeWeb.NEW) {
         return null;
       } else {
         return generateIsEmptyJavascript(field.javaName);
@@ -1058,7 +1057,7 @@ public class WebGenerator {
             + "%>\" ><%=bean." + CodeGenUtils.get(field) + "%>";
       default:
       case NEW:
-        if (field.isAutoIncrement) {
+        if (field.isAutoIncrement()) {
           return "<b>Autoincrement Field</b>";
         } else {
           return "<input type=\"text\" onkeyup=\"checks()\" name=\""
@@ -1071,11 +1070,11 @@ public class WebGenerator {
 
     case WebType.Query: {
       ForeignKey fk = field.webFieldInfo.foreignKey;
-      FieldInfo fkField = project.searchFieldInfo(fk.getTable(), fk.getField());
+      FieldInfo fkField = ProjectUtils.searchFieldInfo(project, fk.getTable(), fk.getField());
 
       switch (mode) {
       case LIST:
-        String select = project.createSelect(fk.getTable(), fkField, " where "
+        String select = ProjectUtils.createSelect(fk.getTable(), fkField, " where "
             + fkField.sqlName + " = ?");
         return ("<%=" + EXECUTEQUERYMETHODNAME(project.projectName, NULL_IMG)
             + "\"" + select + "\",bean." + CodeGenUtils.get(field) + ")%>");
@@ -1353,7 +1352,6 @@ public class WebGenerator {
         + "\n" + "public abstract class " + project.projectName
         + "AbstractJspBase extends REB2010JspBase {" + "\n"
         + "\n"
-        + "  private static final long serialVersionUID = 2238238912964922753L;\n\n"
         + "  protected ISecurity security;\n"
         + "  protected I" + project.projectName + "DaoManagers dao;\n\n"
         + "  /** \n" 

@@ -25,11 +25,7 @@ import org.fundaciobit.genapp.TableInfo;
  * GenApp
  */
 public class EditTableInfo extends javax.swing.JDialog {
-  
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -3792059171506172910L;
+
 
   private final TableInfo tableInfo;
 

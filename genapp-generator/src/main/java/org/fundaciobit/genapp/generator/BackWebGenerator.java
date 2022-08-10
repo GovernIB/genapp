@@ -2086,7 +2086,7 @@ public class BackWebGenerator extends IconUtils {
 		switch (webType) {
 
 		case WebType.PrimaryKey:
-			if (field.isAutoIncrement) {
+			if (field.isAutoIncrement()) {
 				return null;
 			}
 		case WebType.URL:

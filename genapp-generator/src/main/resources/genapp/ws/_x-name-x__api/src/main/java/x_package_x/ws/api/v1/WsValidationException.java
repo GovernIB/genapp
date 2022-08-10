@@ -13,7 +13,6 @@ import javax.xml.ws.WebFault;
 
 @WebFault(name = "WsValidationErrors", targetNamespace = "http://impl.v1.ws.${packageInverse}/")
 public class WsValidationException extends Exception {
-    public static final long serialVersionUID = 20140704084846L;
     
     private ${package}.ws.api.v1.WsValidationErrors wsValidationErrors;
 

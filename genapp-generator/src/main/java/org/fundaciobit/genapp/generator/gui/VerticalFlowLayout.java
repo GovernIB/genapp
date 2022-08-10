@@ -11,10 +11,7 @@ import java.awt.*;
 public class VerticalFlowLayout extends FlowLayout implements
     java.io.Serializable {
 
-  /**
-   * Seria
-   */
-  private static final long serialVersionUID = -8678660238351342613L;
+
   public static final int TOP = 0;
   public static final int MIDDLE = 1;
   public static final int BOTTOM = 2;

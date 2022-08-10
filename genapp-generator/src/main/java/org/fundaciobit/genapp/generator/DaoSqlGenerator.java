@@ -245,9 +245,8 @@ public class DaoSqlGenerator {
         + "\n\t\t extends TableManager<" + tableNameJava + ", " + dao.pkClass + ">"
         + "\n\t\t implements I"  + tableNameJava + "Manager, " + tableNameJava + "Fields {\n\n\n");
     
-    manager.append("\n\n");
-    manager.append("  private static final long serialVersionUID = "
-        + managerFileName.hashCode() + "L;\n\n");
+    manager.append("\n");
+
     
     manager.append("\t public static final TableName<" + tableNameJava
         + "> _TABLENAME =  new TableName<" + tableNameJava + ">(_TABLE_);\n");

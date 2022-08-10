@@ -18,11 +18,6 @@ import java.sql.Timestamp;
  */
 public class WebFieldInfo implements Serializable {
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -4281873218333106587L;
-
   public int webtype;
 
   public ForeignKey foreignKey; // Only for Select WebType

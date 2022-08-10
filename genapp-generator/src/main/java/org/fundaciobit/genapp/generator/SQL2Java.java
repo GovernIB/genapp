@@ -121,6 +121,9 @@ public class SQL2Java {
       { java.lang.Double.TYPE, java.lang.Double.class }, // "double"},
       { java.lang.Float.TYPE, java.lang.Float.class }, // "float"}
   };
+  
+  
+  public static final Map<String, Class<?>> STRINGTOCLASS = new HashMap<String, Class<?>>();
 
   static {
 
@@ -146,6 +149,17 @@ public class SQL2Java {
       primitiveTypesNames.put(PRIMITIVETYPE2OBJECT[x][0].toString(),
           PRIMITIVETYPE2OBJECT[x][0]);
     }
+    
+    
+    for (x = 0; x < OBJECT2PRIMITIVETYPE.length; x++) {
+        STRINGTOCLASS.put(OBJECT2PRIMITIVETYPE[x][0].getName(), OBJECT2PRIMITIVETYPE[x][0]);
+        STRINGTOCLASS.put(OBJECT2PRIMITIVETYPE[x][1].getName(), OBJECT2PRIMITIVETYPE[x][1]);
+    }
+    STRINGTOCLASS.put(String.class.getName(), String.class);
+
+    STRINGTOCLASS.put(java.sql.Date.class.getName(), java.sql.Date.class);
+    STRINGTOCLASS.put(java.sql.Time.class.getName(), java.sql.Time.class);
+    STRINGTOCLASS.put(java.sql.Timestamp.class.getName(), java.sql.Timestamp.class);
 
   }
 
