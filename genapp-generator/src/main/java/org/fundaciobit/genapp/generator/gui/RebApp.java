@@ -208,7 +208,7 @@ public class RebApp extends JFrame {
                 contentPane.setLayout(borderLayout1);
                 this.setSize(new Dimension(1024, 800));
                 this.setLocation(100, 100);
-                this.setTitle("GenApp 2014-" + Calendar.getInstance().get(Calendar.YEAR) );
+                this.setTitle(getGenAppTitle());
                 next.setText("Next >>");
                 next.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -286,7 +286,7 @@ public class RebApp extends JFrame {
         try {
             final Object[] options = { /* "Nou Projecte", */"Nou projecte i SQL generació de taules base",
                     "Actualitzar Projecte (Canvis BBDD)", "Editar Projecte", "Generar Codi Font" };
-            int n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", "GenApp v2 2015-2020",
+            int n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", getGenAppTitle(),
                     JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
             log.info(" NUMERO -> " + n);
@@ -416,6 +416,11 @@ public class RebApp extends JFrame {
             return -1;
         }
 
+    }
+    
+    
+    public static String getGenAppTitle() {
+        return "GenApp v2 2015-" + Calendar.getInstance().get(Calendar.YEAR);
     }
 
     public static Project readProjectFromFile(File selectedFile) throws Exception {
