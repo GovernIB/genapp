@@ -315,7 +315,7 @@ public class RebApp extends JFrame {
                     loadEmp.addChoosableFileFilter(filterm3u);
                     loadEmp.setFileFilter(filterm3u);
 
-                    loadEmp.setDialogTitle("Seleccioni un arxiu .genapp");
+                    loadEmp.setDialogTitle("Seleccioni un arxiu .genappjson");
                     File selectedFile;
 
                     // opens dialog if button clicked
@@ -363,7 +363,7 @@ public class RebApp extends JFrame {
 
                     final String[][] sourceDest = {
                             { "genapp_required_tables.sql", prefix + "_" + nomApp + "_SCHEMA_BASE.sql" },
-                            { "template.genapp", nomAppUp + ".genappjson" } };
+                            { "template.genappjson", nomAppUp + ".genappjson" } };
 
                     File parent = null;
                     ;
@@ -375,7 +375,7 @@ public class RebApp extends JFrame {
                         ClassLoader classLoader = RebApp.class.getClassLoader();
                         InputStream is = classLoader.getResourceAsStream(src);
 
-                        String content = IOUtils.toString(is, "UTF8");
+                        String content = IOUtils.toString(is, "UTF-8");
 
                         content = content.replace("PFX", prefix);
 

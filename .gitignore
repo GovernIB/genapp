@@ -27,3 +27,10 @@ target
 /genapp-sqltutorial/scripts/genapp/lastconfig.properties
 /run_arche/arche/src/main/resources/archetype-resources/genapp.log
 /run_arche/arche/src/main/resources/archetype-resources/lastconfig.properties
+/run
+/run_test
+/demo/genapp.bat
+/demo/genapp.log
+/demo/lastconfig.properties
+/demo/pom.xml
+/run_arche/run.bat
