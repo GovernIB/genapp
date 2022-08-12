@@ -32,6 +32,12 @@ public class TraduccioEJB extends TraduccioJPAManager implements TraduccioServic
          return super.update(instance);
     }
 
+    public void deleteIncludingFiles(Traduccio instance, org.fundaciobit.genappsqltutorial.ejb.FitxerService fitxerEjb)
+            throws I18NException {
+
+        this.delete(instance);
+    }
+
     @Override
     @RolesAllowed({Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS})
     public TraduccioJPA findByPrimaryKey(Long _ID_) {

@@ -32,6 +32,12 @@ public class CustomersEJB extends CustomersJPAManager implements CustomersServic
          return super.update(instance);
     }
 
+    public void deleteIncludingFiles(Customers instance, org.fundaciobit.genappsqltutorial.ejb.FitxerService fitxerEjb)
+            throws I18NException {
+
+        this.delete(instance);
+    }
+
     @Override
     @RolesAllowed({Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS})
     public CustomersJPA findByPrimaryKey(Long _ID_) {

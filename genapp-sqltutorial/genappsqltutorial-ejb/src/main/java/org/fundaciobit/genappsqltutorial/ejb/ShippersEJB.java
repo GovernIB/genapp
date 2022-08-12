@@ -32,6 +32,12 @@ public class ShippersEJB extends ShippersJPAManager implements ShippersService {
          return super.update(instance);
     }
 
+    public void deleteIncludingFiles(Shippers instance, org.fundaciobit.genappsqltutorial.ejb.FitxerService fitxerEjb)
+            throws I18NException {
+
+        this.delete(instance);
+    }
+
     @Override
     @RolesAllowed({Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS})
     public ShippersJPA findByPrimaryKey(Long _ID_) {

@@ -538,6 +538,13 @@ public java.lang.Long stringToPK(String value) {
   }
 
 
+  @Override
+  /** Ha de ser igual que el RequestMapping de la Classe */
+  public String getContextWeb() {
+    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);
+    return rm.value()[0];
+  }
+
   public void preValidate(HttpServletRequest request,EmployeesForm employeesForm , BindingResult result)  throws I18NException {
   }
 
@@ -578,13 +585,6 @@ public java.lang.Long stringToPK(String value) {
     return "employeesListWebDB";
   }
 
-  @Override
-  /** Ha de ser igual que el RequestMapping de la Classe */
-  public String getContextWeb() {
-    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);
-    return rm.value()[0];
-  }
-
   public String getSessionAttributeFilterForm() {
     return "EmployeesWebDB_FilterForm";
   }
@@ -602,18 +602,18 @@ public java.lang.Long stringToPK(String value) {
 
 
   public EmployeesJPA create(HttpServletRequest request, EmployeesJPA employees)
-    throws Exception,I18NException, I18NValidationException {
+    throws I18NException, I18NValidationException {
     return (EmployeesJPA) employeesEjb.create(employees);
   }
 
 
   public EmployeesJPA update(HttpServletRequest request, EmployeesJPA employees)
-    throws Exception,I18NException, I18NValidationException {
+    throws I18NException, I18NValidationException {
     return (EmployeesJPA) employeesEjb.update(employees);
   }
 
 
-  public void delete(HttpServletRequest request, Employees employees) throws Exception,I18NException {
+  public void delete(HttpServletRequest request, Employees employees) throws I18NException {
     employeesEjb.delete(employees);
   }
 

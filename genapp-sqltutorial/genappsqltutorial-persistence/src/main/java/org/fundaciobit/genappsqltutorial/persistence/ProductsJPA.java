@@ -6,8 +6,8 @@ import javax.persistence.Column;
 import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
+import javax.persistence.Index;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -15,20 +15,15 @@ import java.util.Set;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_products" )
+@Entity(name = "ProductsJPA")
+@Table(name = "gas_products" , indexes = { 
+        @Index(name="gas_products_pk_i", columnList = "productid")})
 @SequenceGenerator(name="PRODUCTS_SEQ", sequenceName="gas_products_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class ProductsJPA implements Products {
 
-
-
-private static final long serialVersionUID = 177130423L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="PRODUCTS_SEQ")
-    @Index(name="gas_products_pk_i")
     @Column(name="productid",nullable = false,length = 19)
     long productid;
 

@@ -32,6 +32,12 @@ public class CategoriesEJB extends CategoriesJPAManager implements CategoriesSer
          return super.update(instance);
     }
 
+    public void deleteIncludingFiles(Categories instance, org.fundaciobit.genappsqltutorial.ejb.FitxerService fitxerEjb)
+            throws I18NException {
+
+        this.delete(instance);
+    }
+
     @Override
     @RolesAllowed({Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS})
     public CategoriesJPA findByPrimaryKey(Long _ID_) {

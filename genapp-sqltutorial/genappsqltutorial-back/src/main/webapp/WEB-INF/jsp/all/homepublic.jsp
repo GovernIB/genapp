@@ -14,9 +14,11 @@
 <br/>
 <br/>
 
-PAGINA PUBLICA <br/>
+<b>Tutorial de GenQL</b><br/>
+<br/>
 
-This page is generated automatically. Please edit.
+Llenguatge de Consulta de BBDD utilitzat per GenApp.<br>
+Aquest es basa en Classes de Java cosa que fa que els errors en les consultes, modificacions i esborrats siguin mínims. 
 
 <br/>
 <br/>
@@ -25,7 +27,7 @@ This page is generated automatically. Please edit.
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td valign="top">
 <a href="http://blog.fundaciobit.org/category/admindigital/" target="_blank">
-<img src="<c:url value="/img/fundaciobit.png"/>"  alt="FundaciÃ³ Bit" title="FundaciÃ³ Bit"/>
+<img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit" title="Fundació Bit"/>
 </a>
 </td>
 </tr>
@@ -36,12 +38,12 @@ This page is generated automatically. Please edit.
 </div>
 
 <br/>
-
-LOGIN ANONIM <br/>
-Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-lang = ${lang} <br/>
 <br/>
 
 <c:if test="${gas:isDesenvolupament()}">
 Only in Development Mode
+
+LOGIN ANONIM <br/>
+Locale = <%=LocaleContextHolder.getLocale() %> <br/>
+lang = ${lang} <br/>
 </c:if>

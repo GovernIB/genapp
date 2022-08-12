@@ -27,7 +27,7 @@
       
       <c:forEach var="__entry" items="${__theFilterForm.additionalFields}">
       <c:if test="${ __entry.key < 0 && not empty __entry.value.searchBy }">
-      <div class="input-prepend input-append" style="padding-right: 4px;padding-bottom: 4px;">
+      <div class="input-group" style="padding-right: 4px;padding-bottom: 4px;">
         <span class="add-on"><fmt:message key="${__entry.value.codeName}" />:</span>
         <fmt:message key="genapp.form.searchby" var="cercaperAF" >
           <fmt:param>
@@ -52,15 +52,15 @@
 
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,EmployeesFields.EMPLOYEEID)}">
             <%-- FILTRE NUMERO --%>      
-            <div class="input-prepend input-append" style="padding-right: 4px;padding-bottom: 4px;">
+            <div class="input-group" style="padding-right: 4px;padding-bottom: 4px;">
               <span class="add-on"><fmt:message key="employees.employeeid" />:</span>
 
-              <span class="add-on"><fmt:message key="genapp.from" /></span>
+              <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
               <form:input cssClass="input-append input-small" path="employeeidDesde" />
 
 
-              <span class="add-on"><fmt:message key="genapp.to" /></span>
+              <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
               <form:input cssClass="input-append input-small search-query" path="employeeidFins" />
 
@@ -96,47 +96,52 @@
         </c:if>
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,EmployeesFields.BIRTHDATE)}">
             <%-- FILTRE DATE --%>
-            <div class="input-prepend input-append" style="padding-right: 4px;padding-bottom: 4px;">
+            <div class="input-group" style="padding-right:4px;padding-bottom:4px;align-items:center;">
               <span class="add-on"><fmt:message key="employees.birthdate" />:</span>
-              <span class="add-on"><fmt:message key="genapp.from" /></span>
-              <div id="birthdateDesde" class="input-append">
-                <form:input cssClass="input-small" path="birthdateDesde" />
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                  </i>
-                </span>
-              </div>
-              <script type="text/javascript">                
-                $(function() {
-                  $('#birthdateDesde').datetimepicker({
-                    language: '${lang}',
-                    pick12HourFormat: <c:out value="${fn:contains(gen:getDatePattern(), 'a')?'true' : 'false'}"/>,
-                    format:  '${gen:getJSDatePattern()}',
-                    pickTime: false,
-                    weekStart: ${gen:getFirstDayOfTheWeek()}
-                  });
-                });
-              </script>
-              <span class="add-on"><fmt:message key="genapp.to" /></span>              
-              <div id="birthdateFins" class="input-append">
-                <form:input cssClass="input-small" path="birthdateFins" />
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                  </i>
-                </span>
-              </div>
-              <script type="text/javascript">                
-                $(function() {
-                  $('#birthdateFins').datetimepicker({
-                    language: '${lang}',
-                    pick12HourFormat: <c:out value="${fn:contains(gen:getDatePattern(), 'a')?'true' : 'false'}"/>,
-                    format:  '${gen:getJSDatePattern()}',
-                    pickTime: false,
-                    weekStart: ${gen:getFirstDayOfTheWeek()}
-                  });
-                });
-              </script>
+              <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
+            <div class="form-group">
+                <div class="input-group date" id="birthdateDesde" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#birthdateDesde" path="birthdateDesde" />
+                    <c:if test="${!false}" >
+                    <div class="input-group-append"  data-target="#birthdateDesde"  data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                    </c:if>
+                </div>
             </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#birthdateDesde').datetimepicker({
+                    format: '${gen:getJSDatePattern()}',
+                    locale: '${lang}',
+                    icons: {
+                       time: 'far fa-clock'
+                    }
+                });
+            });
+        </script>
+              <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
+            <div class="form-group">
+                <div class="input-group date" id="birthdateFins" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#birthdateFins" path="birthdateFins" />
+                    <c:if test="${!false}" >
+                    <div class="input-group-append"  data-target="#birthdateFins"  data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                    </c:if>
+                </div>
+            </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#birthdateFins').datetimepicker({
+                    format: '${gen:getJSDatePattern()}',
+                    locale: '${lang}',
+                    icons: {
+                       time: 'far fa-clock'
+                    }
+                });
+            });
+        </script>            </div>
     
         </c:if>
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,EmployeesFields.PHOTO)}">
@@ -168,7 +173,7 @@
 
       <c:forEach var="__entry" items="${__theFilterForm.additionalFields}">
       <c:if test="${ __entry.key >= 0 && not empty __entry.value.searchBy }">
-      <div class="input-prepend input-append" style="padding-right: 4px;padding-bottom: 4px;">
+      <div class="input-group" style="padding-right: 4px;padding-bottom: 4px;">
         <span class="add-on"><fmt:message key="${__entry.value.codeName}" />:</span>
         <fmt:message key="genapp.form.searchby" var="cercaperAF" >
           <fmt:param>

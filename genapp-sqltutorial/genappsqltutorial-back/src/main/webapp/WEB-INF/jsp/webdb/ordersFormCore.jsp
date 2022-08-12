@@ -4,15 +4,15 @@
   
         <c:if test="${!gen:contains(__theForm.hiddenFields,OrdersFields.CUSTOMERID)}">
         <tr id="orders_customerid_rowid">
-          <td>
+          <td id="orders_customerid_columnlabelid">
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.CUSTOMERID])?'orders.customerid':__theForm.labels[OrdersFields.CUSTOMERID]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.CUSTOMERID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.CUSTOMERID]}" ></i>
               </c:if>
-             </label>
             </td>
-            <td>
+          <td id="orders_customerid_columnvalueid">
           <form:errors path="orders.customerid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrdersFields.CUSTOMERID)}" >
           <form:hidden path="orders.customerid"/>
@@ -44,15 +44,15 @@
         
         <c:if test="${!gen:contains(__theForm.hiddenFields,OrdersFields.EMPLOYEEID)}">
         <tr id="orders_employeeid_rowid">
-          <td>
+          <td id="orders_employeeid_columnlabelid">
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.EMPLOYEEID])?'orders.employeeid':__theForm.labels[OrdersFields.EMPLOYEEID]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.EMPLOYEEID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.EMPLOYEEID]}" ></i>
               </c:if>
-             </label>
             </td>
-            <td>
+          <td id="orders_employeeid_columnvalueid">
           <form:errors path="orders.employeeid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrdersFields.EMPLOYEEID)}" >
           <form:hidden path="orders.employeeid"/>
@@ -84,18 +84,16 @@
         
         <c:if test="${!gen:contains(__theForm.hiddenFields,OrdersFields.ORDERDATE)}">
         <tr id="orders_orderdate_rowid">
-          <td>
+          <td id="orders_orderdate_columnlabelid">
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.ORDERDATE])?'orders.orderdate':__theForm.labels[OrdersFields.ORDERDATE]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.ORDERDATE]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.ORDERDATE]}" ></i>
               </c:if>
-             </label>
             </td>
-            <td>
+          <td id="orders_orderdate_columnvalueid">
     <form:errors path="orders.orderdate" cssClass="errorField alert alert-danger" />
-    <div class="container">
-      <div class="row">
             <div class="form-group">
                 <div class="input-group date" id="orders_orderdate" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,OrdersFields.ORDERDATE)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#orders_orderdate" path="orders.orderdate" />
@@ -106,33 +104,31 @@
                     </c:if>
                 </div>
             </div>
-        </div>
         <script type="text/javascript">
             $(function () {
                 $('#orders_orderdate').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
                     locale: '${lang}',
                     icons: {
-                       time: 'fa fa-calendar'
+                       time: 'far fa-clock'
                     }
                 });
             });
-        </script>      </div>
-           </td>
+        </script>           </td>
         </tr>
         </c:if>
         
         <c:if test="${!gen:contains(__theForm.hiddenFields,OrdersFields.SHIPPERID)}">
         <tr id="orders_shipperid_rowid">
-          <td>
+          <td id="orders_shipperid_columnlabelid">
             <label>
               <fmt:message key="${(empty __theForm.labels[OrdersFields.SHIPPERID])?'orders.shipperid':__theForm.labels[OrdersFields.SHIPPERID]}" />
+             </label>
               <c:if test="${not empty __theForm.help[OrdersFields.SHIPPERID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[OrdersFields.SHIPPERID]}" ></i>
               </c:if>
-             </label>
             </td>
-            <td>
+          <td id="orders_shipperid_columnvalueid">
           <form:errors path="orders.shipperid" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,OrdersFields.SHIPPERID)}" >
           <form:hidden path="orders.shipperid"/>

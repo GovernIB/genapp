@@ -18,7 +18,7 @@
 		<!-- Logo i nom aplicació -->
 		<div class="navbar-brand menuGovern">
 			<div class="logoGovern">
-				<a href="http://www.fundaciobit.org"> <img
+				<a href="https://otae.fundaciobit.org"> <img
 					src="<c:url value="/img/fundaciobit-logo-cap.png"/>"
 					alt="FundacioBit-Govern Digital" />
 				</a>
@@ -33,13 +33,15 @@
 				<h1 class="titol"><%=org.fundaciobit.genappsqltutorial.commons.utils.StaticVersion.PROJECT_NAME%></h1>
 			</div>
 			<div>
-				<div>
+               <% if (request.getUserPrincipal() != null)  { %>
+				<div>                
 					<strong class="subtitol llevarMobil"><fmt:message key="usuari" />: </strong>
 					<span class="subtitolMay">
                         <%=request.getUserPrincipal()== null? "ANONIM": request.getUserPrincipal().getName()%>
 						|   <%= request.getRemoteUser() %>
 					</span>
 				</div>
+                <% }  %>
 			</div>
 		</div>
         
@@ -89,6 +91,9 @@
 								<img
 								src="<c:url value="/img/${idioma}_petit_${lang eq idioma? 'on' : 'off'}.gif"/>"
 								alt="${idioma}" width="17" height="14" border="0" />
+                                <c:if test="${ idioma eq 'ca' }"> Català</c:if>
+                                <c:if test="${ idioma eq 'es' }"> Castellano</c:if>
+                                <c:if test="${ idioma eq 'en' }"> English</c:if>
 							</a>
 						</c:forEach>
 

@@ -5,13 +5,13 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
-import org.hibernate.annotations.ForeignKey;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import java.util.HashMap;
 import org.hibernate.annotations.Cascade;
 import javax.persistence.GenerationType;
+import javax.persistence.Index;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Index;
 import javax.persistence.SequenceGenerator;
 import java.util.Map;
 import javax.persistence.FetchType;
@@ -21,21 +21,16 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_traduccio" )
+@Entity(name = "TraduccioJPA")
+@Table(name = "gas_traduccio" , indexes = { 
+        @Index(name="gas_traduccio_pk_i", columnList = "traduccioid")})
 @SequenceGenerator(name="TRADUCCIO_SEQ", sequenceName="gas_traduccio_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class TraduccioJPA implements Traduccio {
 
-
-
-private static final long serialVersionUID = -326205279L;
-
   /**  */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="TRADUCCIO_SEQ")
-    @Index(name="gas_traduccio_pk_i")
     @Column(name="traduccioid",nullable = false,length = 19)
     long traduccioID;
 
@@ -78,9 +73,8 @@ private static final long serialVersionUID = -326205279L;
   @ElementCollection(fetch= FetchType.EAGER, targetClass = org.fundaciobit.genappsqltutorial.persistence.TraduccioMapJPA.class)
   @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
   @LazyCollection(value= LazyCollectionOption.FALSE)
-  @JoinTable(name="gas_traducciomap",joinColumns={@JoinColumn(name="traducciomapid")})
+  @JoinTable(name="gas_traducciomap",joinColumns={@JoinColumn(name="traducciomapid")}, foreignKey=@ForeignKey(name="gas_traducmap_traduccio_fk"))
   @javax.persistence.MapKeyColumn(name="idiomaid")
-  @ForeignKey(name="gas_traducmap_traduccio_fk") 
   private Map<String, org.fundaciobit.genappsqltutorial.persistence.TraduccioMapJPA> traduccions =  new HashMap<String, org.fundaciobit.genappsqltutorial.persistence.TraduccioMapJPA>();
 
   public Map<String, org.fundaciobit.genappsqltutorial.persistence.TraduccioMapJPA> getTraduccions() {

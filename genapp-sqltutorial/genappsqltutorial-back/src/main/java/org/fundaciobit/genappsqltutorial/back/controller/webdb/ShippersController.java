@@ -538,6 +538,13 @@ public java.lang.Long stringToPK(String value) {
   }
 
 
+  @Override
+  /** Ha de ser igual que el RequestMapping de la Classe */
+  public String getContextWeb() {
+    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);
+    return rm.value()[0];
+  }
+
   public void preValidate(HttpServletRequest request,ShippersForm shippersForm , BindingResult result)  throws I18NException {
   }
 
@@ -578,13 +585,6 @@ public java.lang.Long stringToPK(String value) {
     return "shippersListWebDB";
   }
 
-  @Override
-  /** Ha de ser igual que el RequestMapping de la Classe */
-  public String getContextWeb() {
-    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);
-    return rm.value()[0];
-  }
-
   public String getSessionAttributeFilterForm() {
     return "ShippersWebDB_FilterForm";
   }
@@ -602,18 +602,18 @@ public java.lang.Long stringToPK(String value) {
 
 
   public ShippersJPA create(HttpServletRequest request, ShippersJPA shippers)
-    throws Exception,I18NException, I18NValidationException {
+    throws I18NException, I18NValidationException {
     return (ShippersJPA) shippersEjb.create(shippers);
   }
 
 
   public ShippersJPA update(HttpServletRequest request, ShippersJPA shippers)
-    throws Exception,I18NException, I18NValidationException {
+    throws I18NException, I18NValidationException {
     return (ShippersJPA) shippersEjb.update(shippers);
   }
 
 
-  public void delete(HttpServletRequest request, Shippers shippers) throws Exception,I18NException {
+  public void delete(HttpServletRequest request, Shippers shippers) throws I18NException {
     shippersEjb.delete(shippers);
   }
 

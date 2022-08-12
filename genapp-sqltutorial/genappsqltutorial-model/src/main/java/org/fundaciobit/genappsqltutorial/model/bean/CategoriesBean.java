@@ -8,8 +8,6 @@ public class CategoriesBean implements Categories {
 
 
 
-private static final long serialVersionUID = -232444916L;
-
 	long categoryid;// PK
 	java.lang.String categoryName;
 	java.lang.String description;

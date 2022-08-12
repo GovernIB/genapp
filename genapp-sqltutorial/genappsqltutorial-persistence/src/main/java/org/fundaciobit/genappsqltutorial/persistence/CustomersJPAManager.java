@@ -16,9 +16,6 @@ public class CustomersJPAManager
 
 
 
-
-    private static final long serialVersionUID = -1886253721L;
-
     public static final TableName<Customers> _TABLENAME =  new TableName<Customers>("CustomersJPA");
 
 
@@ -58,7 +55,7 @@ public class CustomersJPAManager
         return list.toArray(new Customers[list.size()]);
     };
 
-    public synchronized Customers create( java.lang.String _customername_, java.lang.String _contactname_, java.lang.String _address_, java.lang.String _city_, java.lang.String _country_, java.lang.String _postalcode_) throws I18NException {
+    public Customers create( java.lang.String _customername_, java.lang.String _contactname_, java.lang.String _address_, java.lang.String _city_, java.lang.String _country_, java.lang.String _postalcode_) throws I18NException {
         CustomersJPA __bean =  new CustomersJPA(_customername_,_contactname_,_address_,_city_,_country_,_postalcode_);
         return create(__bean);
     }

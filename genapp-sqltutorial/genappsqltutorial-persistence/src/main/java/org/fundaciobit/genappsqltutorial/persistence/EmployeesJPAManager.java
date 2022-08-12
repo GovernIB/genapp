@@ -16,9 +16,6 @@ public class EmployeesJPAManager
 
 
 
-
-    private static final long serialVersionUID = 975914135L;
-
     public static final TableName<Employees> _TABLENAME =  new TableName<Employees>("EmployeesJPA");
 
 
@@ -58,7 +55,7 @@ public class EmployeesJPAManager
         return list.toArray(new Employees[list.size()]);
     };
 
-    public synchronized Employees create( java.lang.String _lastname_, java.lang.String _firstname_, java.sql.Date _birthdate_, java.lang.String _photo_, java.lang.String _notes_) throws I18NException {
+    public Employees create( java.lang.String _lastname_, java.lang.String _firstname_, java.sql.Date _birthdate_, java.lang.String _photo_, java.lang.String _notes_) throws I18NException {
         EmployeesJPA __bean =  new EmployeesJPA(_lastname_,_firstname_,_birthdate_,_photo_,_notes_);
         return create(__bean);
     }

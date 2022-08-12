@@ -8,8 +8,6 @@ public class CustomersBean implements Customers {
 
 
 
-private static final long serialVersionUID = -1327693435L;
-
 	long customerid;// PK
 	java.lang.String customername;
 	java.lang.String contactname;

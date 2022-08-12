@@ -12,11 +12,18 @@
   <form:hidden path="nou" />
   
   <%@include file="shippersFormCorePre.jsp" %>
+
   <%@include file="shippersFormCore.jsp" %>
 
   <%@include file="shippersFormCorePost.jsp" %>
 
   <%@include file="shippersFormButtons.jsp" %>
+
+  <c:if test="${not empty shippersForm.sections}">
+     <c:set var="__basename" value="shippers" scope="page" />
+     <%@include file="sections.jsp"%>
+  </c:if>
+
 
   <c:if test="${shippersForm.attachedAdditionalJspCode}">
      <%@include file="../webdbmodificable/shippersFormModificable.jsp" %>

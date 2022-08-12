@@ -16,9 +16,6 @@ public class CategoriesJPAManager
 
 
 
-
-    private static final long serialVersionUID = 1711011502L;
-
     public static final TableName<Categories> _TABLENAME =  new TableName<Categories>("CategoriesJPA");
 
 
@@ -58,7 +55,7 @@ public class CategoriesJPAManager
         return list.toArray(new Categories[list.size()]);
     };
 
-    public synchronized Categories create( java.lang.String _categoryName_, java.lang.String _description_) throws I18NException {
+    public Categories create( java.lang.String _categoryName_, java.lang.String _description_) throws I18NException {
         CategoriesJPA __bean =  new CategoriesJPA(_categoryName_,_description_);
         return create(__bean);
     }

@@ -6,37 +6,32 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Index;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Index;
 import javax.persistence.SequenceGenerator;
-import org.hibernate.annotations.ForeignKey;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_orderdetails" )
+@Entity(name = "OrderDetailsJPA")
+@Table(name = "gas_orderdetails" , indexes = { 
+        @Index(name="gas_orderdetails_pk_i", columnList = "orderdetailid"),
+        @Index(name="gas_orderdetails_orderid_fk_i", columnList = "orderid"),
+        @Index(name="gas_orderdetai_productid_fk_i", columnList = "productid")})
 @SequenceGenerator(name="ORDERDETAILS_SEQ", sequenceName="gas_orderdetails_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class OrderDetailsJPA implements OrderDetails {
 
-
-
-private static final long serialVersionUID = 179355655L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ORDERDETAILS_SEQ")
-    @Index(name="gas_orderdetails_pk_i")
     @Column(name="orderdetailid",nullable = false,length = 19)
     long orderdetailid;
 
-    @Index(name="gas_orderdetails_orderid_fk_i")
     @Column(name="orderid",length = 19)
     java.lang.Long orderid;
 
-    @Index(name="gas_orderdetai_productid_fk_i")
     @Column(name="productid",length = 19)
     java.lang.Long productid;
 
@@ -119,8 +114,7 @@ private static final long serialVersionUID = 179355655L;
 // IMP Field:orderid | Table: gas_orders | Type: 1  
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @ForeignKey(name="gas_orderdetai_orders_fk")
-    @JoinColumn(name = "orderid", referencedColumnName ="orderid", nullable = true, insertable=false, updatable=false)
+    @JoinColumn(name = "orderid", referencedColumnName ="orderid", nullable = true, insertable=false, updatable=false, foreignKey=@ForeignKey(name="gas_orderdetai_orders_fk"))
     private OrdersJPA orders;
 
     public OrdersJPA getOrders() {
@@ -134,8 +128,7 @@ private static final long serialVersionUID = 179355655L;
 // IMP Field:productid | Table: gas_products | Type: 1  
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @ForeignKey(name="gas_orderdetai_products_fk")
-    @JoinColumn(name = "productid", referencedColumnName ="productid", nullable = true, insertable=false, updatable=false)
+    @JoinColumn(name = "productid", referencedColumnName ="productid", nullable = true, insertable=false, updatable=false, foreignKey=@ForeignKey(name="gas_orderdetai_products_fk"))
     private ProductsJPA products;
 
     public ProductsJPA getProducts() {

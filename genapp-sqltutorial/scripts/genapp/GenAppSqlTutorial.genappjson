@@ -1,0 +1,1850 @@
+{
+  "packageName": "org.fundaciobit.genappsqltutorial",
+  "projectName": "GenAppSqlTutorial",
+  "dataBaseInfo": {
+    "url": "jdbc:postgresql://localhost:5432/genappsqltutorial",
+    "driver": "org.postgresql.Driver",
+    "usr": "genappsqltutorial",
+    "pwd": "genappsqltutorial"
+  },
+  "modulSeguretat": "seycon",
+  "prefix": "gas",
+  "prefixDirectori": "genappsqltutorial-",
+  "schema": "public",
+  "tables": [
+    {
+      "name": "gas_categories",
+      "nameJava": "Categories",
+      "shortName": "categori",
+      "labels": {
+        "ca": "Categories",
+        "es": "Categories"
+      },
+      "labelsPlural": {
+        "ca": "Categories",
+        "es": "Categories"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_categories_pk",
+          "index": "gas_categories_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "categoryid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "categoryid",
+            "es": "categoryid"
+          },
+          "javaName": "categoryid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_categories_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "categoryname",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "categoryname",
+            "es": "categoryname"
+          },
+          "javaName": "categoryName",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "description",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "description",
+            "es": "description"
+          },
+          "javaName": "description",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_customers",
+      "nameJava": "Customers",
+      "shortName": "customers",
+      "labels": {
+        "ca": "Customers",
+        "es": "Customers"
+      },
+      "labelsPlural": {
+        "ca": "",
+        "es": ""
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_customers_pk",
+          "index": "gas_customers_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "customerid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "customerid",
+            "es": "customerid"
+          },
+          "javaName": "customerid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_customers_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orders_customers_fk",
+              "table": "gas_orders",
+              "field": "customerid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "customername",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "customername",
+            "es": "customername"
+          },
+          "javaName": "customername",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "contactname",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "contactname",
+            "es": "contactname"
+          },
+          "javaName": "contactname",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "address",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "address",
+            "es": "address"
+          },
+          "javaName": "address",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "city",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "city",
+            "es": "city"
+          },
+          "javaName": "city",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "country",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "country",
+            "es": "country"
+          },
+          "javaName": "country",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "postalcode",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "postalcode",
+            "es": "postalcode"
+          },
+          "javaName": "postalcode",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_employees",
+      "nameJava": "Employees",
+      "shortName": "employees",
+      "labels": {
+        "ca": "Employees",
+        "es": "Employees"
+      },
+      "labelsPlural": {
+        "ca": "Employees",
+        "es": "Employees"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_employees_pk",
+          "index": "gas_employees_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "employeeid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "employeeid",
+            "es": "employeeid"
+          },
+          "javaName": "employeeid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_employees_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orders_employees_fk",
+              "table": "gas_orders",
+              "field": "employeeid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "lastname",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "lastname",
+            "es": "lastname"
+          },
+          "javaName": "lastname",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "firstname",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "firstname",
+            "es": "firstname"
+          },
+          "javaName": "firstname",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "birthdate",
+          "sqlType": 91,
+          "size": 13,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "birthdate",
+            "es": "birthdate"
+          },
+          "javaName": "birthdate",
+          "javaType": "java.sql.Date",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 5
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "photo",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "photo",
+            "es": "photo"
+          },
+          "javaName": "photo",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "notes",
+          "sqlType": 12,
+          "size": 2147483647,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "notes",
+            "es": "notes"
+          },
+          "javaName": "notes",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_fitxer",
+      "nameJava": "Fitxer",
+      "shortName": "fitxer",
+      "labels": {
+        "de": "Datei",
+        "en": "File",
+        "ca": "Fitxer",
+        "es": "Fichero"
+      },
+      "labelsPlural": {
+        "de": "Datein",
+        "en": "Files",
+        "ca": "Fitxers",
+        "es": "Ficheros"
+      },
+      "generate": true,
+      "fileMappingEntity": true,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_fitxer_pk",
+          "index": "gas_fitxer_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "fitxerid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "ID",
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "fitxerID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_fitxer_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nom",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "Name",
+            "en": "Name",
+            "ca": "Nom",
+            "es": "Nombre"
+          },
+          "javaName": "nom",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "mime",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "mime",
+            "en": "mime",
+            "ca": "mime",
+            "es": "mime"
+          },
+          "javaName": "mime",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "tamany",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "Size",
+            "en": "Size",
+            "ca": "Tamany",
+            "es": "Tamaño"
+          },
+          "javaName": "tamany",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "descripcio",
+          "sqlType": 12,
+          "size": 1000,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "de": "Description",
+            "en": "Description",
+            "ca": "Descripció",
+            "es": "Descripción"
+          },
+          "javaName": "descripcio",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "NULL::character varying",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_idioma",
+      "nameJava": "Idioma",
+      "shortName": "idioma",
+      "labels": {
+        "de": "Sprache",
+        "en": "Language",
+        "ca": "Idioma",
+        "es": "Idioma"
+      },
+      "labelsPlural": {
+        "de": "Idiom",
+        "en": "Language",
+        "ca": "Idioma",
+        "es": "Idioma"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": true,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_idioma_pk",
+          "index": "gas_idioma_pk_i",
+          "isAutoIncrement": false,
+          "sqlName": "idiomaid",
+          "sqlType": 12,
+          "size": 5,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "ID",
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "idiomaID",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nom",
+          "sqlType": 12,
+          "size": 50,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "Name",
+            "en": "Name",
+            "ca": "Nom",
+            "es": "Nombre"
+          },
+          "javaName": "nom",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "suportat",
+          "sqlType": -7,
+          "size": 1,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "suportat",
+            "en": "Suported",
+            "ca": "Suportat",
+            "es": "Suportado"
+          },
+          "javaName": "suportat",
+          "javaType": "boolean",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "true",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 4
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "ordre",
+          "sqlType": 4,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "Order",
+            "en": "Order",
+            "ca": "Ordre",
+            "es": "ordre"
+          },
+          "javaName": "ordre",
+          "javaType": "int",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "0",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_orderdetails",
+      "nameJava": "OrderDetails",
+      "shortName": "orderdetai",
+      "labels": {
+        "ca": "OrderDetails",
+        "es": "OrderDetails"
+      },
+      "labelsPlural": {
+        "ca": "OrderDetails",
+        "es": "OrderDetails"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_orderdetails_pk",
+          "index": "gas_orderdetails_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "orderdetailid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "orderdetailid",
+            "es": "orderdetailid"
+          },
+          "javaName": "orderdetailid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_orderdetails_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "index": "gas_orderdetails_orderid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "orderid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "orderid",
+            "es": "orderid"
+          },
+          "javaName": "orderid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "gas_orderdetai_orders_fk",
+              "table": "gas_orders",
+              "field": "orderid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orderdetai_orders_fk",
+              "table": "gas_orders",
+              "field": "orderid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "index": "gas_orderdetai_productid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "productid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "productid",
+            "es": "productid"
+          },
+          "javaName": "productid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "gas_orderdetai_products_fk",
+              "table": "gas_products",
+              "field": "productid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orderdetai_products_fk",
+              "table": "gas_products",
+              "field": "productid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "quantity",
+          "sqlType": 4,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "quantity",
+            "es": "quantity"
+          },
+          "javaName": "quantity",
+          "javaType": "java.lang.Integer",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_orders",
+      "nameJava": "Orders",
+      "shortName": "orders",
+      "labels": {
+        "ca": "Orders",
+        "es": "Orders"
+      },
+      "labelsPlural": {
+        "ca": "Orders",
+        "es": "Orders"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_orders_pk",
+          "index": "gas_orders_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "orderid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "orderid",
+            "es": "orderid"
+          },
+          "javaName": "orderid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_orders_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orderdetai_orders_fk",
+              "table": "gas_orderdetails",
+              "field": "orderid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "index": "gas_orders_customerid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "customerid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "customerid",
+            "es": "customerid"
+          },
+          "javaName": "customerid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "gas_orders_customers_fk",
+              "table": "gas_customers",
+              "field": "customerid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orders_customers_fk",
+              "table": "gas_customers",
+              "field": "customerid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "index": "gas_orders_employeeid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "employeeid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "employeeid",
+            "es": "employeeid"
+          },
+          "javaName": "employeeid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "gas_orders_employees_fk",
+              "table": "gas_employees",
+              "field": "employeeid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orders_employees_fk",
+              "table": "gas_employees",
+              "field": "employeeid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "orderdate",
+          "sqlType": 91,
+          "size": 13,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "orderdate",
+            "es": "orderdate"
+          },
+          "javaName": "orderdate",
+          "javaType": "java.sql.Date",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 5
+          },
+          "foreignKeys": []
+        },
+        {
+          "index": "gas_orders_shipperid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "shipperid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "shipperid",
+            "es": "shipperid"
+          },
+          "javaName": "shipperid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "gas_orders_shippers_fk",
+              "table": "gas_suppliers",
+              "field": "supplierid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orders_shippers_fk",
+              "table": "gas_shippers",
+              "field": "shipperid",
+              "type": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "gas_products",
+      "nameJava": "Products",
+      "shortName": "products",
+      "labels": {
+        "ca": "Products",
+        "es": "Products"
+      },
+      "labelsPlural": {
+        "ca": "Products",
+        "es": "Products"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_products_pk",
+          "index": "gas_products_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "productid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "productid",
+            "es": "productid"
+          },
+          "javaName": "productid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_products_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orderdetai_products_fk",
+              "table": "gas_orderdetails",
+              "field": "productid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "productname",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "productname",
+            "es": "productname"
+          },
+          "javaName": "productname",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "supplierid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "supplierid",
+            "es": "supplierid"
+          },
+          "javaName": "supplierid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "categoryid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "categoryid",
+            "es": "categoryid"
+          },
+          "javaName": "categoryid",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "unit",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "unit",
+            "es": "unit"
+          },
+          "javaName": "unit",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "price",
+          "sqlType": 8,
+          "size": 17,
+          "digits": 17,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "price",
+            "es": "price"
+          },
+          "javaName": "price",
+          "javaType": "java.lang.Double",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_shippers",
+      "nameJava": "Shippers",
+      "shortName": "shippers",
+      "labels": {
+        "ca": "Shippers",
+        "es": "Shippers"
+      },
+      "labelsPlural": {
+        "ca": "Shippers",
+        "es": "Shippers"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_shippers_pk",
+          "index": "gas_shippers_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "shipperid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "shipperid",
+            "es": "shipperid"
+          },
+          "javaName": "shipperid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_shippers_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_orders_shippers_fk",
+              "table": "gas_orders",
+              "field": "shipperid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "shippername",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "shippername",
+            "es": "shippername"
+          },
+          "javaName": "shippername",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "phone",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "phone",
+            "es": "phone"
+          },
+          "javaName": "phone",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_suppliers",
+      "nameJava": "Suppliers",
+      "shortName": "suppliers",
+      "labels": {
+        "ca": "Suppliers",
+        "es": "Suppliers"
+      },
+      "labelsPlural": {
+        "ca": "Suppliers",
+        "es": "Suppliers"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_suppliers_pk",
+          "index": "gas_suppliers_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "supplierid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "ca": "supplierid",
+            "es": "supplierid"
+          },
+          "javaName": "supplierid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027gas_suppliers_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "suppliername",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "suppliername",
+            "es": "suppliername"
+          },
+          "javaName": "suppliername",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "contactname",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "contactname",
+            "es": "contactname"
+          },
+          "javaName": "contactname",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "address",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "address",
+            "es": "address"
+          },
+          "javaName": "address",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "city",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "city",
+            "es": "city"
+          },
+          "javaName": "city",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "postalcode",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "postalcode",
+            "es": "postalcode"
+          },
+          "javaName": "postalcode",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "country",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "country",
+            "es": "country"
+          },
+          "javaName": "country",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "phone",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "ca": "phone",
+            "es": "phone"
+          },
+          "javaName": "phone",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "gas_traduccio",
+      "nameJava": "Traduccio",
+      "shortName": "traduccio",
+      "labels": {
+        "de": "Übersetzung",
+        "en": "Translation",
+        "ca": "Traducció",
+        "es": "Traducción"
+      },
+      "labelsPlural": {
+        "de": "Translations",
+        "en": "Translations",
+        "ca": "Traduccions",
+        "es": "Traducciones"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": true,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "gas_traduccio_pk",
+          "index": "gas_traduccio_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "traduccioid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "ID",
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "traduccioID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "descripcio": "",
+          "defaultValue": "nextval(\u0027gas_traduccio_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0,
+            "label": [
+              "nom"
+            ]
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_traducmap_traduccio_fk",
+              "table": "gas_traducciomap",
+              "field": "traducciomapid",
+              "type": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "gas_traducciomap",
+      "nameJava": "TraduccioMap",
+      "shortName": "traducmap",
+      "labels": {
+        "de": "TraduccioMap",
+        "en": "TraduccioMap",
+        "ca": "TraduccioMap",
+        "es": "TraduccioMap"
+      },
+      "labelsPlural": {
+        "de": "",
+        "en": "",
+        "ca": "",
+        "es": ""
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": true,
+      "fields": [
+        {
+          "PK": "gas_traducmap_pk",
+          "index": "gas_traducciomap_pk_i",
+          "isAutoIncrement": false,
+          "sqlName": "traducciomapid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "ID",
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "traduccioMapID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "descripcio": "",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "gas_traducmap_traduccio_fk",
+              "table": "gas_traduccio",
+              "field": "traduccioid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "gas_traducmap_traduccio_fk",
+              "table": "gas_traduccio",
+              "field": "traduccioid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "PK": "gas_traducmap_pk",
+          "index": "gas_traducciomap_idiomaid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "idiomaid",
+          "sqlType": 12,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "de": "idiomaid",
+            "en": "idiomaID",
+            "ca": "idiomaID",
+            "es": "idiomaID"
+          },
+          "javaName": "idiomaID",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "descripcio": "",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "valor",
+          "sqlType": 12,
+          "size": 4000,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "de": "Value",
+            "en": "Value",
+            "ca": "Valor",
+            "es": "Valor"
+          },
+          "javaName": "valor",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "descripcio": "",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        }
+      ]
+    }
+  ],
+  "languages": [
+    "ca",
+    "es"
+  ],
+  "generateBack": true,
+  "generateWS": false
+}

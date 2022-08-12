@@ -8,8 +8,6 @@ public class ProductsBean implements Products {
 
 
 
-private static final long serialVersionUID = 1195858772L;
-
 	long productid;// PK
 	java.lang.String productname;
 	java.lang.Long supplierid;

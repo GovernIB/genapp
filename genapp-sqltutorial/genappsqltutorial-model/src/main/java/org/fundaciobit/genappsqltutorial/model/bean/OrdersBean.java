@@ -8,8 +8,6 @@ public class OrdersBean implements Orders {
 
 
 
-private static final long serialVersionUID = -1528116139L;
-
 	long orderid;// PK
 	java.lang.Long customerid;
 	java.lang.Long employeeid;

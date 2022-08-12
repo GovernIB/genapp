@@ -16,9 +16,6 @@ public class SuppliersJPAManager
 
 
 
-
-    private static final long serialVersionUID = 1558819513L;
-
     public static final TableName<Suppliers> _TABLENAME =  new TableName<Suppliers>("SuppliersJPA");
 
 
@@ -58,7 +55,7 @@ public class SuppliersJPAManager
         return list.toArray(new Suppliers[list.size()]);
     };
 
-    public synchronized Suppliers create( java.lang.String _suppliername_, java.lang.String _contactname_, java.lang.String _address_, java.lang.String _city_, java.lang.String _postalcode_, java.lang.String _country_, java.lang.String _phone_) throws I18NException {
+    public Suppliers create( java.lang.String _suppliername_, java.lang.String _contactname_, java.lang.String _address_, java.lang.String _city_, java.lang.String _postalcode_, java.lang.String _country_, java.lang.String _phone_) throws I18NException {
         SuppliersJPA __bean =  new SuppliersJPA(_suppliername_,_contactname_,_address_,_city_,_postalcode_,_country_,_phone_);
         return create(__bean);
     }

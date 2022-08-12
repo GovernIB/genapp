@@ -32,7 +32,7 @@ public class PrincipalController {
 		Boolean initialized = (Boolean) session.getAttribute("inicialitzat");
 
 		if (initialized == null) {
-			HtmlUtils.saveMessageInfo(request, "MessageInfo : Benvingut a GenAppSqlTutorial");
+			HtmlUtils.saveMessageInfo(request, " Benvingut a GenAppSqlTutorial");
 			session.setAttribute("inicialitzat", true);
 		}
 

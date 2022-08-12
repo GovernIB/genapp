@@ -4,24 +4,19 @@ import org.fundaciobit.genappsqltutorial.model.entity.*;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import org.hibernate.annotations.Index;
+import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_idioma" )
+@Entity(name = "IdiomaJPA")
+@Table(name = "gas_idioma" , indexes = { 
+        @Index(name="gas_idioma_pk_i", columnList = "idiomaid")})
 @SequenceGenerator(name="IDIOMA_SEQ", sequenceName="gas_idioma_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class IdiomaJPA implements Idioma {
 
-
-
-private static final long serialVersionUID = 1367253670L;
-
     @Id
-    @Index(name="gas_idioma_pk_i")
     @Column(name="idiomaid",nullable = false,length = 5)
     java.lang.String idiomaID;
 

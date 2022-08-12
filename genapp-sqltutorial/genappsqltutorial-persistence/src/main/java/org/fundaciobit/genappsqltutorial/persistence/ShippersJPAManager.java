@@ -16,9 +16,6 @@ public class ShippersJPAManager
 
 
 
-
-    private static final long serialVersionUID = 2004755524L;
-
     public static final TableName<Shippers> _TABLENAME =  new TableName<Shippers>("ShippersJPA");
 
 
@@ -58,7 +55,7 @@ public class ShippersJPAManager
         return list.toArray(new Shippers[list.size()]);
     };
 
-    public synchronized Shippers create( java.lang.String _shippername_, java.lang.String _phone_) throws I18NException {
+    public Shippers create( java.lang.String _shippername_, java.lang.String _phone_) throws I18NException {
         ShippersJPA __bean =  new ShippersJPA(_shippername_,_phone_);
         return create(__bean);
     }

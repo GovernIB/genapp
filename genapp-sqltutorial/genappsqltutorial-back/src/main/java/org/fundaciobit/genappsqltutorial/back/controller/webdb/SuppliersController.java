@@ -538,6 +538,13 @@ public java.lang.Long stringToPK(String value) {
   }
 
 
+  @Override
+  /** Ha de ser igual que el RequestMapping de la Classe */
+  public String getContextWeb() {
+    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);
+    return rm.value()[0];
+  }
+
   public void preValidate(HttpServletRequest request,SuppliersForm suppliersForm , BindingResult result)  throws I18NException {
   }
 
@@ -578,13 +585,6 @@ public java.lang.Long stringToPK(String value) {
     return "suppliersListWebDB";
   }
 
-  @Override
-  /** Ha de ser igual que el RequestMapping de la Classe */
-  public String getContextWeb() {
-    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);
-    return rm.value()[0];
-  }
-
   public String getSessionAttributeFilterForm() {
     return "SuppliersWebDB_FilterForm";
   }
@@ -602,18 +602,18 @@ public java.lang.Long stringToPK(String value) {
 
 
   public SuppliersJPA create(HttpServletRequest request, SuppliersJPA suppliers)
-    throws Exception,I18NException, I18NValidationException {
+    throws I18NException, I18NValidationException {
     return (SuppliersJPA) suppliersEjb.create(suppliers);
   }
 
 
   public SuppliersJPA update(HttpServletRequest request, SuppliersJPA suppliers)
-    throws Exception,I18NException, I18NValidationException {
+    throws I18NException, I18NValidationException {
     return (SuppliersJPA) suppliersEjb.update(suppliers);
   }
 
 
-  public void delete(HttpServletRequest request, Suppliers suppliers) throws Exception,I18NException {
+  public void delete(HttpServletRequest request, Suppliers suppliers) throws I18NException {
     suppliersEjb.delete(suppliers);
   }
 

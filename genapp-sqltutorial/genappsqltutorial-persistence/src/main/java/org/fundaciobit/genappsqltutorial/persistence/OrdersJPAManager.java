@@ -16,9 +16,6 @@ public class OrdersJPAManager
 
 
 
-
-    private static final long serialVersionUID = 732986423L;
-
     public static final TableName<Orders> _TABLENAME =  new TableName<Orders>("OrdersJPA");
 
 
@@ -58,7 +55,7 @@ public class OrdersJPAManager
         return list.toArray(new Orders[list.size()]);
     };
 
-    public synchronized Orders create( java.lang.Long _customerid_, java.lang.Long _employeeid_, java.sql.Date _orderdate_, java.lang.Long _shipperid_) throws I18NException {
+    public Orders create( java.lang.Long _customerid_, java.lang.Long _employeeid_, java.sql.Date _orderdate_, java.lang.Long _shipperid_) throws I18NException {
         OrdersJPA __bean =  new OrdersJPA(_customerid_,_employeeid_,_orderdate_,_shipperid_);
         return create(__bean);
     }

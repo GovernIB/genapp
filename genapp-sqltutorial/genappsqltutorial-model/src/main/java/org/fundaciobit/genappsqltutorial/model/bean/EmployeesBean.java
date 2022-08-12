@@ -8,8 +8,6 @@ public class EmployeesBean implements Employees {
 
 
 
-private static final long serialVersionUID = -1212457803L;
-
 	long employeeid;// PK
 	java.lang.String lastname;
 	java.lang.String firstname;

@@ -5,26 +5,21 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
+import javax.persistence.Index;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_categories" )
+@Entity(name = "CategoriesJPA")
+@Table(name = "gas_categories" , indexes = { 
+        @Index(name="gas_categories_pk_i", columnList = "categoryid")})
 @SequenceGenerator(name="CATEGORIES_SEQ", sequenceName="gas_categories_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class CategoriesJPA implements Categories {
 
-
-
-private static final long serialVersionUID = 685245439L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="CATEGORIES_SEQ")
-    @Index(name="gas_categories_pk_i")
     @Column(name="categoryid",nullable = false,length = 19)
     long categoryid;
 

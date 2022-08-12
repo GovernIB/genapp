@@ -5,26 +5,21 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
+import javax.persistence.Index;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_suppliers" )
+@Entity(name = "SuppliersJPA")
+@Table(name = "gas_suppliers" , indexes = { 
+        @Index(name="gas_suppliers_pk_i", columnList = "supplierid")})
 @SequenceGenerator(name="SUPPLIERS_SEQ", sequenceName="gas_suppliers_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class SuppliersJPA implements Suppliers {
 
-
-
-private static final long serialVersionUID = -2123174316L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SUPPLIERS_SEQ")
-    @Index(name="gas_suppliers_pk_i")
     @Column(name="supplierid",nullable = false,length = 19)
     long supplierid;
 

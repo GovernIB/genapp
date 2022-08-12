@@ -8,8 +8,6 @@ public class ShippersBean implements Shippers {
 
 
 
-private static final long serialVersionUID = 635879970L;
-
 	long shipperid;// PK
 	java.lang.String shippername;
 	java.lang.String phone;

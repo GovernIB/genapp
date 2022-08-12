@@ -66,7 +66,7 @@ public class PublicController implements IDAOProvider {
         Boolean initialized = (Boolean) session.getAttribute("inicialitzat");
 
         if (initialized == null) {
-            HtmlUtils.saveMessageInfo(request, "MessageInfo : Benvingut a GenApp SQL Tutorial");
+            HtmlUtils.saveMessageInfo(request, "Benvingut a GenApp SQL Tutorial");
             session.setAttribute("inicialitzat", true);
         }
 

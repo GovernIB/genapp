@@ -7,8 +7,8 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Lob;
+import javax.persistence.Index;
 import javax.persistence.GeneratedValue;
-import org.hibernate.annotations.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -17,20 +17,15 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Id;
 
 
-@SuppressWarnings("deprecation")
-@Entity
-@Table(name = "gas_employees" )
+@Entity(name = "EmployeesJPA")
+@Table(name = "gas_employees" , indexes = { 
+        @Index(name="gas_employees_pk_i", columnList = "employeeid")})
 @SequenceGenerator(name="EMPLOYEES_SEQ", sequenceName="gas_employees_seq", allocationSize=1, initialValue=1000)
 @javax.xml.bind.annotation.XmlRootElement
 public class EmployeesJPA implements Employees {
 
-
-
-private static final long serialVersionUID = -1563125194L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="EMPLOYEES_SEQ")
-    @Index(name="gas_employees_pk_i")
     @Column(name="employeeid",nullable = false,length = 19)
     long employeeid;
 

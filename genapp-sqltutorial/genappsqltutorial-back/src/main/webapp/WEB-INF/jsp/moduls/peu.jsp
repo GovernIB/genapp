@@ -32,7 +32,7 @@
 		<!-- Centre esquerra -->
 		<div
 			class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
-
+<%--
 			<a styleClass="text-dark linkPeu" href="/mapaweb"> <fmt:message
 					key="labels.mapaweb" />
 			</a><br /> <a styleClass="text-dark linkPeu" href="/accessibilitat">
@@ -42,7 +42,7 @@
 			</a><br /> <a styleClass="text-dark linkPeu" href="/avislegal"> <fmt:message
 					key="labels.avislegal" />
 			</a>
-
+ --%>
 		</div>
 
 		<!-- Dreta -->
@@ -80,10 +80,10 @@
                         <fmt:message key="ajuda.missatge" />
                     </p>
                     <ul>
-                        <li><fmt:message key="ajuda.viatelefon" /> 123456789</li>
-                        <li><fmt:message key="ajuda.viaweb" /> http://www.help.hl/help</li>
+                        <li><fmt:message key="ajuda.viatelefon" /> 971 17 60 60</li>
+                        <li><fmt:message key="ajuda.viaweb" /> https://otae.fundaciobit.org/</li>
                         <li><fmt:message key="ajuda.viaemail" /><a
-                    href="mailto: help@help.hl"> help@help.hl</a></li>
+                    href="mailto: firma@fundaciobit.org"> firma@fundaciobit.org</a></li>
                     </ul>
                 </div>
                 <div class="modal-footer">

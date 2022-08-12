@@ -3,17 +3,15 @@ package org.fundaciobit.genappsqltutorial.persistence;
 import org.fundaciobit.genappsqltutorial.model.entity.*;
 import javax.persistence.Table;
 import javax.persistence.Column;
-
+import javax.persistence.Index;
 
 
 @javax.persistence.Embeddable
-@Table(name = "gas_traducciomap" )
+@Table(name = "gas_traducciomap" , indexes = { 
+        @Index(name="gas_traducciomap_pk_i", columnList = "traducciomapid"),
+        @Index(name="gas_traducciomap_idiomaid_fk_i", columnList = "idiomaid")})
 @javax.xml.bind.annotation.XmlRootElement
 public class TraduccioMapJPA implements TraduccioMap {
-
-
-
-private static final long serialVersionUID = 1632585305L;
 
   /**  */
     @Column(name="valor",length = 4000)

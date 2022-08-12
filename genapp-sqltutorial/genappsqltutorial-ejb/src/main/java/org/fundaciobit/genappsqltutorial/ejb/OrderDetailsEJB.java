@@ -32,6 +32,12 @@ public class OrderDetailsEJB extends OrderDetailsJPAManager implements OrderDeta
          return super.update(instance);
     }
 
+    public void deleteIncludingFiles(OrderDetails instance, org.fundaciobit.genappsqltutorial.ejb.FitxerService fitxerEjb)
+            throws I18NException {
+
+        this.delete(instance);
+    }
+
     @Override
     @RolesAllowed({Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS})
     public OrderDetailsJPA findByPrimaryKey(Long _ID_) {

@@ -32,6 +32,12 @@ public class SuppliersEJB extends SuppliersJPAManager implements SuppliersServic
          return super.update(instance);
     }
 
+    public void deleteIncludingFiles(Suppliers instance, org.fundaciobit.genappsqltutorial.ejb.FitxerService fitxerEjb)
+            throws I18NException {
+
+        this.delete(instance);
+    }
+
     @Override
     @RolesAllowed({Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS})
     public SuppliersJPA findByPrimaryKey(Long _ID_) {

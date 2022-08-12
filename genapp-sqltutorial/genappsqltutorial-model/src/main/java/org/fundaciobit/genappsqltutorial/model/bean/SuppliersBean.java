@@ -8,8 +8,6 @@ public class SuppliersBean implements Suppliers {
 
 
 
-private static final long serialVersionUID = -1394111401L;
-
 	long supplierid;// PK
 	java.lang.String suppliername;
 	java.lang.String contactname;
