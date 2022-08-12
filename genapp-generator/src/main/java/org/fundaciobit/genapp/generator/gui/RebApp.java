@@ -262,7 +262,7 @@ public class RebApp extends JFrame {
         }
     }
 
-    public static int main(String[] args) {
+    public static void main(String[] args) {
         
         
         if (!"UTF-8".equalsIgnoreCase(System.getProperty("file.encoding"))) {
@@ -270,7 +270,7 @@ public class RebApp extends JFrame {
             System.err.println("Editi el genapp.bat/.sh i abans de la cridada a 'mvn exec:java' inclogui el següent codi:\n"
                    + " + Windows: set MAVEN_OPTS=-Dfile.encoding=UTF-8\n"
                    + " + Linux: export MAVEN_OPTS=-Dfile.encoding=UTF-8\n\n");
-            return -1;
+            System.exit(-1);
         }
         
         /*
@@ -408,12 +408,12 @@ public class RebApp extends JFrame {
                 default:
             }
             
-            return 0;
+            
 
         } catch (Exception e) {
             // TODO Mostrar en un dialeg
             e.printStackTrace();
-            return -1;
+            System.exit(-1);
         }
 
     }
