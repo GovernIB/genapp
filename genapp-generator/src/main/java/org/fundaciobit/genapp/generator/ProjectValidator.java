@@ -111,13 +111,13 @@ public class ProjectValidator {
                     
                     if (defautValue == null || defautValue.trim().length() == 0) {
                         errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
-                                + " és autoincrmental però no té Sequencia definida\n");
+                                + " és autoincrmental però no té seqüència ]" + expectedSequence + "[ definida el el defaultValue.\n");
                     } else {
                         
-                        if (defautValue.toLowerCase().indexOf(shortStr) == -1) {
+                        if (defautValue.toLowerCase().indexOf(expectedSequence) == -1) {
                             errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
-                                    + " és autoincrmental i s'esperava una sequencia ]" + expectedSequence
-                                    + "[ però s'ha troba un default value ]" + defautValue + "[\n");
+                                    + " és autoincrmental i s'esperava una seqüència ]" + expectedSequence
+                                    + "[ en el default value, però el valor del default value és ]" + defautValue + "[\n");
                         } else {
                             // OK
                             sequencesOrphan.remove(expectedSequence);
