@@ -9,6 +9,7 @@ import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.common.GenAppUtils;
+import org.fundaciobit.genapp.common.filesystem.IFile;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
 
@@ -96,11 +97,13 @@ public class DaoEJBGenerator {
         }
     }
 
-    public static SourceFile generateCodeForManagerService(Project projecte, String tableNameJava, String jpaPackage,
-            String ejbPackage, BasicPackages packages, BeanCode beanCode) {
+    public static SourceFile generateCodeForManagerService(Project projecte, TableInfo taula, String jpaPackage,
+            String ejbPackage, BasicPackages basicPackages, BeanCode beanCode) {
 
-        String daoPackage = packages.daoPackage;
+        String daoPackage = basicPackages.daoPackage;
 
+        String tableNameJava = taula.getNameJava();
+        
         final String jpa = tableNameJava + "JPA";
         final String iface = "I" + tableNameJava + "Manager";
         final String jpaIface = tableNameJava + "IJPAManager";
@@ -127,6 +130,12 @@ public class DaoEJBGenerator {
         manager.append("import " + jpaPackage + "." + jpaIface + ";\n");
         manager.append("import " + daoPackage + "." + iface + ";\n\n");
 
+        manager.append("import " + basicPackages.entityPackage + "." + tableNameJava + ";\n");
+        manager.append("import " + I18NException.class.getName() + ";\n\n");
+
+//        import org.fundaciobit.genapp.common.i18n.I18NException;
+
+
         manager.append("@Local\n");
         manager.append("public interface " + managerFileName + " extends " + jpaIface + "," + iface + " {\n");
 
@@ -137,6 +146,16 @@ public class DaoEJBGenerator {
 
         // Sobre escriure findByPrimaryKey
         manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_);\n");
+        manager.append("\n");
+
+        TableInfo[] tables = projecte.getTables();
+        List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(tables, taula);
+        final boolean hasFileFields = fileFields != null && fileFields.size() != 0;
+
+        manager.append("    public void deleteIncludingFiles(" + tableNameJava + " instance, " + "FitxerService fitxerEjb) throws I18NException;\n");
+//        if (hasFileFields) {
+//        }
+
         manager.append("}\n");
 
         return new SourceFile(managerFileName + ".java", manager.toString());
@@ -147,7 +166,7 @@ public class DaoEJBGenerator {
             String ejbPackage, BasicPackages basicPackages, BeanCode beanCode) {
 
         String tableNameJava = taula.getNameJava();
-        
+
         final String managerFileName = tableNameJava + "EJB";
         final String jpaManager = tableNameJava + "JPAManager";
         final String jpa = tableNameJava + "JPA";
@@ -173,9 +192,9 @@ public class DaoEJBGenerator {
         manager.append("import " + jpaPackage + "." + jpaManager + ";\n\n");
         manager.append("import " + basicPackages.utilsPackage + ".Constants;\n\n");
 
-     //   manager.append("import " + ejbPackage + ".utils.CleanFilesSynchronization;\n\n");
+        // manager.append("import " + ejbPackage +
+        // ".utils.CleanFilesSynchronization;\n\n");
 
-        
         DaoCommonCode dao = beanCode.daoCommonCode;
         if (dao.pkClass.endsWith("PK")) {
             manager.append("import " + basicPackages.daoPackage + "." + dao.pkClass + ";\n\n");
@@ -195,8 +214,8 @@ public class DaoEJBGenerator {
 
         List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(tables, taula);
 
-        final boolean hasFileFields = fileFields!= null && fileFields.size() != 0;
-        
+        final boolean hasFileFields = fileFields != null && fileFields.size() != 0;
+
         if (hasFileFields) {
             manager.append("    @javax.annotation.Resource\n");
             manager.append("    protected javax.transaction.TransactionSynchronizationRegistry __tsRegistry;\n\n");
@@ -224,23 +243,25 @@ public class DaoEJBGenerator {
         manager.append("    }\n\n");
 
         if (fileFields != null) {
-            
-            manager.append("    public void deleteIncludingFiles(" + tableNameJava + " instance, " + ejbPackage + ".FitxerService fitxerEjb)\n");
+
+            manager.append("    @Override\n");
+            manager.append("    @RolesAllowed(" + allRoles + ")\n");
+            manager.append("    public void deleteIncludingFiles(" + tableNameJava + " instance, " + " FitxerService fitxerEjb)\n");
             manager.append("            throws I18NException {\n\n");
-            
+
             if (hasFileFields) {
                 manager.append("        java.util.ArrayList<Long> fitxers = new java.util.ArrayList<Long>();\n");
 
                 for (FieldInfo field : fileFields) {
                     if (fileFields.contains(field)) {
                         String getter = GenAppUtils.getOnlyName(field, "get");
-                        manager.append("        fitxers.add(instance."+ getter + "());\n");
+                        manager.append("        fitxers.add(instance." + getter + "());\n");
                     }
                 }
-                
+
                 manager.append("\n");
             }
-            
+
             manager.append("        this.delete(instance);\n");
 
             if (hasFileFields) {
@@ -248,25 +269,23 @@ public class DaoEJBGenerator {
                 manager.append("        java.util.Set<Long> fitxersEsborrar = new java.util.HashSet<Long>();\n");
                 manager.append("\n");
                 manager.append("        // Borram fitxers a BD\n");
-                
+
                 manager.append("        for (Long f : fitxers) {\n");
                 manager.append("            if (f != null) {\n");
                 manager.append("                fitxerEjb.delete(f);\n");
                 manager.append("                fitxersEsborrar.add(f);\n");
                 manager.append("            }\n");
                 manager.append("        }\n");
-                
+
                 manager.append("\n");
                 manager.append("        // Borram fitxers fisic\n");
-                manager.append("        __tsRegistry.registerInterposedSynchronization(new " + ejbPackage + ".utils.CleanFilesSynchronization(fitxersEsborrar));\n");
-            }            
+                manager.append("        __tsRegistry.registerInterposedSynchronization(new " + ejbPackage
+                        + ".utils.CleanFilesSynchronization(fitxersEsborrar));\n");
+            }
             manager.append("    }\n");
             manager.append("\n");
         }
-        
-    
-        
-        
+
         // Sobre escriure findByPrimaryKey
         manager.append("    @Override\n");
         manager.append("    @RolesAllowed(" + allRoles + ")\n");
