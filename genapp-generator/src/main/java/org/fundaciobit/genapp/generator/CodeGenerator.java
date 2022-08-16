@@ -467,10 +467,11 @@ public class CodeGenerator {
 		generateUtils(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
 
 		// ===============================================
-		// ================== WS (WebServices) ======================
+		// ================== REST (WebServices) ======================
 		// ===============================================
 		if (project.isGenerateWS()) {
-			generateWS(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion);
+			generateApiRestExterna(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion);
+			generateApiRestInterna(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion);
 		}
 
 		// ===============================================
@@ -1000,18 +1001,35 @@ public class CodeGenerator {
 
 		}
 	}
+	
+	
+	
+	private static void generateApiRestInterna(Project project, File projectDir, String packagePath, List<String> moduls,
+            TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
+	    generateWS(project, projectDir, packagePath, moduls,
+	            tables, resourceBase, appCurrentVersion,  "api-interna");
+	}
+	
+	
+	   private static void generateApiRestExterna(Project project, File projectDir, String packagePath, List<String> moduls,
+	            TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
+	        generateWS(project, projectDir, packagePath, moduls,
+	                tables, resourceBase, appCurrentVersion,  "api-externa");
+	    }
+	
+	
 
 	private static void generateWS(Project project, File projectDir, String packagePath, List<String> moduls,
-			TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
+			TableInfo[] tables, String resourceBase, String appCurrentVersion, String dirName) throws Exception {
 		{
 			
 
 			// (1) Variables
-			final String wsName = "ws";
+			//final String wsName = "ws";
 			
 			
 			
-			moduls.add(project.getPrefixDirectori() + wsName);
+			moduls.add(project.getPrefixDirectori() + dirName);
 
 			// File dstWsDir = new File(projectDir, wsName);
 			// File baseCode = new File(dstWsDir, "src/main/java");
@@ -1019,8 +1037,9 @@ public class CodeGenerator {
 			// File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
 
 			// (2) Directoris i fitxers a borrar
-			File dstBaseDir = new File(projectDir, wsName);
+			File dstBaseDir = new File(projectDir, dirName);
 			dstBaseDir.mkdirs();
+			/*
 			final String name = project.projectName.toLowerCase();
 			final String fullname = project.projectName;
 
@@ -1051,13 +1070,13 @@ public class CodeGenerator {
 					toDelete.add(exampleCode);
 				}
 			}
-
+*/
 			// (2) Còpia inicial: Copiar estructura directoris des de recursos
 			Map<String, Object> prop = new HashMap<String, Object>();
 			prop.put("name", project.projectName.toLowerCase());
 			prop.put("package", project.getPackageName());
 
-			System.out.println("project.getPackageName() = " + project.getPackageName());
+			//System.out.println("project.getPackageName() = " + project.getPackageName());
 
 			String[] parts = project.getPackageName().split("\\.");
 			StringBuffer packageInverse = new StringBuffer();
@@ -1102,21 +1121,21 @@ public class CodeGenerator {
 			}
 
 			// ----- Tots fitxers de forma recursiva i substituint
-			String resourceUtils = resourceBase + "/" + wsName;
+			String resourceUtils = resourceBase + "/" + dirName;
 
 			if (!new File(dstBaseDir, project.getProjectName().toLowerCase() + "_api").exists()
 					&& !new File(dstBaseDir, project.getProjectName().toLowerCase() + "_server").exists()) {
 				boolean overwrite = false;
 				recursiveSubstitution(dstBaseDir, resourceUtils, prop, project, overwrite);
 			}
-
+/*
 			for (File file : toDelete) {
 				log.info("BORRANT: " + file.getAbsolutePath());
 				if (!file.delete()) {
 					file.deleteOnExit();
 				}
 			}
-
+*/
 			if (fileTable == null) {
 				// TODO Borrar els següents fitxers associats a files
 				/**

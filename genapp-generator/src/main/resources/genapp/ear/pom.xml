@@ -220,18 +220,6 @@
 			<version>2.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-digester</groupId>
-			<artifactId>commons-digester</artifactId>
-			<version>2.0</version>
-		</dependency>
-
 
 		<#if generatews>
 
@@ -240,11 +228,28 @@
 		<!-- http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity -->
 		<!-- ... -->
 		<dependency>
-			<groupId>${package}</groupId>
+			<groupId></groupId>
 			<artifactId>${name}-ws-server</artifactId>
 			<version>${project_version}</version>
 			<type>ejb</type>
 		</dependency>
+		
+		<!-- API EXTERNA START -->
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-api-externa</artifactId>
+			<version>1.0</version>
+			<type>war</type>
+		</dependency>
+		<!-- API EXTERNA END -->
+		<!-- API INTERNA START -->
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-api-interna</artifactId>
+			<version>1.0</version>
+			<type>war</type>
+		</dependency>
+		<!-- API INTERNA END -->
 
 		</#if>
 
@@ -326,10 +331,25 @@
 						</ejbModule>
 
 						<#if generatews>
-						<ejbModule>
+						
+						
+						<!-- API EXTERNA START -->
+						<webModule>
 							<groupId>${package}</groupId>
-							<artifactId>${name}-ws-server</artifactId>
-						</ejbModule>
+							<artifactId>${name}-api-externa</artifactId>
+							<contextRoot>/${name}api/externa</contextRoot>
+							<bundleFileName>${name}-api-externa.war</bundleFileName>
+						</webModule>
+						<!-- API EXTERNA END -->
+						<!-- API INTERNA START -->
+						<webModule>
+							<groupId>${package}</groupId>
+							<artifactId>${name}-api-interna</artifactId>
+							<contextRoot>/${name}api/interna</contextRoot>
+							<bundleFileName>${name}-api-interna.war</bundleFileName>
+						</webModule>
+						<!-- API INTERNA END -->
+
 						</#if>
 					</modules>
 

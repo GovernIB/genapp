@@ -284,7 +284,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     
     
     // generate WS
-    etiGenerateWs.setText("Generar WS");
+    etiGenerateWs.setText("Generar Serveis REST");
     etiGenerateWs.setHorizontalAlignment(SwingConstants.RIGHT);
     panelCentro.add(etiGenerateWs, null);
 
