@@ -1256,7 +1256,7 @@ public class CodeGenerator {
 						 */
 
 						SourceFile manager = DaoEJBGenerator.generateCodeForManagerService(project,
-								tables[i].getNameJava(), jpaPackage, ejbPackage, packages, beanGenCode);
+								tables[i], jpaPackage, ejbPackage, packages, beanGenCode);
 						// File file =
 						manager.saveToPath(ejbSrcDir);
 						// log.info(" + " + file.getAbsolutePath());
