@@ -1,0 +1,1267 @@
+{
+  "packageName": "org.fundaciobit.demogenapp",
+  "projectName": "DemoGenApp",
+  "dataBaseInfo": {
+    "url": "jdbc:postgresql://localhost:5432/demogenapp",
+    "driver": "org.postgresql.Driver",
+    "usr": "demogenapp",
+    "pwd": "demogenapp"
+  },
+  "modulSeguretat": "keycloak",
+  "prefix": "dem",
+  "prefixDirectori": "demogenapp-",
+  "schema": "public",
+  "tables": [
+    {
+      "name": "dem_alumne",
+      "nameJava": "Alumne",
+      "shortName": "alumne",
+      "labels": {
+        "en": "Student",
+        "ca": "Alumne",
+        "es": "Alumno"
+      },
+      "labelsPlural": {
+        "en": "Students",
+        "ca": "Alumnes",
+        "es": "Alumnos"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "dem_alumne_pk",
+          "index": "dem_alumne_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "alumneid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "es": "ID",
+            "ca": "ID"
+          },
+          "javaName": "alumneID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027dem_alumne_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0,
+            "label": [
+              "nom"
+            ]
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_assigalumn_alumne_alumn_fk",
+              "table": "dem_assignaturaalumne",
+              "field": "alumneid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nom",
+          "sqlType": 12,
+          "size": 100,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Name",
+            "es": "Nombre",
+            "ca": "Nom"
+          },
+          "javaName": "nom",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": true,
+          "orderBy": 1,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "index": "dem_alumne_idiomaid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "idiomaid",
+          "sqlType": 12,
+          "size": 2,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Language",
+            "es": "Idioma",
+            "ca": "Idioma"
+          },
+          "javaName": "idiomaID",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "dem_alumne_idiomaid_fkey",
+              "table": "dem_idioma",
+              "field": "idiomaid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_alumne_idioma_idiomaid_fk",
+              "table": "dem_idioma",
+              "field": "idiomaid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "datanaixement",
+          "sqlType": 91,
+          "size": 13,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Birthdate",
+            "es": "Fecha Nacimiento",
+            "ca": "Data Naixement"
+          },
+          "javaName": "dataNaixement",
+          "javaType": "java.sql.Date",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": true,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 5
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "sexe",
+          "sqlType": -7,
+          "size": 1,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Sex",
+            "ca": "Sexe",
+            "es": "Sexo"
+          },
+          "javaName": "sexe",
+          "javaType": "java.lang.Boolean",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 16
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "actiu",
+          "sqlType": -7,
+          "size": 1,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Active",
+            "es": "Activo",
+            "ca": "Actiu"
+          },
+          "javaName": "actiu",
+          "javaType": "boolean",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "true",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 4
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "darreracces",
+          "sqlType": 93,
+          "size": 29,
+          "digits": 6,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Last Acces",
+            "es": "Último Acceso",
+            "ca": "Darrer Accés"
+          },
+          "javaName": "darrerAcces",
+          "javaType": "java.sql.Timestamp",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": true,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 7
+          },
+          "foreignKeys": []
+        },
+        {
+          "index": "dem_alumne_fotoid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "fotoid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Photo",
+            "es": "Fotografia",
+            "ca": "Fotografia"
+          },
+          "javaName": "fotoID",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "dem_alumne_fotoid_fkey",
+              "table": "dem_fitxer",
+              "field": "fitxerid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_alumne_fitxer_fotoid_fk",
+              "table": "dem_fitxer",
+              "field": "fitxerid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "index": "dem_alumne_titolaca_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "titolacademicid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Academic Title",
+            "es": "Título Académico",
+            "ca": "Títol Acadèmic"
+          },
+          "javaName": "titolAcademicID",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "dem_alumne_titolacademic_fkey",
+              "table": "dem_traduccio",
+              "field": "traduccioid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_alumne_traduccio_titola_fk",
+              "table": "dem_traduccio",
+              "field": "traduccioid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "despertador",
+          "sqlType": 92,
+          "size": 15,
+          "digits": 6,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Alarm clock",
+            "es": "Despertador",
+            "ca": "Despertador"
+          },
+          "javaName": "despertador",
+          "javaType": "java.sql.Time",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 6
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "paginaweb",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Web Page",
+            "es": "Página web",
+            "ca": "Pàgina web"
+          },
+          "javaName": "paginaWeb",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 13
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "descripcio",
+          "sqlType": 12,
+          "size": 4000,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Description",
+            "ca": "Descripció",
+            "es": "Descripción"
+          },
+          "javaName": "descripcio",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 8
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "dem_assignatura",
+      "nameJava": "Assignatura",
+      "shortName": "assign",
+      "labels": {
+        "en": "Subject",
+        "ca": "Assignatura",
+        "es": "Asignatura"
+      },
+      "labelsPlural": {
+        "en": "Subjects",
+        "ca": "Assignatures",
+        "es": "Asignaturas"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "dem_assignatura_pk",
+          "index": "dem_assignatura_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "assignaturaid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "es": "ID",
+            "ca": "ID"
+          },
+          "javaName": "assignaturaID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027dem_assignatura_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0,
+            "label": [
+              "nom"
+            ]
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_assigalumn_assign_assig_fk",
+              "table": "dem_assignaturaalumne",
+              "field": "assignaturaid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nom",
+          "sqlType": 12,
+          "size": 100,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Name",
+            "es": "Nombre",
+            "ca": "Nom"
+          },
+          "javaName": "nom",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": true,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "credits",
+          "sqlType": 4,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Credits",
+            "es": "Créditos",
+            "ca": "Crèdits"
+          },
+          "javaName": "credits",
+          "javaType": "int",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "diasetmana",
+          "sqlType": 4,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Week day",
+            "es": "Dia Semana",
+            "ca": "Dia Setmana"
+          },
+          "javaName": "diaSetmana",
+          "javaType": "java.lang.Integer",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "minAllowedValue": "1,2,3,4,5",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 16
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "hora",
+          "sqlType": 92,
+          "size": 15,
+          "digits": 6,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Hour",
+            "es": "Hora",
+            "ca": "Hora"
+          },
+          "javaName": "hora",
+          "javaType": "java.sql.Time",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": true,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 6
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "descripcio",
+          "sqlType": 12,
+          "size": 4000,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Description",
+            "ca": "Descripció",
+            "es": "Descripción"
+          },
+          "javaName": "descripcio",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": true,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "dem_assignaturaalumne",
+      "nameJava": "AssignaturaAlumne",
+      "shortName": "assigalumn",
+      "labels": {
+        "en": "Student Subject",
+        "ca": "Assignatura d\u0027un Alumne",
+        "es": "Assignatura de un Alumno"
+      },
+      "labelsPlural": {
+        "en": "Students Subjects",
+        "ca": "Assignatures dels Alumnes",
+        "es": "Assignaturas de los Alumnos"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "dem_assignaturaalumne_pk",
+          "index": "dem_assignaturaalumne_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "id",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "es": "ID",
+            "ca": "ID"
+          },
+          "javaName": "id",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027dem_assignaturaalumne_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "index": "dem_assigalumn_alumneid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "alumneid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Student",
+            "es": "Alumno",
+            "ca": "Alumne"
+          },
+          "javaName": "alumneID",
+          "javaType": "java.lang.Long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "dem_assignaturaalumne_alumneid_fkey",
+              "table": "dem_alumne",
+              "field": "alumneid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_assigalumn_alumne_alumn_fk",
+              "table": "dem_alumne",
+              "field": "alumneid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "index": "dem_assigalumn_assigna_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "assignaturaid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Subject",
+            "es": "Asignatura",
+            "ca": "Assignatura"
+          },
+          "javaName": "assignaturaID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "dem_assignaturaalumne_assignaturaid_fkey",
+              "table": "dem_assignatura",
+              "field": "assignaturaid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_assigalumn_assign_assig_fk",
+              "table": "dem_assignatura",
+              "field": "assignaturaid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nota",
+          "sqlType": 8,
+          "size": 17,
+          "digits": 17,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Note",
+            "es": "Nota",
+            "ca": "Nota"
+          },
+          "javaName": "nota",
+          "javaType": "java.lang.Double",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "minAllowedValue": "0",
+          "maxAllowedValue": "10",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": true,
+          "webFieldInfo": {
+            "webtype": 15
+          },
+          "foreignKeys": []
+        }
+      ],
+      "multipleUniques": [
+        {
+          "name": "dem_assigalumn_multiple_uk",
+          "sqlColumns": [
+            "alumneid",
+            "assignaturaid"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dem_fitxer",
+      "nameJava": "Fitxer",
+      "shortName": "fitxer",
+      "labels": {
+        "en": "File",
+        "ca": "Fitxer",
+        "es": "Fichero"
+      },
+      "labelsPlural": {
+        "en": "Files",
+        "ca": "Fitxers",
+        "es": "Ficheros"
+      },
+      "generate": true,
+      "fileMappingEntity": true,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "dem_fitxer_pk",
+          "index": "dem_fitxer_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "fitxerid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "es": "ID",
+            "ca": "ID"
+          },
+          "javaName": "fitxerID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "nextval(\u0027dem_fitxer_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0,
+            "label": [
+              "nom"
+            ]
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_alumne_fitxer_fotoid_fk",
+              "table": "dem_alumne",
+              "field": "fotoid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nom",
+          "sqlType": 12,
+          "size": 255,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Name",
+            "es": "Nombre",
+            "ca": "Nom"
+          },
+          "javaName": "nom",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "descripcio",
+          "sqlType": 12,
+          "size": 1000,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Description",
+            "es": "Descripción",
+            "ca": "Descripció"
+          },
+          "javaName": "descripcio",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "NULL::character varying",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "mime",
+          "sqlType": 12,
+          "size": 45,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Mime",
+            "es": "Mime",
+            "ca": "Mime"
+          },
+          "javaName": "mime",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "tamany",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Size",
+            "es": "Tamaño",
+            "ca": "Tamany"
+          },
+          "javaName": "tamany",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "dem_idioma",
+      "nameJava": "Idioma",
+      "shortName": "idioma",
+      "labels": {
+        "en": "Language",
+        "ca": "Idioma",
+        "es": "Idioma"
+      },
+      "labelsPlural": {
+        "en": "languages",
+        "ca": "Idiomes",
+        "es": "Idiomas"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": true,
+      "translationEntity": false,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "dem_idioma_pk",
+          "index": "dem_idioma_pk_i",
+          "isAutoIncrement": false,
+          "sqlName": "idiomaid",
+          "sqlType": 12,
+          "size": 5,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "es": "ID",
+            "ca": "ID"
+          },
+          "javaName": "idiomaID",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0,
+            "label": [
+              "nom"
+            ]
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_alumne_idioma_idiomaid_fk",
+              "table": "dem_alumne",
+              "field": "idiomaid",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "nom",
+          "sqlType": 12,
+          "size": 50,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Name",
+            "es": "Nombre",
+            "ca": "Nom"
+          },
+          "javaName": "nom",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 1
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "suportat",
+          "sqlType": -7,
+          "size": 1,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Suported",
+            "es": "Soportado",
+            "ca": "Suportat"
+          },
+          "javaName": "suportat",
+          "javaType": "boolean",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "true",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 4
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "ordre",
+          "sqlType": 4,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "Order",
+            "es": "Orden",
+            "ca": "Ordre"
+          },
+          "javaName": "ordre",
+          "javaType": "int",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "defaultValue": "0",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 14
+          },
+          "foreignKeys": []
+        }
+      ]
+    },
+    {
+      "name": "dem_traduccio",
+      "nameJava": "Traduccio",
+      "shortName": "traduccio",
+      "labels": {
+        "en": "Translation",
+        "ca": "Traducció",
+        "es": "Traducción"
+      },
+      "labelsPlural": {
+        "en": "Translations",
+        "ca": "Traduccions",
+        "es": "Traducciones"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": true,
+      "translationMapEntity": false,
+      "fields": [
+        {
+          "PK": "dem_traduccio_pk",
+          "index": "dem_traduccio_pk_i",
+          "isAutoIncrement": true,
+          "sqlName": "traduccioid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "traduccioID",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": true,
+          "transientField": false,
+          "descripcio": "",
+          "defaultValue": "nextval(\u0027dem_traduccio_seq\u0027::regclass)",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0,
+            "label": [
+              "nom"
+            ]
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_alumne_traduccio_titola_fk",
+              "table": "dem_alumne",
+              "field": "titolacademicid",
+              "type": 0
+            },
+            {
+              "name": "dem_traducmap_traduccio_fk",
+              "table": "dem_traducciomap",
+              "field": "traducciomapid",
+              "type": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "dem_traducciomap",
+      "nameJava": "TraduccioMap",
+      "shortName": "tradmap",
+      "labels": {
+        "en": "TranslationMap",
+        "ca": "TraduccioMapa",
+        "es": "TraduccionMapa"
+      },
+      "labelsPlural": {
+        "en": "Traducciomap_plural",
+        "ca": "Traducciomap_plural",
+        "es": "Traducciomap_plural"
+      },
+      "generate": true,
+      "fileMappingEntity": false,
+      "languageMappingEntity": false,
+      "translationEntity": false,
+      "translationMapEntity": true,
+      "fields": [
+        {
+          "PK": "dem_traducmap_pk",
+          "index": "dem_traducciomap_pk_i",
+          "isAutoIncrement": false,
+          "sqlName": "traducciomapid",
+          "sqlType": -5,
+          "size": 19,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "traducciomapid",
+          "javaType": "long",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "descripcio": "",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 3,
+            "foreignKey": {
+              "name": "dem_traducmap_traduccio_fk",
+              "table": "dem_traduccio",
+              "field": "traduccioid",
+              "type": 1
+            }
+          },
+          "foreignKeys": [
+            {
+              "name": "dem_traducmap_traduccio_fk",
+              "table": "dem_traduccio",
+              "field": "traduccioid",
+              "type": 1
+            }
+          ]
+        },
+        {
+          "PK": "dem_traducmap_pk",
+          "index": "dem_traducciomap_idiomaid_fk_i",
+          "isAutoIncrement": false,
+          "sqlName": "idiomaid",
+          "sqlType": 12,
+          "size": 10,
+          "digits": 0,
+          "isNotNullable": true,
+          "labels": {
+            "en": "ID",
+            "ca": "ID",
+            "es": "ID"
+          },
+          "javaName": "idiomaid",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "descripcio": "",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 0
+          },
+          "foreignKeys": []
+        },
+        {
+          "isAutoIncrement": false,
+          "sqlName": "valor",
+          "sqlType": 12,
+          "size": 4000,
+          "digits": 0,
+          "isNotNullable": false,
+          "labels": {
+            "en": "Value",
+            "ca": "Valor",
+            "es": "Valor"
+          },
+          "javaName": "valor",
+          "javaType": "java.lang.String",
+          "traduible": false,
+          "showInWebList": true,
+          "showInReferenceList": false,
+          "transientField": false,
+          "descripcio": "",
+          "filter": false,
+          "orderBy": 0,
+          "groupBy": false,
+          "webFieldInfo": {
+            "webtype": 2
+          },
+          "foreignKeys": []
+        }
+      ]
+    }
+  ],
+  "languages": [
+    "ca",
+    "es",
+    "en"
+  ],
+  "generateBack": true,
+  "generateWS": false
+}
