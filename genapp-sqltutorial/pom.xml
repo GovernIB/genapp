@@ -16,10 +16,17 @@
 		<module>genappsqltutorial-ejb</module>
 		<module>genappsqltutorial-commons</module>
 		<module>genappsqltutorial-back</module>
+
+		<module>genappsqltutorial-api-externa</module>
+		<module>genappsqltutorial-api-interna</module>
+		<!--
+		<module>genappsqltutorial-api-externa-client</module>
+		<module>genappsqltutorial-api-interna-client</module>
+		-->
+
 		<module>genappsqltutorial-ear</module>
 		<module>scripts</module>
 	</modules>
-
 
 	<repositories>
 		<repository>
@@ -42,6 +49,18 @@
             <name>Spring GA Repository</name> 
             <url>https://repo.spring.io/release</url> 
         </repository>
+		
+		<repository>
+			<id>jboss-releases</id>
+			<name>JBoss Releases Repository</name>
+			<url>https://maven.repository.redhat.com/ga/</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>	
 
 		<repository>
 			<id>github_governib_maven</id>
@@ -49,6 +68,7 @@
 			<url>https://governib.github.io/maven/maven/</url>
 		</repository>
 	</repositories>
+
 
 	<dependencies>
 		<dependency>
@@ -72,6 +92,9 @@
 		<url>https://github.com/GovernIB/genappsqltutorial</url>
 	</scm>
 	<properties>
+        <!-- Versions de JBoss -->
+		<jboss-eap.version>7.2.6.GA</jboss-eap.version>
+		<jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
 
 		<!-- Propietats que afecten els plugins -->
 		<maven.compiler.release>11</maven.compiler.release>
@@ -184,34 +207,117 @@
 				<version>${jboss-logging.version}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- Dependències per tests REST - implementació del Client JAX-RS -->
+			
+			<!--  REST SERVICES -->
+			
+			<dependency>
+				<groupId>com.github.fge</groupId>
+				<artifactId>jackson-coreutils</artifactId>
+				<version>1.0.0.redhat-1</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.fasterxml</groupId>
+				<artifactId>classmate</artifactId>
+				<version>1.3.4</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.10.1-redhat-00001</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.9.10.redhat-00003</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.9.10.redhat-00003</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.jaxrs</groupId>
+				<artifactId>jackson-jaxrs-base</artifactId>
+				<version>2.9.10.redhat-00003</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.jaxrs</groupId>
+				<artifactId>jackson-jaxrs-json-provider</artifactId>
+				<version>2.9.10.redhat-00003</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.module</groupId>
+				<artifactId>jackson-module-jaxb-annotations</artifactId>
+				<version>2.9.10.redhat-00003</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			
 			<dependency>
 				<groupId>org.jboss.resteasy</groupId>
 				<artifactId>resteasy-client</artifactId>
 				<version>${resteasy.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<!-- JSON-API ja està inclòs dins les apis JAVA EE 8 -->
-					<exclusion>
-						<groupId>javax.json</groupId>
-						<artifactId>javax.json-api</artifactId>
-					</exclusion>
-				</exclusions>
+				<scope>provided</scope>
 			</dependency>
-			<!-- Dependències per tests REST - suport estàndar per JSONB -->
 			<dependency>
 				<groupId>org.jboss.resteasy</groupId>
-				<artifactId>resteasy-json-binding-provider</artifactId>
+				<artifactId>resteasy-multipart-provider</artifactId>
 				<version>${resteasy.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<!-- JSON-API ja està inclòs dins les apis JAVA EE 8 -->
-					<exclusion>
-						<groupId>javax.json</groupId>
-						<artifactId>javax.json-api</artifactId>
-					</exclusion>
-				</exclusions>
+				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jackson2-provider</artifactId>
+				<version>${resteasy.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxb-provider</artifactId>
+				<version>${resteasy.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>${resteasy.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<!-- ==== JBOSS ========== -->
+						
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>eap-runtime-artifacts</artifactId>
+				<version>${jboss-eap.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-eap-javaee8-with-tools</artifactId>
+				<version>${jboss-eap.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-8.0</artifactId>
+				<version>${jboss-javaee.version}</version>
+				<type>pom</type>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -369,7 +475,9 @@
 						<!-- Per detectar problemes de dependències -->
 						<banDuplicatePomDependencyVersions />
 						<dependencyConvergence />
-						<reactorModuleConvergence />
+						<!-- Evita tenir versions diferents en els diferents mòduls						
+						<reactorModuleConvergence/>
+						-->
 					</rules>
 				</configuration>
 				<executions>
@@ -407,7 +515,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
 	</build>
+	
 	<profiles>
 		<profile>
 			<id>revisionnumber</id>
@@ -431,6 +541,31 @@
 				</pluginManagement>
 			</build>
 		</profile>
+		
+		<profile>
+		    <id>api-externa-client</id>
+			<activation>
+			  <file>
+				<exists>genappsqltutorial-api-externa-client</exists>
+			  </file>
+			</activation>
+			<modules>
+					<module>genappsqltutorial-api-externa-client</module>
+			</modules>
+		</profile>
+
+		<profile>
+		    <id>api-interna-client</id>
+			<activation>
+			  <file>
+				<exists>genappsqltutorial-api-interna-client</exists>
+			  </file>
+			</activation>
+			<modules>
+					<module>genappsqltutorial-api-interna-client</module>
+			</modules>
+		</profile>
+		
 	</profiles>
 
 </project>

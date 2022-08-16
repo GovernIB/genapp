@@ -48,6 +48,23 @@
 			<type>war</type>
 		</dependency>
 		
+		<!-- API EXTERNA START -->
+		<dependency>
+			<groupId>org.fundaciobit.genappsqltutorial</groupId>
+			<artifactId>genappsqltutorial-api-externa</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<!-- API EXTERNA END -->
+		<!-- API INTERNA START -->
+		<dependency>
+			<groupId>org.fundaciobit.genappsqltutorial</groupId>
+			<artifactId>genappsqltutorial-api-interna</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<!-- API INTERNA END -->
+		
 		
 		 <dependency>
             <groupId>org.fundaciobit.genappsqltutorial</groupId>
@@ -144,20 +161,6 @@
 			<version>2.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-digester</groupId>
-			<artifactId>commons-digester</artifactId>
-			<version>2.0</version>
-		</dependency>
-
-
-
 	</dependencies>
 
 
@@ -226,6 +229,23 @@
 							<contextRoot>genappsqltutorial</contextRoot>
                             <bundleFileName>genappsqltutorial-back.war</bundleFileName>
 						</webModule>
+						
+						<!-- API EXTERNA START -->
+						<webModule>
+							<groupId>org.fundaciobit.genappsqltutorial</groupId>
+							<artifactId>genappsqltutorial-api-externa</artifactId>
+							<contextRoot>/genappsqltutorialapi/externa</contextRoot>
+							<bundleFileName>genappsqltutorial-api-externa.war</bundleFileName>
+						</webModule>
+						<!-- API EXTERNA END -->
+						<!-- API INTERNA START -->
+						<webModule>
+							<groupId>org.fundaciobit.genappsqltutorial</groupId>
+							<artifactId>genappsqltutorial-api-interna</artifactId>
+							<contextRoot>/genappsqltutorialapi/interna</contextRoot>
+							<bundleFileName>genappsqltutorial-api-interna.war</bundleFileName>
+						</webModule>
+						<!-- API INTERNA END -->
 
 						<ejbModule>
 							<groupId>org.fundaciobit.genappsqltutorial</groupId>
