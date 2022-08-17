@@ -945,6 +945,7 @@ public class CodeGenerator {
 
 			prop.put("prefixLowercase", project.getPrefix().toLowerCase());
 
+			prop.put("generatews", project.isGenerateWS());
 			prop.put("basedir", "${basedir}");
 			prop.put("hibernate", "${hibernate}");
 			prop.put("hibernate_dialect", "${hibernate.dialect}");
@@ -1006,20 +1007,20 @@ public class CodeGenerator {
 	
 	private static void generateApiRestInterna(Project project, File projectDir, String packagePath, List<String> moduls,
             TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
-	    generateWS(project, projectDir, packagePath, moduls,
+	    generateApiRest(project, projectDir, packagePath, moduls,
 	            tables, resourceBase, appCurrentVersion,  "api-interna");
 	}
 	
 	
-	   private static void generateApiRestExterna(Project project, File projectDir, String packagePath, List<String> moduls,
-	            TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
-	        generateWS(project, projectDir, packagePath, moduls,
-	                tables, resourceBase, appCurrentVersion,  "api-externa");
-	    }
+    private static void generateApiRestExterna(Project project, File projectDir, String packagePath, List<String> moduls,
+            TableInfo[] tables, String resourceBase, String appCurrentVersion) throws Exception {
+        generateApiRest(project, projectDir, packagePath, moduls,
+                tables, resourceBase, appCurrentVersion,  "api-externa");
+    }
 	
 	
 
-	private static void generateWS(Project project, File projectDir, String packagePath, List<String> moduls,
+	private static void generateApiRest(Project project, File projectDir, String packagePath, List<String> moduls,
 			TableInfo[] tables, String resourceBase, String appCurrentVersion, String dirName) throws Exception {
 		{
 			
@@ -1037,7 +1038,7 @@ public class CodeGenerator {
 			// File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
 
 			// (2) Directoris i fitxers a borrar
-			File dstBaseDir = new File(projectDir, dirName);
+			File dstBaseDir = new File(projectDir, project.getPrefixDirectori() + dirName);
 			dstBaseDir.mkdirs();
 			/*
 			final String name = project.projectName.toLowerCase();
@@ -1123,11 +1124,10 @@ public class CodeGenerator {
 			// ----- Tots fitxers de forma recursiva i substituint
 			String resourceUtils = resourceBase + "/" + dirName;
 
-			if (!new File(dstBaseDir, project.getProjectName().toLowerCase() + "_api").exists()
-					&& !new File(dstBaseDir, project.getProjectName().toLowerCase() + "_server").exists()) {
-				boolean overwrite = false;
-				recursiveSubstitution(dstBaseDir, resourceUtils, prop, project, overwrite);
-			}
+			
+			boolean overwrite = false;
+			recursiveSubstitution(dstBaseDir, resourceUtils, prop, project, overwrite);
+			
 /*
 			for (File file : toDelete) {
 				log.info("BORRANT: " + file.getAbsolutePath());

@@ -16,14 +16,6 @@
 		<module>genappsqltutorial-ejb</module>
 		<module>genappsqltutorial-commons</module>
 		<module>genappsqltutorial-back</module>
-
-		<module>genappsqltutorial-api-externa</module>
-		<module>genappsqltutorial-api-interna</module>
-		<!--
-		<module>genappsqltutorial-api-externa-client</module>
-		<module>genappsqltutorial-api-interna-client</module>
-		-->
-
 		<module>genappsqltutorial-ear</module>
 		<module>scripts</module>
 	</modules>

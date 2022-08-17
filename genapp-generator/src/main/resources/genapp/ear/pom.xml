@@ -221,20 +221,11 @@
 		</dependency>
 
 
-		<#if generatews>
+<#if generatews>
+		<!-- API REST de ${fullname} -->
 
-		<!-- WS de ${fullname} -->
-		<!-- http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld -->
-		<!-- http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity -->
-		<!-- ... -->
-		<dependency>
-			<groupId></groupId>
-			<artifactId>${name}-ws-server</artifactId>
-			<version>${project_version}</version>
-			<type>ejb</type>
-		</dependency>
-		
 		<!-- API EXTERNA START -->
+		<!-- http://localhost:8080/${name}api/externa/index.html -->
 		<dependency>
 			<groupId>${package}</groupId>
 			<artifactId>${name}-api-externa</artifactId>
@@ -242,7 +233,9 @@
 			<type>war</type>
 		</dependency>
 		<!-- API EXTERNA END -->
+
 		<!-- API INTERNA START -->
+		<!-- http://localhost:8080/${name}api/interna/index.html -->
 		<dependency>
 			<groupId>${package}</groupId>
 			<artifactId>${name}-api-interna</artifactId>
@@ -251,8 +244,7 @@
 		</dependency>
 		<!-- API INTERNA END -->
 
-		</#if>
-
+</#if>
 	</dependencies>
 
 

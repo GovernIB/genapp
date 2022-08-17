@@ -9,7 +9,6 @@ import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.common.GenAppUtils;
-import org.fundaciobit.genapp.common.filesystem.IFile;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.generator.CodeGenerator.DaoCommonCode;
 
@@ -148,9 +147,9 @@ public class DaoEJBGenerator {
         manager.append("    public " + jpa + " findByPrimaryKey(" + dao.pkClass + " _ID_);\n");
         manager.append("\n");
 
-        TableInfo[] tables = projecte.getTables();
-        List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(tables, taula);
-        final boolean hasFileFields = fileFields != null && fileFields.size() != 0;
+//      TableInfo[] tables = projecte.getTables();
+//      List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(tables, taula);
+//      final boolean hasFileFields = fileFields != null && fileFields.size() != 0;
 
         manager.append("    public void deleteIncludingFiles(" + tableNameJava + " instance, " + "FitxerService fitxerEjb) throws I18NException;\n");
 //        if (hasFileFields) {
