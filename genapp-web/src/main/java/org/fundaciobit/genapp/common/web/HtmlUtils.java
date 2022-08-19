@@ -64,5 +64,17 @@ public class HtmlUtils {
     missatgesTipus.add(missatge);
 
   }
+  
+  public static void deleteMessages(HttpServletRequest request) {
 
+      HttpSession session = request.getSession();
+      Map<String, List<String>> missatges = (Map<String, List<String>>)session.getAttribute(MISSATGES);
+      
+      if (missatges == null) {
+          missatges = new HashMap<String, List<String>>();
+          session.setAttribute(MISSATGES, missatges);
+      }
+      
+      missatges.clear();
+  }
 }
