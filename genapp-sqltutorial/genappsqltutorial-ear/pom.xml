@@ -48,7 +48,6 @@
 			<type>war</type>
 		</dependency>
 		
-		
 		 <dependency>
             <groupId>org.fundaciobit.genappsqltutorial</groupId>
             <artifactId>genappsqltutorial-tutorial</artifactId>
@@ -144,20 +143,6 @@
 			<version>2.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-digester</groupId>
-			<artifactId>commons-digester</artifactId>
-			<version>2.0</version>
-		</dependency>
-
-
-
 	</dependencies>
 
 
@@ -226,7 +211,7 @@
 							<contextRoot>genappsqltutorial</contextRoot>
                             <bundleFileName>genappsqltutorial-back.war</bundleFileName>
 						</webModule>
-
+						
 						<ejbModule>
 							<groupId>org.fundaciobit.genappsqltutorial</groupId>
 							<artifactId>genappsqltutorial-ejb</artifactId>

@@ -1263,5 +1263,5 @@
     "en"
   ],
   "generateBack": true,
-  "generateWS": false
+  "generateWS": true
 }

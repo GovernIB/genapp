@@ -220,34 +220,31 @@
 			<version>2.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 
-		<dependency>
-			<groupId>commons-digester</groupId>
-			<artifactId>commons-digester</artifactId>
-			<version>2.0</version>
-		</dependency>
+<#if generatews>
+		<!-- API REST de ${fullname} -->
 
-
-		<#if generatews>
-
-		<!-- WS de ${fullname} -->
-		<!-- http://localhost:8080/${name}/ws/v1/${fullname}HelloWorld -->
-		<!-- http://localhost:8080/${name}/ws/v1/${fullname}HelloWorldWithSecurity -->
-		<!-- ... -->
+		<!-- API EXTERNA START -->
+		<!-- http://localhost:8080/${name}api/externa/index.html -->
 		<dependency>
 			<groupId>${package}</groupId>
-			<artifactId>${name}-ws-server</artifactId>
-			<version>${project_version}</version>
-			<type>ejb</type>
+			<artifactId>${name}-api-externa</artifactId>
+			<version>1.0</version>
+			<type>war</type>
 		</dependency>
+		<!-- API EXTERNA END -->
 
-		</#if>
+		<!-- API INTERNA START -->
+		<!-- http://localhost:8080/${name}api/interna/index.html -->
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-api-interna</artifactId>
+			<version>1.0</version>
+			<type>war</type>
+		</dependency>
+		<!-- API INTERNA END -->
 
+</#if>
 	</dependencies>
 
 
@@ -326,10 +323,25 @@
 						</ejbModule>
 
 						<#if generatews>
-						<ejbModule>
+						
+						
+						<!-- API EXTERNA START -->
+						<webModule>
 							<groupId>${package}</groupId>
-							<artifactId>${name}-ws-server</artifactId>
-						</ejbModule>
+							<artifactId>${name}-api-externa</artifactId>
+							<contextRoot>/${name}api/externa</contextRoot>
+							<bundleFileName>${name}-api-externa.war</bundleFileName>
+						</webModule>
+						<!-- API EXTERNA END -->
+						<!-- API INTERNA START -->
+						<webModule>
+							<groupId>${package}</groupId>
+							<artifactId>${name}-api-interna</artifactId>
+							<contextRoot>/${name}api/interna</contextRoot>
+							<bundleFileName>${name}-api-interna.war</bundleFileName>
+						</webModule>
+						<!-- API INTERNA END -->
+
 						</#if>
 					</modules>
 
