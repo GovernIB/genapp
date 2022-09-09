@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.MultipleUnique;
@@ -25,39 +26,46 @@ import org.fundaciobit.genapp.common.DataBaseInfoUtils;
  */
 public class ProjectValidator {
 
+    private static final Logger log = Logger.getLogger(ProjectValidator.class);
+
     public static StringBuffer checkAll(Project project) throws Exception {
 
         StringBuffer allErrors = new StringBuffer();
 
         String[] idiomes = project.getLanguages();
 
+        Set<String> sequencesOrphan = null;
+
         List<SequenceInfo> seqInfoList = getSequenceList(project);
 
-        Set<String> sequences = new HashSet<String>();
-        Set<String> sequencesOrphan = new HashSet<String>();
+        if (seqInfoList != null) {
+            Set<String> sequences = new HashSet<String>();
+            sequencesOrphan = new HashSet<String>();
 
-        for (SequenceInfo sequenceInfo : seqInfoList) {
-            if (sequenceInfo.getCurrentValue() < 1000) {
-                allErrors.append("-- La sequència " + sequenceInfo.getName()
-                        + " ha de tenir un start value a 1000 (CurrentValue  " + sequenceInfo.getCurrentValue()
-                        + ")\n");                
-                allErrors.append(" SELECT setval('" + sequenceInfo.getName() + "', 1000, true);\n\n");
+            for (SequenceInfo sequenceInfo : seqInfoList) {
+                if (sequenceInfo.getCurrentValue() < 1000) {
+                    allErrors.append("-- La sequència " + sequenceInfo.getName()
+                            + " ha de tenir un start value a 1000 (CurrentValue  " + sequenceInfo.getCurrentValue()
+                            + ")\n");
+                    allErrors.append(" SELECT setval('" + sequenceInfo.getName() + "', 1000, true);\n\n");
+                }
+                sequences.add(sequenceInfo.getName());
+                sequencesOrphan.add(sequenceInfo.getName().toLowerCase());
             }
-            sequences.add(sequenceInfo.getName());
-            sequencesOrphan.add(sequenceInfo.getName().toLowerCase());
         }
 
         // Eliminar descripcions buides i noms java amb espais
         // i Limitar noms de camps i taules de BBDD a 30 chars
         for (TableInfo table : project.getTables()) {
-            
-            final String expectedSequence = (table.getName() + "_seq")
-                    .toLowerCase();
+
+            final String expectedSequence = (table.getName() + "_seq").toLowerCase();
 
             if (table.isTranslationMapEntity() || table.isTranslationEntity()) {
-                
-                sequencesOrphan.remove(expectedSequence);
-                
+
+                if (sequencesOrphan != null) {
+                    sequencesOrphan.remove(expectedSequence);
+                }
+
                 continue;
             }
 
@@ -105,22 +113,28 @@ public class ProjectValidator {
                 if (field.isAutoIncrement()) {
                     // nextval(\u0027efi_fitxer_seq\u0027::regclass)
                     final String defautValue = field.getDefaultValue();
-                    
-                    //System.out.println(" XYZ ZZZ Field[" + field.getSqlName() + "] DEFVAL => " + defautValue);
-                    //System.out.println(" XYZ ZZZ Field[" + field.getSqlName() + "] EXPECTED SEQ => " + expectedSequence + "\n\n");
-                    
+
+                    // System.out.println(" XYZ ZZZ Field[" + field.getSqlName() + "] DEFVAL => " +
+                    // defautValue);
+                    // System.out.println(" XYZ ZZZ Field[" + field.getSqlName() + "] EXPECTED SEQ
+                    // => " + expectedSequence + "\n\n");
+
                     if (defautValue == null || defautValue.trim().length() == 0) {
                         errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
-                                + " és autoincrmental però no té seqüència ]" + expectedSequence + "[ definida el el defaultValue.\n");
+                                + " és autoincrmental però no té seqüència ]" + expectedSequence
+                                + "[ definida el el defaultValue.\n");
                     } else {
-                        
+
                         if (defautValue.toLowerCase().indexOf(expectedSequence) == -1) {
                             errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
                                     + " és autoincrmental i s'esperava una seqüència ]" + expectedSequence
-                                    + "[ en el default value, però el valor del default value és ]" + defautValue + "[\n");
+                                    + "[ en el default value, però el valor del default value és ]" + defautValue
+                                    + "[\n");
                         } else {
                             // OK
-                            sequencesOrphan.remove(expectedSequence);
+                            if (sequencesOrphan != null) {
+                                sequencesOrphan.remove(expectedSequence);
+                            }
                         }
                     }
                 }
@@ -339,7 +353,6 @@ public class ProjectValidator {
 
                         if (fkImport != null && fkImport.length != 0) {
                             // Check FK: FK haurien de tenir INDEX
-                            
 
                             String expected = getExpectedIndexFK(project, table, shortStr, field);
 
@@ -410,12 +423,12 @@ public class ProjectValidator {
             }
 
         }
-        
-        
-        if (!sequencesOrphan.isEmpty()) {
-            allErrors.append("\n --- Les següents seqüències no estan assignades a cap taula: " + Arrays.toString(sequencesOrphan.toArray()));
+
+        if (sequencesOrphan != null && !sequencesOrphan.isEmpty()) {
+            allErrors.append("\n --- Les següents seqüències no estan assignades a cap taula: "
+                    + Arrays.toString(sequencesOrphan.toArray()));
         }
-        
+
         // Final Check tables
 
         return allErrors;
@@ -429,8 +442,8 @@ public class ProjectValidator {
         return expected;
     }
 
-    protected static String checkExpectedIndexPK(StringBuffer errors, Project project, TableInfo table, String shortStr, FieldInfo field,
-            int countPKs, String index) {
+    protected static String checkExpectedIndexPK(StringBuffer errors, Project project, TableInfo table, String shortStr,
+            FieldInfo field, int countPKs, String index) {
 
         String expected = null;
         final String[] tableNames = new String[] { table.name, project.getPrefix() + "_" + shortStr };
@@ -451,8 +464,8 @@ public class ProjectValidator {
         if (index == null) {
             errors.append(" -- Es recomanable tenir un index de la clau primaria.\n");
 
-            errors.append(" create index " + expected + ((expected.length() > 30) ? "**" : "") + " on "
-                    + table.name + " (" + field.sqlName + ");\n");
+            errors.append(" create index " + expected + ((expected.length() > 30) ? "**" : "") + " on " + table.name
+                    + " (" + field.sqlName + ");\n");
 
         } else {
             if (expected.length() > 30 || !expected.startsWith(expectedtable) || !expected.endsWith("_pk_i")) {
@@ -514,39 +527,45 @@ public class ProjectValidator {
 
     }
 
-    protected static List<SequenceInfo> getSequenceList(Project project) throws Exception {
+    protected static List<SequenceInfo> getSequenceList(Project project) {
 
-        DataBaseInfoUtils.reuseConnection = false;
-        Connection cnx = DataBaseInfoUtils.getConnection(project.getDataBaseInfo());
+        try {
+            DataBaseInfoUtils.reuseConnection = false;
+            Connection cnx = DataBaseInfoUtils.getConnection(project.getDataBaseInfo());
 
-        String schema = project.getSchema();
+            String schema = project.getSchema();
 
-        String catalog = "";
-        String tableNamePattern = "%";
-        String[] tableTypes = new String[] { "SEQUENCE" };
-        ResultSet tablesRS = cnx.getMetaData().getTables(catalog, schema, tableNamePattern, tableTypes);
+            String catalog = "";
+            String tableNamePattern = "%";
+            String[] tableTypes = new String[] { "SEQUENCE" };
+            ResultSet tablesRS = cnx.getMetaData().getTables(catalog, schema, tableNamePattern, tableTypes);
 
-        List<SequenceInfo> listTables = new ArrayList<SequenceInfo>();
+            List<SequenceInfo> listTables = new ArrayList<SequenceInfo>();
 
-        while (tablesRS.next()) {
-            String seq = tablesRS.getString("TABLE_NAME");
+            while (tablesRS.next()) {
+                String seq = tablesRS.getString("TABLE_NAME");
 
-            // ORACLE "select SEQ_NAME.CURRVAL from dual";
+                // ORACLE "select SEQ_NAME.CURRVAL from dual";
 
-            String sqlIdentifier = "select last_value from " + seq + ";";
-            PreparedStatement pst = cnx.prepareStatement(sqlIdentifier);
+                String sqlIdentifier = "select last_value from " + seq + ";";
+                PreparedStatement pst = cnx.prepareStatement(sqlIdentifier);
 
-            ResultSet rs = pst.executeQuery();
-            long currvalue = -1;
-            if (rs.next()) {
-                currvalue = rs.getLong(1);
+                ResultSet rs = pst.executeQuery();
+                long currvalue = -1;
+                if (rs.next()) {
+                    currvalue = rs.getLong(1);
 
+                }
+
+                listTables.add(new SequenceInfo(seq, currvalue));
             }
 
-            listTables.add(new SequenceInfo(seq, currvalue));
-        }
+            return listTables;
 
-        return listTables;
+        } catch (Throwable e) {
+            log.error(" Error intentant consultar SEQUENCIES: " + e.getMessage(), e);
+            return null;
+        }
     }
 
 }

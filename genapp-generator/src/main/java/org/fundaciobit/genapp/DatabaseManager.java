@@ -29,7 +29,7 @@ import org.fundaciobit.genapp.generator.SQL2Java;
 
 public final class DatabaseManager {
   
-  private static final Logger log = Logger.getLogger(DatabaseManager.class.getSimpleName());
+  private static final Logger log = Logger.getLogger(DatabaseManager.class);
 
   
 // 1 TABLE_CAT String => table catalog (may be null) 
@@ -405,7 +405,11 @@ public final class DatabaseManager {
         newRow.descripcio = ((desc == null)? "" : desc);
         
         // Valor per defecte
-        newRow.setDefaultValue(resultSet.getString(DB_COLUMN_DEF_VALUE));
+        try {
+          newRow.setDefaultValue(resultSet.getString(DB_COLUMN_DEF_VALUE));
+        } catch(Exception e) {
+            log.error("No s'h apogut obtenir el valor per defecte de " + tableName + "::" + columnName + ": " + e.getMessage());
+        }
         
         log.info(" \n\n\n   VALOR PER DEFECTE => " +  newRow.getDefaultValue() + " \n\n\n   ");
         

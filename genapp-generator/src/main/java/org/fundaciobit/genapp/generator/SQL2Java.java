@@ -210,6 +210,21 @@ public class SQL2Java {
   public static Class<?> primitiveType2javaClassName(Class<?> primitiveType) {
     return primitiveType2Object.get(primitiveType);
   }
+  
+  
+  public static boolean isStringFromSqlType(int sqlType) {
+      
+     switch(sqlType) {
+         case Types.VARCHAR:
+         case Types.DATE:         
+         case Types.TIME:
+         case Types.TIMESTAMP:
+             return true;
+         default:
+             return false;
+     }
+  }
+  
 
   /*
    * public static Class type2Class(int type) {
