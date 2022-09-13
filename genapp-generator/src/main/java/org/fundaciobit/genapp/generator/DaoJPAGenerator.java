@@ -324,10 +324,12 @@ public class DaoJPAGenerator {
                     if (defValueClean.startsWith("'") && defValueClean.endsWith("'")) {
                         defValue = " = \"" + defValueClean.substring(1, defValueClean.length() - 1) + "\"";
                     } else {
+                       
                         defValue = " = \"" + defValueClean + "\"";
                     }
                 } else {
-                    defValue = " = " + defValueClean;
+                    String defValueWithCast = SQL2Java.formatValueFromSqlType(field.getSqlType(), defValueClean);
+                    defValue = " = " + defValueWithCast;
                 }
 
             }

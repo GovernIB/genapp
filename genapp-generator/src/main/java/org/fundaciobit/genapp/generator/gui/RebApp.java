@@ -514,7 +514,7 @@ public class RebApp extends JFrame {
                 System.err.println(" ================= ");
                 System.err.println(" String => " + name);
                 System.err.println(" Class<?> => " + classe);
-                throw new IOException("No es troba lasse per la cadena ]" + name + "[. Revisar el map STRINGTOCLASS de "
+                throw new IOException("No es troba classe per la cadena ]" + name + "[. Revisar el map STRINGTOCLASS de "
                         + SQL2Java.class.getName());
             }
 

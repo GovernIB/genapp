@@ -216,6 +216,15 @@ public class SqlGenerator {
 
         packageName = packageName.replace(".", "/");
         packageURL = classLoader.getResource(packageName);
+        
+        if (packageURL == null) {
+            System.out.println("packageName val " + packageName);
+            System.err.println("packageURL val null !!!");
+        }
+        if (packageURL.getProtocol() == null) {
+            System.out.println("packageName val " + packageName);
+            System.err.println("packageURL.getProtocol() val null !!!");
+        }
 
         if (packageURL.getProtocol().equals("jar")) {
             String jarFileName;
