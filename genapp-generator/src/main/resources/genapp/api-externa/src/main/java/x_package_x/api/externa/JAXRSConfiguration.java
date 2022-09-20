@@ -32,7 +32,13 @@ import org.apache.log4j.Logger;
                         url = "http://otae.fundaciobit.org")
 
         ),
-        servers = { @Server(url = "http://localhost:8080/${name}api/externa") },
+        servers = {
+                @Server(url = "../../${name}api/externa"),
+                @Server(url = "http://localhost:8080/${name}api/externa"),                
+                @Server(url = "https://dev.caib.es/${name}api/externa"),
+                @Server(url = "https://proves.caib.es/${name}api/externa"),
+                @Server(url = "https://se.caib.es/${name}api/externa"),
+                @Server(url = "https://www.caib.es/${name}api/externa") },
         externalDocs = @ExternalDocumentation(
                 description = "Java Client (GovernIB Github)",
                 url = "https://github.com/GovernIB/${name}/tree/${name}-1.0/${name}-api-externa-client")
