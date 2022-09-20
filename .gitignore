@@ -34,3 +34,4 @@ target
 /demo/lastconfig.properties
 /demo/pom.xml
 /run_arche/run.bat
+/genapp-generator/lastconfig.properties
