@@ -15,7 +15,7 @@
         <auth.method>BASIC</auth.method>
         <client.default.package>${package}.apiinterna.client</client.default.package>
         <!-- La darrera versió disponible: https://github.com/swagger-api/swagger-ui/releases -->
-        <swagger-ui.version>3.35.1</swagger-ui.version>
+        <swagger-ui.version>3.52.5</swagger-ui.version>
     </properties>
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
