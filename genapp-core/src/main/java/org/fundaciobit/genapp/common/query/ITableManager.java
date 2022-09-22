@@ -32,6 +32,28 @@ public interface ITableManager<E extends IGenAppEntity, PK extends Object> {
 	 */
 	E update(E entity) throws I18NException;
 
+    public <R> int update(Field<R> field, R newValue, Where where) throws I18NException;
+    
+    public <R, S> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, Where where) throws I18NException;
+    
+    public <R, S, T> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, UpdateItem<T> updateItem3,
+            Where where) throws I18NException;
+
+
+    public <R, S, T, U> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, UpdateItem<T> updateItem3,
+            UpdateItem<U> updateItem4, Where where) throws I18NException;
+
+
+    public <R, S, T, U, V> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, UpdateItem<T> updateItem3,
+            UpdateItem<U> updateItem4, UpdateItem<V> updateItem5, Where where) throws I18NException;
+
+
+    public <R, S, T, U, V, W> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2,
+            UpdateItem<T> updateItem3, UpdateItem<U> updateItem4, UpdateItem<V> updateItem5, UpdateItem<W> updateItem6,
+            Where where) throws I18NException;
+
+    public int update(Where where, UpdateItem<?>... updateItems) throws I18NException;
+
 	public void delete(PK primaryKey) throws I18NException;
 
 	public void delete(E __bean) throws I18NException;

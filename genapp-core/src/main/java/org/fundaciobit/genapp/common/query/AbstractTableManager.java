@@ -12,6 +12,7 @@ import org.fundaciobit.genapp.common.IGenAppEntity;
 import org.fundaciobit.genapp.common.i18n.I18NArgumentString;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 
+
 /**
  * 
  * @author anadal
@@ -277,6 +278,103 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
                     new I18NArgumentString(e.getMessage()));
         }
     }
+
+    @PermitAll
+    @Override
+    public <R> int update(Field<R> field, R newValue, Where where) throws I18NException {
+        return update(where, new UpdateItemValue<R>(field, newValue));
+    }
+
+    @PermitAll
+    @Override
+    public <R, S> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, Where where) throws I18NException {
+        return update(where, updateItem1, updateItem2);
+    }
+
+    @PermitAll
+    @Override
+    public <R, S, T> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, UpdateItem<T> updateItem3,
+            Where where) throws I18NException {
+        return update(where, updateItem1, updateItem2, updateItem3);
+    }
+
+    @PermitAll
+    @Override
+    public <R, S, T, U> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, UpdateItem<T> updateItem3,
+            UpdateItem<U> updateItem4, Where where) throws I18NException {
+        return update(where, updateItem1, updateItem2, updateItem3, updateItem4);
+    }
+
+    @PermitAll
+    @Override
+    public <R, S, T, U, V> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2, UpdateItem<T> updateItem3,
+            UpdateItem<U> updateItem4, UpdateItem<V> updateItem5, Where where) throws I18NException {
+        return update(where, updateItem1, updateItem2, updateItem3, updateItem4, updateItem5);
+    }
+
+    @PermitAll
+    @Override
+    public <R, S, T, U, V, W> int update(UpdateItem<R> updateItem1, UpdateItem<S> updateItem2,
+            UpdateItem<T> updateItem3, UpdateItem<U> updateItem4, UpdateItem<V> updateItem5, UpdateItem<W> updateItem6,
+            Where where) throws I18NException {
+        return update(where, updateItem1, updateItem2, updateItem3, updateItem4, updateItem5, updateItem6);
+    }
+
+    @PermitAll
+    @Override
+    public int update(Where where, UpdateItem<?>... updateItems) throws I18NException {
+        try {
+            StringBuilder queryStr = new StringBuilder(
+                    "update " + getTableName() + " " + getTableNameVariable() + " set ");
+
+            for (int i = 0; i < updateItems.length; i++) {
+                UpdateItem<?> updateItem = updateItems[i];
+                if (i != 0) {
+                    queryStr.append(", ");
+                }
+                
+                if (updateItem instanceof UpdateItemValue) {
+                    queryStr.append(updateItem.getField().javaName + "=:__" + updateItem.getField().javaName + "__");
+                } else if (updateItem instanceof UpdateItemSql) {
+                    queryStr.append(updateItem.getField().javaName + "=" + ((UpdateItemSql<?>)updateItem).getSqlUpdate());
+                } else {
+                    final String msg = "S'ha passat un tipus de UpdateItem desconegut: class "
+                            + updateItem.getClass().getName(); 
+                    log.error(msg, new Exception());
+                    throw new I18NException("error.unknown", msg);
+                }
+            }
+
+            if (where != null) {
+                queryStr.append(" where ").append(where.toSQL());
+            }
+
+            javax.persistence.Query query = getEntityManager().createQuery(queryStr.toString());
+
+            for (int i = 0; i < updateItems.length; i++) {
+                UpdateItem<?> updateItem = updateItems[i];
+                
+                if (updateItem instanceof UpdateItemValue) {
+                    UpdateItemValue<?> uiv = (UpdateItemValue<?>) updateItem;
+                   query.setParameter("__" + uiv.getField().javaName + "__", uiv.newValue);
+                }
+            }
+
+            if (where != null) {
+                where.setValues(query);
+            }
+
+            return query.executeUpdate();
+        } catch (I18NException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error(e);
+            throw new I18NException(e, "error.update", new I18NArgumentString(getTableNameVariable()),
+                    new I18NArgumentString(e.getMessage()));
+        }
+
+    }
+    
 
 
     @PermitAll
