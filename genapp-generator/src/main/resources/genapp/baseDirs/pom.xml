@@ -1,22 +1,16 @@
 <#assign symbol_dollar = "$">
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>${package}</groupId>
     <version>${app_current_version}</version>
     <artifactId>${name}</artifactId>
     <packaging>pom</packaging>
-
     <name>${fullname}</name>
-
     <modules>
         <#list moduls as modul>
         <module>${modul}</module>
         </#list>
     </modules>
-
-
     <repositories>
         <repository>
             <id>maven-nuxeo</id>
@@ -32,13 +26,11 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
-        
-        <repository> 
-            <id>repository.spring.release</id> 
-            <name>Spring GA Repository</name> 
-            <url>https://repo.spring.io/release</url> 
+        <repository>
+            <id>repository.spring.release</id>
+            <name>Spring GA Repository</name>
+            <url>https://repo.spring.io/release</url>
         </repository>
-        
         <repository>
             <id>jboss-releases</id>
             <name>JBoss Releases Repository</name>
@@ -49,22 +41,19 @@
             <snapshots>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
-        </repository>    
-
+        </repository>
         <repository>
             <id>github_governib_maven</id>
             <name>GitHub GovernIB Maven Repository</name>
             <url>https://governib.github.io/maven/maven/</url>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
+            <version>${symbol_dollar}{junit.version}</version>
         </dependency>
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -72,7 +61,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <!-- Referència al sistema de control de versions, ja sigui GIT, SVN, CVS... -->
     <!-- permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
     <scm>
@@ -83,12 +71,10 @@
         <!-- Versions de JBoss -->
         <jboss-eap.version>7.2.6.GA</jboss-eap.version>
         <jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
-
         <!-- Propietats que afecten els plugins -->
         <maven.compiler.release>11</maven.compiler.release>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
@@ -96,43 +82,29 @@
         <javaee-api.version>8.0.1</javaee-api.version>
         <activation.version>1.1.1</activation.version>
         <mp-openapi.version>1.0.1</mp-openapi.version>
-        <jaxb-api.version>2.2.12</jaxb-api.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
         <slf4j.version>1.7.30</slf4j.version>
         <keycloak.version>6.0.1</keycloak.version>
-
         <cxf.version>3.3.3</cxf.version>
-        <junit.version>4.8.2</junit.version>
+        <junit.version>4.13.1</junit.version>
         <hibernate.version>5.3.15.Final</hibernate.version>
         <hibernate.annotations.version>5.3.15.Final</hibernate.annotations.version>
-
         <resteasy.version>3.6.3.Final</resteasy.version>
         <jboss-logging.version>3.3.2.Final</jboss-logging.version>
-
-        <!-- 5.0.2.RELEASE - 5.0.0.RELEASE 4.3.26.RELEASE - 4.2.14.RELEASE 3.2.18.RELEASE 
-            - 3.2.10.RELEASE -->
         <spring.version>4.3.26.RELEASE</spring.version>
         <springsecurity.version>4.2.14.RELEASE</springsecurity.version>
         <spring-data-jpa>1.6.6.RELEASE</spring-data-jpa>
-        
         <tiles.version>3.0.8</tiles.version>
-        
         <!-- XYZ ZZZ -->
         <cxf.version>2.2.12</cxf.version>
         <global.version>${project_version}</global.version>
-
         <cglib.version>2.2.2</cglib.version>
-
         <!-- XYZ ZZZ S'ha de fer la substitució -->
         <genapp.version>2.0.0-SNAPSHOT</genapp.version>
-        
         <version_txt_template_file>./scripts/templates/versio.txt.template</version_txt_template_file>
-        
         <pluginsib.userinformation.api.version>3.0.0</pluginsib.userinformation.api.version>
-
         <pluginsib.userinformation.impl.version>3.0.0-SNAPSHOT</pluginsib.userinformation.impl.version>
     </properties>
-
-
     <dependencyManagement>
         <dependencies>
             <!-- Dependències de JAVA EE 8 -->
@@ -142,7 +114,7 @@
                 <version>${symbol_dollar}{javaee-api.version}</version>
                 <exclusions>
                     <!-- La dependència de javax.mail fa referència a activation 1.1 enlloc 
-                        de 1.1.1 -->
+                            de 1.1.1 -->
                     <exclusion>
                         <groupId>javax.activation</groupId>
                         <artifactId>activation</artifactId>
@@ -166,6 +138,12 @@
                 <version>${symbol_dollar}{jaxb-api.version}</version>
             </dependency>
             <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>2.2.0.redhat-1</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${symbol_dollar}{slf4j.version}</version>
@@ -175,14 +153,12 @@
                 <artifactId>keycloak-core</artifactId>
                 <version>${symbol_dollar}{keycloak.version}</version>
             </dependency>
-
             <!-- Dependència per persistència - implementació de JPA -->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${symbol_dollar}{hibernate.version}</version>
             </dependency>
-
             <!-- Dependències de test -->
             <dependency>
                 <groupId>junit</groupId>
@@ -191,30 +167,20 @@
                 <scope>test</scope>
             </dependency>
             <!-- fixar versió de jboss-logging ja que Hibernate i RestEasy fan referència 
-                a varies versions -->
+                    a varies versions -->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging</artifactId>
                 <version>${symbol_dollar}{jboss-logging.version}</version>
                 <scope>test</scope>
             </dependency>
-            
             <!--  REST SERVICES -->
-            
             <dependency>
                 <groupId>com.github.fge</groupId>
                 <artifactId>jackson-coreutils</artifactId>
                 <version>1.0.0.redhat-1</version>
                 <scope>provided</scope>
             </dependency>
-            
-            <dependency>
-                <groupId>com.fasterxml</groupId>
-                <artifactId>classmate</artifactId>
-                <version>1.3.4</version>
-                <scope>provided</scope>
-            </dependency>
-
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -251,8 +217,6 @@
                 <version>2.9.10.redhat-00003</version>
                 <scope>provided</scope>
             </dependency>
-            
-            
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
@@ -283,9 +247,7 @@
                 <version>${symbol_dollar}{resteasy.version}</version>
                 <scope>provided</scope>
             </dependency>
-            
             <!-- ==== JBOSS ========== -->
-                        
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>eap-runtime-artifacts</artifactId>
@@ -293,7 +255,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-eap-javaee8-with-tools</artifactId>
@@ -301,16 +262,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            
             <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-8.0</artifactId>
                 <version>${symbol_dollar}{jboss-javaee.version}</version>
                 <type>pom</type>
             </dependency>
-            
-            
-
         </dependencies>
     </dependencyManagement>
     <build>
@@ -430,11 +387,7 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
-
         <plugins>
-
-
             <!-- Gestió de versions de dependències/plugins -->
             <!-- Veure: https://www.mojohaus.org/versions-maven-plugin/ -->
             <plugin>
@@ -466,48 +419,46 @@
                             <version>11</version>
                         </requireJavaVersion>
                         <!-- Per detectar problemes de dependències -->
-                        <banDuplicatePomDependencyVersions />
-                        <dependencyConvergence />
-                        <#if !generatews >
-                        <reactorModuleConvergence />
-                        </#if>
-                    </rules>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-
-            <plugin>
-                <groupId>com.google.code.maven-replacer-plugin</groupId>
-                <artifactId>maven-replacer-plugin</artifactId>
-                <version>1.4.0</version>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <file>${version_txt_template_file}</file>
-                    <outputFile>versio.txt</outputFile>
-                    <replacements>
-                        <replacement>
-                            <token>@project.version@</token>
-                            <value>${project_version}</value>
-                        </replacement>
-                    </replacements>
-                </configuration>
-            </plugin>
-        </plugins>
+                        <banDuplicatePomDependencyVersions/>
+                        <dependencyConvergence/>
+                        <#if !generatews>
+                        <reactorModuleConvergence/>
+                    </#if>
+                </rules>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>enforce</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>com.google.code.maven-replacer-plugin</groupId>
+            <artifactId>maven-replacer-plugin</artifactId>
+            <version>1.4.0</version>
+            <inherited>false</inherited>
+            <executions>
+                <execution>
+                    <phase>process-sources</phase>
+                    <goals>
+                        <goal>replace</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <file>${version_txt_template_file}</file>
+                <outputFile>versio.txt</outputFile>
+                <replacements>
+                    <replacement>
+                        <token>@project.version@</token>
+                        <value>${project_version}</value>
+                    </replacement>
+                </replacements>
+            </configuration>
+        </plugin>
+    </plugins>
     </build>
     <profiles>
         <profile>
@@ -532,33 +483,29 @@
                 </pluginManagement>
             </build>
         </profile>
-        
         <#if generatews>
         <profile>
             <id>api-externa-client</id>
             <activation>
-              <file>
-                <exists>${prefixdirectori}api-externa-client</exists>
-              </file>
+                <file>
+                    <exists>${prefixdirectori}api-externa-client</exists>
+                </file>
             </activation>
             <modules>
-                    <module>${prefixdirectori}api-externa-client</module>
+                <module>${prefixdirectori}api-externa-client</module>
             </modules>
         </profile>
-
         <profile>
             <id>api-interna-client</id>
             <activation>
-              <file>
-                <exists>${prefixdirectori}api-interna-client</exists>
-              </file>
+                <file>
+                    <exists>${prefixdirectori}api-interna-client</exists>
+                </file>
             </activation>
             <modules>
-                    <module>${prefixdirectori}api-interna-client</module>
+                <module>${prefixdirectori}api-interna-client</module>
             </modules>
         </profile>
-        </#if>
-        
+    </#if>
     </profiles>
-
 </project>
