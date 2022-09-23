@@ -1,8 +1,6 @@
 package ${package_jpa}.test;
 
-
 import java.util.Properties;
-
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,11 +10,14 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
 
-
 import ${package_jpa}.${fullname}JPADaoManagers;
 import ${package}.model.${fullname}DaoManager;
 
-
+/*
+ * IMPORTANT - NO MODIFICAR - DERIVA AQUESTA CLASSE SI VOLS FER UN TEST 
+ * IMPORTANT - DO NOT MODIFY - EXTENDS THIS CLASS IF YOU WANT DO A TEST
+ *
+ */
 
 /**
  * 
@@ -27,7 +28,6 @@ public class TestPersistenceJPA {
 
     public static final Logger log = Logger.getLogger(TestPersistenceJPA.class);
 
-
     public static final void main(String[] args) {
         try {
             log.info(">>>>>>>>>>>>  Hello World!");
@@ -35,40 +35,14 @@ public class TestPersistenceJPA {
             // USING GENAPP
             // ============
 
-            Properties prop = new Properties();
-
-            prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-            prop.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-            prop.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/${name}");
-            prop.put("javax.persistence.jdbc.user", "${name}");
-            prop.put("javax.persistence.jdbc.password", "${name}");
-
-            prop.put("hibernate.connection.driver_class", "org.postgresql.Driver");
-            // prop.put("javax.persistence.jdbc.url","jdbc:postgresql://192.168.35.151:5432/pinbaladmin");
-            prop.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/${name}");
-            prop.put("hibernate.connection.username", "${name}");
-            prop.put("hibernate.connection.password", "${name}");
-
-            prop.put("hibernate.show_sql", "true");
-
-            EntityManagerFactory emf;
-
-            // Veure persistence.xml
-            emf = Persistence.createEntityManagerFactory("${name}PULocal", prop);
-
-            EntityManager em = emf.createEntityManager();
-
-            em.setFlushMode(FlushModeType.AUTO);
+            EntityManager em = initDB();
 
             EntityTransaction tx = em.getTransaction();
 
             tx.begin();
 
+            // CADA TEST HA d'ANAR DINS D'UNA TRANSACCIO  !!!!!!!
 
-            ${fullname}DaoManager.setDaoManagers(new ${fullname}JPADaoManagers(em)); 
-            
-            
-            
             /*   EXEMPLE DE CRIDADA DIRECTE
               
              
@@ -84,16 +58,15 @@ public class TestPersistenceJPA {
             }
             
             */
-            
 
             /*
              EXEMPLE DE LLISTAT 
              
             IPluginManager pluginMan = ${fullname}DaoManager.getDaoManagers().getPluginManager();
-
-           
+            
+            
             SelectTraduccio st = new SelectTraduccio(PluginFields.NOMID, "es");
-
+            
             List<String> noms = pluginMan.executeQuery(st, null);
             
             for (String nom : noms) {
@@ -101,7 +74,6 @@ public class TestPersistenceJPA {
             }
             
             */
-            
 
             /*  CONSULTA IDIOMES DISPONIBLES
              * IIdiomaManager idioma = ${fullname}DaoManager.getDaoManagers().getIdiomaManager();
@@ -128,6 +100,40 @@ public class TestPersistenceJPA {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static EntityManager initDB() {
+        Properties prop = new Properties();
+
+        prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        prop.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
+        prop.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/${name}");
+        prop.put("javax.persistence.jdbc.user", "${name}");
+        prop.put("javax.persistence.jdbc.password", "${name}");
+
+        prop.put("hibernate.connection.driver_class", "org.postgresql.Driver");
+        prop.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/${name}");
+        prop.put("hibernate.connection.username", "${name}");
+        prop.put("hibernate.connection.password", "${name}");
+
+        prop.put("hibernate.show_sql", "true");
+
+        EntityManagerFactory emf;
+
+        // Veure persistence.xml
+        emf = Persistence.createEntityManagerFactory("${name}PULocal", prop);
+
+        EntityManager em = emf.createEntityManager();
+
+        em.setFlushMode(FlushModeType.AUTO);
+        
+        ${fullname}DaoManager.setDaoManagers(new ${fullname}JPADaoManagers(em)); 
+        
+        return em;
     }
 
 }
