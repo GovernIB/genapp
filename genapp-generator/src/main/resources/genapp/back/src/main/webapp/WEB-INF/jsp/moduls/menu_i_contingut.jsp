@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%><%@ include
-	file="/WEB-INF/jsp/moduls/includes.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ include	file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
 <tiles:importAttribute name="menu" />
 <tiles:importAttribute name="contingut" />
@@ -8,8 +8,8 @@
 <div class="row">
 
 	<!--  INICI MENU col-3 -->
-	<div id="principal" class="mainMenu col-3">
-        <div id="mostrarMenu" class="upper-left-corner no-disponible" style="padding-left:17px;">
+	<div id="principal" class="mainMenu col-3" style="padding-left:17px;">
+        <div id="mostrarMenu" class="upper-left-corner no-disponible">
             <a id="mostrar" href="#" data-toggle="tooltip"
                 title="Mostrar Menu"> <i class="fas fa-expand-alt"></i>
             </a>
