@@ -488,6 +488,16 @@ public class CodeGenerator {
 		// ==================================================
 		// ==================================================
 		generateEar(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
+		
+		
+		// ==================================================
+        // ==================================================
+        // ===== DOCUMENTACIO =======
+        // ==================================================
+        // ==================================================
+
+		DocGenerator.generateDoc(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
+		
 
 		// ==================================================
 		// ==================================================
@@ -496,6 +506,10 @@ public class CodeGenerator {
 		// ==================================================
 
 		generateCommonCode(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
+		
+		
+		
+
 
 		return projectDir;
 
@@ -908,6 +922,12 @@ public class CodeGenerator {
 
 		}
 	}
+	
+	
+	
+
+	
+	
 
 	private static void generateCommonCode(Project project, File projectDir, String packagePath, List<String> moduls,
 			String resourceBase, String appCurrentVersion) throws Exception, FileNotFoundException, IOException {
@@ -1489,6 +1509,8 @@ public class CodeGenerator {
 					file.saveToPath(hibernateSrcDir);
 				}
 			}
+			
+
 
 		}
 		return validatorPackage;
