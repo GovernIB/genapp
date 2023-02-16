@@ -206,7 +206,7 @@ public class DaoEJBGenerator {
         manager.append("\n");
 
         // String prefix = projecte.getPrefix().toUpperCase();
-        final String allRoles = "{Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS}";
+        final String allRoles = "{Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS, Constants.ROLE_EJB_WS_ACCESS}";
         // "{" + prefix + "_ADMIN," + "Constants." + prefix + "_USER}";
 
         TableInfo[] tables = projecte.getTables();

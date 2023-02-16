@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
     version="4.0">
 
-    <display-name>${fullname}: API REST EXTERNA</display-name>
+    <display-name>${fullname}: API REST INTERNA</display-name>
 
     <!-- All html files at any path -->
     <!-- Specifically index.html at the root -->
@@ -46,8 +46,7 @@
             <url-pattern>/secured/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>${prefix}_ADMIN</role-name>
-            <role-name>${prefix}_USER</role-name>
+            <role-name>${prefix}_WS</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -58,13 +57,8 @@
     </login-config>
 
     <security-role>
-        <description>Administrador de ${fullname}</description>
-        <role-name>${prefix}_ADMIN</role-name>
-    </security-role>
-
-    <security-role>
-        <description>Usuari de ${fullname}</description>
-        <role-name>${prefix}_USER</role-name>
+        <description>Usuari Aplicació de ${fullname}</description>
+        <role-name>${prefix}_WS</role-name>
     </security-role>
 
 </web-app>

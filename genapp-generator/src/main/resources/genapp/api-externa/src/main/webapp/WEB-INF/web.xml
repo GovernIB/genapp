@@ -1,7 +1,6 @@
 <#assign symbol_dollar = "$">
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
     version="4.0">
 
@@ -32,8 +31,6 @@
         <url-pattern>/swagger-ui.js.map</url-pattern>
     </servlet-mapping>
 
-
-
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>${name}_api_externa_public</web-resource-name>
@@ -42,16 +39,13 @@
         <!-- No auth-constraint means everybody has access! -->
     </security-constraint>
 
-
-
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>${name}_api_externa_secured</web-resource-name>
             <url-pattern>/secure/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>${prefix}_ADMIN</role-name>
-            <role-name>${prefix}_USER</role-name>
+            <role-name>${prefix}_WS</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -62,13 +56,8 @@
     </login-config>
 
     <security-role>
-        <description>Administrador de ${fullname}</description>
-        <role-name>${prefix}_ADMIN</role-name>
-    </security-role>
-
-    <security-role>
-        <description>Usuari de ${fullname}</description>
-        <role-name>${prefix}_USER</role-name>
+        <description>Usuari Aplicació de ${fullname}</description>
+        <role-name>${prefix}_WS</role-name>
     </security-role>
 
 </web-app>
