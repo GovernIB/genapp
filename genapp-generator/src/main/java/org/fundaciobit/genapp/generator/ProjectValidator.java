@@ -129,7 +129,10 @@ public class ProjectValidator {
                             errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
                                     + " és autoincrmental i s'esperava una seqüència ]" + expectedSequence
                                     + "[ en el default value, però el valor del default value és ]" + defautValue
-                                    + "[\n");
+                                    + "[\n"
+                                    + "CREATE SEQUENCE " + expectedSequence + " INCREMENT 1 START 1000;\n"
+                                    + "ALTER TABLE " + table.getName() + " ALTER COLUMN " + field.sqlName + " SET DEFAULT nextval('" + expectedSequence + "');\n"
+                                    + "\n");
                         } else {
                             // OK
                             if (sequencesOrphan != null) {
