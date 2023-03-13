@@ -720,7 +720,7 @@ public class BackWebGenerator extends IconUtils {
 						+ "                \"text\": \"<b><fmt:message key=\"genapp.form.groupby\"/></b>\",\n"
 						+ "                \"field\": null,\n" + "                \"hasChildren\": true,\n"
 						+ "                \"children\": [{\n"
-						+ "                        \"id\": '${groupby_item.value}',\n"
+						+ "                        \"id\": \"${groupby_item.value}\",\n"
 						+ "                        \"text\": \"&#8811; <span style='${(__theFilterForm.groupBy eq null)? \"font-weight: bold;\" : \"\"}'><fmt:message key=\"genapp.form.groupby.noneitem\"/></span>\",\n"
 						+ "                        \"field\": ' ',\n"
 						+ "                        \"hasChildren\": false,\n"

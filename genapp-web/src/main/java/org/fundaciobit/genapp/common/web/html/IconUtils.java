@@ -24,6 +24,24 @@ public class IconUtils {
 	public static final String ICON_CALENDAR = "fa fa-calendar";
 	
 	public static final String ICON_CLOCK = "far fa-clock";
+	
+	public static final String ICON_FILE = "fas fa-file";
+	
+	public static final String ICON_EYE = "fas fa-eye";
+	
+	public static final String ICON_CHECK = "fas fa-check";
+	
+	public static final String ICON_ENVELOPE = "fas fa-envelope";
+	
+	public static final String ICON_RELOAD = "fas fa-redo-alt";
+	
+	public static final String ICON_ARROW_LEFT = "fas fa-arrow-left";
+	
+	public static final String ICON_WARNING = "fas fa-exclamation-triangle";
+	
+	public static final String ICON_BELL ="fas fa-bell";
+	
+	public static final String ICON_FILE_DOWNLOAD= "fas fa-file-download";
 
 	
 	public static final String getWhite(String icon) {
