@@ -16,6 +16,11 @@ public class DataBaseInfo implements Serializable {
     String driver;
     String usr;
     String pwd;
+    
+
+    
+    private transient String databaseProductName = null;
+
 
     Properties properties = null;
 
@@ -68,6 +73,15 @@ public class DataBaseInfo implements Serializable {
 
     public Properties getProperties() {
         return properties;
+    }
+    
+    public String getDatabaseProductName() {
+        return databaseProductName;
+    }
+
+
+    public void setDatabaseProductName(String databaseProductName) {
+        this.databaseProductName = databaseProductName;
     }
 
 }

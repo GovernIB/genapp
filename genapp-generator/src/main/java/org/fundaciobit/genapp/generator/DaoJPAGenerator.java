@@ -227,20 +227,11 @@ public class DaoJPAGenerator {
                     imports.add("javax.persistence.Id");
                     beanCode.append("    " + "@Id\n");
                 }
-                if (field.isAutoIncrement()) {
-                    // AUTONUMERIC
-                    // imports.add("static javax.persistence.GenerationType.IDENTITY");
-                    // beanCode.append("\t" +"@GeneratedValue(strategy = IDENTITY)\n");
-                    imports.add("javax.persistence.GeneratedValue");
-                    imports.add("javax.persistence.GenerationType");
-                    beanCode.append("    " + "@GeneratedValue(strategy = GenerationType.SEQUENCE," + " generator=\""
-                            + sequenceJPAName + "\")\n");
-                }
 
-//          if (field.getIndex() != null) {
-//            imports.add("javax.persistence.Index");
-//            beanCode.append("    " + "@Index(name=\"" + field.getIndex() + "\")\n");
-//          }
+                //          if (field.getIndex() != null) {
+                //            imports.add("javax.persistence.Index");
+                //            beanCode.append("    " + "@Index(name=\"" + field.getIndex() + "\")\n");
+                //          }
                 defValueClean = field.getDefaultValue();
                 if (field.isAutoIncrement() || defValueClean == null || defValueClean.isEmpty()
                         || defValueClean.toLowerCase().indexOf("nextval") != -1) {
@@ -265,15 +256,25 @@ public class DaoJPAGenerator {
                         } else if (defValueClean.charAt(0) == '1') {
                             defValueClean = "true";
                         }
-                    }
-                    
-                    if (defValueClean.equalsIgnoreCase("null")) {
+                    } else if (defValueClean.equalsIgnoreCase("null")) {
                         defValueClean = null;
+                    } else if ("oracle".equalsIgnoreCase(project.getDataBaseInfo().getDatabaseProductName())) {
+                        // AutoIncrementals per Oracle. Exemple: "HSUEDB"."HSU_USUARIO_SEQ"."NEXTVAL"
+                        if (defValueClean.startsWith("\"") && defValueClean.endsWith("\".\"NEXTVAL\"")) {
+                            field.setAutoIncrement(true);
+                        }
                     }
-
                 }
 
-                
+                if (field.isAutoIncrement()) {
+                    // AUTONUMERIC
+                    // imports.add("static javax.persistence.GenerationType.IDENTITY");
+                    // beanCode.append("\t" +"@GeneratedValue(strategy = IDENTITY)\n");
+                    imports.add("javax.persistence.GeneratedValue");
+                    imports.add("javax.persistence.GenerationType");
+                    beanCode.append("    " + "@GeneratedValue(strategy = GenerationType.SEQUENCE," + " generator=\""
+                            + sequenceJPAName + "\")\n");
+                }
 
                 if (defValueClean != null && !isBoolean(field)) {
                     beanCode.append("    " + "@org.hibernate.annotations.ColumnDefault(\"" + defValueClean + "\")\n");
@@ -324,7 +325,7 @@ public class DaoJPAGenerator {
                     if (defValueClean.startsWith("'") && defValueClean.endsWith("'")) {
                         defValue = " = \"" + defValueClean.substring(1, defValueClean.length() - 1) + "\"";
                     } else {
-                       
+
                         defValue = " = \"" + defValueClean + "\"";
                     }
                 } else {
@@ -1207,14 +1208,14 @@ public class DaoJPAGenerator {
 
         String managerFileName = tableNameJava + "IJPAManager";
 
-//    manager.append("import java.util.*;\n");
-//    manager.append("import javax.persistence.EntityManager;\n");
-//    manager.append("import javax.persistence.PersistenceContext;\n");
+        //    manager.append("import java.util.*;\n");
+        //    manager.append("import javax.persistence.EntityManager;\n");
+        //    manager.append("import javax.persistence.PersistenceContext;\n");
         manager.append("import " + packages.entityPackage + ".*;\n");
-//    manager.append("import " + packages.fieldsPackage + ".*;\n");
-//    manager.append("import " + packages.daoPackage + ".*;\n");
-//    manager.append("import " + TableName.class.getName() + ";\n");
-//    manager.append("import " + I18NException.class.getName()+ ";\n");
+        //    manager.append("import " + packages.fieldsPackage + ".*;\n");
+        //    manager.append("import " + packages.daoPackage + ".*;\n");
+        //    manager.append("import " + TableName.class.getName() + ";\n");
+        //    manager.append("import " + I18NException.class.getName()+ ";\n");
 
         manager.append("\n\n");
         if (tableInfo.getDescripcio() != null) {
@@ -1342,7 +1343,7 @@ public class DaoJPAGenerator {
          * manager.append("         return " + databaseManager + ".getConnection();\n");
          * manager.append("    }\n\n");
          */
-// XYZ ZZZ
+        // XYZ ZZZ
 
         manager.append("    public Class<?> getJPAClass() {\n");
         manager.append("        return " + tableNameJava + "JPA. class;\n");

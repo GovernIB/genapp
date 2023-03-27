@@ -18,7 +18,7 @@ public class FieldInfo implements Serializable, Comparable<FieldInfo>, Traduible
     protected String PK;
     protected String unique;
     protected String index;
-    public boolean isAutoIncrement;
+    protected boolean isAutoIncrement;
     public String sqlName;
     public Integer sqlType;
     public Integer size;
@@ -123,9 +123,11 @@ public class FieldInfo implements Serializable, Comparable<FieldInfo>, Traduible
         return isAutoIncrement;
     }
 
+    @Deprecated
     public void setIsAutoIncrement(boolean isAutoIncrement) {
         this.isAutoIncrement = isAutoIncrement;
     }
+
 
     public void setAutoIncrement(boolean isAutoIncrement) {
         this.isAutoIncrement = isAutoIncrement;
