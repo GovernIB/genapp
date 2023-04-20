@@ -7,7 +7,7 @@
     "usr": "genappsqltutorial",
     "pwd": "genappsqltutorial"
   },
-  "modulSeguretat": "seycon",
+  "modulSeguretat": "keycloak",
   "prefix": "gas",
   "prefixDirectori": "genappsqltutorial-",
   "schema": "public",
@@ -1316,7 +1316,7 @@
           "orderBy": 0,
           "groupBy": false,
           "webFieldInfo": {
-            "webtype": 14
+            "webtype": 15
           },
           "foreignKeys": []
         }

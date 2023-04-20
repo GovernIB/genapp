@@ -387,9 +387,9 @@ public class CategoriesController
       return null;
     }
     try {
-      Categories categories = categoriesEjb.findByPrimaryKey(categoryid);
+      Categories categories = this.findByPrimaryKey(request, categoryid);
       if (categories == null) {
-        String __msg =createMessageError(request, "error.notfound", categoryid);
+        String __msg = createMessageError(request, "error.notfound", categoryid);
         return getRedirectWhenDelete(request, categoryid, new Exception(__msg));
       } else {
         delete(request, categories);

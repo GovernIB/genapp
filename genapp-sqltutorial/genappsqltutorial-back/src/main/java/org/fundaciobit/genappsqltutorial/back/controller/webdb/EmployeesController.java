@@ -387,9 +387,9 @@ public class EmployeesController
       return null;
     }
     try {
-      Employees employees = employeesEjb.findByPrimaryKey(employeeid);
+      Employees employees = this.findByPrimaryKey(request, employeeid);
       if (employees == null) {
-        String __msg =createMessageError(request, "error.notfound", employeeid);
+        String __msg = createMessageError(request, "error.notfound", employeeid);
         return getRedirectWhenDelete(request, employeeid, new Exception(__msg));
       } else {
         delete(request, employees);

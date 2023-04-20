@@ -387,9 +387,9 @@ public class ProductsController
       return null;
     }
     try {
-      Products products = productsEjb.findByPrimaryKey(productid);
+      Products products = this.findByPrimaryKey(request, productid);
       if (products == null) {
-        String __msg =createMessageError(request, "error.notfound", productid);
+        String __msg = createMessageError(request, "error.notfound", productid);
         return getRedirectWhenDelete(request, productid, new Exception(__msg));
       } else {
         delete(request, products);
