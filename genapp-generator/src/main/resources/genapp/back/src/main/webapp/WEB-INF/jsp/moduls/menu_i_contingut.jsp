@@ -44,8 +44,8 @@
 
 <script>
 	$('#ocultar').click(function() {
-		$('#principal').removeClass('col-3');
-		$('#contingut').removeClass('col-9');
+		$('#principal').removeClass('col-2');
+		$('#contingut').removeClass('col-10');
 		$('#contingut').addClass('col-12');
 		show('#mostrarMenu');
 		hide('#ocultarMenu');
@@ -54,9 +54,9 @@
 	});
 
 	$('#mostrar').click(function() {
-		$('#principal').addClass('col-3');
+		$('#principal').addClass('col-2');
+		$('#contingut').addClass('col-10');
 		$('#contingut').removeClass('col-12');
-		$('#contingut').addClass('col-9');
 		hide('#mostrarMenu');
 		show('#ocultarMenu');
 		show('#thumbnailmenu');

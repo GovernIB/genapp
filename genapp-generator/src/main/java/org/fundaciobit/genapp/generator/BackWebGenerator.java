@@ -1622,9 +1622,6 @@ public class BackWebGenerator extends IconUtils {
 				codeBase.append("\n");
 				codeBase.append("<%-- ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!! --%>\n");
 				codeBase.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
-				codeBase.append(" \n");
-
-				codeBase.append("  <%@include file=\"" + model + "FormTitle.jsp\" %>\n");
 
 				codeBase.append("\n\n");
 
@@ -1632,6 +1629,10 @@ public class BackWebGenerator extends IconUtils {
 						+ "\" method=\"${(empty method)?'post':method}\"\n");
 				codeBase.append("  enctype=\"multipart/form-data\">\n");
 				codeBase.append("  \n");
+
+                codeBase.append("  <%@include file=\"" + model + "FormTitle.jsp\" %>\n");
+                codeBase.append(" \n");
+				
 				codeBase.append("  <c:set var=\"contexte\" value=\"${" + instanceForm + ".contexte}\"/>\n");
 				codeBase.append("  <form:hidden path=\"nou\" />\n");
 

@@ -210,6 +210,8 @@ public abstract class CommonBaseController <I extends IGenAppEntity, PK extends 
     if (itemsPerPage == null || itemsPerPage < 0) {
       pagina = 1;
       items = executeSelect(ejb, where, orderBy, null , 0); 
+      total = ejb.count(where);
+
     } else {
       for (;;) {
         final int inici = (pagina - 1) * itemsPerPage;
