@@ -387,9 +387,9 @@ public class ShippersController
       return null;
     }
     try {
-      Shippers shippers = shippersEjb.findByPrimaryKey(shipperid);
+      Shippers shippers = this.findByPrimaryKey(request, shipperid);
       if (shippers == null) {
-        String __msg =createMessageError(request, "error.notfound", shipperid);
+        String __msg = createMessageError(request, "error.notfound", shipperid);
         return getRedirectWhenDelete(request, shipperid, new Exception(__msg));
       } else {
         delete(request, shippers);

@@ -1,8 +1,6 @@
 package org.fundaciobit.genappsqltutorial.persistence.test;
 
-
 import java.util.Properties;
-
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,11 +10,14 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
 
-
 import org.fundaciobit.genappsqltutorial.persistence.GenAppSqlTutorialJPADaoManagers;
 import org.fundaciobit.genappsqltutorial.model.GenAppSqlTutorialDaoManager;
 
-
+/*
+ * IMPORTANT - NO MODIFICAR - DERIVA AQUESTA CLASSE SI VOLS FER UN TEST 
+ * IMPORTANT - DO NOT MODIFY - EXTENDS THIS CLASS IF YOU WANT DO A TEST
+ *
+ */
 
 /**
  * 
@@ -27,7 +28,6 @@ public class TestPersistenceJPA {
 
     public static final Logger log = Logger.getLogger(TestPersistenceJPA.class);
 
-
     public static final void main(String[] args) {
         try {
             log.info(">>>>>>>>>>>>  Hello World!");
@@ -35,40 +35,14 @@ public class TestPersistenceJPA {
             // USING GENAPP
             // ============
 
-            Properties prop = new Properties();
-
-            prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-            prop.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-            prop.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/genappsqltutorial");
-            prop.put("javax.persistence.jdbc.user", "genappsqltutorial");
-            prop.put("javax.persistence.jdbc.password", "genappsqltutorial");
-
-            prop.put("hibernate.connection.driver_class", "org.postgresql.Driver");
-            // prop.put("javax.persistence.jdbc.url","jdbc:postgresql://192.168.35.151:5432/pinbaladmin");
-            prop.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/genappsqltutorial");
-            prop.put("hibernate.connection.username", "genappsqltutorial");
-            prop.put("hibernate.connection.password", "genappsqltutorial");
-
-            prop.put("hibernate.show_sql", "true");
-
-            EntityManagerFactory emf;
-
-            // Veure persistence.xml
-            emf = Persistence.createEntityManagerFactory("genappsqltutorialPULocal", prop);
-
-            EntityManager em = emf.createEntityManager();
-
-            em.setFlushMode(FlushModeType.AUTO);
+            EntityManager em = initDB();
 
             EntityTransaction tx = em.getTransaction();
 
             tx.begin();
 
+            // CADA TEST HA d'ANAR DINS D'UNA TRANSACCIO  !!!!!!!
 
-            GenAppSqlTutorialDaoManager.setDaoManagers(new GenAppSqlTutorialJPADaoManagers(em)); 
-            
-            
-            
             /*   EXEMPLE DE CRIDADA DIRECTE
               
              
@@ -84,16 +58,15 @@ public class TestPersistenceJPA {
             }
             
             */
-            
 
             /*
              EXEMPLE DE LLISTAT 
              
             IPluginManager pluginMan = GenAppSqlTutorialDaoManager.getDaoManagers().getPluginManager();
-
-           
+            
+            
             SelectTraduccio st = new SelectTraduccio(PluginFields.NOMID, "es");
-
+            
             List<String> noms = pluginMan.executeQuery(st, null);
             
             for (String nom : noms) {
@@ -101,7 +74,6 @@ public class TestPersistenceJPA {
             }
             
             */
-            
 
             /*  CONSULTA IDIOMES DISPONIBLES
              * IIdiomaManager idioma = GenAppSqlTutorialDaoManager.getDaoManagers().getIdiomaManager();
@@ -128,6 +100,40 @@ public class TestPersistenceJPA {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static EntityManager initDB() {
+        Properties prop = new Properties();
+
+        prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        prop.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
+        prop.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/genappsqltutorial");
+        prop.put("javax.persistence.jdbc.user", "genappsqltutorial");
+        prop.put("javax.persistence.jdbc.password", "genappsqltutorial");
+
+        prop.put("hibernate.connection.driver_class", "org.postgresql.Driver");
+        prop.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/genappsqltutorial");
+        prop.put("hibernate.connection.username", "genappsqltutorial");
+        prop.put("hibernate.connection.password", "genappsqltutorial");
+
+        prop.put("hibernate.show_sql", "true");
+
+        EntityManagerFactory emf;
+
+        // Veure persistence.xml
+        emf = Persistence.createEntityManagerFactory("genappsqltutorialPULocal", prop);
+
+        EntityManager em = emf.createEntityManager();
+
+        em.setFlushMode(FlushModeType.AUTO);
+        
+        GenAppSqlTutorialDaoManager.setDaoManagers(new GenAppSqlTutorialJPADaoManagers(em)); 
+        
+        return em;
     }
 
 }

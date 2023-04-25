@@ -440,9 +440,9 @@ public class OrderDetailsController
       return null;
     }
     try {
-      OrderDetails orderDetails = orderDetailsEjb.findByPrimaryKey(orderdetailid);
+      OrderDetails orderDetails = this.findByPrimaryKey(request, orderdetailid);
       if (orderDetails == null) {
-        String __msg =createMessageError(request, "error.notfound", orderdetailid);
+        String __msg = createMessageError(request, "error.notfound", orderdetailid);
         return getRedirectWhenDelete(request, orderdetailid, new Exception(__msg));
       } else {
         delete(request, orderDetails);

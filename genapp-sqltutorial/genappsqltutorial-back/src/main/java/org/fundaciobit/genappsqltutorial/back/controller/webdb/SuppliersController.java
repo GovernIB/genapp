@@ -387,9 +387,9 @@ public class SuppliersController
       return null;
     }
     try {
-      Suppliers suppliers = suppliersEjb.findByPrimaryKey(supplierid);
+      Suppliers suppliers = this.findByPrimaryKey(request, supplierid);
       if (suppliers == null) {
-        String __msg =createMessageError(request, "error.notfound", supplierid);
+        String __msg = createMessageError(request, "error.notfound", supplierid);
         return getRedirectWhenDelete(request, supplierid, new Exception(__msg));
       } else {
         delete(request, suppliers);

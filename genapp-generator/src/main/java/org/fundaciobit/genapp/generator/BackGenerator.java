@@ -1992,9 +1992,9 @@ public class BackGenerator {
       code.append("      return null;\n");
       code.append("    }\n");
       code.append("    try {\n");
-      code.append("      " + tableJavaName + " " + model + " = " + instanceEjb + ".findByPrimaryKey(" + pkFromParams + ");\n");
+      code.append("      " + tableJavaName + " " + model + " = this.findByPrimaryKey(request, " + pkFromParams + ");\n");
       code.append("      if (" + model + " == null) {\n");
-      code.append("        String __msg =createMessageError(request, \"error.notfound\", " + pkFromParams + ");\n");
+      code.append("        String __msg = createMessageError(request, \"error.notfound\", " + pkFromParams + ");\n");
       code.append("        return getRedirectWhenDelete(request, " + pkFromParams + ", new Exception(__msg));\n");
       code.append("      } else {\n");
       code.append("        delete(request, " + model + ");\n");

@@ -121,8 +121,8 @@ public class ProjectValidator {
 
                     if (defautValue == null || defautValue.trim().length() == 0) {
                         errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
-                                + " és autoincrmental però no té seqüència ]" + expectedSequence
-                                + "[ definida el el defaultValue.\n");
+                                + " és autoincremental però no té seqüència ]" + expectedSequence
+                                + "[ definida en el defaultValue.\n");
                     } else {
 
                         if (defautValue.toLowerCase().indexOf(expectedSequence) == -1) {
@@ -132,6 +132,7 @@ public class ProjectValidator {
                                     + "[\n"
                                     + "CREATE SEQUENCE " + expectedSequence + " INCREMENT 1 START 1000;\n"
                                     + "ALTER TABLE " + table.getName() + " ALTER COLUMN " + field.sqlName + " SET DEFAULT nextval('" + expectedSequence + "');\n"
+                                    + "-- oracle ALTER TABLE " + table.getName() + " ALTER COLUMN " + field.sqlName + " SET DEFAULT " + expectedSequence + ".nextval);\n"
                                     + "\n");
                         } else {
                             // OK

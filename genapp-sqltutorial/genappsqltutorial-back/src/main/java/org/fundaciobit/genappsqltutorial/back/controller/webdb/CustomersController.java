@@ -387,9 +387,9 @@ public class CustomersController
       return null;
     }
     try {
-      Customers customers = customersEjb.findByPrimaryKey(customerid);
+      Customers customers = this.findByPrimaryKey(request, customerid);
       if (customers == null) {
-        String __msg =createMessageError(request, "error.notfound", customerid);
+        String __msg = createMessageError(request, "error.notfound", customerid);
         return getRedirectWhenDelete(request, customerid, new Exception(__msg));
       } else {
         delete(request, customers);
