@@ -12,10 +12,12 @@ import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
+import org.fundaciobit.genapp.WebFieldInfo;
 import org.fundaciobit.genapp.WebType;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 import org.fundaciobit.genapp.common.web.html.HtmlCSS;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
+import org.springframework.web.util.WebUtils;
 
 /**
  * 
@@ -499,29 +501,63 @@ public class BackWebGenerator extends IconUtils {
 
 						String modelCamp = field.getJavaName();
 						if (Number.class.isAssignableFrom(cls) || cls.isPrimitive()) {
-							codeFilterBy.append("            <%-- FILTRE NUMERO --%>      \n");
-							codeFilterBy.append("            <div class=\"" + inputgroupcss
-									+ "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
-							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
-									+ modelCamp + "\" />:</span>\n");
-							codeFilterBy.append("\n");
-							codeFilterBy.append(
-									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
-							codeFilterBy.append("              \n");
-							codeFilterBy
-									.append("              <form:input cssClass=\"input-append input-small\" path=\""
-											+ modelCamp + "Desde\" />\n");
-							codeFilterBy.append("\n");
-							codeFilterBy.append("\n");
-							codeFilterBy.append(
-									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
-							codeFilterBy.append("\n");
-							codeFilterBy.append(
-									"              <form:input cssClass=\"input-append input-small search-query\" path=\""
-											+ modelCamp + "Fins\" />\n");
-							codeFilterBy.append("\n");
-							codeFilterBy.append("            </div>\n");
-							codeFilterBy.append("\n\n");
+						    // NUMERO
+						    String name = Character.toUpperCase(field.javaName.charAt(0)) + field.javaName.substring(1);
+						    String id = table.getShortName() + "_" + field.javaName + "_select";
+						    codeFilterBy.append("            <div class=\"" + inputgroupcss
+                                    + "\" style=\"padding-right: 4px;padding-bottom: 4px;\">\n");
+						    if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
+						        codeFilterBy.append(
+						                  "              <%-- FILTRE NUMERO SELECT MULTIPLE --%>\n"
+						                + "              <div class=\"input-group-prepend\" style=\"padding-top: 5px;padding-right: 5px;\">\n"
+						                + "                 <span class=\"add-on\"><fmt:message key=\"" + model + "." + modelCamp + "\" />:</span>\n"
+						                + "              </div>\n"
+						                + "\n"
+						                + "              <div class=\"input-group-prepend\" style=\"min-width:200px\">\n" 
+   						                + "                <form:select id=\"" + id + "\" path=\"" + modelCamp + "\" cssClass=\"search-query input-medium form-control select2 select2-hidden-accessible\" multiple=\"true\" style=\"width:100%;\" tabindex=\"-1\" aria-hidden=\"true\">\n"
+						                + "                    <c:forEach var=\"_entry\" items=\"${__theFilterForm.mapOfValuesFor" + name + "}\">\n"
+						                + "                      <option value=\"${_entry.key}\" ${fn:contains(__theFilterForm."  + modelCamp + "Select, _entry.key)?'selected':''} >${_entry.value}</option>\n"
+						                + "                    </c:forEach>\n"
+						                + "                </form:select>\n"
+						                + "              </div>\n"
+						                + "\n"
+						                + "              <script type=\"text/javascript\">\n"
+						                + "                $(document).ready(function() {\n"
+						                + "                    $('#" + id + "').select2({\n"
+						                + "                        closeOnSelect: false\n"
+						                + "                    });\n"
+						                + "                    $('.select2-selection__rendered').css('padding-bottom','5px');\n"
+						                + "                });\n"
+						                + "              </script>\n"
+						                );
+						        
+						    } else {
+						    
+    							codeFilterBy.append("            <%-- FILTRE NUMERO DESDE-FINS --%>\n");
+    							
+    							codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
+    									+ modelCamp + "\" />:</span>\n");
+    							codeFilterBy.append("\n");
+    							codeFilterBy.append(
+    									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
+    							codeFilterBy.append("              \n");
+    							codeFilterBy
+    									.append("              <form:input cssClass=\"input-append input-small\" path=\""
+    											+ modelCamp + "Desde\" />\n");
+    							codeFilterBy.append("\n");
+    							codeFilterBy.append("\n");
+    							codeFilterBy.append(
+    									"              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
+    							codeFilterBy.append("\n");
+    							codeFilterBy.append(
+    									"              <form:input cssClass=\"input-append input-small search-query\" path=\""
+    											+ modelCamp + "Fins\" />\n");
+    							codeFilterBy.append("\n");
+    							
+    							
+						    }
+						    codeFilterBy.append("            </div>\n");
+						    codeFilterBy.append("\n\n");
 							continue;
 						}
 						if (cls.equals(String.class)) {

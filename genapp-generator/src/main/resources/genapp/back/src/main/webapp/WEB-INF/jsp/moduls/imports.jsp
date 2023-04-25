@@ -13,43 +13,50 @@
 
 <link href="<c:url value="/css/genapp.css"/>" rel="stylesheet"> 
 
-<!-- Bootstrap CSS-->
+<%-- Bootstrap CSS --%>
 <link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
 <link href="<c:url value="/css/datatables.min.css"/>" rel="stylesheet">
 
-<!-- Bootstrap TREE CSS -->
+<%-- Bootstrap TREE CSS --%>
 <link href="<c:url value="/css/gijgo.min.css"/>" rel="stylesheet">
 
 <!-- Bootstrap DateTimepicker CSS   -->
 <link href="<c:url value="/css/datetimepicker/tempusdominus-bootstrap-4.css"/>" rel="stylesheet">
 
+<%--  Select Multiple --%> 
+<link href="<c:url value="/css/select2.min.css"/>" rel="stylesheet" />
+
 <link href="<c:url value="/css/stylesapp.css"/>" rel="stylesheet">
 
-<!-- JS -->
+<%-- JS --%>
 <script src="<c:url value="/js/jquery.js"/>"></script>
 <script src="<c:url value="/js/popper.min.js"/>"></script>
 
 
-<!-- Bootstrap JS -->
+<%-- Bootstrap JS --%>
 <script src="<c:url value="/js/bootstrap.js"/>"></script>
 
 
 <%-- https://fontawesome.com/icons?d=gallery&m=free --%>
 <script src="<c:url value="/js/fontawesome-all.js"/>"></script>
 
-<!-- Bootstrap TREE JS -->
+<%-- Bootstrap TREE JS --%>
 <script src="<c:url value="/js/gijgo.min.js"/>"></script>
 
-<!-- Bootstrap DateTimePicker JS -->
+<%-- Bootstrap DateTimePicker JS --%>
 <script src="<c:url value="/js/datetimepicker/moment-with-locales.js"/>"></script>
 <script src="<c:url value="/js/datetimepicker/tempusdominus-bootstrap-4.js"/>"></script>
 
-<!-- TinyMCE -->
+<%-- TinyMCE --%>
 <script type="text/javascript">
 	var lang = '<c:out value="${symbol_dollar}{pageContext.response.locale.language}"/>';
 </script>
 <script src="<c:url value="/js/tiny_mce/tiny_mce.js"/>"	type="text/javascript"></script>
 <script src="<c:url value="/js/tinymce.js"/>" type="text/javascript"></script>
+
+<%-- Select Multiple --%>
+<script src="<c:url value="/js/select2.min.js"/>"></script>
+
 
 <script type="text/javascript">
 	function clear_form_elements(ele) {

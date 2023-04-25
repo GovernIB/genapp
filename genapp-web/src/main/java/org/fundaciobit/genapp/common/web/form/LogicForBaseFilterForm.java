@@ -142,7 +142,7 @@ public class LogicForBaseFilterForm {
     if (filterForm.getFilterByFields() != null) {
       for (Field<?> f : filterForm.getFilterByFields()) {
         
-        
+
         // STRING
         if (f instanceof StringField) {
           String _value = (String) Utils.getValueOfJavaField(this.filterForm, f.javaName);
@@ -206,17 +206,28 @@ public class LogicForBaseFilterForm {
             (f instanceof DoubleField) || (f instanceof ShortField)|| 
             (f instanceof BigIntegerField) || (f instanceof BigDecimalField) ) {
           Field<Number > ff = (Field<Number>) f;
-          Number _valueDesde = (Number) Utils.getValueOfJavaField(this.filterForm,
-              f.javaName + "Desde");
-          if (_valueDesde != null) {
-            __wheres.add(ff.greaterThanOrEqual(_valueDesde));
+          
+          //  Estudiar la possibilitat de filtrar elements ComBox com a select multiple #129 
+          List<Number> _values = (List<Number>) Utils.getValueOfJavaField(this.filterForm,
+                  f.javaName + "Select"); 
+
+          if (_values != null) {
+              __wheres.add(ff.in(_values));
+          } else {
+
+              Number _valueDesde = (Number) Utils.getValueOfJavaField(this.filterForm,
+                  f.javaName + "Desde");
+              if (_valueDesde != null) {
+                __wheres.add(ff.greaterThanOrEqual(_valueDesde));
+              }
+      
+              Number _valueFins = (Number) Utils.getValueOfJavaField(this.filterForm,
+                  f.javaName + "Fins");
+              if (_valueFins != null) {
+                __wheres.add(ff.lessThanOrEqual(_valueFins));
+              }
           }
-  
-          Number _valueFins = (Number) Utils.getValueOfJavaField(this.filterForm,
-              f.javaName + "Fins");
-          if (_valueFins != null) {
-            __wheres.add(ff.lessThanOrEqual(_valueFins));
-          }
+
           continue;
         }
   

@@ -838,17 +838,26 @@ public class BackGenerator {
             type = SQL2Java.primitiveType2javaClassName(type);
           }
 
-          String name;
-          
-          name = field.getJavaName() + "Desde";
-          createdFields.add(name);
-          
-          code.append(CodeGenUtils.generateGetSetBean(new FieldInfo(name, type)));
-          
-          name = field.getJavaName() + "Fins";
-          createdFields.add(name);
-          
-          code.append(CodeGenUtils.generateGetSetBean(new FieldInfo(name , type)));
+          if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
+              
+              String name;              
+              name = field.getJavaName() + "Select";
+              createdFields.add(name);
+              code.append(CodeGenUtils.generateGetSetBean(name, "java.util.List<" + type.getName() + ">", true));
+              
+          } else {
+              String name;
+              
+              name = field.getJavaName() + "Desde";
+              createdFields.add(name);
+              
+              code.append(CodeGenUtils.generateGetSetBean(new FieldInfo(name, type)));
+              
+              name = field.getJavaName() + "Fins";
+              createdFields.add(name);
+              
+              code.append(CodeGenUtils.generateGetSetBean(new FieldInfo(name , type)));
+          }
 
         }
 
@@ -2318,7 +2327,11 @@ public class BackGenerator {
             + ", Where where)  throws I18NException {\n");
         //code.append("    final String _fieldName =  " + instanceFilterForm + ".getStringOfField(" + field.javaName.toUpperCase() +  ");\n");
         code.append("    if (" + instanceFilterForm + ".isHiddenField(" + field.javaName.toUpperCase() +  ")\n");
-        code.append("      && !" + instanceFilterForm + ".isGroupByField(" + field.javaName.toUpperCase() +  ")) {\n");
+        code.append("       && !" + instanceFilterForm + ".isGroupByField(" + field.javaName.toUpperCase() +  ")");
+        if (wfi.getWebtype() == WebType.ComboBox) {
+            code.append("\n       && !" + instanceFilterForm + ".isFilterByField(" + field.javaName.toUpperCase() +  ")");
+        }
+        code.append(") {\n");
         code.append("      return EMPTY_STRINGKEYVALUE_LIST;\n");
         code.append("    }\n");
         code.append("    Where _w = null;\n");
