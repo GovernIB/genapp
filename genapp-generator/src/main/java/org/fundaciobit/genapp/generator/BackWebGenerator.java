@@ -514,7 +514,7 @@ public class BackWebGenerator extends IconUtils {
 						                + "              </div>\n"
 						                + "\n"
 						                + "              <div class=\"input-group-prepend\" style=\"min-width:200px\">\n" 
-   						                + "                <form:select id=\"" + id + "\" path=\"" + modelCamp + "\" cssClass=\"search-query input-medium form-control select2 select2-hidden-accessible\" multiple=\"true\" style=\"width:100%;\" tabindex=\"-1\" aria-hidden=\"true\">\n"
+   						                + "                <form:select id=\"" + id + "\" path=\"" + modelCamp + "Select\" cssClass=\"search-query input-medium form-control select2 select2-hidden-accessible\" multiple=\"true\" style=\"width:100%;\" tabindex=\"-1\" aria-hidden=\"true\">\n"
 						                + "                    <c:forEach var=\"_entry\" items=\"${__theFilterForm.mapOfValuesFor" + name + "}\">\n"
 						                + "                      <option value=\"${_entry.key}\" ${fn:contains(__theFilterForm."  + modelCamp + "Select, _entry.key)?'selected':''} >${_entry.value}</option>\n"
 						                + "                    </c:forEach>\n"

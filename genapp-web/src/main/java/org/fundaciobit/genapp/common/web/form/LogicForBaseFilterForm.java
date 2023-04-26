@@ -207,22 +207,25 @@ public class LogicForBaseFilterForm {
             (f instanceof BigIntegerField) || (f instanceof BigDecimalField) ) {
           Field<Number > ff = (Field<Number>) f;
           
+          // NOTA: Els false de les cridades a getValueOfJavaField s'ha de llevar quan 
+          // Dins Field s'afegeixi informació de si és COMBOBOX o no.
+          
           //  Estudiar la possibilitat de filtrar elements ComBox com a select multiple #129 
           List<Number> _values = (List<Number>) Utils.getValueOfJavaField(this.filterForm,
-                  f.javaName + "Select"); 
+                  f.javaName + "Select", false); 
 
           if (_values != null) {
               __wheres.add(ff.in(_values));
           } else {
 
               Number _valueDesde = (Number) Utils.getValueOfJavaField(this.filterForm,
-                  f.javaName + "Desde");
+                  f.javaName + "Desde", false);
               if (_valueDesde != null) {
                 __wheres.add(ff.greaterThanOrEqual(_valueDesde));
               }
       
               Number _valueFins = (Number) Utils.getValueOfJavaField(this.filterForm,
-                  f.javaName + "Fins");
+                  f.javaName + "Fins", false);
               if (_valueFins != null) {
                 __wheres.add(ff.lessThanOrEqual(_valueFins));
               }
