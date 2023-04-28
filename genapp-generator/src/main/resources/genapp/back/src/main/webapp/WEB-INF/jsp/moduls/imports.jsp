@@ -24,7 +24,7 @@
 <link href="<c:url value="/css/datetimepicker/tempusdominus-bootstrap-4.css"/>" rel="stylesheet">
 
 <%--  Select Multiple --%> 
-<link href="<c:url value="/css/select2.min.css"/>" rel="stylesheet" />
+<link href="<c:url value="/css/select2.min.css"/>" rel="stylesheet">
 
 <link href="<c:url value="/css/stylesapp.css"/>" rel="stylesheet">
 
@@ -90,6 +90,8 @@
 		for (i = 0; i < tags.length; i++) {
 			tags[i].value = '';
 		}
+		
+		${symbol_dollar}('.select2').val(null).trigger('change');
 	}
 
 	function goTo(url) {

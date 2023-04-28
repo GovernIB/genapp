@@ -215,7 +215,9 @@ public class LogicForBaseFilterForm {
                   f.javaName + "Select", false); 
 
           if (_values != null) {
-              __wheres.add(ff.in(_values));
+              if (_values.size() != 0) {
+                __wheres.add(ff.in(_values));
+              }
           } else {
 
               Number _valueDesde = (Number) Utils.getValueOfJavaField(this.filterForm,
