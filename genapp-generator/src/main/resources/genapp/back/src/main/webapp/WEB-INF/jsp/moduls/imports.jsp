@@ -77,6 +77,9 @@
 
 		tags = ele.getElementsByTagName('select');
 		for (i = 0; i < tags.length; i++) {
+		    if (tags[i].id == "itemsPerPage") {
+		       continue;
+		    }
 			if (tags[i].type == 'select-one') {
 				tags[i].selectedIndex = 0;
 			} else {
