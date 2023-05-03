@@ -12,12 +12,10 @@ import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
-import org.fundaciobit.genapp.WebFieldInfo;
 import org.fundaciobit.genapp.WebType;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 import org.fundaciobit.genapp.common.web.html.HtmlCSS;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
-import org.springframework.web.util.WebUtils;
 
 /**
  * 
