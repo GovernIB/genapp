@@ -678,7 +678,7 @@ public class CodeGenerator {
 				boolean overwrite = false;
 				final String[] ignoreSubstitution = new String[] {
 						// "onlycontentlayout.jsp",
-						"src/main/resources/",
+						//"src/main/resources/",
 						"src/main/webapp/img/", "src/main/webapp/js/", "src/main/webapp/css/",
 						"src/main/webapp/WEB-INF/tld/", "src/main/webapp/WEB-INF/lib/" };
 				recursiveSubstitution(dstBackDir, resourceUtils, prop, project, overwrite, ignoreSubstitution);

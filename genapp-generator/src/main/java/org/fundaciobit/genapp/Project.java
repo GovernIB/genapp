@@ -25,7 +25,7 @@ public class Project implements Serializable {
 
     protected String prefix; // = "PFI";
 
-    protected String prefixDirectori; // = "PFI";
+    protected String prefixDirectori; // = "${projectname.lowercase}-";
 
     public String schema = null;
 
@@ -58,6 +58,7 @@ public class Project implements Serializable {
         this.tables = tables;
         this.languages = languages;
         this.prefix = prefix;
+        this.prefixDirectori = prefixDirectori;
     }
 
     public String getPackageName() {
