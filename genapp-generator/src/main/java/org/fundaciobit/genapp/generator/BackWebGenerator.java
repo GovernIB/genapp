@@ -884,7 +884,8 @@ public class BackWebGenerator extends IconUtils {
 			//
 
 			// ============================ LIST_BUTTONS_HEADER
-			String testDeFerVisibleBotons = "${" + instanceFilterForm + ".editButtonVisible " + "|| "
+			String testDeFerVisibleBotons = "${" + instanceFilterForm + ".editButtonVisible " 
+			        + "|| "  + instanceFilterForm + ".viewButtonVisible " + "||"
 					+ instanceFilterForm + ".deleteButtonVisible" + " || not empty " + instanceFilterForm
 					+ ".additionalButtonsForEachItem" + " || not empty " + instanceFilterForm
 					+ ".additionalButtonsByPK}";
@@ -941,6 +942,15 @@ public class BackWebGenerator extends IconUtils {
 							"<c:url value=\"${contexte}" + pkMapping + "/edit\"/>", null, ICON_EDIT, "genapp.edit"));
 					codeButtons.append("            </c:if>\n");
 
+					
+	                // BOTO DE VISTA
+                    codeButtons.append("            <c:if test=\"${" + instanceFilterForm + ".viewButtonVisible}\">\n");
+
+                    codeButtons.append(render.getActionButtonCode("            ", "btn-info",
+                            "<c:url value=\"${contexte}/view" + pkMapping + "\"/>", null, ICON_EYE, "genapp.viewtitle"));
+                    codeButtons.append("            </c:if>\n");
+					
+					
 					// BOTO DE BORRAR
 					codeButtons
 							.append("            <c:if test=\"${" + instanceFilterForm + ".deleteButtonVisible}\">\n");
