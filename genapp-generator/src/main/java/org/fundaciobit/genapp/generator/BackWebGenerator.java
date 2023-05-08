@@ -2493,7 +2493,7 @@ public class BackWebGenerator extends IconUtils {
 
 		StringBuffer code = new StringBuffer();
 
-		code.append("            <div class=\"form-group\">\n");
+		code.append("            <div class=\"form-group\"  style=\"margin-bottom: 0px;\" >\n");
 		code.append("                <div class=\"input-group date\" id=\"" + componentID
 				+ "\" data-target-input=\"nearest\">\n");
 
