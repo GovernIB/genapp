@@ -4,8 +4,10 @@
 
 ***Versions***
 
-> - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0)) (Obsoleta)
 > - Versió Estable: __genapp-2.0__ (branca [genapp-2.0](../../tree/genapp-2.0)) (Correcta)
+
+> - Versió Estable: __genapp-1.0__ (branca [genapp-1.0](../../tree/genapp-1.0)) (Obsoleta)
+
 
 ***Descripció***
 
