@@ -8,6 +8,7 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 ***Requeriments***
 * JDK 11
 * JBoss 7.2
+* Maven
 
 ***Com executar***
 
