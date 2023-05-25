@@ -25,7 +25,7 @@ public class Project implements Serializable {
 
     protected String prefix; // = "PFI";
 
-    protected String prefixDirectori; // = "${projectname.lowercase}-";
+    private String prefixDirectori; // = "${projectname.lowercase}-";
 
     public String schema = null;
 
@@ -34,6 +34,8 @@ public class Project implements Serializable {
     protected String[] languages = null;
 
     protected boolean generateBack = true;
+    
+    protected boolean generateFront = false;
 
     protected boolean generateWS = true;
 
@@ -49,6 +51,7 @@ public class Project implements Serializable {
         super();
     }
 
+    /*
     public Project(String packageName, String projectName, DataBaseInfo databaseinfo, TableInfo[] tables, String prefix,
             String prefixDirectori, String[] languages) {
         super();
@@ -60,6 +63,7 @@ public class Project implements Serializable {
         this.prefix = prefix;
         this.prefixDirectori = prefixDirectori;
     }
+    */
 
     public String getPackageName() {
         return packageName;
@@ -131,6 +135,14 @@ public class Project implements Serializable {
 
     public void setGenerateBack(boolean generateBack) {
         this.generateBack = generateBack;
+    }
+    
+    public boolean isGenerateFront() {
+        return generateFront;
+    }
+
+    public void setGenerateFront(boolean generateFront) {
+        this.generateFront = generateFront;
     }
 
     public boolean isGenerateWS() {

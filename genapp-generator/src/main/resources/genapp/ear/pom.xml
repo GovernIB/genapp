@@ -51,6 +51,15 @@
 		</dependency>
 </#if>
 
+<#if generatefront>
+		<dependency>
+			<groupId>${package}</groupId>
+			<artifactId>${name}-front</artifactId>
+			<version>${project_version}</version>
+			<type>war</type>
+		</dependency>
+</#if>
+
 		<!-- Tenir en compte a l'hora de incloure dependències només si és imprescindible 
 			i no està ja dins un mòdul sobre el que es pugui establir una dependència 
 			als descriptors. https://docs.jboss.org/author/display/AS72/Implicit+module+dependencies+for+deployments -->
@@ -221,6 +230,7 @@
 		</dependency>
 
 
+
 <#if generatews>
 		<!-- API REST de ${fullname} -->
 
@@ -311,8 +321,18 @@
 						<webModule>
 							<groupId>${package}</groupId>
 							<artifactId>${name}-back</artifactId>
-							<contextRoot>${name}</contextRoot>
+							<contextRoot>${name}back</contextRoot>
                             <bundleFileName>${name}-back.war</bundleFileName>
+						</webModule>
+						</#if>
+                        
+                        
+                        <#if generatefront>
+						<webModule>
+							<groupId>${package}</groupId>
+							<artifactId>${name}-front</artifactId>
+							<contextRoot>${name}front</contextRoot>
+                            <bundleFileName>${name}-front.war</bundleFileName>
 						</webModule>
 						</#if>
 

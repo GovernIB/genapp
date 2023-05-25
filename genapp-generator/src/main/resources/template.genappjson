@@ -9,7 +9,7 @@
   },
   "modulSeguretat": "seycon",
   "prefix": "PFX",
-  "prefixDirectori": "APPNAME",
+  "prefixDirectori": "APPNAME-",
   "schema": "",
   "tables": [
     {

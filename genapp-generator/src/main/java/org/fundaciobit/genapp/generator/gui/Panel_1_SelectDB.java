@@ -78,6 +78,9 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
   JLabel etiGenerateBack = new JLabel();
   JCheckBox generateBack = new JCheckBox();
   
+  JLabel etiGenerateFront = new JLabel();
+  JCheckBox generateFront = new JCheckBox();
+  
   JLabel etiGenerateWs = new JLabel();
   JCheckBox generateWs = new JCheckBox();
   
@@ -104,7 +107,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     // ==================== Panel Centro
 
     GridLayout gridLayout1 = new GridLayout();
-    gridLayout1.setRows(12);
+    gridLayout1.setRows(13);
     gridLayout1.setColumns(2);
     gridLayout1.setHgap(10);
     gridLayout1.setVgap(10);
@@ -254,6 +257,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     
     
     // Idiomes
+    {
     etiIdiomes.setText("Idiomes");
     etiIdiomes.setHorizontalAlignment(SwingConstants.RIGHT);
     panelCentro.add(etiIdiomes, null);
@@ -266,9 +270,11 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       panelCentro.add(jPanel7, null);
       jPanel7.add(idiomes,  BorderLayout.CENTER);
     }
+    }
     
     
     // generate Back
+    {
     etiGenerateBack.setText("Generar Back");
     etiGenerateBack.setHorizontalAlignment(SwingConstants.RIGHT);
     panelCentro.add(etiGenerateBack, null);
@@ -280,6 +286,23 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       jPanel7.setLayout(layout7);
       panelCentro.add(jPanel7, null);
       jPanel7.add(generateBack,  BorderLayout.CENTER);
+    }
+    }
+    
+    
+    // generate Front
+    {
+    etiGenerateFront.setText("Generar Front");
+    etiGenerateFront.setHorizontalAlignment(SwingConstants.RIGHT);
+    panelCentro.add(etiGenerateFront, null);
+    {
+        VerticalFlowLayout layout7 = new VerticalFlowLayout();
+        layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+        JPanel jPanel7 = new JPanel();
+        jPanel7.setLayout(layout7);
+        panelCentro.add(jPanel7, null);
+        jPanel7.add(generateFront,  BorderLayout.CENTER);
+      }
     }
     
     
@@ -350,6 +373,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         modulSeguretat.setText("");
         idiomes.setText("ca,es");
         generateBack.setSelected(true);
+        generateFront.setSelected(true);
         generateWs.setSelected(true);
         usr.setText("username");
         pwd.setText("password");
@@ -438,6 +462,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         String langs = Arrays.toString(proj.getLanguages());
         idiomes.setText(langs.substring(1,langs.length() - 1));
         generateBack.setSelected(proj.isGenerateBack());
+        generateFront.setSelected(proj.isGenerateFront());
         generateWs.setSelected(proj.isGenerateWS());
         
       break;
@@ -508,9 +533,9 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       return (false);
     }
     SharedData.data.setLanguages(langs);
-    
-    
+
     SharedData.data.setGenerateBack(generateBack.isSelected());
+    SharedData.data.setGenerateFront(generateFront.isSelected());
     
     SharedData.data.setGenerateWS(generateWs.isSelected());
     
@@ -552,11 +577,20 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       switch(SharedData.project) {
         case NEW:
         {
+            
+            
+          System.out.println(" XXXXXXXXXXXXXX   POSANT PREFIX !!!!!!!!!!!!!");
+          SharedData.data.setPrefixDirectori(SharedData.data.getProjectName().toLowerCase() + "-");
+            
+            
           TableInfo tmp[] = manager.getTablesOfDataBase(null, SharedData.data.getLanguages());
           SelectionTablesDialog dlg = new SelectionTablesDialog(tmp);
           dlg.setVisible(true);
           tablesFromDB = dlg.getSelecteds();
           SharedData.data.setSchema(DatabaseManager.schemaName);
+          
+          
+          
         }
         break;
         
@@ -602,6 +636,9 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
 
       case NEW:
         try {
+            
+          
+            
           
           TableInfo[] selectedTables = new TableInfo[tablesFromDB.length];
           for (int i = 0; i < tablesFromDB.length; i++) {

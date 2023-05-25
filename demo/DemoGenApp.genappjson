@@ -1263,5 +1263,6 @@
     "en"
   ],
   "generateBack": true,
+  "generateFront": true,
   "generateWS": true
 }
