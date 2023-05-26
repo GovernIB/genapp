@@ -21,7 +21,7 @@ import org.fundaciobit.pluginsib.exportdata.IExportDataPlugin;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 import ${package}.hibernate.HibernateFileUtil;
-//import ${package}.commons.utils.Constants;
+import ${package}.commons.utils.Constants;
 import ${package}.logic.utils.I18NLogicUtils;
 import ${package}.logic.utils.LogicUtils;
 import ${package}.commons.utils.Configuracio;
@@ -36,7 +36,7 @@ import ${package}.commons.utils.Configuracio;
  * @author anadal
  * 
  */
-@RunAs("${prefix}_USER")
+@RunAs(Constants.${prefix}_ADMIN)
 public class InitServlet extends HttpServlet {
 
     protected final Logger log = Logger.getLogger(getClass());

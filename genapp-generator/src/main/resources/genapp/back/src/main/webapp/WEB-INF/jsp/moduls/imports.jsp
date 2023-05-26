@@ -94,40 +94,24 @@
             tags[i].value = '';
         }
 
-        $
-        {
-            symbol_dollar
-        }
-        ('.select2').val(null).trigger('change');
+        ${symbol_dollar}('.select2').val(null).trigger('change');
     }
 
     function goTo(url) {
-        $
-        {
-            symbol_dollar
-        }
-        ("body").css("cursor", "progress");
+        ${symbol_dollar}("body").css("cursor", "progress");
         document.location.href = url;
     }
 
     function submitTo(formName, url) {
         var __theForm = document.forms[formName];
         __theForm.action = url;
-        $
-        {
-            symbol_dollar
-        }
-        ("body").css("cursor", "progress");
+        ${symbol_dollar}("body").css("cursor", "progress");
         __theForm.submit();
     }
 
     function openModal(url, accio) {
         createDivModal(traduccions.type['dialogoTituloEliminar'], traduccions.type['dialogoMensajeEliminar'], url);
-        $
-        {
-            symbol_dollar
-        }
-        ('#myModal').modal(accio);
+        ${symbol_dollar}('#myModal').modal(accio);
     }
 
     function openModalSubmit(url, accio, formName) {
@@ -143,22 +127,14 @@
         if (marcados != 0) {
             createDivModal(traduccions.type['dialogoTituloEliminar'], traduccions.type['dialogoMensajeEliminar'], url,
                     formName);
-            $
-            {
-                symbol_dollar
-            }
-            ('#myModal').modal(accio);
+            ${symbol_dollar}('#myModal').modal(accio);
         } else {
             alert("<fmt:message key='genapp.delete.capseleccionat'/>");
         }
     }
 
     function createDivModal(tituloDialog, msgDialog, url, formName) {
-        $
-        {
-            symbol_dollar
-        }
-        ('body')
+        ${symbol_dollar}('body')
                 .append('<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
                         + '<div class="modal-dialog" role="document">'
                         + '<div class="modal-content">'

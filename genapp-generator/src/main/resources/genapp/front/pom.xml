@@ -9,7 +9,7 @@
     </parent>
     <artifactId>${name}-front</artifactId>
     <packaging>war</packaging>
-    <name>{fullname} - Front</name>
+    <name>${fullname} - Front</name>
 
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->

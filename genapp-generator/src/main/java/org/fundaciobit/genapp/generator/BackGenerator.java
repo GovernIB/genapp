@@ -2502,7 +2502,7 @@ public class BackGenerator {
 
       code.append("\n");
       code.append("  public String getSessionAttributeFilterForm() {\n");
-      code.append("    return \"" + tableJavaName + "WebDB_FilterForm\";\n");
+      code.append("    return \"" + tableJavaName + "_FilterForm_\" + this.getClass().getName();\n");
       code.append("  }\n");
       code.append("\n");
       code.append("\n");
