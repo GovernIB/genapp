@@ -66,6 +66,12 @@ public abstract class BaseFilterForm extends CommonBaseForm {
     private boolean viewButtonVisible = false;
 
     /**
+     * Indica si mostrar el boto de només vista en cada element del llistat.
+     * Per defecte està a false
+     */
+    private boolean footerListVisible = false;
+    
+    /**
      * Pàgina de l'actual llistat
      */
     private int page = 1;
@@ -123,6 +129,7 @@ public abstract class BaseFilterForm extends CommonBaseForm {
         this.addButtonVisible = toClone.addButtonVisible;
         this.editButtonVisible = toClone.editButtonVisible;
         this.viewButtonVisible = toClone.viewButtonVisible;
+        this.footerListVisible = toClone.footerListVisible;
         this.page = toClone.page;
         this.selectedItems = toClone.selectedItems;
         this.visibleMultipleSelection = toClone.visibleMultipleSelection;
@@ -292,6 +299,14 @@ public abstract class BaseFilterForm extends CommonBaseForm {
 
     public void setViewButtonVisible(boolean viewButtonVisible) {
         this.viewButtonVisible = viewButtonVisible;
+    }
+
+    public boolean isFooterListVisible() {
+        return footerListVisible;
+    }
+
+    public void setFooterListVisible(boolean footerListVisible) {
+        this.footerListVisible = footerListVisible;
     }
 
     public boolean isAddButtonVisible() {

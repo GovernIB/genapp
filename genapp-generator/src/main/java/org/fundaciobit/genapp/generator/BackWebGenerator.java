@@ -104,7 +104,7 @@ public class BackWebGenerator extends IconUtils {
 
 				code.append("  <%@include file=\"" + model + "ListCore.jsp\" %>\n");
 
-				code.append("  <c:if test=\"${not empty " + model + "Items}\">\n");
+				code.append("  <c:if test=\"${not empty " + model + "Items && __theFilterForm.footerListVisible}\">\n");
 				code.append("          <%@include file=\"webdbPagination.jsp\" %>\n\n");
 				code.append("  </c:if>\n");
 				code.append("\n");
