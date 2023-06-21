@@ -1,5 +1,6 @@
 
 import javax.swing.*
+import java.io.*
 
 println ""
 println " -------   POST GENERATE GROOVY -------"
@@ -11,6 +12,12 @@ println " + version: " + request.getVersion()
 
 Properties properties = request.properties
 println " + package: " + properties.get("package")
+
+
+def file = new File('./rungenapp/genapp_root.bat')
+def dest = new File(file.getParentFile().getParentFile(), 'genapp.bat')
+file.renameTo(dest);
+
 
 def prompt = {
   JFrame jframe = new JFrame()
