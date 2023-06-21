@@ -108,6 +108,14 @@ public class Configuracio implements Constants {
     public static String getAppName() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "name", "${fullname}");
     }
+    
+    public static String getFrontUrl() {
+        return getProperty(${name_uppercase}_PROPERTY_BASE + "url.front");
+    }
+    
+    public static String getBackUrl() {
+        return getProperty(${name_uppercase}_PROPERTY_BASE + "url.back");
+    }
 
     public static String getDefaultLanguage() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "defaultlanguage", "ca");

@@ -18,10 +18,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version_template_file>./templates/StaticVersion.java.template</version_template_file>
-		<version_file>src/main/java/${packagePath}/commons/utils/StaticVersion.java</version_file>
         <project.buildtime>${symbol_dollar}{maven.build.timestamp}</project.buildtime>
-        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
 	</properties>
 
 
@@ -37,30 +34,6 @@
 
 		<plugins>
 
-			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>maven-replacer-plugin</artifactId>
-				<version>1.4.0</version>
-				<executions>
-					<execution>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<file>${symbol_dollar}{version_template_file}</file>
-					<outputFile>${symbol_dollar}{version_file}</outputFile>
-					<replacements>
-						<replacement>
-							<token>@project.version@</token>
-							<value>${symbol_dollar}{project.version}</value>
-						</replacement>
-					</replacements>
-				</configuration>
-			</plugin>
-	
 			<!-- Defineix la propietat {buildNumber} que s'empra al filtrat -->
 			<plugin>
 			    <groupId>org.codehaus.mojo</groupId>

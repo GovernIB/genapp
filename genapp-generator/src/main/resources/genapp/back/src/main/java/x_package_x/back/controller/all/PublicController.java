@@ -1,7 +1,11 @@
 package ${package}.back.controller.all;
 
 import org.apache.log4j.Logger;
+
 import org.fundaciobit.genapp.common.web.HtmlUtils;
+
+import ${package}.commons.utils.Version;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,5 +38,14 @@ public class PublicController {
 		return new ModelAndView("homepublic");
 
 	}
+	
+	@RequestMapping(value = "/public/versio")
+    public void versio(HttpServletResponse response) throws Exception {
+        Version versio = new Version();
+        response.getWriter().write(versio.getVersion() + "|" + versio.getBuildTime());
+        response.getWriter().flush();
+        response.getWriter().close();
+
+    }
 
 }

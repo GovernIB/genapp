@@ -13,12 +13,10 @@
 			<strong class="font-weight-bold h6">
 				${symbol_dollar}{versio.projectName}
 				v${symbol_dollar}{versio.version}<%=Configuracio.isCAIB() ? "-caib" : ""%>
-		    
 			</strong> <br /> 
 			<small>
-			Build: ${symbol_dollar}{versio.buildTime} <br /> JDK:
-			${symbol_dollar}{version.jdkVersion} <br />
-
+			Build: ${symbol_dollar}{versio.buildTime} <br />
+            JDK: ${symbol_dollar}{version.jdkVersion} <br />
 			<fmt:message key="revisio" />: 
 			<c:if test="${symbol_dollar}{empty versio.scmRevision}">
 				<fmt:message key="scmversion.msg" />

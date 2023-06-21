@@ -1,5 +1,6 @@
 <#assign symbol_dollar = "$">
 <%@page import="org.springframework.context.i18n.LocaleContextHolder"%>
+<%@page import="${package}.commons.utils.Version"%>
 <%@page import="java.util.Locale"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%><%@ include
 	file="/WEB-INF/jsp/moduls/includes.jsp"%><%@ taglib prefix="tiles"
@@ -32,7 +33,8 @@
 			</div>
 
 			<div>
-				<h1 class="titol"><%=${package}.commons.utils.StaticVersion.PROJECT_NAME%></h1>
+                <% Version version = new Version(); %>
+				<h1 class="titol"><%=version.getProjectName() + " " + version.getVersion()%></h1>
 			</div>
 			<div>
 				<div>

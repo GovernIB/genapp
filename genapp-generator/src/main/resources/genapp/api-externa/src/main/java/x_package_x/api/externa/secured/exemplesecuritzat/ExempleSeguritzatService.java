@@ -30,13 +30,15 @@ import io.swagger.v3.oas.annotations.media.Content;
  *
  */
 @Path("/secure/exempleseguritzat")
-@OpenAPIDefinition(tags = { @Tag(name = "Securetat", description = "Exemple de Servei Securitzat"), })
+@OpenAPIDefinition(tags = { @Tag(name = ExempleSeguritzatService.TAG , description = "Exemple de Servei Securitzat"), })
 @SecurityScheme(type = SecuritySchemeType.HTTP, name = "BasicAuth", scheme = "basic")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ExempleSeguritzatService {
+    
+    protected static final String TAG = "ExempleSeguritzat";
 
-    protected static Logger log = Logger.getLogger(ExempleSeguritzatService.class);
+    protected static final Logger log = Logger.getLogger(ExempleSeguritzatService.class);
 
     @Path("/echo")
     @GET
@@ -44,7 +46,7 @@ public class ExempleSeguritzatService {
 	@SecurityRequirement(name = "BasicAuth")  
 	@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(operationId = "echo", summary = "Fa un ECHO", tags = { "Securetat" })
+    @Operation(operationId = "echo", summary = "Fa un ECHO", tags = { TAG })
     @ApiResponse(
             responseCode = "200",
             description = "Respon el valor enviat per paràmetre",

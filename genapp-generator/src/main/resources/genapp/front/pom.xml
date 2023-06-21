@@ -173,11 +173,6 @@
 
         <resources>
             <resource>
-                <directory>${symbol_dollar}{basedir}/react/src/assets</directory>
-                <targetPath>${symbol_dollar}{basedir}/src/main/webapp/src/assets</targetPath>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
                 <directory>${symbol_dollar}{basedir}/src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>

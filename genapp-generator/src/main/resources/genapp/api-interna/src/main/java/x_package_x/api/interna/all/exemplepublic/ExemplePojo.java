@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
  *
  * @author anadal
  */
-
 @Schema(name = "ExamplePojo")
 public class ExemplePojo {
 
