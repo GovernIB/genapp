@@ -148,38 +148,4 @@ public class ThreeFolderFileSystemManager extends SimpleFileSystemManager implem
 
   }
   
-
-  public static void main(String[] args) {
-    
-    
-    File f = new File("C:\\tmp\\sql.sql");
-    
-    File dest = new File("D:\\sql.sql");
-    
-    System.out.println("Rename: " + f.renameTo(dest));
-    
-    /*
-    File filesPath = new File("D:\\dades\\dades\\CarpetesPersonals\\ProgramacioPortaFIB2\\portafib-files\\postgresql_2.0_three");
-
-    ThreeFolderFileSystemManager tf = new ThreeFolderFileSystemManager();
-
-//    Long[] ids = new Long[] { 1L, 25L, 123L, 56785345L, -2435666L };
-//
-//    for (Long id : ids) {
-//      System.out.println("Path for " + id + "\t= " + ThreeFolderFileSystemManager.getTreeFolder(filesPath, id));
-//    }
-    
-    Map<Long, File> fitxers = tf.getAllFiles(filesPath);
-    
-    for (Map.Entry<Long, File> fFisic : fitxers.entrySet()) {
-      System.out.println(fFisic.getKey() +  "=>\t" + fFisic.getValue().getAbsolutePath());
-      
-    }
-    
-    
-    //D:\dades\dades\CarpetesPersonals\ProgramacioPortaFIB2\portafib-files\postgresql_2.0_three
-    
-*/
-  }
-
 }
