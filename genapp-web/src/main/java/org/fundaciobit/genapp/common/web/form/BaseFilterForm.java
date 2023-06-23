@@ -67,9 +67,9 @@ public abstract class BaseFilterForm extends CommonBaseForm {
 
     /**
      * Indica si mostrar el boto de només vista en cada element del llistat.
-     * Per defecte està a false
+     * Per defecte està a true
      */
-    private boolean footerListVisible = false;
+    private boolean footerListVisible = true;
     
     /**
      * Pàgina de l'actual llistat
