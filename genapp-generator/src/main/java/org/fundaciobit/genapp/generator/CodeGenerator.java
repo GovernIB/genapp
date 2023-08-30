@@ -1138,6 +1138,14 @@ public class CodeGenerator {
 
             // (2) Directoris i fitxers a borrar
             File dstBaseDir = new File(projectDir, project.getPrefixDirectori() + dirName);
+            
+            
+            if (dstBaseDir.exists()) {
+                return;
+            }
+            
+            
+            
             dstBaseDir.mkdirs();
             /*
             final String name = project.projectName.toLowerCase();
