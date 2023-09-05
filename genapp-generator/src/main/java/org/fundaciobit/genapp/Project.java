@@ -36,8 +36,13 @@ public class Project implements Serializable {
     protected boolean generateBack = true;
     
     protected boolean generateFront = false;
+    
+    protected boolean generateApiInterna = false;
+    
+    protected boolean generateApiExterna = false;
 
-    protected boolean generateWS = true;
+    @Deprecated
+    protected Boolean generateWS = null;
 
     public String[] getLanguages() {
         return languages;
@@ -145,12 +150,30 @@ public class Project implements Serializable {
         this.generateFront = generateFront;
     }
 
-    public boolean isGenerateWS() {
+    @Deprecated
+    public Boolean isGenerateWS() {
         return generateWS;
     }
 
-    public void setGenerateWS(boolean generateWS) {
+    @Deprecated
+    public void setGenerateWS(Boolean generateWS) {
         this.generateWS = generateWS;
+    }
+
+    public boolean isGenerateApiInterna() {
+        return generateApiInterna;
+    }
+
+    public void setGenerateApiInterna(boolean generateApiInterna) {
+        this.generateApiInterna = generateApiInterna;
+    }
+
+    public boolean isGenerateApiExterna() {
+        return generateApiExterna;
+    }
+
+    public void setGenerateApiExterna(boolean generateApiExterna) {
+        this.generateApiExterna = generateApiExterna;
     }
 
     public static String getDBManagerName(String projectName) {

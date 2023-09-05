@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
@@ -47,10 +48,18 @@ public class ExempleSeguritzatService {
 	@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(operationId = "echo", summary = "Fa un ECHO", tags = { TAG })
-    @ApiResponse(
+    @ApiResponses(
+            value = {
+        @ApiResponse(
             responseCode = "200",
             description = "Respon el valor enviat per paràmetre",
-            content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = String.class)))      
+            content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = String.class))),
+        @ApiResponse(
+            responseCode = "510",
+            description = "Només s'utilitza per crear fitxer de constants...",
+            content = { @Content(
+                    mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = ConstantsWs.class)) }) })
     public Response echo(@Parameter(
             description = "Cadena a retornar",
             required = false,

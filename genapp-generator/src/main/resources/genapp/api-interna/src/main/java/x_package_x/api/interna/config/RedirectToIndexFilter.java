@@ -1,4 +1,4 @@
-package ${package}.api.interna;
+package ${package}.api.interna.config;
 
 import java.io.IOException;
 

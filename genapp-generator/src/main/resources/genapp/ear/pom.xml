@@ -231,7 +231,7 @@
 
 
 
-<#if generatews>
+<#if generateapiexterna>
 		<!-- API REST de ${fullname} -->
 
 		<!-- API EXTERNA START -->
@@ -243,7 +243,8 @@
 			<type>war</type>
 		</dependency>
 		<!-- API EXTERNA END -->
-
+</#if>
+<#if generateapiinterna>
 		<!-- API INTERNA START -->
 		<!-- http://localhost:8080/${name}api/interna/index.html -->
 		<dependency>
@@ -342,9 +343,7 @@
 							<bundleFileName>${name}-ejb.jar</bundleFileName>
 						</ejbModule>
 
-						<#if generatews>
-						
-						
+						<#if generateapiexterna>
 						<!-- API EXTERNA START -->
 						<webModule>
 							<groupId>${package}</groupId>
@@ -353,6 +352,8 @@
 							<bundleFileName>${name}-api-externa.war</bundleFileName>
 						</webModule>
 						<!-- API EXTERNA END -->
+						</#if>
+						<#if generateapiinterna>
 						<!-- API INTERNA START -->
 						<webModule>
 							<groupId>${package}</groupId>
@@ -361,7 +362,6 @@
 							<bundleFileName>${name}-api-interna.war</bundleFileName>
 						</webModule>
 						<!-- API INTERNA END -->
-
 						</#if>
 					</modules>
 

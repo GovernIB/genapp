@@ -1,4 +1,4 @@
-package ${package}.api.externa;
+package ${package}.api.externa.config;
 
 import java.io.IOException;
 

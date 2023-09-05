@@ -78,6 +78,8 @@ public class RebApp extends JFrame {
     public static final File lastConfigFile = new File("lastconfig.properties");
     public static final Properties lastConfig = new Properties();
 
+    protected static File dstDir = null;
+
     static {
         if (lastConfigFile.exists()) {
             try {
@@ -141,20 +143,37 @@ public class RebApp extends JFrame {
 
             if (SharedData.project == ProjectType.GENERATE) {
 
-                JFileChooser dstDirDlg = new JFileChooser(getDirectoryOfLastGeneration());
+                boolean showMessage = false;
+                if (dstDir == null) {
 
-                dstDirDlg.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    showMessage = true;
 
-                dstDirDlg.setDialogTitle("Seleccioni el directori on generar el codi del projecte.");
+                    JFileChooser dstDirDlg = new JFileChooser(getDirectoryOfLastGeneration());
 
-                // opens dialog if button clicked
-                if (dstDirDlg.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    dstDirDlg.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-                    File dstDir = dstDirDlg.getSelectedFile();
+                    dstDirDlg.setDialogTitle("Seleccioni el directori on generar el codi del projecte.");
+
+                    // opens dialog if button clicked
+                    if (dstDirDlg.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+
+                        dstDir = dstDirDlg.getSelectedFile();
+                    }
+                }
+
+                if (dstDir != null) {
                     try {
                         File project = CodeGenerator.generateCode(SharedData.data, dstDir);
-                        JOptionPane.showMessageDialog(null, "Generat el codi dins " + project.getAbsolutePath(), "Info",
-                                JOptionPane.INFORMATION_MESSAGE);
+
+                        String msg = "Generat el codi dins " + project.getAbsolutePath();
+
+                        if (showMessage) {
+                            JOptionPane.showMessageDialog(null, msg, "Info", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            System.out.println();
+                            System.out.println(msg);
+                            System.out.println();
+                        }
 
                         saveDirectoryOfLastGeneration(dstDir);
                         saveLastConfig();
@@ -263,16 +282,16 @@ public class RebApp extends JFrame {
     }
 
     public static void main(String[] args) {
-        
-        
+
         if (!"UTF-8".equalsIgnoreCase(System.getProperty("file.encoding"))) {
             System.err.println("\n\nfile.encoding=" + System.getProperty("file.encoding"));
-            System.err.println("Editi el genapp.bat/.sh i abans de la cridada a 'mvn exec:java' inclogui el següent codi:\n"
-                   + " + Windows: set MAVEN_OPTS=-Dfile.encoding=UTF-8\n"
-                   + " + Linux: export MAVEN_OPTS=-Dfile.encoding=UTF-8\n\n");
+            System.err.println(
+                    "Editi el genapp.bat/.sh i abans de la cridada a 'mvn exec:java' inclogui el següent codi:\n"
+                            + " + Windows: set MAVEN_OPTS=-Dfile.encoding=UTF-8\n"
+                            + " + Linux: export MAVEN_OPTS=-Dfile.encoding=UTF-8\n\n");
             System.exit(-1);
         }
-        
+
         /*
         Properties prop = System.getProperties();
         
@@ -280,14 +299,46 @@ public class RebApp extends JFrame {
             System.out.println(key + ": " + prop.getProperty(key.toString()));
         }
         */
-        
-        
 
         try {
-            final Object[] options = { /* "Nou Projecte", */"Nou projecte i SQL generació de taules base",
-                    "Actualitzar Projecte (Canvis BBDD)", "Editar Projecte", "Generar Codi Font" };
-            int n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", getGenAppTitle(),
-                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            int n = -2;
+            File selectedFile = null;
+
+            if (args == null || args.length == 0 || args.length > 2) {
+
+            } else {
+
+                selectedFile = new File(args[0]);
+
+                if (selectedFile.exists()) {
+
+                    if (args.length == 2) {
+                        // Generar Codi Font
+                        n = 3;
+                        dstDir = new File(args[1]);
+                        if (!dstDir.exists()) {
+                            dstDir = null;
+                        }
+                    }
+
+                    if (dstDir == null) {
+                        // Actualitzar BBDD
+                        n = 1;
+                    }
+                }
+
+            }
+
+            if (n == -2) {
+                final Object[] options = { "Nou projecte i SQL generació de taules base", /*  == 0 */
+                        "Actualitzar Projecte (Canvis BBDD)", /*  == 1 */
+                        "Editar Projecte", /*  == 2 */
+                        "Generar Codi Font" /*  == 3 */
+                };
+                n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", getGenAppTitle(),
+                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            }
 
             log.info(" NUMERO -> " + n);
 
@@ -306,22 +357,25 @@ public class RebApp extends JFrame {
                 case 1:
                 case 2:
                 case 3: {
-                    // new dialog
-                    JFileChooser loadEmp = new JFileChooser(getDirectoryOfLastFile());
-                    // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB");
+                    if (selectedFile == null) {
+                        // new dialog
+                        JFileChooser loadEmp = new JFileChooser(getDirectoryOfLastFile());
+                        // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB");
 
-                    FileNameExtensionFilter filterm3u = new FileNameExtensionFilter("GenApp file (.genappjson)",
-                            "genappjson");
-                    loadEmp.addChoosableFileFilter(filterm3u);
-                    loadEmp.setFileFilter(filterm3u);
+                        FileNameExtensionFilter filterm3u = new FileNameExtensionFilter("GenApp file (.genappjson)",
+                                "genappjson");
+                        loadEmp.addChoosableFileFilter(filterm3u);
+                        loadEmp.setFileFilter(filterm3u);
 
-                    loadEmp.setDialogTitle("Seleccioni un arxiu .genappjson");
-                    File selectedFile;
+                        loadEmp.setDialogTitle("Seleccioni un arxiu .genappjson");
 
-                    // opens dialog if button clicked
-                    if (loadEmp.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        // gets file from dialog
-                        selectedFile = loadEmp.getSelectedFile();
+                        // opens dialog if button clicked
+                        if (loadEmp.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                            // gets file from dialog
+                            selectedFile = loadEmp.getSelectedFile();
+                        }
+                    }
+                    if (selectedFile != null) {
 
                         Project project = readProjectFromFile(selectedFile);
 
@@ -407,8 +461,6 @@ public class RebApp extends JFrame {
 
                 default:
             }
-            
-            
 
         } catch (Exception e) {
             // TODO Mostrar en un dialeg
@@ -417,27 +469,40 @@ public class RebApp extends JFrame {
         }
 
     }
-    
-    
+
     public static String getGenAppTitle() {
         return "GenApp v2 2015-" + Calendar.getInstance().get(Calendar.YEAR);
     }
 
     public static Project readProjectFromFile(File selectedFile) throws Exception {
 
+        Project project;
         if (selectedFile.getName().endsWith(".genapp")) {
             FileInputStream fis = new FileInputStream(selectedFile);
             XMLDecoder dec = new XMLDecoder(fis);
-            Project project = (Project) dec.readObject();
+            project = (Project) dec.readObject();
             dec.close();
-            return project;
+
         } else {
             Gson gson = RebApp.instantiateGSon();
             FileReader fr = new FileReader(selectedFile);
-            Project project = gson.fromJson(fr, Project.class);
+            project = gson.fromJson(fr, Project.class);
             fr.close();
-            return project;
         }
+
+        checkGenerateWs(project);
+
+        return project;
+    }
+
+    @SuppressWarnings("deprecation")
+    protected static void checkGenerateWs(Project project) {
+        Boolean generateWs = project.isGenerateWS();
+        if (generateWs != null) {
+            project.setGenerateApiExterna(generateWs);
+            project.setGenerateApiInterna(generateWs);
+        }
+        project.setGenerateWS(null);
     }
 
     @Deprecated
@@ -514,8 +579,8 @@ public class RebApp extends JFrame {
                 System.err.println(" ================= ");
                 System.err.println(" String => " + name);
                 System.err.println(" Class<?> => " + classe);
-                throw new IOException("No es troba classe per la cadena ]" + name + "[. Revisar el map STRINGTOCLASS de "
-                        + SQL2Java.class.getName());
+                throw new IOException("No es troba classe per la cadena ]" + name
+                        + "[. Revisar el map STRINGTOCLASS de " + SQL2Java.class.getName());
             }
 
             return classe;

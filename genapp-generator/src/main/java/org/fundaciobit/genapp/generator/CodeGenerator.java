@@ -465,10 +465,13 @@ public class CodeGenerator {
         generateUtils(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
 
         // ===============================================
-        // ================== REST (WebServices) ======================
+        // ================== REST (WebServices) =========
         // ===============================================
-        if (project.isGenerateWS()) {
+
+        if (project.isGenerateApiExterna()) {
             generateApiRestExterna(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion);
+        } 
+        if (project.isGenerateApiInterna()) {
             generateApiRestInterna(project, projectDir, packagePath, moduls, tables, resourceBase, appCurrentVersion);
         }
 
@@ -567,7 +570,8 @@ public class CodeGenerator {
 
             prop.put("maven_build_timestamp", "${maven.build.timestamp}");
 
-            prop.put("generatews", project.isGenerateWS());
+            prop.put("generateapiexterna", project.isGenerateApiExterna());
+            prop.put("generateapiinterna", project.isGenerateApiInterna());
             prop.put("generateback", project.isGenerateBack());
             prop.put("generatefront", project.isGenerateFront());
 
@@ -1050,7 +1054,9 @@ public class CodeGenerator {
 
             prop.put("prefixLowercase", project.getPrefix().toLowerCase());
 
-            prop.put("generatews", project.isGenerateWS());
+            prop.put("generateapiexterna", project.isGenerateApiExterna());
+            prop.put("generateapiinterna", project.isGenerateApiInterna());
+
             prop.put("basedir", "${basedir}");
             prop.put("hibernate", "${hibernate}");
             prop.put("hibernate_dialect", "${hibernate.dialect}");

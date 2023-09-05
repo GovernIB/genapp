@@ -1264,5 +1264,6 @@
   ],
   "generateBack": true,
   "generateFront": true,
-  "generateWS": true
+  "generateApiInterna": true,
+  "generateApiExterna": true
 }

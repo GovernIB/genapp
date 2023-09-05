@@ -2,18 +2,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <artifactId>${name}</artifactId>
         <groupId>${package}</groupId>
         <version>${app_current_version}</version>
     </parent>
-
     <artifactId>${name}-api-externa</artifactId>
     <packaging>war</packaging>
     <name>${fullname} - API Rest - Externa</name>
     <version>1.0</version>
-
     <properties>
         <auth.method>BASIC</auth.method>
         <client.default.package>${package}.apiexterna.client</client.default.package>
@@ -53,48 +50,33 @@
             <version>${app_current_version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
+
         <!-- Anotacions de documentació de openapi -->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>2.1.13</version>
-        </dependency>
-        <!-- Dependències de test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Llibreries necessàries implementació client JAX-RS Només són 
-            necessàries perquè al test el client s'executa fora del servidor d'aplicacions. -->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-json-binding-provider</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>commons-logging-jboss-logging</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Per tests amb Arquillian -->
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
+            <!-- <version>2.1.13</version> -->
+            <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+        </dependency>
+
+        <dependency>
+            <artifactId>pluginsib-utils-rest</artifactId>
+            <groupId>org.fundaciobit.pluginsib.utils</groupId>
+            <version>2.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <!-- Esta en LIB de l'EAR -->
+                    <groupId>org.fundaciobit.pluginsib.core</groupId>
+                    <artifactId>pluginsib-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
-
     <build>
         <finalName>${symbol_dollar}{project.artifactId}</finalName>
         <plugins>
@@ -102,15 +84,18 @@
                 el posarem l'arrel del WAR -->
             <!-- https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-maven-plugin -->
             <plugin>
+
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
-                <version>2.2.0</version>
+                <version>2.2.15</version>
                 <configuration>
                     <outputFileName>openapi</outputFileName>
-                    <outputPath>${symbol_dollar}{project.build.directory}/openapi/</outputPath>
-                    <outputFormat>JSONANDYAML</outputFormat>
+                    <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
+                    <outputFormat>JSON</outputFormat>
                     <resourcePackages>
-                        <package>${package}.api.externa</package>
+                        <package>${package}.api.externa.config</package>
+                        <package>${package}.api.externa.all</package>
+                        <package>${package}.api.externa.secure</package>
                     </resourcePackages>
                     <prettyPrint>TRUE</prettyPrint>
                 </configuration>
@@ -126,48 +111,47 @@
             <!-- Genera el Client Rest per Java a partir del fitxer openapi.json -->
             <!-- https://github.com/swagger-api/swagger-codegen/blob/master/modules/swagger-codegen-maven-plugin/README.md#general-configuration-parameters -->
             <plugin>
+                <!--
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
                 <version>3.0.27</version>
+                -->
+                <!-- https://openapi-generator.tech/docs/generators/java/ -->
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
 
                 <executions>
                     <execution>
+                        <phase>install</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <phase>install</phase>
                         <configuration>
-                            <inputSpec>${symbol_dollar}{project.basedir}/target/openapi/openapi.json</inputSpec>
-                            <language>java</language>
+                            <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi.json</inputSpec>
+                            <generatorName>java</generatorName>
+                            <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
                             <library>resteasy</library>
-                            <configOptions>
-                                <groupId>${package}</groupId>
-                                <artifactId>${name}-api-externa-client</artifactId>
-                                <artifactVersion>1.0</artifactVersion>
-                                <dateLibrary>joda</dateLibrary>
-                                <useTags>true</useTags>
-                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
-								<artifactDescription>GenAppSqlTutorial - API Rest - Externa Client</artifactDescription>
-                            </configOptions>
-
-                            <!-- <ignoreFileOverride>${symbol_dollar}{project.basedir}/.swagger-codegen-ignore</ignoreFileOverride> -->
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->
-                            <!--<library>jersey2</library>  -->
-                            <!--<library>resttemplate</library>  -->
-                            <!--<configOptions>  -->
-                            <!--    <dateLibrary>joda</dateLibrary>  -->
-                            <!--</configOptions>  -->
-                            <!--<supportingFilesToGenerate>mvn</supportingFilesToGenerate> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <output>${symbol_dollar}{project.basedir}/../${name}-api-externa-client</output>
                             <apiPackage>${symbol_dollar}{client.default.package}.api</apiPackage>
                             <modelPackage>${symbol_dollar}{client.default.package}.model</modelPackage>
                             <invokerPackage>${symbol_dollar}{client.default.package}.services</invokerPackage>
                             <variableNamingConvention>camelCase</variableNamingConvention>
-                            <!-- <serializableModel>true</serializableModel> -->
                             <fullJavaUtil>true</fullJavaUtil>
+                            <configOptions>
+                                <groupId>${package}</groupId>
+                                <artifactId>${name}-api-externa-client</artifactId>
+                                <artifactVersion>1.0</artifactVersion>
+                                <artifactDescription>${name} - API Rest - Externa Client</artifactDescription>
+                                <dateLibrary>java8</dateLibrary>
+                                <useTags>true</useTags>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <java11>true</java11>
+                            </configOptions>
                         </configuration>
                     </execution>
                 </executions>
@@ -231,7 +215,7 @@
                             <directory>${symbol_dollar}{project.build.directory}/swagger-ui-${symbol_dollar}{swagger-ui.version}/dist</directory>
                         </resource>
                         <resource>
-                            <directory>${symbol_dollar}{project.build.directory}/openapi</directory>
+                            <directory>${symbol_dollar}{project.basedir}/openapi</directory>
                         </resource>
                     </webResources>
                 </configuration>
@@ -249,7 +233,7 @@
                             <goal>rename</goal>
                         </goals>
                         <configuration>
-                            <sourceFile>${basedir}/../${name}-api-externa-client/.gitignore</sourceFile>
+                            <sourceFile>${symbol_dollar}{basedir}/../${name}-api-externa-client/.gitignore</sourceFile>
                             <destinationFile>${symbol_dollar}{project.build.directory}/client_gitignore_renamed.txt</destinationFile>
                         </configuration>
                     </execution>
@@ -295,33 +279,4 @@
         </pluginManagement>
     </build>
 
-    <profiles>
-        <!-- Realitza els tests arrancant automàticament un JBoss ubicat 
-            a la variable d'entorn JBOSS_HOME -->
-        <profile>
-            <id>arq-jboss-managed</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <!-- Realitza els tests connectant a una instància de JBoss en marxa 
-            a localhost -->
-        <profile>
-            <id>arq-jboss-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.wildfly.arquillian</groupId>
-                    <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 </project>

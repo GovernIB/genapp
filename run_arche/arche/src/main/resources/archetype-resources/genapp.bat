@@ -22,5 +22,5 @@ IF %jver% LSS 11 (
   exit /b 1
 ) ELSE (
   set MAVEN_OPTS=-Dfile.encoding=UTF-8
-  call mvn exec:java
+  call mvn exec:java -Dexec.args="%*"
 )

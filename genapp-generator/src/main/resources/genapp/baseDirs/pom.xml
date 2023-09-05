@@ -175,6 +175,12 @@
                 <scope>test</scope>
             </dependency>
             <!--  REST SERVICES -->
+            <!-- Anotacions de documentació de openapi -->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>2.1.13</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.fge</groupId>
                 <artifactId>jackson-coreutils</artifactId>
@@ -421,7 +427,7 @@
                         <!-- Per detectar problemes de dependències -->
                         <banDuplicatePomDependencyVersions/>
                         <dependencyConvergence/>
-                        <#if !generatews>
+                        <#if !generateapiinterna && !generateapiexterna>
                         <reactorModuleConvergence/>
                     </#if>
                 </rules>
@@ -483,7 +489,7 @@
                 </pluginManagement>
             </build>
         </profile>
-        <#if generatews>
+        <#if generateapiexterna>
         <profile>
             <id>api-externa-client</id>
             <activation>
@@ -495,6 +501,8 @@
                 <module>${prefixdirectori}api-externa-client</module>
             </modules>
         </profile>
+        </#if>
+        <#if generateapiinterna>
         <profile>
             <id>api-interna-client</id>
             <activation>
@@ -506,6 +514,6 @@
                 <module>${prefixdirectori}api-interna-client</module>
             </modules>
         </profile>
-    </#if>
+        </#if>
     </profiles>
 </project>

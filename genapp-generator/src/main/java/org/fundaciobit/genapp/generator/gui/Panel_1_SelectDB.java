@@ -80,9 +80,13 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
   
   JLabel etiGenerateFront = new JLabel();
   JCheckBox generateFront = new JCheckBox();
+
   
-  JLabel etiGenerateWs = new JLabel();
-  JCheckBox generateWs = new JCheckBox();
+  JLabel etiGenerateApiExterna = new JLabel();
+  JCheckBox generateApiExterna = new JCheckBox();
+  
+  JLabel etiGenerateApiInterna = new JLabel();
+  JCheckBox generateApiInterna = new JCheckBox();
   
 
   public Panel_1_SelectDB() {
@@ -107,7 +111,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     // ==================== Panel Centro
 
     GridLayout gridLayout1 = new GridLayout();
-    gridLayout1.setRows(13);
+    gridLayout1.setRows(14);
     gridLayout1.setColumns(2);
     gridLayout1.setHgap(10);
     gridLayout1.setVgap(10);
@@ -306,10 +310,11 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     }
     
     
-    // generate WS
-    etiGenerateWs.setText("Generar Serveis REST");
-    etiGenerateWs.setHorizontalAlignment(SwingConstants.RIGHT);
-    panelCentro.add(etiGenerateWs, null);
+    // generate API Externa
+    {
+    etiGenerateApiExterna.setText("Generar Api Externa REST");
+    etiGenerateApiExterna.setHorizontalAlignment(SwingConstants.RIGHT);
+    panelCentro.add(etiGenerateApiExterna, null);
 
     {
       VerticalFlowLayout layout7 = new VerticalFlowLayout();
@@ -317,7 +322,24 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
       JPanel jPanel7 = new JPanel();
       jPanel7.setLayout(layout7);
       panelCentro.add(jPanel7, null);
-      jPanel7.add(generateWs,  BorderLayout.CENTER);
+      jPanel7.add(generateApiExterna,  BorderLayout.CENTER);
+    }
+    }
+    
+ // generate API Interna
+    {
+    etiGenerateApiInterna.setText("Generar Api Interna REST");
+    etiGenerateApiInterna.setHorizontalAlignment(SwingConstants.RIGHT);
+    panelCentro.add(etiGenerateApiInterna, null);
+
+    {
+      VerticalFlowLayout layout7 = new VerticalFlowLayout();
+      layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+      JPanel jPanel7 = new JPanel();
+      jPanel7.setLayout(layout7);
+      panelCentro.add(jPanel7, null);
+      jPanel7.add(generateApiInterna,  BorderLayout.CENTER);
+    }
     }
     
     
@@ -374,7 +396,8 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         idiomes.setText("ca,es");
         generateBack.setSelected(true);
         generateFront.setSelected(true);
-        generateWs.setSelected(true);
+        generateApiExterna.setSelected(false);
+        generateApiInterna.setSelected(false);
         usr.setText("username");
         pwd.setText("password");
         
@@ -463,7 +486,9 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         idiomes.setText(langs.substring(1,langs.length() - 1));
         generateBack.setSelected(proj.isGenerateBack());
         generateFront.setSelected(proj.isGenerateFront());
-        generateWs.setSelected(proj.isGenerateWS());
+
+        generateApiExterna.setSelected(proj.isGenerateApiExterna());
+        generateApiInterna.setSelected(proj.isGenerateApiInterna());
         
       break;
       
@@ -536,8 +561,9 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
 
     SharedData.data.setGenerateBack(generateBack.isSelected());
     SharedData.data.setGenerateFront(generateFront.isSelected());
-    
-    SharedData.data.setGenerateWS(generateWs.isSelected());
+
+    SharedData.data.setGenerateApiExterna(generateApiExterna.isSelected());
+    SharedData.data.setGenerateApiInterna(generateApiInterna.isSelected());
     
 
     String urltxt = this.url.getText();
