@@ -32,19 +32,21 @@ import io.swagger.v3.oas.annotations.media.Content;
  */
 @Path("/secure/exempleseguritzat")
 @OpenAPIDefinition(tags = { @Tag(name = ExempleSeguritzatService.TAG , description = "Exemple de Servei Securitzat"), })
-@SecurityScheme(type = SecuritySchemeType.HTTP, name = "BasicAuth", scheme = "basic")
+@SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleSeguritzatService.SEC, scheme = "basic")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ExempleSeguritzatService {
     
     protected static final String TAG = "ExempleSeguritzat";
+    
+    protected static final String SEC = "BasicAuth";
 
     protected static final Logger log = Logger.getLogger(ExempleSeguritzatService.class);
 
     @Path("/echo")
     @GET
     @RolesAllowed({ Constants.${prefix}_ADMIN, Constants.${prefix}_USER })
-	@SecurityRequirement(name = "BasicAuth")  
+	@SecurityRequirement(name = SEC)  
 	@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(operationId = "echo", summary = "Fa un ECHO", tags = { TAG })

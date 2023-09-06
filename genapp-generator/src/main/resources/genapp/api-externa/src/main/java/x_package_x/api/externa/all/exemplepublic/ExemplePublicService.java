@@ -32,17 +32,19 @@ import io.swagger.v3.oas.annotations.media.Content;
 @Path("/public/exemplepublic")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@OpenAPIDefinition(tags = @Tag(name = "ExemplePublicService", description = "Exemple de Servei JSON d'accés Públic"))
+@OpenAPIDefinition(tags = @Tag(name = ExemplePublicService.TAG_NAME, description = "Exemple de Servei JSON d'accés Públic"))
 public class ExemplePublicService {
 
     protected static Logger log = Logger.getLogger(ExemplePublicService.class);
+    
+    public static final String TAG_NAME = "Versio";
 
     @Path("/versio")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(
-            tags = "Versió",
+            tags = TAG_NAME,
             operationId = "versio",
             summary = "Versio de l'Aplicació",
             method = "get")
