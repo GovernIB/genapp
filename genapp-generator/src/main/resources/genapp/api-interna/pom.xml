@@ -88,34 +88,31 @@
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
                 <version>2.2.15</version>
-                <configuration>
-                    <outputFileName>openapi</outputFileName>
-                    <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
-                    <outputFormat>JSON</outputFormat>
-                    <resourcePackages>
-                        <package>${package}.api.interna.config</package>
-                        <package>${package}.api.interna.all</package>
-                        <package>${package}.api.interna.secure</package>
-                    </resourcePackages>
-                    <prettyPrint>TRUE</prettyPrint>
-                </configuration>
+
                 <executions>
                     <execution>
+                        <id>openapi1</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
+                        <configuration>
+                            <contextId>openapi1</contextId>
+                            <outputFileName>openapi</outputFileName>
+                            <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
+                            <outputFormat>JSON</outputFormat>
+                            <resourcePackages>
+                                <package>${package}.api.interna.config</package>
+                                <package>${package}.api.interna.all</package>
+                                <package>${package}.api.interna.secure</package>
+                            </resourcePackages>
+                            <prettyPrint>TRUE</prettyPrint>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
             <!-- Genera el Client Rest per Java a partir del fitxer openapi.json -->
-            <!-- https://github.com/swagger-api/swagger-codegen/blob/master/modules/swagger-codegen-maven-plugin/README.md#general-configuration-parameters -->
             <plugin>
-                <!--
-                <groupId>io.swagger.codegen.v3</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>3.0.27</version>
-                -->
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -140,8 +137,7 @@
                             <apiPackage>${symbol_dollar}{client.default.package}.api</apiPackage>
                             <modelPackage>${symbol_dollar}{client.default.package}.model</modelPackage>
                             <invokerPackage>${symbol_dollar}{client.default.package}.services</invokerPackage>
-                            <variableNamingConvention>camelCase</variableNamingConvention>
-                            <fullJavaUtil>true</fullJavaUtil>
+                            <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <groupId>${package}</groupId>
                                 <artifactId>${name}-api-interna-client</artifactId>
