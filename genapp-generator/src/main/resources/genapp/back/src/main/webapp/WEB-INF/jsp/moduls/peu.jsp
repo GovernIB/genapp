@@ -37,7 +37,7 @@
 				<fmt:message key="labels.accessibilitat" />
 			</a><br /> <a styleClass="text-dark linkPeu" href="/protecciodades">
 				<fmt:message key="labels.protecciodades" />
-			</a><br /> <a styleClass="text-dark linkPeu" href="/avislegal"> <fmt:message
+			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/avislegal"/>"> <fmt:message
 					key="labels.avislegal" />
 			</a>
 
