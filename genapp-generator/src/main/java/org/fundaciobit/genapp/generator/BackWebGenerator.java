@@ -1518,6 +1518,17 @@ public class BackWebGenerator extends IconUtils {
 		code.append("        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/all/homepublic.jsp\" />\n");
 		code.append("    </definition>\n");
 		code.append("\n");
+		
+		code.append("   <definition name=\"avislegal_ca\" extends=\"base.definition\">\r\n"
+		        + "        <put-attribute name=\"menu\" value=\"/WEB-INF/jsp/moduls/menu_inici.jsp\" />\n"
+		        + "        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/all/avislegal_ca.jsp\" />\n"
+		        + "   </definition>\n"
+		        + "\n"
+		        + "   <definition name=\"avislegal_es\" extends=\"base.definition\">\r\n"
+		        + "        <put-attribute name=\"menu\" value=\"/WEB-INF/jsp/moduls/menu_inici.jsp\" />\n"
+		        + "        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/all/avislegal_es.jsp\" />\n"
+		        + "    </definition>");
+		code.append("\n");
 		code.append("\n");
 		code.append("    <definition name=\"homepublic\" extends=\"all\">\n");
 		code.append("        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/all/homepublic.jsp\" />\n");

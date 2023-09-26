@@ -3,6 +3,7 @@ package ${package}.back.controller.all;
 import org.apache.log4j.Logger;
 
 import org.fundaciobit.genapp.common.web.HtmlUtils;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import ${package}.commons.utils.Version;
 
@@ -35,7 +36,7 @@ public class PublicController {
 		Boolean initialized = (Boolean) session.getAttribute("inicialitzat");
 
 		if (initialized == null) {
-			HtmlUtils.saveMessageInfo(request, "MessageInfo : Benvingut a ${fullname}");
+			HtmlUtils.saveMessageInfo(request, "Benvingut a ${fullname}");
 			session.setAttribute("inicialitzat", true);
 		}
 
@@ -50,6 +51,20 @@ public class PublicController {
         response.getWriter().flush();
         response.getWriter().close();
 
+    }
+    
+    
+    @RequestMapping(value = "/public/avislegal")
+    public ModelAndView avislegal(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        String lang = LocaleContextHolder.getLocale().getLanguage();
+        
+        if ("es".equals(lang)) {
+            return new ModelAndView("avislegal_es");
+        } else {
+            return new ModelAndView("avislegal_ca");
+        }
     }
 
 }
