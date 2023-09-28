@@ -94,19 +94,19 @@ public class LoginInfo {
         try {
             obj = SecurityContextHolder.getContext().getAuthentication().getDetails();
         } catch (Exception e) {
-            // TODO traduccio
+            // No TRADUIR !!!!
             throw new LoginException("Error intentant obtenir informació de Login.", e);
         }
 
         if (obj == null) {
-            // TODO traduccio
+            // No TRADUIR !!!!
             throw new LoginException("La informació de Login és buida");
         }
 
         if (obj instanceof LoginInfo) {
             return (LoginInfo) obj;
         } else {
-            // TODO traduccio
+            // No TRADUIR !!!!
             throw new LoginException("La informació de Login no és del tipus esperat." + " Hauria de ser de tipus "
                     + LoginInfo.class.getName() + " i és del tipus " + obj.getClass().getName());
         }
