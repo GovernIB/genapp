@@ -39,9 +39,17 @@ public class IconUtils {
 	
 	public static final String ICON_WARNING = "fas fa-exclamation-triangle";
 	
+	public static final String ICON_OK_CIRCLE = "fas fa-check-circle";
+	
 	public static final String ICON_BELL ="fas fa-bell";
 	
 	public static final String ICON_FILE_DOWNLOAD= "fas fa-file-download";
+
+	public static final String ICON_USER = "fas fa-user";
+	
+	public static final String ICON_BAN_CIRCLE= "fas fa-ban";
+	
+	public static final String ICON_PRINT= "fas fa-print"; // Printer - Impressora
 
 	
 	public static final String getWhite(String icon) {

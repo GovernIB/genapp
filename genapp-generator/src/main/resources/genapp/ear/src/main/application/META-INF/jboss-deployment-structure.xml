@@ -6,7 +6,7 @@
     -->
 	<deployment>
         <dependencies>
-            <module name="org.hibernate" />
+            <module name="org.hibernate" slot="5.3" export="TRUE" />
 			<module name="org.keycloak.keycloak-core" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-adapter-spi" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-adapter-subsystem" optional="TRUE"/>
