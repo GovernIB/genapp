@@ -1,4 +1,4 @@
-package ${package}.api.interna.secured.exempleenumsecuritzat;
+package ${package}.api.interna.secure.exempleenumsecuritzat;
 
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +57,7 @@ import ${package}.commons.utils.Constants;
  * @author anadal
  *
  */
-@Path("/secured/exempleenum")
+@Path("/secure/exempleenum")
 @OpenAPIDefinition(
         tags = @Tag(name = ExempleEnumSecuritzatService.TAG_NAME, description = "Notificacions a l'APP de Carpeta (missateg a Mòbil)"))
 @Produces(MediaType.APPLICATION_JSON)

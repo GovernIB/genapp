@@ -3,33 +3,32 @@ package ${package}.back.security;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import ${package}.commons.utils.Configuracio;
 import ${package}.commons.utils.Constants;
-import org.fundaciobit.genapp.common.i18n.I18NArgumentCode;
-//import ${package}.back.security.LoginInfo;
+
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.i18n.I18NValidationException;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
 import org.fundaciobit.pluginsib.core.utils.PluginsManager;
 import org.fundaciobit.pluginsib.userinformation.IUserInformationPlugin;
 import org.fundaciobit.pluginsib.userinformation.UserInfo;
-//import ${package}.back.security.LoginInfo;
+
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
-import ${package}.commons.utils.Constants;
-import ${package}.back.security.LoginException;
+
+
 
 /**
  * 

@@ -1,4 +1,4 @@
-package ${package}.api.externa.secured.exemplesecuritzat;
+package ${package}.api.externa.secure.exemplesecuritzat;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;

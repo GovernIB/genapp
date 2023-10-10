@@ -21,9 +21,8 @@ import org.fundaciobit.pluginsib.core.utils.PluginsManager;
 import org.fundaciobit.pluginsib.exportdata.IExportDataPlugin;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-import $
-import es.caib.digitalib.commons.utils.Configuracio;
 import ${package}.commons.utils.Constants;
+import ${package}.hibernate.HibernateFileUtil;
 import ${package}.logic.utils.I18NLogicUtils;
 import ${package}.logic.utils.LogicUtils;
 import ${package}.commons.utils.Configuracio;

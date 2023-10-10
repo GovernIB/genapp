@@ -1,4 +1,4 @@
-package ${package}.api.externa.secured.exemplesecuritzat;
+package ${package}.api.externa.secure.exemplesecuritzat;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;

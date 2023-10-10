@@ -1,4 +1,4 @@
-package ${package}.api.interna.secured.exempleenumsecuritzat;
+package ${package}.api.interna.secure.exempleenumsecuritzat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
