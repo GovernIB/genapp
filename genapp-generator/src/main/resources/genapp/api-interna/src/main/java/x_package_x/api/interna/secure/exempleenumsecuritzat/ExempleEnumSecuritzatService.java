@@ -1,5 +1,9 @@
 package ${package}.api.interna.secure.exempleenumsecuritzat;
 
+import ${package}.commons.utils.Constants;
+import ${package}.logic.utils.I18NLogicUtils;
+
+
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,17 +24,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.Response.Status;
 
-
 import org.apache.log4j.Logger;
-import org.fundaciobit.genapp.common.i18n.I18NCommonUtils;
 import org.fundaciobit.genapp.common.i18n.I18NException;
-import org.fundaciobit.genapp.common.query.OrderBy;
-import org.fundaciobit.genapp.common.query.OrderType;
-import org.fundaciobit.genapp.common.query.Where;
 import org.fundaciobit.pluginsib.utils.rest.RestException;
 import org.fundaciobit.pluginsib.utils.rest.RestExceptionInfo;
 import org.fundaciobit.pluginsib.utils.rest.RestUtils;
@@ -50,8 +48,6 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 
-import ${package}.commons.utils.Constants;
-
 /**
  *
  * @author anadal
@@ -59,7 +55,9 @@ import ${package}.commons.utils.Constants;
  */
 @Path("/secure/exempleenum")
 @OpenAPIDefinition(
-        tags = @Tag(name = ExempleEnumSecuritzatService.TAG_NAME, description = "Notificacions a l'APP de Carpeta (missateg a Mòbil)"))
+        tags = @Tag(
+                name = ExempleEnumSecuritzatService.TAG_NAME,
+                description = "Notificacions a l'APP de Carpeta (missateg a Mòbil)"))
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleEnumSecuritzatService.SECURITY_NAME, scheme = "basic")
@@ -152,11 +150,11 @@ public class ExempleEnumSecuritzatService extends RestUtils {
         MAP_TIPUS_DOCUMENTAL.put("35_es", "Comparecencia");
 
     }
-    
+
     @Path("/sendnotificationtomobile")
-	@GET
+    @GET
 	@RolesAllowed({ Constants.${prefix}_WS })
-	@SecurityRequirement(name = ExempleEnumSecuritzatService.SECURITY_NAME)
+    @SecurityRequirement(name = ExempleEnumSecuritzatService.SECURITY_NAME)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(
@@ -166,6 +164,12 @@ public class ExempleEnumSecuritzatService extends RestUtils {
     @ApiResponses(
             value = {
                     @ApiResponse(
+                            responseCode = "200",
+                            description = "Operació realitzada correctament",
+                            content = { @Content(
+                                    mediaType = MediaType.APPLICATION_JSON,
+                                    schema = @Schema(implementation = SendMessageResult.class)) }),
+                    @ApiResponse(
                             responseCode = "400",
                             description = "Paràmetres incorrectes",
                             content = { @Content(
@@ -174,7 +178,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
                     @ApiResponse(
                             responseCode = "401",
                             description = "No Autenticat",
-                            content ={ @Content(
+                            content = { @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
                                     schema = @Schema(implementation = String.class)) }),
                     @ApiResponse(
@@ -188,13 +192,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
                             description = "Error no controlat",
                             content = { @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
-                                    schema = @Schema(implementation = RestExceptionInfo.class)) }),
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Enviat missatge correctament",
-                            content = { @Content(
-                                    mediaType = MediaType.APPLICATION_JSON,
-                                    schema = @Schema(implementation = SendMessageResult.class)) }) })
+                                    schema = @Schema(implementation = RestExceptionInfo.class)) }) })
     public SendMessageResult sendNotificationToMobile(
 
             @Parameter(
@@ -202,18 +200,16 @@ public class ExempleEnumSecuritzatService extends RestUtils {
                     required = true,
                     example = "",
                     array = @ArraySchema(
-                            schema = @Schema(type = "string"))) @NotNull @QueryParam("notificationParameters")
-            String[] notificationParameters,
+                            schema = @Schema(
+                                    type = "string"))) @NotNull @QueryParam("notificationParameters") String[] notificationParameters,
 
             @Parameter(
                     description = "Idioma en que s'enviaran els missatges d'error",
                     required = true,
                     example = "ca",
                     schema = @Schema(implementation = String.class)) @Pattern(
-                            regexp = "^ca|es$") @QueryParam("langError")
-            String langError) {
-                                
-                                
+                            regexp = "^ca|es$") @QueryParam("langError") String langError) {
+
         langError = checkLanguage(langError);
 
         try {
@@ -222,12 +218,12 @@ public class ExempleEnumSecuritzatService extends RestUtils {
 
                 case 0:
                     // Simula un error en els paràmetres
-                    throw new RestException("El codi de notificacio és null o buit.",  Status.BAD_REQUEST);
+                    throw new RestException("El codi de notificacio és null o buit.", Status.BAD_REQUEST);
 
                 case 1:
                     // Simula un error en els paràmetres
                     throw new RestException("El codi de notificacio 'notificationCode' no està registrat.",
-                             Status.BAD_REQUEST);
+                            Status.BAD_REQUEST);
 
                 case 2:
                     return generateMessageResult(SendMessageResultCode.UNKNOWN_ERROR,
@@ -268,43 +264,27 @@ public class ExempleEnumSecuritzatService extends RestUtils {
                 case 8:
 
                     return generateMessageResult(SendMessageResultCode.OK, null);
-                    
 
                 default:
                 case 9:
 
                     return generateMessageResult(SendMessageResultCode.ERROR_SENDING_NOTIFICATION, "Error");
             }
-        } catch (RestException oae) {
-            throw oae;
+
         } catch (Throwable th) {
 
-            String msg;
-            if (th instanceof I18NException) {
-                I18NException ie = (I18NException) th;
-                msg = I18NCommonUtils.getMessage(ie, new Locale(langError));
-            } else {
-                msg = th.getMessage();
-            }
-
-            log.error("Error desconegut en la cridada api rest: " + msg, th);
-
-            throw new RestException(msg, th, Status.INTERNAL_SERVER_ERROR); // 500
+            return processException("sendNotificationToMobile", langError, th);
 
         }
 
     }
 
-    
-    
     protected SendMessageResult generateMessageResult(SendMessageResultCode code, String msg) {
         SendMessageResult smr = new SendMessageResult();
         smr.setCode(code);
         smr.setMessage(msg);
         return smr;
-    } 
-
-
+    }
 
     @Path("/list")
     @GET
@@ -314,148 +294,154 @@ public class ExempleEnumSecuritzatService extends RestUtils {
     @Consumes({ RestUtils.MIME_APPLICATION_JSON })
     @Operation(tags = { TAG_NAME }, operationId = "list", summary = "Retorna un llistat de tipus documentals")
     @ApiResponses({
-        @ApiResponse(
-                responseCode = "400",
-                description = "EFIB: Paràmetres incorrectes",
-                content = { @Content(
-                        mediaType = RestUtils.MIME_APPLICATION_JSON,
-                        schema = @Schema(implementation = RestExceptionInfo.class)) }),
-        @ApiResponse(
-                responseCode = "401",
-                description = "EFIB: No Autenticat",
-                content = { @Content(
-                        mediaType = RestUtils.MIME_APPLICATION_JSON,
-                        schema = @Schema(implementation = String.class)) }),
-        @ApiResponse(
-                responseCode = "403",
-                description = "EFIB: No Autoritzat",
-                content = { @Content(
-                        mediaType = RestUtils.MIME_APPLICATION_JSON,
-                        schema = @Schema(implementation = String.class)) }),
-        @ApiResponse(
-                responseCode = "500",
-                description = "EFIB: Error durant la consulta de les dades obertes",
-                content = { @Content(
-                        mediaType = RestUtils.MIME_APPLICATION_JSON,
-                        schema = @Schema(implementation = RestExceptionInfo.class)) }),
-        @ApiResponse(
-                responseCode = "200",
-                description = "EFIB: Retornades dades obertes correctament",
-                content = { @Content(
-                        mediaType = RestUtils.MIME_APPLICATION_JSON,
-                        schema = @Schema(implementation = TipusDocumentalsPaginacio.class)) }) })
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "EFIB: Paràmetres incorrectes",
+                    content = { @Content(
+                            mediaType = RestUtils.MIME_APPLICATION_JSON,
+                            schema = @Schema(implementation = RestExceptionInfo.class)) }),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "EFIB: No Autenticat",
+                    content = { @Content(
+                            mediaType = RestUtils.MIME_APPLICATION_JSON,
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "EFIB: No Autoritzat",
+                    content = { @Content(
+                            mediaType = RestUtils.MIME_APPLICATION_JSON,
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "EFIB: Error durant la consulta de les dades obertes",
+                    content = { @Content(
+                            mediaType = RestUtils.MIME_APPLICATION_JSON,
+                            schema = @Schema(implementation = RestExceptionInfo.class)) }),
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "EFIB: Retornades dades obertes correctament",
+                    content = { @Content(
+                            mediaType = RestUtils.MIME_APPLICATION_JSON,
+                            schema = @Schema(implementation = TipusDocumentalsPaginacio.class)) }) })
     public TipusDocumentalsPaginacio list(@Parameter(
-        description = "Data d'inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades",
-        in = ParameterIn.QUERY,
-        required = false,
-        example = "2022-08-29",
-        schema = @Schema(implementation = String.class)) @QueryParam("inici") final String dataIniciRequest,
-        @Parameter(
-                description = "Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades",
-                in = ParameterIn.QUERY,
-                required = false,
-                example = "2023-12-31",
-                schema = @Schema(implementation = String.class)) @QueryParam("fi") final String dataFiRequest,
-        @Parameter(
-                description = "Pàgina de la que es volen obtenir les dades. Comença per 1.",
-                in = ParameterIn.QUERY,
-                required = false,
-                example = "1") @QueryParam("page") Integer page,
-        @Parameter(
-                description = "Quantitat d'elements a retornar",
-                in = ParameterIn.QUERY,
-                required = false,
-                example = "10") @QueryParam("pagesize") Integer pagesize,
-        @Parameter(
-                name = "language",
-                description = "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
-                in = ParameterIn.QUERY,
-                required = false,
-                example = "ca",
-                examples = { @ExampleObject(name = "Català", value = "ca"),
-                        @ExampleObject(name = "Castellano", value = "es") },
-                schema = @Schema(implementation = String.class)) @QueryParam("language") String language,
-        @Parameter(hidden = true) @Context HttpServletRequest request,
-        @Parameter(hidden = true) @Context SecurityContext security) throws RestException {
+            description = "Data d'inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades",
+            in = ParameterIn.QUERY,
+            required = false,
+            example = "2022-08-29",
+            schema = @Schema(implementation = String.class)) @QueryParam("inici") final String dataIniciRequest,
+            @Parameter(
+                    description = "Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades",
+                    in = ParameterIn.QUERY,
+                    required = false,
+                    example = "2023-12-31",
+                    schema = @Schema(implementation = String.class)) @QueryParam("fi") final String dataFiRequest,
+            @Parameter(
+                    description = "Pàgina de la que es volen obtenir les dades. Comença per 1.",
+                    in = ParameterIn.QUERY,
+                    required = false,
+                    example = "1") @QueryParam("page") Integer page,
+            @Parameter(
+                    description = "Quantitat d'elements a retornar",
+                    in = ParameterIn.QUERY,
+                    required = false,
+                    example = "10") @QueryParam("pagesize") Integer pagesize,
+            @Parameter(
+                    name = "language",
+                    description = "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
+                    in = ParameterIn.QUERY,
+                    required = false,
+                    example = "ca",
+                    examples = { @ExampleObject(name = "Català", value = "ca"),
+                            @ExampleObject(name = "Castellano", value = "es") },
+                    schema = @Schema(implementation = String.class)) @QueryParam("language") String language,
+            @Parameter(hidden = true) @Context HttpServletRequest request,
+            @Parameter(hidden = true) @Context SecurityContext security) throws RestException {
 
-    log.info(" Entra a list()" + page + " " + pagesize + "...[" + request.getRemoteUser() + "]");
+        log.info(" Entra a list()" + page + " " + pagesize + "...[" + request.getRemoteUser() + "]");
 
-    // Check de page i pagesize
-    if (page == null || page <= 0) {
-        page = 1;
-    }
-    if (pagesize == null || pagesize < 1) {
-        pagesize = 10;
-    }
-
-    // Check de language
-    language = RestUtils.checkLanguage(language);
-
-    // Convertir Data en format dd/MM/yyyy a tipus Date
-    // i check de dates
-
-    final String dataIniciRequestLabel = "inici";
-    final String dataFiRequestLabel = "fi";
-
-    final Date[] dates = checkRangeOfOnlyDates(dataIniciRequest, dataIniciRequestLabel, dataFiRequest,
-            dataFiRequestLabel);
-
-    Date dateStart = dates[0];
-    Date dateEnd = dates[1];
-
-    // Realitzar Consulta
-    try {
-
-        final Timestamp from = new Timestamp(atStartOfDay(dateStart).getTime());
-        final Timestamp to = new Timestamp(atEndOfDay(dateEnd).getTime());
-
-        final int firstResult = (page - 1) * pagesize;
-        final int lastResult = (page - 1) * pagesize;
-        
-        List<String> llistat = new ArrayList<String>();
-        
-        for (int i = firstResult; i < lastResult; i++) {
-            llistat.add(MAP_TIPUS_DOCUMENTAL.get(language + "_" + i));          
+        // Check de page i pagesize
+        if (page == null || page <= 0) {
+            page = 1;
+        }
+        if (pagesize == null || pagesize < 1) {
+            pagesize = 10;
         }
 
-        // PAGINACIO
-        final int countTotal = MAP_TIPUS_DOCUMENTAL.size();
-        final int pageSizeOutput = pagesize;
-        final int pageOutput = page;
-        final int totalPages = (int) (countTotal / pagesize) + ((countTotal % pagesize == 0) ? 0 : 1);
-        
-        
-        TipusDocumentalsPaginacio paginacio = new TipusDocumentalsPaginacio();
-        paginacio.setPage(pageSizeOutput);
-        paginacio.setPage(pageOutput);
-        paginacio.setTotalpages(totalPages);
-        paginacio.setTotalcount((int) countTotal);
-        paginacio.setData(llistat);
+        // Check de language
+        language = RestUtils.checkLanguage(language);
 
-        //llistat, countTotal, pageSizeOutput, pageOutput, totalPages);
-        System.out.println("Resultat => paginacio " + paginacio);
-        System.out.println("Resultat => getTotalcount " + paginacio.getTotalcount());
-        System.out.println("Resultat => getTotalpages " + paginacio.getTotalpages());
+        // Convertir Data en format dd/MM/yyyy a tipus Date
+        // i check de dates
 
-        return paginacio;
+        final String dataIniciRequestLabel = "inici";
+        final String dataFiRequestLabel = "fi";
 
-    } catch (RestException oae) {
-        log.error("Llistant evidències: " + oae.getMessage(), oae);
-        throw oae;
-    } catch (Throwable th) {
+        final Date[] dates = checkRangeOfOnlyDates(dataIniciRequest, dataIniciRequestLabel, dataFiRequest,
+                dataFiRequestLabel);
 
+        Date dateStart = dates[0];
+        Date dateEnd = dates[1];
+
+        // Realitzar Consulta
+        try {
+
+            final Timestamp from = new Timestamp(atStartOfDay(dateStart).getTime());
+            final Timestamp to = new Timestamp(atEndOfDay(dateEnd).getTime());
+
+            final int firstResult = (page - 1) * pagesize;
+            final int lastResult = (page - 1) * pagesize;
+
+            List<String> llistat = new ArrayList<String>();
+
+            for (int i = firstResult; i < lastResult; i++) {
+                llistat.add(MAP_TIPUS_DOCUMENTAL.get(language + "_" + i));
+            }
+
+            // PAGINACIO
+            final int countTotal = MAP_TIPUS_DOCUMENTAL.size();
+            final int pageSizeOutput = pagesize;
+            final int pageOutput = page;
+            final int totalPages = (int) (countTotal / pagesize) + ((countTotal % pagesize == 0) ? 0 : 1);
+
+            TipusDocumentalsPaginacio paginacio = new TipusDocumentalsPaginacio();
+            paginacio.setPage(pageSizeOutput);
+            paginacio.setPage(pageOutput);
+            paginacio.setTotalpages(totalPages);
+            paginacio.setTotalcount((int) countTotal);
+            paginacio.setData(llistat);
+
+            //llistat, countTotal, pageSizeOutput, pageOutput, totalPages);
+            System.out.println("Resultat => paginacio " + paginacio);
+            System.out.println("Resultat => getTotalcount " + paginacio.getTotalcount());
+            System.out.println("Resultat => getTotalpages " + paginacio.getTotalpages());
+
+            return paginacio;
+
+        } catch (Throwable th) {
+
+            return processException("list(llistant evidències)", language, th);
+        }
+
+    }
+
+    protected <T> T processException(final String methodName, String language, Throwable th) throws RestException {
+        RestException oae;
         String msg;
-        if (th instanceof I18NException) {
-            msg = I18NCommonUtils.getMessage((I18NException) th, new Locale(language));
-        } else {
+        if (th instanceof RestException) {
+            oae = (RestException) th;
             msg = th.getMessage();
+        } else {
+            if (th instanceof I18NException) {
+                msg = I18NLogicUtils.getMessage((I18NException) th, new Locale(language));
+            } else {
+                msg = th.getMessage();
+            }
+            oae = new RestException(msg, th, Status.INTERNAL_SERVER_ERROR);
         }
-        msg = "Error desconegut llistant evidències: " + msg;
-        log.error(msg, th);
-        throw new RestException(msg, th, Status.INTERNAL_SERVER_ERROR);
+
+        log.error("Error en " + methodName + ": " + msg, th);
+        throw oae;
     }
-
-}
-
 
 }
