@@ -76,10 +76,10 @@
                         <fmt:message key="ajuda.missatge" />
                     </p>
                     <ul>
-                        <li><fmt:message key="ajuda.viatelefon" />123456789</li>
-                        <li><fmt:message key="ajuda.viaweb" />http://www.help.hl/help</li>
+                        <li><fmt:message key="ajuda.viatelefon" /><%=Configuracio.getAjudaViaTelefon()%></li>
+                        <li><fmt:message key="ajuda.viaweb" /><%=Configuracio.getAjudaViaWeb()%></li>
                         <li><fmt:message key="ajuda.viaemail" />
-                            <a href="mailto: help@help.hl"> help@help.hl</a>
+                            <a href="mailto: help@help.hl"><%=Configuracio.getAjudaViaEmail()%></a>
                         </li>
                     </ul>
                 </div>

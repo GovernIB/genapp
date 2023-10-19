@@ -112,9 +112,21 @@ public class Configuracio implements Constants {
     public static String getFrontUrl() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "url.front");
     }
-    
+
     public static String getBackUrl() {
         return getProperty(${name_uppercase}_PROPERTY_BASE + "url.back");
+    }
+
+    public static String getAjudaViaTelefon() {
+        return getProperty(${name_uppercase}_PROPERTY_BASE + "ajuda.viatelefon");
+    }
+    
+    public static String getAjudaViaWeb() {
+        return getProperty(${name_uppercase}_PROPERTY_BASE + "ajuda.viaweb");
+    }
+    
+    public static String getAjudaViaEmail() {
+        return getProperty(${name_uppercase}_PROPERTY_BASE + "ajuda.viaemail");
     }
 
     public static String getDefaultLanguage() {
