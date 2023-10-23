@@ -35,3 +35,7 @@ target
 /demo/pom.xml
 /run_arche/run.bat
 /genapp-generator/lastconfig.properties
+/run_arche/arche/password_secret_key.txt
+/run_arche/arche/deploy.bat
+/run_arche/arche/readme.txt
+/run_arche/arche/release.properties
