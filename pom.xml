@@ -4,19 +4,14 @@
     <version>2.0.0-SNAPSHOT</version>
     <artifactId>genapp</artifactId>
     <packaging>pom</packaging>
-
     <name>FundacioBit GenApp</name>
-
-    <modules>    
+    <modules>
         <module>genapp-core</module>
         <module>genapp-web</module>
-
-      <!--    <module>genapp-ws</module> -->
-
+        <!--    <module>genapp-ws</module> -->
         <module>genapp-sqlgenerator</module>
         <module>genapp-generator</module>
     </modules>
-
     <properties>
         <!-- Propietats que afecten els plugins -->
         <maven.compiler.release>11</maven.compiler.release>
@@ -26,15 +21,13 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <spring.version>4.3.26.RELEASE</spring.version>
     </properties>
-
     <repositories>
         <repository>
             <id>github-governib-maven-repos</id>
             <name>GitHub GovernIB Maven Repository</name>
             <url>https://governib.github.io/maven/maven/</url>
         </repository>
-
-		<repository>
+        <repository>
             <id>jboss-releases</id>
             <name>JBoss Releases Repository</name>
             <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
@@ -45,7 +38,6 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
-
         <repository>
             <id>jboss-thirdparty-releases</id>
             <name>JBoss 3rd-party Repository</name>
@@ -57,39 +49,31 @@
                 <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
-
         <repository>
             <id>redhat-repository</id>
             <name>Redhat Repository</name>
             <url>https://maven.repository.redhat.com/ga/</url>
         </repository>
-
     </repositories>
-
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-
         <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb-api.version}</version>
         </dependency>
-
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -116,7 +100,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
         <plugins>
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
@@ -125,16 +108,37 @@
                     <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <rules>
+                        <requireMavenVersion>
+                            <version>3.6.3</version>
+                        </requireMavenVersion>
+                        <requireJavaVersion>
+                            <version>11</version>
+                        </requireJavaVersion>
+                    </rules>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
-                <version>0.12</version> 
+                <version>0.12</version>
                 <configuration>
                     <message>Maven artifacts for ${project.version}</message>
                     <!-- git commit message -->
-                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> 
-                    <noJekyll>true</noJekyll>   
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <noJekyll>true</noJekyll>
                     <branch>refs/heads/gh-pages</branch>
                     <!-- remote branch name -->
                     <includes>
@@ -160,7 +164,6 @@
             </plugin>
         </plugins>
     </build>
-
     <distributionManagement>
         <repository>
             <id>github_governib_maven</id>
@@ -168,7 +171,6 @@
             <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
     </distributionManagement>
-
     <!--   COM UTILITZAR: AFEGIR AQUEST CODI AL pom.xml    -->
     <!--
     <repositories>
@@ -179,5 +181,4 @@
         </repository>
     </repositories>
     -->
-
 </project>
