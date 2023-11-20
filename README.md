@@ -77,7 +77,7 @@ El projecte està partit en 4 subprojectes:
 
 ***Documentació***
 
-* [Accedir a Documentació en linia](../../tree/genapp-2.0/README.md#documentaci%C3%B3)
+* [Accedir a Documentació en linia](https://github.com/GovernIB/genapp/tree/genapp-2.0/doc)
 * [Tutorial de GenQL(Llenguatge d'alt nivell de consulta de BBDD)](https://otae.fundaciobit.org/genappsqltutorial/public/index.html)
 
 ***Dades***
