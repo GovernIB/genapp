@@ -2,7 +2,7 @@
 
 
 
-NOTA: Al repositori de Maven Central només es poden pujar persions "no" SNAPSHOT. 
+NOTA: Al repositori de Maven Central només es poden pujar versions "no" SNAPSHOT. 
 
 Quan es vulgui enviar una nova versió s'ha de pujar la versió, ja que un cop pujada una versió release, llavors no es pot enviar de nou una mateixa versió.
 
