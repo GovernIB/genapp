@@ -11,7 +11,7 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 * Maven
 
 ***Com executar***
-
+<!--
 (0) Afegir al fitxer settings.xml ([HOME]/.m2/) la següent entrada dins <settings>\<profiles>:
 
 ```
@@ -38,16 +38,18 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
   ...
 </settings>
 ```
-
+-->
 (1) Executar la següent comanda
 
 ```
-mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.0-SNAPSHOT -B -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT
+mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.2 -B
+
 ```
+<!--  -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT -->
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
 	
-(2) Es crearà un directori rungenapp, entrar-hi i executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
+(2) Es crearà un fitxer genapp.bat i un directori rungenapp. Executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp_v2.png)
 	
