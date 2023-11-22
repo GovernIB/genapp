@@ -117,8 +117,7 @@
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>6.6.0</version>
-
+                <version>7.1.0</version>
                 <executions>
                     <execution>
                         <phase>install</phase>
@@ -126,7 +125,6 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            
                             <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
