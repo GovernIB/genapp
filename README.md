@@ -79,6 +79,7 @@ El projecte està partit en 4 subprojectes:
 
 * [Accedir a Documentació en linia](https://github.com/GovernIB/genapp/tree/genapp-2.0/doc)
 * [Tutorial de GenQL(Llenguatge d'alt nivell de consulta de BBDD)](https://otae.fundaciobit.org/genappsqltutorial/public/index.html)
+* [VideoTutorial](https://governdigital.fundaciobit.org/genappvideotutorial/)
 
 ***Dades***
 
