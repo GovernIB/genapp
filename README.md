@@ -57,9 +57,9 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 	
 (4) Afegir noves taules del nou projecte a la BBDD seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
 	
-(5) Tornar a executar genapp.bat i pitjar sobre "Actualitzar Projecte".
+(5) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Actualitzar Projecte".
 	
-(6) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Generar Codi Font"
+(6) Executar genapp.bat i pitjar sobre "Generar Codi Font"
 
 
 ***Caracteristiques:***
