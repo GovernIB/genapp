@@ -138,11 +138,11 @@ public class Configuracio implements Constants {
     }
 
     public static Long getMaxUploadSizeInBytes() {
-        return Long.getLong(${name_uppercase}_PROPERTY_BASE + "maxuploadsizeinbytes");
+        return Long.parseLong(getProperty(${name_uppercase}_PROPERTY_BASE + "maxuploadsizeinbytes"));
     }
 
     public static Long getMaxFitxerAdaptatSizeInBytes() {
-        return Long.getLong(${name_uppercase}_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes");
+        return Long.parseLong(getProperty(${name_uppercase}_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes"));
     }
 
     public static File getFilesDirectory() {
