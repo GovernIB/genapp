@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.fundaciobit.genapp.common.query.Field;
+import org.fundaciobit.genapp.common.validation.BeanValidatorResult;
 
 /**
  * 
@@ -148,5 +149,23 @@ public abstract class BaseForm extends CommonBaseForm {
 		}
 		this.sections.add(section);
 	}
+	
+	/**
+     * 
+     * @param <T>
+     * @param _jpa
+     * @param form
+     * @param allFields
+     */
+    public static <T> void hideNullFields(T _jpa, BaseForm form, Field<?>[] allFields) {
+        BeanValidatorResult<T> _bvr_ = new BeanValidatorResult<T>();
+
+        for (Field<?> field : allFields) {
+            Object obj = _bvr_.getFieldValue(_jpa, field);
+            if (obj == null) {
+                form.addHiddenField(field);
+            }
+        }
+    }
 
 }
