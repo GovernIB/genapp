@@ -189,7 +189,7 @@ public class BackWebGenerator extends IconUtils {
 				code.append("  <c:if test=\"${not empty " + model + "Items}\">\n\n");
 				code.append("  <div class=\"row\" style=\"margin-left: 0px;\">\n");
 				code.append(
-						"  <table class=\"table table-sm table-bordered table-striped table-genapp\" style=\"width:auto;\"> \n");
+						"  <table class=\"table table-sm table-bordered table-striped table-genapp table-genapp-list\" style=\"width:auto;\"> \n");
 				code.append("    <thead>\n");
 				code.append("      <tr>\n\n");
 
@@ -1828,7 +1828,7 @@ public class BackWebGenerator extends IconUtils {
 						"    <form:errors cssClass=\"errorField alert alert-danger\" delimiter=\"&lt;p/&gt;\" />\n");
 
 				code.append("    <table id=\"" + model
-						+ "_tableid\" class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-genapp\" > \n");
+						+ "_tableid\" class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-genapp table-genapp-form\" > \n");
 				code.append("    <tbody>      \n");
 				code.append("\n");
 				sourceFiles.add(new SourceFile(model + "FormCorePre.jsp", code.toString()));
