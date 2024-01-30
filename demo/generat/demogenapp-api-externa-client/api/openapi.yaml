@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: otae@fundaciobit.org
+    name: Departament de Govern Digital a la Fundació Bit
+    url: http://otae.fundaciobit.org
+  description: Conjunt de Serveis REST de DemoGenApp per ser accedits des de l'exterior
+  license:
+    name: License Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  title: API REST EXTERNA de DemoGenApp
+  version: 1.0.0
+externalDocs:
+  description: Java Client (GovernIB Github)
+  url: https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client
+servers:
+- url: /demogenappapi/externa
+- url: http://localhost:8080/demogenappapi/externa
+- url: https://dev.caib.es/demogenappapi/externa
+- url: https://proves.caib.es/demogenappapi/externa
+- url: https://se.caib.es/demogenappapi/externa
+- url: https://www.caib.es/demogenappapi/externa
+tags:
+- description: Exemple de Servei JSON d'accés Públic
+  name: Versio
+- description: Exemple de Servei Securitzat
+  name: ExempleSeguritzat
+paths:
+  /public/exemplepublic/versio:
+    get:
+      operationId: versio
+      parameters:
+      - description: Codi de l'idioma
+        example: ca
+        explode: true
+        in: query
+        name: idioma
+        required: false
+        schema:
+          pattern: ^ca|es$
+          type: string
+        style: form
+      responses:
+        "404":
+          content:
+            application/json: {}
+          description: Paràmetres incorrectes
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamplePojo'
+          description: Versió i idioma
+      summary: Versio de l'Aplicació
+      tags:
+      - Versio
+      x-accepts: application/json
+  /secure/exempleseguritzat/echo:
+    get:
+      operationId: echo
+      parameters:
+      - description: Cadena a retornar
+        example: hola caracola
+        explode: true
+        in: query
+        name: echoInput
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Respon el valor enviat per paràmetre
+        "510":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConstantsWs'
+          description: Només s'utilitza per crear fitxer de constants...
+      security:
+      - BasicAuth: []
+      summary: Fa un ECHO
+      tags:
+      - ExempleSeguritzat
+      x-accepts: application/json
+components:
+  schemas:
+    ExamplePojo:
+      example:
+        versio: versio
+      properties:
+        versio:
+          type: string
+      type: object
+    ConstantsWs:
+      properties:
+        ROLE_EJB_FULL_ACCESS:
+          default: DEM_ADMIN
+          description: Constant ROLE_EJB_FULL_ACCESS
+          readOnly: true
+          type: string
+        ROLE_EJB_BASIC_ACCESS:
+          description: Constant ROLE_EJB_BASIC_ACCESS
+          format: int32
+          readOnly: true
+          type: integer
+        ROLE_EJB_WS_ACCESS:
+          description: Constant ROLE_EJB_WS_ACCESS
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - ROLE_EJB_BASIC_ACCESS
+      - ROLE_EJB_FULL_ACCESS
+      - ROLE_EJB_WS_ACCESS
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+

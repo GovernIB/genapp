@@ -1,0 +1,538 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API REST INTERNA de DemoGenApp",
+    "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits des de l'interior",
+    "contact" : {
+      "name" : "Departament de Govern Digital a la Fundació Bit",
+      "url" : "http://otae.fundaciobit.org",
+      "email" : "otae@fundaciobit.org"
+    },
+    "license" : {
+      "name" : "License Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version" : "1.0.0"
+  },
+  "externalDocs" : {
+    "description" : "Java Client (GovernIB Github)",
+    "url" : "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-interna-client"
+  },
+  "servers" : [ {
+    "url" : "/demogenappapi/interna"
+  }, {
+    "url" : "http://localhost:8080/demogenappapi/interna"
+  }, {
+    "url" : "https://dev.caib.es/demogenappapi/interna"
+  }, {
+    "url" : "https://proves.caib.es/demogenappapi/interna"
+  }, {
+    "url" : "https://se.caib.es/demogenappapi/interna"
+  }, {
+    "url" : "https://www.caib.es/demogenappapi/interna"
+  } ],
+  "tags" : [ {
+    "name" : "Items",
+    "description" : "Exemple de Servei de Dades obertes emprant Paginació de PluginsIB-Utils"
+  }, {
+    "name" : "ExemplePublicService",
+    "description" : "Exemple de Servei JSON d'accés Públic"
+  }, {
+    "name" : "Notificacions",
+    "description" : "Notificacions a l'APP de Carpeta (missateg a Mòbil)"
+  } ],
+  "paths" : {
+    "/public/dadesobertes/items/consulta" : {
+      "get" : {
+        "tags" : [ "Items" ],
+        "summary" : "Retorna informació d'exemple per Dades Obertes",
+        "operationId" : "consulta",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Filtre pel Nom del Item. Opcional.",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "startdate",
+          "in" : "query",
+          "description" : "Filtre Data d'inici de la consulta. Opcional. Format  yyyy-MM-dd (ISO 8601)",
+          "schema" : {
+            "pattern" : "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29))$",
+            "type" : "string"
+          },
+          "example" : "2023-07-19"
+        }, {
+          "name" : "enddate",
+          "in" : "query",
+          "description" : "Filtre Data final de la consulta. Opcional. Format  yyyy-MM-dd (ISO 8601)",
+          "schema" : {
+            "pattern" : "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29))$",
+            "type" : "string"
+          },
+          "example" : "2024-12-31"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Numero de pàgina quan el llistat és paginat. Per defecte 1.",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "page-size",
+          "in" : "query",
+          "description" : "Número d'elements a retornar per pàgina. Per defecte 15",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "language",
+          "in" : "query",
+          "description" : "Idioma en que retornar les dades. Opcional.",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operació realitzada correctament",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LlistaDeExempleInfoPaginada"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error no controlat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/exemplepublic/versio" : {
+      "get" : {
+        "tags" : [ "Versió" ],
+        "summary" : "Versio de l'Aplicació",
+        "operationId" : "versio",
+        "parameters" : [ {
+          "name" : "idioma",
+          "in" : "query",
+          "description" : "Codi de l'idioma",
+          "schema" : {
+            "pattern" : "^ca|es$",
+            "type" : "string"
+          },
+          "example" : "ca"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : { }
+            }
+          },
+          "200" : {
+            "description" : "Versió i idioma",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ExamplePojo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/secure/exempleenum/list" : {
+      "get" : {
+        "tags" : [ "Notificacions" ],
+        "summary" : "Retorna un llistat de tipus documentals",
+        "operationId" : "list",
+        "parameters" : [ {
+          "name" : "inici",
+          "in" : "query",
+          "description" : "Data d'inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "2022-08-29"
+        }, {
+          "name" : "fi",
+          "in" : "query",
+          "description" : "Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "2023-12-31"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Pàgina de la que es volen obtenir les dades. Comença per 1.",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "example" : 1
+        }, {
+          "name" : "pagesize",
+          "in" : "query",
+          "description" : "Quantitat d'elements a retornar",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "example" : 10
+        }, {
+          "name" : "language",
+          "in" : "query",
+          "description" : "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
+          "schema" : {
+            "type" : "string"
+          },
+          "examples" : {
+            "Català" : {
+              "description" : "Català",
+              "value" : "ca"
+            },
+            "Castellano" : {
+              "description" : "Castellano",
+              "value" : "es"
+            }
+          },
+          "example" : "ca"
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "EFIB: Paràmetres incorrectes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "EFIB: No Autenticat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "EFIB: No Autoritzat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "EFIB: Error durant la consulta de les dades obertes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "EFIB: Retornades dades obertes correctament",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TipusDocumentalsPaginacio"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ]
+      }
+    },
+    "/secure/exempleenum/sendnotificationtomobile" : {
+      "get" : {
+        "tags" : [ "Notificacions" ],
+        "summary" : "Envia un missatge al mòbil del ciutada a traves de l'App de Carpeta.",
+        "operationId" : "sendNotificationToMobile",
+        "parameters" : [ {
+          "name" : "notificationParameters",
+          "in" : "query",
+          "description" : "Exemple de parametre Llistat d'Strings",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "langError",
+          "in" : "query",
+          "description" : "Idioma en que s'enviaran els missatges d'error",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^ca|es$",
+            "type" : "string"
+          },
+          "example" : "ca"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operació realitzada correctament",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SendMessageResult"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "No Autenticat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "No Autoritzat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error no controlat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ExempleInfo" : {
+        "required" : [ "date", "itemID" ],
+        "type" : "object",
+        "properties" : {
+          "itemID" : {
+            "type" : "integer",
+            "description" : "Identificador inter de l'objecte Item",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Nom de l'entrada Item"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Valor de l'entrada Item"
+          },
+          "date" : {
+            "pattern" : "yyyy-MM-dd'T'HH:mm:ss",
+            "type" : "string",
+            "description" : "Data en que es va fer l'entrada Item",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Exemple de Element de Informació bàsica de Dades Obertes."
+      },
+      "LlistaDeExempleInfoPaginada" : {
+        "required" : [ "data", "date-download", "items-returned", "page", "page-size", "total-count", "total-pages" ],
+        "type" : "object",
+        "properties" : {
+          "page" : {
+            "type" : "integer",
+            "description" : "Número pàgina. Comença per 1.",
+            "format" : "int32"
+          },
+          "page-size" : {
+            "type" : "integer",
+            "description" : "Mida de pàgina",
+            "format" : "int32"
+          },
+          "total-pages" : {
+            "type" : "integer",
+            "description" : "Número total de pàgines",
+            "format" : "int32"
+          },
+          "total-count" : {
+            "type" : "integer",
+            "description" : "Numero total d'elements",
+            "format" : "int32"
+          },
+          "items-returned" : {
+            "type" : "integer",
+            "description" : "Numero d'elements retornats",
+            "format" : "int32"
+          },
+          "next" : {
+            "type" : "string",
+            "description" : "Si hi ha més elements, llavors retorna la URL a la següent pàgina de dades."
+          },
+          "date-download" : {
+            "pattern" : "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:Z|[+-][01]\\d:[0-5]\\d)$",
+            "type" : "string",
+            "description" : "Data i hora en que s'han retornat les dades. Format ISO-8601"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Elements retornats",
+            "items" : {
+              "$ref" : "#/components/schemas/ExempleInfo"
+            }
+          }
+        }
+      },
+      "RestExceptionInfo" : {
+        "required" : [ "code", "errorMessage" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "description" : "Codi de HTTP de l'error. Veure https://en.wikipedia.org/wiki/List_of_HTTP_status_codes.",
+            "format" : "int32"
+          },
+          "errorMessage" : {
+            "type" : "string",
+            "description" : "Missatge de l'error"
+          },
+          "stackTrace" : {
+            "type" : "string",
+            "description" : "Stacktrace de l'excepció si n'hi hagués."
+          },
+          "causeException" : {
+            "type" : "string",
+            "description" : "Tipus de l'excepció origen (cause) si n'hi hagués."
+          },
+          "causeStackTrace" : {
+            "type" : "string",
+            "description" : "Stacktrace de l'excepció origen (cause) si n'hi hagués."
+          }
+        },
+        "description" : "Estructura de dades utilitzada per passar informació d'un error"
+      },
+      "ExamplePojo" : {
+        "type" : "object",
+        "properties" : {
+          "versio" : {
+            "type" : "string"
+          }
+        }
+      },
+      "TipusDocumentalsPaginacio" : {
+        "required" : [ "data", "page", "pagesize", "totalcount", "totalpages" ],
+        "type" : "object",
+        "properties" : {
+          "page" : {
+            "type" : "integer",
+            "description" : "Número pàgina. Comença per 1.",
+            "format" : "int32"
+          },
+          "pagesize" : {
+            "type" : "integer",
+            "description" : "Mida de pàgina",
+            "format" : "int32"
+          },
+          "totalpages" : {
+            "type" : "integer",
+            "description" : "Número total de pàgines",
+            "format" : "int32"
+          },
+          "totalcount" : {
+            "type" : "integer",
+            "description" : "Numero total d'elements",
+            "format" : "int32"
+          },
+          "data" : {
+            "type" : "array",
+            "description" : "Elements retornats",
+            "items" : {
+              "type" : "string",
+              "description" : "Elements retornats"
+            }
+          }
+        }
+      },
+      "SendMessageResult" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "$ref" : "#/components/schemas/SendMessageResultCode"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Missatge si hi ha error"
+          }
+        }
+      },
+      "SendMessageResultCode" : {
+        "type" : "string",
+        "description" : "Codi resultat de l'operació",
+        "enum" : [ "OK", "UNKNOWN_ERROR", "NOTIFICATION_CODE_DO_NOT_EXIST", "NOTIFICATION_CODE_DISABLED", "ENTITYCODE_DO_NOT_EXIST", "ENTITY_DISABLED", "PLUGIN_DISABLED", "PLUGIN_ENTITY_DO_NOT_EXIST", "PLUGIN_ENTITY_DISABLED", "CITIZEN_DO_NOT_EXIST", "ERROR_SENDING_NOTIFICATION" ]
+      }
+    },
+    "securitySchemes" : {
+      "BasicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      }
+    }
+  }
+}

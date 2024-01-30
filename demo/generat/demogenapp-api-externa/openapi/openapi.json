@@ -1,0 +1,161 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API REST EXTERNA de DemoGenApp",
+    "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits des de l'exterior",
+    "contact" : {
+      "name" : "Departament de Govern Digital a la Fundació Bit",
+      "url" : "http://otae.fundaciobit.org",
+      "email" : "otae@fundaciobit.org"
+    },
+    "license" : {
+      "name" : "License Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version" : "1.0.0"
+  },
+  "externalDocs" : {
+    "description" : "Java Client (GovernIB Github)",
+    "url" : "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client"
+  },
+  "servers" : [ {
+    "url" : "/demogenappapi/externa"
+  }, {
+    "url" : "http://localhost:8080/demogenappapi/externa"
+  }, {
+    "url" : "https://dev.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://proves.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://se.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://www.caib.es/demogenappapi/externa"
+  } ],
+  "tags" : [ {
+    "name" : "Versio",
+    "description" : "Exemple de Servei JSON d'accés Públic"
+  }, {
+    "name" : "ExempleSeguritzat",
+    "description" : "Exemple de Servei Securitzat"
+  } ],
+  "paths" : {
+    "/public/exemplepublic/versio" : {
+      "get" : {
+        "tags" : [ "Versio" ],
+        "summary" : "Versio de l'Aplicació",
+        "operationId" : "versio",
+        "parameters" : [ {
+          "name" : "idioma",
+          "in" : "query",
+          "description" : "Codi de l'idioma",
+          "schema" : {
+            "pattern" : "^ca|es$",
+            "type" : "string"
+          },
+          "example" : "ca"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : { }
+            }
+          },
+          "200" : {
+            "description" : "Versió i idioma",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ExamplePojo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/secure/exempleseguritzat/echo" : {
+      "get" : {
+        "tags" : [ "ExempleSeguritzat" ],
+        "summary" : "Fa un ECHO",
+        "operationId" : "echo",
+        "parameters" : [ {
+          "name" : "echoInput",
+          "in" : "query",
+          "description" : "Cadena a retornar",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "hola caracola"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Respon el valor enviat per paràmetre",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "510" : {
+            "description" : "Només s'utilitza per crear fitxer de constants...",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ConstantsWs"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ExamplePojo" : {
+        "type" : "object",
+        "properties" : {
+          "versio" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ConstantsWs" : {
+        "required" : [ "ROLE_EJB_BASIC_ACCESS", "ROLE_EJB_FULL_ACCESS", "ROLE_EJB_WS_ACCESS" ],
+        "type" : "object",
+        "properties" : {
+          "ROLE_EJB_FULL_ACCESS" : {
+            "type" : "string",
+            "description" : "Constant ROLE_EJB_FULL_ACCESS",
+            "readOnly" : true,
+            "default" : "DEM_ADMIN"
+          },
+          "ROLE_EJB_BASIC_ACCESS" : {
+            "type" : "integer",
+            "description" : "Constant ROLE_EJB_BASIC_ACCESS",
+            "format" : "int32",
+            "readOnly" : true
+          },
+          "ROLE_EJB_WS_ACCESS" : {
+            "type" : "integer",
+            "description" : "Constant ROLE_EJB_WS_ACCESS",
+            "format" : "int32",
+            "readOnly" : true
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "BasicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      }
+    }
+  }
+}
