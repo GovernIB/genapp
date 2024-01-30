@@ -310,13 +310,16 @@ public class RebApp extends JFrame {
             } else {
 
                 selectedFile = new File(args[0]);
-
+                
                 if (selectedFile.exists()) {
 
                     if (args.length == 2) {
                         // Generar Codi Font
                         n = 3;
                         dstDir = new File(args[1]);
+                        
+                        dstDir.mkdirs();
+                        
                         if (!dstDir.exists()) {
                             dstDir = null;
                         }

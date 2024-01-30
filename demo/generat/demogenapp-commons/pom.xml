@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.fundaciobit.demogenapp</groupId>
+	<artifactId>demogenapp-commons</artifactId>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>org.fundaciobit.demogenapp</groupId>
+		<artifactId>demogenapp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<name>DemoGenApp - Commons</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.buildtime>${maven.build.timestamp}</project.buildtime>
+	</properties>
+
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<resources>
+			<!-- Activam filtre per fer substitucions al fitxer Version.properties -->
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<!-- Defineix la propietat {buildNumber} que s'empra al filtrat -->
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+  
+		</plugins>
+
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

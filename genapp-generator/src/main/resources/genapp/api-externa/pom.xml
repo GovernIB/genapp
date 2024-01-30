@@ -91,13 +91,13 @@
                 
                 <executions>
                     <execution>
-                        <id>openapi1</id>
+                        <id>openapiexterna1</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>openapi1</contextId>
+                            <contextId>openapiexterna1</contextId>
                             <outputFileName>openapi</outputFileName>
                             <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
                             <outputFormat>JSON</outputFormat>

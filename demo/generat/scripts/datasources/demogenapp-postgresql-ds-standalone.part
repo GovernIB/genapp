@@ -1,0 +1,13 @@
+﻿<datasources>
+    ...
+    <datasource jndi-name="java:jboss/datasources/demogenappDS" pool-name="demogenappDS" enabled="true"
+                use-java-context="true">
+        <connection-url>jdbc:postgresql://localhost:5432/demogenapp</connection-url>
+        <driver>postgresql</driver>
+        <security>
+            <user-name>demogenapp</user-name>
+            <password>demogenapp</password>
+        </security>
+    </datasource>
+    ...
+</datasources>
