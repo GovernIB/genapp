@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * LlistaDeExempleInfoPaginada
  */
 @JsonPropertyOrder({
+  LlistaDeExempleInfoPaginada.JSON_PROPERTY_NAME,
   LlistaDeExempleInfoPaginada.JSON_PROPERTY_PAGE,
   LlistaDeExempleInfoPaginada.JSON_PROPERTY_PAGE_SIZE,
   LlistaDeExempleInfoPaginada.JSON_PROPERTY_TOTAL_PAGES,
@@ -41,6 +42,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class LlistaDeExempleInfoPaginada {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
   public static final String JSON_PROPERTY_PAGE = "page";
   private Integer page;
 
@@ -63,10 +67,36 @@ public class LlistaDeExempleInfoPaginada {
   private String dateDownload;
 
   public static final String JSON_PROPERTY_DATA = "data";
-  private List<ExempleInfo> data = new ArrayList<>();
+  private List<ExempleInfo> data;
 
   public LlistaDeExempleInfoPaginada() {
   }
+
+  public LlistaDeExempleInfoPaginada name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Nom descriptiu del que s&#39;està retornant
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   public LlistaDeExempleInfoPaginada page(Integer page) {
     
@@ -153,7 +183,7 @@ public class LlistaDeExempleInfoPaginada {
   }
 
    /**
-   * Numero total d&#39;elements
+   * Número total d&#39;elements
    * @return totalCount
   **/
   @javax.annotation.Nonnull
@@ -265,12 +295,12 @@ public class LlistaDeExempleInfoPaginada {
   }
 
    /**
-   * Elements retornats
+   * Elements retornats. Pot retornar un null o una llista bida si no hi ha elements.
    * @return data
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<ExempleInfo> getData() {
     return data;
@@ -278,7 +308,7 @@ public class LlistaDeExempleInfoPaginada {
 
 
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(List<ExempleInfo> data) {
     this.data = data;
   }
@@ -292,7 +322,8 @@ public class LlistaDeExempleInfoPaginada {
       return false;
     }
     LlistaDeExempleInfoPaginada llistaDeExempleInfoPaginada = (LlistaDeExempleInfoPaginada) o;
-    return Objects.equals(this.page, llistaDeExempleInfoPaginada.page) &&
+    return Objects.equals(this.name, llistaDeExempleInfoPaginada.name) &&
+        Objects.equals(this.page, llistaDeExempleInfoPaginada.page) &&
         Objects.equals(this.pageSize, llistaDeExempleInfoPaginada.pageSize) &&
         Objects.equals(this.totalPages, llistaDeExempleInfoPaginada.totalPages) &&
         Objects.equals(this.totalCount, llistaDeExempleInfoPaginada.totalCount) &&
@@ -304,13 +335,14 @@ public class LlistaDeExempleInfoPaginada {
 
   @Override
   public int hashCode() {
-    return Objects.hash(page, pageSize, totalPages, totalCount, itemsReturned, next, dateDownload, data);
+    return Objects.hash(name, page, pageSize, totalPages, totalCount, itemsReturned, next, dateDownload, data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class LlistaDeExempleInfoPaginada {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
     sb.append("    totalPages: ").append(toIndentedString(totalPages)).append("\n");

@@ -21,18 +21,48 @@ servers:
 - url: https://se.caib.es/demogenappapi/interna
 - url: https://www.caib.es/demogenappapi/interna
 tags:
-- description: Exemple de Servei de Dades obertes emprant Paginació de PluginsIB-Utils
-  name: Items
 - description: Exemple de Servei JSON d'accés Públic
   name: ExemplePublicService
+- description: Exemple de Servei de Dades Reutilitzables emprant paginació i retorn
+    complet de dades
+  name: ExempleServei
 - description: Notificacions a l'APP de Carpeta (missateg a Mòbil)
   name: Notificacions
 paths:
-  /public/dadesobertes/items/consulta:
+  /public/exemplepublic/versio:
     get:
-      operationId: consulta
+      operationId: versio
       parameters:
-      - description: Filtre pel Nom del Item. Opcional.
+      - description: Codi de l'idioma
+        example: ca
+        explode: true
+        in: query
+        name: idioma
+        required: false
+        schema:
+          pattern: ^ca|es$
+          type: string
+        style: form
+      responses:
+        "404":
+          content:
+            application/json: {}
+          description: Paràmetres incorrectes
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExamplePojo'
+          description: Versió i idioma
+      summary: Versio de l'Aplicació
+      tags:
+      - Versió
+      x-accepts: application/json
+  /public/exempleservei/exempleconsultacompleta:
+    get:
+      operationId: exempleconsultacompleta
+      parameters:
+      - description: Filtre pel Nom de l'objecte ExempleInfo. Opcional.
         explode: true
         in: query
         name: name
@@ -40,7 +70,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filtre Data d'inici de la consulta. Opcional. Format  yyyy-MM-dd
+      - description: Filtre Data d'inici de la consulta. Opcional. Format yyyy-MM-dd
           (ISO 8601)
         example: 2023-07-19
         explode: true
@@ -64,7 +94,75 @@ paths:
             d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29))$"
           type: string
         style: form
-      - description: Numero de pàgina quan el llistat és paginat. Per defecte 1.
+      - description: Idioma en que retornar les dades. Opcional.
+        explode: true
+        in: query
+        name: language
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LlistaDeExempleInfoCompleta'
+          description: Operació realitzada correctament
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: Paràmetres incorrectes
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: Error no controlat
+      summary: Retorna tots els elements d'informació d'exemple d'una vegada
+      tags:
+      - ExempleServei
+      x-accepts: application/json
+  /public/exempleservei/exempleconsultapaginada:
+    get:
+      operationId: consultapaginada
+      parameters:
+      - description: Filtre pel Nom de l'objecte ExempleInfo. Opcional.
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filtre Data d'inici de la consulta. Opcional. Format yyyy-MM-dd
+          (ISO 8601)
+        example: 2023-07-19
+        explode: true
+        in: query
+        name: startdate
+        required: false
+        schema:
+          pattern: "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\\
+            d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29))$"
+          type: string
+        style: form
+      - description: Filtre Data final de la consulta. Opcional. Format yyyy-MM-dd
+          (ISO 8601)
+        example: 2024-12-31
+        explode: true
+        in: query
+        name: enddate
+        required: false
+        schema:
+          pattern: "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\\
+            d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29))$"
+          type: string
+        style: form
+      - description: Numero de pàgina quan el llistat és paginat. Opcional. Per defecte
+          1.
         explode: true
         in: query
         name: page
@@ -73,7 +171,8 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Número d'elements a retornar per pàgina. Per defecte 15
+      - description: Número d'elements a retornar per pàgina. Opcional. Per defecte
+          15
         explode: true
         in: query
         name: page-size
@@ -109,38 +208,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/RestExceptionInfo'
           description: Error no controlat
-      summary: Retorna informació d'exemple per Dades Obertes
+      summary: Retorna informació d'exemple paginada
       tags:
-      - Items
-      x-accepts: application/json
-  /public/exemplepublic/versio:
-    get:
-      operationId: versio
-      parameters:
-      - description: Codi de l'idioma
-        example: ca
-        explode: true
-        in: query
-        name: idioma
-        required: false
-        schema:
-          pattern: ^ca|es$
-          type: string
-        style: form
-      responses:
-        "404":
-          content:
-            application/json: {}
-          description: Paràmetres incorrectes
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExamplePojo'
-          description: Versió i idioma
-      summary: Versio de l'Aplicació
-      tags:
-      - Versió
+      - ExempleServei
       x-accepts: application/json
   /secure/exempleenum/list:
     get:
@@ -302,76 +372,63 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    ExamplePojo:
+      example:
+        versio: versio
+      properties:
+        versio:
+          type: string
+      type: object
     ExempleInfo:
-      description: Exemple de Element de Informació bàsica de Dades Obertes.
+      description: Model de dades de Informació bàsica a retornar.
       example:
         date: 2000-01-23T04:56:07.000+00:00
-        itemID: 2
+        itemID: 6
         name: name
         value: value
       properties:
         itemID:
-          description: Identificador inter de l'objecte Item
+          description: Identificador intern de l'objecte
           format: int64
           type: integer
         name:
-          description: Nom de l'entrada Item
+          description: Nom de l'entrada
           type: string
         value:
-          description: Valor de l'entrada Item
+          description: Valor de l'entrada
           type: string
         date:
-          description: Data en que es va fer l'entrada Item
+          description: Data en que es va fer crear aquest element
           format: date-time
           pattern: yyyy-MM-dd'T'HH:mm:ss
           type: string
       required:
       - date
       - itemID
+      - name
       type: object
-    LlistaDeExempleInfoPaginada:
+    LlistaDeExempleInfoCompleta:
       example:
-        next: next
-        page-size: 6
         data:
         - date: 2000-01-23T04:56:07.000+00:00
-          itemID: 2
+          itemID: 6
           name: name
           value: value
         - date: 2000-01-23T04:56:07.000+00:00
-          itemID: 2
+          itemID: 6
           name: name
           value: value
-        total-count: 5
-        items-returned: 5
-        page: 0
-        total-pages: 1
+        name: name
+        total-count: 0
         date-download: date-download
       properties:
-        page:
-          description: Número pàgina. Comença per 1.
-          format: int32
-          type: integer
-        page-size:
-          description: Mida de pàgina
-          format: int32
-          type: integer
-        total-pages:
-          description: Número total de pàgines
-          format: int32
-          type: integer
-        total-count:
-          description: Numero total d'elements
-          format: int32
-          type: integer
-        items-returned:
-          description: Numero d'elements retornats
-          format: int32
-          type: integer
-        next:
-          description: "Si hi ha més elements, llavors retorna la URL a la següent\
-            \ pàgina de dades."
+        name:
+          description: Nom descriptiu del que s'està retornant
           type: string
+        total-count:
+          description: Número total d'elements
+          format: int32
+          type: integer
         date-download:
           description: Data i hora en que s'han retornat les dades. Format ISO-8601
           pattern: "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\\
@@ -379,18 +436,15 @@ components:
             d|2[0-3]):[0-5]\\d:[0-5]\\d(?:Z|[+-][01]\\d:[0-5]\\d)$"
           type: string
         data:
-          description: Elements retornats
+          description: Elements retornats. Pot retornar un null o una llista bida
+            si no hi ha elements.
           items:
             $ref: '#/components/schemas/ExempleInfo'
           type: array
       required:
-      - data
       - date-download
-      - items-returned
-      - page
-      - page-size
+      - name
       - total-count
-      - total-pages
       type: object
     RestExceptionInfo:
       description: Estructura de dades utilitzada per passar informació d'un error
@@ -415,12 +469,73 @@ components:
       - code
       - errorMessage
       type: object
-    ExamplePojo:
+    LlistaDeExempleInfoPaginada:
       example:
-        versio: versio
+        next: next
+        page-size: 6
+        data:
+        - date: 2000-01-23T04:56:07.000+00:00
+          itemID: 6
+          name: name
+          value: value
+        - date: 2000-01-23T04:56:07.000+00:00
+          itemID: 6
+          name: name
+          value: value
+        name: name
+        total-count: 5
+        items-returned: 5
+        page: 0
+        total-pages: 1
+        date-download: date-download
       properties:
-        versio:
+        name:
+          description: Nom descriptiu del que s'està retornant
           type: string
+        page:
+          description: Número pàgina. Comença per 1.
+          format: int32
+          type: integer
+        page-size:
+          description: Mida de pàgina
+          format: int32
+          type: integer
+        total-pages:
+          description: Número total de pàgines
+          format: int32
+          type: integer
+        total-count:
+          description: Número total d'elements
+          format: int32
+          type: integer
+        items-returned:
+          description: Numero d'elements retornats
+          format: int32
+          type: integer
+        next:
+          description: "Si hi ha més elements, llavors retorna la URL a la següent\
+            \ pàgina de dades."
+          type: string
+        date-download:
+          description: Data i hora en que s'han retornat les dades. Format ISO-8601
+          pattern: "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\\
+            d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\\\
+            d|2[0-3]):[0-5]\\d:[0-5]\\d(?:Z|[+-][01]\\d:[0-5]\\d)$"
+          type: string
+        data:
+          description: Elements retornats. Pot retornar un null o una llista bida
+            si no hi ha elements.
+          items:
+            $ref: '#/components/schemas/ExempleInfo'
+          type: array
+      required:
+      - date-download
+      - items-returned
+      - name
+      - page
+      - page-size
+      - total-count
+      - total-pages
       type: object
     TipusDocumentalsPaginacio:
       example:

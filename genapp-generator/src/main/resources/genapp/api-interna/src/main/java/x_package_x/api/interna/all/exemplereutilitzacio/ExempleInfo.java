@@ -1,4 +1,4 @@
-package ${package}.api.interna.all.dadesobertes;
+package ${package}.api.interna.all.exemplereutilitzacio;
 
 import java.sql.Timestamp;
 
@@ -8,25 +8,25 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 // TODO A modificar pel Desenvolupador. Adaptar a les dades que hagi de tornar.
-@JsonPropertyOrder({ "itemID", "nom", "valor", "dataISO8601" })
-@Schema(description = "Exemple de Element de Informació bàsica de Dades Obertes.")
+@JsonPropertyOrder({ "itemID", "nom", "valor", "data" })
+@Schema(description = "Model de dades de Informació bàsica a retornar.")
 public class ExempleInfo {
 
-    @Schema(required = true, description = "Identificador inter de l'objecte Item")
+    @Schema(required = true, description = "Identificador intern de l'objecte")
     @JsonProperty("itemID")
     protected long itemID;
 
-    @Schema(required = false, description = "Nom de l'entrada Item")
+    @Schema(required = true, description = "Nom de l'entrada")
     @JsonProperty("name")
     protected String nom;
 
-    @Schema(required = false, description = "Valor de l'entrada Item")
+    @Schema(required = false, description = "Valor de l'entrada")
     @JsonProperty("value")
     protected String valor;
 
     @Schema(
             required = true,
-            description = "Data en que es va fer l'entrada Item",
+            description = "Data en que es va fer crear aquest element",
             type = "string",
             format = "date-time",
             pattern = "yyyy-MM-dd'T'HH:mm:ss")

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Exemple de Element de Informació bàsica de Dades Obertes.
+ * Model de dades de Informació bàsica a retornar.
  */
 @JsonPropertyOrder({
   ExempleInfo.JSON_PROPERTY_ITEM_I_D,
@@ -57,7 +57,7 @@ public class ExempleInfo {
   }
 
    /**
-   * Identificador inter de l&#39;objecte Item
+   * Identificador intern de l&#39;objecte
    * @return itemID
   **/
   @javax.annotation.Nonnull
@@ -83,12 +83,12 @@ public class ExempleInfo {
   }
 
    /**
-   * Nom de l&#39;entrada Item
+   * Nom de l&#39;entrada
    * @return name
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -96,7 +96,7 @@ public class ExempleInfo {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -109,7 +109,7 @@ public class ExempleInfo {
   }
 
    /**
-   * Valor de l&#39;entrada Item
+   * Valor de l&#39;entrada
    * @return value
   **/
   @javax.annotation.Nullable
@@ -135,7 +135,7 @@ public class ExempleInfo {
   }
 
    /**
-   * Data en que es va fer l&#39;entrada Item
+   * Data en que es va fer crear aquest element
    * @return date
   **/
   @javax.annotation.Nonnull
