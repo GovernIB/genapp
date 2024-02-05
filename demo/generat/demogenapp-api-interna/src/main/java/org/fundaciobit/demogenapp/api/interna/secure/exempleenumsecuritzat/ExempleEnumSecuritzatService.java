@@ -378,7 +378,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
         final String dataFiRequestLabel = "fi";
 
         final Date[] dates = checkRangeOfOnlyDates(dataIniciRequest, dataIniciRequestLabel, dataFiRequest,
-                dataFiRequestLabel);
+                dataFiRequestLabel, language);
 
         Date dateStart = dates[0];
         Date dateEnd = dates[1];
