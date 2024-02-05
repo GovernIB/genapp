@@ -31,6 +31,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 
 /**
  * Exemple de Servei de retorn de Dades Reutilitzables emprant paginació i retorn complet de dades
@@ -119,10 +120,14 @@ public class ExempleInfoService extends RestUtils {
 
             @Parameter(
                     name = "language",
-                    description = "Idioma en que retornar les dades. Opcional.",
-                    required = false,
+                    description = "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
                     in = ParameterIn.QUERY,
-                    schema = @Schema(implementation = String.class)) @QueryParam("language") String language,
+                    required = false,
+                    examples = { @ExampleObject(name = "Català", value = "ca"),
+                            @ExampleObject(name = "Castellano", value = "es") },
+                    schema = @Schema(
+                            defaultValue = "ca",
+                            implementation = String.class)) @QueryParam("language") String language,
 
             @Parameter(hidden = true) @Context HttpServletRequest request) throws RestException {
 
@@ -245,10 +250,14 @@ public class ExempleInfoService extends RestUtils {
                             pattern = DATE_PATTERN_ISO8601_ONLYDATE)) @QueryParam("enddate") String enddate,
             @Parameter(
                     name = "language",
-                    description = "Idioma en que retornar les dades. Opcional.",
-                    required = false,
+                    description = "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
                     in = ParameterIn.QUERY,
-                    schema = @Schema(implementation = String.class)) @QueryParam("language") String language,
+                    required = false,
+                    examples = { @ExampleObject(name = "Català", value = "ca"),
+                            @ExampleObject(name = "Castellano", value = "es") },
+                    schema = @Schema(
+                            defaultValue = "ca",
+                            implementation = String.class)) @QueryParam("language") String language,
 
             @Parameter(hidden = true) @Context HttpServletRequest request) throws RestException {
 
