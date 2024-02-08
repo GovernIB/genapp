@@ -42,19 +42,29 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
         tags = @Tag(
                 name = ExempleInfoService.TAG_NAME,
                 description = "Exemple de Servei de Dades Reutilitzables emprant paginació i retorn complet de dades"))
+// Descomentar aquest codi si es vol securitzar el servei
+//@SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleInfoService.SECURITY_NAME, scheme = "basic")
 public class ExempleInfoService extends RestUtils {
 
     protected static Logger log = Logger.getLogger(ExempleInfoService.class);
+
+    // Descomentar aquest codi si es vol securitzar el servei
+    // protected static final String SECURITY_NAME = "BasicAuth";
 
     public static final int DEFAULT_ITEMS_PER_PAGE = 15;
 
     public static final String PATH = "/public/exempleservei";
 
-    // TODO Canviar 'ReuseExample' pel nom corresponent
+    // TODO Canviar pel nom corresponent
     public static final String TAG_NAME = "ExempleServei";
 
     @Path("/exempleconsultapaginada")
     @GET
+    // Descomentar aquest codi si es vol securitzar el servei
+    /*
+    @RolesAllowed({ LLISTA DE ROLS ENTRE COMETES SEPARATS PER COMES })
+    @SecurityRequirement(name = SECURITY_NAME)
+    */    
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(tags = TAG_NAME, operationId = "consultapaginada", summary = "Retorna informació d'exemple paginada")
     @ApiResponses(
@@ -65,6 +75,21 @@ public class ExempleInfoService extends RestUtils {
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
                                     schema = @Schema(implementation = LlistaDeExempleInfoPaginada.class))),
+                    // Descomentar aquest codi si es vol securitzar el servei
+                    /*
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Paràmetres incorrectes",
+                            content = { @Content(
+                                    mediaType = MediaType.APPLICATION_JSON,
+                                    schema = @Schema(implementation = RestExceptionInfo.class)) }),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "No Autenticat",
+                            content = { @Content(
+                                    mediaType = MediaType.APPLICATION_JSON,
+                                    schema = @Schema(implementation = String.class)) }),
+                    */
                     @ApiResponse(
                             responseCode = "404",
                             description = "Paràmetres incorrectes",
@@ -197,6 +222,11 @@ public class ExempleInfoService extends RestUtils {
 
     @Path("/exempleconsultacompleta")
     @GET
+    // Descomentar aquest codi si es vol securitzar el servei
+    /*
+    @RolesAllowed({ LLISTA DE ROLS ENTRE COMETES SEPARATS PER COMES })
+    @SecurityRequirement(name = SECURITY_NAME)
+    */
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             tags = TAG_NAME,
@@ -210,6 +240,21 @@ public class ExempleInfoService extends RestUtils {
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
                                     schema = @Schema(implementation = LlistaDeExempleInfoCompleta.class))),
+                    // Descomentar aquest codi si es vol securitzar el servei
+                    /*
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Paràmetres incorrectes",
+                            content = { @Content(
+                                    mediaType = MediaType.APPLICATION_JSON,
+                                    schema = @Schema(implementation = RestExceptionInfo.class)) }),
+                    @ApiResponse(
+                            responseCode = "401",
+                            description = "No Autenticat",
+                            content = { @Content(
+                                    mediaType = MediaType.APPLICATION_JSON,
+                                    schema = @Schema(implementation = String.class)) }),
+                    */
                     @ApiResponse(
                             responseCode = "404",
                             description = "Paràmetres incorrectes",
