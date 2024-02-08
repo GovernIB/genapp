@@ -110,9 +110,20 @@
         }, {
           "name" : "language",
           "in" : "query",
-          "description" : "Idioma en que retornar les dades. Opcional.",
+          "description" : "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
           "schema" : {
-            "type" : "string"
+            "type" : "string",
+            "default" : "ca"
+          },
+          "examples" : {
+            "Català" : {
+              "description" : "Català",
+              "value" : "ca"
+            },
+            "Castellano" : {
+              "description" : "Castellano",
+              "value" : "es"
+            }
           }
         } ],
         "responses" : {
@@ -198,9 +209,20 @@
         }, {
           "name" : "language",
           "in" : "query",
-          "description" : "Idioma en que retornar les dades. Opcional.",
+          "description" : "Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')",
           "schema" : {
-            "type" : "string"
+            "type" : "string",
+            "default" : "ca"
+          },
+          "examples" : {
+            "Català" : {
+              "description" : "Català",
+              "value" : "ca"
+            },
+            "Castellano" : {
+              "description" : "Castellano",
+              "value" : "es"
+            }
           }
         } ],
         "responses" : {

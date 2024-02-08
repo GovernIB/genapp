@@ -94,12 +94,21 @@ paths:
             d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29))$"
           type: string
         style: form
-      - description: Idioma en que retornar les dades. Opcional.
+      - description: Idioma en que s'han de retornar les dades(Només suportat 'ca'
+          o 'es')
+        examples:
+          Català:
+            description: Català
+            value: ca
+          Castellano:
+            description: Castellano
+            value: es
         explode: true
         in: query
         name: language
         required: false
         schema:
+          default: ca
           type: string
         style: form
       responses:
@@ -181,12 +190,21 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Idioma en que retornar les dades. Opcional.
+      - description: Idioma en que s'han de retornar les dades(Només suportat 'ca'
+          o 'es')
+        examples:
+          Català:
+            description: Català
+            value: ca
+          Castellano:
+            description: Castellano
+            value: es
         explode: true
         in: query
         name: language
         required: false
         schema:
+          default: ca
           type: string
         style: form
       responses:

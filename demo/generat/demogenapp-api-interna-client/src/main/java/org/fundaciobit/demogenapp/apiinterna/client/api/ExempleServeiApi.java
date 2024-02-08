@@ -44,7 +44,7 @@ public class ExempleServeiApi {
    * @param enddate Filtre Data final de la consulta. Opcional. Format yyyy-MM-dd (ISO 8601) (optional)
    * @param page Numero de pàgina quan el llistat és paginat. Opcional. Per defecte 1. (optional)
    * @param pageSize Número d&#39;elements a retornar per pàgina. Opcional. Per defecte 15 (optional)
-   * @param language Idioma en que retornar les dades. Opcional. (optional)
+   * @param language Idioma en que s&#39;han de retornar les dades(Només suportat &#39;ca&#39; o &#39;es&#39;) (optional, default to ca)
    * @return a {@code LlistaDeExempleInfoPaginada}
    * @throws ApiException if fails to make API call
    */
@@ -91,7 +91,7 @@ public class ExempleServeiApi {
    * @param name Filtre pel Nom de l&#39;objecte ExempleInfo. Opcional. (optional)
    * @param startdate Filtre Data d&#39;inici de la consulta. Opcional. Format yyyy-MM-dd (ISO 8601) (optional)
    * @param enddate Filtre Data final de la consulta. Opcional. Format  yyyy-MM-dd (ISO 8601) (optional)
-   * @param language Idioma en que retornar les dades. Opcional. (optional)
+   * @param language Idioma en que s&#39;han de retornar les dades(Només suportat &#39;ca&#39; o &#39;es&#39;) (optional, default to ca)
    * @return a {@code LlistaDeExempleInfoCompleta}
    * @throws ApiException if fails to make API call
    */
