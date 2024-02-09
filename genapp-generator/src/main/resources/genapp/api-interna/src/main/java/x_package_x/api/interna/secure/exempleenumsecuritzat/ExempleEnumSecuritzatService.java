@@ -7,10 +7,8 @@ import ${package}.logic.utils.I18NLogicUtils;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -72,8 +70,6 @@ public class ExempleEnumSecuritzatService extends RestUtils {
     protected static final Map<String, String> MAP_TIPUS_DOCUMENTAL = new HashMap<String, String>();
 
     static {
-
-        // 
 
         MAP_TIPUS_DOCUMENTAL.put("0_ca", "ALTRES");
         MAP_TIPUS_DOCUMENTAL.put("1_ca", "Resolució");
@@ -295,6 +291,12 @@ public class ExempleEnumSecuritzatService extends RestUtils {
     @Operation(tags = { TAG_NAME }, operationId = "list", summary = "Retorna un llistat de tipus documentals")
     @ApiResponses({
             @ApiResponse(
+                    responseCode = "200",
+                    description = "EFIB: Retornades dades obertes correctament",
+                    content = { @Content(
+                            mediaType = RestUtils.MIME_APPLICATION_JSON,
+                            schema = @Schema(implementation = TipusDocumentalsPaginacio.class)) }),
+            @ApiResponse(
                     responseCode = "400",
                     description = "EFIB: Paràmetres incorrectes",
                     content = { @Content(
@@ -317,25 +319,9 @@ public class ExempleEnumSecuritzatService extends RestUtils {
                     description = "EFIB: Error durant la consulta de les dades obertes",
                     content = { @Content(
                             mediaType = RestUtils.MIME_APPLICATION_JSON,
-                            schema = @Schema(implementation = RestExceptionInfo.class)) }),
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "EFIB: Retornades dades obertes correctament",
-                    content = { @Content(
-                            mediaType = RestUtils.MIME_APPLICATION_JSON,
-                            schema = @Schema(implementation = TipusDocumentalsPaginacio.class)) }) })
-    public TipusDocumentalsPaginacio list(@Parameter(
-            description = "Data d'inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades",
-            in = ParameterIn.QUERY,
-            required = false,
-            example = "2022-08-29",
-            schema = @Schema(implementation = String.class)) @QueryParam("inici") final String dataIniciRequest,
-            @Parameter(
-                    description = "Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades",
-                    in = ParameterIn.QUERY,
-                    required = false,
-                    example = "2023-12-31",
-                    schema = @Schema(implementation = String.class)) @QueryParam("fi") final String dataFiRequest,
+                            schema = @Schema(implementation = RestExceptionInfo.class)) }), })
+
+    public TipusDocumentalsPaginacio list(
             @Parameter(
                     description = "Pàgina de la que es volen obtenir les dades. Comença per 1.",
                     in = ParameterIn.QUERY,
@@ -371,24 +357,8 @@ public class ExempleEnumSecuritzatService extends RestUtils {
         // Check de language
         language = RestUtils.checkLanguage(language);
 
-        // Convertir Data en format dd/MM/yyyy a tipus Date
-        // i check de dates
-
-        final String dataIniciRequestLabel = "inici";
-        final String dataFiRequestLabel = "fi";
-
-        final Date[] dates = checkRangeOfOnlyDates(dataIniciRequest, dataIniciRequestLabel, dataFiRequest,
-                dataFiRequestLabel, language);
-
-        Date dateStart = dates[0];
-        Date dateEnd = dates[1];
-
         // Realitzar Consulta
         try {
-
-            final Timestamp from = new Timestamp(atStartOfDay(dateStart).getTime());
-            final Timestamp to = new Timestamp(atEndOfDay(dateEnd).getTime());
-
             final int firstResult = (page - 1) * pagesize;
             final int lastResult = (page - 1) * pagesize;
 
@@ -420,7 +390,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
 
         } catch (Throwable th) {
 
-            return processException("list(llistant evidències)", language, th);
+            return processException("list(Tipus Documentals)", language, th);
         }
 
     }
