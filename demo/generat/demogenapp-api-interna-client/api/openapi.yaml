@@ -234,26 +234,6 @@ paths:
     get:
       operationId: list
       parameters:
-      - description: "Data d'inici, en format yyyy-MM-dd (ISO 8601), a partir de la\
-          \ qual volem obtenir dades"
-        example: 2022-08-29
-        explode: true
-        in: query
-        name: inici
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem\
-          \ tenir dades"
-        example: 2023-12-31
-        explode: true
-        in: query
-        name: fi
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Pàgina de la que es volen obtenir les dades. Comença per 1.
         example: 1
         explode: true
@@ -291,6 +271,12 @@ paths:
           type: string
         style: form
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TipusDocumentalsPaginacio'
+          description: "EFIB: Retornades dades obertes correctament"
         "400":
           content:
             application/json:
@@ -315,12 +301,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/RestExceptionInfo'
           description: "EFIB: Error durant la consulta de les dades obertes"
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TipusDocumentalsPaginacio'
-          description: "EFIB: Retornades dades obertes correctament"
       security:
       - BasicAuth: []
       summary: Retorna un llistat de tipus documentals

@@ -39,15 +39,13 @@ public class NotificacionsApi {
   /**
    * Retorna un llistat de tipus documentals
    * 
-   * @param inici Data d&#39;inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades (optional)
-   * @param fi Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades (optional)
    * @param page Pàgina de la que es volen obtenir les dades. Comença per 1. (optional)
    * @param pagesize Quantitat d&#39;elements a retornar (optional)
    * @param language Idioma en que s&#39;han de retornar les dades(Només suportat &#39;ca&#39; o &#39;es&#39;) (optional)
    * @return a {@code TipusDocumentalsPaginacio}
    * @throws ApiException if fails to make API call
    */
-  public TipusDocumentalsPaginacio callList(String inici, String fi, Integer page, Integer pagesize, String language) throws ApiException {
+  public TipusDocumentalsPaginacio callList(Integer page, Integer pagesize, String language) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -59,8 +57,6 @@ public class NotificacionsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "inici", inici));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "fi", fi));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pagesize", pagesize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "language", language));

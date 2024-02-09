@@ -11,7 +11,7 @@ All URIs are relative to */demogenappapi/interna*
 
 ## callList
 
-> TipusDocumentalsPaginacio callList(inici, fi, page, pagesize, language)
+> TipusDocumentalsPaginacio callList(page, pagesize, language)
 
 Retorna un llistat de tipus documentals
 
@@ -37,13 +37,11 @@ public class Example {
         BasicAuth.setPassword("YOUR PASSWORD");
 
         NotificacionsApi apiInstance = new NotificacionsApi(defaultClient);
-        String inici = "2022-08-29"; // String | Data d'inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades
-        String fi = "2023-12-31"; // String | Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades
         Integer page = 1; // Integer | Pàgina de la que es volen obtenir les dades. Comença per 1.
         Integer pagesize = 10; // Integer | Quantitat d'elements a retornar
         String language = "ca"; // String | Idioma en que s'han de retornar les dades(Només suportat 'ca' o 'es')
         try {
-            TipusDocumentalsPaginacio result = apiInstance.callList(inici, fi, page, pagesize, language);
+            TipusDocumentalsPaginacio result = apiInstance.callList(page, pagesize, language);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NotificacionsApi#callList");
@@ -61,8 +59,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **inici** | **String**| Data d&#39;inici, en format yyyy-MM-dd (ISO 8601), a partir de la qual volem obtenir dades | [optional] |
-| **fi** | **String**| Data fi, en format yyyy-MM-dd (ISO 8601), fins la qual volem tenir dades | [optional] |
 | **page** | **Integer**| Pàgina de la que es volen obtenir les dades. Comença per 1. | [optional] |
 | **pagesize** | **Integer**| Quantitat d&#39;elements a retornar | [optional] |
 | **language** | **String**| Idioma en que s&#39;han de retornar les dades(Només suportat &#39;ca&#39; o &#39;es&#39;) | [optional] |
@@ -84,11 +80,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | EFIB: Retornades dades obertes correctament |  -  |
 | **400** | EFIB: Paràmetres incorrectes |  -  |
 | **401** | EFIB: No Autenticat |  -  |
 | **403** | EFIB: No Autoritzat |  -  |
 | **500** | EFIB: Error durant la consulta de les dades obertes |  -  |
-| **200** | EFIB: Retornades dades obertes correctament |  -  |
 
 
 ## sendNotificationToMobile
