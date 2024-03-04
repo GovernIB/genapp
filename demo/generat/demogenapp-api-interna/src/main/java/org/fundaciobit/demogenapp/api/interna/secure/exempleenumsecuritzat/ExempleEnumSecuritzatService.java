@@ -3,6 +3,7 @@ package org.fundaciobit.demogenapp.api.interna.secure.exempleenumsecuritzat;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.demogenapp.logic.utils.I18NLogicUtils;
 
+
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
@@ -148,7 +149,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
 
     @Path("/sendnotificationtomobile")
     @GET
-    @RolesAllowed({ Constants.DEM_WS })
+	@RolesAllowed({ Constants.DEM_WS })
     @SecurityRequirement(name = ExempleEnumSecuritzatService.SECURITY_NAME)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

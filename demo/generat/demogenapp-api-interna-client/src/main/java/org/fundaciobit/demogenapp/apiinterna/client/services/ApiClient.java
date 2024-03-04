@@ -23,7 +23,6 @@ import java.util.Map.Entry;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.time.OffsetDateTime;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -31,6 +30,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,7 +47,7 @@ import org.fundaciobit.demogenapp.apiinterna.client.services.auth.HttpBearerAuth
 import org.fundaciobit.demogenapp.apiinterna.client.services.auth.ApiKeyAuth;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ApiClient extends JavaTimeFormatter {
+public class ApiClient {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();
   private String basePath = "/demogenappapi/interna";
@@ -313,8 +313,6 @@ public class ApiClient extends JavaTimeFormatter {
       return "";
     } else if (param instanceof Date) {
       return formatDate((Date) param);
-    } else if (param instanceof OffsetDateTime) {
-      return formatOffsetDateTime((OffsetDateTime) param);
     } else if (param instanceof Collection) {
       StringBuilder b = new StringBuilder();
       for(Object o : (Collection)param) {
@@ -473,15 +471,16 @@ public class ApiClient extends JavaTimeFormatter {
         if (param.getValue() instanceof File) {
           File file = (File) param.getValue();
           try {
-            multipart.addFormData(param.getValue().toString(),new FileInputStream(file),MediaType.APPLICATION_OCTET_STREAM_TYPE);
+            multipart.addFormData(param.getKey(),new FileInputStream(file),MediaType.APPLICATION_OCTET_STREAM_TYPE, file.getName());
           } catch (FileNotFoundException e) {
             throw new ApiException("Could not serialize multipart/form-data "+e.getMessage());
           }
         } else {
-          multipart.addFormData(param.getValue().toString(),param.getValue().toString(),MediaType.APPLICATION_OCTET_STREAM_TYPE);
+          multipart.addFormData(param.getKey(),param.getValue().toString(),MediaType.APPLICATION_OCTET_STREAM_TYPE);
         }
       }
-      entity = Entity.entity(multipart.getFormData(), MediaType.MULTIPART_FORM_DATA_TYPE);
+      GenericEntity<MultipartFormDataOutput> genericEntity = new GenericEntity<MultipartFormDataOutput>(multipart) { };
+      entity = Entity.entity(genericEntity, MediaType.MULTIPART_FORM_DATA_TYPE);
     } else if (contentType.startsWith("application/x-www-form-urlencoded")) {
       Form form = new Form();
       for (Entry<String, Object> param: formParams.entrySet()) {

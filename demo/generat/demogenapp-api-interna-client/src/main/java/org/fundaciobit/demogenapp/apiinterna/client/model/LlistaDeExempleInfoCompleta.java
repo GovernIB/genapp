@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.fundaciobit.demogenapp.apiinterna.client.model.ExempleInfo;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -145,7 +146,7 @@ public class LlistaDeExempleInfoCompleta {
   }
 
    /**
-   * Elements retornats. Pot retornar un null o una llista bida si no hi ha elements.
+   * Elements retornats. Pot retornar un null o una llista buida si no hi ha elements.
    * @return data
   **/
   @javax.annotation.Nullable

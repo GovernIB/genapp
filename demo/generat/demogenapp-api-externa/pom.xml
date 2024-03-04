@@ -126,7 +126,8 @@
                         <configuration>
                             <inputSpec>${project.basedir}/openapi/openapi.json</inputSpec>
                             <generatorName>java</generatorName>
-                            <skipValidateSpec>true</skipValidateSpec>                            
+                            <skipValidateSpec>true</skipValidateSpec>
+                            <configHelp>java</configHelp>
                             <library>resteasy</library>
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->

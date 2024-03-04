@@ -434,7 +434,7 @@ components:
             d|2[0-3]):[0-5]\\d:[0-5]\\d(?:Z|[+-][01]\\d:[0-5]\\d)$"
           type: string
         data:
-          description: Elements retornats. Pot retornar un null o una llista bida
+          description: Elements retornats. Pot retornar un null o una llista buida
             si no hi ha elements.
           items:
             $ref: '#/components/schemas/ExempleInfo'
@@ -446,6 +446,12 @@ components:
       type: object
     RestExceptionInfo:
       description: Estructura de dades utilitzada per passar informació d'un error
+      example:
+        code: 1
+        causeStackTrace: causeStackTrace
+        causeException: causeException
+        errorMessage: errorMessage
+        stackTrace: stackTrace
       properties:
         code:
           description: Codi de HTTP de l'error. Veure https://en.wikipedia.org/wiki/List_of_HTTP_status_codes.
@@ -521,7 +527,7 @@ components:
             d|2[0-3]):[0-5]\\d:[0-5]\\d(?:Z|[+-][01]\\d:[0-5]\\d)$"
           type: string
         data:
-          description: Elements retornats. Pot retornar un null o una llista bida
+          description: Elements retornats. Pot retornar un null o una llista buida
             si no hi ha elements.
           items:
             $ref: '#/components/schemas/ExempleInfo'

@@ -97,6 +97,10 @@ components:
           type: string
       type: object
     ConstantsWs:
+      example:
+        ROLE_EJB_FULL_ACCESS: DEM_ADMIN
+        ROLE_EJB_BASIC_ACCESS: 0
+        ROLE_EJB_WS_ACCESS: 6
       properties:
         ROLE_EJB_FULL_ACCESS:
           default: DEM_ADMIN
