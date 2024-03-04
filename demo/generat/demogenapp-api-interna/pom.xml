@@ -115,7 +115,7 @@
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>6.6.0</version>
+                <version>7.3.0</version>
 
                 <executions>
                     <execution>
@@ -142,7 +142,7 @@
                                 <artifactId>demogenapp-api-interna-client</artifactId>
                                 <artifactVersion>1.0</artifactVersion>
                                 <artifactDescription>demogenapp - API Rest - Interna Client</artifactDescription>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>java11</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>

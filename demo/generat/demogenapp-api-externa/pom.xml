@@ -116,7 +116,7 @@
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.1.0</version>
+                <version>7.3.0</version>
                 <executions>
                     <execution>
                         <phase>install</phase>
@@ -126,8 +126,7 @@
                         <configuration>
                             <inputSpec>${project.basedir}/openapi/openapi.json</inputSpec>
                             <generatorName>java</generatorName>
-                            <skipValidateSpec>true</skipValidateSpec>
-                            <configHelp>java</configHelp>
+                            <skipValidateSpec>true</skipValidateSpec>                            
                             <library>resteasy</library>
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->
@@ -142,7 +141,7 @@
                                 <artifactId>demogenapp-api-externa-client</artifactId>
                                 <artifactVersion>1.0</artifactVersion>
                                 <artifactDescription>demogenapp - API Rest - Externa Client</artifactDescription>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>java11</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>
