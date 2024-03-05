@@ -50,6 +50,7 @@ public class DocGenerator {
         prop.put("prefix", project.getPrefix().toUpperCase()); // .toLowerCase()
         prop.put("dollar", "$"); // .toLowerCase()
         prop.put("package", packagePath.replace('/', '.')); // .toLowerCase()
+        prop.put("jboss.home", "${jboss.home}"); // .toLowerCase()
 
         String resourceBaseDirs = resourceBase + "/doc";
 

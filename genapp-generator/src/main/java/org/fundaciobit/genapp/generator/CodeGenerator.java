@@ -1064,7 +1064,7 @@ public class CodeGenerator {
             prop.put("generatefront", project.isGenerateFront());
 
             String resourceBaseDirs = resourceBase + "/" + "baseDirs";
-            recursiveSubstitution(projectDir, resourceBaseDirs, prop, project, false);
+            recursiveSubstitution(projectDir, resourceBaseDirs, prop, project, false, "jboss7");
         }
 
         // (2) Copiar fitxers que no necessiten substitucions
