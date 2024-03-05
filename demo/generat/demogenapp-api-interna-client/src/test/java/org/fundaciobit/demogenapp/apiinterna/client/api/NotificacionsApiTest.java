@@ -44,17 +44,13 @@ public class NotificacionsApiTest {
     @Test
     public void callListTest() throws ApiException {
         //
-        //String inici = null;
-        //
-        //String fi = null;
-        //
         //Integer page = null;
         //
         //Integer pagesize = null;
         //
         //String language = null;
         //
-        //TipusDocumentalsPaginacio response = api.callList(inici, fi, page, pagesize, language);
+        //TipusDocumentalsPaginacio response = api.callList(page, pagesize, language);
 
         // TODO: test validations
     }

@@ -143,7 +143,7 @@
                                 <artifactId>${name}-api-interna-client</artifactId>
                                 <artifactVersion>1.0</artifactVersion>
                                 <artifactDescription>${name} - API Rest - Interna Client</artifactDescription>
-                                <dateLibrary>java11</dateLibrary>
+                                <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>

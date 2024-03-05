@@ -1,3 +1,3 @@
 cd generat 
-call compile.bat
+call compile.bat %*
 cd ..

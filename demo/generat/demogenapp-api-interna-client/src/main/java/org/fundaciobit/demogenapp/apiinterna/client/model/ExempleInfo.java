@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -45,7 +45,7 @@ public class ExempleInfo {
   private String value;
 
   public static final String JSON_PROPERTY_DATE = "date";
-  private Date date;
+  private OffsetDateTime date;
 
   public ExempleInfo() {
   }
@@ -128,7 +128,7 @@ public class ExempleInfo {
   }
 
 
-  public ExempleInfo date(Date date) {
+  public ExempleInfo date(OffsetDateTime date) {
     
     this.date = date;
     return this;
@@ -142,14 +142,14 @@ public class ExempleInfo {
   @JsonProperty(JSON_PROPERTY_DATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Date getDate() {
+  public OffsetDateTime getDate() {
     return date;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDate(Date date) {
+  public void setDate(OffsetDateTime date) {
     this.date = date;
   }
 
