@@ -43,11 +43,13 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 
 ```
 mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.2 -B
-
 ```
-<!--  -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT -->
+<!--  -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT 
 
-![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)-->
+
+![imatge](https://github.com/GovernIB/genapp/assets/17084256/1a7641c6-ff2d-4b60-9cc6-088c056497b0)
+
 
 També es pot executar 
 ```
