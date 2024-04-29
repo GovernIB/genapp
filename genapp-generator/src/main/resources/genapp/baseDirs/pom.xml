@@ -547,14 +547,25 @@
         </#if>
         <#if generateapiinterna>
         <profile>
-            <id>api-interna-client</id>
+            <id>api-interna-client-exemplepublic-v1</id>
             <activation>
                 <file>
-                    <exists>${prefixdirectori}api-interna-client</exists>
+                    <exists>${prefixdirectori}api-interna-client-exemplepublic-v1</exists>
                 </file>
             </activation>
             <modules>
-                <module>${prefixdirectori}api-interna-client</module>
+                <module>${prefixdirectori}api-interna-client-exemplepublic-v1</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>api-interna-client-exemplesecure-v1</id>
+            <activation>
+                <file>
+                    <exists>${prefixdirectori}api-interna-client-exemplesecure-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>${prefixdirectori}api-interna-client-exemplesecure-v1</module>
             </modules>
         </profile>
         </#if>

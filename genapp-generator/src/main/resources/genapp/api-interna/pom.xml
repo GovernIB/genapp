@@ -1,6 +1,8 @@
 <#assign symbol_dollar = "$">
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>${name}</artifactId>
@@ -9,13 +11,14 @@
     </parent>
     <artifactId>${name}-api-interna</artifactId>
     <packaging>war</packaging>
-    <name>${fullname} - API Rest - Interna</name>
+    <name>${fullname} - API Rest - Interna Server</name>
     <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>
-        <client.default.package>${package}.apiinterna.client</client.default.package>
-        <!-- La darrera versió disponible: https://github.com/swagger-api/swagger-ui/releases -->
-        <swagger-ui.version>3.52.5</swagger-ui.version>
+        <artifactU>${fullname}</artifactU>
+        <artifact>${name}</artifact>
+        <group>${package}</group>
+        <client.default.package>${symbol_dollar}{group}.apiinterna.client</client.default.package>
     </properties>
 
     <dependencies>
@@ -33,21 +36,21 @@
         </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
-            <groupId>${package}</groupId>
-            <artifactId>${name}-commons</artifactId>
-            <version>${app_current_version}</version>
+            <groupId>${symbol_dollar}{group}</groupId>
+            <artifactId>${symbol_dollar}{artifact}-commons</artifactId>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${package}</groupId>
-            <artifactId>${name}-persistence</artifactId>
-            <version>${app_current_version}</version>
+            <groupId>${symbol_dollar}{group}</groupId>
+            <artifactId>${symbol_dollar}{artifact}-persistence</artifactId>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${package}</groupId>
-            <artifactId>${name}-ejb</artifactId>
-            <version>${app_current_version}</version>
+            <groupId>${symbol_dollar}{group}</groupId>
+            <artifactId>${symbol_dollar}{artifact}-ejb</artifactId>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -55,7 +58,6 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <!-- <version>2.1.13</version> -->
             <scope>provided</scope>
         </dependency>
 
@@ -76,6 +78,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>swager-ui-configurable</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>${symbol_dollar}{project.artifactId}</finalName>
@@ -97,21 +106,64 @@
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>openapi1</contextId>
-                            <outputFileName>openapi</outputFileName>
+                            <contextId>Exemple Public</contextId>
+                            <outputFileName>openapi_public</outputFileName>
                             <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
                             <outputFormat>JSON</outputFormat>
                             <resourcePackages>
-                                <package>${package}.api.interna.config</package>
-                                <package>${package}.api.interna.all</package>
-                                <package>${package}.api.interna.secure</package>
+                                <package>${symbol_dollar}{group}.api.interna.config</package>
+                                <package>${symbol_dollar}{group}.api.interna.all.exemplepublic</package>
+                            </resourcePackages>
+                            <prettyPrint>TRUE</prettyPrint>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>openapi2</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                        <configuration>
+                            <contextId>Exemple Seguretat</contextId>
+                            <outputFileName>openapi_secure</outputFileName>
+                            <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
+                            <outputFormat>JSON</outputFormat>
+                            <resourcePackages>
+                                <package>
+                                    ${symbol_dollar}{group}.api.interna.config</package>
+                                <package>
+                                    ${symbol_dollar}{group}.api.interna.secure.exempleenumsecuritzat</package>
+                            </resourcePackages>
+                            <prettyPrint>TRUE</prettyPrint>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>openapi3</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                        <configuration>
+                            <contextId>Exemple Dades Obertes</contextId>
+                            <outputFileName>openapi_dadesobertes</outputFileName>
+                            <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
+                            <outputFormat>JSON</outputFormat>
+                            <resourcePackages>
+                                <package>
+                                    ${symbol_dollar}{group}.api.interna.config</package>
+                                <package>
+                                    ${symbol_dollar}{group}.api.interna.all.exemplereutilitzacio</package>
                             </resourcePackages>
                             <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <!-- Genera el Client Rest per Java a partir del fitxer openapi.json -->
+
+
+            <!-- ==================================================================  -->
+            <!-- Genera el Client Rest per Java a partir del fitxers openapi_*.json -->
+            <!-- ==================================================================  -->
             <plugin>
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
@@ -120,12 +172,13 @@
 
                 <executions>
                     <execution>
-                        <phase>install</phase>
+                        <id>openapi1</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi.json</inputSpec>
+                            <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi_public.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
@@ -133,16 +186,16 @@
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
-                            <output>${symbol_dollar}{project.basedir}/../${name}-api-interna-client</output>
+                            <output>${symbol_dollar}{project.basedir}/../${name}-api-interna-client-exemplepublic-v1</output>
                             <apiPackage>${symbol_dollar}{client.default.package}.api</apiPackage>
                             <modelPackage>${symbol_dollar}{client.default.package}.model</modelPackage>
                             <invokerPackage>${symbol_dollar}{client.default.package}.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <groupId>${package}</groupId>
-                                <artifactId>${name}-api-interna-client</artifactId>
-                                <artifactVersion>1.0</artifactVersion>
-                                <artifactDescription>${name} - API Rest - Interna Client</artifactDescription>
+                                <groupId>${symbol_dollar}{group}</groupId>
+                                <artifactId>${symbol_dollar}{artifact}-api-interna-client-exemplepublic-v1</artifactId>
+                                <artifactVersion>1.0-SNAPSHOT</artifactVersion>
+                                <artifactDescription>${symbol_dollar}{artifactU} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -150,54 +203,79 @@
                             </configOptions>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>openapi2</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${symbol_dollar}{project.basedir}/openapi/openapi_secure.json</inputSpec>
+                            <generatorName>java</generatorName>
+                            <skipValidateSpec>true</skipValidateSpec>
+                            <configHelp>java</configHelp>
+                            <library>resteasy</library>
+                            <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
+                            <!-- <configHelp>true</configHelp> -->
+                            <addCompileSourceRoot>false</addCompileSourceRoot>
+                            <output>${symbol_dollar}{project.basedir}/../${name}-api-interna-client-exemplesecure-v1</output>
+                            <apiPackage>${symbol_dollar}{client.default.package}.api</apiPackage>
+                            <modelPackage>${symbol_dollar}{client.default.package}.model</modelPackage>
+                            <invokerPackage>${symbol_dollar}{client.default.package}.services</invokerPackage>
+                            <generateModelTests>false</generateModelTests>
+                            <configOptions>
+                                <groupId>${symbol_dollar}{group}</groupId>
+                                <artifactId>
+                                    ${symbol_dollar}{artifact}-api-interna-client-exemplesecure-v1</artifactId>
+                                <artifactVersion>1.0-SNAPSHOT</artifactVersion>
+                                <artifactDescription>${symbol_dollar}{artifactU} - API Rest -
+                                    Interna Client - Exemple Secure v1</artifactDescription>
+                                <dateLibrary>java8</dateLibrary>
+                                <useTags>true</useTags>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <java11>true</java11>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <!-- openapi3:  Dades Obertes no necessita Client JAVA -->
                 </executions>
             </plugin>
 
-            <!-- Profile per incloure swagger-ui dins el mòdul -->
-            <!-- Davalla la versió de swagger-ui (Web UI que parseja openapi.json. 
-                Veure index.html) -->
+            <!--NOU TODO -->
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
-                        <id>swagger-ui</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <skipCache>false</skipCache>
-                            <url>https://github.com/swagger-api/swagger-ui/archive/v${symbol_dollar}{swagger-ui.version}.tar.gz</url>
-                            <unpack>true</unpack>
-                            <outputDirectory>${symbol_dollar}{project.build.directory}</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Canvia l'adreça de la configuració d'exemple per la real, 
-                ./openapi.json -->
-            <plugin>
-                <groupId>com.google.code.maven-replacer-plugin</groupId>
-                <artifactId>replacer</artifactId>
-                <executions>
-                    <execution>
-                        <id>index</id>
                         <phase>prepare-package</phase>
                         <goals>
-                            <goal>replace</goal>
+                            <goal>java</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <file>${symbol_dollar}{project.build.directory}/swagger-ui-${symbol_dollar}{swagger-ui.version}/dist/index.html</file>
-                    <replacements>
-                        <replacement>
-                            <token>https://petstore.swagger.io/v2/swagger.json</token>
-                            <value>./openapi.json</value>
-                        </replacement>
-                    </replacements>
+                    <includeProjectDependencies>false</includeProjectDependencies>
+                    <includePluginDependencies>true</includePluginDependencies>
+                    <executableDependency>
+                        <artifactId>pluginsib-utils-rest</artifactId>
+                        <groupId>org.fundaciobit.pluginsib.utils</groupId>
+                    </executableDependency>
+                    <mainClass>
+                        org.fundaciobit.pluginsib.utils.rest.pomadaptertojboss72.AdaptApiClientPomToJboss72</mainClass>
+                    <arguments>
+                        <argument>${symbol_dollar}{project.basedir}</argument>
+                    </arguments>
+
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <artifactId>pluginsib-utils-rest</artifactId>
+                        <groupId>org.fundaciobit.pluginsib.utils</groupId>
+                        <version>2.0.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <!-- Inclou el openapi.json i el swagger-ui dins el war -->
@@ -206,73 +284,15 @@
                 <configuration>
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                     <webResources>
-                        <!--  combine.children="append">  -->
-                        <resource>
-                            <directory>${symbol_dollar}{project.build.directory}/swagger-ui-${symbol_dollar}{swagger-ui.version}/dist</directory>
-                        </resource>
                         <resource>
                             <directory>${symbol_dollar}{project.basedir}/openapi</directory>
                         </resource>
                     </webResources>
                 </configuration>
             </plugin>
-            <!--   Llevar el .gitignore del codi generat -->
-            <plugin>
-                <groupId>com.coderplus.maven.plugins</groupId>
-                <artifactId>copy-rename-maven-plugin</artifactId>
-                <version>1.0</version>
-                <executions>
-                    <execution>
-                        <id>copy-file</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>rename</goal>
-                        </goals>
-                        <configuration>
-                            <sourceFile>${symbol_dollar}{basedir}/../${name}-api-interna-client/.gitignore</sourceFile>
-                            <destinationFile>${symbol_dollar}{project.build.directory}/client_gitignore_renamed.txt</destinationFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse 
-                    m2e settings only. It has no influence on the Maven build itself. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            org.apache.geronimo
-                                        </groupId>
-                                        <artifactId>
-                                            geronimo-openapi-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [1.0.12,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>openapi.json</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+
     </build>
 
 </project>

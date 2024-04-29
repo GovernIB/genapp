@@ -31,11 +31,15 @@ import org.fundaciobit.pluginsib.utils.rest.RestException;
 import org.fundaciobit.pluginsib.utils.rest.RestExceptionInfo;
 import org.fundaciobit.pluginsib.utils.rest.RestUtils;
 
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -55,7 +59,21 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 @OpenAPIDefinition(
         tags = @Tag(
                 name = ExempleEnumSecuritzatService.TAG_NAME,
-                description = "Notificacions a l'APP de Carpeta (missateg a Mòbil)"))
+                description = "Notificacions a l'APP de Carpeta (missatge a Mòbil)"),
+        info = @Info(
+                title = "API REST INTERNA de ${fullname} - Exemple de Servei Securitzat",
+                description = "Conjunt de Serveis REST de ${fullname} per ser accedits emprant autenticació",
+                version = "1.0-SNAPSHOT",
+                license = @License(
+                        name = "European Union Public Licence (EUPL v1.2)",
+                        url = "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"),
+                contact = @Contact(
+                        name = "Departament de Govern Digital a la Fundació Bit",
+                        email = "otae@fundaciobit.org",
+                        url = "https://governdigital.fundaciobit.org")),
+        externalDocs = @ExternalDocumentation(
+                description = "Java Client (GovernIB Github)",
+                url = "https://github.com/GovernIB/${name}/tree/${name}-1.0/${name}-api-interna-client-exemplesecure-v1"))
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleEnumSecuritzatService.SECURITY_NAME, scheme = "basic")
@@ -360,12 +378,12 @@ public class ExempleEnumSecuritzatService extends RestUtils {
         // Realitzar Consulta
         try {
             final int firstResult = (page - 1) * pagesize;
-            final int lastResult = (page - 1) * pagesize;
+            final int lastResult = page * pagesize;
 
             List<String> llistat = new ArrayList<String>();
 
             for (int i = firstResult; i < lastResult; i++) {
-                llistat.add(MAP_TIPUS_DOCUMENTAL.get(language + "_" + i));
+                llistat.add(MAP_TIPUS_DOCUMENTAL.get(i + "_" + language));
             }
 
             // PAGINACIO
@@ -375,7 +393,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
             final int totalPages = (int) (countTotal / pagesize) + ((countTotal % pagesize == 0) ? 0 : 1);
 
             TipusDocumentalsPaginacio paginacio = new TipusDocumentalsPaginacio();
-            paginacio.setPage(pageSizeOutput);
+            paginacio.setPagesize(pageSizeOutput);
             paginacio.setPage(pageOutput);
             paginacio.setTotalpages(totalPages);
             paginacio.setTotalcount((int) countTotal);

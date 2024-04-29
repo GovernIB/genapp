@@ -277,7 +277,7 @@
                 </dependencies>
             </plugin>
 
-            <!-- Inclou el openapi.json i el swagger-ui dins el war -->
+            <!-- Inclou els openapi_*.json i el swaggerui-urls.json dins del jar war -->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>

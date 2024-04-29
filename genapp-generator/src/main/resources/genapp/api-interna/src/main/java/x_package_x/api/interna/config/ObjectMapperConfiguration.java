@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.fundaciobit.pluginsib.utils.rest.ISO8601DateTimeSerializer;
 import org.fundaciobit.pluginsib.utils.rest.ISO8601TimestampSerializer;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -50,9 +49,6 @@ public class ObjectMapperConfiguration extends JacksonJaxbJsonProvider {
         
         super.setMapper(MAPPER);
     }
-
-    
-
 
 }
 

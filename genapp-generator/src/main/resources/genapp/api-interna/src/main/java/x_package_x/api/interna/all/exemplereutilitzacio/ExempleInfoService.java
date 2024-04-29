@@ -25,8 +25,12 @@ import org.fundaciobit.pluginsib.utils.rest.RestUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -41,7 +45,21 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 @OpenAPIDefinition(
         tags = @Tag(
                 name = ExempleInfoService.TAG_NAME,
-                description = "Exemple de Servei de Dades Reutilitzables emprant paginació i retorn complet de dades"))
+                description = "Exemple de Servei de Dades Reutilitzables emprant paginació i retorn complet de dades"),
+        info = @Info(
+                title = "API REST INTERNA de ${fullname} - Dades Obertes",
+                description = "Exemple de Servei de Dades Reutilitzables emprant paginació i retorn complet de dades",
+                version = "1.0-SNAPSHOT",
+                license = @License(
+                        name = "European Union Public Licence (EUPL v1.2)",
+                        url = "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"),
+                contact = @Contact(
+                        name = "Departament de Govern Digital a la Fundació Bit",
+                        email = "otae@fundaciobit.org",
+                        url = "https://governdigital.fundaciobit.org")),
+        externalDocs = @ExternalDocumentation(
+                description = "Java Client (GovernIB Github)",
+                url = "https://github.com/GovernIB/${name}/tree/${name}-1.0/${name}-api-interna-client-dadesobertes-v1"))
 // Descomentar aquest codi si es vol securitzar el servei
 //@SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleInfoService.SECURITY_NAME, scheme = "basic")
 public class ExempleInfoService extends RestUtils {
@@ -64,7 +82,7 @@ public class ExempleInfoService extends RestUtils {
     /*
     @RolesAllowed({ LLISTA DE ROLS ENTRE COMETES SEPARATS PER COMES })
     @SecurityRequirement(name = SECURITY_NAME)
-    */    
+    */
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(tags = TAG_NAME, operationId = "consultapaginada", summary = "Retorna informació d'exemple paginada")
     @ApiResponses(

@@ -1,6 +1,5 @@
 package ${package}.api.interna.all.exemplepublic;
 
-
 import java.util.Locale;
 
 import javax.validation.constraints.Pattern;
@@ -19,8 +18,12 @@ import ${package}.commons.utils.Version;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -33,20 +36,33 @@ import io.swagger.v3.oas.annotations.media.Content;
 @Path("/public/exemplepublic")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@OpenAPIDefinition(tags = @Tag(name = "ExemplePublicService", description = "Exemple de Servei JSON d'accés Públic"))
+@OpenAPIDefinition(
+        tags = @Tag(name = "ExemplePublicService", description = "Exemple de Servei JSON d'accés Públic"),
+        info = @Info(
+                title = "API REST INTERNA de ${fullname} - Exemple de Servei Públic",
+                description = "Conjunt de Serveis REST de ${fullname} per ser accedits públicament",
+                version = "1.0-SNAPSHOT",
+                license = @License(
+                        name = "European Union Public Licence (EUPL v1.2)",
+                        url = "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"),
+                contact = @Contact(
+                        name = "Departament de Govern Digital a la Fundació Bit",
+                        email = "otae@fundaciobit.org",
+                        url = "https://governdigital.fundaciobit.org")
+
+        ),
+        externalDocs = @ExternalDocumentation(
+                description = "Java Client (GovernIB Github)",
+                url = "https://github.com/GovernIB/${name}/tree/${name}-1.0/${name}-api-interna-client-exemplepublic-v1"))
 public class ExemplePublicService {
 
     protected static Logger log = Logger.getLogger(ExemplePublicService.class);
 
     @Path("/versio")
-	@GET
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(
-            tags = "Versió",
-            operationId = "versio",
-            summary = "Versio de l'Aplicació",
-            method = "get")
+    @Operation(tags = "Versió", operationId = "versio", summary = "Versio de l'Aplicació", method = "get")
     @ApiResponses(
             value = {
                     @ApiResponse(
@@ -65,8 +81,8 @@ public class ExemplePublicService {
                     description = "Codi de l'idioma",
                     required = false,
                     example = "ca",
-                    schema = @Schema(implementation = String.class)) @Pattern(regexp = "^ca|es$") @QueryParam("idioma")
-            String idioma) {
+                    schema = @Schema(implementation = String.class)) @Pattern(
+                            regexp = "^ca|es$") @QueryParam("idioma") String idioma) {
 
         try {
             ExemplePojo exemple = new ExemplePojo(new Version().getVersion() + "_" + idioma);
