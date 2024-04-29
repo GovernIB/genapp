@@ -193,7 +193,7 @@
                             <configOptions>
                                 <groupId>${group}</groupId>
                                 <artifactId>${artifact}-api-interna-client-exemplepublic-v1</artifactId>
-                                <artifactVersion>1.0</artifactVersion>
+                                <artifactVersion>1.0-SNAPSHOT</artifactVersion>
                                 <artifactDescription>${artifactU} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
@@ -227,7 +227,7 @@
                                 <groupId>${group}</groupId>
                                 <artifactId>
                                     ${artifact}-api-interna-client-exemplesecure-v1</artifactId>
-                                <artifactVersion>1.0</artifactVersion>
+                                <artifactVersion>1.0-SNAPSHOT</artifactVersion>
                                 <artifactDescription>${artifactU} - API Rest -
                                     Interna Client - Exemple Secure v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
