@@ -3,7 +3,6 @@ package org.fundaciobit.demogenapp.api.interna.secure.exempleenumsecuritzat;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.demogenapp.logic.utils.I18NLogicUtils;
 
-
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,11 +30,15 @@ import org.fundaciobit.pluginsib.utils.rest.RestException;
 import org.fundaciobit.pluginsib.utils.rest.RestExceptionInfo;
 import org.fundaciobit.pluginsib.utils.rest.RestUtils;
 
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -55,7 +58,21 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 @OpenAPIDefinition(
         tags = @Tag(
                 name = ExempleEnumSecuritzatService.TAG_NAME,
-                description = "Notificacions a l'APP de Carpeta (missateg a Mòbil)"))
+                description = "Notificacions a l'APP de Carpeta (missatge a Mòbil)"),
+        info = @Info(
+                title = "API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat",
+                description = "Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació",
+                version = "1.0-SNAPSHOT",
+                license = @License(
+                        name = "European Union Public Licence (EUPL v1.2)",
+                        url = "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"),
+                contact = @Contact(
+                        name = "Departament de Govern Digital a la Fundació Bit",
+                        email = "otae@fundaciobit.org",
+                        url = "https://governdigital.fundaciobit.org")),
+        externalDocs = @ExternalDocumentation(
+                description = "Java Client (GovernIB Github)",
+                url = "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-interna-client-exemplesecure-v1"))
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleEnumSecuritzatService.SECURITY_NAME, scheme = "basic")
@@ -149,7 +166,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
 
     @Path("/sendnotificationtomobile")
     @GET
-	@RolesAllowed({ Constants.DEM_WS })
+    @RolesAllowed({ Constants.DEM_WS })
     @SecurityRequirement(name = ExempleEnumSecuritzatService.SECURITY_NAME)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

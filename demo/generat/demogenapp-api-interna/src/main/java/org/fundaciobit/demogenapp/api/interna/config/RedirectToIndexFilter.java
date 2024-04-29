@@ -1,6 +1,9 @@
 package org.fundaciobit.demogenapp.api.interna.config;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author anadal
  *
  */
-@WebFilter(urlPatterns = { "/" })
+@WebFilter(urlPatterns = { "/*" })
 public class RedirectToIndexFilter implements Filter {
 
     @Override
@@ -27,9 +30,40 @@ public class RedirectToIndexFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.html");
+
+        final String uri = httpRequest.getRequestURI();
+
+        /*
+        
+         System.out.println("============================================");
+        
+        System.out.println("getRequestURL: " + httpRequest.getRequestURL()); 
+        
+        System.out.println("getRequestURI: " + uri);
+        */
+
+        final String cp = httpRequest.getContextPath();
+        //System.out.println("getContextPath: " + cp);
+
+        String path = uri.substring(cp.length());
+        //System.out.println("getPathInfo: " + path);
+
+        if (path.startsWith("/public/") || path.startsWith("/secure/")) { //|| path.startsWith("/webjars/")) {
+            chain.doFilter(request, response);
+
+        } else if ("".equals(path) || "/".equals(path)) {
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.html");
+        } else /* if ("/test.html".equals(path)) */ {
+
+            System.out.println("TEST HTML TEST HTML: ");
+            httpRequest.getServletContext().getNamedDispatcher("default").forward(request, response);
+            //request.getNaRequestDispatcher("/index.html").forward(request, response);
+
+        }
+
     }
 
     @Override

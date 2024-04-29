@@ -19,27 +19,12 @@ import org.apache.log4j.Logger;
  *
  */
 @OpenAPIDefinition(
-        info = @Info(
-                title = "API REST INTERNA de DemoGenApp",
-                description = "Conjunt de Serveis REST de DemoGenApp per ser accedits des de l'interior",
-                version = "1.0.0",
-                license = @License(name = "License Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0"),
-                contact = @Contact(
-                        name = "Departament de Govern Digital a la Fundació Bit",
-                        email = "otae@fundaciobit.org",
-                        url = "http://otae.fundaciobit.org")
-
-        ),
         servers = { @Server(url = "/demogenappapi/interna"),
-                    @Server(url = "http://localhost:8080/demogenappapi/interna"),
-                    @Server(url = "https://dev.caib.es/demogenappapi/interna"),
-                    @Server(url = "https://proves.caib.es/demogenappapi/interna"),
-                    @Server(url = "https://se.caib.es/demogenappapi/interna"),
-                    @Server(url = "https://www.caib.es/demogenappapi/interna")
-                },
-        externalDocs = @ExternalDocumentation(
-                description = "Java Client (GovernIB Github)",
-                url = "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-interna-client")
+                @Server(url = "http://localhost:8080/demogenappapi/interna"),
+                @Server(url = "https://dev.caib.es/demogenappapi/interna"),
+                @Server(url = "https://proves.caib.es/demogenappapi/interna"),
+                @Server(url = "https://se.caib.es/demogenappapi/interna"),
+                @Server(url = "https://www.caib.es/demogenappapi/interna") }
 
 )
 @ApplicationPath("/")
