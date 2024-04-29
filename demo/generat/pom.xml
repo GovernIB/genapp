@@ -540,11 +540,11 @@
             <id>api-interna-client</id>
             <activation>
                 <file>
-                    <exists>demogenapp-api-interna-client</exists>
+                    <exists>demogenapp-api-interna-client-exemplepublic-v1</exists>
                 </file>
             </activation>
             <modules>
-                <module>demogenapp-api-interna-client</module>
+                <module>demogenapp-api-interna-client-exemplepublic-v1</module>
             </modules>
         </profile>
     </profiles>

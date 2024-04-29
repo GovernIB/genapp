@@ -50,18 +50,14 @@ public class RedirectToIndexFilter implements Filter {
         String path = uri.substring(cp.length());
         //System.out.println("getPathInfo: " + path);
 
-        if (path.startsWith("/public/") || path.startsWith("/secure/")) { //|| path.startsWith("/webjars/")) {
+        if (path.startsWith("/public/") || path.startsWith("/secure/")) {
             chain.doFilter(request, response);
 
         } else if ("".equals(path) || "/".equals(path)) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.html");
-        } else /* if ("/test.html".equals(path)) */ {
-
-            System.out.println("TEST HTML TEST HTML: ");
+        } else {
             httpRequest.getServletContext().getNamedDispatcher("default").forward(request, response);
-            //request.getNaRequestDispatcher("/index.html").forward(request, response);
-
         }
 
     }

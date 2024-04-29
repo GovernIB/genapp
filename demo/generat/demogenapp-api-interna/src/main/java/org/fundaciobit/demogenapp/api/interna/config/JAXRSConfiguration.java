@@ -24,7 +24,8 @@ import org.apache.log4j.Logger;
                 @Server(url = "https://dev.caib.es/demogenappapi/interna"),
                 @Server(url = "https://proves.caib.es/demogenappapi/interna"),
                 @Server(url = "https://se.caib.es/demogenappapi/interna"),
-                @Server(url = "https://www.caib.es/demogenappapi/interna") }
+                @Server(url = "https://www.caib.es/demogenappapi/interna") 
+            }
 
 )
 @ApplicationPath("/")

@@ -10,7 +10,7 @@
     </parent>
     <artifactId>demogenapp-api-interna</artifactId>
     <packaging>war</packaging>
-    <name>DemoGenApp - API Rest - Interna</name>
+    <name>DemoGenApp - API Rest - Interna Servidor</name>
     <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>
@@ -57,7 +57,6 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <!-- <version>2.1.13</version> -->
             <scope>provided</scope>
         </dependency>
 
@@ -79,7 +78,6 @@
             </exclusions>
         </dependency>
 
-        <!-- NOU -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>swager-ui-configurable</artifactId>
@@ -92,8 +90,7 @@
         <plugins>
             <!-- Genera el descriptor openapi.json de forma estàtica, després 
                 el posarem l'arrel del WAR -->
-            <!--
-            https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-maven-plugin -->
+            <!-- https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-maven-plugin -->
             <plugin>
 
                 <groupId>io.swagger.core.v3</groupId>
@@ -113,10 +110,8 @@
                             <outputPath>${project.basedir}/openapi/</outputPath>
                             <outputFormat>JSON</outputFormat>
                             <resourcePackages>
-                                <package>
-                                    ${group}.api.interna.config</package>
-                                <package>
-                                    ${group}.api.interna.all.exemplepublic</package>
+                                <package>${group}.api.interna.config</package>
+                                <package>${group}.api.interna.all.exemplepublic</package>
                             </resourcePackages>
                             <prettyPrint>TRUE</prettyPrint>
                         </configuration>
@@ -165,9 +160,9 @@
             </plugin>
 
 
-            <!-- ==============================================================  -->
-            <!-- Genera el Client Rest per Java a partir del fitxer openapi.json -->
-            <!-- ==============================================================  -->
+            <!-- ==================================================================  -->
+            <!-- Genera el Client Rest per Java a partir del fitxers openapi_*.json -->
+            <!-- ==================================================================  -->
             <plugin>
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
@@ -182,8 +177,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>
-                                ${project.basedir}/openapi/openapi_public.json</inputSpec>
+                            <inputSpec>${project.basedir}/openapi/openapi_public.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
@@ -191,19 +185,16 @@
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
-                            <output>
-                                ${project.basedir}/../${artifact}-api-interna-client-exemplepublic-v1</output>
+                            <output>${project.basedir}/../${artifact}-api-interna-client-exemplepublic-v1</output>
                             <apiPackage>${client.default.package}.api</apiPackage>
                             <modelPackage>${client.default.package}.model</modelPackage>
                             <invokerPackage>${client.default.package}.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <groupId>${group}</groupId>
-                                <artifactId>
-                                    ${artifact}-api-interna-client-exemplepublic-v1</artifactId>
+                                <artifactId>${artifact}-api-interna-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0</artifactVersion>
-                                <artifactDescription>${artifactU} - API Rest -
-                                    Interna Client - Exemple Public v1</artifactDescription>
+                                <artifactDescription>${artifactU} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>

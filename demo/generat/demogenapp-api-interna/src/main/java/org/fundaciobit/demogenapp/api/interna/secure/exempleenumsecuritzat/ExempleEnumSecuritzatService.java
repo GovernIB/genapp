@@ -3,6 +3,7 @@ package org.fundaciobit.demogenapp.api.interna.secure.exempleenumsecuritzat;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.demogenapp.logic.utils.I18NLogicUtils;
 
+
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 
@@ -166,7 +167,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
 
     @Path("/sendnotificationtomobile")
     @GET
-    @RolesAllowed({ Constants.DEM_WS })
+	@RolesAllowed({ Constants.DEM_WS })
     @SecurityRequirement(name = ExempleEnumSecuritzatService.SECURITY_NAME)
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -377,12 +378,12 @@ public class ExempleEnumSecuritzatService extends RestUtils {
         // Realitzar Consulta
         try {
             final int firstResult = (page - 1) * pagesize;
-            final int lastResult = (page - 1) * pagesize;
+            final int lastResult = page * pagesize;
 
             List<String> llistat = new ArrayList<String>();
 
             for (int i = firstResult; i < lastResult; i++) {
-                llistat.add(MAP_TIPUS_DOCUMENTAL.get(language + "_" + i));
+                llistat.add(MAP_TIPUS_DOCUMENTAL.get(i + "_" + language));
             }
 
             // PAGINACIO
@@ -392,7 +393,7 @@ public class ExempleEnumSecuritzatService extends RestUtils {
             final int totalPages = (int) (countTotal / pagesize) + ((countTotal % pagesize == 0) ? 0 : 1);
 
             TipusDocumentalsPaginacio paginacio = new TipusDocumentalsPaginacio();
-            paginacio.setPage(pageSizeOutput);
+            paginacio.setPagesize(pageSizeOutput);
             paginacio.setPage(pageOutput);
             paginacio.setTotalpages(totalPages);
             paginacio.setTotalcount((int) countTotal);
