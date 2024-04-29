@@ -43,12 +43,23 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 
 ```
 mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.2 -B
-
 ```
-<!--  -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT -->
+<!--  -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT 
 
-![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)
-	
+![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)-->
+
+![imatge](https://github.com/GovernIB/genapp/assets/17084256/1a7641c6-ff2d-4b60-9cc6-088c056497b0)
+
+
+També es pot executar 
+```
+mvn archetype:generate
+```
+i filtrar per genapp:
+
+![imatge](https://github.com/GovernIB/genapp/assets/17084256/d2bf304e-9c50-4a23-b720-e6c6ae3d74b7)
+
+
 (2) Es crearà un fitxer genapp.bat i un directori rungenapp. Executar genapp.bat. Pitjar sobre el boto "Generar Taules Base"
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp_v2.png)
@@ -57,7 +68,11 @@ mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArti
 	
 (4) Afegir noves taules del nou projecte a la BBDD seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
 	
-(5) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Actualitzar Projecte".
+(5) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Actualitzar Projecte". 
+           * Per cada taula: assignar nom Java, nom curt i traduccions
+	   * Editar cada camp i afegir traducció
+           * Altres canvis: seguir  [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
+	   * Al final arreglar errors de normativa en la BBDD
 	
 (6) Executar genapp.bat i pitjar sobre "Generar Codi Font"
 
