@@ -10,7 +10,7 @@
     </parent>
     <artifactId>demogenapp-api-interna</artifactId>
     <packaging>war</packaging>
-    <name>DemoGenApp - API Rest - Interna Servidor</name>
+    <name>DemoGenApp - API Rest - Interna Server</name>
     <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>
@@ -185,7 +185,7 @@
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
-                            <output>${project.basedir}/../${artifact}-api-interna-client-exemplepublic-v1</output>
+                            <output>${project.basedir}/../demogenapp-api-interna-client-exemplepublic-v1</output>
                             <apiPackage>${client.default.package}.api</apiPackage>
                             <modelPackage>${client.default.package}.model</modelPackage>
                             <invokerPackage>${client.default.package}.services</invokerPackage>
@@ -218,8 +218,7 @@
                             <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
-                            <output>
-                                ${project.basedir}/../${artifact}-api-interna-client-exemplesecure-v1</output>
+                            <output>${project.basedir}/../demogenapp-api-interna-client-exemplesecure-v1</output>
                             <apiPackage>${client.default.package}.api</apiPackage>
                             <modelPackage>${client.default.package}.model</modelPackage>
                             <invokerPackage>${client.default.package}.services</invokerPackage>

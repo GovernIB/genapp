@@ -17,6 +17,16 @@
         <module>demogenapp-ear</module>
         <module>scripts</module>
     </modules>
+    <licenses>
+        <license>
+            <name>GPL-v2.0</name>
+            <url>http://www.gnu.org/licenses/gpl-2.0.txt</url>
+        </license>
+        <license>
+            <name>EUPL-v1.1</name>
+            <url>http://joinup.ec.europa.eu/system/files/ES/EUPL%20v.1.1%20-%20Licencia.pdf</url>
+        </license>
+    </licenses> 
     <repositories>
 
         <repository>
@@ -537,7 +547,7 @@
             </modules>
         </profile>
         <profile>
-            <id>api-interna-client</id>
+            <id>api-interna-client-exemplepublic-v1</id>
             <activation>
                 <file>
                     <exists>demogenapp-api-interna-client-exemplepublic-v1</exists>
@@ -545,6 +555,17 @@
             </activation>
             <modules>
                 <module>demogenapp-api-interna-client-exemplepublic-v1</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>api-interna-client-exemplesecure-v1</id>
+            <activation>
+                <file>
+                    <exists>demogenapp-api-interna-client-exemplesecure-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>demogenapp-api-interna-client-exemplesecure-v1</module>
             </modules>
         </profile>
     </profiles>
