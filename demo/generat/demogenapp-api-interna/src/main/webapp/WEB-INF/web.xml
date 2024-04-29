@@ -6,8 +6,7 @@
 
     <display-name>DemoGenApp: API REST INTERNA</display-name>
 
-    <!-- All html files at any path -->
-    <!-- Specifically index.html at the root -->
+    <!-- Any file in the root path -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/ignore.html</url-pattern>
