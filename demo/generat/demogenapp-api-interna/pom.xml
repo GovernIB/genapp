@@ -96,6 +96,12 @@
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
                 <version>2.2.15</version>
+                
+                <configuration>
+                    <outputFormat>JSON</outputFormat>
+                    <prettyPrint>TRUE</prettyPrint>
+                    <outputPath>${project.basedir}/openapi/</outputPath>                   
+                </configuration>
 
                 <executions>
                     <execution>
@@ -107,13 +113,10 @@
                         <configuration>
                             <contextId>Exemple Public</contextId>
                             <outputFileName>openapi_public</outputFileName>
-                            <outputPath>${project.basedir}/openapi/</outputPath>
-                            <outputFormat>JSON</outputFormat>
                             <resourcePackages>
                                 <package>${group}.api.interna.config</package>
                                 <package>${group}.api.interna.all.exemplepublic</package>
                             </resourcePackages>
-                            <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                     <execution>
@@ -125,15 +128,12 @@
                         <configuration>
                             <contextId>Exemple Seguretat</contextId>
                             <outputFileName>openapi_secure</outputFileName>
-                            <outputPath>${project.basedir}/openapi/</outputPath>
-                            <outputFormat>JSON</outputFormat>
                             <resourcePackages>
                                 <package>
                                     ${group}.api.interna.config</package>
                                 <package>
                                     ${group}.api.interna.secure.exempleenumsecuritzat</package>
                             </resourcePackages>
-                            <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                     <execution>
@@ -145,15 +145,12 @@
                         <configuration>
                             <contextId>Exemple Dades Obertes</contextId>
                             <outputFileName>openapi_dadesobertes</outputFileName>
-                            <outputPath>${project.basedir}/openapi/</outputPath>
-                            <outputFormat>JSON</outputFormat>
                             <resourcePackages>
                                 <package>
                                     ${group}.api.interna.config</package>
                                 <package>
                                     ${group}.api.interna.all.exemplereutilitzacio</package>
                             </resourcePackages>
-                            <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                 </executions>
@@ -277,7 +274,7 @@
                 </dependencies>
             </plugin>
 
-            <!-- Inclou els openapi_*.json i el swaggerui-urls.json dins del jar war -->
+            <!-- Inclou el openapi.json i el swagger-ui dins el war -->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>

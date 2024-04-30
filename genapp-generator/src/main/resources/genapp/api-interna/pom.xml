@@ -97,6 +97,12 @@
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
                 <version>2.2.15</version>
+                
+                <configuration>
+                    <outputFormat>JSON</outputFormat>
+                    <prettyPrint>TRUE</prettyPrint>
+                    <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>                   
+                </configuration>
 
                 <executions>
                     <execution>
@@ -108,13 +114,10 @@
                         <configuration>
                             <contextId>Exemple Public</contextId>
                             <outputFileName>openapi_public</outputFileName>
-                            <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
-                            <outputFormat>JSON</outputFormat>
                             <resourcePackages>
                                 <package>${symbol_dollar}{group}.api.interna.config</package>
                                 <package>${symbol_dollar}{group}.api.interna.all.exemplepublic</package>
                             </resourcePackages>
-                            <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                     <execution>
@@ -126,15 +129,12 @@
                         <configuration>
                             <contextId>Exemple Seguretat</contextId>
                             <outputFileName>openapi_secure</outputFileName>
-                            <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
-                            <outputFormat>JSON</outputFormat>
                             <resourcePackages>
                                 <package>
                                     ${symbol_dollar}{group}.api.interna.config</package>
                                 <package>
                                     ${symbol_dollar}{group}.api.interna.secure.exempleenumsecuritzat</package>
                             </resourcePackages>
-                            <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                     <execution>
@@ -146,15 +146,12 @@
                         <configuration>
                             <contextId>Exemple Dades Obertes</contextId>
                             <outputFileName>openapi_dadesobertes</outputFileName>
-                            <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>
-                            <outputFormat>JSON</outputFormat>
                             <resourcePackages>
                                 <package>
                                     ${symbol_dollar}{group}.api.interna.config</package>
                                 <package>
                                     ${symbol_dollar}{group}.api.interna.all.exemplereutilitzacio</package>
                             </resourcePackages>
-                            <prettyPrint>TRUE</prettyPrint>
                         </configuration>
                     </execution>
                 </executions>
