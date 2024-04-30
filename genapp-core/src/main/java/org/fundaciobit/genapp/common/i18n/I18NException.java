@@ -26,7 +26,7 @@ public class I18NException extends Exception {
         super(code, cause);
         this.traduccio = new I18NTranslation(code, args);
     }
-    
+
     /**
      * @param code
      * @param cause
@@ -34,6 +34,15 @@ public class I18NException extends Exception {
     public I18NException(Throwable cause, String code, String... args) {
         super(code, cause);
         this.traduccio = new I18NTranslation(code, args);
+    }
+
+    /**
+     * @param code
+     * @param cause
+     */
+    public I18NException(Throwable cause, String code) {
+        super(code, cause);
+        this.traduccio = new I18NTranslation(code);
     }
 
     /**
