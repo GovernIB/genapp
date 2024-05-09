@@ -1,13 +1,13 @@
-package org.fundaciobit.demogenapp.apiinterna.client.api;
+package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api;
 
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiException;
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiClient;
-import org.fundaciobit.demogenapp.apiinterna.client.services.Configuration;
-import org.fundaciobit.demogenapp.apiinterna.client.services.Pair;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiException;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiClient;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.Configuration;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import org.fundaciobit.demogenapp.apiinterna.client.model.ExamplePojo;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.model.ExamplePojo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

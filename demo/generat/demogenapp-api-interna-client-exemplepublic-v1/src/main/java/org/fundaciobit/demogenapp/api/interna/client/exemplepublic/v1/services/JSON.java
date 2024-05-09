@@ -1,4 +1,4 @@
-package org.fundaciobit.demogenapp.apiinterna.client.services;
+package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.*;

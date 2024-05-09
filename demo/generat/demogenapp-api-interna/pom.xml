@@ -263,7 +263,6 @@
                     <arguments>
                         <argument>${project.basedir}</argument>
                     </arguments>
-
                 </configuration>
                 <dependencies>
                     <dependency>

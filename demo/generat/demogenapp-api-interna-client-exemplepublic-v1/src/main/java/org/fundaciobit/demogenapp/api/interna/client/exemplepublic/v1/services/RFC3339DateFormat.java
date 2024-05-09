@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-package org.fundaciobit.demogenapp.apiinterna.client.services;
+package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services;
 
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 

@@ -11,7 +11,7 @@
  */
 
 
-package org.fundaciobit.demogenapp.apiinterna.client.model;
+package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.model;
 
 import java.util.Objects;
 import java.util.Arrays;

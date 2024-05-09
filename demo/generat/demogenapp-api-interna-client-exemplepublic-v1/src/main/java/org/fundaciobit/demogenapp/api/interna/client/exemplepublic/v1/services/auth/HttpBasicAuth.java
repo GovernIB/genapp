@@ -11,9 +11,9 @@
  */
 
 
-package org.fundaciobit.demogenapp.apiinterna.client.services.auth;
+package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.auth;
 
-import org.fundaciobit.demogenapp.apiinterna.client.services.Pair;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.Pair;
 
 import java.util.Base64;
 import java.nio.charset.StandardCharsets;
