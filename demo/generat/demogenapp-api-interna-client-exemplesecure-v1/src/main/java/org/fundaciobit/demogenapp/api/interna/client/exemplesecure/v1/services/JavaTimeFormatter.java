@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-package org.fundaciobit.demogenapp.apiinterna.client.services;
+package org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;

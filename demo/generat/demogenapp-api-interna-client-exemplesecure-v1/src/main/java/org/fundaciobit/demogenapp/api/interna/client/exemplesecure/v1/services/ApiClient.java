@@ -1,4 +1,4 @@
-package org.fundaciobit.demogenapp.apiinterna.client.services;
+package org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -42,10 +42,10 @@ import org.jboss.resteasy.client.jaxrs.internal.ClientConfiguration;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataOutput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.Authentication;
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.HttpBasicAuth;
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.HttpBearerAuth;
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.ApiKeyAuth;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.auth.Authentication;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.auth.HttpBasicAuth;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.auth.HttpBearerAuth;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.auth.ApiKeyAuth;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {

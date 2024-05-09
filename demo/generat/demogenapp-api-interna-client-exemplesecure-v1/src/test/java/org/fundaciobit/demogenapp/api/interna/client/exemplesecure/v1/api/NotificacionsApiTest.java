@@ -11,12 +11,12 @@
  */
 
 
-package org.fundaciobit.demogenapp.apiinterna.client.api;
+package org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.api;
 
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiException;
-import org.fundaciobit.demogenapp.apiinterna.client.model.RestExceptionInfo;
-import org.fundaciobit.demogenapp.apiinterna.client.model.SendMessageResult;
-import org.fundaciobit.demogenapp.apiinterna.client.model.TipusDocumentalsPaginacio;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.ApiException;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.RestExceptionInfo;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.SendMessageResult;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.TipusDocumentalsPaginacio;
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.Assert;

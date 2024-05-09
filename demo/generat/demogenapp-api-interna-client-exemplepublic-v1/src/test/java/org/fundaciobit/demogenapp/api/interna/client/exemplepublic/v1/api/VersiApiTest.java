@@ -11,10 +11,10 @@
  */
 
 
-package org.fundaciobit.demogenapp.apiinterna.client.api;
+package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api;
 
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiException;
-import org.fundaciobit.demogenapp.apiinterna.client.model.ExamplePojo;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiException;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.model.ExamplePojo;
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.Assert;

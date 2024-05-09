@@ -11,7 +11,7 @@
  */
 
 
-package org.fundaciobit.demogenapp.apiinterna.client.services;
+package org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services;
 
 import java.util.Collection;
 import java.util.Iterator;

@@ -11,7 +11,7 @@
  */
 
 
-package org.fundaciobit.demogenapp.apiinterna.client.model;
+package org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.fundaciobit.demogenapp.apiinterna.client.model.SendMessageResultCode;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.SendMessageResultCode;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
