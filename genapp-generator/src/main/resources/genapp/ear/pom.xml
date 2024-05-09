@@ -278,6 +278,9 @@
 					<generateApplicationXml>true</generateApplicationXml>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
                     <skinnyWars>true</skinnyWars>
+                    
+                    <packagingExcludes>lib/resteasy-*.jar,lib/jackson-*.jar</packagingExcludes>
+                    
 					<includeLibInApplicationXml>false</includeLibInApplicationXml>
 					<!--suppress UnresolvedMavenProperty -->
 					<!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->

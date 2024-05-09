@@ -18,11 +18,11 @@ Versio de l&#39;Aplicació
 
 ```java
 // Import classes:
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiClient;
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiException;
-import org.fundaciobit.demogenapp.apiinterna.client.services.Configuration;
-import org.fundaciobit.demogenapp.apiinterna.client.services.models.*;
-import org.fundaciobit.demogenapp.apiinterna.client.api.VersiApi;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiClient;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiException;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.Configuration;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.models.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api.VersiApi;
 
 public class Example {
     public static void main(String[] args) {

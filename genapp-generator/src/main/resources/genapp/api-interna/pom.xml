@@ -18,7 +18,7 @@
         <artifactU>${fullname}</artifactU>
         <artifact>${name}</artifact>
         <group>${package}</group>
-        <client.default.package>${symbol_dollar}{group}.apiinterna.client</client.default.package>
+        <client.default.package>${symbol_dollar}{group}.api.interna.client</client.default.package>
     </properties>
 
     <dependencies>
@@ -184,9 +184,9 @@
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <output>${symbol_dollar}{project.basedir}/../${name}-api-interna-client-exemplepublic-v1</output>
-                            <apiPackage>${symbol_dollar}{client.default.package}.api</apiPackage>
-                            <modelPackage>${symbol_dollar}{client.default.package}.model</modelPackage>
-                            <invokerPackage>${symbol_dollar}{client.default.package}.services</invokerPackage>
+                            <apiPackage>${symbol_dollar}{client.default.package}.exemplepublic.v1.api</apiPackage>
+                            <modelPackage>${symbol_dollar}{client.default.package}.exemplepublic.v1.model</modelPackage>
+                            <invokerPackage>${symbol_dollar}{client.default.package}.exemplepublic.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <groupId>${symbol_dollar}{group}</groupId>
@@ -217,9 +217,9 @@
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <output>${symbol_dollar}{project.basedir}/../${name}-api-interna-client-exemplesecure-v1</output>
-                            <apiPackage>${symbol_dollar}{client.default.package}.api</apiPackage>
-                            <modelPackage>${symbol_dollar}{client.default.package}.model</modelPackage>
-                            <invokerPackage>${symbol_dollar}{client.default.package}.services</invokerPackage>
+                            <apiPackage>${symbol_dollar}{client.default.package}.exemplesecure.v1.api</apiPackage>
+                            <modelPackage>${symbol_dollar}{client.default.package}.exemplesecure.v1.model</modelPackage>
+                            <invokerPackage>${symbol_dollar}{client.default.package}.exemplesecure.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <groupId>${symbol_dollar}{group}</groupId>
@@ -264,7 +264,6 @@
                     <arguments>
                         <argument>${symbol_dollar}{project.basedir}</argument>
                     </arguments>
-
                 </configuration>
                 <dependencies>
                     <dependency>

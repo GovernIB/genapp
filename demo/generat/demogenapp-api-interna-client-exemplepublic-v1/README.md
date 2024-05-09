@@ -80,10 +80,10 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.fundaciobit.demogenapp.apiinterna.client.services.*;
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.*;
-import org.fundaciobit.demogenapp.apiinterna.client.model.*;
-import org.fundaciobit.demogenapp.apiinterna.client.api.VersiApi;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.auth.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.model.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api.VersiApi;
 
 public class VersiApiExample {
 

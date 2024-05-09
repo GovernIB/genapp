@@ -19,12 +19,12 @@ Retorna un llistat de tipus documentals
 
 ```java
 // Import classes:
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiClient;
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiException;
-import org.fundaciobit.demogenapp.apiinterna.client.services.Configuration;
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.*;
-import org.fundaciobit.demogenapp.apiinterna.client.services.models.*;
-import org.fundaciobit.demogenapp.apiinterna.client.api.NotificacionsApi;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.ApiClient;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.ApiException;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.Configuration;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.auth.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.models.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.api.NotificacionsApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -97,12 +97,12 @@ Envia un missatge al mòbil del ciutada a traves de l&#39;App de Carpeta.
 
 ```java
 // Import classes:
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiClient;
-import org.fundaciobit.demogenapp.apiinterna.client.services.ApiException;
-import org.fundaciobit.demogenapp.apiinterna.client.services.Configuration;
-import org.fundaciobit.demogenapp.apiinterna.client.services.auth.*;
-import org.fundaciobit.demogenapp.apiinterna.client.services.models.*;
-import org.fundaciobit.demogenapp.apiinterna.client.api.NotificacionsApi;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.ApiClient;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.ApiException;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.Configuration;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.auth.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.models.*;
+import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.api.NotificacionsApi;
 
 public class Example {
     public static void main(String[] args) {

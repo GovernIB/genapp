@@ -17,7 +17,7 @@
         <artifactU>DemoGenApp</artifactU>
         <artifact>demogenapp</artifact>
         <group>org.fundaciobit.demogenapp</group>
-        <client.default.package>${group}.apiinterna.client</client.default.package>
+        <client.default.package>${group}.api.interna.client</client.default.package>
     </properties>
 
     <dependencies>
@@ -183,9 +183,9 @@
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <output>${project.basedir}/../demogenapp-api-interna-client-exemplepublic-v1</output>
-                            <apiPackage>${client.default.package}.api</apiPackage>
-                            <modelPackage>${client.default.package}.model</modelPackage>
-                            <invokerPackage>${client.default.package}.services</invokerPackage>
+                            <apiPackage>${client.default.package}.exemplepublic.v1.api</apiPackage>
+                            <modelPackage>${client.default.package}.exemplepublic.v1.model</modelPackage>
+                            <invokerPackage>${client.default.package}.exemplepublic.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <groupId>${group}</groupId>
@@ -216,9 +216,9 @@
                             <!-- <configHelp>true</configHelp> -->
                             <addCompileSourceRoot>false</addCompileSourceRoot>
                             <output>${project.basedir}/../demogenapp-api-interna-client-exemplesecure-v1</output>
-                            <apiPackage>${client.default.package}.api</apiPackage>
-                            <modelPackage>${client.default.package}.model</modelPackage>
-                            <invokerPackage>${client.default.package}.services</invokerPackage>
+                            <apiPackage>${client.default.package}.exemplesecure.v1.api</apiPackage>
+                            <modelPackage>${client.default.package}.exemplesecure.v1.model</modelPackage>
+                            <invokerPackage>${client.default.package}.exemplesecure.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <groupId>${group}</groupId>
