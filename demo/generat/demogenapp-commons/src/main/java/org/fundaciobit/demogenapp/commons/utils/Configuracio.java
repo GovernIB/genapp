@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.Properties;
 
 /**
@@ -16,137 +18,136 @@ import java.util.Properties;
  */
 public class Configuracio implements Constants {
 
-    private static final Properties fileProperties = new Properties();
+    private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
 
-    private static final Properties fileAndSystemProperties = new Properties();
+    private static Properties portafibProperties = new Properties();
 
-    /*
-     * Agafa els fitxers de propietats definits a l'standalone
-     *
-     * Seguim els estandars de la CAIB
-     */
-    public static Properties getFilesProperties() {
+    private static Properties portafibSystemProperties;
 
-		if (fileProperties.isEmpty()) {
-			// matches the property name as defined in the system-properties element in
-			// WildFly
-			String property = Constants.DEMOGENAPP_PROPERTY_BASE + "properties";
-			loadPropertyFile(property);
+    public static Properties getPortaFIBProperties() {
+        if (portafibProperties == null) {
+            portafibProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + ".properties");
+        }
+        return portafibProperties;
+    }
 
-			String propertySystem = Constants.DEMOGENAPP_PROPERTY_BASE + "system.properties";
-			loadPropertyFile(propertySystem);
-		}
+    public static Properties getPortaFIBSystemProperties() {
+        if (portafibSystemProperties == null) {
+            portafibSystemProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + "system.properties");
+        }
+        return portafibSystemProperties;
+    }
 
-		return fileProperties;
+    private static Properties loadPropertiesFromKey(String key) {
+        String propertyFileName = System.getProperty(key);
 
-	}
-
-    public static void loadPropertyFile(String property) {
-
-        String propertyFile = System.getProperty(property);
-
-        if (propertyFile == null) {
-            String msg = "No existeix la propietat: " + property
-                    + " al fitxer standalone. S'hauria d'incloure aquesta propietat a l'etiqueta <system-properties> del fitxer standalone";
+        if (propertyFileName == null) {
+            String msg = "No existeix la propietat: " + key
+                    + " al fitxer standalone. S'hauria d'incloure aquesta propietat a l'etiqueta <system-properties> del fitxer standalone.";
             throw new RuntimeException(msg);
         }
 
-        if (propertyFile.trim().length() == 0) {
-            String msg = "La propietat: " + property
+        if (propertyFileName.trim().length() == 0) {
+            String msg = "La propietat: " + key
                     + " del fitxer standalone no té valor. Se li ha de posar el fitxer corresponent a la propietat al fitxer standalone";
             throw new RuntimeException(msg);
         }
 
-        File File = new File(propertyFile);
-        try {
-            fileProperties.load(new FileInputStream(File));
+        File file = new File(propertyFileName);
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("La propietat: " + property
-                    + " del fitxer standalone apunta a un fitxer que no existeix (" + propertyFile + ")");
-
-        } catch (IOException e) {
-            throw new RuntimeException("La propietat: " + property + " del fitxer standalone apunta a un fitxer("
-                    + propertyFile + ") que no es pot llegir:" + e.getMessage(), e);
+        if (!file.exists()) {
+            throw new RuntimeException("La propietat: " + key
+                    + " del fitxer standalone apunta a un fitxer que no existeix (" + propertyFileName + ")");
         }
+
+        try (Reader reader = new FileReader(file)) {
+            Properties prop = new Properties();
+            prop.load(reader);
+            return prop;
+        } catch (Exception e) {
+            throw new RuntimeException("La propietat: " + key + " del fitxer standalone apunta a un fitxer("
+                    + propertyFileName + ") que no es pot llegir:" + e.getMessage(), e);
+        }
+    }
+
+    private static Long getLongPortaFIBProperty(String key) {
+        String value = getPortaFIBProperties().getProperty(key);
+        Long valueLong = null;
+        if (value != null) {
+            try {
+                valueLong = Long.parseLong(value);
+            } catch (Exception e) {
+                LOG.error("Error parsing long value for key " + key, e);
+            }
+        }
+
+        return valueLong;
+
     }
 
     public static Properties getSystemAndFileProperties() {
-
-        if (fileAndSystemProperties.isEmpty()) {
-            fileAndSystemProperties.putAll(getFilesProperties());
-            fileAndSystemProperties.putAll(System.getProperties());
-        }
-        return fileAndSystemProperties;
-    }
-
-    public static String getProperty(String key) {
-
-        return getFilesProperties().getProperty(key);
-
-    }
-
-    public static String getProperty(String key, String def) {
-
-        return getFilesProperties().getProperty(key, def);
-
+        Properties properties = new Properties();
+        properties.putAll(System.getProperties());
+        properties.putAll(getPortaFIBSystemProperties());
+        properties.putAll(getPortaFIBProperties());
+        return properties;
     }
 
     public static boolean isDesenvolupament() {
 
-        return Boolean.parseBoolean(getProperty(DEMOGENAPP_PROPERTY_BASE + "development"));
+        return "true".equalsIgnoreCase(getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "development"));
     }
 
     public static boolean isCAIB() {
-        return Boolean.parseBoolean(getProperty(DEMOGENAPP_PROPERTY_BASE + "iscaib"));
+        return "true".equalsIgnoreCase(getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "iscaib"));
     }
 
     public static String getAppEmail() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "email.from");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "email.from");
     }
 
     public static String getAppName() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "name", "DemoGenApp");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "name", "DemoGenApp");
     }
-    
+
     public static String getFrontUrl() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "url.front");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "url.front");
     }
 
     public static String getBackUrl() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "url.back");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "url.back");
     }
 
     public static String getAjudaViaTelefon() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viatelefon");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viatelefon");
     }
-    
+
     public static String getAjudaViaWeb() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaweb");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaweb");
     }
-    
+
     public static String getAjudaViaEmail() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaemail");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaemail");
     }
 
     public static String getDefaultLanguage() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "defaultlanguage", "ca");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "defaultlanguage", "ca");
     }
 
     public static byte[] getEncryptKey() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes();
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes();
     }
 
     public static Long getMaxUploadSizeInBytes() {
-        return Long.parseLong(getProperty(DEMOGENAPP_PROPERTY_BASE + "maxuploadsizeinbytes"));
+        return getLongPortaFIBProperty(DEMOGENAPP_PROPERTY_BASE + "maxuploadsizeinbytes");
     }
 
     public static Long getMaxFitxerAdaptatSizeInBytes() {
-        return Long.parseLong(getProperty(DEMOGENAPP_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes"));
+        return getLongPortaFIBProperty(DEMOGENAPP_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes");
     }
 
     public static File getFilesDirectory() {
-        String path = getProperty(DEMOGENAPP_PROPERTY_BASE + "filesdirectory");
+        String path = getPortaFIBSystemProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "filesdirectory");
         if (path == null) {
             throw new RuntimeException("No existeix la propietat '" + DEMOGENAPP_PROPERTY_BASE + "filesdirectory'"
                     + " al fitxer " + System.getProperty(DEMOGENAPP_PROPERTY_BASE + "system.properties")
@@ -191,7 +192,7 @@ public class Configuracio implements Constants {
     }
 
     public static String getFileSystemManager() {
-        return getProperty(DEMOGENAPP_PROPERTY_BASE + "filesystemmanagerclass");
+        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "filesystemmanagerclass");
     }
 
 }

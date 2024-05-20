@@ -120,7 +120,7 @@ public class AuthenticationSuccessListener implements ApplicationListener<Intera
         if (loginPlugin == null) {
             final String propertyPlugin = LOGIN_PLUGIN_KEY;
 
-            Properties propTmp = Configuracio.getFilesProperties();
+            Properties propTmp = Configuracio.getSystemAndFileProperties();
 
             Object pluginInstance = PluginsManager.instancePluginByProperty(propertyPlugin,
                     Constants.DEMOGENAPP_PROPERTY_BASE, propTmp);

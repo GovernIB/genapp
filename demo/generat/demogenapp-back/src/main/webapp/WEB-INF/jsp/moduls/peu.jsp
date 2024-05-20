@@ -44,7 +44,7 @@
 
 		<!-- Dreta -->
 		<div class="col-4 text-right" >
-			<a href="http://otaeweb.ibit.org/" style="padding-top: 10px" target="_blank"> <img
+			<a href="https://governdigital.fundaciobit.org/" style="padding-top: 10px" target="_blank"> <img
 				src="<c:url value="/img/fundaciobit-logo-peu.png"/>"
 				alt="Fundacio Bit" />
 			</a> <br />

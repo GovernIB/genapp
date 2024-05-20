@@ -56,7 +56,7 @@ public class InitServlet extends HttpServlet {
     private IPluginLogin getPluginLogin() throws ServletException {
 
         Properties properties = new Properties();
-        properties.putAll(Configuracio.getFilesProperties());
+        properties.putAll(Configuracio.getSystemAndFileProperties());
 
         final String baseProps = Constants.DEMOGENAPP_PROPERTY_BASE;
 
