@@ -20,7 +20,7 @@ public class Configuracio implements Constants {
 
     private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
 
-    private static Properties portafibProperties = new Properties();
+    private static Properties portafibProperties;
 
     private static Properties portafibSystemProperties;
 
