@@ -158,6 +158,10 @@ public class CodeGenUtils {
     }
 
     public static FieldInfo findFieldInfoByColumnSQLName(TableInfo tableInfo, String sqlColumnName) {
+        
+        if (tableInfo == null || sqlColumnName == null) {
+            return null;
+        }
 
         for (FieldInfo field : tableInfo.getFields()) {
 

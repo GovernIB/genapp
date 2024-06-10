@@ -188,7 +188,8 @@ public class DaoJPAGenerator {
         beanCode.append(")\n");
 
         if (!table.isTranslationMapEntity()) {
-            String sequenceSQLName = /* project.getPrefix() + "_" + */ table.name.toLowerCase() + "_seq";
+            String sequenceSQLName = ProjectValidator.getSequenceOfTable(table.name); // table.name.toLowerCase() + "_seq";
+            
 
             imports.add("javax.persistence.SequenceGenerator");
 
@@ -690,7 +691,7 @@ public class DaoJPAGenerator {
                 TableInfo expTable = CodeGenUtils.findTableInfoByTableSQLName(project, fk.getTable());
                 FieldInfo expField = CodeGenUtils.findFieldInfoByColumnSQLName(expTable, fk.getField());
 
-                if (!expTable.generate || (table.isTranslationEntity() && expTable.isTranslationMapEntity())) {
+                if (expTable == null || expField == null || !expTable.generate || (table.isTranslationEntity() && expTable.isTranslationMapEntity())) {
                     continue;
                 }
 

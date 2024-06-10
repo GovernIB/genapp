@@ -44,13 +44,28 @@ public class ProjectValidator {
 
             for (SequenceInfo sequenceInfo : seqInfoList) {
                 if (sequenceInfo.getCurrentValue() < 1000) {
-                    allErrors.append("-- La sequència " + sequenceInfo.getName()
+                    allErrors.append("-- La sequencia " + sequenceInfo.getName()
                             + " ha de tenir un start value a 1000 (CurrentValue  " + sequenceInfo.getCurrentValue()
                             + ")\n");
                     allErrors.append(" SELECT setval('" + sequenceInfo.getName() + "', 1000, true);\n\n");
                 }
-                sequences.add(sequenceInfo.getName());
-                sequencesOrphan.add(sequenceInfo.getName().toLowerCase());
+
+                String name = sequenceInfo.getName();
+                if (name.startsWith(project.getPrefix() + "_") && name.endsWith("_seq")) {
+                    if (sequenceInfo.getName().length() > 30) {
+                        allErrors.append(
+                                "-- El nom sql (" + name + ") de la sequencia supera els 30 caracters de longitud.\n");
+                        allErrors.append("ALTER SEQUENCE " + name + " RENAME TO " + name.substring(0, 30 - 4) + "_seq;\n\n");
+                    }
+                } else {
+                    allErrors.append(
+                            "-- El nom sql (" + name + ") de la sequencia no compleix amb el format esperat.\n");
+                    allErrors.append(
+                            "ALTER SEQUENCE " + name + " RENAME TO " + project.getPrefix() + "_[TABLE_NAME]_seq;\n\n");
+                }
+
+                sequences.add(name);
+                sequencesOrphan.add(name.toLowerCase());
             }
         }
 
@@ -58,7 +73,9 @@ public class ProjectValidator {
         // i Limitar noms de camps i taules de BBDD a 30 chars
         for (TableInfo table : project.getTables()) {
 
-            final String expectedSequence = (table.getName() + "_seq").toLowerCase();
+            final String tableName = table.getName();
+            String expectedSequence = getSequenceOfTable(tableName);
+            
 
             if (table.isTranslationMapEntity() || table.isTranslationEntity()) {
 
@@ -129,11 +146,11 @@ public class ProjectValidator {
                             errors.append("-- El camp " + field.javaName + " de la taula " + table.getNameJava()
                                     + " és autoincrmental i s'esperava una seqüència ]" + expectedSequence
                                     + "[ en el default value, però el valor del default value és ]" + defautValue
-                                    + "[\n"
-                                    + "CREATE SEQUENCE " + expectedSequence + " INCREMENT 1 START 1000;\n"
-                                    + "ALTER TABLE " + table.getName() + " ALTER COLUMN " + field.sqlName + " SET DEFAULT nextval('" + expectedSequence + "');\n"
-                                    + "-- oracle ALTER TABLE " + table.getName() + " ALTER COLUMN " + field.sqlName + " SET DEFAULT " + expectedSequence + ".nextval);\n"
-                                    + "\n");
+                                    + "[\n" + "CREATE SEQUENCE " + expectedSequence + " INCREMENT 1 START 1000;\n"
+                                    + "ALTER TABLE " + table.getName() + " ALTER COLUMN " + field.sqlName
+                                    + " SET DEFAULT nextval('" + expectedSequence + "');\n" + "-- oracle ALTER TABLE "
+                                    + table.getName() + " ALTER COLUMN " + field.sqlName + " SET DEFAULT "
+                                    + expectedSequence + ".nextval);\n" + "\n");
                         } else {
                             // OK
                             if (sequencesOrphan != null) {
@@ -436,6 +453,14 @@ public class ProjectValidator {
         // Final Check tables
 
         return allErrors;
+    }
+
+    public static String getSequenceOfTable(final String tableName) {
+        String expectedSequence = (tableName + "_seq");
+        if (expectedSequence.length() > 30) {
+            expectedSequence = (expectedSequence.substring(0, 30 - 4) + "_seq");
+        }
+        return expectedSequence.toLowerCase();
     }
 
     protected static String getExpectedIndexFK(Project project, TableInfo table, String shortStr, FieldInfo field) {
