@@ -8,7 +8,7 @@
     </parent>
     <artifactId>demogenapp-api-externa</artifactId>
     <packaging>war</packaging>
-    <name>DemoGenApp - API Rest - Externa</name>
+    <name>DemoGenApp - API Rest - Externa Server</name>
     <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>

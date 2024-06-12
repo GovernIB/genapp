@@ -26,7 +26,7 @@ public class Configuracio implements Constants {
 
     public static Properties getPortaFIBProperties() {
         if (portafibProperties == null) {
-            portafibProperties = loadPropertiesFromKey(Constants.${name_uppercase}_PROPERTY_BASE + ".properties");
+            portafibProperties = loadPropertiesFromKey(Constants.${name_uppercase}_PROPERTY_BASE + "properties");
         }
         return portafibProperties;
     }

@@ -42,7 +42,6 @@
 			<dependency>
 				<groupId>org.jboss.logging</groupId>
 				<artifactId>jboss-logging</artifactId>
-				<version>${jboss-logging.version}</version>
 				<scope>compile</scope>
 			</dependency>
 		</dependencies>
