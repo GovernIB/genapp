@@ -18,5 +18,26 @@
 			<module name="org.keycloak.keycloak-wildfly-elytron-oidc-adapter" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-wildfly-subsystem" optional="TRUE"/>
         </dependencies>
+        <exclusions>
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
     </deployment>
+    <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+    <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+    <#if generateback>
+
+    <sub-deployment name="${name}-back.war">
+        <exclusions>
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </sub-deployment>
+    </#if>
+    <#if generatefront>
+
+    <sub-deployment name="${name}-front.war">
+        <exclusions>
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </sub-deployment>
+    </#if>
 </jboss-deployment-structure>
