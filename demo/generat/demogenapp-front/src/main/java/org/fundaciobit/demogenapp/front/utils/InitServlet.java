@@ -4,7 +4,7 @@ import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.apache.log4j.Logger;
 
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
-import org.fundaciobit.pluginsib.core.utils.PluginsManager;
+import org.fundaciobit.pluginsib.core.v3.utils.PluginsManager;
 import org.fundaciobit.pluginsib.login.api.IPluginLogin;
 import org.fundaciobit.pluginsib.login.springutils.PluginLoginManager;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;

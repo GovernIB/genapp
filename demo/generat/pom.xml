@@ -117,8 +117,11 @@
         <!-- XYZ ZZZ S'ha de fer la substitució -->
         <genapp.version>2.0.0-SNAPSHOT</genapp.version>
         <version_txt_template_file>./scripts/templates/versio.txt.template</version_txt_template_file>
-        <pluginsib.userinformation.api.version>3.1.0</pluginsib.userinformation.api.version>
-        <pluginsib.userinformation.impl.version>3.1.0-SNAPSHOT</pluginsib.userinformation.impl.version>
+        <pluginsib.core.version>3.0.0-SNAPSHOT</pluginsib.core.version>
+        <pluginsib.utils.version>3.0.0-SNAPSHOT</pluginsib.utils.version>
+        <pluginsib.userinformation.version>4.0.0-SNAPSHOT</pluginsib.userinformation.version>
+        <pluginsib.exportdata.version>3.0.0-SNAPSHOT</pluginsib.exportdata.version>
+        <pluginsib.login.version>2.0.0-SNAPSHOT</pluginsib.login.version>
     </properties>
     <dependencyManagement>
         <dependencies>

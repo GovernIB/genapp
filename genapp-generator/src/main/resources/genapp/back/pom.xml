@@ -23,7 +23,6 @@
 			<name>JBoss Thirdparty Releases</name>
 			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
 		</repository>
-
 	</repositories>
 
 	<dependencies>
@@ -32,14 +31,14 @@
 		<dependency>
 			<groupId>${package}</groupId>
 			<artifactId>${name}-ejb</artifactId>
-			<version>${project_version}</version>
+			<version>${symbol_dollar}{project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>${package}</groupId>
 			<artifactId>${name}-commons</artifactId>
-			<version>${project_version}</version>
+			<version>${symbol_dollar}{project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -95,18 +94,19 @@
 			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+            <artifactId>pluginsib-userinformation-api</artifactId>
+            <version>${symbol_dollar}{pluginsib.userinformation.version}</version>
+            <scope>provided</scope>
+        </dependency>
         
         <dependency>
             <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
             <artifactId>pluginsib-exportdata-api</artifactId>
-            <version>2.0.0</version>
+            <version>${symbol_dollar}{pluginsib.exportdata.version}</version>
             <scope>provided</scope>
-            <exclusions>
-				<exclusion>
-					<groupId>org.fundaciobit.pluginsib.core</groupId>
-					<artifactId>pluginsib-core</artifactId>
-				</exclusion>
-			</exclusions>
         </dependency>
 		
 		<dependency>

@@ -45,7 +45,7 @@
         <dependency>
             <artifactId>pluginsib-userinformation-api</artifactId>
             <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
-            <version>${symbol_dollar}{pluginsib.userinformation.api.version}</version>
+            <version>${symbol_dollar}{pluginsib.userinformation.version}</version>
         </dependency>
         
         <dependency>
