@@ -593,43 +593,6 @@ public class CodeGenerator {
         // (0) Variables
         final String frontName = "front";
         File dstFrontDir = new File(projectDir, project.getPrefixDirectori() + frontName);
-        //File baseCode = new File(dstBackDir, "src/main/java");
-        //String backPackage = project.getPackageName() + "." + backName;
-        // File backJavaCode = new File(baseCode, backPackage.replace('.', '/'));
-
-        // (1) Preparar quins fitxers esborrar
-
-        // final String name = project.projectName.toLowerCase();
-        // final String fullname = project.projectName;
-        /*
-        final String[] fitxersABorrar = new String[] {
-                dstBackDir.getAbsolutePath()
-                        + "/src/main/java/es/caib/portafib/back/controller/admin/AdminController.java",
-                dstBackDir.getAbsolutePath()
-                        + "/src/main/java/es/caib/portafib/back/controller/common/CommonController.java",
-                dstBackDir.getAbsolutePath()
-                        + "/src/main/java/es/caib/portafib/back/controller/user/UserController.java",
-                dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/admin/admin.jsp",
-                dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/common/option.jsp",
-                dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/moduls/menu_admin.jsp",
-                dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/moduls/menu_user.jsp",
-                dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/user/user.jsp" };
-        
-        List<File> toDelete = new ArrayList<File>();
-        
-        for (int i = 0; i < fitxersABorrar.length; i++) {
-        
-            System.err.println("fitxersABorrar[" + i + "]:" + fitxersABorrar[i]);
-        
-            File exampleCode = new File(fitxersABorrar[i]);
-        
-            System.err.println("X_" + exampleCode.exists() + "_X " + exampleCode.getAbsolutePath());
-        
-            if (!exampleCode.exists() && exampleCode.getParentFile().exists()) {
-                // OK: S'ha de borrar
-                toDelete.add(exampleCode);
-            }
-        }*/
 
         // (2) Còpia inicial: Copiar estructura directoris des de recursos
         Map<String, Object> prop = new HashMap<String, Object>();
@@ -701,11 +664,11 @@ public class CodeGenerator {
 
             final String[] fitxersABorrar = new String[] {
                     dstBackDir.getAbsolutePath()
-                            + "/src/main/java/es/caib/portafib/back/controller/admin/AdminController.java",
+                            + "/src/main/java/" + packagePath + "/back/controller/admin/AdminController.java",
                     dstBackDir.getAbsolutePath()
-                            + "/src/main/java/es/caib/portafib/back/controller/common/CommonController.java",
+                            + "/src/main/java/" + packagePath + "/back/controller/common/CommonController.java",
                     dstBackDir.getAbsolutePath()
-                            + "/src/main/java/es/caib/portafib/back/controller/user/UserController.java",
+                            + "/src/main/java/" + packagePath + "/back/controller/user/UserController.java",
                     dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/admin/admin.jsp",
                     dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/common/option.jsp",
                     dstBackDir.getAbsolutePath() + "/src/main/webapp/WEB-INF/jsp/moduls/menu_admin.jsp",

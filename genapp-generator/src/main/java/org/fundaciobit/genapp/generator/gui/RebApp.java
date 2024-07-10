@@ -101,7 +101,7 @@ public class RebApp extends JFrame {
                 }
             }
         }
-        return new File("."); // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB\\"
+        return new File("."); 
     }
 
     public static void saveLastFile(File selectedFile) {
@@ -132,7 +132,7 @@ public class RebApp extends JFrame {
         if (defaultDir != null && defaultDir.exists()) {
             return defaultDir;
         } else {
-            return new File("."); // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB\\"
+            return new File("."); 
         }
     }
 
@@ -363,7 +363,6 @@ public class RebApp extends JFrame {
                     if (selectedFile == null) {
                         // new dialog
                         JFileChooser loadEmp = new JFileChooser(getDirectoryOfLastFile());
-                        // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB");
 
                         FileNameExtensionFilter filterm3u = new FileNameExtensionFilter("GenApp file (.genappjson)",
                                 "genappjson");

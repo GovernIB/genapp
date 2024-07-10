@@ -20,22 +20,22 @@ public class Configuracio implements Constants {
 
     private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
 
-    private static Properties portafibProperties;
+    private static Properties appProperties;
 
-    private static Properties portafibSystemProperties;
+    private static Properties appSystemProperties;
 
-    public static Properties getPortaFIBProperties() {
-        if (portafibProperties == null) {
-            portafibProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + "properties");
+    public static Properties getAppProperties() {
+        if (appProperties == null) {
+            appProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + "properties");
         }
-        return portafibProperties;
+        return appProperties;
     }
 
-    public static Properties getPortaFIBSystemProperties() {
-        if (portafibSystemProperties == null) {
-            portafibSystemProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + "system.properties");
+    public static Properties getAppSystemProperties() {
+        if (appSystemProperties == null) {
+            appSystemProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + "system.properties");
         }
-        return portafibSystemProperties;
+        return appSystemProperties;
     }
 
     private static Properties loadPropertiesFromKey(String key) {
@@ -70,8 +70,8 @@ public class Configuracio implements Constants {
         }
     }
 
-    private static Long getLongPortaFIBProperty(String key) {
-        String value = getPortaFIBProperties().getProperty(key);
+    private static Long getLongAppProperty(String key) {
+        String value = getAppProperties().getProperty(key);
         Long valueLong = null;
         if (value != null) {
             try {
@@ -88,66 +88,66 @@ public class Configuracio implements Constants {
     public static Properties getSystemAndFileProperties() {
         Properties properties = new Properties();
         properties.putAll(System.getProperties());
-        properties.putAll(getPortaFIBSystemProperties());
-        properties.putAll(getPortaFIBProperties());
+        properties.putAll(getAppSystemProperties());
+        properties.putAll(getAppProperties());
         return properties;
     }
 
     public static boolean isDesenvolupament() {
 
-        return "true".equalsIgnoreCase(getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "development"));
+        return "true".equalsIgnoreCase(getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "development"));
     }
 
     public static boolean isCAIB() {
-        return "true".equalsIgnoreCase(getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "iscaib"));
+        return "true".equalsIgnoreCase(getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "iscaib"));
     }
 
     public static String getAppEmail() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "email.from");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "email.from");
     }
 
     public static String getAppName() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "name", "DemoGenApp");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "name", "DemoGenApp");
     }
 
     public static String getFrontUrl() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "url.front");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "url.front");
     }
 
     public static String getBackUrl() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "url.back");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "url.back");
     }
 
     public static String getAjudaViaTelefon() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viatelefon");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viatelefon");
     }
 
     public static String getAjudaViaWeb() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaweb");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaweb");
     }
 
     public static String getAjudaViaEmail() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaemail");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "ajuda.viaemail");
     }
 
     public static String getDefaultLanguage() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "defaultlanguage", "ca");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "defaultlanguage", "ca");
     }
 
     public static byte[] getEncryptKey() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes();
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes();
     }
 
     public static Long getMaxUploadSizeInBytes() {
-        return getLongPortaFIBProperty(DEMOGENAPP_PROPERTY_BASE + "maxuploadsizeinbytes");
+        return getLongAppProperty(DEMOGENAPP_PROPERTY_BASE + "maxuploadsizeinbytes");
     }
 
     public static Long getMaxFitxerAdaptatSizeInBytes() {
-        return getLongPortaFIBProperty(DEMOGENAPP_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes");
+        return getLongAppProperty(DEMOGENAPP_PROPERTY_BASE + "maxfitxeradaptatsizeinbytes");
     }
 
     public static File getFilesDirectory() {
-        String path = getPortaFIBSystemProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "filesdirectory");
+        String path = getAppSystemProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "filesdirectory");
         if (path == null) {
             throw new RuntimeException("No existeix la propietat '" + DEMOGENAPP_PROPERTY_BASE + "filesdirectory'"
                     + " al fitxer " + System.getProperty(DEMOGENAPP_PROPERTY_BASE + "system.properties")
@@ -192,7 +192,7 @@ public class Configuracio implements Constants {
     }
 
     public static String getFileSystemManager() {
-        return getPortaFIBProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "filesystemmanagerclass");
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "filesystemmanagerclass");
     }
 
 }

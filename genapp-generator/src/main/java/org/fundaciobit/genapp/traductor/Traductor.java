@@ -95,9 +95,7 @@ public class Traductor extends JTable {
       //
 
       // XYZ ZZZ
-      JFileChooser loadEmp = new JFileChooser(
-          "D:\\dades\\dades\\CarpetesPersonals\\ProgramacioPortaFIB2\\portafib-2.0");
-      // "D:\\dades\\dades\\CarpetesPersonals\\Programacio\\PortaFIB");
+      JFileChooser loadEmp = new JFileChooser();
 
       FileNameExtensionFilter filterm3u = new FileNameExtensionFilter("GenApp file (.genapp)",
           "genapp");

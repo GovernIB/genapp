@@ -388,7 +388,7 @@ public class BackWebGenerator extends IconUtils {
 
 				// #17 codeHeaderButtons.append(" <button type=\"button\" ");
 				codeHeaderButtons.append("<a ");
-				codeHeaderButtons.append("class=\"btn btn-sm ${button.type} float-right botoselecciolist\" style=\"\" "
+				codeHeaderButtons.append("class=\"btn btn-sm <c:out value=\"${button.style}\" /> float-right botoselecciolist\" style=\"\" "
 						+ " href=\"${thehref}\" onclick=\"${thelink}\" title=\"<fmt:message key=\"${button.codeText}\"/>\">\n");
 				codeHeaderButtons.append("         <i class=\"${button.icon}\"></i>\n");
 				codeHeaderButtons.append("         <fmt:message key=\"${button.codeText}\"/>\n");
@@ -972,16 +972,8 @@ public class BackWebGenerator extends IconUtils {
 							+ "                  <c:if test=\"${!fn:startsWith(thelink,'javascript:')}\">\n"
 							+ "                  <c:url var=\"thehref\" value=\"${thelink}\"/>\n"
 							+ "                  <c:url var=\"thelink\" value=\"\"/>\n"
-							// + " <c:url var=\"thelink\" value=\"${thelink}\"/>\n"
-							// + " <c:set var=\"thelink\" value=\"goTo('${thelink}')\"/>\n"
 							+ "                  </c:if>\n"
-							/*
-							 * + "            <a class=\"btn ${button.type} \" href=\"#\" \n" +
-							 * "              onclick=\"${thelink}\" \n" +
-							 * "              title=\"<fmt:message key=\"${button.codeText}\"/>\">\n" +
-							 * "              <i class=\"${button.icon}\"></i>\n" + "            </a>\n"
-							 */
-							+ render.getActionButtonCode("                  ", "${button.type}", "${thehref}",
+							+ render.getActionButtonCode("                  ", "<c:out value=\"${button.style}\" />", "${thehref}",
 									"${thelink}", "${button.icon}", "${button.codeText}");
 
 					// BOTONS ADICIONALS PER CADA ITEM
@@ -1901,9 +1893,9 @@ public class BackWebGenerator extends IconUtils {
 
 				codeButton.append("    </c:if>\n");
 				// #17 codeButton.append(" <button type=\"button\"
-				codeButton.append("    <a class=\"btn ${button.type}\" \n");
+				codeButton.append("    <a class=\"btn <c:out value=\"${button.style}\" />\" \n");
 				codeButton.append(
-						"       href=\"${thehref}\" onclick=\"${thelink}\" style=\"${(empty button.type)? '' : 'color: white;'}\"  >\n");
+						"       href=\"${thehref}\" onclick=\"${thelink}\" style=\"${(empty button.style)? '' : 'color: white;'}\"  >\n");
 				codeButton.append("       <i class=\"${button.icon}\"></i><fmt:message key=\"${button.codeText}\"/>\n");
 
 				// #17 codeButton.append(" </button>\n");

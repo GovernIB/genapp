@@ -1784,9 +1784,6 @@ public class BackGenerator {
         + "        return getTileForm();\n"
         + "      }\n";
       
-      // import es.caib.portafib.model.entity.Idioma;
-      // import es.caib.portafib.model.fields.IdiomaFields;
-      
       if (transFields != null && transFields.size() != 0) {
         code.append("\n");
         code.append("\n"); 

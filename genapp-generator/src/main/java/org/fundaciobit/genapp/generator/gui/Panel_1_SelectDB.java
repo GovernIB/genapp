@@ -423,7 +423,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         // ============= MY SQL ==============
         
         /*
-        pack.setText("org.fundaciobit.portafib.db");
+        pack.setText("org.fundaciobit.myapp.db");
         projectName.setText("PortaFirmes");
         url.setText("jdbc:mysql://192.168.35.151:3306/portasib");
         driver.setText("com.mysql.jdbc.Driver");
