@@ -12,7 +12,6 @@
     <artifactId>${name}-api-interna</artifactId>
     <packaging>war</packaging>
     <name>${fullname} - API Rest - Interna Server</name>
-    <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>
         <artifactU>${fullname}</artifactU>
@@ -74,7 +73,7 @@
 
         <dependency>
             <groupId>org.fundaciobit.pluginsib.utils</groupId>
-            <artifactId>pluginsib-utils-swager-ui-configurable-webjar</artifactId>
+            <artifactId>pluginsib-utils-swagger-ui-configurable-webjar</artifactId>
             <version>${symbol_dollar}{pluginsib.utils.version}</version>
         </dependency>
 
