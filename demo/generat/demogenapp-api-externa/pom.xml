@@ -97,7 +97,7 @@
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Public</contextId>
+                            <contextId>Exemple Externa Public</contextId>
                             <outputFileName>openapi_externa_public</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.externa.config</package>
@@ -112,7 +112,7 @@
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Seguretat</contextId>
+                            <contextId>Exemple Externa Seguretat</contextId>
                             <outputFileName>openapi_externa_secure</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.externa.config</package>

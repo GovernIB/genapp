@@ -1,0 +1,91 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: otae@fundaciobit.org
+    name: Departament de Govern Digital a la Fundació Bit
+    url: https://governdigital.fundaciobit.org
+  description: Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació
+  license:
+    name: European Union Public Licence (EUPL v1.2)
+    url: https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf
+  title: API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat
+  version: 1.0-SNAPSHOT
+externalDocs:
+  description: Java Client (GovernIB Github)
+  url: https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client-exemplesecure-v1
+servers:
+- url: /demogenappapi/externa
+- url: http://localhost:8080/demogenappapi/externa
+- url: https://dev.caib.es/demogenappapi/externa
+- url: https://proves.caib.es/demogenappapi/externa
+- url: https://se.caib.es/demogenappapi/externa
+- url: https://www.caib.es/demogenappapi/externa
+tags:
+- description: Exemple de Servei Securitzat
+  name: ExempleSeguritzat
+paths:
+  /secure/exempleseguritzat/echo:
+    get:
+      operationId: echo
+      parameters:
+      - description: Cadena a retornar
+        example: hola caracola
+        explode: true
+        in: query
+        name: echoInput
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Respon el valor enviat per paràmetre
+        "510":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConstantsWs'
+          description: Només s'utilitza per crear fitxer de constants...
+      security:
+      - BasicAuth: []
+      summary: Fa un ECHO
+      tags:
+      - ExempleSeguritzat
+      x-accepts: application/json
+components:
+  schemas:
+    ConstantsWs:
+      example:
+        ROLE_EJB_FULL_ACCESS: DEM_ADMIN
+        ROLE_EJB_BASIC_ACCESS: 0
+        ROLE_EJB_WS_ACCESS: 6
+      properties:
+        ROLE_EJB_FULL_ACCESS:
+          default: DEM_ADMIN
+          description: Constant ROLE_EJB_FULL_ACCESS
+          readOnly: true
+          type: string
+        ROLE_EJB_BASIC_ACCESS:
+          description: Constant ROLE_EJB_BASIC_ACCESS
+          format: int32
+          readOnly: true
+          type: integer
+        ROLE_EJB_WS_ACCESS:
+          description: Constant ROLE_EJB_WS_ACCESS
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - ROLE_EJB_BASIC_ACCESS
+      - ROLE_EJB_FULL_ACCESS
+      - ROLE_EJB_WS_ACCESS
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+

@@ -539,14 +539,25 @@
             </build>
         </profile>
         <profile>
-            <id>api-externa-client</id>
+            <id>api-externa-client-exemplepublic-v1</id>
             <activation>
                 <file>
-                    <exists>demogenapp-api-externa-client</exists>
+                    <exists>demogenapp-api-externa-client-exemplepublic-v1</exists>
                 </file>
             </activation>
             <modules>
-                <module>demogenapp-api-externa-client</module>
+                <module>demogenapp-api-externa-client-exemplepublic-v1</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>api-externa-client-exemplesecure-v1</id>
+            <activation>
+                <file>
+                    <exists>demogenapp-api-externa-client-exemplesecure-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>demogenapp-api-externa-client-exemplesecure-v1</module>
             </modules>
         </profile>
         <profile>

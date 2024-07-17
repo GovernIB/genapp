@@ -100,7 +100,7 @@
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Public</contextId>
+                            <contextId>Exemple Interna Public</contextId>
                             <outputFileName>openapi_interna_public</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.interna.config</package>
@@ -115,7 +115,7 @@
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Seguretat</contextId>
+                            <contextId>Exemple Interna Seguretat</contextId>
                             <outputFileName>openapi_interna_secure</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.interna.config</package>
@@ -130,7 +130,7 @@
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Dades Obertes</contextId>
+                            <contextId>Exemple Interna de Dades Obertes</contextId>
                             <outputFileName>openapi_interna_dadesobertes</outputFileName>
                             <resourcePackages>
                                 <package>
