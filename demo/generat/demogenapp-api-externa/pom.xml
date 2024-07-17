@@ -91,14 +91,14 @@
                 
                 <executions>
                     <execution>
-                        <id>openapi1</id>
+                        <id>openapi_externa_1</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
                             <contextId>Exemple Public</contextId>
-                            <outputFileName>openapi_public</outputFileName>
+                            <outputFileName>openapi_externa_public</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.externa.config</package>
                                 <package>org.fundaciobit.demogenapp.api.externa.all</package>
@@ -106,14 +106,14 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>openapi2</id>
+                        <id>openapi_externa_2</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
                             <contextId>Exemple Seguretat</contextId>
-                            <outputFileName>openapi_secure</outputFileName>
+                            <outputFileName>openapi_externa_secure</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.externa.config</package>
                                 <package>org.fundaciobit.demogenapp.api.externa.secure</package>
@@ -131,13 +131,13 @@
                 <version>7.3.0</version>
                 <executions>
                     <execution>
-                        <id>openapi1</id>
+                        <id>openapi_externa_1</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/openapi/openapi_public.json</inputSpec>
+                            <inputSpec>${project.basedir}/openapi/openapi_externa_public.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
@@ -163,13 +163,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>openapi2</id>
+                        <id>openapi_externa_2</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/openapi/openapi_secure.json</inputSpec>
+                            <inputSpec>${project.basedir}/openapi/openapi_externa_secure.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
