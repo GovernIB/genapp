@@ -55,7 +55,7 @@ public class RedirectToIndexFilter implements Filter {
         } else if ("".equals(path) || "/".equals(path)) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.html");
-        } else  {
+        } else {
             httpRequest.getServletContext().getNamedDispatcher("default").forward(request, response);
         }
 

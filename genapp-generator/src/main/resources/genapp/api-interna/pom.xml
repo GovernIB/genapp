@@ -13,11 +13,8 @@
     <packaging>war</packaging>
     <name>${fullname} - API Rest - Interna Server</name>
     <properties>
-        <auth.method>BASIC</auth.method>
-        <artifactU>${fullname}</artifactU>
         <artifact>${name}</artifact>
-        <group>${package}</group>
-        <client.default.package>${symbol_dollar}{group}.api.interna.client</client.default.package>
+        <client.default.package>${package}.api.interna.client</client.default.package>
     </properties>
 
     <dependencies>
@@ -35,20 +32,20 @@
         </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
-            <groupId>${symbol_dollar}{group}</groupId>
-            <artifactId>${symbol_dollar}{artifact}-commons</artifactId>
+            <groupId>${package}</groupId>
+            <artifactId>${name}-commons</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${symbol_dollar}{group}</groupId>
-            <artifactId>${symbol_dollar}{artifact}-persistence</artifactId>
+            <groupId>${package}</groupId>
+            <artifactId>${name}-persistence</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${symbol_dollar}{group}</groupId>
-            <artifactId>${symbol_dollar}{artifact}-ejb</artifactId>
+            <groupId>${package}</groupId>
+            <artifactId>${name}-ejb</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
@@ -98,51 +95,49 @@
 
                 <executions>
                     <execution>
-                        <id>openapi1</id>
+                        <id>openapi_interna_1</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Public</contextId>
-                            <outputFileName>openapi_public</outputFileName>
+                            <contextId>Exemple Interna Public</contextId>
+                            <outputFileName>openapi_interna_public</outputFileName>
                             <resourcePackages>
-                                <package>${symbol_dollar}{group}.api.interna.config</package>
-                                <package>${symbol_dollar}{group}.api.interna.all.exemplepublic</package>
+                                <package>${package}.api.interna.config</package>
+                                <package>${package}.api.interna.all.exemplepublic</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>openapi2</id>
+                        <id>openapi_interna_2</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Seguretat</contextId>
-                            <outputFileName>openapi_secure</outputFileName>
+                            <contextId>Exemple Interna Seguretat</contextId>
+                            <outputFileName>openapi_interna_secure</outputFileName>
                             <resourcePackages>
-                                <package>
-                                    ${symbol_dollar}{group}.api.interna.config</package>
-                                <package>
-                                    ${symbol_dollar}{group}.api.interna.secure.exempleenumsecuritzat</package>
+                                <package>${package}.api.interna.config</package>
+                                <package>${package}.api.interna.secure.exempleenumsecuritzat</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>openapi3</id>
+                        <id>openapi_interna_3</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Dades Obertes</contextId>
-                            <outputFileName>openapi_dadesobertes</outputFileName>
+                            <contextId>Exemple Interna Dades Obertes</contextId>
+                            <outputFileName>openapi_interna_dadesobertes</outputFileName>
                             <resourcePackages>
                                 <package>
-                                    ${symbol_dollar}{group}.api.interna.config</package>
+                                    ${package}.api.interna.config</package>
                                 <package>
-                                    ${symbol_dollar}{group}.api.interna.all.exemplereutilitzacio</package>
+                                    ${package}.api.interna.all.exemplereutilitzacio</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -161,13 +156,13 @@
 
                 <executions>
                     <execution>
-                        <id>openapi1</id>
+                        <id>openapi_interna_1</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi_public.json</inputSpec>
+                            <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi_interna_public.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
@@ -181,10 +176,10 @@
                             <invokerPackage>${symbol_dollar}{client.default.package}.exemplepublic.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <groupId>${symbol_dollar}{group}</groupId>
-                                <artifactId>${symbol_dollar}{artifact}-api-interna-client-exemplepublic-v1</artifactId>
+                                <groupId>${package}</groupId>
+                                <artifactId>${name}-api-interna-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
-                                <artifactDescription>${symbol_dollar}{artifactU} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
+                                <artifactDescription>${fullname} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -193,14 +188,14 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>openapi2</id>
+                        <id>openapi_interna_2</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <inputSpec>
-                                ${symbol_dollar}{project.basedir}/openapi/openapi_secure.json</inputSpec>
+                                ${symbol_dollar}{project.basedir}/openapi/openapi_interna_secure.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
@@ -214,12 +209,10 @@
                             <invokerPackage>${symbol_dollar}{client.default.package}.exemplesecure.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <groupId>${symbol_dollar}{group}</groupId>
-                                <artifactId>
-                                    ${symbol_dollar}{artifact}-api-interna-client-exemplesecure-v1</artifactId>
+                                <groupId>${package}</groupId>
+                                <artifactId>${name}-api-interna-client-exemplesecure-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
-                                <artifactDescription>${symbol_dollar}{artifactU} - API Rest -
-                                    Interna Client - Exemple Secure v1</artifactDescription>
+                                <artifactDescription>${fullname} - API Rest - Interna Client - Exemple Secure v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>

@@ -31,7 +31,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 
 /**
  *  Exemple de Servei JSON d'accés Públic
- 
  */
 @Path("/public/exemplepublic")
 @Produces(MediaType.APPLICATION_JSON)
@@ -58,11 +57,17 @@ public class ExemplePublicService {
 
     protected static Logger log = Logger.getLogger(ExemplePublicService.class);
 
+    public static final String TAG_NAME = "Versio";
+
     @Path("/versio")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(tags = "Versió", operationId = "versio", summary = "Versio de l'Aplicació", method = "get")
+    @Operation(
+            tags = TAG_NAME,
+            operationId = "versio",
+            summary = "Versio de l'Aplicació",
+            method = "get")
     @ApiResponses(
             value = {
                     @ApiResponse(
@@ -81,8 +86,8 @@ public class ExemplePublicService {
                     description = "Codi de l'idioma",
                     required = false,
                     example = "ca",
-                    schema = @Schema(implementation = String.class)) @Pattern(
-                            regexp = "^ca|es$") @QueryParam("idioma") String idioma) {
+                    schema = @Schema(implementation = String.class)) 
+                                @Pattern(regexp = "^ca|es$") @QueryParam("idioma") String idioma) {
 
         try {
             ExemplePojo exemple = new ExemplePojo(new Version().getVersion() + "_" + idioma);

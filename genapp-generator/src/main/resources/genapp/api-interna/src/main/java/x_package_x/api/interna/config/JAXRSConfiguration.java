@@ -19,14 +19,14 @@ import org.apache.log4j.Logger;
  *
  */
 @OpenAPIDefinition(
-        servers = { @Server(url = "/${name}api/interna"),
+        servers = {
+                @Server(url = "/${name}api/interna"),
                 @Server(url = "http://localhost:8080/${name}api/interna"),
                 @Server(url = "https://dev.caib.es/${name}api/interna"),
                 @Server(url = "https://proves.caib.es/${name}api/interna"),
                 @Server(url = "https://se.caib.es/${name}api/interna"),
-                @Server(url = "https://www.caib.es/${name}api/interna") 
+                @Server(url = "https://www.caib.es/${name}api/interna")
             }
-
 )
 @ApplicationPath("/")
 public class JAXRSConfiguration extends Application {
