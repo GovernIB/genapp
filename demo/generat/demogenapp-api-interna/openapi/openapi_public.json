@@ -38,7 +38,7 @@
   "paths" : {
     "/public/exemplepublic/versio" : {
       "get" : {
-        "tags" : [ "Versió" ],
+        "tags" : [ "Versio" ],
         "summary" : "Versio de l'Aplicació",
         "operationId" : "versio",
         "parameters" : [ {

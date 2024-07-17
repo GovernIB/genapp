@@ -12,11 +12,8 @@
     <packaging>war</packaging>
     <name>DemoGenApp - API Rest - Interna Server</name>
     <properties>
-        <auth.method>BASIC</auth.method>
-        <artifactU>DemoGenApp</artifactU>
         <artifact>demogenapp</artifact>
-        <group>org.fundaciobit.demogenapp</group>
-        <client.default.package>${group}.api.interna.client</client.default.package>
+        <client.default.package>org.fundaciobit.demogenapp.api.interna.client</client.default.package>
     </properties>
 
     <dependencies>
@@ -34,20 +31,20 @@
         </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
-            <groupId>${group}</groupId>
-            <artifactId>${artifact}-commons</artifactId>
+            <groupId>org.fundaciobit.demogenapp</groupId>
+            <artifactId>demogenapp-commons</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${group}</groupId>
-            <artifactId>${artifact}-persistence</artifactId>
+            <groupId>org.fundaciobit.demogenapp</groupId>
+            <artifactId>demogenapp-persistence</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${group}</groupId>
-            <artifactId>${artifact}-ejb</artifactId>
+            <groupId>org.fundaciobit.demogenapp</groupId>
+            <artifactId>demogenapp-ejb</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
@@ -106,8 +103,8 @@
                             <contextId>Exemple Public</contextId>
                             <outputFileName>openapi_public</outputFileName>
                             <resourcePackages>
-                                <package>${group}.api.interna.config</package>
-                                <package>${group}.api.interna.all.exemplepublic</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.config</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.all.exemplepublic</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -121,10 +118,8 @@
                             <contextId>Exemple Seguretat</contextId>
                             <outputFileName>openapi_secure</outputFileName>
                             <resourcePackages>
-                                <package>
-                                    ${group}.api.interna.config</package>
-                                <package>
-                                    ${group}.api.interna.secure.exempleenumsecuritzat</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.config</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.secure.exempleenumsecuritzat</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -139,9 +134,9 @@
                             <outputFileName>openapi_dadesobertes</outputFileName>
                             <resourcePackages>
                                 <package>
-                                    ${group}.api.interna.config</package>
+                                    org.fundaciobit.demogenapp.api.interna.config</package>
                                 <package>
-                                    ${group}.api.interna.all.exemplereutilitzacio</package>
+                                    org.fundaciobit.demogenapp.api.interna.all.exemplereutilitzacio</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -180,10 +175,10 @@
                             <invokerPackage>${client.default.package}.exemplepublic.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <groupId>${group}</groupId>
-                                <artifactId>${artifact}-api-interna-client-exemplepublic-v1</artifactId>
+                                <groupId>org.fundaciobit.demogenapp</groupId>
+                                <artifactId>demogenapp-api-interna-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
-                                <artifactDescription>${artifactU} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
+                                <artifactDescription>DemoGenApp - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -213,12 +208,10 @@
                             <invokerPackage>${client.default.package}.exemplesecure.v1.services</invokerPackage>
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
-                                <groupId>${group}</groupId>
-                                <artifactId>
-                                    ${artifact}-api-interna-client-exemplesecure-v1</artifactId>
+                                <groupId>org.fundaciobit.demogenapp</groupId>
+                                <artifactId>demogenapp-api-interna-client-exemplesecure-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
-                                <artifactDescription>${artifactU} - API Rest -
-                                    Interna Client - Exemple Secure v1</artifactDescription>
+                                <artifactDescription>DemoGenApp - API Rest - Interna Client - Exemple Secure v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
