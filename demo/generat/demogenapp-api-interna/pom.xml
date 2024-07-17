@@ -11,7 +11,6 @@
     <artifactId>demogenapp-api-interna</artifactId>
     <packaging>war</packaging>
     <name>DemoGenApp - API Rest - Interna Server</name>
-    <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>
         <artifactU>DemoGenApp</artifactU>
@@ -73,7 +72,7 @@
 
         <dependency>
             <groupId>org.fundaciobit.pluginsib.utils</groupId>
-            <artifactId>pluginsib-utils-swager-ui-configurable-webjar</artifactId>
+            <artifactId>pluginsib-utils-swagger-ui-configurable-webjar</artifactId>
             <version>${pluginsib.utils.version}</version>
         </dependency>
 

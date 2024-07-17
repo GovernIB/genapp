@@ -9,7 +9,6 @@
     <artifactId>demogenapp-api-externa</artifactId>
     <packaging>war</packaging>
     <name>DemoGenApp - API Rest - Externa Server</name>
-    <version>1.0</version>
     <properties>
         <auth.method>BASIC</auth.method>
         <client.default.package>org.fundaciobit.demogenapp.apiexterna.client</client.default.package>
