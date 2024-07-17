@@ -1,6 +1,6 @@
 # demogenapp-api-externa-client-exemplesecure-v1
 
-API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat
+API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat
 
 - API version: 1.0-SNAPSHOT
 

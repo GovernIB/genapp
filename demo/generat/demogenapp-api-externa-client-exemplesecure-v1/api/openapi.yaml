@@ -8,7 +8,7 @@ info:
   license:
     name: European Union Public Licence (EUPL v1.2)
     url: https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf
-  title: API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat
+  title: API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat
   version: 1.0-SNAPSHOT
 externalDocs:
   description: Java Client (GovernIB Github)

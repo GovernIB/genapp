@@ -1,5 +1,5 @@
 /*
- * API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat
+ * API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat
  * Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació
  *
  * The version of the OpenAPI document: 1.0-SNAPSHOT
