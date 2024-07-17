@@ -124,13 +124,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>openapi3</id>
+                        <id>openapi_interna_3</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>resolve</goal>
                         </goals>
                         <configuration>
-                            <contextId>Exemple Interna de Dades Obertes</contextId>
+                            <contextId>Exemple Interna Dades Obertes</contextId>
                             <outputFileName>openapi_interna_dadesobertes</outputFileName>
                             <resourcePackages>
                                 <package>
