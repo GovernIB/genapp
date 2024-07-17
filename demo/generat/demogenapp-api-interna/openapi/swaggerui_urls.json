@@ -1,16 +1,16 @@
 [
     {
-        "url": "./openapi_public.json",
+        "url": "./openapi_interna_public.json",
         "name": "Exemple Public"
     }
 ,
     {
-        "url": "./openapi_secure.json",
+        "url": "./openapi_interna_secure.json",
         "name": "Exemple Seguretat"
     }
 ,
     {
-        "url": "./openapi_dadesobertes.json",
+        "url": "./openapi_interna_dadesobertes.json",
         "name": "Exemple Dades Obertes"
     }
 ]
