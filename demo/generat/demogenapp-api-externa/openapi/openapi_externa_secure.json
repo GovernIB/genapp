@@ -1,7 +1,7 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat",
+    "title" : "API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat",
     "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació",
     "contact" : {
       "name" : "Departament de Govern Digital a la Fundació Bit",

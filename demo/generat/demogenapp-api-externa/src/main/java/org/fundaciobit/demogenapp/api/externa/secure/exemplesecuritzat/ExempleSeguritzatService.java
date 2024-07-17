@@ -40,7 +40,7 @@ import io.swagger.v3.oas.annotations.media.Content;
               name = ExempleSeguritzatService.TAG ,
               description = "Exemple de Servei Securitzat"),
         info = @Info(
-                title = "API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat",
+                title = "API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat",
                 description = "Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació",
                 version = "1.0-SNAPSHOT",
                 license = @License(
