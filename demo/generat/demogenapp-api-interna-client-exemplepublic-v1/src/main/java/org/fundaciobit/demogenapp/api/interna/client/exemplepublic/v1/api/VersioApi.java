@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class VersiApi {
+public class VersioApi {
   private ApiClient apiClient;
 
-  public VersiApi() {
+  public VersioApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public VersiApi(ApiClient apiClient) {
+  public VersioApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 

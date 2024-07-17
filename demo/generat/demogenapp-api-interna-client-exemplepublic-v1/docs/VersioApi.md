@@ -1,10 +1,10 @@
-# VersiApi
+# VersioApi
 
 All URIs are relative to */demogenappapi/interna*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**versio**](VersiApi.md#versio) | **GET** /public/exemplepublic/versio | Versio de l&#39;Aplicació |
+| [**versio**](VersioApi.md#versio) | **GET** /public/exemplepublic/versio | Versio de l&#39;Aplicació |
 
 
 
@@ -22,20 +22,20 @@ import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.A
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiException;
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.Configuration;
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.models.*;
-import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api.VersiApi;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api.VersioApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("/demogenappapi/interna");
 
-        VersiApi apiInstance = new VersiApi(defaultClient);
+        VersioApi apiInstance = new VersioApi(defaultClient);
         String idioma = "ca"; // String | Codi de l'idioma
         try {
             ExamplePojo result = apiInstance.versio(idioma);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling VersiApi#versio");
+            System.err.println("Exception when calling VersioApi#versio");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());

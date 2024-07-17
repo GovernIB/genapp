@@ -27,11 +27,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for VersiApi
+ * API tests for VersioApi
  */
-public class VersiApiTest {
+public class VersioApiTest {
 
-    private final VersiApi api = new VersiApi();
+    private final VersioApi api = new VersioApi();
 
     /**
      * Versio de l&#39;Aplicació

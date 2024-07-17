@@ -51,7 +51,7 @@ paths:
           description: Versió i idioma
       summary: Versio de l'Aplicació
       tags:
-      - Versió
+      - Versio
       x-accepts: application/json
 components:
   schemas:

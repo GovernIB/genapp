@@ -83,21 +83,21 @@ Please follow the [installation](#installation) instruction and execute the foll
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.*;
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.auth.*;
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.model.*;
-import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api.VersiApi;
+import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api.VersioApi;
 
-public class VersiApiExample {
+public class VersioApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("/demogenappapi/interna");
         
-        VersiApi apiInstance = new VersiApi(defaultClient);
+        VersioApi apiInstance = new VersioApi(defaultClient);
         String idioma = "ca"; // String | Codi de l'idioma
         try {
             ExamplePojo result = apiInstance.versio(idioma);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling VersiApi#versio");
+            System.err.println("Exception when calling VersioApi#versio");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -114,7 +114,7 @@ All URIs are relative to */demogenappapi/interna*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*VersiApi* | [**versio**](docs/VersiApi.md#versio) | **GET** /public/exemplepublic/versio | Versio de l&#39;Aplicació
+*VersioApi* | [**versio**](docs/VersioApi.md#versio) | **GET** /public/exemplepublic/versio | Versio de l&#39;Aplicació
 
 
 ## Documentation for Models
