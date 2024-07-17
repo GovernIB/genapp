@@ -1,0 +1,11 @@
+[
+    {
+        "url": "./openapi_public.json",
+        "name": "Exemple Public"
+    }
+,
+    {
+        "url": "./openapi_secure.json",
+        "name": "Exemple Seguretat"
+    }
+]

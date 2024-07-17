@@ -1,0 +1,87 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API REST EXTERNA de DemoGenApp - Exemple de Servei Públic",
+    "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits públicament",
+    "contact" : {
+      "name" : "Departament de Govern Digital a la Fundació Bit",
+      "url" : "https://governdigital.fundaciobit.org",
+      "email" : "otae@fundaciobit.org"
+    },
+    "license" : {
+      "name" : "European Union Public Licence (EUPL v1.2)",
+      "url" : "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"
+    },
+    "version" : "1.0-SNAPSHOT"
+  },
+  "externalDocs" : {
+    "description" : "Java Client (GovernIB Github)",
+    "url" : "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client-exemplepublic-v1"
+  },
+  "servers" : [ {
+    "url" : "/demogenappapi/externa"
+  }, {
+    "url" : "http://localhost:8080/demogenappapi/externa"
+  }, {
+    "url" : "https://dev.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://proves.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://se.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://www.caib.es/demogenappapi/externa"
+  } ],
+  "tags" : [ {
+    "name" : "ExemplePublicService",
+    "description" : "Exemple de Servei JSON d'accés Públic"
+  } ],
+  "paths" : {
+    "/public/exemplepublic/versio" : {
+      "get" : {
+        "tags" : [ "Versio" ],
+        "summary" : "Versio de l'Aplicació",
+        "operationId" : "versio",
+        "parameters" : [ {
+          "name" : "idioma",
+          "in" : "query",
+          "description" : "Codi de l'idioma",
+          "schema" : {
+            "pattern" : "^ca|es$",
+            "type" : "string"
+          },
+          "example" : "ca"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : { }
+            }
+          },
+          "200" : {
+            "description" : "Versió i idioma",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ExamplePojo"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ExamplePojo" : {
+        "type" : "object",
+        "properties" : {
+          "versio" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,22 +1,22 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "API REST EXTERNA de DemoGenApp",
-    "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits des de l'exterior",
+    "title" : "API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat",
+    "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació",
     "contact" : {
       "name" : "Departament de Govern Digital a la Fundació Bit",
-      "url" : "http://otae.fundaciobit.org",
+      "url" : "https://governdigital.fundaciobit.org",
       "email" : "otae@fundaciobit.org"
     },
     "license" : {
-      "name" : "License Apache 2.0",
-      "url" : "http://www.apache.org/licenses/LICENSE-2.0"
+      "name" : "European Union Public Licence (EUPL v1.2)",
+      "url" : "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"
     },
-    "version" : "1.0.0"
+    "version" : "1.0-SNAPSHOT"
   },
   "externalDocs" : {
     "description" : "Java Client (GovernIB Github)",
-    "url" : "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client"
+    "url" : "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client-exemplesecure-v1"
   },
   "servers" : [ {
     "url" : "/demogenappapi/externa"
@@ -32,48 +32,10 @@
     "url" : "https://www.caib.es/demogenappapi/externa"
   } ],
   "tags" : [ {
-    "name" : "Versio",
-    "description" : "Exemple de Servei JSON d'accés Públic"
-  }, {
     "name" : "ExempleSeguritzat",
     "description" : "Exemple de Servei Securitzat"
   } ],
   "paths" : {
-    "/public/exemplepublic/versio" : {
-      "get" : {
-        "tags" : [ "Versio" ],
-        "summary" : "Versio de l'Aplicació",
-        "operationId" : "versio",
-        "parameters" : [ {
-          "name" : "idioma",
-          "in" : "query",
-          "description" : "Codi de l'idioma",
-          "schema" : {
-            "pattern" : "^ca|es$",
-            "type" : "string"
-          },
-          "example" : "ca"
-        } ],
-        "responses" : {
-          "404" : {
-            "description" : "Paràmetres incorrectes",
-            "content" : {
-              "application/json" : { }
-            }
-          },
-          "200" : {
-            "description" : "Versió i idioma",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ExamplePojo"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/secure/exempleseguritzat/echo" : {
       "get" : {
         "tags" : [ "ExempleSeguritzat" ],
@@ -118,14 +80,6 @@
   },
   "components" : {
     "schemas" : {
-      "ExamplePojo" : {
-        "type" : "object",
-        "properties" : {
-          "versio" : {
-            "type" : "string"
-          }
-        }
-      },
       "ConstantsWs" : {
         "required" : [ "ROLE_EJB_BASIC_ACCESS", "ROLE_EJB_FULL_ACCESS", "ROLE_EJB_WS_ACCESS" ],
         "type" : "object",
