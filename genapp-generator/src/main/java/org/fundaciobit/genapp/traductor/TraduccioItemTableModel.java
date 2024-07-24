@@ -13,93 +13,101 @@ import org.fundaciobit.genapp.generator.gui.SharedData;
  *
  */
 class TraduccioItemTableModel extends AbstractTableModel {
-  private final String[] columnNames;
-  private final ITraduccioItem[] data;
-  private final Map<Integer, String> mapColumnLanguage;
+    private final String[] columnNames;
+    private final ITraduccioItem[] data;
+    private final Map<Integer, String> mapColumnLanguage;
 
-  public TraduccioItemTableModel( ITraduccioItem[] data) {
-    super();
+    public TraduccioItemTableModel(ITraduccioItem[] data) {
+        super();
 
-    this.data = data;
-    
-    String[] languages = SharedData.data.getLanguages();
+        this.data = data;
 
-    String[] columnNames = new String[2 + languages.length];
+        String[] languages = SharedData.data.getLanguages();
 
-    columnNames[0] = "Type";
-    columnNames[1] = "Key";
-    Map<Integer, String> mapColumnLanguage = new HashMap<Integer, String>();
-    for (int i = 0; i < languages.length; i++) {
-      columnNames[2 + i] = languages[i];
+        String[] columnNames = new String[2 + languages.length];
 
-      mapColumnLanguage.put(2 + i, languages[i]);
+        columnNames[0] = "Type";
+        columnNames[1] = "Key";
+        Map<Integer, String> mapColumnLanguage = new HashMap<Integer, String>();
+        for (int i = 0; i < languages.length; i++) {
+            columnNames[2 + i] = languages[i];
 
-    }
+            mapColumnLanguage.put(2 + i, languages[i]);
 
-    this.mapColumnLanguage = mapColumnLanguage;
+        }
 
-    this.columnNames = columnNames;
+        this.mapColumnLanguage = mapColumnLanguage;
 
-  }
-
-  public int getColumnCount() {
-    return columnNames.length;
-  }
-
-  public int getRowCount() {
-    return data.length;
-  }
-
-  public String getColumnName(int col) {
-    return columnNames[col];
-  }
-
-  public Object getValueAt(int row, int col) {
-
-    switch (col) {
-
-      case 0: {
-        return data[row].getType();
-      }
-
-      case 1: {
-        return data[row].getKey();
-      }
-
-      default:
-
-        return data[row].getStringValue(mapColumnLanguage.get(col));
+        this.columnNames = columnNames;
 
     }
 
-  }
-
-  public Class<?> getColumnClass(int c) {
-    return getValueAt(0, c).getClass();
-  }
-
-  /*
-   * Don't need to implement this method unless your table's editable.
-   */
-  public boolean isCellEditable(int row, int col) {
-    // Note that the data/cell address is constant,
-    // no matter where the cell appears onscreen.
-    if (col < 2) {
-      return false;
-    } else {
-      return true;
+    public int getColumnCount() {
+        return columnNames.length;
     }
-  }
 
-  /*
-   * Don't need to implement this method unless your table's data can change.
-   */
-  public void setValueAt(Object value, int row, int col) {
-
-    if (col >= 2) {
-      data[row].setStringValue(mapColumnLanguage.get(col), (String) value);
-      fireTableCellUpdated(row, col);
+    public int getRowCount() {
+        return data.length;
     }
-  }
+
+    public String getColumnName(int col) {
+        return columnNames[col];
+    }
+
+    public Object getValueAt(int row, int col) {
+
+        switch (col) {
+
+            case 0: {
+                return data[row].getType();
+            }
+
+            case 1: {
+                return data[row].getKey();
+            }
+
+            default:
+
+                return data[row].getStringValue(mapColumnLanguage.get(col));
+
+        }
+
+    }
+
+    public Class<?> getColumnClass(int c) {
+
+        Object obj = getValueAt(0, c);
+        if (obj == null) {
+            System.err.println("getValueAt(0, " + c + ") is null ");
+            new Exception().printStackTrace();
+            return null;
+        } else {
+            return obj.getClass();
+        }
+    }
+
+    /*
+     * Don't need to implement this method unless your table's editable.
+     */
+    public boolean isCellEditable(int row, int col) {
+        // Note that the data/cell address is constant,
+        // no matter where the cell appears onscreen.
+        if (col < 2) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /*
+     * Don't need to implement this method unless your table's data can change.
+     */
+    public void setValueAt(Object value, int row, int col) {
+
+        if (col >= 2) {
+            data[row].setStringValue(mapColumnLanguage.get(col), (String) value);
+            fireTableCellUpdated(row, col);
+        }
+    }
 
 }

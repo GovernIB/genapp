@@ -18,7 +18,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.io.FileUtils;
@@ -29,6 +36,7 @@ import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.generator.CodeGenerator;
 import org.fundaciobit.genapp.generator.SQL2Java;
 import org.fundaciobit.genapp.generator.gui.SharedData.ProjectType;
+import org.fundaciobit.genapp.traductor.Traductor;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -101,7 +109,7 @@ public class RebApp extends JFrame {
                 }
             }
         }
-        return new File("."); 
+        return new File(".");
     }
 
     public static void saveLastFile(File selectedFile) {
@@ -132,7 +140,7 @@ public class RebApp extends JFrame {
         if (defaultDir != null && defaultDir.exists()) {
             return defaultDir;
         } else {
-            return new File("."); 
+            return new File(".");
         }
     }
 
@@ -310,16 +318,16 @@ public class RebApp extends JFrame {
             } else {
 
                 selectedFile = new File(args[0]);
-                
+
                 if (selectedFile.exists()) {
 
                     if (args.length == 2) {
                         // Generar Codi Font
                         n = 3;
                         dstDir = new File(args[1]);
-                        
+
                         dstDir.mkdirs();
-                        
+
                         if (!dstDir.exists()) {
                             dstDir = null;
                         }
@@ -334,134 +342,116 @@ public class RebApp extends JFrame {
             }
 
             if (n == -2) {
-                final Object[] options = { "Nou projecte i SQL generació de taules base", /*  == 0 */
-                        "Actualitzar Projecte (Canvis BBDD)", /*  == 1 */
-                        "Editar Projecte", /*  == 2 */
-                        "Generar Codi Font" /*  == 3 */
+
+                /*  == 0 */
+                JButton nouProjecte = new JButton("Nou projecte i SQL generació de taules base");
+                nouProjecte.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Window w = SwingUtilities.getWindowAncestor(nouProjecte);
+                        w.setVisible(false);
+                        try {
+                            final String nomCamp = "Prefix";
+                            final Integer expectedSize = 3;
+                            String prefix = readField(nomCamp, "pfx", expectedSize);
+                            prefix = prefix.toLowerCase();
+
+                            final String nomCamp2 = "Nom Projecte";
+                            final Integer expectedSize2 = null;
+                            String nomAppUp = readField(nomCamp2, "NomApp", expectedSize2);
+
+                            String nomApp = nomAppUp.toLowerCase();
+
+                            final String[][] sourceDest = {
+                                    { "genapp_required_tables.sql", prefix + "_" + nomApp + "_SCHEMA_BASE.sql" },
+                                    { "template.genappjson", nomAppUp + ".genappjson" } };
+
+                            File parent = null;
+
+                            for (int j = 0; j < sourceDest.length; j++) {
+
+                                String src = sourceDest[j][0];
+                                String dest = sourceDest[j][1];
+
+                                ClassLoader classLoader = RebApp.class.getClassLoader();
+                                InputStream is = classLoader.getResourceAsStream(src);
+
+                                String content = IOUtils.toString(is, "UTF-8");
+
+                                content = content.replace("PFX", prefix);
+
+                                content = content.replace("APPNAMEUP", nomApp);
+
+                                content = content.replace("APPNAME", nomApp);
+
+                                File f = new File(dest);
+                                File tmp = new File(f.getCanonicalPath());
+                                System.out.println("tmp = " + tmp.getAbsolutePath());
+                                parent = tmp.getParentFile();
+                                System.out.println("PARENT = " + parent.getAbsolutePath());
+
+                                FileUtils.write(f, content, "UTF8");
+                            }
+
+                            JOptionPane.showMessageDialog(null, "Fitxer de SQL i plantilla GenApp creats a: "
+                                    + parent.getAbsolutePath() + "\n Ara ha de fer el següent:\n"
+                                    + "(1) Crear una BBDD a partir del fitxer SQL generat (" + sourceDest[0][1] + ")\n"
+                                    + "(2) Executar genapp de nou i pitjar sobre el boto d'Actualitzar Projecte\n"
+                                    + "(3) Elegir el fitxer " + sourceDest[1][1] + "\n"
+                                    + "(4) Actualitzar els camps de connexio amb la BBBD i d'altres", "Info",
+                                    JOptionPane.INFORMATION_MESSAGE);
+
+                            System.exit(0);
+
+                        } catch (Exception eee) {
+                            // TODO Mostrar en un dialeg
+                            eee.printStackTrace();
+                            System.exit(-1);
+                        }
+                    }
+                });
+
+                /*  == 1 */
+                JButton actualitzarProjecte = new JButton("Actualitzar Projecte (Canvis BBDD)");
+                actualitzarProjecte.addActionListener(
+                        new ActionListenerForUpdateOpenGenerate(1, selectedFile, actualitzarProjecte));
+                /*  == 2 */
+                JButton editarProjecte = new JButton("Editar Projecte");
+                editarProjecte
+                        .addActionListener(new ActionListenerForUpdateOpenGenerate(2, selectedFile, editarProjecte));
+                /*  == 3 */
+                JButton generarCodiFont = new JButton("Generar Codi Font");
+                generarCodiFont
+                        .addActionListener(new ActionListenerForUpdateOpenGenerate(3, selectedFile, generarCodiFont));
+
+                /*  == 4 */
+                JButton traductor = new JButton("Traduccions");
+                traductor.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Window w = SwingUtilities.getWindowAncestor(traductor);
+                        w.setVisible(false);
+                        Traductor.main(null);
+                    }
+                });
+
+                final Object[] options = { nouProjecte, /*  == 0 */
+                        actualitzarProjecte, /*  == 1 */
+                        editarProjecte, /*  == 2 */
+                        generarCodiFont, /*  == 3 */
+                        traductor /*  == 4 */
                 };
-                n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", getGenAppTitle(),
-                        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                Icon icon = new ImageIcon(RebApp.class.getResource("/genapp_icon.png"));
+                //n = JOptionPane.showOptionDialog(null, "Seleccioni una opció ", getGenAppTitle(),
+                //        JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+                n = JOptionPane.showOptionDialog(null, options, getGenAppTitle(), JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, icon, new String[] { "Sortir" }, null);
             }
 
             log.info(" NUMERO -> " + n);
 
-            switch (n) {
-                case -1:
-                    System.exit(0);
-                break;
-
-                // ================= NEW PROJECT
-                /*
-                 * case 0: { SharedData.project = ProjectType.NEW; SharedData.data = new
-                 * Project(); SharedData.data.setLanguages(new String[] { "ca" , "es"}); (new
-                 * RebApp()).setVisible(true); break; }
-                 */
-                // ================= UPDATE & OPEN & GENERATE PROJECT
-                case 1:
-                case 2:
-                case 3: {
-                    if (selectedFile == null) {
-                        // new dialog
-                        JFileChooser loadEmp = new JFileChooser(getDirectoryOfLastFile());
-
-                        FileNameExtensionFilter filterm3u = new FileNameExtensionFilter("GenApp file (.genappjson)",
-                                "genappjson");
-                        loadEmp.addChoosableFileFilter(filterm3u);
-                        loadEmp.setFileFilter(filterm3u);
-
-                        loadEmp.setDialogTitle("Seleccioni un arxiu .genappjson");
-
-                        // opens dialog if button clicked
-                        if (loadEmp.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                            // gets file from dialog
-                            selectedFile = loadEmp.getSelectedFile();
-                        }
-                    }
-                    if (selectedFile != null) {
-
-                        Project project = readProjectFromFile(selectedFile);
-
-                        saveLastFile(selectedFile);
-
-                        // XXX
-                        if (project.getLanguages() == null) {
-                            project.setLanguages(new String[] { "ca", "es" });
-                        }
-
-                        SharedData.projectFile = selectedFile;
-                        if (n == 1) {
-                            SharedData.project = ProjectType.UPDATE;
-                        } else {
-                            SharedData.project = ((n == 2) ? ProjectType.OPEN : ProjectType.GENERATE);
-
-                            cleanProject(project);
-
-                        }
-                        SharedData.data = project;
-                        (new RebApp()).setVisible(true);
-                    }
-                    break;
-                }
-
-                // generate taules base
-                case 0: {
-
-                    final String nomCamp = "Prefix";
-                    final Integer expectedSize = 3;
-                    String prefix = readField(nomCamp, "pfx", expectedSize);
-                    prefix = prefix.toLowerCase();
-
-                    final String nomCamp2 = "Nom Projecte";
-                    final Integer expectedSize2 = null;
-                    String nomAppUp = readField(nomCamp2, "NomApp", expectedSize2);
-
-                    String nomApp = nomAppUp.toLowerCase();
-
-                    final String[][] sourceDest = {
-                            { "genapp_required_tables.sql", prefix + "_" + nomApp + "_SCHEMA_BASE.sql" },
-                            { "template.genappjson", nomAppUp + ".genappjson" } };
-
-                    File parent = null;
-                    ;
-                    for (int j = 0; j < sourceDest.length; j++) {
-
-                        String src = sourceDest[j][0];
-                        String dest = sourceDest[j][1];
-
-                        ClassLoader classLoader = RebApp.class.getClassLoader();
-                        InputStream is = classLoader.getResourceAsStream(src);
-
-                        String content = IOUtils.toString(is, "UTF-8");
-
-                        content = content.replace("PFX", prefix);
-
-                        content = content.replace("APPNAMEUP", nomApp);
-
-                        content = content.replace("APPNAME", nomApp);
-
-                        File f = new File(dest);
-                        File tmp = new File(f.getCanonicalPath());
-                        System.out.println("tmp = " + tmp.getAbsolutePath());
-                        parent = tmp.getParentFile();
-                        System.out.println("PARENT = " + parent.getAbsolutePath());
-
-                        FileUtils.write(f, content, "UTF8");
-                    }
-
-                    JOptionPane.showMessageDialog(null,
-                            "Fitxer de SQL i plantilla GenApp creats a: " + parent.getAbsolutePath()
-                                    + "\n Ara ha de fer el següent:\n"
-                                    + "(1) Crear una BBDD a partir del fitxer SQL generat (" + sourceDest[0][1] + ")\n"
-                                    + "(2) Executar genapp de nou i pitjar sobre el boto d'Actualitzar Projecte\n"
-                                    + "(3) Elegir el fitxer " + sourceDest[1][1] + "\n"
-                                    + "(4) Actualitzar els camps de connexio amb la BBBD i d'altres",
-                            "Info", JOptionPane.INFORMATION_MESSAGE);
-
-                    System.exit(0);
-
-                }
-
-                default:
+            if (n == 0) {
+                log.info(" SORTIM !!!!! ");
+                System.exit(0);
             }
 
         } catch (Exception e) {
@@ -471,6 +461,73 @@ public class RebApp extends JFrame {
         }
 
     }
+
+    public static class ActionListenerForUpdateOpenGenerate implements java.awt.event.ActionListener {
+
+        public final int nn;
+
+        public File selectedFile;
+
+        public final JButton button;
+
+        public ActionListenerForUpdateOpenGenerate(int nn, File selectedFile, JButton button) {
+            this.nn = nn;
+            this.selectedFile = selectedFile;
+            this.button = button;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            Window w = SwingUtilities.getWindowAncestor(this.button);
+            w.setVisible(false);
+            if (selectedFile == null) {
+                // new dialog
+                JFileChooser loadEmp = new JFileChooser(getDirectoryOfLastFile());
+
+                FileNameExtensionFilter filterm3u = new FileNameExtensionFilter("GenApp file (.genappjson)",
+                        "genappjson");
+                loadEmp.addChoosableFileFilter(filterm3u);
+                loadEmp.setFileFilter(filterm3u);
+
+                loadEmp.setDialogTitle("Seleccioni un arxiu .genappjson");
+
+                // opens dialog if button clicked
+                if (loadEmp.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    // gets file from dialog
+                    selectedFile = loadEmp.getSelectedFile();
+                }
+            }
+            if (selectedFile != null) {
+
+                Project project;
+                try {
+                    project = readProjectFromFile(selectedFile);
+
+                    saveLastFile(selectedFile);
+
+                    // XXX
+                    if (project.getLanguages() == null) {
+                        project.setLanguages(new String[] { "ca", "es" });
+                    }
+
+                    SharedData.projectFile = selectedFile;
+                    if (nn == 1) {
+                        SharedData.project = ProjectType.UPDATE;
+                    } else {
+                        SharedData.project = ((nn == 2) ? ProjectType.OPEN : ProjectType.GENERATE);
+
+                        cleanProject(project);
+
+                    }
+                    SharedData.data = project;
+                    (new RebApp()).setVisible(true);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                    System.exit(-1);
+                }
+            }
+        }
+    };
 
     public static String getGenAppTitle() {
         return "GenApp v2 2015-" + Calendar.getInstance().get(Calendar.YEAR);

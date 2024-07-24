@@ -19,171 +19,171 @@ import org.fundaciobit.genapp.generator.gui.SharedData;
  */
 public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
-  protected final File genappFile;
+    protected final File genappFile;
 
-  protected final String relativePath;
+    protected final String relativePath;
 
-  // SharedData.projectFile.getParentFile()
+    // SharedData.projectFile.getParentFile()
 
-  // CONSTRUCTOR
+    // CONSTRUCTOR
 
-  @Override
-  public String getTipus() {
-    return relativePath;
-  }
-
-  public TraduccioTipusBundleFile(File genappFile, String relativePath) {
-    super();
-    this.genappFile = genappFile;
-    this.relativePath = relativePath;
-  }
-
-  @Override
-  public void save(List<ITraduccioItem> list,
-      Map<Integer, ITraduccioItem> traduccionsPerHashDeClau) throws Exception {
-
-    Set<String> languages = new HashSet<String>();
-    
-    for (ITraduccioItem tra : list) {
-      languages.addAll(tra.getLanguages());
-    }
-    
-    
-    List<String> idiomesNoExistents = new ArrayList<String>();
-
-    File lastOrigenFile = null;
-
-    for (String idioma : languages) {
-
-      File f = new File(genappFile.getParent(), relativePath + "_" + idioma + ".properties");
-      if (f.exists()) {
-        lastOrigenFile = f;
-        File forig = f;
-        File fdest = f;
-
-        processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest);
-
-      } else {
-        idiomesNoExistents.add(idioma);
-      }
-
+    @Override
+    public String getTipus() {
+        return relativePath;
     }
 
-    for (String idioma : idiomesNoExistents) {
-
-      File f = new File(genappFile.getParent(), relativePath + "_" + idioma + ".properties");
-
-      File forig = lastOrigenFile;
-      File fdest = f;
-
-      processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest);
-
+    public TraduccioTipusBundleFile(File genappFile, String relativePath) {
+        super();
+        this.genappFile = genappFile;
+        this.relativePath = relativePath;
     }
 
-  }
+    @Override
+    public void save(List<ITraduccioItem> list, Map<Integer, ITraduccioItem> traduccionsPerHashDeClau)
+            throws Exception {
 
-  protected void processTranslationFile(Map<Integer, ITraduccioItem> traduccionsPerHashDeClau,
-      final String idioma, File forig, File fdest) throws IOException {
-    List<String> originalLines = FileUtils.readLines(forig, "UTF8");
+        Set<String> languages = new HashSet<String>();
 
-    List<String> newLines = new ArrayList<String>();
-    
-    //final String sep = System.getProperty("line.separator");
+        for (ITraduccioItem tra : list) {
+            languages.addAll(tra.getLanguages());
+        }
 
-    for (String orig : originalLines) {
+        List<String> idiomesNoExistents = new ArrayList<String>();
 
-      if (orig.trim().length() == 0) {
-        newLines.add(orig );
-      } else if (orig.trim().startsWith("#") || orig.trim().startsWith("!")) {
-        newLines.add(orig);
-      } else {
+        File lastOrigenFile = null;
 
-        int pos = orig.indexOf('=');
+        for (String idioma : languages) {
 
-        if (pos == -1) {
-          newLines.add(orig);
-        } else {
+            File f = new File(genappFile.getParent(), relativePath + "_" + idioma + ".properties");
+            if (f.exists()) {
+                lastOrigenFile = f;
+                File forig = f;
+                File fdest = f;
 
-          String key = orig.substring(0, pos);
+                processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest);
 
-          ITraduccioItem item = traduccionsPerHashDeClau.get(key.hashCode());
-
-          String value = item.getStringValue(idioma);
-          
-          if (value == null) {
-            System.err.println("No trobo el valor de la clau ]" + key + "[ per l'idioma {" + idioma + "} per '" + relativePath  + "'" );
-            
-          } else {
-            value = value.replace(":", "\\:").replace("\\\\:", "\\:").replace('\'', '´');
-          }
-
-          newLines.add(key + "=" + value);
+            } else {
+                idiomesNoExistents.add(idioma);
+            }
 
         }
 
-      }
+        for (String idioma : idiomesNoExistents) {
+
+            File f = new File(genappFile.getParent(), relativePath + "_" + idioma + ".properties");
+
+            File forig = lastOrigenFile;
+            File fdest = f;
+
+            processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest);
+
+        }
 
     }
 
-    FileUtils.writeLines(fdest,  "UTF8", newLines, "\r\n" ,false);
-  }
+    protected void processTranslationFile(Map<Integer, ITraduccioItem> traduccionsPerHashDeClau, final String idioma,
+            File forig, File fdest) throws IOException {
+        List<String> originalLines = FileUtils.readLines(forig, "UTF8");
 
-  @Override
-  public List<ITraduccioItem> read() throws Exception {
-    return getTraduccionsFitxer();
-  }
+        List<String> newLines = new ArrayList<String>();
 
-  public List<ITraduccioItem> getTraduccionsFitxer() throws Exception {
+        //final String sep = System.getProperty("line.separator");
 
-    Map<String, ITraduccioItem> map = new HashMap<String, ITraduccioItem>();
-    
-    String[] languages = SharedData.data.getLanguages();
+        for (String orig : originalLines) {
 
-    for (int j = 0; j < languages.length; j++) {
-      String idioma = languages[j];
-      File fitxer = new File(genappFile.getParentFile(),
-          relativePath + "_" + idioma + ".properties");
+            if (orig.trim().length() == 0) {
+                newLines.add(orig);
+            } else if (orig.trim().startsWith("#") || orig.trim().startsWith("!")) {
+                newLines.add(orig);
+            } else {
 
+                int pos = orig.indexOf('=');
 
+                if (pos == -1) {
+                    newLines.add(orig);
+                } else {
 
-      List<String> lines = FileUtils.readLines(fitxer, "UTF8");
+                    String key = orig.substring(0, pos);
 
-      for (String line : lines) {
-        
-        if (line.trim().length() == 0 || line.trim().startsWith("#") || line.trim().startsWith("!")) {
-          continue;
-        }
-        
-        
-        int pos = line.indexOf('=');
-        
-        if (pos == -1) {
-          System.err.println("No s'ha pogut processar la linia ]" + line + "[");
-          continue;
-        }
-        
-        
-        String key = line.substring(0, pos);
+                    ITraduccioItem item = traduccionsPerHashDeClau.get(key.hashCode());
 
-        if (key.trim().length() <= 1  || key.equals("﻿ ") || key.equals("ï»¿")) {
-          continue;
-        }
+                    String value = item.getStringValue(idioma);
 
-        TraduccioBundleFileAppItem tra = (TraduccioBundleFileAppItem) map.get(key);
+                    if (value == null) {
+                        System.err.println("No trobo el valor de la clau ]" + key + "[ per l'idioma {" + idioma
+                                + "} per '" + relativePath + "'");
 
-        if (tra == null) {
+                    } else {
+                        value = value.replace(":", "\\:").replace("\\\\:", "\\:").replace('\'', '´');
+                    }
 
-          tra = new TraduccioBundleFileAppItem(relativePath, key);
-          map.put(key, tra);
+                    newLines.add(key + "=" + value);
+
+                }
+
+            }
+
         }
 
-        tra.setStringValue(idioma, line.substring(pos +1));
-      }
-
+        FileUtils.writeLines(fdest, "UTF8", newLines, "\r\n", false);
     }
 
-    return new ArrayList<ITraduccioItem>(map.values());
+    @Override
+    public List<ITraduccioItem> read() throws Exception {
+        return getTraduccionsFitxer();
+    }
 
-  }
+    public List<ITraduccioItem> getTraduccionsFitxer() throws Exception {
+
+        Map<String, ITraduccioItem> map = new HashMap<String, ITraduccioItem>();
+
+        String[] languages = SharedData.data.getLanguages();
+
+        for (int j = 0; j < languages.length; j++) {
+            String idioma = languages[j];
+            File fitxer = new File(genappFile.getParentFile(), relativePath + "_" + idioma + ".properties");
+
+            List<String> lines = FileUtils.readLines(fitxer, "UTF8");
+
+            int countLine = 0;
+
+            for (String line : lines) {
+                countLine++;
+
+                if (line.trim().length() == 0 || line.trim().startsWith("#") || line.trim().startsWith("!")
+                        || 65279 == (int) line.trim().charAt(0)) {
+                    continue;
+                }
+
+                int pos = line.indexOf('=');
+
+                if (pos == -1) {
+                    System.err.println("No s'ha pogut processar la linia " + countLine + " del fitxer "
+                            + fitxer.getName() + ": ]" + line + "[ {" + line.length() + "}" + (int) line.charAt(0));
+                    continue;
+                }
+
+                String key = line.substring(0, pos);
+
+                if (key.trim().length() <= 1 || key.equals("﻿ ") || key.equals("ï»¿")) {
+                    continue;
+                }
+
+                TraduccioBundleFileAppItem tra = (TraduccioBundleFileAppItem) map.get(key);
+
+                if (tra == null) {
+
+                    tra = new TraduccioBundleFileAppItem(relativePath, key);
+                    map.put(key, tra);
+                }
+
+                tra.setStringValue(idioma, line.substring(pos + 1));
+            }
+
+        }
+
+        return new ArrayList<ITraduccioItem>(map.values());
+
+    }
 
 }
