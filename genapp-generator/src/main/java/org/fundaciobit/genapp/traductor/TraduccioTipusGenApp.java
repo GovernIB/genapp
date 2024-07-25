@@ -3,6 +3,7 @@ package org.fundaciobit.genapp.traductor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +23,16 @@ import org.fundaciobit.genapp.generator.gui.SharedData;
  */
 public class TraduccioTipusGenApp implements ITraduccioTipus {
 
-    protected final File genappFile;
+    protected final File projectDir;
 
-    public TraduccioTipusGenApp(File genappFile) {
+    public TraduccioTipusGenApp(File projectDir) {
         super();
-        this.genappFile = genappFile;
+        this.projectDir = projectDir;
+    }
+    
+    @Override
+    public String getNom() {
+        return "GenApp[" + projectDir.getAbsolutePath() + "]";
     }
 
     @Override
@@ -68,8 +74,11 @@ public class TraduccioTipusGenApp implements ITraduccioTipus {
         for (ITraduccioItem tra : list) {
             languages.addAll(tra.getLanguages());
         }
+        
+        List<String> idiomesOrdenats = new ArrayList<String>(languages);
+        Collections.sort(idiomesOrdenats);
 
-        SharedData.data.setLanguages(languages.toArray(new String[languages.size()]));
+        SharedData.data.setLanguages(idiomesOrdenats.toArray(new String[idiomesOrdenats.size()]));
 
         // GUARDAR  !!!!
         try {

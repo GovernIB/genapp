@@ -14,9 +14,9 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  */
 public class TraduccioItemRenderer extends DefaultTableCellRenderer {
-    
+
     protected final Set<String> clausDuplicades;
-    
+
     public TraduccioItemRenderer(Set<String> clausDuplicades) {
         super();
         this.clausDuplicades = clausDuplicades;
@@ -27,11 +27,12 @@ public class TraduccioItemRenderer extends DefaultTableCellRenderer {
             int row, int column) {
         Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         TraduccioItemTableModel model = (TraduccioItemTableModel) table.getModel();
-        
-        if ( clausDuplicades.contains(model.getValueAt(row, 1))) {
+
+        if (clausDuplicades.contains(model.getValueAt(row, 1))) {
             c.setBackground(Color.yellow);
         } else {
-            if (column >= 2 && model.getValueAt(row, column) == null) {
+            Object valor = model.getValueAt(row, column);
+            if (column >= 2 && (valor == null || valor.toString().isEmpty())) {
                 c.setBackground(Color.red);
             } else {
                 c.setBackground(Color.white);

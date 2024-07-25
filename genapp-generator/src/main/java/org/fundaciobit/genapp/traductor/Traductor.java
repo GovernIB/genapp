@@ -41,32 +41,52 @@ public class Traductor extends JTable {
 
     public final ITraduccioTipus[] traduccioTipusList;
 
-    final List<ITraduccioItem> llista;
+    
 
     final Map<Integer, ITraduccioItem> traduccionsPerHashDeClau = new HashMap<Integer, ITraduccioItem>();
+    
+    final File projectDir;
 
-    public Traductor() throws Exception {
+    public Traductor(File projectDir, String prefix) throws Exception {
         super();
+        
+        
+        this.projectDir = projectDir;
+        
+        System.out.println(
+                "Traductor():: Inicialitzant Traductor[ this.projectDir=" + this.projectDir + " ]");
+        
+        
+        {
+            
+        }
+        
+        
+        
+        traduccioTipusList = new ITraduccioTipus[] {
+                new TraduccioTipusGenApp(this.projectDir),
+                new TraduccioTipusBundleFile(this.projectDir,
+                        prefix + "ejb/src/main/resources/genapp"),
+                new TraduccioTipusBundleFile(this.projectDir,
+                        prefix + "ejb/src/main/resources/logicmissatges"),
+                new TraduccioTipusBundleFile(this.projectDir,
+                        prefix + "back/src/main/resources/missatges")
+        };
+                
 
-        traduccioTipusList = new ITraduccioTipus[] { new TraduccioTipusGenApp(SharedData.projectFile),
-                new TraduccioTipusBundleFile(SharedData.projectFile,
-                        SharedData.data.getPrefixDirectori() + "ejb/src/main/resources/logicmissatges"),
-                new TraduccioTipusBundleFile(SharedData.projectFile,
-                        SharedData.data.getPrefixDirectori() + "back\\src\\main\\resources\\missatges"),
-                new TraduccioTipusBundleFile(SharedData.projectFile,
-                        SharedData.data.getPrefixDirectori() + "ejb\\src\\main\\resources\\genapp") };
-
-        this.llista = new ArrayList<ITraduccioItem>();
+        final List<ITraduccioItem> llista = new ArrayList<ITraduccioItem>();
 
         for (ITraduccioTipus tipus : traduccioTipusList) {
-            this.llista.addAll(tipus.read());
+            llista.addAll(tipus.read());
         }
 
         Set<String> clausDuplicades = new HashSet<String>();
-        
+
         for (ITraduccioItem tra : llista) {
             if (traduccionsPerHashDeClau.containsKey(tra.getKey().hashCode())) {
-                System.err.println("CLAU JA EXISTEIX[" + tra.getKey() + "] => " + tra.getType());
+                ITraduccioItem item = traduccionsPerHashDeClau.get(tra.getKey().hashCode());
+                
+                System.err.println("CLAU '" + tra.getKey() + "' esta duplicada:\n  + " + tra.getType() + "\n  + " + item.getType() + "\n");
                 clausDuplicades.add(tra.getKey());
             } else {
                 traduccionsPerHashDeClau.put(tra.getKey().hashCode(), tra);
@@ -75,13 +95,13 @@ public class Traductor extends JTable {
 
         Collections.sort(llista, new Comparator<ITraduccioItem>() {
             @Override
-            public int compare(ITraduccioItem fruit2, ITraduccioItem fruit1) {
-                return fruit2.getKey().compareTo(fruit1.getKey());
+            public int compare(ITraduccioItem tra2, ITraduccioItem tra1) {
+                return tra2.getKey().compareTo(tra1.getKey());
             }
         });
 
         TraduccioItemTableModel dataModel = new TraduccioItemTableModel(
-                llista.toArray(new ITraduccioItem[llista.size()]));
+                llista.toArray(new ITraduccioItem[llista.size()]), traduccionsPerHashDeClau);
 
         setModel(dataModel);
         this.setDefaultRenderer(String.class, new TraduccioItemRenderer(clausDuplicades));
@@ -115,17 +135,43 @@ public class Traductor extends JTable {
                 selectedFile = loadEmp.getSelectedFile();
 
                 final Project project = RebApp.readProjectFromFile(selectedFile);
-                
+
                 RebApp.saveLastFile(selectedFile);
                 RebApp.saveLastConfig();
-             
-                
 
                 RebApp.cleanProject(project);
 
                 SharedData.projectFile = selectedFile;
 
                 SharedData.data = project;
+                
+                final String prefix = project.getPrefixDirectori();
+                
+                File projectDir = selectedFile.getParentFile();
+                
+                // Mirar si hi ha un projecte 
+                 
+                if (!checkIfFileIsProjectDir( projectDir, prefix)) {
+                    projectDir = projectDir.getParentFile();
+                    if (!checkIfFileIsProjectDir( projectDir, prefix)) {
+                        JFileChooser dstDirDlg = new JFileChooser(RebApp.getDirectoryOfLastGeneration());
+
+                        dstDirDlg.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+                        dstDirDlg.setDialogTitle("Seleccioni el directori del projecte ...");
+
+                        // opens dialog if button clicked
+                        if (dstDirDlg.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+
+                            projectDir = dstDirDlg.getSelectedFile();
+                        } else {
+                            System.exit(-1);
+                        }
+                    }
+                }
+                
+                
+                final File projectDirFinal = projectDir;
 
                 // Schedule a job for the event-dispatching thread:
                 // creating and showing this application's GUI.
@@ -138,7 +184,7 @@ public class Traductor extends JTable {
                         // Create and set up the content pane.
                         final Traductor taulaDeTraduccions;
                         try {
-                            taulaDeTraduccions = new Traductor();
+                            taulaDeTraduccions = new Traductor(projectDirFinal, prefix);
                         } catch (Exception e) {
                             // TODO: handle exception
                             e.printStackTrace();
@@ -206,6 +252,7 @@ public class Traductor extends JTable {
 
                         // Display the window.
                         frame.pack();
+                        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
                         frame.setVisible(true);
                     }
                 });
@@ -217,11 +264,22 @@ public class Traductor extends JTable {
 
     }
 
+    protected static boolean checkIfFileIsProjectDir(File projectDir, final String prefix) {
+        File file = new File(projectDir, prefix + "ejb");
+        System.out.println("checkIfFileIsProjectDir():: Comprovant " + file.getAbsolutePath());
+        return file.exists() && file.isDirectory(); 
+    }
+
     public void guardar() throws Exception {
+        System.out.println("guardar():: Entra a guardar traduccions");
 
         for (ITraduccioTipus tipus : traduccioTipusList) {
-            tipus.save(this.llista, this.traduccionsPerHashDeClau);
+            System.out.println("guardar():: Guardant traduccions de " + tipus.getNom());
+            final List<ITraduccioItem> llista = new ArrayList<ITraduccioItem>(this.traduccionsPerHashDeClau.values());
+            tipus.save(llista, this.traduccionsPerHashDeClau);
         }
+        
+        JOptionPane.showMessageDialog(this, "Canvis guardats correctament.\n Es recomana fer Winmerge per ordenar les entrades en els diferents idiomes");
 
     }
 
@@ -255,6 +313,8 @@ public class Traductor extends JTable {
             PrintWriter out = new PrintWriter(fileToSave);
 
             int size = 0;
+            
+            final List<ITraduccioItem> llista = new ArrayList<ITraduccioItem>(this.traduccionsPerHashDeClau.values());
 
             for (ITraduccioItem iTraduccioItem : llista) {
                 String key = iTraduccioItem.getKey();

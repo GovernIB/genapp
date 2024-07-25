@@ -10,12 +10,13 @@ import java.util.Map;
  */
 
 public interface ITraduccioTipus {
-  
-  String getTipus();
-  
-  List<ITraduccioItem> read() throws Exception;
-  
-  void save(List<ITraduccioItem> list, Map<Integer, ITraduccioItem> traduccionsPerHashDeClau) throws Exception;
-  
+
+    String getNom();
+
+    String getTipus();
+
+    List<ITraduccioItem> read() throws Exception;
+
+    void save(List<ITraduccioItem> list, Map<Integer, ITraduccioItem> traduccionsPerHashDeClau) throws Exception;
 
 }

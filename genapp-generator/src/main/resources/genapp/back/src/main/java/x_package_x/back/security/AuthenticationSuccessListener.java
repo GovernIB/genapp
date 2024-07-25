@@ -126,7 +126,7 @@ public class AuthenticationSuccessListener implements ApplicationListener<Intera
                     Constants.${name_uppercase}_PROPERTY_BASE, propTmp);
 
             if (pluginInstance == null) {
-                throw new I18NException("plugin.donotinstantiateplugin.userinfo");
+                throw new I18NException("plugin.donotinstantiate.userinfo");
             }
             loginPlugin = (IUserInformationPlugin) pluginInstance;
         }

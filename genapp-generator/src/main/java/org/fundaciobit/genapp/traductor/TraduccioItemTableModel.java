@@ -16,8 +16,10 @@ class TraduccioItemTableModel extends AbstractTableModel {
     private final String[] columnNames;
     private final ITraduccioItem[] data;
     private final Map<Integer, String> mapColumnLanguage;
+    
+    private final Map<Integer, ITraduccioItem> traduccionsPerHashDeClau;
 
-    public TraduccioItemTableModel(ITraduccioItem[] data) {
+    public TraduccioItemTableModel(ITraduccioItem[] data, Map<Integer, ITraduccioItem> traduccionsPerHashDeClau) {
         super();
 
         this.data = data;
@@ -39,6 +41,8 @@ class TraduccioItemTableModel extends AbstractTableModel {
         this.mapColumnLanguage = mapColumnLanguage;
 
         this.columnNames = columnNames;
+        
+        this.traduccionsPerHashDeClau = traduccionsPerHashDeClau;
 
     }
 
@@ -74,6 +78,7 @@ class TraduccioItemTableModel extends AbstractTableModel {
 
     }
 
+    @Override
     public Class<?> getColumnClass(int c) {
 
         Object obj = getValueAt(0, c);
@@ -89,6 +94,7 @@ class TraduccioItemTableModel extends AbstractTableModel {
     /*
      * Don't need to implement this method unless your table's editable.
      */
+    @Override
     public boolean isCellEditable(int row, int col) {
         // Note that the data/cell address is constant,
         // no matter where the cell appears onscreen.
@@ -102,10 +108,24 @@ class TraduccioItemTableModel extends AbstractTableModel {
     /*
      * Don't need to implement this method unless your table's data can change.
      */
+    @Override
     public void setValueAt(Object value, int row, int col) {
 
         if (col >= 2) {
-            data[row].setStringValue(mapColumnLanguage.get(col), (String) value);
+            ITraduccioItem item = data[row];
+            String lang = mapColumnLanguage.get(col);
+            String key = item.getKey();
+            
+            data[row].setStringValue(lang, (String) value);
+
+            traduccionsPerHashDeClau.get(key.hashCode()).setStringValue(lang, (String) value);
+            
+            System.out.println("setValueAt(ITEM) = " + item.toString());
+            System.out.println("setValueAt(data[row]) = " + data[row].toString());
+            System.out.println("setValueAt(traduccionsPerHashDeClau.get(key.hashCode())) = " + traduccionsPerHashDeClau.get(key.hashCode()).toString());
+            
+            
+            
             fireTableCellUpdated(row, col);
         }
     }

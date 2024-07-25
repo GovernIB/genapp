@@ -19,22 +19,23 @@ import org.fundaciobit.genapp.generator.gui.SharedData;
  */
 public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
-    protected final File genappFile;
+    protected final File projectDir;
 
     protected final String relativePath;
 
-    // SharedData.projectFile.getParentFile()
-
-    // CONSTRUCTOR
+    @Override
+    public String getNom() {
+        return "BundleFile::" + projectDir + "||" + relativePath;
+    }
 
     @Override
     public String getTipus() {
         return relativePath;
     }
 
-    public TraduccioTipusBundleFile(File genappFile, String relativePath) {
+    public TraduccioTipusBundleFile(File projectDir, String relativePath) {
         super();
-        this.genappFile = genappFile;
+        this.projectDir = projectDir;
         this.relativePath = relativePath;
     }
 
@@ -44,8 +45,13 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
         Set<String> languages = new HashSet<String>();
 
+        List<Integer> claus = new ArrayList<Integer>();
+
         for (ITraduccioItem tra : list) {
             languages.addAll(tra.getLanguages());
+            if (tra.getType().equals(this.getTipus())) {
+                claus.add(tra.getKey().hashCode());
+            }
         }
 
         List<String> idiomesNoExistents = new ArrayList<String>();
@@ -54,13 +60,16 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
         for (String idioma : languages) {
 
-            File f = new File(genappFile.getParent(), relativePath + "_" + idioma + ".properties");
+            File f = new File(projectDir, relativePath + "_" + idioma + ".properties");
+
+            System.out.println(getNom() + " - SAVE -  " + f.getAbsolutePath());
+
             if (f.exists()) {
                 lastOrigenFile = f;
                 File forig = f;
                 File fdest = f;
 
-                processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest);
+                processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest, claus);
 
             } else {
                 idiomesNoExistents.add(idioma);
@@ -70,24 +79,26 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
         for (String idioma : idiomesNoExistents) {
 
-            File f = new File(genappFile.getParent(), relativePath + "_" + idioma + ".properties");
+            File f = new File(projectDir, relativePath + "_" + idioma + ".properties");
 
             File forig = lastOrigenFile;
             File fdest = f;
 
-            processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest);
+            processTranslationFile(traduccionsPerHashDeClau, idioma, forig, fdest, claus);
 
         }
 
     }
 
     protected void processTranslationFile(Map<Integer, ITraduccioItem> traduccionsPerHashDeClau, final String idioma,
-            File forig, File fdest) throws IOException {
+            File forig, File fdest, List<Integer> claus) throws IOException {
         List<String> originalLines = FileUtils.readLines(forig, "UTF8");
 
         List<String> newLines = new ArrayList<String>();
 
         //final String sep = System.getProperty("line.separator");
+
+        List<Integer> clausProcessades = new ArrayList<Integer>();
 
         for (String orig : originalLines) {
 
@@ -107,25 +118,67 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
                     ITraduccioItem item = traduccionsPerHashDeClau.get(key.hashCode());
 
-                    String value = item.getStringValue(idioma);
+                    clausProcessades.add(key.hashCode());
 
-                    if (value == null) {
-                        System.err.println("No trobo el valor de la clau ]" + key + "[ per l'idioma {" + idioma
-                                + "} per '" + relativePath + "'");
-
+                    if (!item.getType().equals(this.getTipus())) {
+                        newLines.add("# DUPLICADA " + key);
                     } else {
-                        value = value.replace(":", "\\:").replace("\\\\:", "\\:").replace('\'', '´');
+
+                        String value = item.getStringValue(idioma);
+
+                        if (value == null) {
+                            System.err.println("No trobo el valor de la clau ]" + key + "[ per l'idioma {" + idioma
+                                    + "} per '" + relativePath + "'");
+                            value = "";
+
+                        } else {
+                            value = value.replace(":", "\\:").replace("\\\\:", "\\:").replace('\'', '´');
+                        }
+
+                        newLines.add(key + "=" + value);
                     }
-
-                    newLines.add(key + "=" + value);
-
                 }
 
             }
 
         }
 
+        // Afegir entrades NOVES
+        List<Integer> diferencies = diferencesBetweenTwoLists(claus, clausProcessades);
+
+        for (Integer key : diferencies) {
+            ITraduccioItem item = traduccionsPerHashDeClau.get(key);
+            {
+                String value = item.getStringValue(idioma);
+                if (value == null) {
+                    System.err.println("No trobo el valor de la clau ]" + key + "[ per l'idioma {" + idioma + "} per '"
+                            + relativePath + "'");
+                    value = "";
+                } else {
+                    value = value.replace(":", "\\:").replace("\\\\:", "\\:").replace('\'', '´');
+                }
+                newLines.add("# NOVA ENTRADA");
+                newLines.add(item.getKey() + "=" + value);
+            }
+        }
+
+        // Actualitzar fitxer
         FileUtils.writeLines(fdest, "UTF8", newLines, "\r\n", false);
+    }
+
+    public static List<Integer> diferencesBetweenTwoLists(List<Integer> listOne, List<Integer> listTwo) {
+        List<Integer> differences = new ArrayList<>(listOne);
+        differences.removeAll(listTwo);
+
+        List<Integer> differences2 = new ArrayList<>(listTwo);
+        differences2.removeAll(listOne);
+
+        List<Integer> total = new ArrayList<Integer>();
+        total.addAll(differences);
+        total.addAll(differences2);
+
+        return total;
+
     }
 
     @Override
@@ -141,7 +194,7 @@ public class TraduccioTipusBundleFile implements ITraduccioTipus {
 
         for (int j = 0; j < languages.length; j++) {
             String idioma = languages[j];
-            File fitxer = new File(genappFile.getParentFile(), relativePath + "_" + idioma + ".properties");
+            File fitxer = new File(projectDir, relativePath + "_" + idioma + ".properties");
 
             List<String> lines = FileUtils.readLines(fitxer, "UTF8");
 
