@@ -133,23 +133,11 @@
                     <version>${pluginsib.exportdata.version}</version>
                 </dependency>
 
-                <dependency>
-                    <groupId>org.apache.poi</groupId>
-                    <artifactId>poi</artifactId>
-                    <version>3.9</version>
-                </dependency>
-
                 <!-- ODS Plugin -->
                 <dependency>
                     <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
                     <artifactId>pluginsib-exportdata-ods</artifactId>
                     <version>${pluginsib.exportdata.version}</version>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.jopendocument</groupId>
-                    <artifactId>jOpenDocument</artifactId>
-                    <version>1.3b1</version>
                 </dependency>
 
                 <!-- CSV Plugin -->
@@ -235,7 +223,15 @@
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
                     <skinnyWars>true</skinnyWars>
                     
-                    <packagingExcludes>lib/resteasy-*.jar,lib/jackson-*.jar</packagingExcludes>
+                    <packagingExcludes>lib/resteasy-*.jar</packagingExcludes>
+                    <!-- **/jackson-*.redhat*.jar requreixen entrades a jboss-deployment-structure.xml -->
+                    <!-- **/cxf-*.redhat*.jar requereixen entrades a jboss-deployment-structure.xml -->
+                    <!--
+                    <packagingExcludes>
+                        **/opensaml-*.redhat*.jar,**/wss4j-*.redhat*.jar,**/guava-*.redhat*.jar,**/saaj-*-redhat*.jar,**/joda-time-*.redhat*.jar,**/java-support-*.redhat*.jar,lib/axis-jaxrpc-1.4.jar,lib/jaxb-impl-*.jar,lib/jaxb-jxc-2.3.3.jar,lib/jaxb-xjc-2.3.3.jar,lib/jaxws-eclipselink-plugin-2.3.3.jar,lib/jaxws-rt-2.3.3.jar,lib/jaxws-tools-2.3.3.jar
+                    </packagingExcludes>
+                    -->
+                    
                     
 					<includeLibInApplicationXml>false</includeLibInApplicationXml>
                         <!--suppress UnresolvedMavenProperty -->
