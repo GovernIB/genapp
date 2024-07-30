@@ -17,6 +17,15 @@
 			<module name="org.keycloak.keycloak-wildfly-adapter" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-wildfly-elytron-oidc-adapter" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-wildfly-subsystem" optional="TRUE"/>
+
+            <module name="org.bouncycastle" export="TRUE"/>
+            <module name="org.apache.commons.lang3" export="TRUE"/>
+            <module name="org.apache.commons.codec" export="TRUE"/>
+            <module name="org.apache.commons.io" export="TRUE"/>
+            <module name="org.apache.commons.collections" export="TRUE"/>
+            <module name="org.apache.commons.beanutils" export="TRUE"/>
+
+            
         </dependencies>
         <exclusions>
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>

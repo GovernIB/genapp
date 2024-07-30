@@ -449,7 +449,10 @@ public class RebApp extends JFrame {
 
             log.info(" NUMERO -> " + n);
 
-            if (n == 0) {
+            if (n == 3) {
+                ActionListenerForUpdateOpenGenerate a = new ActionListenerForUpdateOpenGenerate(3, selectedFile, null);
+                a.actionPerformed();
+            } else if (n == 0) {
                 log.info(" SORTIM !!!!! ");
                 System.exit(0);
             }
@@ -476,9 +479,17 @@ public class RebApp extends JFrame {
             this.button = button;
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
-            Window w = SwingUtilities.getWindowAncestor(this.button);
-            w.setVisible(false);
+            this.actionPerformed();
+        }
+        
+        public void actionPerformed() {
+
+            if (this.button != null) {
+                Window w = SwingUtilities.getWindowAncestor(this.button);
+                w.setVisible(false);
+            }
             if (selectedFile == null) {
                 // new dialog
                 JFileChooser loadEmp = new JFileChooser(getDirectoryOfLastFile());

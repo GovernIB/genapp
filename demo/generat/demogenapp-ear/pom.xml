@@ -231,6 +231,18 @@
                         **/opensaml-*.redhat*.jar,**/wss4j-*.redhat*.jar,**/guava-*.redhat*.jar,**/saaj-*-redhat*.jar,**/joda-time-*.redhat*.jar,**/java-support-*.redhat*.jar,lib/axis-jaxrpc-1.4.jar,lib/jaxb-impl-*.jar,lib/jaxb-jxc-2.3.3.jar,lib/jaxb-xjc-2.3.3.jar,lib/jaxws-eclipselink-plugin-2.3.3.jar,lib/jaxws-rt-2.3.3.jar,lib/jaxws-tools-2.3.3.jar
                     </packagingExcludes>
                     -->
+
+                    <!-- **/bc*-jdk15on-*.redhat*.jar requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
+                    <!-- **/commons-lang3-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.lang3' a jboss-deployment-structure.xml -->
+                    <!-- **/commons-codec-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.codec' a jboss-deployment-structure.xml -->
+                    <!-- **/commons-io-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.io' a jboss-deployment-structure.xml -->
+                    <!-- **/commons-collections-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.collections' a jboss-deployment-structure.xml -->
+                    <!-- **/commons-beanutils-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.beanutils' a jboss-deployment-structure.xml -->
+                    
+                    <packagingExcludes>
+                        **/bc*-jdk15on-*.redhat*.jar,**/commons-lang3-*.redhat*.jar,**/commons-codec-*.redhat*.jar,**/commons-io-*.redhat*.jar,**/commons-beanutils-*.redhat*.jar,**/commons-collection-*.redhat*.jar
+                    </packagingExcludes>
+
                     
                     
 					<includeLibInApplicationXml>false</includeLibInApplicationXml>
