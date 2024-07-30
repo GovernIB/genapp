@@ -304,6 +304,24 @@
 				</executions>
 			</plugin>
 
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    
+                    
+                    
+                    <packagingExcludes>
+                        <!-- Requereix afegir mòdul 'org.apache.commons.beanutils' a jboss-deployment-structure.xml -->
+                        **/commons-beanutils-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.collections' a jboss-deployment-structure.xml -->
+                        **/commons-collections-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
+                        **/jboss-jaxb-api*-redhat*.jar
+                    </packagingExcludes>
+                </configuration>
+            </plugin>
+
 		</plugins>
 	</build>
 </project>

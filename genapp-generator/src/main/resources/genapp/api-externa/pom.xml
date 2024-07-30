@@ -11,6 +11,7 @@
     <packaging>war</packaging>
     <name>${fullname} - API Rest - Externa Server</name>
     <properties>
+        <auth.method>BASIC</auth.method>
         <client.default.package>${package}.apiexterna.client</client.default.package>
     </properties>
 

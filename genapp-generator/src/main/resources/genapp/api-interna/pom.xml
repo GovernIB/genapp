@@ -13,7 +13,7 @@
     <packaging>war</packaging>
     <name>${fullname} - API Rest - Interna Server</name>
     <properties>
-        <artifact>${name}</artifact>
+        <auth.method>BASIC</auth.method>
         <client.default.package>${package}.api.interna.client</client.default.package>
     </properties>
 

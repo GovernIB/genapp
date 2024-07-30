@@ -552,7 +552,6 @@ public class CodeGenerator {
 
             prop.put("project_version", "${project.version}");
             prop.put("hibernate_version", "${hibernate.version}");
-            prop.put("hibernate_annotations_version", "${hibernate.annotations.version}");
 
             prop.put("springsecurity_version", "${springsecurity.version}");
 
@@ -620,7 +619,6 @@ public class CodeGenerator {
 
         prop.put("project_version", "${project.version}");
         prop.put("hibernate_version", "${hibernate.version}");
-        prop.put("hibernate_annotations_version", "${hibernate.annotations.version}");
 
         prop.put("springsecurity_version", "${springsecurity.version}");
 
@@ -717,7 +715,6 @@ public class CodeGenerator {
 
             prop.put("project_version", "${project.version}");
             prop.put("hibernate_version", "${hibernate.version}");
-            prop.put("hibernate_annotations_version", "${hibernate.annotations.version}");
 
             prop.put("springsecurity_version", "${springsecurity.version}");
 
@@ -1184,7 +1181,6 @@ public class CodeGenerator {
 
             prop.put("project_version", "${project.version}");
             prop.put("hibernate_version", "${hibernate.version}");
-            prop.put("hibernate_annotations_version", "${hibernate.annotations.version}");
 
             prop.put("springsecurity_version", "${springsecurity.version}");
 

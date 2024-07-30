@@ -12,7 +12,7 @@
     <packaging>war</packaging>
     <name>DemoGenApp - API Rest - Interna Server</name>
     <properties>
-        <artifact>demogenapp</artifact>
+        <auth.method>BASIC</auth.method>
         <client.default.package>org.fundaciobit.demogenapp.api.interna.client</client.default.package>
     </properties>
 

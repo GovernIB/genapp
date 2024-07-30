@@ -17,14 +17,19 @@
 			<module name="org.keycloak.keycloak-wildfly-adapter" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-wildfly-elytron-oidc-adapter" optional="TRUE"/>
 			<module name="org.keycloak.keycloak-wildfly-subsystem" optional="TRUE"/>
-            
+
+            <!-- packagingExcludes definits al plugin de ear del pom.xml  -->
+            <module name="org.slf4j" export="TRUE"/>
+            <module name="javax.xml.bind.api" export="TRUE"/>   
+            <module name="javax.annotation.api" export="TRUE"/>
+            <module name="javax.activation.api" export="TRUE"/>
             <module name="org.bouncycastle" export="TRUE"/>
             <module name="org.apache.commons.lang3" export="TRUE"/>
             <module name="org.apache.commons.codec" export="TRUE"/>
             <module name="org.apache.commons.io" export="TRUE"/>
             <module name="org.apache.commons.collections" export="TRUE"/>
             <module name="org.apache.commons.beanutils" export="TRUE"/>
-            
+
             
         </dependencies>
         <exclusions>

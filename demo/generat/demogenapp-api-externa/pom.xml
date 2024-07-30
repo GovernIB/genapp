@@ -10,6 +10,7 @@
     <packaging>war</packaging>
     <name>DemoGenApp - API Rest - Externa Server</name>
     <properties>
+        <auth.method>BASIC</auth.method>
         <client.default.package>org.fundaciobit.demogenapp.apiexterna.client</client.default.package>
     </properties>
 

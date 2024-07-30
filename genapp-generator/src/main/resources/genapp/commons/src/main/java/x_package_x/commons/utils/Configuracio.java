@@ -1,8 +1,6 @@
 package ${package}.commons.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,7 +16,7 @@ import java.util.Properties;
  */
 public class Configuracio implements Constants {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Configuracio.class);
+    private static final Logger LOG = Logger.getLogger(Configuracio.class);
 
     private static Properties appProperties;
 

@@ -62,10 +62,12 @@
 			i no està ja dins un mòdul sobre el que es pugui establir una dependència 
 			als descriptors.
             https://docs.jboss.org/author/display/AS72/Implicit+module+dependencies+for+deployments -->
+            <!--
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
             </dependency>
+            -->
 
 
             <!-- Externes -->
@@ -234,7 +236,7 @@
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
                     <skinnyWars>true</skinnyWars>
                     
-                    <packagingExcludes>lib/resteasy-*.jar</packagingExcludes>
+                    <!-- <packagingExcludes>lib/resteasy-*.jar</packagingExcludes> -->
                     <!-- **/jackson-*.redhat*.jar requreixen entrades a jboss-deployment-structure.xml -->
                     <!-- **/cxf-*.redhat*.jar requereixen entrades a jboss-deployment-structure.xml -->
                     <!--
@@ -243,19 +245,29 @@
                     </packagingExcludes>
                     -->
                     
-                    <!-- **/bc*-jdk15on-*.redhat*.jar requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
-                    <!-- **/commons-lang3-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.lang3' a jboss-deployment-structure.xml -->
-                    <!-- **/commons-codec-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.codec' a jboss-deployment-structure.xml -->
-                    <!-- **/commons-io-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.io' a jboss-deployment-structure.xml -->
-                    <!-- **/commons-collections-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.collections' a jboss-deployment-structure.xml -->
-                    <!-- **/commons-beanutils-*.redhat*.jar requereix afegir mòdul 'org.apache.commons.beanutils' a jboss-deployment-structure.xml -->
-                    
-                    <packagingExcludes>
-                        **/bc*-jdk15on-*.redhat*.jar,**/commons-lang3-*.redhat*.jar,**/commons-codec-*.redhat*.jar,**/commons-io-*.redhat*.jar,**/commons-beanutils-*.redhat*.jar,**/commons-collection-*.redhat*.jar
+                    <packagingExcludes>                        
+                        <!-- Requereix afegir mòdul 'org.slf4j' a jboss-deployment-structure.xml -->
+                        **/slf4j-api*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
+                        **/jboss-jaxb-api*-redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.annotation.api' a jboss-deployment-structure.xml -->
+                        **/jboss-annotations-api*-redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
+                        **/activation-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
+                        **/bc*-jdk15on-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.lang3' a jboss-deployment-structure.xml -->
+                        **/commons-lang3-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.codec' a jboss-deployment-structure.xml -->
+                        **/commons-codec-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.io' a jboss-deployment-structure.xml -->
+                        **/commons-io-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.beanutils' a jboss-deployment-structure.xml -->
+                        **/commons-beanutils-*.redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.collections' a jboss-deployment-structure.xml -->
+                        **/commons-collections-*.redhat*.jar
                     </packagingExcludes>
-                    
-                    
-                    
+
 					<includeLibInApplicationXml>false</includeLibInApplicationXml>
                         <!--suppress UnresolvedMavenProperty -->
                         <!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
