@@ -307,11 +307,7 @@
 
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.4.0</version>
                 <configuration>
-                    
-                    
-                    
                     <packagingExcludes>
                         <!-- Requereix afegir mòdul 'org.apache.commons.beanutils' a jboss-deployment-structure.xml -->
                         **/commons-beanutils-*.redhat*.jar,
