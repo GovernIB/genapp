@@ -61,13 +61,6 @@
 			i no està ja dins un mòdul sobre el que es pugui establir una dependència 
 			als descriptors.
             https://docs.jboss.org/author/display/AS72/Implicit+module+dependencies+for+deployments -->
-            <!--
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-            </dependency>
-            -->
-
 
             <!-- Externes -->
 
@@ -155,19 +148,6 @@
                 </dependency>
 </#if>
 
-            <!-- Commons Dependencies -->
-    		<dependency>
-    			<groupId>commons-io</groupId>
-    			<artifactId>commons-io</artifactId>
-    		</dependency>
-    
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-            </dependency>
-
-
-
 <#if generateapiexterna>
                 <!-- API REST de ${fullname} -->
 
@@ -220,36 +200,60 @@
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
                     <skinnyWars>true</skinnyWars>
                     
-                    <!-- <packagingExcludes>lib/resteasy-*.jar</packagingExcludes> -->
-                    <!-- **/jackson-*.redhat*.jar requreixen entrades a jboss-deployment-structure.xml -->
-                    <!-- **/cxf-*.redhat*.jar requereixen entrades a jboss-deployment-structure.xml -->
-                    <!--
-                    <packagingExcludes>
-                        **/opensaml-*.redhat*.jar,**/wss4j-*.redhat*.jar,**/guava-*.redhat*.jar,**/saaj-*-redhat*.jar,**/joda-time-*.redhat*.jar,**/java-support-*.redhat*.jar,lib/axis-jaxrpc-1.4.jar,lib/jaxb-impl-*.jar,lib/jaxb-jxc-2.3.3.jar,lib/jaxb-xjc-2.3.3.jar,lib/jaxws-eclipselink-plugin-2.3.3.jar,lib/jaxws-rt-2.3.3.jar,lib/jaxws-tools-2.3.3.jar
-                    </packagingExcludes>
-                    -->
-                    
                     <packagingExcludes>                        
-                        <!-- Requereix afegir mòdul 'org.slf4j' a jboss-deployment-structure.xml -->
-                        **/slf4j-api*.redhat*.jar,
-                        <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
-                        **/jboss-jaxb-api*-redhat*.jar,
-                        <!-- Requereix afegir mòdul 'javax.annotation.api' a jboss-deployment-structure.xml -->
-                        **/jboss-annotations-api*-redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.activation.api' a jboss-deployment-structure.xml -->
+                         **/activation*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.antlr' a jboss-deployment-structure.xml -->
+                         **/antlr*redhat*.jar,
                         <!-- Requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
-                        **/activation-*.redhat*.jar,
-                        <!-- Requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
-                        **/bc*-jdk15on-*.redhat*.jar,
-                        <!-- Requereix afegir mòdul 'org.apache.commons.lang3' a jboss-deployment-structure.xml -->
-                        **/commons-lang3-*.redhat*.jar,
+                         **/bcprov-jdk15on*redhat*.jar,
+                         **/bcmail-jdk15on*redhat*.jar,
+                         **/bcpkix-jdk15on*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'net.bytebuddy' a jboss-deployment-structure.xml -->
+                         **/byte-buddy*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.classmate' a jboss-deployment-structure.xml -->
+                         **/classmate*redhat*.jar,
                         <!-- Requereix afegir mòdul 'org.apache.commons.codec' a jboss-deployment-structure.xml -->
-                        **/commons-codec-*.redhat*.jar,
+                         **/commons-codec*redhat*.jar,
                         <!-- Requereix afegir mòdul 'org.apache.commons.io' a jboss-deployment-structure.xml -->
-                        **/commons-io-*.redhat*.jar,
-                        <!-- Requereix afegir mòdul 'org.apache.commons.beanutils' a jboss-deployment-structure.xml -->
-                        **/commons-beanutils-*.redhat*.jar,
-                        <!-- Requereix afegir mòdul 'org.apache.commons.collections' a jboss-deployment-structure.xml -->
-                        **/commons-collections-*.redhat*.jar
+                         **/commons-io*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.lang3' a jboss-deployment-structure.xml -->
+                         **/commons-lang3*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.hibernate.commons-annotations' a jboss-deployment-structure.xml -->
+                         **/hibernate-commons-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.hibernate' a jboss-deployment-structure.xml -->
+                         **/hibernate-core*redhat*.jar,
+                         **/hibernate-envers*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.core.jackson-annotations' a jboss-deployment-structure.xml -->
+                         **/jackson-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.core.jackson-core' a jboss-deployment-structure.xml -->
+                         **/jackson-core*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.core.jackson-databind' a jboss-deployment-structure.xml -->
+                         **/jackson-databind*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.jandex' a jboss-deployment-structure.xml -->
+                         **/jandex*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.javassist' a jboss-deployment-structure.xml -->
+                         **/javassist*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.mail.api' a jboss-deployment-structure.xml -->
+                         **/javax.mail*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.persistence.api' a jboss-deployment-structure.xml -->
+                         **/javax.persistence-api*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.annotation.api' a jboss-deployment-structure.xml -->
+                         **/jboss-annotations-api_1.3_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
+                         **/jboss-jaxb-api_2.3_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.logging' a jboss-deployment-structure.xml -->
+                         **/jboss-logging*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.transaction.api' a jboss-deployment-structure.xml -->
+                         **/jboss-transaction-api_1.2_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.slf4j' a jboss-deployment-structure.xml -->
+                         **/slf4j-api*redhat*.jar,
+                        <!-- Requereix afegir mòdul org.apache.log4j a jboss-deployment-structure.xml -->
+                         **/log4j-*.jar,
+                        <!-- Requereix afegir mòdul javax.activation.api a jboss-deployment-structure.xml -->
+                         **/javax.activation-api-*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.logging.commons.logging' a jboss-deployment-structure.xml -->
+                         **/commons-logging-jboss-logging*redhat*.jar,
                     </packagingExcludes>
 
 					<includeLibInApplicationXml>false</includeLibInApplicationXml>
@@ -328,18 +332,6 @@
 	
 	
     <profiles>
-            <!-- Garantir que es fixa la variable d'entorn JBOSS_HOME -->
-        <profile>
-            <id>fix JBOSS_HOME</id>
-            <activation>
-                <property>
-                    <name>!env.JBOSS_HOME</name>
-                </property>
-            </activation>
-            <properties>
-                <env.JBOSS_HOME>HA DE FIXAR LA VARIABLE D'ENTORN JBOSS_HOME</env.JBOSS_HOME>
-            </properties>
-        </profile>
         <profile>
           <id>revisionnumber</id>
           <build>

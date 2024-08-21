@@ -85,7 +85,8 @@ public class ExemplePublicService {
             @Parameter(
                     description = "Codi de l'idioma",
                     required = false,
-                    example = "ca",
+                    examples = { @io.swagger.v3.oas.annotations.media.ExampleObject(name = "Català", value = "ca"),
+                                 @io.swagger.v3.oas.annotations.media.ExampleObject(name = "Castellano", value = "es")},
                     schema = @Schema(implementation = String.class)) 
                                 @Pattern(regexp = "^ca|es$") @QueryParam("idioma") String idioma) {
 

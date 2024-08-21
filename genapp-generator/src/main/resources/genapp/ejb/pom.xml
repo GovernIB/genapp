@@ -18,16 +18,13 @@
         <dependency>
             <groupId>${package}</groupId>
             <artifactId>${name}-persistence</artifactId>
-            <version>${project_version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <version>${symbol_dollar}{project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>${package}</groupId>
             <artifactId>${name}-commons</artifactId>
-            <version>${project_version}</version>
-            <type>jar</type>
+            <version>${symbol_dollar}{project.version}</version>
         </dependency>
 
         <dependency>
@@ -39,8 +36,8 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <artifactId>pluginsib-userinformation-api</artifactId>
             <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
@@ -60,7 +57,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.dom4j</groupId>
@@ -74,7 +70,6 @@
     <build>
 
         <finalName>${symbol_dollar}{project.artifactId}-${symbol_dollar}{project.version}</finalName>
-
 
         <plugins>
             <plugin>

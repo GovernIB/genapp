@@ -13,48 +13,40 @@
     <packaging>war</packaging>
     <name>${fullname} - API Rest - Interna Server</name>
     <properties>
-        <auth.method>BASIC</auth.method>
         <client.default.package>${package}.api.interna.client</client.default.package>
     </properties>
 
     <dependencies>
-        <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-8.0</artifactId>
-            <type>pom</type>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
             <groupId>${package}</groupId>
             <artifactId>${name}-commons</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <version>${symbol_dollar}{project.version}</version>
         </dependency>
         <dependency>
             <groupId>${package}</groupId>
             <artifactId>${name}-persistence</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <version>${symbol_dollar}{project.version}</version>
         </dependency>
         <dependency>
             <groupId>${package}</groupId>
             <artifactId>${name}-ejb</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <version>${symbol_dollar}{project.version}</version>
         </dependency>
 
         <!-- Anotacions de documentació de openapi -->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -180,7 +172,7 @@
                                 <artifactId>${name}-api-interna-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
                                 <artifactDescription>${fullname} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>legacy</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>
@@ -263,6 +255,14 @@
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
+                    <packagingExcludes>
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider' a jboss-deployment-structure.xml -->
+                         **/jackson-jaxrs-json-provider*redhat*.jar,
+                         **/jackson-jaxrs-base*redhat*.jar,
+                         **/jackson-module-jaxb-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.ws.rs.api' a jboss-deployment-structure.xml -->
+                         **/jboss-jaxrs-api_2.1_spec*redhat*.jar,
+                    </packagingExcludes>
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                     <webResources>
                         <resource>

@@ -50,8 +50,7 @@
     </security-constraint>
 
     <login-config>
-        <!-- Per defecte BASIC. Si profile -Pcaib llavors KEYCLOAK -->
-        <auth-method>${symbol_dollar}{auth.method}</auth-method>
+        <auth-method>BASIC</auth-method>
         <realm-name>Govern de les Illes Balears</realm-name>
     </login-config>
 

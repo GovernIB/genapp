@@ -32,14 +32,12 @@
 			<groupId>${package}</groupId>
 			<artifactId>${name}-ejb</artifactId>
 			<version>${symbol_dollar}{project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>${package}</groupId>
 			<artifactId>${name}-commons</artifactId>
 			<version>${symbol_dollar}{project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 
@@ -55,7 +53,6 @@
 			<groupId>org.fundaciobit.genapp</groupId>
 			<artifactId>genapp-core</artifactId>
 			<version>${symbol_dollar}{genapp.version}</version>
-			<scope>provided</scope>
 		</dependency>
         
 		<dependency>
@@ -73,13 +70,11 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <scope>provided</scope>
         </dependency>
         
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <scope>provided</scope>
         </dependency>
 
 		<dependency>
@@ -87,26 +82,17 @@
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
-		</dependency>
 		
 		<dependency>
             <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
             <artifactId>pluginsib-userinformation-api</artifactId>
             <version>${symbol_dollar}{pluginsib.userinformation.version}</version>
-            <scope>provided</scope>
         </dependency>
         
         <dependency>
             <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
             <artifactId>pluginsib-exportdata-api</artifactId>
             <version>${symbol_dollar}{pluginsib.exportdata.version}</version>
-            <scope>provided</scope>
         </dependency>
 		
 		<dependency>
