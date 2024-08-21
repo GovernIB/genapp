@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jboss-deployment-structure>
-    <deployment>
-        <dependencies>
-            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
-            <module name="javax.ws.rs.api" export="TRUE"/>
-        </dependencies>
-    </deployment>
-</jboss-deployment-structure>
