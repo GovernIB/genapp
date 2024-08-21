@@ -141,7 +141,6 @@
                     <version>${pluginsib.exportdata.version}</version>
                 </dependency>
 
-
                 <!-- API REST de DemoGenApp -->
 
                 <!-- API EXTERNA START -->
