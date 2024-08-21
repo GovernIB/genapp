@@ -48,8 +48,7 @@
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
         </exclusions>
     </deployment>
-    <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
-    <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+
     
     <sub-deployment name="demogenapp-back.war">
         <dependencies>
@@ -58,12 +57,19 @@
             <module name="javax.xml.bind.api" export="TRUE"/>  
         </dependencies>
         <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
         </exclusions>
     </sub-deployment>
 
     <sub-deployment name="demogenapp-front.war">
+        <dependencies>
+            <module name="com.google.code.gson" export="TRUE"/>
+        </dependencies>
         <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
         </exclusions>
     </sub-deployment>
