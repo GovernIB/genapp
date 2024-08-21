@@ -5,14 +5,14 @@
     <artifactId>demogenapp</artifactId>
     <packaging>pom</packaging>
     <name>DemoGenApp</name>
-    
+
     <parent>
         <artifactId>caib-artifacts-github-governib-distribution-with-jdk11-jboss72</artifactId>
         <groupId>es.caib.maven</groupId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath></relativePath>
     </parent>
-    
+
     <modules>
         <module>demogenapp-model</module>
         <module>demogenapp-persistence</module>
@@ -51,6 +51,7 @@
         </repository>
     </repositories>
     <dependencies>
+
         <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
         <dependency>
             <!--
@@ -60,12 +61,12 @@
             <groupId>org.jboss.spec.javax.xml.bind</groupId>
             <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -123,7 +124,7 @@
                 <artifactId>keycloak-core</artifactId>
                 <version>${keycloak.version}</version>
             </dependency>
-
+            
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
@@ -179,6 +180,7 @@
                         <shortRevisionLength>8</shortRevisionLength>
                     </configuration>
                 </plugin>
+
             </plugins>
         </pluginManagement>
         <plugins>
@@ -197,7 +199,6 @@
                     <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>maven-replacer-plugin</artifactId>
