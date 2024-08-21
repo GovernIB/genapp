@@ -58,8 +58,7 @@
               "description" : "Castellano",
               "value" : "es"
             }
-          },
-          "example" : "ca"
+          }
         } ],
         "responses" : {
           "404" : {
