@@ -189,7 +189,7 @@
 					<generateApplicationXml>true</generateApplicationXml>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
                     <skinnyWars>true</skinnyWars>
-                 
+                    
                     <packagingExcludes>                        
                         <!-- Requereix afegir mòdul 'javax.activation.api' a jboss-deployment-structure.xml -->
                          **/activation*redhat*.jar,
