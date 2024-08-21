@@ -42,6 +42,7 @@
             <groupId>org.fundaciobit.pluginsib.login</groupId>
             <version>${pluginsib.login.version}</version>
         </dependency>
+
         <dependency>
             <artifactId>pluginsib-login-loginib</artifactId>
             <groupId>org.fundaciobit.pluginsib.login</groupId>
@@ -129,7 +130,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                  <packagingExcludes>                 
+                  <packagingExcludes>                
                   </packagingExcludes>
                 </configuration>
             </plugin>
