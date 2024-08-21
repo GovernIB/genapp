@@ -49,6 +49,16 @@
             "pattern" : "^ca|es$",
             "type" : "string"
           },
+          "examples" : {
+            "Català" : {
+              "description" : "Català",
+              "value" : "ca"
+            },
+            "Castellano" : {
+              "description" : "Castellano",
+              "value" : "es"
+            }
+          },
           "example" : "ca"
         } ],
         "responses" : {

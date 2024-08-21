@@ -46,10 +46,18 @@
           "in" : "query",
           "description" : "Codi de l'idioma",
           "schema" : {
-            "pattern" : "^ca|es$",
             "type" : "string"
           },
-          "example" : "ca"
+          "examples" : {
+            "Català" : {
+              "description" : "Català",
+              "value" : "ca"
+            },
+            "Castellano" : {
+              "description" : "Castellano",
+              "value" : "es"
+            }
+          }
         } ],
         "responses" : {
           "404" : {

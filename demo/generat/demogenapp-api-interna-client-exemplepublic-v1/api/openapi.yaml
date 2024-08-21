@@ -29,7 +29,13 @@ paths:
       operationId: versio
       parameters:
       - description: Codi de l'idioma
-        example: ca
+        examples:
+          Català:
+            description: Català
+            value: ca
+          Castellano:
+            description: Castellano
+            value: es
         explode: true
         in: query
         name: idioma

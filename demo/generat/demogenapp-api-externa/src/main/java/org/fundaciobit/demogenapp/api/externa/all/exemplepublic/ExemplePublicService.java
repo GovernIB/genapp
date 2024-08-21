@@ -3,7 +3,6 @@ package org.fundaciobit.demogenapp.api.externa.all.exemplepublic;
 
 import java.util.Locale;
 
-import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -86,9 +85,10 @@ public class ExemplePublicService {
             @Parameter(
                     description = "Codi de l'idioma",
                     required = false,
-                    example = "ca",
+                    examples = { @io.swagger.v3.oas.annotations.media.ExampleObject(name = "Català", value = "ca"),
+                                 @io.swagger.v3.oas.annotations.media.ExampleObject(name = "Castellano", value = "es")},
                     schema = @Schema(implementation = String.class)) 
-                                @Pattern(regexp = "^ca|es$") @QueryParam("idioma") String idioma) {
+                                @QueryParam("idioma") String idioma) {
 
         try {
             ExemplePojo exemple = new ExemplePojo(new Version().getVersion() + "_" + idioma);

@@ -19,18 +19,30 @@
 			<module name="org.keycloak.keycloak-wildfly-subsystem" optional="TRUE"/>
 
             <!-- packagingExcludes definits al plugin de ear del pom.xml  -->
-            <module name="org.slf4j" export="TRUE"/>
-            <module name="javax.xml.bind.api" export="TRUE"/>   
-            <module name="javax.annotation.api" export="TRUE"/>
             <module name="javax.activation.api" export="TRUE"/>
+            <module name="org.antlr" export="TRUE"/>
             <module name="org.bouncycastle" export="TRUE"/>
-            <module name="org.apache.commons.lang3" export="TRUE"/>
+            <module name="net.bytebuddy" export="TRUE"/>
+            <module name="com.fasterxml.classmate" export="TRUE"/>
             <module name="org.apache.commons.codec" export="TRUE"/>
             <module name="org.apache.commons.io" export="TRUE"/>
-            <module name="org.apache.commons.collections" export="TRUE"/>
-            <module name="org.apache.commons.beanutils" export="TRUE"/>
-
-            
+            <module name="org.apache.commons.lang3" export="TRUE"/>
+            <module name="org.hibernate.commons-annotations" export="TRUE"/>
+            <module name="org.hibernate" export="TRUE"/>
+            <module name="com.fasterxml.jackson.core.jackson-annotations" export="TRUE"/>
+            <module name="com.fasterxml.jackson.core.jackson-core" export="TRUE"/>
+            <module name="com.fasterxml.jackson.core.jackson-databind" export="TRUE"/>
+            <module name="org.jboss.jandex" export="TRUE"/>
+            <module name="org.javassist" export="TRUE"/>
+            <module name="javax.mail.api" export="TRUE"/>
+            <module name="javax.persistence.api" export="TRUE"/>
+            <module name="javax.annotation.api" export="TRUE"/>
+            <module name="javax.xml.bind.api" export="TRUE"/>
+            <module name="org.jboss.logging" export="TRUE"/>
+            <module name="javax.transaction.api" export="TRUE"/>
+            <module name="org.slf4j" export="TRUE"/>
+            <module name="org.apache.log4j" export="TRUE"/>
+            <module name="org.jboss.logging.commons.logging" export="TRUE"/>
         </dependencies>
         <exclusions>
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
