@@ -52,6 +52,11 @@
     <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
     
     <sub-deployment name="demogenapp-back.war">
+        <dependencies>
+            <module name="org.apache.commons.beanutils" export="TRUE" />
+            <module name="org.apache.commons.collections" export="TRUE" />
+            <module name="javax.xml.bind.api" export="TRUE"/>  
+        </dependencies>
         <exclusions>
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
         </exclusions>
@@ -61,5 +66,19 @@
         <exclusions>
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
         </exclusions>
+    </sub-deployment>
+
+    <sub-deployment name="demogenapp-api-externa.war">
+        <dependencies>
+            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
+            <module name="javax.ws.rs.api" export="TRUE"/>
+        </dependencies>
+    </sub-deployment>
+
+    <sub-deployment name="demogenapp-api-interna.war">
+        <dependencies>
+            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
+            <module name="javax.ws.rs.api" export="TRUE"/>
+        </dependencies>
     </sub-deployment>
 </jboss-deployment-structure>
