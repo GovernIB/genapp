@@ -18,34 +18,30 @@
             <groupId>org.fundaciobit.demogenapp</groupId>
             <artifactId>demogenapp-persistence</artifactId>
             <version>${project.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.fundaciobit.demogenapp</groupId>
             <artifactId>demogenapp-commons</artifactId>
             <version>${project.version}</version>
-            <type>jar</type>
         </dependency>
 
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <artifactId>pluginsib-userinformation-api</artifactId>
             <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
             <version>${pluginsib.userinformation.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -59,7 +55,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.dom4j</groupId>
@@ -73,7 +68,6 @@
     <build>
 
         <finalName>${project.artifactId}-${project.version}</finalName>
-
 
         <plugins>
             <plugin>

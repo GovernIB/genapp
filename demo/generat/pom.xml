@@ -5,6 +5,14 @@
     <artifactId>demogenapp</artifactId>
     <packaging>pom</packaging>
     <name>DemoGenApp</name>
+    
+    <parent>
+        <artifactId>caib-artifacts-github-governib-distribution-with-jdk11-jboss72</artifactId>
+        <groupId>es.caib.maven</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath></relativePath>
+    </parent>
+    
     <modules>
         <module>demogenapp-model</module>
         <module>demogenapp-persistence</module>
@@ -29,46 +37,6 @@
     </licenses> 
     <repositories>
         <repository>
-            <id>maven-nuxeo</id>
-            <name>Maven Nuxeo Repository</name>
-            <url>https://maven.nuxeo.org/nexus/content/groups/public/</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
-        <repository>
-            <id>repository.spring.release</id>
-            <name>Spring GA Repository</name>
-            <url>https://repo.spring.io/release</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
-        <repository>
-            <id>jboss-releases</id>
-            <name>JBoss Releases Repository</name>
-            <url>https://maven.repository.redhat.com/ga/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
-        <repository>
             <id>github_governib_maven</id>
             <name>GitHub GovernIB Maven Repository</name>
             <url>https://governib.github.io/maven/maven/</url>
@@ -83,16 +51,27 @@
         </repository>
     </repositories>
     <dependencies>
+        <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
+        <dependency>
+            <!--
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            -->
+            <groupId>org.jboss.spec.javax.xml.bind</groupId>
+            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
     </dependencies>
     <!-- Referència al sistema de control de versions, ja sigui GIT, SVN, CVS... -->
     <!-- permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
@@ -101,33 +80,17 @@
         <url>https://github.com/GovernIB/demogenapp</url>
     </scm>
     <properties>
-        <!-- Versions de JBoss -->
-        <jboss-eap.version>7.2.0.GA</jboss-eap.version>
-        <jboss-javaee.version>1.0.1.Final-redhat-00003</jboss-javaee.version>
-        <!-- Propietats que afecten els plugins -->
-        <maven.compiler.release>11</maven.compiler.release>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
         <!-- Versions de les llibreries emprades dins els mòduls -->
-        <javaee-api.version>8.0.1</javaee-api.version>
-        <activation.version>1.1.1.redhat-5</activation.version>
         <mp-openapi.version>1.0.1</mp-openapi.version>
-        <jaxb-api.version>2.3.1</jaxb-api.version>
         <!-- <slf4j.version>1.7.30</slf4j.version> -->
         <keycloak.version>6.0.1</keycloak.version>
         <cxf.version>3.2.5.redhat-00001</cxf.version>
-        <hibernate.version>5.3.14.Final-redhat-00001</hibernate.version>
         <resteasy.version>3.6.1.SP2-redhat-00001</resteasy.version>
-        <jboss-logging.version>3.3.2.Final-redhat-00001</jboss-logging.version>
         <spring.version>4.3.30.RELEASE</spring.version>
         <springsecurity.version>4.2.20.RELEASE</springsecurity.version>
-        <spring-data-jpa>1.6.6.RELEASE</spring-data-jpa>
         <tiles.version>3.0.8</tiles.version>
-        <!-- XYZ ZZZ -->
-        <global.version>${project.version}</global.version>
         <cglib.version>2.2.2</cglib.version>
         <!-- XYZ ZZZ S'ha de fer la substitució -->
         <genapp.version>2.0.0-SNAPSHOT</genapp.version>
@@ -140,74 +103,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!-- Dependències de JAVA EE 8 -->
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${javaee-api.version}</version>
-                <exclusions>
-                    <!-- La dependència de javax.mail fa referència a activation 1.1 enlloc 
-                            de 1.1.1 -->
-                    <exclusion>
-                        <groupId>javax.activation</groupId>
-                        <artifactId>activation</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>javax.activation</groupId>
-                <artifactId>activation</artifactId>
-                <version>${activation.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.microprofile.openapi</groupId>
-                <artifactId>microprofile-openapi-api</artifactId>
-                <version>${mp-openapi.version}</version>
-            </dependency>
-            <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
-            <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>${jaxb-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.persistence</groupId>
-                <artifactId>javax.persistence-api</artifactId>
-                <version>2.2.0.redhat-1</version>
-                <scope>provided</scope>
-            </dependency>
-            <!--
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            -->
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.keycloak</groupId>
-                <artifactId>keycloak-core</artifactId>
-                <version>${keycloak.version}</version>
-            </dependency>
-            <!-- Dependència per persistència - implementació de JPA -->
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>${hibernate.version}</version>
-            </dependency>
-            <!-- fixar versió de jboss-logging ja que Hibernate i RestEasy fan referència 
-                    a varies versions -->
-            <dependency>
-                <groupId>org.jboss.logging</groupId>
-                <artifactId>jboss-logging</artifactId>
-                <version>${jboss-logging.version}</version>
-                <scope>test</scope>
-            </dependency>
+            
             <!--  REST SERVICES -->
             <!-- Anotacions de documentació de openapi -->
             <dependency>
@@ -215,155 +111,30 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>2.1.13</version>
             </dependency>
+
             <dependency>
-                <groupId>com.github.fge</groupId>
-                <artifactId>jackson-coreutils</artifactId>
-                <version>1.0.0.redhat-1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.9.10.1-redhat-00001</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.9.10.redhat-00003</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>2.9.10.redhat-00003</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.jaxrs</groupId>
-                <artifactId>jackson-jaxrs-base</artifactId>
-                <version>2.9.10.redhat-00003</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.jaxrs</groupId>
-                <artifactId>jackson-jaxrs-json-provider</artifactId>
-                <version>2.9.10.redhat-00003</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-jaxb-annotations</artifactId>
-                <version>2.9.10.redhat-00003</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-client</artifactId>
-                <version>${resteasy.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-multipart-provider</artifactId>
-                <version>${resteasy.version}</version>
-                <scope>provided</scope>
+                <groupId>org.eclipse.microprofile.openapi</groupId>
+                <artifactId>microprofile-openapi-api</artifactId>
+                <version>${mp-openapi.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-jaxb-provider</artifactId>
-                <version>${resteasy.version}</version>
-                <scope>provided</scope>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-core</artifactId>
+                <version>${keycloak.version}</version>
             </dependency>
+
             <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-jaxrs</artifactId>
-                <version>${resteasy.version}</version>
-                <scope>provided</scope>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
             </dependency>
-            <!-- ==== JBOSS ========== -->
-            <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>eap-runtime-artifacts</artifactId>
-                <version>${jboss-eap.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.bom</groupId>
-                <artifactId>jboss-eap-javaee8-with-tools</artifactId>
-                <version>${jboss-eap.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.spec</groupId>
-                <artifactId>jboss-javaee-8.0</artifactId>
-                <version>${jboss-javaee.version}</version>
-                <type>pom</type>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Definició dels plugins estàndar de maven -->
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>3.0.0-M1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.1.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M4</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.0.0-M4</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-ejb-plugin</artifactId>
-                    <version>3.0.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.3</version>
-                    <configuration>
-                        <useCache>true</useCache>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-ear-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.0.0-M1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.8.2</version>
-                </plugin>
                 <!-- Altres plugins generals -->
                 <plugin>
                     <groupId>com.googlecode.maven-download-plugin</groupId>
@@ -408,18 +179,6 @@
                         <shortRevisionLength>8</shortRevisionLength>
                     </configuration>
                 </plugin>
-                <!-- Plugin per permetre desplegar l'aplicació a un sevidor d'aplicacions 
-                    local -->
-                <plugin>
-                    <groupId>org.codehaus.cargo</groupId>
-                    <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.7.8</version>
-                    <configuration>
-                        <!-- Només estarà activat als mòduls que volem que es despleguin, com 
-                            l'EAR -->
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -438,34 +197,7 @@
                     <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
                 </configuration>
             </plugin>
-            <!-- Gestió de requisits del build -->
-            <!-- Veure: https://maven.apache.org/enforcer/enforcer-rules/index.html -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <configuration>
-                    <rules>
-                        <!-- Fixam mínim Maven 3.6 i Java 11 -->
-                        <requireMavenVersion>
-                            <version>3.6.1</version>
-                        </requireMavenVersion>
-                        <requireJavaVersion>
-                            <version>11</version>
-                        </requireJavaVersion>
-                        <!-- Per detectar problemes de dependències -->
-                        <banDuplicatePomDependencyVersions/>
-                        <dependencyConvergence/>
-                    </rules>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>maven-replacer-plugin</artifactId>

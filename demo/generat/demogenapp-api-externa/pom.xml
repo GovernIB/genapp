@@ -10,49 +10,41 @@
     <packaging>war</packaging>
     <name>DemoGenApp - API Rest - Externa Server</name>
     <properties>
-        <auth.method>BASIC</auth.method>
         <client.default.package>org.fundaciobit.demogenapp.apiexterna.client</client.default.package>
     </properties>
 
     <dependencies>
         <!-- Especificacions i llibreries proporcionades per JBoss -->
         <dependency>
-            <groupId>org.jboss.spec</groupId>
-            <artifactId>jboss-javaee-8.0</artifactId>
-            <type>pom</type>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_4.0_spec</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- Altres mòduls del projecte -->
         <dependency>
             <groupId>org.fundaciobit.demogenapp</groupId>
             <artifactId>demogenapp-commons</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.fundaciobit.demogenapp</groupId>
             <artifactId>demogenapp-persistence</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.fundaciobit.demogenapp</groupId>
             <artifactId>demogenapp-ejb</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Anotacions de documentació de openapi -->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <!-- <version>2.1.13</version> -->
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -156,7 +148,7 @@
                                 <artifactId>demogenapp-api-externa-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
                                 <artifactDescription>demogenapp - API Rest - Externa Client - Exemple Public v1</artifactDescription>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>legacy</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>
@@ -238,6 +230,8 @@
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
+                    <packagingExcludes>                 
+                    </packagingExcludes>
                     <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                     <webResources>
                         <resource>
