@@ -147,7 +147,7 @@
                                 <artifactId>demogenapp-api-externa-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
                                 <artifactDescription>demogenapp - API Rest - Externa Client - Exemple Public v1</artifactDescription>
-                                <dateLibrary>legacy</dateLibrary>
+                                <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>
@@ -179,7 +179,7 @@
                                 <artifactId>demogenapp-api-externa-client-exemplesecure-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
                                 <artifactDescription>demogenapp - API Rest - Externa Client - Exemple Secure v1</artifactDescription>
-                                <dateLibrary>legacy</dateLibrary>
+                                <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <java11>true</java11>
