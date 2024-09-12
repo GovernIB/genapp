@@ -134,3 +134,4 @@ target
 /demo/generat/demogenapp-api-externa-client-exemplesecure-v1/.openapi-generator-ignore
 /demo/generat/demogenapp-api-interna-client-exemplepublic-v1/.openapi-generator/openapi_interna_public.json-openapi_interna_1.sha256
 /demo/generat/demogenapp-api-interna-client-exemplesecure-v1/.openapi-generator/openapi_interna_secure.json-openapi_interna_2.sha256
+/genapp-core/samplefiles

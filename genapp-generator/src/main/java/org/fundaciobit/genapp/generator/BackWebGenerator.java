@@ -1862,7 +1862,7 @@ public class BackWebGenerator extends IconUtils {
 				codeButton.append("    <c:if test=\"${" + instanceForm + ".cancelButtonVisible}\">\n");
 				codeButton.append(
 						"    <input type=\"button\" class=\"btn btn-secondary\" onclick=\"goTo('<c:url value=\"${contexte}"
-								+ pkMapping + "/cancel\"/>')\" value=\"<fmt:message key=\"genapp.cancel\"/>\">\n");
+								+"" + pkMapping.substring(0,pkMapping.length()-1).replace("/${", "${" + instanceForm + ".nou?'':'/'.concat(") + ")}/cancel\"/>')\" value=\"<fmt:message key=\"genapp.cancel\"/>\">\n");
 				codeButton.append("    </c:if>\n");
 				// BOTO DELETE
 				codeButton.append("    <c:if test=\"${!" + instanceForm + ".nou && " + instanceForm

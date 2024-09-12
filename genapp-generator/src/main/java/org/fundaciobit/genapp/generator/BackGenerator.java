@@ -2167,8 +2167,7 @@ public class BackGenerator {
       code.append("    }\n");
       code.append("  }\n");
       code.append("\n\n");
-      
-      
+
       code.append("  /**\n");
       code.append("   * Entra aqui al pitjar el boto cancel en el llistat de " + tableJavaName + "\n");
       code.append("   */\n");
@@ -2178,8 +2177,16 @@ public class BackGenerator {
       code.append("     return getRedirectWhenCancel(request, " + pkFromParams + ");\n"); 
       code.append("  }\n");
       code.append("\n");
-      
-     
+
+      code.append("  /**\n");
+      code.append("   * Entra aqui al pitjar el boto cancel en el la creació de " + tableJavaName + "\n");
+      code.append("   */\n");
+      code.append("  @RequestMapping(value = \"/cancel\")\n");
+      code.append("  public String cancel" + tableJavaName + "(HttpServletRequest request,HttpServletResponse response) {\n");
+      code.append("     return getRedirectWhenCancel(request, null);\n"); 
+      code.append("  }\n");
+      code.append("\n");
+
       code.append("  @Override\n");
       code.append("  public String getTableModelName() {\n");
       code.append("    return _TABLE_MODEL;\n");
