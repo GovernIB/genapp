@@ -4,7 +4,7 @@
     <groupId>org.fundaciobit.demogenapp</groupId>
     <artifactId>demogenapp-api-externa-client-exemplepublic-v1</artifactId>
     <packaging>jar</packaging>
-    <name>demogenapp-api-externa-client-exemplepublic-v1</name>
+    <name>DemoGenApp - API Rest - Externa Client - Exemple Public v1</name>
     <version>1.0-SNAPSHOT</version>
     <!-- NOU
     <scm>
@@ -121,7 +121,7 @@
                         </property>
                     </systemProperties>
                     <argLine>-Xms512m -Xmx1500m</argLine>
-                    <parallel>methods</parallel>
+                    <!-- NOU <parallel>methods</parallel> -->
                     <!-- NOU <forkMode>pertest</forkMode> -->
                 </configuration>
             </plugin>

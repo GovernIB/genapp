@@ -126,10 +126,8 @@
                             <contextId>Exemple Interna Dades Obertes</contextId>
                             <outputFileName>openapi_interna_dadesobertes</outputFileName>
                             <resourcePackages>
-                                <package>
-                                    ${package}.api.interna.config</package>
-                                <package>
-                                    ${package}.api.interna.all.exemplereutilitzacio</package>
+                                <package>${package}.api.interna.config</package>
+                                <package>${package}.api.interna.all.exemplereutilitzacio</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -171,7 +169,7 @@
                                 <groupId>${package}</groupId>
                                 <artifactId>${name}-api-interna-client-exemplepublic-v1</artifactId>
                                 <artifactVersion>1.0-SNAPSHOT</artifactVersion>
-                                <artifactDescription>${fullname} - API Rest -  Interna Client - Exemple Public v1</artifactDescription>
+                                <artifactDescription>${fullname} - API Rest - Interna Client - Exemple Public v1</artifactDescription>
                                 <dateLibrary>java8</dateLibrary>
                                 <useTags>true</useTags>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
