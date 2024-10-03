@@ -52,7 +52,7 @@ tinyMCE.init({
 	    language : lang, 
 	  
 	    // ACCESSIBILITY SETTINGS  
-	    content_css : "/portafib/css/default.css,/portafib/css/bootstrap.css,/portafib/css/bootstrap.min.css",
+	    content_css : "/${backContext}/css/default.css,/${backContext}/css/bootstrap.css,/${backContext}/css/bootstrap.min.css",
 	    // Use browser preferred colors for dialogs.  
 	    browser_preferred_colors : true,  
 	    detect_highcontrast : true,

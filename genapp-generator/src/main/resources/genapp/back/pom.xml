@@ -17,13 +17,9 @@
 
 	<name>${fullname} - Back</name>
 
-	<repositories>
-		<repository>
-			<id>thirdparty-releases</id>
-			<name>JBoss Thirdparty Releases</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
-		</repository>
-	</repositories>
+    <properties>
+        <backContext>${name}back</backContext>
+    </properties>
 
 	<dependencies>
 
@@ -302,6 +298,16 @@
                         <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
                         **/jboss-jaxb-api*-redhat*.jar
                     </packagingExcludes>
+                    <webResources>
+                        <resource>
+                                <!-- this is relative to the pom.xml directory -->
+                                <directory>src/main/webapp</directory>
+                                <includes>
+                                    <include>**/tinymce.js</include>
+                                </includes>
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
 
