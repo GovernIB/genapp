@@ -1,6 +1,10 @@
 package org.fundaciobit.genapp.common.query;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Query;
 
@@ -41,10 +45,28 @@ public abstract class Whereable<C> {
     public Where like(String like) {
         return new Like(like);
     }
-
+    
     public Where notLike(String like) {
         return new NotLike(like);
     }
+
+    public Where likeSubstitutionsFullVowelsNC(String filter) {
+        return internalLikeSubstitutions(filter, fullSubstitutions, true);
+    }
+    
+    public Where notLikeSubstitutionsFullVowelsNC(String filter) {
+        return internalLikeSubstitutions(filter, fullSubstitutions, false);
+    }
+
+    public Where likeSubstitutionsSimpleVowels(String filter) {
+        return internalLikeSubstitutions(filter, simpleSubstitutions, true);
+    }
+
+    public Where notLikeSubstitutionsSimpleVowels(String filter) {
+        return internalLikeSubstitutions(filter, simpleSubstitutions, false);
+    }
+
+
 
     public Where equal(C value) {
         return new Equal<C>(value);
@@ -186,7 +208,7 @@ public abstract class Whereable<C> {
             this.operator = "LIKE";
         }
 
-        public Like(String like, boolean isNot) {
+        protected Like(String like, boolean isNot) {
             this.like = like;
             this.operator = isNot ? "NOT LIKE" : "LIKE";
         }
@@ -194,8 +216,7 @@ public abstract class Whereable<C> {
         @Override
         public QuerySQL toSQL(int index) {
             // JPA lower
-            return new QuerySQL(index + 1,
-                    "( LOWER(" + fullName + ") " + this.operator + " ?" + index + " )");
+            return new QuerySQL(index + 1, "( LOWER(" + fullName + ") " + this.operator + " ?" + index + " )");
         }
 
         @Override
@@ -503,9 +524,8 @@ public abstract class Whereable<C> {
         public QuerySQL toSQL(int index) {
             if (query != null) {
                 QuerySQL subquerySQL = query.toSQL(index);
-                return new QuerySQL(subquerySQL.nextIndex,
-                        "( " + fullName + " " + (inQueryType == InQueryType.IN ? "IN" : "NOT IN")
-                                + " ( " + subquerySQL.sql + " ) )");
+                return new QuerySQL(subquerySQL.nextIndex, "( " + fullName + " "
+                        + (inQueryType == InQueryType.IN ? "IN" : "NOT IN") + " ( " + subquerySQL.sql + " ) )");
             } else {
                 return new QuerySQL(index, "1=0"); // FALSE CONDITION
             }
@@ -613,4 +633,59 @@ public abstract class Whereable<C> {
         public abstract String toSQL(int p1, int p2);
 
     }
+
+    // ============================================================================
+    // =======   LIKE amb substitució de vocals per vocals amb accents ============
+    // ============================================================================
+
+    private Where internalLikeSubstitutions(String filter, Map<Character, char[]> substitutions, boolean like) {
+        List<String> result = new ArrayList<String>();
+        recursiveCharSubstitution(filter, "", 0, result, substitutions);
+
+        Where[] wheres = new Where[result.size()];
+        int count = 0;
+        for (String s : result) {
+            wheres[count] = like? new Like(s): new NotLike(s);
+            count++;
+        }
+        return Where.OR(wheres);
+    }
+
+    private static Map<Character, char[]> simpleSubstitutions = new HashMap<Character, char[]>();
+    private static Map<Character, char[]> fullSubstitutions = new HashMap<Character, char[]>();
+
+    static {
+        simpleSubstitutions.put('a', new char[] { 'a', 'á', 'à' });
+        simpleSubstitutions.put('e', new char[] { 'e', 'é', 'è' });
+        simpleSubstitutions.put('i', new char[] { 'i', 'í', 'ï' });
+        simpleSubstitutions.put('o', new char[] { 'o', 'ó', 'ò' });
+        simpleSubstitutions.put('u', new char[] { 'u', 'ú', 'ü' });
+
+        fullSubstitutions.put('a', new char[] { 'a', 'á', 'à', 'ä', 'â' });
+        fullSubstitutions.put('e', new char[] { 'e', 'é', 'è', 'ë', 'ê' });
+        fullSubstitutions.put('i', new char[] { 'i', 'í', 'ï', 'ì', 'î' });
+        fullSubstitutions.put('o', new char[] { 'o', 'ó', 'ò', 'ö', 'ô' });
+        fullSubstitutions.put('u', new char[] { 'u', 'ú', 'ü', 'ù', 'û' });
+        fullSubstitutions.put('c', new char[] { 'c', 'ç' });
+        fullSubstitutions.put('n', new char[] { 'n', 'ñ' });
+    }
+
+    private static void recursiveCharSubstitution(String filter, String current, int i, List<String> result,
+            Map<Character, char[]> substitutions) {
+        if (i >= filter.length()) {
+            result.add(current);
+        } else {
+            char c = filter.charAt(i);
+            char[] alternatives = substitutions.get(c);
+
+            if (alternatives == null) {
+                recursiveCharSubstitution(filter, current + c, i + 1, result, substitutions);
+            } else {
+                for (char a : alternatives) {
+                    recursiveCharSubstitution(filter, current + a, i + 1, result, substitutions);
+                }
+            }
+        }
+    }
+
 }
