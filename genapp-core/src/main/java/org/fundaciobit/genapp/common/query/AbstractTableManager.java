@@ -12,7 +12,6 @@ import org.fundaciobit.genapp.common.IGenAppEntity;
 import org.fundaciobit.genapp.common.i18n.I18NArgumentString;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 
-
 /**
  * 
  * @author anadal
@@ -20,8 +19,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @param <E>
  * @param <PK>
  */
-public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends Object>
-        implements ITableManager<E, PK> {
+public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends Object> implements ITableManager<E, PK> {
 
     public final Logger log = Logger.getLogger(this.getClass());
 
@@ -83,8 +81,8 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
 
     @PermitAll
     @Override
-    public <T extends AbstractDecimalField<? extends Number>> Double sumDecimal(T field,
-            Where where) throws I18NException {
+    public <T extends AbstractDecimalField<? extends Number>> Double sumDecimal(T field, Where where)
+            throws I18NException {
         List<Double> list = executeQuery(new SelectSumDecimal<T>(field), where);
         if (list == null || list.size() == 0) {
             return null;
@@ -128,8 +126,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
 
     @PermitAll
     @Override
-    public <T extends Object> T executeQueryOne(Select<T> select, Where where)
-            throws I18NException {
+    public <T extends Object> T executeQueryOne(Select<T> select, Where where) throws I18NException {
         List<T> list = executeQuery(select, where);
         if (list == null || list.size() == 0) {
             return null;
@@ -150,11 +147,10 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             return list.get(0);
         }
     }
-    
+
     @PermitAll
     @Override
-    public <T extends Object> List<T> executeQuery(Field<T> field, OrderBy... orderBy)
-            throws I18NException {
+    public <T extends Object> List<T> executeQuery(Field<T> field, OrderBy... orderBy) throws I18NException {
         return executeQuery(field.select, null, orderBy);
     }
 
@@ -164,7 +160,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             throws I18NException {
         return executeQuery(field.select, where, orderBy);
     }
-    
+
     @PermitAll
     @Override
     public <T extends Object> List<T> executeQuery(Field<T> field, Where where, Where having, OrderBy... orderBy)
@@ -174,40 +170,33 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
 
     @PermitAll
     @Override
-    public <T extends Object> SubQuery<E, T> getSubQuery(Field<T> field, Where where)
-            throws I18NException {
+    public <T extends Object> SubQuery<E, T> getSubQuery(Field<T> field, Where where) throws I18NException {
         return getSubQuery(field.select, where);
     }
-    
-    
-
-    
 
     @PermitAll
     @Override
-    public <T extends Object> SubQuery<E, T> getSubQuery(Select<T> select, Where where)
-            throws I18NException {
+    public <T extends Object> SubQuery<E, T> getSubQuery(Select<T> select, Where where) throws I18NException {
         return new SubQuery<E, T>(select, this, where);
     }
-    
+
     @PermitAll
     @Override
     public <T extends Object> List<T> executeQuery(Select<T> select, OrderBy... orderBy) throws I18NException {
         return executeQuery(select, null, null, orderBy);
     }
-    
-    @PermitAll
-    @Override
-    public <T extends Object> List<T> executeQuery(Select<T> select, Where where,
-           OrderBy... orderBy) throws I18NException {
-        return executeQuery(select, where, null, orderBy);
-    }
-    
 
     @PermitAll
     @Override
-    public <T extends Object> List<T> executeQuery(Select<T> select, Where where,
-           Where having, OrderBy... orderBy) throws I18NException {
+    public <T extends Object> List<T> executeQuery(Select<T> select, Where where, OrderBy... orderBy)
+            throws I18NException {
+        return executeQuery(select, where, null, orderBy);
+    }
+
+    @PermitAll
+    @Override
+    public <T extends Object> List<T> executeQuery(Select<T> select, Where where, Where having, OrderBy... orderBy)
+            throws I18NException {
 
         SubQuery<E, T> subquery = new SubQuery<E, T>(select, this, where, having, orderBy);
 
@@ -218,7 +207,6 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         int index = 1;
         subquery.setValues(query, index);
 
-        
         List<Object> results = query.getResultList();
 
         List<T> list = new ArrayList<T>();
@@ -232,13 +220,24 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
     @PermitAll
     @Override
     public void delete(E persistentInstance) {
-        getEntityManager().remove(getEntityManager().merge(getJPAInstance(persistentInstance)));
+        if (persistentInstance != null) {
+            E pi1 = getJPAInstance(persistentInstance);
+            if (pi1 != null) {
+                E pi2 = getEntityManager().merge(pi1);
+                if (pi2 != null) {
+                    getEntityManager().remove(pi2);
+                }
+            }
+        }
     }
 
     @PermitAll
     @Override
     public void delete(PK id) {
-        delete(findByPrimaryKey(id));
+        E instance = findByPrimaryKey(id);
+        if (instance != null) {
+            delete(instance);
+        }
     }
 
     @PermitAll
@@ -260,8 +259,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             return __tmp;
         } catch (Exception e) {
             log.error("Error creant element de tipus " + getTableNameVariable(), e);
-            throw new I18NException(e, "error.create",
-                    new I18NArgumentString(getTableNameVariable()),
+            throw new I18NException(e, "error.create", new I18NArgumentString(getTableNameVariable()),
                     new I18NArgumentString(e.getMessage()));
         }
     }
@@ -273,8 +271,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             return getEntityManager().merge(getJPAInstance(instance));
         } catch (Exception e) {
             log.error(e);
-            throw new I18NException(e, "error.update",
-                    new I18NArgumentString(getTableNameVariable()),
+            throw new I18NException(e, "error.update", new I18NArgumentString(getTableNameVariable()),
                     new I18NArgumentString(e.getMessage()));
         }
     }
@@ -332,14 +329,15 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
                 if (i != 0) {
                     queryStr.append(", ");
                 }
-                
+
                 if (updateItem instanceof UpdateItemValue) {
                     queryStr.append(updateItem.getField().javaName + "=:__" + updateItem.getField().javaName + "__");
                 } else if (updateItem instanceof UpdateItemSql) {
-                    queryStr.append(updateItem.getField().javaName + "=" + ((UpdateItemSql<?>)updateItem).getSqlUpdate());
+                    queryStr.append(
+                            updateItem.getField().javaName + "=" + ((UpdateItemSql<?>) updateItem).getSqlUpdate());
                 } else {
                     final String msg = "S'ha passat un tipus de UpdateItem desconegut: class "
-                            + updateItem.getClass().getName(); 
+                            + updateItem.getClass().getName();
                     log.error(msg, new Exception());
                     throw new I18NException("error.unknown", msg);
                 }
@@ -353,10 +351,10 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
 
             for (int i = 0; i < updateItems.length; i++) {
                 UpdateItem<?> updateItem = updateItems[i];
-                
+
                 if (updateItem instanceof UpdateItemValue) {
                     UpdateItemValue<?> uiv = (UpdateItemValue<?>) updateItem;
-                   query.setParameter("__" + uiv.getField().javaName + "__", uiv.newValue);
+                    query.setParameter("__" + uiv.getField().javaName + "__", uiv.newValue);
                 }
             }
 
@@ -374,8 +372,6 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         }
 
     }
-    
-
 
     @PermitAll
     @Override
@@ -398,7 +394,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
     public List<E> select(Where where, OrderBy... orderBy) throws I18NException {
         return select(where, null, null, orderBy);
     }
-    
+
     @PermitAll
     @Override
     public List<E> select(Where where, Where having, OrderBy... orderBy) throws I18NException {
@@ -416,7 +412,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         public E getFromObject(Object rs) throws I18NException {
             return (E) rs;
         }
-        
+
         @Override
         public int length() {
             return -1;
@@ -429,7 +425,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
             throws I18NException {
         return select(where, null, firstResult, maxResults, orderBy);
     }
-        
+
     @PermitAll
     @Override
     public List<E> select(Where where, Where having, Integer firstResult, Integer maxResults, OrderBy... orderBy)
@@ -484,12 +480,10 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         }
         return "";
     }
-    
-    
+
     protected String processHaving(Where having) {
-        return having==null? "" : having.toSQL();
+        return having == null ? "" : having.toSQL();
     }
-    
 
     @Override
     public String generateSelectQueryString(Select<?> select, Where where, Where having, OrderBy[] orderBy) {
@@ -522,17 +516,17 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
         int nextIndex = index;
         StringBuilder query = new StringBuilder();
         if (!isHaving) {
-          // from
-          query.append(" from ").append(getTableName()).append(" ").append(getTableNameVariable());
+            // from
+            query.append(" from ").append(getTableName()).append(" ").append(getTableNameVariable());
         }
         // where
         if (where != null) {
             QuerySQL whereSQL = where.toSQL(index);
             nextIndex = whereSQL.nextIndex;
             if (isHaving) {
-              query.append(" having ");
+                query.append(" having ");
             } else {
-              query.append(" where ");
+                query.append(" where ");
             }
             query.append(whereSQL.sql);
         }
