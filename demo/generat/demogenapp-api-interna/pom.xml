@@ -56,7 +56,7 @@
         <dependency>
             <artifactId>pluginsib-utils-rest</artifactId>
             <groupId>org.fundaciobit.pluginsib.utils</groupId>
-            <version>${pluginsib.utils.version}</version>
+            <version>${pluginsib.utils.rest.version}</version>
         </dependency>
 
         <dependency>

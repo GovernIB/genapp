@@ -1,3 +1,12 @@
+<!--                                                                     -->
+<!--                                                                     -->
+<!--             IMPORTANT: NO MODIFICAR AQUEST FITXER!!!!!!!            -->
+<!--             ============================================            -->
+<!--  Aquest fitxer s'ha generat emprant el plugin maven de OpenApiTools -->
+<!--  org.openapitools::openapi-generator-maven-plugin i modificat per   -->
+<!--  org.fundaciobit.pluginsib.utils.rest.pomadaptertojboss72.AdaptApiClientPomToJboss72 -->
+<!--  de PluginsIB-Utils-Rest. NO modificar-ho a ma !!!!!                -->
+<!--                                                                     -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -223,18 +232,15 @@
     </build>
     <dependencies>
 
+        <!-- NOU -->
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
-            <scope>test</scope>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>commons-logging-jboss-logging</artifactId>
         </dependency>
-
+        <!-- NOU -->
         <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.3</version>
-            <scope>test</scope>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
         </dependency>
         <!-- @Nullable annotation -->
 <!-- NOU         <dependency>
@@ -322,7 +328,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!-- NOU  <version>${junit-version}</version> -->
+            <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -336,6 +342,6 @@
         <!-- NOU <jakarta-annotation-version>1.3.5</jakarta-annotation-version> -->
         <!-- NOU <threetenbp-version>2.9.10</threetenbp-version> -->
         <!-- NOU <maven-plugin-version>1.0.0</maven-plugin-version> -->
-        <!-- NOU <junit-version>4.13</junit-version>-->
+        <junit-version>4.13</junit-version>
     </properties>
 </project>

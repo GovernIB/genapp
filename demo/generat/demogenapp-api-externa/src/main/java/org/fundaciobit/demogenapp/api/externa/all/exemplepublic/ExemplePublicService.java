@@ -9,12 +9,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.i18n.I18NCommonUtils;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.demogenapp.commons.utils.Version;
+
+import org.fundaciobit.pluginsib.utils.rest.RestException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -80,7 +82,7 @@ public class ExemplePublicService {
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
                                     schema = @Schema(implementation = ExemplePojo.class))) })
-    public Response versio(
+    public ExemplePojo versio(
 
             @Parameter(
                     description = "Codi de l'idioma",
@@ -88,12 +90,12 @@ public class ExemplePublicService {
                     examples = { @io.swagger.v3.oas.annotations.media.ExampleObject(name = "Català", value = "ca"),
                                  @io.swagger.v3.oas.annotations.media.ExampleObject(name = "Castellano", value = "es")},
                     schema = @Schema(implementation = String.class)) 
-                                @QueryParam("idioma") String idioma) {
+                                @QueryParam("idioma") String idioma) throws RestException {
 
         try {
             ExemplePojo exemple = new ExemplePojo(new Version().getVersion() + "_" + idioma);
 
-            return Response.ok().entity(exemple).build();
+            return exemple;
 
         } catch (Throwable th) {
 
@@ -107,7 +109,7 @@ public class ExemplePublicService {
 
             log.error("Error cridada api rest 'versio': " + msg, th);
 
-            return Response.status(Response.Status.BAD_REQUEST).entity("{ \"error\" : " + "\"" + msg + "\" }").build();
+            throw new RestException(Status.BAD_REQUEST, msg);
 
         }
     }

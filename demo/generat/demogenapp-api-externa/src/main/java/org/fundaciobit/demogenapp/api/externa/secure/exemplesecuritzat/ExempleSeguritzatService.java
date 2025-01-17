@@ -13,6 +13,8 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.log4j.Logger;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
 
+import org.fundaciobit.pluginsib.utils.rest.RestException;
+
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -85,7 +87,7 @@ public class ExempleSeguritzatService {
             content = { @Content(
                     mediaType = MediaType.APPLICATION_JSON,
                     schema = @Schema(implementation = ConstantsWs.class)) }) })
-    public Response echo(@Parameter(
+    public String echo(@Parameter(
             description = "Cadena a retornar",
             required = false,
             example = "hola caracola",
@@ -96,11 +98,11 @@ public class ExempleSeguritzatService {
         try {
             final String echoOutput = new String(echoInput);
 
-            return Response.ok().entity(echoOutput).build();
+            return echoOutput;
 
         } catch (Exception e) {
-            log.error("Error cridada api rest estadistiques accessos: " + e.getMessage());
-            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+            log.error("Error cridada api rest echo(): " + e.getMessage());
+            throw new RestException(Status.INTERNAL_SERVER_ERROR, e.getMessage());
         }
 
     }
