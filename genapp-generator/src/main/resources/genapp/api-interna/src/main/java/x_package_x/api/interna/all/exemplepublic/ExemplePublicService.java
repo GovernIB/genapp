@@ -73,7 +73,7 @@ public class ExemplePublicService {
     @ApiResponses(
             value = {
                     @ApiResponse(
-                            responseCode = "404",
+                            responseCode = "400",
                             description = "Paràmetres incorrectes",
                             content = @Content(mediaType = MediaType.APPLICATION_JSON)),
                     @ApiResponse(

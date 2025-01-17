@@ -8,6 +8,7 @@ import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.services.Pa
 import javax.ws.rs.core.GenericType;
 
 import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.model.ConstantsWs;
+import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.model.RestExceptionInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

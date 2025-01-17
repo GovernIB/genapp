@@ -69,6 +69,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** | Paràmetres incorrectes |  -  |
+| **400** | Paràmetres incorrectes |  -  |
 | **200** | Versió i idioma |  -  |
 

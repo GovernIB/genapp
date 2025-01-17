@@ -125,6 +125,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [ConstantsWs](docs/ConstantsWs.md)
+ - [RestExceptionInfo](docs/RestExceptionInfo.md)
 
 
 <a id="documentation-for-authorization"></a>

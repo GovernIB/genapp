@@ -15,6 +15,7 @@ package org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.api;
 
 import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.services.ApiException;
 import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.model.ConstantsWs;
+import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.model.RestExceptionInfo;
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.Assert;

@@ -45,7 +45,7 @@ paths:
           type: string
         style: form
       responses:
-        "404":
+        "400":
           content:
             application/json: {}
           description: Paràmetres incorrectes

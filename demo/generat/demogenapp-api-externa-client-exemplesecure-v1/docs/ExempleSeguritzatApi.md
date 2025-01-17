@@ -76,5 +76,8 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Respon el valor enviat per paràmetre |  -  |
+| **400** | Paràmetres incorrectes |  -  |
+| **401** | No Autenticat |  -  |
+| **403** | No Autoritzat |  -  |
 | **510** | Només s&#39;utilitza per crear fitxer de constants... |  -  |
 

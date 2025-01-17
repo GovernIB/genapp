@@ -44,6 +44,24 @@ paths:
               schema:
                 type: string
           description: Respon el valor enviat per paràmetre
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: Paràmetres incorrectes
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: No Autenticat
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: No Autoritzat
         "510":
           content:
             application/json:
@@ -58,11 +76,40 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    RestExceptionInfo:
+      description: Estructura de dades utilitzada per passar informació d'un error
+      example:
+        field: field
+        errorMessage: errorMessage
+        stackTraceCause: stackTraceCause
+        errorCode: 0
+        stackTrace: stackTrace
+      properties:
+        errorCode:
+          description: Codi intern de l'error. Si l'Aplicació no gestiona codis d'error
+            llavors val null.
+          format: int32
+          type: integer
+        errorMessage:
+          description: Missatge de l'error
+          type: string
+        stackTrace:
+          description: Stacktrace de l'excepció
+          type: string
+        stackTraceCause:
+          description: Stacktrace de l'excepció causant de l'error si n'hi hagués.
+          type: string
+        field:
+          description: Indica el camp en que hi ha un error de validació.
+          type: string
+      required:
+      - errorMessage
+      type: object
     ConstantsWs:
       example:
         ROLE_EJB_FULL_ACCESS: DEM_ADMIN
-        ROLE_EJB_BASIC_ACCESS: 0
-        ROLE_EJB_WS_ACCESS: 6
+        ROLE_EJB_BASIC_ACCESS: 6
+        ROLE_EJB_WS_ACCESS: 1
       properties:
         ROLE_EJB_FULL_ACCESS:
           default: DEM_ADMIN

@@ -61,6 +61,36 @@
               }
             }
           },
+          "400" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "No Autenticat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "No Autoritzat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
           "510" : {
             "description" : "Només s'utilitza per crear fitxer de constants...",
             "content" : {
@@ -80,6 +110,34 @@
   },
   "components" : {
     "schemas" : {
+      "RestExceptionInfo" : {
+        "required" : [ "errorMessage" ],
+        "type" : "object",
+        "properties" : {
+          "errorCode" : {
+            "type" : "integer",
+            "description" : "Codi intern de l'error. Si l'Aplicació no gestiona codis d'error llavors val null.",
+            "format" : "int32"
+          },
+          "errorMessage" : {
+            "type" : "string",
+            "description" : "Missatge de l'error"
+          },
+          "stackTrace" : {
+            "type" : "string",
+            "description" : "Stacktrace de l'excepció"
+          },
+          "stackTraceCause" : {
+            "type" : "string",
+            "description" : "Stacktrace de l'excepció causant de l'error si n'hi hagués."
+          },
+          "field" : {
+            "type" : "string",
+            "description" : "Indica el camp en que hi ha un error de validació."
+          }
+        },
+        "description" : "Estructura de dades utilitzada per passar informació d'un error"
+      },
       "ConstantsWs" : {
         "required" : [ "ROLE_EJB_BASIC_ACCESS", "ROLE_EJB_FULL_ACCESS", "ROLE_EJB_WS_ACCESS" ],
         "type" : "object",

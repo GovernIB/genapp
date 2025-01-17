@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.log4j.Logger;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
 
+import org.fundaciobit.pluginsib.utils.rest.RestExceptionInfo;
 import org.fundaciobit.pluginsib.utils.rest.RestException;
 
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
@@ -81,6 +82,24 @@ public class ExempleSeguritzatService {
             responseCode = "200",
             description = "Respon el valor enviat per paràmetre",
             content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = String.class))),
+        @ApiResponse(
+                responseCode = "400",
+                description = "Paràmetres incorrectes",
+                content = { @Content(
+                        mediaType = MediaType.APPLICATION_JSON,
+                        schema = @Schema(implementation = RestExceptionInfo.class)) }),
+        @ApiResponse(
+                responseCode = "401",
+                description = "No Autenticat",
+                content = { @Content(
+                        mediaType = MediaType.APPLICATION_JSON,
+                        schema = @Schema(implementation = RestExceptionInfo.class)) }),
+        @ApiResponse(
+                responseCode = "403",
+                description = "No Autoritzat",
+                content = { @Content(
+                        mediaType = MediaType.APPLICATION_JSON,
+                        schema = @Schema(implementation = RestExceptionInfo.class)) }),
         @ApiResponse(
             responseCode = "510",
             description = "Només s'utilitza per crear fitxer de constants...",

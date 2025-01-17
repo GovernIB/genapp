@@ -39,12 +39,12 @@
         <description>Usuari Aplicació de DemoGenApp</description>
         <role-name>DEM_WS</role-name>
     </security-role>
-    
+
     <error-page>
       <error-code>401</error-code>
       <location>/public/errors/error401</location>
     </error-page>
-    
+
     <error-page>
       <error-code>403</error-code>
       <location>/public/errors/error403</location>

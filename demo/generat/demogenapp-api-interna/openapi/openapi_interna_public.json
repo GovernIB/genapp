@@ -61,7 +61,7 @@
           }
         } ],
         "responses" : {
-          "404" : {
+          "400" : {
             "description" : "Paràmetres incorrectes",
             "content" : {
               "application/json" : { }

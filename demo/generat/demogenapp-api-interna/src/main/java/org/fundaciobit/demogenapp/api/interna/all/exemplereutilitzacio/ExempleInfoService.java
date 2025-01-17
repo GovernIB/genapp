@@ -93,23 +93,8 @@ public class ExempleInfoService extends RestUtils {
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
                                     schema = @Schema(implementation = LlistaDeExempleInfoPaginada.class))),
-                    // Descomentar aquest codi si es vol securitzar el servei
-                    /*
                     @ApiResponse(
                             responseCode = "400",
-                            description = "Paràmetres incorrectes",
-                            content = { @Content(
-                                    mediaType = MediaType.APPLICATION_JSON,
-                                    schema = @Schema(implementation = RestExceptionInfo.class)) }),
-                    @ApiResponse(
-                            responseCode = "401",
-                            description = "No Autenticat",
-                            content = { @Content(
-                                    mediaType = MediaType.APPLICATION_JSON,
-                                    schema = @Schema(implementation = String.class)) }),
-                    */
-                    @ApiResponse(
-                            responseCode = "404",
                             description = "Paràmetres incorrectes",
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON,
