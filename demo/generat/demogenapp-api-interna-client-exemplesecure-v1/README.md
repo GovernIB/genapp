@@ -4,6 +4,8 @@ API REST INTERNA de DemoGenApp - Exemple de Servei Securitzat
 
 - API version: 1.0-SNAPSHOT
 
+- Generator version: 7.10.0
+
 Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació
 
   For more information, please visit [https://governdigital.fundaciobit.org](https://governdigital.fundaciobit.org)

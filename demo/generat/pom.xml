@@ -98,6 +98,7 @@
         <version_txt_template_file>./scripts/templates/versio.txt.template</version_txt_template_file>
         <pluginsib.core.version>3.0.0-SNAPSHOT</pluginsib.core.version>
         <pluginsib.utils.version>3.0.0-SNAPSHOT</pluginsib.utils.version>
+        <pluginsib.utils.rest.version>3.0.1-SNAPSHOT</pluginsib.utils.rest.version>
         <pluginsib.userinformation.version>4.0.0-SNAPSHOT</pluginsib.userinformation.version>
         <pluginsib.exportdata.version>3.0.0-SNAPSHOT</pluginsib.exportdata.version>
         <pluginsib.login.version>2.0.0-SNAPSHOT</pluginsib.login.version>

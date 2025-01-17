@@ -31,27 +31,29 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   SendMessageResult.JSON_PROPERTY_CODE,
   SendMessageResult.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class SendMessageResult {
   public static final String JSON_PROPERTY_CODE = "code";
+  @javax.annotation.Nullable
   private SendMessageResultCode code;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
+  @javax.annotation.Nullable
   private String message;
 
   public SendMessageResult() {
   }
 
-  public SendMessageResult code(SendMessageResultCode code) {
+  public SendMessageResult code(@javax.annotation.Nullable SendMessageResultCode code) {
     
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * Get code
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -63,21 +65,20 @@ public class SendMessageResult {
 
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCode(SendMessageResultCode code) {
+  public void setCode(@javax.annotation.Nullable SendMessageResultCode code) {
     this.code = code;
   }
 
-
-  public SendMessageResult message(String message) {
+  public SendMessageResult message(@javax.annotation.Nullable String message) {
     
     this.message = message;
     return this;
   }
 
-   /**
+  /**
    * Missatge si hi ha error
    * @return message
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -89,7 +90,7 @@ public class SendMessageResult {
 
   @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(String message) {
+  public void setMessage(@javax.annotation.Nullable String message) {
     this.message = message;
   }
 

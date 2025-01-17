@@ -17,9 +17,9 @@ import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.services.A
 import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.RestExceptionInfo;
 import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.SendMessageResult;
 import org.fundaciobit.demogenapp.api.interna.client.exemplesecure.v1.model.TipusDocumentalsPaginacio;
-import org.junit.Test;
-import org.junit.Ignore;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * API tests for NotificacionsApi
  */
-public class NotificacionsApiTest {
+class NotificacionsApiTest {
 
     private final NotificacionsApi api = new NotificacionsApi();
 
@@ -42,7 +42,7 @@ public class NotificacionsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void callListTest() throws ApiException {
+    void callListTest() throws ApiException {
         //
         //Integer page = null;
         //
@@ -61,7 +61,7 @@ public class NotificacionsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendNotificationToMobileTest() throws ApiException {
+    void sendNotificationToMobileTest() throws ApiException {
         //
         //List<String> notificationParameters = null;
         //

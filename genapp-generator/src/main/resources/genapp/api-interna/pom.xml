@@ -142,7 +142,7 @@
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.3.0</version>
+                <version>7.10.0</version>
 
                 <executions>
                     <execution>
@@ -244,7 +244,7 @@
                     <dependency>
                         <artifactId>pluginsib-utils-rest</artifactId>
                         <groupId>org.fundaciobit.pluginsib.utils</groupId>
-                        <version>${symbol_dollar}{pluginsib.utils.version}</version>
+                        <version>${symbol_dollar}{pluginsib.utils.rest.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

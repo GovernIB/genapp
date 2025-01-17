@@ -36,36 +36,41 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   TipusDocumentalsPaginacio.JSON_PROPERTY_TOTALCOUNT,
   TipusDocumentalsPaginacio.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class TipusDocumentalsPaginacio {
   public static final String JSON_PROPERTY_PAGE = "page";
+  @javax.annotation.Nonnull
   private Integer page;
 
   public static final String JSON_PROPERTY_PAGESIZE = "pagesize";
+  @javax.annotation.Nonnull
   private Integer pagesize;
 
   public static final String JSON_PROPERTY_TOTALPAGES = "totalpages";
+  @javax.annotation.Nonnull
   private Integer totalpages;
 
   public static final String JSON_PROPERTY_TOTALCOUNT = "totalcount";
+  @javax.annotation.Nonnull
   private Integer totalcount;
 
   public static final String JSON_PROPERTY_DATA = "data";
+  @javax.annotation.Nonnull
   private List<String> data = new ArrayList<>();
 
   public TipusDocumentalsPaginacio() {
   }
 
-  public TipusDocumentalsPaginacio page(Integer page) {
+  public TipusDocumentalsPaginacio page(@javax.annotation.Nonnull Integer page) {
     
     this.page = page;
     return this;
   }
 
-   /**
+  /**
    * Número pàgina. Comença per 1.
    * @return page
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_PAGE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -77,21 +82,20 @@ public class TipusDocumentalsPaginacio {
 
   @JsonProperty(JSON_PROPERTY_PAGE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPage(Integer page) {
+  public void setPage(@javax.annotation.Nonnull Integer page) {
     this.page = page;
   }
 
-
-  public TipusDocumentalsPaginacio pagesize(Integer pagesize) {
+  public TipusDocumentalsPaginacio pagesize(@javax.annotation.Nonnull Integer pagesize) {
     
     this.pagesize = pagesize;
     return this;
   }
 
-   /**
+  /**
    * Mida de pàgina
    * @return pagesize
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_PAGESIZE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -103,21 +107,20 @@ public class TipusDocumentalsPaginacio {
 
   @JsonProperty(JSON_PROPERTY_PAGESIZE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPagesize(Integer pagesize) {
+  public void setPagesize(@javax.annotation.Nonnull Integer pagesize) {
     this.pagesize = pagesize;
   }
 
-
-  public TipusDocumentalsPaginacio totalpages(Integer totalpages) {
+  public TipusDocumentalsPaginacio totalpages(@javax.annotation.Nonnull Integer totalpages) {
     
     this.totalpages = totalpages;
     return this;
   }
 
-   /**
+  /**
    * Número total de pàgines
    * @return totalpages
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_TOTALPAGES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -129,21 +132,20 @@ public class TipusDocumentalsPaginacio {
 
   @JsonProperty(JSON_PROPERTY_TOTALPAGES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTotalpages(Integer totalpages) {
+  public void setTotalpages(@javax.annotation.Nonnull Integer totalpages) {
     this.totalpages = totalpages;
   }
 
-
-  public TipusDocumentalsPaginacio totalcount(Integer totalcount) {
+  public TipusDocumentalsPaginacio totalcount(@javax.annotation.Nonnull Integer totalcount) {
     
     this.totalcount = totalcount;
     return this;
   }
 
-   /**
+  /**
    * Numero total d&#39;elements
    * @return totalcount
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_TOTALCOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -155,12 +157,11 @@ public class TipusDocumentalsPaginacio {
 
   @JsonProperty(JSON_PROPERTY_TOTALCOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTotalcount(Integer totalcount) {
+  public void setTotalcount(@javax.annotation.Nonnull Integer totalcount) {
     this.totalcount = totalcount;
   }
 
-
-  public TipusDocumentalsPaginacio data(List<String> data) {
+  public TipusDocumentalsPaginacio data(@javax.annotation.Nonnull List<String> data) {
     
     this.data = data;
     return this;
@@ -174,10 +175,10 @@ public class TipusDocumentalsPaginacio {
     return this;
   }
 
-   /**
+  /**
    * Elements retornats
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -189,7 +190,7 @@ public class TipusDocumentalsPaginacio {
 
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setData(List<String> data) {
+  public void setData(@javax.annotation.Nonnull List<String> data) {
     this.data = data;
   }
 

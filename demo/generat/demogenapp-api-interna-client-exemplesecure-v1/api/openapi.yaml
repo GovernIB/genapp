@@ -100,7 +100,8 @@ paths:
       summary: Retorna un llistat de tipus documentals
       tags:
       - Notificacions
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /secure/exempleenum/sendnotificationtomobile:
     get:
       operationId: sendNotificationToMobile
@@ -161,7 +162,8 @@ paths:
       summary: Envia un missatge al mòbil del ciutada a traves de l'App de Carpeta.
       tags:
       - Notificacions
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   schemas:
     TipusDocumentalsPaginacio:
@@ -234,7 +236,7 @@ components:
       type: object
     SendMessageResult:
       example:
-        code: null
+        code: OK
         message: message
       properties:
         code:

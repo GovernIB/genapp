@@ -15,9 +15,9 @@ package org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.api;
 
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.services.ApiException;
 import org.fundaciobit.demogenapp.api.interna.client.exemplepublic.v1.model.ExamplePojo;
-import org.junit.Test;
-import org.junit.Ignore;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * API tests for VersioApi
  */
-public class VersioApiTest {
+class VersioApiTest {
 
     private final VersioApi api = new VersioApi();
 
@@ -40,7 +40,7 @@ public class VersioApiTest {
      *          if the Api call fails
      */
     @Test
-    public void versioTest() throws ApiException {
+    void versioTest() throws ApiException {
         //
         //String idioma = null;
         //

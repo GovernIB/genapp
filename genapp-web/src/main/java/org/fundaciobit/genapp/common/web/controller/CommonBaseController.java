@@ -56,376 +56,351 @@ import org.springframework.web.servlet.ModelAndView;
  * @author anadal
  *
  */
-public abstract class CommonBaseController <I extends IGenAppEntity, PK extends Object> extends ModelGenerator {
+public abstract class CommonBaseController<I extends IGenAppEntity, PK extends Object> extends ModelGenerator {
 
-  public static final List<StringKeyValue> EMPTY_STRINGKEYVALUE_LIST = Collections.unmodifiableList(new ArrayList<StringKeyValue>());
-  
-  public static final KeyValueComparator<String> STRINGKEYVALUE_COMPARATOR = new KeyValueComparator<String>();
-  
-  protected final Logger log = Logger.getLogger(getClass());
+    public static final List<StringKeyValue> EMPTY_STRINGKEYVALUE_LIST = Collections
+            .unmodifiableList(new ArrayList<StringKeyValue>());
 
-  /**
-   * 
-   * @param mav
-   * @param pagina
-   * @param itemsPerPagina
-   * @param total
-   */
-  public void omplirDadesPaginacio(ModelAndView mav, Integer pagina, Integer itemsPerPagina,
-      Long total) {
-    
-    if (itemsPerPagina == null || itemsPerPagina == -1) {
-      // Tots els elements en una sola pàgina
-      mav.addObject("totalPages", 1);
-      mav.addObject("beginIndex", 1);
-      mav.addObject("endIndex", 1);
-      mav.addObject("currentIndex", 1);
-    } else {
-    
-      int totalPages = (int) (total / itemsPerPagina);
-  
-      if (total % itemsPerPagina != 0) {
-        totalPages = totalPages + 1;
-      }
-  
-      int current = pagina;
-      int begin = Math.max(1, current - itemsPerPagina);
-      int end = Math.min(begin + 10, totalPages);
-  
-      mav.addObject("totalPages", totalPages);
-      mav.addObject("beginIndex", begin);
-      mav.addObject("endIndex", end);
-      mav.addObject("currentIndex", current);
-    }
-  }
-  
-  
-  
-  
-  
-  public void initBinder(WebDataBinder binder) {
-    // Allow for null values in date fields.
-    binder.registerCustomEditor( java.sql.Date.class, new CustomDateI18NEditor(I18NUtils.i18NDateFormat, true ));
+    public static final KeyValueComparator<String> STRINGKEYVALUE_COMPARATOR = new KeyValueComparator<String>();
 
-    // Allow for null values in time fields.
-    binder.registerCustomEditor( java.sql.Time.class, new CustomDateI18NEditor(I18NUtils.i18NTimeFormat, true ));
-    
-    // Allow for null values in date-time fields.
-    binder.registerCustomEditor( java.sql.Timestamp.class, new CustomDateI18NEditor(I18NUtils.i18NDateTimeFormat, true ));
-   
-    // tell spring to set empty values as null instead of empty string.
-    binder.registerCustomEditor( String.class, new StringTrimmerEditor( true ));
-  }
-  
-  
-  /**
-   * Fixa els camps disallowedFields que no es llegiran de la petició HTTP per ficar dins el formulari.
-   * Seran els camps indicats als paràmetres, més, sí va dirigit a un atribut de tipus {@link BaseForm}
-   * s'inclourà tots els camps readonly i tots els camps hidden.
-   * @param binder
-   * @param additionalFields
-   */
-  protected void initDisallowedFields(WebDataBinder binder, String... additionalFields) {
-    Set<String> fieldNames = new HashSet<String>();
+    protected final Logger log = Logger.getLogger(getClass());
 
-    if (binder.getTarget() instanceof BaseForm) {
-      BaseForm form = (BaseForm) binder.getTarget();
+    /**
+     * 
+     * @param mav
+     * @param pagina
+     * @param itemsPerPagina
+     * @param total
+     */
+    public void omplirDadesPaginacio(ModelAndView mav, Integer pagina, Integer itemsPerPagina, Long total) {
 
-      for (Field<?> field : form.getReadOnlyFields()) {
-        fieldNames.add(field.fullName);
-      }
-      for (Field<?> field : form.getHiddenFields()) {
-        fieldNames.add(field.fullName);
-      }
-    }
-
-    fieldNames.addAll(Arrays.asList(additionalFields));
-    binder.setDisallowedFields(fieldNames.toArray(new String[0]));
-  }
-  
-  
-  
-  public abstract String[] getArgumentsMissatge(Object pk, Throwable e);
-  
-  
-  
-  public abstract String getContextWeb();
-  
-
-  public String createMessageError(HttpServletRequest request, String code, Object pk) {
-    String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, null));
-    HtmlUtils.saveMessageError(request, msg);
-    return msg;
-  }
-
-  public String createMessageError(HttpServletRequest request, String code, Object pk,
-      Throwable e) {
-    String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, e));
-    HtmlUtils.saveMessageError(request, msg);
-    return msg;
-  }
-
-  public String createMessageSuccess(HttpServletRequest request, String code, Object pk) {
-    String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, null));
-    HtmlUtils.saveMessageSuccess(request, msg);
-    return msg;
-  }
-
-  public String createMessageWarning(HttpServletRequest request, String code, Object pk) {
-    String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, null));
-    HtmlUtils.saveMessageWarning(request, msg);
-    return msg;
-  }
-  
-  protected List<I> processarLlistat(ITableManager<I, PK> ejb,
-      BaseFilterForm filterForm, int pagina,
-      Where whereAdditionalCondition, ModelAndView mav) throws I18NException {
-    if (filterForm == null) {
-      throw new NullPointerException("FilterForm mai pot ser NULL !!!!");
-    }
-    
-    FilterFormData ffd = LogicForBaseFilterForm.getFilterFormData(filterForm, ejb, whereAdditionalCondition);
-
-    // FilterBy and GroupBy
-    Where where = Where.AND(whereAdditionalCondition, ffd.getWhere());
-    // Preload Data required by FilterBy or GroupBy in ModelAndView
-    mapTomav(ffd.getMav(), mav);
-    // Order By
-    final OrderBy[] orderBy = ffd.getOrderBy();
-    // Elements per pàgina
-    final Integer itemsPerPage = filterForm.getItemsPerPage();
-
-    if (log.isDebugEnabled()) {
-      log.debug("WHERE: " + (where == null ? null : where.toSQL()));
-    }
-
-    // ============== CONSULTA
-    List<I> items = null;
-    Long total = null;
-
-    if (pagina < 1) {
-      pagina = 1;
-    }
-    
-    if (itemsPerPage == null || itemsPerPage < 0) {
-      pagina = 1;
-      items = executeSelect(ejb, where, orderBy, null , 0); 
-      total = ejb.count(where);
-
-    } else {
-      for (;;) {
-        final int inici = (pagina - 1) * itemsPerPage;
-        // Elements que apareixeram a la pàgina "pagina".
-        items = executeSelect(ejb, where, orderBy, itemsPerPage, inici);
-  
-        // Numero total de registres amb aquell filtre
-        total = ejb.count(where);
-  
-        if (items.size() == 0 && total > 0 && pagina > 1) {
-          // Calcula la nova pàgina, ja que resulta que amb el nou filtre
-          // ja no surten tants resultats i la pàgina actual ja no es pot omplir,
-          // per lo qual hem de calcular la darrera pàgina amb elements
-          pagina = (int) (total / itemsPerPage) + ((total % itemsPerPage) == 0L ? 0 : 1);
+        if (itemsPerPagina == null || itemsPerPagina == -1) {
+            // Tots els elements en una sola pàgina
+            mav.addObject("totalPages", 1);
+            mav.addObject("beginIndex", 1);
+            mav.addObject("endIndex", 1);
+            mav.addObject("currentIndex", 1);
         } else {
-          break;
+
+            int totalPages = (int) (total / itemsPerPagina);
+
+            if (total % itemsPerPagina != 0) {
+                totalPages = totalPages + 1;
+            }
+
+            int current = pagina;
+            int begin = Math.max(1, current - itemsPerPagina);
+            int end = Math.min(begin + 10, totalPages);
+
+            mav.addObject("totalPages", totalPages);
+            mav.addObject("beginIndex", begin);
+            mav.addObject("endIndex", end);
+            mav.addObject("currentIndex", current);
         }
-      }
     }
 
-    omplirDadesPaginacio(mav, pagina, itemsPerPage, total);
-    return items;
-  }
+    public void initBinder(WebDataBinder binder) {
+        // Allow for null values in date fields.
+        binder.registerCustomEditor(java.sql.Date.class, new CustomDateI18NEditor(I18NUtils.i18NDateFormat, true));
 
+        // Allow for null values in time fields.
+        binder.registerCustomEditor(java.sql.Time.class, new CustomDateI18NEditor(I18NUtils.i18NTimeFormat, true));
 
-  public List<I> executeSelect(ITableManager<I, PK> ejb, Where where,
-      final OrderBy[] orderBy, final Integer itemsPerPage, final int inici)
-      throws I18NException {
-    if (itemsPerPage == null) {
-      return ejb.select(where, orderBy);
-    } else {
-      return ejb.select(where, inici, itemsPerPage, orderBy);
+        // Allow for null values in date-time fields.
+        binder.registerCustomEditor(java.sql.Timestamp.class,
+                new CustomDateI18NEditor(I18NUtils.i18NDateTimeFormat, true));
+
+        // tell spring to set empty values as null instead of empty string.
+        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
-  }
-  
-  
-  public void captureSearchByValueOfAdditionalFields(HttpServletRequest request,
-      BaseFilterForm filterForm) {
-    TreeMap<Integer, AdditionalField<?,?>> additionalFields = filterForm.getAdditionalFields();
-    if (additionalFields != null) {
-      for (Integer pos : additionalFields.keySet()) {
-        
-        AdditionalField<?,?> af = additionalFields.get(pos);
-        Field<?> searchBy = af.getSearchBy(); 
-        if (searchBy != null) {
-          af.setSearchByValue(request.getParameter(searchBy.fullName));
-          af.setSearchByValueFins(request.getParameter(searchBy.fullName + "Fins"));
-          if (log.isDebugEnabled()) {
-            log.debug("Cercant valor searchBy per ]" + searchBy.fullName  + "[ = " + af.getSearchByValue() );
-          }
+
+    /**
+     * Fixa els camps disallowedFields que no es llegiran de la petició HTTP per ficar dins el formulari.
+     * Seran els camps indicats als paràmetres, més, sí va dirigit a un atribut de tipus {@link BaseForm}
+     * s'inclourà tots els camps readonly i tots els camps hidden.
+     * @param binder
+     * @param additionalFields
+     */
+    protected void initDisallowedFields(WebDataBinder binder, String... additionalFields) {
+        Set<String> fieldNames = new HashSet<String>();
+
+        if (binder.getTarget() instanceof BaseForm) {
+            BaseForm form = (BaseForm) binder.getTarget();
+
+            for (Field<?> field : form.getReadOnlyFields()) {
+                fieldNames.add(field.fullName);
+            }
+            for (Field<?> field : form.getHiddenFields()) {
+                fieldNames.add(field.fullName);
+            }
         }
-      }
+
+        fieldNames.addAll(Arrays.asList(additionalFields));
+        binder.setDisallowedFields(fieldNames.toArray(new String[0]));
     }
-  }
-  
-  /**
-   * Retorna true si la cerca del Field es fa en rang (from,to). 
-   * Un exemple serien Integer, Double, Short, Byte, BigDecimal i BigInteger)
-   * @param f
-   * @return
-   */
-  public static boolean isFieldSearchInRange(Field<?> f) {
-    if (f instanceof IntegerField || f instanceof LongField
-     || f instanceof DoubleField || f instanceof FloatField
-     || f instanceof ByteField || f instanceof ShortField
-     || f instanceof BigDecimalField || f instanceof BigIntegerField) {
-      return true;
-    } else {
-      return false;
+
+    public abstract String[] getArgumentsMissatge(Object pk, Throwable e);
+
+    public abstract String getContextWeb();
+
+    public String createMessageError(HttpServletRequest request, String code, Object pk) {
+        String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, null));
+        HtmlUtils.saveMessageError(request, msg);
+        return msg;
     }
-  }
-  
 
-  
-
-  public static void mapTomav(Map<String, Object> map, ModelAndView mav) {
-    if (map != null) {
-      for (Entry<String, Object> entry : map.entrySet()) {
-        mav.addObject(entry.getKey(), entry.getValue());
-      }
+    public String createMessageError(HttpServletRequest request, String code, Object pk, Throwable e) {
+        String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, e));
+        HtmlUtils.saveMessageError(request, msg);
+        return msg;
     }
-  }
-  
-  
-  public void fillValuesToGroupByItemsBoolean(String prefix,
-      Map<Field<?>,GroupByItem> groupByItemsMap, Field<?> field) {
-    
-    Map<String, String> tmp = new HashMap<String, String>();
-    
-    tmp.put(null, prefix + ".");
-    tmp.put("true", prefix + ".true");
-    tmp.put("false", prefix + ".false");
 
-    fillValuesToGroupByItems(tmp,groupByItemsMap, field, true);
-  }
-  
-  
-  
-  public void fillValuesToGroupByItems(Map<String, String> tmp,
-      Map<Field<?>,GroupByItem> groupByItemsMap, Field<?> field,
-      boolean translate) {
-    
-    boolean isDebug = log.isDebugEnabled();
+    public String createMessageSuccess(HttpServletRequest request, String code, Object pk) {
+        String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, null));
+        HtmlUtils.saveMessageSuccess(request, msg);
+        return msg;
+    }
 
-    // TODO això ha de cridar a CommonForm.getFieldToString()
+    public String createMessageWarning(HttpServletRequest request, String code, Object pk) {
+        String msg = I18NUtils.tradueix(code, getArgumentsMissatge(pk, null));
+        HtmlUtils.saveMessageWarning(request, msg);
+        return msg;
+    }
 
-    GroupByItem groupByItem = groupByItemsMap.get(field);
-    if (isDebug) {
-      log.info("groupByItem == " + groupByItem);
-      log.info("field == " + field.fullName + "(" + field + ")");
-      if (groupByItem == null) {
-        
-        Set<Field<?>> keys = groupByItemsMap.keySet();
-        for (Field<?> field2 : keys) {
-          if (field2 != null) {
-            log.info("   + Field of map: " +  field2.fullName + "(" + field2 + ")");
-          } else {
-            log.info("   + Field of map: "  + field2 );
-          }
+    protected List<I> processarLlistat(ITableManager<I, PK> ejb, BaseFilterForm filterForm, int pagina,
+            Where whereAdditionalCondition, ModelAndView mav) throws I18NException {
+        if (filterForm == null) {
+            throw new NullPointerException("FilterForm mai pot ser NULL !!!!");
         }
-      }
-    }
 
-    if (groupByItem == null) {
-      return;
-    }
+        FilterFormData ffd = LogicForBaseFilterForm.getFilterFormData(filterForm, ejb, whereAdditionalCondition);
 
-    String javaName = field.javaName;
-    if (isDebug) {
-      log.info("javaName.equals(groupByItem.getValue()) =>  " + javaName + " ==  " + groupByItem.getValue() + "????");
-    }
-    if (javaName.equals(groupByItem.getValue())) {        
-      List<GroupByValueItem> items = groupByItem.getValues();
-      for (GroupByValueItem groupByValueItem : items) {
-        String codeLabel = groupByValueItem.getCodeLabel();
-        String newValue;
-        if (codeLabel == null || codeLabel.length() == 0) {
-          newValue = null;
+        // FilterBy and GroupBy
+        Where where = Where.AND(whereAdditionalCondition, ffd.getWhere());
+        // Preload Data required by FilterBy or GroupBy in ModelAndView
+        mapTomav(ffd.getMav(), mav);
+        // Order By
+        final OrderBy[] orderBy = ffd.getOrderBy();
+        // Elements per pàgina
+        final Integer itemsPerPage = filterForm.getItemsPerPage();
+
+        if (log.isDebugEnabled()) {
+            log.debug("WHERE: " + (where == null ? null : where.toSQL()));
+        }
+
+        // ============== CONSULTA
+        List<I> items = null;
+        Long total = null;
+
+        if (pagina < 1) {
+            pagina = 1;
+        }
+
+        if (itemsPerPage == null || itemsPerPage < 0) {
+            pagina = 1;
+            items = executeSelect(ejb, where, orderBy, null, 0);
+            total = ejb.count(where);
+
         } else {
-          newValue = tmp.get(codeLabel);
-          if (newValue == null) {            
-            log.warn("Al cridar al mapping per la clau '" + codeLabel 
-                + "' ha retornat un valor null.", new Exception());
-            newValue = codeLabel;
-          }
-          if (translate) {
-            newValue = I18NUtils.tradueix(newValue);
-          }
+            for (;;) {
+                final int inici = (pagina - 1) * itemsPerPage;
+                // Elements que apareixeram a la pàgina "pagina".
+                items = executeSelect(ejb, where, orderBy, itemsPerPage, inici);
+
+                // Numero total de registres amb aquell filtre
+                total = ejb.count(where);
+
+                if (items.size() == 0 && total > 0 && pagina > 1) {
+                    // Calcula la nova pàgina, ja que resulta que amb el nou filtre
+                    // ja no surten tants resultats i la pàgina actual ja no es pot omplir,
+                    // per lo qual hem de calcular la darrera pàgina amb elements
+                    pagina = (int) (total / itemsPerPage) + ((total % itemsPerPage) == 0L ? 0 : 1);
+                } else {
+                    break;
+                }
+            }
         }
-        groupByValueItem.setCodeLabel(newValue);
-      }
-      
-      Collections.sort(items, GroupByValueItem.GROUPBYVALUEITEMCOMPARATOR);
+
+        omplirDadesPaginacio(mav, pagina, itemsPerPage, total);
+        return items;
     }
-  }
 
-  
-  
-  /**
-   *
-   * @param fitxers
-   */
-  protected void borrarFitxers(Set<Long> fitxers) {
-    for (Long fitxerID : fitxers) {
-      try {
-        FileSystemManager.eliminarArxiu(fitxerID);
-      } catch (Exception e) {
-        // TODO: handle exception
-        log.error(e.getMessage(), e);
-      }
+    public List<I> executeSelect(ITableManager<I, PK> ejb, Where where, final OrderBy[] orderBy,
+            final Integer itemsPerPage, final int inici) throws I18NException {
+        if (itemsPerPage == null) {
+            return ejb.select(where, orderBy);
+        } else {
+            return ejb.select(where, inici, itemsPerPage, orderBy);
+        }
     }
-  }
-  
 
-  public void exportData(HttpServletRequest request, HttpServletResponse response,
-      String dataExporterID, BaseFilterForm filterForm, List<I> list,
-      Field<?>[] allFields, Map<Field<?>,Map<String,String>> mapValuesByField, Field<?>[] primaryKeyFields) throws Exception {
-    try {
-      //log.debug(" Cridant a Export: TIPUS = " + dataExporterID);
+    public void captureSearchByValueOfAdditionalFields(HttpServletRequest request, BaseFilterForm filterForm) {
+        TreeMap<Integer, AdditionalField<?, ?>> additionalFields = filterForm.getAdditionalFields();
+        if (additionalFields != null) {
+            for (Integer pos : additionalFields.keySet()) {
 
-      IDataExporter dataExporter = DataExporterManager.getByID(dataExporterID);
-      
-      if (dataExporter == null) {
-         // TODO TRADUIR
-        throw new Exception("No s'ha trobat cap exportador de dades " +
-            "amb el següent identificador: " + dataExporterID);
-      }
-
-      DataExported exportFile = dataExporter.exportList(filterForm, list, allFields, mapValuesByField, primaryKeyFields);
-      
-      response.setContentType(exportFile.getContentType());
-      response.setHeader("Content-Disposition", "inline; filename=\"" + exportFile.getFilename() + "\"");
-      response.setContentLength((int) exportFile.getData().length);
-
-      OutputStream output = response.getOutputStream();
-
-      output.write(exportFile.getData());
-
-      output.flush();
-
-      output.close();
-
-    } catch (Throwable e) {
-
-      log.error(" Error exportant llistat: " + e.getMessage(), e);
-
-      int pagina = (filterForm == null) ? 1 : filterForm.getPage();
-      // TODO arreglar
-      HtmlUtils.saveMessageError(request, "Error Exportant: " + e.getMessage());
-      response.sendRedirect(request.getContextPath() + getContextWeb() + "/list/" + pagina);
+                AdditionalField<?, ?> af = additionalFields.get(pos);
+                Field<?> searchBy = af.getSearchBy();
+                if (searchBy != null) {
+                    af.setSearchByValue(request.getParameter(searchBy.fullName));
+                    af.setSearchByValueFins(request.getParameter(searchBy.fullName + "Fins"));
+                    if (log.isDebugEnabled()) {
+                        log.debug("Cercant valor searchBy per ]" + searchBy.fullName + "[ = " + af.getSearchByValue());
+                    }
+                }
+            }
+        }
     }
-  }
 
- 
-  
+    /**
+     * Retorna true si la cerca del Field es fa en rang (from,to). 
+     * Un exemple serien Integer, Double, Short, Byte, BigDecimal i BigInteger)
+     * @param f
+     * @return
+     */
+    public static boolean isFieldSearchInRange(Field<?> f) {
+        if (f instanceof IntegerField || f instanceof LongField || f instanceof DoubleField || f instanceof FloatField
+                || f instanceof ByteField || f instanceof ShortField || f instanceof BigDecimalField
+                || f instanceof BigIntegerField) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void mapTomav(Map<String, Object> map, ModelAndView mav) {
+        if (map != null) {
+            for (Entry<String, Object> entry : map.entrySet()) {
+                mav.addObject(entry.getKey(), entry.getValue());
+            }
+        }
+    }
+
+    public void fillValuesToGroupByItemsBoolean(String prefix, Map<Field<?>, GroupByItem> groupByItemsMap,
+            Field<?> field) {
+
+        Map<String, String> tmp = new HashMap<String, String>();
+
+        tmp.put(null, prefix + ".");
+        tmp.put("true", prefix + ".true");
+        tmp.put("false", prefix + ".false");
+
+        fillValuesToGroupByItems(tmp, groupByItemsMap, field, true);
+    }
+
+    public void fillValuesToGroupByItems(Map<String, String> tmp, Map<Field<?>, GroupByItem> groupByItemsMap,
+            Field<?> field, boolean translate) {
+
+        boolean isDebug = log.isDebugEnabled();
+
+        // TODO això ha de cridar a CommonForm.getFieldToString()
+
+        GroupByItem groupByItem = groupByItemsMap.get(field);
+        if (isDebug) {
+            log.info("groupByItem == " + groupByItem);
+            log.info("field == " + field.fullName + "(" + field + ")");
+            if (groupByItem == null) {
+
+                Set<Field<?>> keys = groupByItemsMap.keySet();
+                for (Field<?> field2 : keys) {
+                    if (field2 != null) {
+                        log.info("   + Field of map: " + field2.fullName + "(" + field2 + ")");
+                    } else {
+                        log.info("   + Field of map: " + field2);
+                    }
+                }
+            }
+        }
+
+        if (groupByItem == null) {
+            return;
+        }
+
+        String javaName = field.javaName;
+        if (isDebug) {
+            log.info("javaName.equals(groupByItem.getValue()) =>  " + javaName + " ==  " + groupByItem.getValue()
+                    + "????");
+        }
+        if (javaName.equals(groupByItem.getValue())) {
+            List<GroupByValueItem> items = groupByItem.getValues();
+            for (GroupByValueItem groupByValueItem : items) {
+                String codeLabel = groupByValueItem.getCodeLabel();
+                String newValue;
+                if (codeLabel == null || codeLabel.length() == 0) {
+                    newValue = null;
+                } else {
+                    newValue = tmp.get(codeLabel);
+                    if (newValue == null) {
+                        log.warn(
+                                "Al cridar al mapping per la clau '" + codeLabel + "' del camp java " + field.fullName
+                                        + "(group = " + groupByItem.getValue() + ") ha retornat un valor null.",
+                                new Exception());
+                        newValue = codeLabel;
+                    }
+                    if (translate) {
+                        newValue = I18NUtils.tradueix(newValue);
+                    }
+                }
+                groupByValueItem.setCodeLabel(newValue);
+            }
+
+            Collections.sort(items, GroupByValueItem.GROUPBYVALUEITEMCOMPARATOR);
+        }
+    }
+
+    /**
+     *
+     * @param fitxers
+     */
+    protected void borrarFitxers(Set<Long> fitxers) {
+        for (Long fitxerID : fitxers) {
+            try {
+                FileSystemManager.eliminarArxiu(fitxerID);
+            } catch (Exception e) {
+                // TODO: handle exception
+                log.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    public void exportData(HttpServletRequest request, HttpServletResponse response, String dataExporterID,
+            BaseFilterForm filterForm, List<I> list, Field<?>[] allFields,
+            Map<Field<?>, Map<String, String>> mapValuesByField, Field<?>[] primaryKeyFields) throws Exception {
+        try {
+            //log.debug(" Cridant a Export: TIPUS = " + dataExporterID);
+
+            IDataExporter dataExporter = DataExporterManager.getByID(dataExporterID);
+
+            if (dataExporter == null) {
+                // TODO TRADUIR
+                throw new Exception(
+                        "No s'ha trobat cap exportador de dades " + "amb el següent identificador: " + dataExporterID);
+            }
+
+            DataExported exportFile = dataExporter.exportList(filterForm, list, allFields, mapValuesByField,
+                    primaryKeyFields);
+
+            response.setContentType(exportFile.getContentType());
+            response.setHeader("Content-Disposition", "inline; filename=\"" + exportFile.getFilename() + "\"");
+            response.setContentLength((int) exportFile.getData().length);
+
+            OutputStream output = response.getOutputStream();
+
+            output.write(exportFile.getData());
+
+            output.flush();
+
+            output.close();
+
+        } catch (Throwable e) {
+
+            log.error(" Error exportant llistat: " + e.getMessage(), e);
+
+            int pagina = (filterForm == null) ? 1 : filterForm.getPage();
+            // TODO arreglar
+            HtmlUtils.saveMessageError(request, "Error Exportant: " + e.getMessage());
+            response.sendRedirect(request.getContextPath() + getContextWeb() + "/list/" + pagina);
+        }
+    }
 
 }
