@@ -2266,6 +2266,14 @@ public class BackWebGenerator extends IconUtils {
 				code.append("            </c:if>\n");
 			}
 
+			if ("search".equalsIgnoreCase(field.getMaxAllowedValue())) {
+			    code.append("          <script>\n"
+			            + "              $(document).ready(function() {\n"
+			            + "                  $('#" + id + "').select2();\n"
+			            + "              });\n"
+			            + "          </script>\n");
+			}
+			
 			code.append("          </form:select>\n");
 			code.append("          </c:if>\n");
 			// code.append(generateReadOnlySelect(" ", id, readOnlyCondition));

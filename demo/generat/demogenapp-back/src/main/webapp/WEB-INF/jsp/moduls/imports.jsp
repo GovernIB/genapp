@@ -28,6 +28,10 @@
 
 <link href="<c:url value="/css/stylesapp.css"/>" rel="stylesheet">
 
+<script>
+   var applicationContextPath="${pageContext.request.contextPath}";
+</script>
+
 <%-- JS --%>
 <script src="<c:url value="/js/jquery.js"/>"></script>
 <script src="<c:url value="/js/popper.min.js"/>"></script>
@@ -56,6 +60,7 @@
 
 <%-- Select Multiple --%>
 <script src="<c:url value="/js/select2.min.js"/>"></script>
+<script src="<c:url value="/js/select2_i18n/${lang}.js"/>"></script>
 
 
 <script type="text/javascript">

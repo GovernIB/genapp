@@ -45,6 +45,11 @@
                   <c:set var="containEmptyValue"  value="true" />
                 </c:if>
             </c:forEach>
+          <script>
+              $(document).ready(function() {
+                  $('#alumne_idiomaID').select2();
+              });
+          </script>
           </form:select>
           </c:if>
            </td>
