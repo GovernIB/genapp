@@ -852,14 +852,23 @@ public class CodeGenerator {
                     throw new Exception("El fitxer de webdb.jsp  no conté l'start i/o l'end tag");
                 }
 
-                String links = BackWebGenerator.generateMenu(tables);
+                //String links = BackWebGenerator.generateMenu(tables);
 
                 StringBuffer str = new StringBuffer();
                 str.append(txt.substring(0, startMark));
                 str.append("<%-- ==== GENAPP MARK START --%>\n");
                 str.append("\n");
 
-                str.append(links);
+                //str.append(links);
+                
+                str.append("    <%\n"
+                        + "    java.util.List<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>> menus;\n"
+                        + "    menus = new java.util.ArrayList<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>>();\n"
+                        + "    java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem> discoveredMenus;\n"
+                        + "    discoveredMenus = org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager.getMenuItems(\"WEBDB\");\n"
+                        + "    menus.add(discoveredMenus);\n"
+                        + "    %>\n"
+                        + "    <%@ include file=\"/WEB-INF/jsp/moduls/menu_role_generator.jsp\"%>\n");
 
                 str.append(txt.substring(endMark));
 

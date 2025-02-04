@@ -16,11 +16,11 @@ public class MenuItem {
     public final String urlbase;
 
     public MenuItem(String label, String url) {
-        this(label, url, url, 0);
+        this(label, "", url, 0);
     }
 
     public MenuItem(String label, String url, int order) {
-        this(label, url, url, order);
+        this(label, "", url, order);
     }
 
     public MenuItem(String label, String url, String urlbase) {

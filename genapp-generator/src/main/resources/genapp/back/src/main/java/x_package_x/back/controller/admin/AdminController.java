@@ -1,9 +1,12 @@
 package ${package}.back.controller.admin;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ${package}.commons.utils.Constants;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,31 +17,39 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
-@RequestMapping(value = "/admin/")
+@RequestMapping(value = "/admin")
+@MenuOption(
+        labelCode = "=Menú ADMIN Option 1",
+        order = 10,
+        group = Constants.DEM_ADMIN,
+        baseLink = "/admin/option1",
+        relativeLink = "")
+@MenuOption(
+        labelCode = "=Menú ADMIN Option 2",
+        order = 20,
+        group = Constants.DEM_ADMIN,
+        baseLink = "/admin/option2",
+        relativeLink = "",
+        addSeparatorBefore = true)
 public class AdminController {
 
-  
-  @RequestMapping(value = "/option1")
-  public ModelAndView option1(HttpSession session,
-      HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
-    
-    ModelAndView mav = new ModelAndView("option1Admin");
-    mav.addObject("optionNumber", "OPCIÓ ADMIN -1-");
-    return mav;
-    
-  }
-  
-  
-  @RequestMapping(value = "/option2")
-  public ModelAndView option2(HttpSession session,
-      HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
-    
-    ModelAndView mav = new ModelAndView("option2Admin");
-    mav.addObject("optionNumber", "OPCIÓ ADMIN -2-");
-    return mav;
-  }
-  
-  
+    @RequestMapping(value = "/option1")
+    public ModelAndView option1(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        ModelAndView mav = new ModelAndView("option1Admin");
+        mav.addObject("optionNumber", "OPCIÓ ADMIN -1-");
+        return mav;
+
+    }
+
+    @RequestMapping(value = "/option2")
+    public ModelAndView option2(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        ModelAndView mav = new ModelAndView("option2Admin");
+        mav.addObject("optionNumber", "OPCIÓ ADMIN -2-");
+        return mav;
+    }
+
 }

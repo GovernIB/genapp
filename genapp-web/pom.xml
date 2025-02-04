@@ -12,7 +12,6 @@
         <artifactId>genapp</artifactId>
     </parent>
 
-
     <dependencies>
 
         <dependency>

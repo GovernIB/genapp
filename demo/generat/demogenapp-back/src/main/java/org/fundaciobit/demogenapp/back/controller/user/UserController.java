@@ -21,15 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
         labelCode = "=Menú USER Option 1",
         order = 10,
         group = Constants.DEM_USER,
-        baseLink = "/user",
-        relativeLink = "/option1")
+        baseLink = "/user/option1",
+        relativeLink = "")
 @MenuOption(
         labelCode = "=Menú USER Option 2",
         order = 20,
         group = Constants.DEM_USER,
-        baseLink = "/user",
-        relativeLink = "/option2",
-        addSeparatorBefore = true)
+        baseLink = "/user/option2",
+        addSeparatorBefore = true,
+        relativeLink = "")
 public class UserController {
 
     @RequestMapping(value = "/option1")

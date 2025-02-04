@@ -42,24 +42,29 @@ public class DiscoverMenuOptionAnnotations {
             Class<?> classe = classInfo2.loadClass();
 
             // Imprime la clase y el valor de la anotación
-            MenuOption anotacio = classe.getAnnotation(MenuOption.class);
-            if (anotacio != null) {
+            MenuOption[] anotacions = classe.getAnnotationsByType(MenuOption.class);
+            if (anotacions == null) {
+                continue;
+            } else {
+                for (MenuOption anotacio : anotacions) {
+                    if (anotacio != null) {
+                        String grup = anotacio.group();
 
-                String grup = anotacio.group();
+                        TreeMap<MenuItemOption, Class<?>> menuOptions = menuOptionsCacheLocal.get(grup);
 
-                TreeMap<MenuItemOption, Class<?>> menuOptions = menuOptionsCacheLocal.get(grup);
+                        if (menuOptions == null) {
+                            menuOptions = new TreeMap<MenuItemOption, Class<?>>(new MenuItemOptionComparator());
+                            menuOptionsCacheLocal.put(grup, menuOptions);
+                        }
 
-                if (menuOptions == null) {
-                    menuOptions = new TreeMap<MenuItemOption, Class<?>>(new MenuItemOptionComparator());
-                    menuOptionsCacheLocal.put(grup, menuOptions);
+                        MenuItemOption menuItemOption = new MenuItemOption(anotacio.labelCode(),
+                                anotacio.relativeLink(), anotacio.baseLink(), anotacio.order(),
+                                anotacio.addSeparatorBefore(), anotacio.addSeparatorAfter(), anotacio.group());
+
+                        menuOptions.put(menuItemOption, classe);
+
+                    }
                 }
-
-                MenuItemOption menuItemOption = new MenuItemOption(anotacio.labelCode(), anotacio.relativeLink(),
-                        anotacio.baseLink(), anotacio.order(), anotacio.addSeparatorBefore(),
-                        anotacio.addSeparatorAfter(), anotacio.group());
-
-                menuOptions.put(menuItemOption, classe);
-
             }
         }
 

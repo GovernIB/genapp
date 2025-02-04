@@ -26,6 +26,7 @@ import org.fundaciobit.genapp.common.query.OrderType;
 import org.fundaciobit.genapp.common.query.Where;
 import org.fundaciobit.genapp.common.utils.Utils;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.validation.AbstractWebValidator;
 import org.fundaciobit.genapp.common.web.validation.WebValidationResult;
 
@@ -1417,6 +1418,7 @@ public class BackGenerator {
       code.append("import " + packages.entityPackage + "." + tableJavaName + ";\n");
       //code.append("import " + packages.fieldsPackage + "." + fieldsClass + ";\n");
       code.append("import " + packages.fieldsPackage + ".*;\n");
+      code.append("import " + MenuOption.class.getName() + ";\n");
       code.append("\n");
       code.append("/**\n");
       code.append(" * Controller per gestionar un " + tableJavaName + "\n");
@@ -1424,6 +1426,7 @@ public class BackGenerator {
       code.append(" * \n");
       code.append(" * @author GenApp\n");
       code.append(" */\n");
+      code.append("@MenuOption(labelCode=\"" + model + "." + model + ".plural\", order=" + (i *10) + ", group=\"WEBDB\")\n");
       code.append("@Controller\n");
       code.append("@RequestMapping(value = \"/webdb/" + model + "\")\n");
       code.append("@SessionAttributes(types = { " + form + ".class, " + filterForm + ".class })\n");

@@ -22,14 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
         labelCode = "=Menú ADMIN Option 1",
         order = 10,
         group = Constants.DEM_ADMIN,
-        baseLink = "/admin",
-        relativeLink = "/option1")
+        baseLink = "/admin/option1",
+        relativeLink = "")
 @MenuOption(
         labelCode = "=Menú ADMIN Option 2",
         order = 20,
         group = Constants.DEM_ADMIN,
-        baseLink = "/admin",
-        relativeLink = "/option2",
+        baseLink = "/admin/option2",
+        relativeLink = "",
         addSeparatorBefore = true)
 public class AdminController {
 
