@@ -45,7 +45,7 @@ public class InitServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        
+
         // Inicialitzar sistema de menus
         new Thread(
         new Runnable() {
