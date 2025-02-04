@@ -39,6 +39,7 @@ import org.fundaciobit.genapp.common.web.controller.FilesFormManager;
 import org.fundaciobit.demogenapp.persistence.AlumneJPA;
 import org.fundaciobit.demogenapp.model.entity.Alumne;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 
 /**
  * Controller per gestionar un Alumne
@@ -46,6 +47,7 @@ import org.fundaciobit.demogenapp.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="alumne.alumne.plural", order=0, group="WEBDB")
 @Controller
 @RequestMapping(value = "/webdb/alumne")
 @SessionAttributes(types = { AlumneForm.class, AlumneFilterForm.class })

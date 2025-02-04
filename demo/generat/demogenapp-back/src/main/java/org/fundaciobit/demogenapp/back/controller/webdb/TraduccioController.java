@@ -34,6 +34,7 @@ import org.fundaciobit.demogenapp.back.validator.webdb.TraduccioWebValidator;
 import org.fundaciobit.demogenapp.persistence.TraduccioJPA;
 import org.fundaciobit.demogenapp.model.entity.Traduccio;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 
 /**
  * Controller per gestionar un Traduccio
@@ -41,6 +42,7 @@ import org.fundaciobit.demogenapp.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="traduccio.traduccio.plural", order=50, group="WEBDB")
 @Controller
 @RequestMapping(value = "/webdb/traduccio")
 @SessionAttributes(types = { TraduccioForm.class, TraduccioFilterForm.class })

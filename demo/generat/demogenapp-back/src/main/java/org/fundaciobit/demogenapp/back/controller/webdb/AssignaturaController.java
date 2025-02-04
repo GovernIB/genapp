@@ -36,6 +36,7 @@ import org.fundaciobit.demogenapp.back.validator.webdb.AssignaturaWebValidator;
 import org.fundaciobit.demogenapp.persistence.AssignaturaJPA;
 import org.fundaciobit.demogenapp.model.entity.Assignatura;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 
 /**
  * Controller per gestionar un Assignatura
@@ -43,6 +44,7 @@ import org.fundaciobit.demogenapp.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="assignatura.assignatura.plural", order=10, group="WEBDB")
 @Controller
 @RequestMapping(value = "/webdb/assignatura")
 @SessionAttributes(types = { AssignaturaForm.class, AssignaturaFilterForm.class })

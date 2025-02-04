@@ -34,6 +34,7 @@ import org.fundaciobit.demogenapp.back.validator.webdb.IdiomaWebValidator;
 import org.fundaciobit.demogenapp.persistence.IdiomaJPA;
 import org.fundaciobit.demogenapp.model.entity.Idioma;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 
 /**
  * Controller per gestionar un Idioma
@@ -41,6 +42,7 @@ import org.fundaciobit.demogenapp.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="idioma.idioma.plural", order=40, group="WEBDB")
 @Controller
 @RequestMapping(value = "/webdb/idioma")
 @SessionAttributes(types = { IdiomaForm.class, IdiomaFilterForm.class })

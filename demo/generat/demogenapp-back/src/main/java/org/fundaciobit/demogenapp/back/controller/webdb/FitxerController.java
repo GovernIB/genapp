@@ -34,6 +34,7 @@ import org.fundaciobit.demogenapp.back.validator.webdb.FitxerWebValidator;
 import org.fundaciobit.demogenapp.persistence.FitxerJPA;
 import org.fundaciobit.demogenapp.model.entity.Fitxer;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 
 /**
  * Controller per gestionar un Fitxer
@@ -41,6 +42,7 @@ import org.fundaciobit.demogenapp.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="fitxer.fitxer.plural", order=30, group="WEBDB")
 @Controller
 @RequestMapping(value = "/webdb/fitxer")
 @SessionAttributes(types = { FitxerForm.class, FitxerFilterForm.class })
