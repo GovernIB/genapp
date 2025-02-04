@@ -1,36 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
+%><%@page import="org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager"
+%><%@page import="org.fundaciobit.genapp.common.web.menuoptions.MenuItem"
+%><%@page import="org.fundaciobit.demogenapp.commons.utils.Constants"
+%><%@page import="java.util.List"
+%><%@page import="java.util.ArrayList"
 %><%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 <c:set var="url" value="${urlActual}" />
 <div>
-  <h5>Menú ROLE_ADMIN</h5>
-  <ul class="tree" style="margin: 3px; padding: 0px;">
+    <h5>Menú ROLE_ADMIN</h5>
 
+    <%
+    List<List<MenuItem>> menus = new ArrayList<List<MenuItem>>();
+    /*
+    MenuItem menuGoogle = new MenuItem("=MENU Google", "", "http://www.google.com", 0);
+    MenuItem menumeneame = new MenuItem("=MENU Meneame", "", "http://www.meneame.net", 1000);
+    */
+    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Constants.DEM_ADMIN); //, menuGoogle, menumeneame);
+    menus.add(discoveredMenus);
+    %>
+    
+    <%@ include file="/WEB-INF/jsp/moduls/menu_role_generator.jsp"%>  
 
-    <hr  style="margin-top: 6px;  margin-bottom: 6px;" />
-    <li style="list-style-type: disc; list-style-position: inside;">
-      <a href="<c:url value="/admin/option1"/>">
-        <span style="${(fn:contains(url, 'option1'))? "font-weight: bold;" : ""}">Menú ADMIN Option 1</span>
-      </a>
-    </li>
-
-   <%-- Example with security: virtual roles  --%>
-   <%--
-   <sec:authorize access="hasAnyRole('ROLE_SOLI', 'ROLE_DEST', 'ROLE_COLA', 'ROLE_DELE')">
-      <hr  style="margin-top: 6px;  margin-bottom: 6px;" />
-      <li style="list-style-type: disc; list-style-position: inside;">
-       <a href="<c:url value="/admin/rebreAvis/list/1"/>" >
-       <span style="${(fn:contains(url, 'optionxxxxx/') && fn:contains(url, '/list'))? "font-weight: bold;" : ""}" >
-       Option XXXXX</span></a></li>
-   </sec:authorize>
-    --%>
-
-    <hr  style="margin-top: 6px;  margin-bottom: 6px;" />
-    <li style="list-style-type: disc; list-style-position: inside;">
-      <a href="<c:url value="/admin/option2"/>">
-        <span style="${(fn:contains(url, 'option2'))? "font-weight: bold;" : ""}">Menú ADMIN Option 2</span>
-      </a>
-    </li>
-   
-  </ul>
 </div>
 
