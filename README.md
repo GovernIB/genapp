@@ -42,18 +42,7 @@ A partir d'una bbdd en postgresql o oracle, genera totes les capes d'una aplicac
 (1) Executar la següent comanda
 
 ```
-mvn archetype:generate -DarchetypeGroupId=org.fundaciobit.genapp -DarchetypeArtifactId=genapp-exec -DarchetypeVersion=2.0.2 -B
-```
-<!--  -Dpackage=rungenapp -DgroupId=rungenapp -DartifactId=rungenapp -Dversion=2.0.0-SNAPSHOT 
-
-![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_rungenapp.png)-->
-
-![imatge](https://github.com/GovernIB/genapp/assets/17084256/1a7641c6-ff2d-4b60-9cc6-088c056497b0)
-
-
-També es pot executar 
-```
-mvn archetype:generate
+mvn archetype:generate -Dfilter=genapp
 ```
 i filtrar per genapp:
 
@@ -64,9 +53,7 @@ i filtrar per genapp:
 
 ![Exemple](https://github.com/GovernIB/maven/blob/binaris/genapp/images/comanda_genapp_v2.png)
 	
-(3) Seguir les instruccions del diàleg que apareixerà al final.
-	
-(4) Afegir noves taules del nou projecte a la BBDD seguint les normes descrites a la [Documentació](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
+(3) Seguir les instruccions del diàleg que apareixerà al final. Aquestes instruccions estan detallades al següent [Manual_de_GenApp_v2.odt](https://github.com/GovernIB/genapp/blob/genapp-2.0/doc/Manual_de_GenApp_v2.odt)
 	
 (5) Quan la BBDD estigui més o manco estable, executar genapp.bat i pitjar sobre "Actualitzar Projecte". 
            * Per cada taula: assignar nom Java, nom curt i traduccions
