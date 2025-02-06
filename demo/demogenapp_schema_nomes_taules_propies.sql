@@ -108,92 +108,6 @@ CREATE TABLE dem_assignaturaalumne (
 
 ALTER TABLE dem_assignaturaalumne OWNER TO demogenapp;
 
---
--- TOC entry 181 (class 1259 OID 56245)
--- Name: dem_fitxer_seq; Type: SEQUENCE; Schema: public; Owner: demogenapp
---
-
-CREATE SEQUENCE dem_fitxer_seq
-    START WITH 1000
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE dem_fitxer_seq OWNER TO demogenapp;
-
---
--- TOC entry 174 (class 1259 OID 19095)
--- Name: dem_fitxer; Type: TABLE; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE TABLE dem_fitxer (
-    fitxerid bigint DEFAULT nextval('dem_fitxer_seq'::regclass) NOT NULL,
-    descripcio character varying(1000) DEFAULT NULL::character varying,
-    mime character varying(45) NOT NULL,
-    nom character varying(255) NOT NULL,
-    tamany bigint NOT NULL
-);
-
-
-ALTER TABLE dem_fitxer OWNER TO demogenapp;
-
---
--- TOC entry 175 (class 1259 OID 19103)
--- Name: dem_idioma; Type: TABLE; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE TABLE dem_idioma (
-    idiomaid character varying(5) NOT NULL,
-    nom character varying(50) NOT NULL,
-    suportat boolean DEFAULT true NOT NULL,
-    ordre integer DEFAULT 0 NOT NULL
-);
-
-
-ALTER TABLE dem_idioma OWNER TO demogenapp;
-
---
--- TOC entry 182 (class 1259 OID 56247)
--- Name: dem_traduccio_seq; Type: SEQUENCE; Schema: public; Owner: demogenapp
---
-
-CREATE SEQUENCE dem_traduccio_seq
-    START WITH 1000
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE dem_traduccio_seq OWNER TO demogenapp;
-
---
--- TOC entry 176 (class 1259 OID 19108)
--- Name: dem_traduccio; Type: TABLE; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE TABLE dem_traduccio (
-    traduccioid bigint DEFAULT nextval('dem_traduccio_seq'::regclass) NOT NULL
-);
-
-
-ALTER TABLE dem_traduccio OWNER TO demogenapp;
-
---
--- TOC entry 177 (class 1259 OID 19112)
--- Name: dem_traducciomap; Type: TABLE; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE TABLE dem_traducciomap (
-    traducciomapid bigint NOT NULL,
-    idiomaid character varying(10) NOT NULL,
-    valor character varying(4000)
-);
-
-
-ALTER TABLE dem_traducciomap OWNER TO demogenapp;
 
 --
 -- TOC entry 1871 (class 2606 OID 19120)
@@ -229,42 +143,6 @@ ALTER TABLE ONLY dem_assignatura
 
 ALTER TABLE ONLY dem_assignaturaalumne
     ADD CONSTRAINT dem_assignaturaalumne_pk PRIMARY KEY (id);
-
-
---
--- TOC entry 1885 (class 2606 OID 19128)
--- Name: dem_fitxer_pk; Type: CONSTRAINT; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-ALTER TABLE ONLY dem_fitxer
-    ADD CONSTRAINT dem_fitxer_pk PRIMARY KEY (fitxerid);
-
-
---
--- TOC entry 1888 (class 2606 OID 19130)
--- Name: dem_idioma_pk; Type: CONSTRAINT; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-ALTER TABLE ONLY dem_idioma
-    ADD CONSTRAINT dem_idioma_pk PRIMARY KEY (idiomaid);
-
-
---
--- TOC entry 1891 (class 2606 OID 19132)
--- Name: dem_traduccio_pk; Type: CONSTRAINT; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-ALTER TABLE ONLY dem_traduccio
-    ADD CONSTRAINT dem_traduccio_pk PRIMARY KEY (traduccioid);
-
-
---
--- TOC entry 1896 (class 2606 OID 19134)
--- Name: dem_traducmap_pk; Type: CONSTRAINT; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-ALTER TABLE ONLY dem_traducciomap
-    ADD CONSTRAINT dem_traducmap_pk PRIMARY KEY (traducciomapid, idiomaid);
 
 
 --
@@ -330,47 +208,6 @@ CREATE INDEX dem_assignatura_pk_i ON dem_assignatura USING btree (assignaturaid)
 
 CREATE INDEX dem_assignaturaalumne_pk_i ON dem_assignaturaalumne USING btree (id);
 
-
---
--- TOC entry 1886 (class 1259 OID 19143)
--- Name: dem_fitxer_pk_i; Type: INDEX; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE INDEX dem_fitxer_pk_i ON dem_fitxer USING btree (fitxerid);
-
-
---
--- TOC entry 1889 (class 1259 OID 19144)
--- Name: dem_idioma_pk_i; Type: INDEX; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE INDEX dem_idioma_pk_i ON dem_idioma USING btree (idiomaid);
-
-
---
--- TOC entry 1892 (class 1259 OID 19145)
--- Name: dem_traduccio_pk_i; Type: INDEX; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE INDEX dem_traduccio_pk_i ON dem_traduccio USING btree (traduccioid);
-
-
---
--- TOC entry 1893 (class 1259 OID 19146)
--- Name: dem_traducciomap_idiomaid_fk_i; Type: INDEX; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE INDEX dem_traducciomap_idiomaid_fk_i ON dem_traducciomap USING btree (idiomaid);
-
-
---
--- TOC entry 1894 (class 1259 OID 19147)
--- Name: dem_traducciomap_pk_i; Type: INDEX; Schema: public; Owner: demogenapp; Tablespace: 
---
-
-CREATE INDEX dem_traducciomap_pk_i ON dem_traducciomap USING btree (traducciomapid);
-
-
 --
 -- TOC entry 1897 (class 2606 OID 19148)
 -- Name: dem_alumne_fitxer_fotoid_fk; Type: FK CONSTRAINT; Schema: public; Owner: demogenapp
@@ -416,14 +253,6 @@ ALTER TABLE ONLY dem_assignaturaalumne
     ADD CONSTRAINT dem_assigalumn_assign_assig_fk FOREIGN KEY (assignaturaid) REFERENCES dem_assignatura(assignaturaid);
 
 
---
--- TOC entry 1902 (class 2606 OID 19173)
--- Name: dem_traducmap_traduccio_fk; Type: FK CONSTRAINT; Schema: public; Owner: demogenapp
---
-
-ALTER TABLE ONLY dem_traducciomap
-    ADD CONSTRAINT dem_traducmap_traduccio_fk FOREIGN KEY (traducciomapid) REFERENCES dem_traduccio(traduccioid);
-
 
 --
 -- TOC entry 2017 (class 0 OID 0)
@@ -437,7 +266,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2022-03-07 11:38:02
+-- Completed on 2025-02-06 11:38:02
 
 --
 -- PostgreSQL database dump complete
