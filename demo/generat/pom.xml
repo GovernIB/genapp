@@ -304,9 +304,9 @@
                                 <configuration>                                      
                                     <source>                                         
                                         log.info('\n\n\n   Per revisar els BUG i ERRORS trobats has de fer el següent:\n'
-                                               + '            (1) Executar des de consola "mvn spotbugs:gui -Pcheckcode"\n'
-                                               + '            (2) Des de GUI es recomana filtrar només per errors greus:\n'
-                                               + '                    - Menu "Ver" >> Seleccionar "High priority only"\n'
+                                               + '      (1) Executar des de consola "mvn spotbugs:gui -Pcheckcode"\n'
+                                               + '      (2) Des de GUI es recomana filtrar només per errors greus:\n'
+                                               + '             - Menu "Ver" >> Seleccionar "High priority only"\n'
                                                + '\n\n\n')
                                     </source>                                        
                                 </configuration>                                     
