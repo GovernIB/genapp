@@ -32,7 +32,7 @@ public class DaoJPAGenerator {
         String code2 = "package " + hibernatePackage + ";\n" + "\n" + "import " + GenAppPackages.PKG_BASE
                 + ".common.crypt.FileIDEncrypter;\n" + "\n" + "public class " + hibernateFileName + " {\n\n"
                 + "    private static FileIDEncrypter encrypter = null;\n" + "\n" + "    static {\n" + "      try {\n"
-                + "        encrypter = new String(\"keyValuekeyValue\").getBytes(\"UTF-8\"),\n"
+                + "        encrypter = new FileIDEncrypter(new String(\"keyValuekeyValue\").getBytes(\"UTF-8\"),\n"
                 + "            FileIDEncrypter.ALGORITHM_AES);\n" + "      } catch (Exception e) {\n"
                 + "        System.err.println(\"Error instanciant File Encrypter: \" + e.getMessage());\n"
                 + "        e.printStackTrace(System.err);\n" + "      }\n" + "    }\n" + "\n"

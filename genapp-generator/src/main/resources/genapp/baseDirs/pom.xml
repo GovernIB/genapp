@@ -280,6 +280,32 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                             <failOnError>false</failOnError>
+                        </configuration>
+                    </plugin>
+                
+                    <plugin>                                                         
+                        <groupId>org.codehaus.gmaven</groupId>                       
+                        <artifactId>groovy-maven-plugin</artifactId>                 
+                        <version>2.0</version>                                       
+                        <executions>                                                 
+                            <execution>                                              
+                                <phase>verify</phase>                              
+                                <goals>                                              
+                                    <goal>execute</goal>                             
+                                </goals>                                             
+                                <configuration>                                      
+                                    <source>                                         
+                                        log.info('\n\n\n   Per revisar els BUG i ERRORS trobats has de fer el següent:\n'
+                                               + '      (1) Executar des de consola "mvn spotbugs:gui -Pcheckcode"\n'
+                                               + '      (2) Des de GUI es recomana filtrar només per errors greus:\n'
+                                               + '             - Menu "Ver" >> Seleccionar "High priority only"\n'
+                                               + '\n\n\n')
+                                    </source>                                        
+                                </configuration>                                     
+                            </execution>                                             
+                        </executions>                                                
                     </plugin>
                 </plugins>
             </build>
