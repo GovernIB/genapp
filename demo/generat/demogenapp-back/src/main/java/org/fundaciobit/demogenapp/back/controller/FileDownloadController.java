@@ -51,7 +51,7 @@ public class FileDownloadController {
       final String contentType = request.getParameter("mime");
 
       long arxiuId = HibernateFileUtil.decryptFileID(encryptedArxiuId);
-
+      
       if (arxiuId == 0) {
         FileIDEncrypter enc = HibernateFileUtil.getEncrypter();
         log.error("+ Key = ]"+ new String(enc.getKey().getEncoded(),"UTF-8") + "[");
