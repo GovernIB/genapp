@@ -1,1 +1,1 @@
-compile.bat -pl demogenapp-back,demogenapp-ear 
+compile.bat -pl demogenapp-back,demogenapp-ear %*
