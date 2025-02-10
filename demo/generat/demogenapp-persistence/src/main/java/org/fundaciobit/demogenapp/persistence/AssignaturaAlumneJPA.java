@@ -113,7 +113,9 @@ public class AssignaturaAlumneJPA implements AssignaturaAlumne {
     @Override
     public int hashCode() {
         return (String.valueOf(this.getId())).hashCode();
-    }// IMP Field:alumneid | Table: dem_alumne | Type: 1  
+    }
+
+// IMP Field:alumneid | Table: dem_alumne | Type: 1  
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "alumneid", referencedColumnName ="alumneID", nullable = false, insertable=false, updatable=false, foreignKey=@ForeignKey(name="dem_assigalumn_alumne_alumn_fk"))

@@ -76,7 +76,9 @@ public class TraduccioJPA implements Traduccio {
     @Override
     public int hashCode() {
         return (String.valueOf(this.getTraduccioID())).hashCode();
-    }// EXP  Field:titolacademicid | Table: dem_alumne | Type: 0  
+    }
+
+// EXP  Field:titolacademicid | Table: dem_alumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "titolAcademicID")
     private Set<AlumneJPA> alumnes = new HashSet<AlumneJPA>(0);

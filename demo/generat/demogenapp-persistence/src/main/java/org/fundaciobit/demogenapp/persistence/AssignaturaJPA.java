@@ -140,7 +140,9 @@ public class AssignaturaJPA implements Assignatura {
     @Override
     public int hashCode() {
         return (String.valueOf(this.getAssignaturaID())).hashCode();
-    }// EXP  Field:assignaturaid | Table: dem_assignaturaalumne | Type: 0  
+    }
+
+// EXP  Field:assignaturaid | Table: dem_assignaturaalumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignatura")
     private Set<AssignaturaAlumneJPA> assignaturaAlumnes = new HashSet<AssignaturaAlumneJPA>(0);

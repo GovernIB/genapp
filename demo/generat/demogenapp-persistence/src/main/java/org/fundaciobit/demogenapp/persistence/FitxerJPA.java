@@ -125,7 +125,9 @@ public class FitxerJPA implements Fitxer {
     @Override
     public int hashCode() {
         return (String.valueOf(this.getFitxerID())).hashCode();
-    }// EXP  Field:fotoid | Table: dem_alumne | Type: 0  
+    }
+
+// EXP  Field:fotoid | Table: dem_alumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "fotoID")
     private Set<AlumneJPA> alumnes = new HashSet<AlumneJPA>(0);

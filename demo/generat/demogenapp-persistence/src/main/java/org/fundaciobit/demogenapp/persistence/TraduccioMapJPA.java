@@ -54,4 +54,6 @@ public class TraduccioMapJPA implements TraduccioMap {
         return super.hashCode();
     }
 
+
+
 }

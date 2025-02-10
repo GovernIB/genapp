@@ -105,7 +105,9 @@ public class IdiomaJPA implements Idioma {
     @Override
     public int hashCode() {
         return (String.valueOf(this.getIdiomaID())).hashCode();
-    }// EXP  Field:idiomaid | Table: dem_alumne | Type: 0  
+    }
+
+// EXP  Field:idiomaid | Table: dem_alumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idioma")
     private Set<AlumneJPA> alumnes = new HashSet<AlumneJPA>(0);

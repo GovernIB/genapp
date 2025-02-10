@@ -228,7 +228,9 @@ public class AlumneJPA implements Alumne {
     @Override
     public int hashCode() {
         return (String.valueOf(this.getAlumneID())).hashCode();
-    }// EXP  Field:alumneid | Table: dem_assignaturaalumne | Type: 0  
+    }
+
+// EXP  Field:alumneid | Table: dem_assignaturaalumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "alumne")
     private Set<AssignaturaAlumneJPA> assignaturaAlumnes = new HashSet<AssignaturaAlumneJPA>(0);
