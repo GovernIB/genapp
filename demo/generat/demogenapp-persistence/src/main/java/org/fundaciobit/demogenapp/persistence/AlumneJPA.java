@@ -212,20 +212,23 @@ public class AlumneJPA implements Alumne {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Alumne) {
-      Alumne __instance = (Alumne)__obj;
-      __result = true;
-      __result = __result && (this.getAlumneID() == __instance.getAlumneID()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Alumne) {
+            Alumne __instance = (Alumne)__obj;
+            __result = true;
+            __result = __result && (this.getAlumneID() == __instance.getAlumneID()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
-// EXP  Field:alumneid | Table: dem_assignaturaalumne | Type: 0  
+    @Override
+    public int hashCode() {
+        return (String.valueOf(this.getAlumneID())).hashCode();
+    }// EXP  Field:alumneid | Table: dem_assignaturaalumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "alumne")
     private Set<AssignaturaAlumneJPA> assignaturaAlumnes = new HashSet<AssignaturaAlumneJPA>(0);

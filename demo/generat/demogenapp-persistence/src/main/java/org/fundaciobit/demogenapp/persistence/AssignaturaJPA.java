@@ -124,20 +124,23 @@ public class AssignaturaJPA implements Assignatura {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Assignatura) {
-      Assignatura __instance = (Assignatura)__obj;
-      __result = true;
-      __result = __result && (this.getAssignaturaID() == __instance.getAssignaturaID()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Assignatura) {
+            Assignatura __instance = (Assignatura)__obj;
+            __result = true;
+            __result = __result && (this.getAssignaturaID() == __instance.getAssignaturaID()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
-// EXP  Field:assignaturaid | Table: dem_assignaturaalumne | Type: 0  
+    @Override
+    public int hashCode() {
+        return (String.valueOf(this.getAssignaturaID())).hashCode();
+    }// EXP  Field:assignaturaid | Table: dem_assignaturaalumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignatura")
     private Set<AssignaturaAlumneJPA> assignaturaAlumnes = new HashSet<AssignaturaAlumneJPA>(0);

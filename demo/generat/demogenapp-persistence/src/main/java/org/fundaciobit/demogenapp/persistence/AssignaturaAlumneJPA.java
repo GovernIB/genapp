@@ -97,20 +97,23 @@ public class AssignaturaAlumneJPA implements AssignaturaAlumne {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof AssignaturaAlumne) {
-      AssignaturaAlumne __instance = (AssignaturaAlumne)__obj;
-      __result = true;
-      __result = __result && (this.getId() == __instance.getId()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof AssignaturaAlumne) {
+            AssignaturaAlumne __instance = (AssignaturaAlumne)__obj;
+            __result = true;
+            __result = __result && (this.getId() == __instance.getId()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
-// IMP Field:alumneid | Table: dem_alumne | Type: 1  
+    @Override
+    public int hashCode() {
+        return (String.valueOf(this.getId())).hashCode();
+    }// IMP Field:alumneid | Table: dem_alumne | Type: 1  
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "alumneid", referencedColumnName ="alumneID", nullable = false, insertable=false, updatable=false, foreignKey=@ForeignKey(name="dem_assigalumn_alumne_alumn_fk"))

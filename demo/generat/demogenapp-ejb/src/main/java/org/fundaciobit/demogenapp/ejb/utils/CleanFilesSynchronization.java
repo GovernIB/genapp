@@ -1,6 +1,7 @@
 package org.fundaciobit.demogenapp.ejb.utils;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.transaction.Status;
@@ -16,7 +17,7 @@ public class CleanFilesSynchronization implements Synchronization {
     protected final Set<Long> files;
 
     public CleanFilesSynchronization(Set<Long> filesToDelete) {
-        this.files = filesToDelete;
+        this.files = new HashSet<Long>(filesToDelete);
     }
 
     @Override

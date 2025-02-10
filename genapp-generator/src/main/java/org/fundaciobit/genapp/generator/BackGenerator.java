@@ -1882,7 +1882,7 @@ public class BackGenerator {
       code.append("\n");
       code.append("    if (" + model + " == null) {\n");
       code.append("      createMessageWarning(request, \"error.notfound\", " + pkFromParams + ");\n");
-      code.append("      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, " + pkFromParams + "), true));\n");
+      //code.append("      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, " + pkFromParams + "), true));\n");
       code.append("      return llistatPaginat(request, response, 1);\n");
       code.append("    } else {\n");
       code.append("      ModelAndView mav = new ModelAndView(getTileForm());\n");   

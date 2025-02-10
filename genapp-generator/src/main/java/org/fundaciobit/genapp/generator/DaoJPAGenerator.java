@@ -32,7 +32,7 @@ public class DaoJPAGenerator {
         String code2 = "package " + hibernatePackage + ";\n" + "\n" + "import " + GenAppPackages.PKG_BASE
                 + ".common.crypt.FileIDEncrypter;\n" + "\n" + "public class " + hibernateFileName + " {\n\n"
                 + "    private static FileIDEncrypter encrypter = null;\n" + "\n" + "    static {\n" + "      try {\n"
-                + "        encrypter = new FileIDEncrypter(\"keyValuekeyValue\".getBytes(),\n"
+                + "        encrypter = new String(\"keyValuekeyValue\").getBytes(\"UTF-8\"),\n"
                 + "            FileIDEncrypter.ALGORITHM_AES);\n" + "      } catch (Exception e) {\n"
                 + "        System.err.println(\"Error instanciant File Encrypter: \" + e.getMessage());\n"
                 + "        e.printStackTrace(System.err);\n" + "      }\n" + "    }\n" + "\n"
@@ -371,23 +371,33 @@ public class DaoJPAGenerator {
 
         beanCode.append("\n\n");
 
-        beanCode.append("  @Override\n");
-        beanCode.append("  public boolean equals(Object __obj) {\n");
-        beanCode.append("  boolean __result;\n");
-        beanCode.append("    if (__obj != null && __obj instanceof " + tableNameJava + ") {\n");
-        beanCode.append("      " + tableNameJava + " __instance = (" + tableNameJava + ")__obj;\n");
-        beanCode.append("      __result = true;\n");
+        beanCode.append("    @Override\n");
+        beanCode.append("    public boolean equals(Object __obj) {\n");
+        beanCode.append("        boolean __result;\n");
+        beanCode.append("        if (__obj != null && __obj instanceof " + tableNameJava + ") {\n");
+        beanCode.append("            " + tableNameJava + " __instance = (" + tableNameJava + ")__obj;\n");
+        beanCode.append("            __result = true;\n");
 
+        StringBuilder hashCode = new StringBuilder();
+        
         if (table.isTranslationMapEntity()) {
-            beanCode.append("      __result = super.equals(__instance);\n");
+            beanCode.append("            __result = super.equals(__instance);\n");
+            hashCode.append("super.hashCode()");
         } else {
             for (FieldInfo f : fields) {
                 if (f.isPrimaryKey()) {
-
+                    
                     String method = CodeGenUtils.get(f);
+                    
+                    if (hashCode.length() > 0) {
+                        hashCode.append(" + \"_\" + ");
+                    }
+                    hashCode.append("String.valueOf(this."+method+")");
+
+                    
                     if (f.getJavaType().isPrimitive()) {
                         beanCode.append(
-                                "      __result = __result && (this." + method + " == __instance." + method + ") ;\n");
+                                "            __result = __result && (this." + method + " == __instance." + method + ") ;\n");
                     } else {
 
                         beanCode.append("      if (this." + method + " == null) {\n");
@@ -400,12 +410,21 @@ public class DaoJPAGenerator {
                     }
                 }
             }
+            
+            String hc = "(" + hashCode.toString() + ").hashCode()";
+            hashCode = new StringBuilder(hc);
         }
-        beanCode.append("    } else {\n");
-        beanCode.append("      __result = false;\n");
-        beanCode.append("    }\n");
-        beanCode.append("    return __result;\n");
-        beanCode.append("  }\n\n");
+        beanCode.append("        } else {\n");
+        beanCode.append("            __result = false;\n");
+        beanCode.append("        }\n");
+        beanCode.append("        return __result;\n");
+        beanCode.append("    }\n\n");
+        
+        // String.valueOf(this.alumneID).hashCode()
+        beanCode.append("    @Override\n"
+                + "    public int hashCode() {\n"
+                + "        return " + hashCode.toString()+ ";\n"
+                + "    }\n\n");
 
         HashMap<String, String> importForeignKeys = new HashMap<String, String>();
         HashMap<String, String> exportForeignKeys = new HashMap<String, String>();

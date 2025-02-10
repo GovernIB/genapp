@@ -400,7 +400,6 @@ public class AlumneController
 
     if (alumne == null) {
       createMessageWarning(request, "error.notfound", alumneID);
-      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, alumneID), true));
       return llistatPaginat(request, response, 1);
     } else {
       ModelAndView mav = new ModelAndView(getTileForm());

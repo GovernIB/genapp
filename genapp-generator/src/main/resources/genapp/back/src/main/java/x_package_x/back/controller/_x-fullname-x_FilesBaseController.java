@@ -54,7 +54,7 @@ public abstract class ${fullname}FilesBaseController<I extends IGenAppEntity,PK 
         }
       } catch (I18NException e) {
             log.error("Error esborrant arxiu fisic amb id=" + fileID +
-                ((file == null)? "" : ("("+ file.getNom() + ")")) + ": " + I18NUtils.getMessage(e),e);
+                "("+ file.getNom() + ")" + ": " + I18NUtils.getMessage(e),e);
       } catch (Exception e) {
             log.error("Error esborrant arxiu fisic amb id=" + fileID +
               ((file == null)? "" : ("("+ file.getNom() + ")")) + ": " + e.getMessage(),e);

@@ -329,7 +329,6 @@ public class AssignaturaController
 
     if (assignatura == null) {
       createMessageWarning(request, "error.notfound", assignaturaID);
-      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, assignaturaID), true));
       return llistatPaginat(request, response, 1);
     } else {
       ModelAndView mav = new ModelAndView(getTileForm());
