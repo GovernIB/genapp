@@ -283,7 +283,7 @@
                         <configuration>
                             <!-- Define el esfuerzo de análisis: min, default, max -->
                             <effort>Max</effort>
-                            <!-- Solo mostrar errores de prioridad alta -->
+                            <!-- Solo mostrar errores de prioridad alta: High, Medium, Low -->
                             <threshold>High</threshold>
                             <!-- Opcional: Parar si hay errores -->        
                             <failOnError>true</failOnError>
