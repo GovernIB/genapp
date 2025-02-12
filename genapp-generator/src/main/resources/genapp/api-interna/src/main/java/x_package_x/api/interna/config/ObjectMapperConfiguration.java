@@ -27,7 +27,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 @Produces("application/json")
 public class ObjectMapperConfiguration extends JacksonJaxbJsonProvider {
 
-    protected static Logger log = Logger.getLogger(ObjectMapperConfiguration.class);
+    protected final Logger log = Logger.getLogger(ObjectMapperConfiguration.class);
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
     static {

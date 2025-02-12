@@ -57,7 +57,7 @@ import io.swagger.v3.oas.annotations.media.Content;
                 url = "https://github.com/GovernIB/${name}/tree/${name}-1.0/${name}-api-interna-client-exemplepublic-v1"))
 public class ExemplePublicService {
 
-    protected static Logger log = Logger.getLogger(ExemplePublicService.class);
+    protected final Logger log = Logger.getLogger(ExemplePublicService.class);
 
     public static final String TAG_NAME = "Versio";
 

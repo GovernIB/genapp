@@ -64,7 +64,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 //@SecurityScheme(type = SecuritySchemeType.HTTP, name = ExempleInfoService.SECURITY_NAME, scheme = "basic")
 public class ExempleInfoService extends RestUtils {
 
-    protected static Logger log = Logger.getLogger(ExempleInfoService.class);
+    protected final Logger log = Logger.getLogger(ExempleInfoService.class);
 
     // Descomentar aquest codi si es vol securitzar el servei
     // protected static final String SECURITY_NAME = "BasicAuth";
