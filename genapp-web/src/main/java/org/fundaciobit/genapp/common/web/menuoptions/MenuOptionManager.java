@@ -51,8 +51,9 @@ public class MenuOptionManager {
         if (menuOptions == null) {
             menuOptions = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
         } else {
-            menuOptions = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
-            menuOptions.putAll(menuOptions);
+            TreeMap<MenuItemOption, Class<?>> menuOptions2 = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
+            menuOptions2.putAll(menuOptions);
+            menuOptions = menuOptions2;
         }
 
         if (additionalMenuItems != null && additionalMenuItems.length != 0) {
