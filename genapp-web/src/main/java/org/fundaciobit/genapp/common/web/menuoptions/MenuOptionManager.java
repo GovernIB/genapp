@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.web.controller.CommonBaseController;
 
 /**
@@ -12,6 +13,10 @@ import org.fundaciobit.genapp.common.web.controller.CommonBaseController;
  * 8 ene 2025 10:34:25
  */
 public class MenuOptionManager {
+
+    private static final MenuItemOptionComparator MENUITEM_COMPARATOR = new MenuItemOptionComparator();
+
+    private static final Logger log = Logger.getLogger(MenuOptionManager.class);
 
     private static DiscoverMenuOptionAnnotations discoverMenuOptionAnnotations = null;
 
@@ -44,7 +49,10 @@ public class MenuOptionManager {
         TreeMap<MenuItemOption, Class<?>> menuOptions = discoverMenuOptionAnnotations.getMenuOptionByGroup(group);
 
         if (menuOptions == null) {
-            menuOptions = new TreeMap<MenuItemOption, Class<?>>(new MenuItemOptionComparator());
+            menuOptions = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
+        } else {
+            menuOptions = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
+            menuOptions.putAll(menuOptions);
         }
 
         if (additionalMenuItems != null && additionalMenuItems.length != 0) {
@@ -52,7 +60,7 @@ public class MenuOptionManager {
             for (MenuItem menuItem : additionalMenuItems) {
                 if (menuItem == null) {
                     if (lastOption != null) {
-                        lastOption.setAddSeparatorBefore(true);
+                        lastOption.setAddSeparatorAfter(true);
                     }
                 } else {
                     MenuItemOption mio = new MenuItemOption(menuItem.getLabel(), menuItem.getUrl(),
@@ -64,7 +72,7 @@ public class MenuOptionManager {
             }
         }
 
-        // Convertir menuoption a menu items
+        // Convertir menuoption a menuitems
         List<MenuItem> items = new ArrayList<MenuItem>();
         for (MenuItemOption menuOption : menuOptions.keySet()) {
             String baseLink;
@@ -75,6 +83,13 @@ public class MenuOptionManager {
                 // Cercar el request mapping de la classe
 
                 Class<?> classe = menuOptions.get(menuOption);
+
+                /*
+                log.info(" ========  "+ menuOption.getLabel() + " ============ ");
+                log.info("url: "+ menuOption.getUrl());
+                log.info("classe: "+classe);
+                */
+
                 if (CommonBaseController.class.isAssignableFrom(classe)) {
                     CommonBaseController<?, ?> cbc = (CommonBaseController<?, ?>) classe.getDeclaredConstructor()
                             .newInstance();

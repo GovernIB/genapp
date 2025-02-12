@@ -11,7 +11,14 @@ class MenuItemOptionComparator implements Comparator<MenuItemOption> {
 
     @Override
     public int compare(MenuItemOption o1, MenuItemOption o2) {
-        return o1.getOrder() - o2.getOrder();
+        int o = o1.getOrder() - o2.getOrder();
+        if (o == 0) {
+            o = o1.getLabel().compareTo(o2.getLabel());
+            if (o == 0) {
+                o =  ("" + o1.getUrlbase()).compareTo(o2.getUrlbase());
+            }
+        }
+        return o;
     }
 
 }
