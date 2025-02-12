@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 /**
@@ -55,7 +56,7 @@ public class Configuracio implements Constants {
                     + " del fitxer standalone apunta a un fitxer que no existeix (" + propertyFileName + ")");
         }
 
-        try (Reader reader = new FileReader(file)) {
+        try (Reader reader = new FileReader(file, StandardCharsets.UTF_8)) {
             Properties prop = new Properties();
             prop.load(reader);
             return prop;
@@ -130,7 +131,7 @@ public class Configuracio implements Constants {
     }
 
     public static byte[] getEncryptKey() {
-        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes();
+        return getAppProperties().getProperty(DEMOGENAPP_PROPERTY_BASE + "encryptkey", "0123456789123456").getBytes(StandardCharsets.UTF_8);
     }
 
     public static Long getMaxUploadSizeInBytes() {

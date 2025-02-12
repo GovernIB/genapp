@@ -287,7 +287,12 @@
                             </execution>
                         </executions>
                         <configuration>
-                             <failOnError>false</failOnError>
+                            <!-- Define el esfuerzo de análisis: min, default, max -->
+                            <effort>Max</effort>
+                            <!-- Solo mostrar errores de prioridad alta -->
+                            <threshold>High</threshold>
+                            <!-- Opcional: Parar si hay errores -->        
+                            <failOnError>true</failOnError>
                         </configuration>
                     </plugin>
                 

@@ -57,7 +57,7 @@ import io.swagger.v3.oas.annotations.media.Content;
                 url = "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client-exemplepublic-v1"))
 public class ExemplePublicService {
 
-    protected static Logger log = Logger.getLogger(ExemplePublicService.class);
+    protected final Logger log = Logger.getLogger(ExemplePublicService.class);
 
     public static final String TAG_NAME = "Versio";
 
