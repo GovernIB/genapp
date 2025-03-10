@@ -149,6 +149,7 @@ public class SQL2Java {
         STRINGTOCLASS.put(java.sql.Date.class.getName(), java.sql.Date.class);
         STRINGTOCLASS.put(java.sql.Time.class.getName(), java.sql.Time.class);
         STRINGTOCLASS.put(java.sql.Timestamp.class.getName(), java.sql.Timestamp.class);
+        STRINGTOCLASS.put(java.io.InputStream.class.getName(), java.io.InputStream.class);
 
     }
 

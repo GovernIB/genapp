@@ -92,10 +92,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		return new org.fundaciobit.demogenapp.back.utils.DemoGenAppCommonsMultipartResolver();
 	}
 
-	@Bean
-	public HandlerExceptionResolver getFileSizeExceeds() {
-	  return new org.fundaciobit.demogenapp.back.utils.DemoGenAppMaxUploadSizeExceededExceptionHandler();
-	}
 
 	@Bean
 	public MessageSource messageSource() {

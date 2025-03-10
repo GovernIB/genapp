@@ -92,10 +92,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		return new ${package}.back.utils.${fullname}CommonsMultipartResolver();
 	}
 
-	@Bean
-	public HandlerExceptionResolver getFileSizeExceeds() {
-	  return new ${package}.back.utils.${fullname}MaxUploadSizeExceededExceptionHandler();
-	}
 
 	@Bean
 	public MessageSource messageSource() {
