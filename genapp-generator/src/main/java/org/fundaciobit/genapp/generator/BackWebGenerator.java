@@ -1582,6 +1582,9 @@ public class BackWebGenerator extends IconUtils {
 		code.append("    <definition name=\"option2Admin\" extends=\"admin\">\n");
 		code.append("        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/admin/admin.jsp\" />\n");
 		code.append("    </definition>\n");
+		code.append("    <definition name=\"keyvalueAdmin\" extends=\"admin\">\n");
+		code.append("        <put-attribute name=\"contingut\" value=\"/WEB-INF/jsp/common/keyvalue.jsp\" />\n");
+		code.append("    </definition>\n");
 		code.append("    \n");
 		code.append("    <!--  ===========  DESENVOLUPAMENT ================== -->\n");
 		code.append("    \n");

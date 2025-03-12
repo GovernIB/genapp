@@ -7,7 +7,7 @@ package org.fundaciobit.demogenapp.commons.utils;
  */
 public interface Constants {
 
-  public static final String DEMOGENAPP_PROPERTY_BASE="org.fundaciobit.demogenapp.";
+    public static final String DEMOGENAPP_PROPERTY_BASE="org.fundaciobit.demogenapp.";
 
     public static final String MAIL_SERVICE = "java:/org.fundaciobit.demogenapp.mail";
 

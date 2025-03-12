@@ -97,6 +97,9 @@
     <definition name="option2Admin" extends="admin">
         <put-attribute name="contingut" value="/WEB-INF/jsp/admin/admin.jsp" />
     </definition>
+    <definition name="keyvalueAdmin" extends="admin">
+        <put-attribute name="contingut" value="/WEB-INF/jsp/common/keyvalue.jsp" />
+    </definition>
     
     <!--  ===========  DESENVOLUPAMENT ================== -->
     

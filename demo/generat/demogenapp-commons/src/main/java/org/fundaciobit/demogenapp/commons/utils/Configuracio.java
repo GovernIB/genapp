@@ -20,6 +20,11 @@ public class Configuracio implements Constants {
 
     private static Properties appSystemProperties;
 
+    public static void reloadProperties() {
+        appProperties = null;
+        appSystemProperties = null;
+    }
+
     public static Properties getAppProperties() {
         if (appProperties == null) {
             appProperties = loadPropertiesFromKey(Constants.DEMOGENAPP_PROPERTY_BASE + "properties");

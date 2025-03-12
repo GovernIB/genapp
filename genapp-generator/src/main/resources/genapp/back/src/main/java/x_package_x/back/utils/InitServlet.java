@@ -53,7 +53,7 @@ public class InitServlet extends HttpServlet {
             public void run() {
                 try {
                     MenuOptionManager.setDiscoverMenuOptionAnnotations(
-                            new DiscoverMenuOptionAnnotations(Constants.DEMOGENAPP_PROPERTY_BASE + "back.controller"));
+                            new DiscoverMenuOptionAnnotations(Constants.${name_uppercase}_PROPERTY_BASE + "back.controller"));
                 } catch (Throwable th) {
                     log.error("Error inicialitzant sistema de menus: " + th.getMessage(), th);
                 }
