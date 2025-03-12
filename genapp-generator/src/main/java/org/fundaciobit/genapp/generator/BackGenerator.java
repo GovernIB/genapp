@@ -1364,7 +1364,7 @@ public class BackGenerator {
       code.append("import org.springframework.web.bind.annotation.*;\n");
       code.append("import org.springframework.web.bind.support.SessionStatus;\n");
       code.append("import org.springframework.web.servlet.ModelAndView;\n");
-      code.append("import org.springframework.web.servlet.view.RedirectView;\n");
+      //code.append("import org.springframework.web.servlet.view.RedirectView;\n");
       code.append("\n");
       code.append("import javax.ejb.EJB;\n");
       code.append("import javax.servlet.http.HttpServletRequest;\n");
