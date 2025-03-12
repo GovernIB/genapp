@@ -1,7 +1,6 @@
 package org.fundaciobit.demogenapp.back.utils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.apache.log4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * 
