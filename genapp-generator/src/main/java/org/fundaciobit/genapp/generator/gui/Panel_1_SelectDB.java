@@ -57,9 +57,6 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
     JLabel etiPackage = new JLabel();
     JTextField pack = new JTextField();
 
-    JLabel etimodulSeguretat = new JLabel();
-    JTextField modulSeguretat = new JTextField();
-
     JLabel etiprefix = new JLabel();
     JTextField prefix = new JTextField();
 
@@ -80,6 +77,19 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
 
     JLabel etiGenerateApiInterna = new JLabel();
     JCheckBox generateApiInterna = new JCheckBox();
+    
+    JLabel etimodulSeguretat = new JLabel();
+    JTextField modulSeguretat = new JTextField();
+    
+    JLabel etiRolesAdmin = new JLabel();
+    JTextField rolesAdmin = new JTextField();
+
+    JLabel etiRolesBasic = new JLabel();
+    JTextField rolesBasic = new JTextField();
+    
+    JLabel etiRolesWs = new JLabel();
+    JTextField rolesWs = new JTextField();
+    
 
     public Panel_1_SelectDB() {
         try {
@@ -103,7 +113,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
         // ==================== Panel Centro
 
         GridLayout gridLayout1 = new GridLayout();
-        gridLayout1.setRows(14);
+        gridLayout1.setRows(17);
         gridLayout1.setColumns(2);
         gridLayout1.setHgap(10);
         gridLayout1.setVgap(10);
@@ -338,6 +348,54 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
             panelCentro.add(jPanel7, null);
             jPanel7.add(modulSeguretat, BorderLayout.CENTER);
         }
+        
+        
+        
+        // Roles Accés Administrador
+        etiRolesAdmin.setText("Roles Accés Admin(default [prefix]_ADMIN):");
+        etiRolesAdmin.setHorizontalAlignment(SwingConstants.RIGHT);
+        panelCentro.add(etiRolesAdmin, null);
+
+        {
+            VerticalFlowLayout layout7 = new VerticalFlowLayout();
+            layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+            JPanel jPanel7 = new JPanel();
+            jPanel7.setLayout(layout7);
+            panelCentro.add(jPanel7, null);
+            jPanel7.add(rolesAdmin, BorderLayout.CENTER);
+        }
+        
+        // Roles Accés Basic
+        etiRolesBasic.setText("Roles Accés Bàsic(default [prefix]_USER):");
+        etiRolesBasic.setHorizontalAlignment(SwingConstants.RIGHT);
+        panelCentro.add(etiRolesBasic, null);
+
+        {
+            VerticalFlowLayout layout7 = new VerticalFlowLayout();
+            layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+            JPanel jPanel7 = new JPanel();
+            jPanel7.setLayout(layout7);
+            panelCentro.add(jPanel7, null);
+            jPanel7.add(rolesBasic, BorderLayout.CENTER);
+        }
+        
+        
+        // Roles Accés WS
+        etiRolesWs.setText("Roles Accés Bàsic(default [prefix]_WS):");
+        etiRolesWs.setHorizontalAlignment(SwingConstants.RIGHT);
+        panelCentro.add(etiRolesWs, null);
+
+        {
+            VerticalFlowLayout layout7 = new VerticalFlowLayout();
+            layout7.setAlignment(VerticalFlowLayout.MIDDLE);
+            JPanel jPanel7 = new JPanel();
+            jPanel7.setLayout(layout7);
+            panelCentro.add(jPanel7, null);
+            jPanel7.add(rolesWs, BorderLayout.CENTER);
+        }
+        
+        
+        
 
         // Combine North and Center
         BorderLayout borderLayout2 = new BorderLayout();
@@ -451,11 +509,7 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
                 pwd.setText(proj.getDataBaseInfo().getPwd());
                 prefix.setText(proj.getPrefix());
                 prefixdirectori.setText(proj.getPrefixDirectori());
-                if (proj.getModulSeguretat() == null) {
-                    modulSeguretat.setText("");
-                } else {
-                    modulSeguretat.setText(proj.getModulSeguretat());
-                }
+
 
                 String langs = Arrays.toString(proj.getLanguages());
                 idiomes.setText(langs.substring(1, langs.length() - 1));
@@ -464,6 +518,22 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
 
                 generateApiExterna.setSelected(proj.isGenerateApiExterna());
                 generateApiInterna.setSelected(proj.isGenerateApiInterna());
+                
+                if (proj.getModulSeguretat() == null) {
+                    modulSeguretat.setText("");
+                } else {
+                    modulSeguretat.setText(proj.getModulSeguretat());
+                }
+                if (proj.getRolesAdmin() != null) {
+                  rolesAdmin.setText(proj.getRolesAdmin());
+                }
+                if (proj.getRolesUser() != null) {
+                    rolesBasic.setText(proj.getRolesUser());
+                }
+                if (proj.getRolesWs() != null) {
+                    rolesWs.setText(proj.getRolesWs());
+                }
+                
 
             break;
 
@@ -533,6 +603,24 @@ public class Panel_1_SelectDB extends Paneable implements ItemListener {
 
         SharedData.data.setGenerateApiExterna(generateApiExterna.isSelected());
         SharedData.data.setGenerateApiInterna(generateApiInterna.isSelected());
+        
+        if (rolesAdmin.getText() == null || rolesAdmin.getText().trim().equals("")) {
+            SharedData.data.setRolesAdmin(null);
+        } else {
+            SharedData.data.setRolesAdmin(rolesAdmin.getText().trim());
+        }
+        
+        if (rolesBasic.getText() == null || rolesBasic.getText().trim().equals("")) {
+            SharedData.data.setRolesUser(null);
+        } else {
+            SharedData.data.setRolesUser(rolesBasic.getText().trim());
+        }
+        
+        if (rolesWs.getText() == null || rolesWs.getText().trim().equals("")) {
+            SharedData.data.setRolesWs(null);
+        } else {
+            SharedData.data.setRolesWs(rolesWs.getText().trim());
+        }
 
         String urltxt = this.url.getText();
         if (urltxt.equals("")) {

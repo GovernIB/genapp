@@ -1090,7 +1090,7 @@ public class CodeGenerator {
                 if (role.equals(project.getPrefix().toUpperCase() + "_" + "ADMIN")) { 
                     ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS", role);
                 } else {
-                    ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS" + role.toUpperCase() , role.toUpperCase());
+                    ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS_" + role.toUpperCase() , role.toUpperCase());
                 }
             }
         }
@@ -1101,7 +1101,7 @@ public class CodeGenerator {
                 if (role.equals(project.getPrefix().toUpperCase() + "_" + "USER")) { 
                     ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS", role);
                 } else {
-                    ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS" + role.toUpperCase() , role.toUpperCase());
+                    ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS_" + role.toUpperCase() , role.toUpperCase());
                 }
             }
         }
