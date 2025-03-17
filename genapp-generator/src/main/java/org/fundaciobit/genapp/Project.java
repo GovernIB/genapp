@@ -2,7 +2,6 @@ package org.fundaciobit.genapp;
 
 import java.io.Serializable;
 
-
 import org.fundaciobit.genapp.common.db.DataBaseInfo;
 
 /**
@@ -13,33 +12,38 @@ import org.fundaciobit.genapp.common.db.DataBaseInfo;
  */
 public class Project implements Serializable {
 
+    protected String packageName = null;
 
-    private String packageName = null;
+    protected String projectName = null;
 
-    public String projectName = null;
-
-    public DataBaseInfo dataBaseInfo = null;
+    protected DataBaseInfo dataBaseInfo = null;
 
     @Deprecated
     protected String modulSeguretat;
 
     protected String prefix; // = "PFI";
 
-    private String prefixDirectori; // = "${projectname.lowercase}-";
+    protected String prefixDirectori; // = "${projectname.lowercase}-";
 
-    public String schema = null;
+    protected String schema = null;
 
-    public TableInfo[] tables = null;
+    protected TableInfo[] tables = null;
 
     protected String[] languages = null;
 
     protected boolean generateBack = true;
-    
+
     protected boolean generateFront = false;
-    
+
     protected boolean generateApiInterna = false;
-    
+
     protected boolean generateApiExterna = false;
+
+    protected String rolesAdmin = null;
+
+    protected String rolesUser = null;
+
+    protected String rolesWs = null;
 
     @Deprecated
     protected Boolean generateWS = null;
@@ -55,20 +59,6 @@ public class Project implements Serializable {
     public Project() {
         super();
     }
-
-    /*
-    public Project(String packageName, String projectName, DataBaseInfo databaseinfo, TableInfo[] tables, String prefix,
-            String prefixDirectori, String[] languages) {
-        super();
-        this.packageName = packageName;
-        this.projectName = projectName;
-        this.dataBaseInfo = databaseinfo;
-        this.tables = tables;
-        this.languages = languages;
-        this.prefix = prefix;
-        this.prefixDirectori = prefixDirectori;
-    }
-    */
 
     public String getPackageName() {
         return packageName;
@@ -141,7 +131,7 @@ public class Project implements Serializable {
     public void setGenerateBack(boolean generateBack) {
         this.generateBack = generateBack;
     }
-    
+
     public boolean isGenerateFront() {
         return generateFront;
     }
@@ -158,6 +148,11 @@ public class Project implements Serializable {
     @Deprecated
     public void setGenerateWS(Boolean generateWS) {
         this.generateWS = generateWS;
+    }
+
+    @Deprecated
+    public Boolean getGenerateWS() {
+        return generateWS;
     }
 
     public boolean isGenerateApiInterna() {
@@ -182,6 +177,54 @@ public class Project implements Serializable {
 
     public static String getSecManagerName(String projectName) {
         return "ManagerSec" + projectName;
+    }
+
+    public String[] getRolesAdminArray() {
+        if (rolesAdmin == null || rolesAdmin.trim().isEmpty()) {
+            return new String[] { this.getPrefix().toUpperCase() + "_" + "ADMIN" };
+        } else {
+            return rolesAdmin.split(",");
+        }
+    }
+
+    public String getRolesAdmin() {
+        return rolesAdmin;
+    }
+
+    public void setRolesAdmin(String rolesAdmin) {
+        this.rolesAdmin = rolesAdmin;
+    }
+
+    public String[] getRolesUserArray() {
+        if (rolesUser == null || rolesUser.trim().isEmpty()) {
+            return new String[] { this.getPrefix().toUpperCase() + "_" + "USER" };
+        } else {
+            return rolesUser.split(",");
+        }
+    }
+
+    public String getRolesUser() {
+        return rolesUser;
+    }
+
+    public void setRolesUser(String rolesUser) {
+        this.rolesUser = rolesUser;
+    }
+
+    public String[] getRolesWsArray() {
+        if (rolesWs == null || rolesWs.trim().isEmpty()) {
+            return new String[] { this.getPrefix().toUpperCase() + "_WS" };
+        } else {
+            return rolesWs.split(",");
+        }
+    }
+
+    public String getRolesWs() {
+        return rolesWs;
+    }
+
+    public void setRolesWs(String rolesWs) {
+        this.rolesWs = rolesWs;
     }
 
 }

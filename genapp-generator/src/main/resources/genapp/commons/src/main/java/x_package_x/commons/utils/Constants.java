@@ -12,16 +12,27 @@ public interface Constants {
     public static final String MAIL_SERVICE = "java:/${package}.mail";
 
     // TRUE ROLES
-    public static final String ${prefix}_ADMIN="${prefix}_ADMIN";
-    public static final String ${prefix}_USER="${prefix}_USER";
-    public static final String ${prefix}_WS="${prefix}_WS";
+    <#list admin_roles as role>
+    public static final String ${role?upper_case}="${role}";
+    </#list>
+    <#list user_roles as role>
+    public static final String ${role?upper_case}="${role}";
+    </#list>
+    <#list ws_roles as role>
+    public static final String ${role?upper_case}="${role}";
+    </#list>
 
     // VIRTUAL SECURITY ROLES
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
-    public static final String ROLE_USER = "ROLE_USER";
-    
+    <#list virtual_roles as role>
+    public static final String ${role?upper_case}="${role}";
+    </#list>
+
     // EJB HIGH LEVEL ROLES
-    public static final String ROLE_EJB_FULL_ACCESS  = ${prefix}_ADMIN;
-    public static final String ROLE_EJB_BASIC_ACCESS = ${prefix}_USER;
-    public static final String ROLE_EJB_WS_ACCESS = ${prefix}_WS;
+    <#list ejb_roles as role_key,role_value>
+    public static final String ${role_key} = ${role_value};
+    </#list>
+    
+    // BACK MENU ACCESS GROUPS
+    public static final String MENU_BACK_ADMIN_ACCESS="ADMIN";
+    public static final String MENU_BACK_BASIC_ACCESS="BASIC";
 }

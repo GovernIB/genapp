@@ -345,9 +345,9 @@ public class DaoJPAGenerator {
 
         // Nou Constructor a partir d'una interface
 
-        List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(project.tables, table);
+        List<FieldInfo> fileFields = CodeGenUtils.getFileFieldsOfTable(project.getTables(), table);
 
-        TableInfo fileTable = CodeGenUtils.getSqlTableFile(project.tables);
+        TableInfo fileTable = CodeGenUtils.getSqlTableFile(project.getTables());
 
         beanCode.append(ModelGenerator.generateCopyBeanCode(table, fields, codeBeanFileName, "toJPA", fileFields,
                 fileTable, "JPA", true));
@@ -1572,9 +1572,9 @@ public class DaoJPAGenerator {
 
         StringBuffer manager = new StringBuffer();
 
-        String iname = "I" + project.projectName + "DaoManagers";
+        String iname = "I" + project.getProjectName() + "DaoManagers";
 
-        String name = project.projectName + "JPADaoManagers";
+        String name = project.getProjectName() + "JPADaoManagers";
 
         manager.append("package " + jpaPackage + ";\n");
         manager.append("\n");
@@ -1585,26 +1585,30 @@ public class DaoJPAGenerator {
         manager.append("public final class " + name + " implements " + iname + "{\n");
         manager.append("\n");
 
+        TableInfo[] tables = project.getTables();
+        
         // Variables
-        for (int i = 0; i < project.tables.length; i++) {
-            if (!project.tables[i].generate || project.tables[i].isTranslationMapEntity()) {
+        for (int i = 0; i < tables.length; i++) {
+            if (!tables[i].generate || tables[i].isTranslationMapEntity()) {
                 continue;
             }
-            String managerFileName = project.tables[i].getNameJava() + "JPAManager";
-            manager.append("   private final " + managerFileName + " " + project.tables[i].name + ";\n");
+            String managerFileName =tables[i].getNameJava() + "JPAManager";
+            manager.append("   private final " + managerFileName + " " + project.getTables()[i].name + ";\n");
         }
 
         // Constructor
         manager.append("\n");
         manager.append("  public  " + name + "(EntityManager __em) {\n");
         // manager.append(" this.__em = __em;\n");
+        
+       
 
-        for (int i = 0; i < project.tables.length; i++) {
-            if (!project.tables[i].generate || project.tables[i].isTranslationMapEntity()) {
+        for (int i = 0; i < tables.length; i++) {
+            if (!tables[i].generate || tables[i].isTranslationMapEntity()) {
                 continue;
             }
-            String managerFileName = project.tables[i].getNameJava() + "JPAManager";
-            manager.append("    this." + project.tables[i].name + " = new " + managerFileName + "(__em);\n");
+            String managerFileName = tables[i].getNameJava() + "JPAManager";
+            manager.append("    this." + tables[i].name + " = new " + managerFileName + "(__em);\n");
         }
 
         manager.append("  }\n");
@@ -1612,14 +1616,14 @@ public class DaoJPAGenerator {
         // Mètodes
         manager.append("\n");
 
-        for (int i = 0; i < project.tables.length; i++) {
-            if (!project.tables[i].generate || project.tables[i].isTranslationMapEntity()) {
+        for (int i = 0; i < tables.length; i++) {
+            if (!tables[i].generate || project.getTables()[i].isTranslationMapEntity()) {
                 continue;
             }
 
-            String managerFileName = project.tables[i].getNameJava() + "Manager";
+            String managerFileName = project.getTables()[i].getNameJava() + "Manager";
             manager.append("    public I" + managerFileName + " get" + managerFileName + "() {\n");
-            manager.append("        return this." + project.tables[i].name + ";\n");
+            manager.append("        return this." + project.getTables()[i].name + ";\n");
             manager.append("    };\n");
             manager.append("\n");
         }

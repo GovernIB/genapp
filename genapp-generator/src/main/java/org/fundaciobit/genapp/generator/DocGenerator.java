@@ -43,9 +43,9 @@ public class DocGenerator {
 
         Map<String, Object> prop = new HashMap<String, Object>();
 
-        prop.put("projectLowercase", project.projectName.toLowerCase());
-        prop.put("project", project.projectName); // .toLowerCase()
-        prop.put("projectUppercase", project.projectName.toUpperCase());
+        prop.put("projectLowercase", project.getProjectName().toLowerCase());
+        prop.put("project", project.getProjectName()); // .toLowerCase()
+        prop.put("projectUppercase", project.getProjectName().toUpperCase());
         
         prop.put("prefix", project.getPrefix().toUpperCase()); // .toLowerCase()
         prop.put("dollar", "$"); // .toLowerCase()

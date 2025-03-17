@@ -25,13 +25,13 @@
 		<sec:intercept-url pattern="/error.jsp" access="permitAll"/>
 		<sec:intercept-url pattern="/index.jsp" access="permitAll"/>
 	
-        <sec:intercept-url pattern="/common/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/common/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN',)"/>
         
-        <sec:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+        <sec:intercept-url pattern="/user/**" access="hasRole('ROLE_USER',)"/>
         
-        <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN',)"/>
         
-        <sec:intercept-url pattern="/webdb/**" access="hasRole('ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/webdb/**" access="hasRole('ROLE_ADMIN',)"/>
 
 <!--  OTHER EXAMPLES 
 		<sec:intercept-url pattern="/soli/**" access="hasRole('ROLE_SOLI')"/>
@@ -43,17 +43,9 @@
 		<sec:intercept-url pattern="/cola/**" access="hasRole('ROLE_COLA')"/>
 		
 		<sec:intercept-url pattern="/aden/**" access="hasRole('ROLE_ADEN')"/>
-
-		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-		
-		<sec:intercept-url pattern="/webdb/**" access="hasRole('ROLE_ADMIN')"/>
 		
 -->
-		
-		
 
-		
-		
     <sec:custom-filter position="PRE_AUTH_FILTER" ref="preauthFilter"/>
 		<sec:session-management session-fixation-protection="none"/>
 	</sec:http>
@@ -61,7 +53,6 @@
 	<sec:authentication-manager alias="authenticationManager">
 		<sec:authentication-provider ref="preAuthenticatedAuthenticationProvider"/>
 	</sec:authentication-manager>
-	
 
 	<bean id="preAuthenticatedProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
 
@@ -74,10 +65,10 @@
 	<bean id="attributes2GrantedAuthoritiesMapper" class="org.fundaciobit.demogenapp.back.security.RolesBasedAttributes2GrantedAuthoritiesMapper">
 		<property name="baseRoleMapping">
 			<map>
-				<entry key="DEM_USER" value="ROLE_USER"/>
-				<entry key="DEM_ADMIN" value="ROLE_ADMIN"/>
-				<entry key="@DEM_USER" value="ROLE_USER"/>
+                <entry key="DEM_ADMIN" value="ROLE_ADMIN"/>
+                <entry key="DEM_USER" value="ROLE_USER"/>
                 <entry key="@DEM_ADMIN" value="ROLE_ADMIN"/>
+                <entry key="@DEM_USER" value="ROLE_USER"/>
 			</map>
 		</property>
 	</bean>
@@ -86,7 +77,7 @@
 	<bean id="mappableAttributesRetriever" class="org.fundaciobit.demogenapp.back.security.RolesBasedMappableAttributesRetriever">
 		<property name="defaultMappableAttributes">
 			<set>
-				<value>DEM_USER</value>
+                <value>DEM_USER</value>
 				<value>DEM_ADMIN</value>
 			</set>
 		</property>

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
@@ -355,7 +356,7 @@ public class CodeGenerator {
          */
         projectDir.mkdirs();
 
-        TableInfo[] tables = project.tables;
+        TableInfo[] tables = project.getTables();
 
         String resourceBase = new String("genapp");
 
@@ -462,7 +463,7 @@ public class CodeGenerator {
         // ================== UTILS ======================
         // ===============================================
 
-        generateUtils(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
+        generateCommonsCode(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
 
         // ===============================================
         // ================== REST (WebServices) =========
@@ -512,7 +513,7 @@ public class CodeGenerator {
         // ==================================================
         // ==================================================
 
-        generateCommonCode(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
+        generateBaseDirsCode(project, projectDir, packagePath, moduls, resourceBase, appCurrentVersion);
 
         return projectDir;
 
@@ -534,18 +535,18 @@ public class CodeGenerator {
 
             // (2) Còpia inicial: Copiar estructura directoris des de recursos
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
             prop.put("app_current_version", appCurrentVersion);
-            prop.put("name_uppercase", project.projectName.toUpperCase());
+            prop.put("name_uppercase", project.getProjectName().toUpperCase());
 
             prop.put("prefixdirectori", project.getPrefixDirectori());
             prop.put("genapp_version", Versio.VERSIO);
 
-            prop.put("artifactid", project.projectName.toLowerCase() + "-back");
+            prop.put("artifactid", project.getProjectName().toLowerCase() + "-back");
             prop.put("prefix", project.getPrefix().toUpperCase());
 
             prop.put("spring_version", "${spring.version}");
@@ -595,25 +596,21 @@ public class CodeGenerator {
 
         // (2) Còpia inicial: Copiar estructura directoris des de recursos
         Map<String, Object> prop = new HashMap<String, Object>();
-        prop.put("name", project.projectName.toLowerCase());
+        prop.put("name", project.getProjectName().toLowerCase());
         prop.put("package", project.getPackageName());
 
-        prop.put("fullname", project.projectName);
+        prop.put("fullname", project.getProjectName());
         prop.put("packagePath", packagePath);
         prop.put("app_current_version", appCurrentVersion);
-        prop.put("name_uppercase", project.projectName.toUpperCase());
+        prop.put("name_uppercase", project.getProjectName().toUpperCase());
 
         prop.put("prefixdirectori", project.getPrefixDirectori());
         prop.put("genapp_version", Versio.VERSIO);
 
-        prop.put("artifactid", project.projectName.toLowerCase() + "-front");
+        prop.put("artifactid", project.getProjectName().toLowerCase() + "-front");
         prop.put("prefix", project.getPrefix().toUpperCase());
 
         prop.put("prefixLowercase", project.getPrefix().toLowerCase());
-
-        prop.put("role_admin", "<role-name>" + project.getPrefix().toLowerCase() + "_ADMIN</role-name>");
-
-        prop.put("role_user", "<role-name>" + project.getPrefix().toLowerCase() + "_USER</role-name>");
 
         prop.put("spring_version", "${spring.version}");
 
@@ -691,25 +688,21 @@ public class CodeGenerator {
 
             // (2) Còpia inicial: Copiar estructura directoris des de recursos
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
             prop.put("app_current_version", appCurrentVersion);
-            prop.put("name_uppercase", project.projectName.toUpperCase());
+            prop.put("name_uppercase", project.getProjectName().toUpperCase());
 
             prop.put("prefixdirectori", project.getPrefixDirectori());
             prop.put("genapp_version", Versio.VERSIO);
 
-            prop.put("artifactid", project.projectName.toLowerCase() + "-back");
+            prop.put("artifactid", project.getProjectName().toLowerCase() + "-back");
             prop.put("prefix", project.getPrefix().toUpperCase());
 
             prop.put("prefixLowercase", project.getPrefix().toLowerCase());
-
-            prop.put("role_admin", "<role-name>" + project.getPrefix().toLowerCase() + "_ADMIN</role-name>");
-
-            prop.put("role_user", "<role-name>" + project.getPrefix().toLowerCase() + "_USER</role-name>");
 
             prop.put("spring_version", "${spring.version}");
 
@@ -721,6 +714,19 @@ public class CodeGenerator {
             prop.put("basedir", "${basedir}");
 
             prop.put("dollar", "$");
+            
+            prop.put("admin_roles", project.getRolesAdminArray());
+            prop.put("user_roles", project.getRolesUserArray());
+            prop.put("ws_roles", project.getRolesWsArray());
+            
+            
+            prop.put("virtual_roles_map", generateVirtualRolesMap(project));
+            
+            
+            prop.put("admin_virtual_roles_map", generateVirtualRolesMapForAdmin(project));
+            prop.put("basic_virtual_roles_map", generateVirtualRolesMapForBasic(project));
+                    
+            
 
             TableInfo fileTable = CodeGenUtils.getSqlTableFile(tables);
             if (fileTable == null) {
@@ -944,7 +950,7 @@ public class CodeGenerator {
         }
     }
 
-    private static void generateUtils(Project project, File projectDir, String packagePath, List<String> moduls,
+    private static void generateCommonsCode(Project project, File projectDir, String packagePath, List<String> moduls,
             String resourceBase, String appCurrentVersion) throws Exception {
         {
             // (a) Afegir a la llista de mòduls a compilar
@@ -953,16 +959,35 @@ public class CodeGenerator {
             moduls.add(project.getPrefixDirectori() + utilsName);
 
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
             prop.put("app_current_version", appCurrentVersion);
-            prop.put("name_uppercase", project.projectName.toUpperCase());
+            prop.put("name_uppercase", project.getProjectName().toUpperCase());
             prop.put("prefixdirectori", project.getPrefixDirectori());
-            prop.put("artifactid", project.projectName.toLowerCase() + "-commons");
+            prop.put("artifactid", project.getProjectName().toLowerCase() + "-commons");
             prop.put("prefix", project.getPrefix().toUpperCase());
+            prop.put("admin_roles", project.getRolesAdminArray());
+            prop.put("user_roles", project.getRolesUserArray());
+            prop.put("ws_roles", project.getRolesWsArray());
+            
+            /*
+            public static final String ROLE_ ADMIN = "ROLE_ ADMIN";
+            public static final String ROLE_ USER = "ROLE_ USER";
+            */
+            prop.put("virtual_roles", generateVirtualRoles(project));
+            
+            
+            /*
+            public static final String ROLE_EJB_FULL_ ACCESS  = ${prefix}_ ADMIN;
+            public static final String ROLE_EJB_BASIC_ ACCESS = ${prefix}_ USER;
+            public static final String ROLE_EJB_WS_ ACCESS = ${prefix}_ WS;
+            */
+            prop.put("ejb_roles", generateEjbRoles(project));
+            
+            
 
             File dstBaseDir = new File(projectDir, project.getPrefixDirectori() + utilsName);
 
@@ -986,8 +1011,121 @@ public class CodeGenerator {
 
         }
     }
+    
+    
+    
+    /*
+    public static final String ROLE_ ADMIN = "ROLE_ ADMIN";
+    public static final String ROLE_ USER = "ROLE_ USER";
+    */
+    public static List<String> generateVirtualRoles(Project project) {
+        
+        return new ArrayList<String>(generateVirtualRolesMap(project).values());
+        
+    }
+    
+    
+    public static Map<String,String> generateVirtualRolesMap(Project project) {
+        
+        Map<String,String>  fullvirtualRoles = new TreeMap<String, String>();
+        
+        {
+            Map<String, String> virtualRoles = generateVirtualRolesMapForAdmin(project);
+            
+            fullvirtualRoles.putAll(virtualRoles);
+        }
+        {
+            Map<String, String> virtualRoles = generateVirtualRolesMapForBasic(project);
+            
+            fullvirtualRoles.putAll(virtualRoles);
+        }
+        
+        return fullvirtualRoles;
+        
+        
+    }
 
-    private static void generateCommonCode(Project project, File projectDir, String packagePath, List<String> moduls,
+    private static Map<String, String> generateVirtualRolesMapForBasic(Project project) {
+        Map<String,String>  virtualRoles = new TreeMap<String, String>();
+        String[] roles = project.getRolesUserArray();
+        for (int r = 0; r < roles.length ; r++ ) {
+            String role = roles[r];
+            if (role.toUpperCase().startsWith(project.getPrefix().toUpperCase() + "_")) { 
+                virtualRoles.put(role, "ROLE" + role.substring(role.indexOf('_')));
+            } else {
+                virtualRoles.put(role, "ROLE_" + role);
+            }
+        }
+        return virtualRoles;
+    }
+
+    private static Map<String, String> generateVirtualRolesMapForAdmin(Project project) {
+        Map<String,String>  virtualRoles = new TreeMap<String, String>();
+        String[] roles = project.getRolesAdminArray();
+        for (int r = 0; r < roles.length ; r++ ) {
+            String role = roles[r];
+            if (role.toUpperCase().startsWith(project.getPrefix().toUpperCase() + "_")) { 
+                virtualRoles.put(role, "ROLE" + role.substring(role.indexOf('_')));
+            } else {
+                virtualRoles.put(role, "ROLE_" + role);
+            }
+        }
+        return virtualRoles;
+    }
+    
+    
+    
+    /*
+    public static final String ROLE_EJB_FULL _ ACCESS  = ${prefix}_ ADMIN;
+    public static final String ROLE_EJB_BASIC _ ACCESS = ${prefix}_ USER;
+    public static final String ROLE_EJB_WS _ ACCESS = ${prefix}_ WS;
+    */
+   public static Map<String, String> generateEjbRoles(Project project) {
+        
+        Map<String, String>  ejbRoles = new HashMap<String, String>();
+        {
+            String[] roles = project.getRolesAdminArray();
+            for (int r = 0; r < roles.length ; r++ ) {
+                String role = roles[r];
+                if (role.equals(project.getPrefix().toUpperCase() + "_" + "ADMIN")) { 
+                    ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS", role);
+                } else {
+                    ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS" + role.toUpperCase() , role.toUpperCase());
+                }
+            }
+        }
+        {
+            String[] roles = project.getRolesUserArray();
+            for (int r = 0; r < roles.length ; r++ ) {
+                String role = roles[r];
+                if (role.equals(project.getPrefix().toUpperCase() + "_" + "USER")) { 
+                    ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS", role);
+                } else {
+                    ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS" + role.toUpperCase() , role.toUpperCase());
+                }
+            }
+        }
+        
+        {
+            String[] roles = project.getRolesWsArray();
+            for (int r = 0; r < roles.length ; r++ ) {
+                String role = roles[r];
+                if (role.equals(project.getPrefix().toUpperCase() + "_" + "WS")) { 
+                    ejbRoles.put("ROLE_EJB_" + "WS_ACCESS", role);
+                } else {
+                    ejbRoles.put("ROLE_EJB_" + "WS_ACCESS" + role.toUpperCase() , role.toUpperCase());
+                }
+            }
+        }
+
+   
+        return ejbRoles;
+
+    }
+    
+    
+
+    private static void generateBaseDirsCode(Project project, File projectDir, String packagePath, List<String> moduls,
             String resourceBase, String appCurrentVersion) throws Exception, FileNotFoundException, IOException {
         {
             // (0) Afegir a la llista de mòduls a compilar
@@ -1006,16 +1144,16 @@ public class CodeGenerator {
             Map<String, Object> prop = new HashMap<String, Object>();
             prop.put("package", project.getPackageName());
             prop.put("genapp_version", Versio.VERSIO);
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package.path", packagePath);
-            prop.put("fullname", project.projectName); // .toLowerCase()
+            prop.put("fullname", project.getProjectName()); // .toLowerCase()
             prop.put("moduls", moduls);
             prop.put("version_txt_template_file", "${version_txt_template_file}");
             prop.put("version_txt_file", "${version_txt_file}");
             prop.put("project_version", "${project.version}");
             prop.put("project_basedir", "${project.basedir}");
             prop.put("app_current_version", appCurrentVersion);
-            prop.put("name_uppercase", project.projectName.toUpperCase());
+            prop.put("name_uppercase", project.getProjectName().toUpperCase());
 
             prop.put("prefixdirectori", project.getPrefixDirectori());
 
@@ -1046,7 +1184,7 @@ public class CodeGenerator {
             // (3) generar fitxer de noms curts
 
             StringBuffer shortnames = new StringBuffer();
-            shortnames.append("_projectName_=" + project.projectName.toLowerCase() + "\n");
+            shortnames.append("_projectName_=" + project.getProjectName().toLowerCase() + "\n");
             shortnames.append("_projectPrefix_=" + project.getPrefix().toLowerCase() + "\n");
 
             TableInfo[] taules = project.getTables();
@@ -1156,7 +1294,7 @@ public class CodeGenerator {
             */
             // (2) Còpia inicial: Copiar estructura directoris des de recursos
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
             //System.out.println("project.getPackageName() = " + project.getPackageName());
@@ -1175,10 +1313,10 @@ public class CodeGenerator {
 
             prop.put("packageInverse", packageInverse.toString());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
             prop.put("app_current_version", appCurrentVersion);
-            prop.put("name_uppercase", project.projectName.toUpperCase());
+            prop.put("name_uppercase", project.getProjectName().toUpperCase());
             prop.put("prefixdirectori", project.getPrefixDirectori());
             prop.put("prefix", project.getPrefix().toUpperCase());
             prop.put("dollar", "$");
@@ -1190,6 +1328,8 @@ public class CodeGenerator {
 
             prop.put("project_version", "${project.version}");
             prop.put("hibernate_version", "${hibernate.version}");
+            
+            prop.put("ws_roles", project.getRolesWsArray());
 
             prop.put("springsecurity_version", "${springsecurity.version}");
 
@@ -1289,10 +1429,10 @@ public class CodeGenerator {
             // (b) Adaptar pom.xml
 
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
 
             // TODO Parxe !!!!
@@ -1304,6 +1444,10 @@ public class CodeGenerator {
             prop.put("app_current_version", appCurrentVersion);
 
             prop.put("package_ejb", ejbPackage);
+            
+            prop.put("admin_roles", project.getRolesAdminArray());
+            prop.put("user_roles", project.getRolesUserArray());
+            prop.put("ws_roles", project.getRolesWsArray());
 
             final String logicPackage = "logic";
 
@@ -1368,7 +1512,7 @@ public class CodeGenerator {
 
             // (d) Traduccions
             // (3) Missatges
-            DaoEJBGenerator.generaMissatges(project.projectName, project.getTables(), ejbDir, project.getLanguages());
+            DaoEJBGenerator.generaMissatges(project.getProjectName(), project.getTables(), ejbDir, project.getLanguages());
 
             // (d) Afegir a la llista de mòduls a compilar
             moduls.add(project.getPrefixDirectori() + ejbName);
@@ -1396,10 +1540,10 @@ public class CodeGenerator {
         {
 
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
 
             // TODO Parxe !!!!
@@ -1423,7 +1567,7 @@ public class CodeGenerator {
             // Integrar JPA i persistece #28
             prop.put("dollar", "$");
             prop.put("package", project.getPackageName());
-            prop.put("persistencename", project.projectName.toLowerCase() + "PU");
+            prop.put("persistencename", project.getProjectName().toLowerCase() + "PU");
             List<String> llistaJPABeans = Stream.of(tables).filter(TableInfo::isGenerate)
                     .map(table -> jpaPackage + "." + table.nameJava + "JPA").collect(Collectors.toList());
             prop.put("classes", llistaJPABeans);
@@ -1583,10 +1727,10 @@ public class CodeGenerator {
 
             // (b) Adaptar pom.xml
             Map<String, Object> prop = new HashMap<String, Object>();
-            prop.put("name", project.projectName.toLowerCase());
+            prop.put("name", project.getProjectName().toLowerCase());
             prop.put("package", project.getPackageName());
 
-            prop.put("fullname", project.projectName);
+            prop.put("fullname", project.getProjectName());
             prop.put("packagePath", packagePath);
 
             // TODO Parxe !!!!
@@ -1670,7 +1814,7 @@ public class CodeGenerator {
             ModelGenerator.generateInterfacesManager(packages, project).saveToPath(modelSrcDir);
 
             // Falta generar <Project>DaoManager
-            ModelGenerator.generateManagerOfDaoManagers(packages.modelPackage, project.projectName)
+            ModelGenerator.generateManagerOfDaoManagers(packages.modelPackage, project.getProjectName())
                     .saveToPath(modelSrcDir);
 
             // (e) Afegir a la llista de moduls a compilar

@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**ROLE_EJB_FULL_ACCESS** | **String** | Constant ROLE_EJB_FULL_ACCESS |  [readonly] |
-|**ROLE_EJB_BASIC_ACCESS** | **Integer** | Constant ROLE_EJB_BASIC_ACCESS |  [readonly] |
-|**ROLE_EJB_WS_ACCESS** | **Integer** | Constant ROLE_EJB_WS_ACCESS |  [readonly] |
+|**ROLEEJBFULLACCESS** | **String** | Constant ROLE_EJB_FULL _ ACCESS |  [readonly] |
+|**ROLEEJBBASICACCESS** | **Integer** | Constant ROLE_EJB_BASIC _ ACCESS |  [readonly] |
+|**ROLEEJBWSACCESS** | **Integer** | Constant ROLE_EJB_WS _ ACCESS |  [readonly] |
 
 
 

@@ -20,7 +20,7 @@ public class DaoHibernateGenerator {
     public static SourceFile generateCodeForManager(String tableNameSQL, String tableNameJava, String sqldaoPackage,
             BasicPackages packages, String jpaPackage, FieldInfo[] fields, Project project, BeanCode beanCode) {
 
-        String databaseManager = Project.getDBManagerName(project.projectName);
+        String databaseManager = Project.getDBManagerName(project.getProjectName());
         DaoCommonCode dao = beanCode.daoCommonCode;
         String className = tableNameJava + "JPA";
 

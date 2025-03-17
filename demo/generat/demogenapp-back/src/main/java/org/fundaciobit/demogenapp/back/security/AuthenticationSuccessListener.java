@@ -27,9 +27,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
-
-
-
 /**
  * 
  * @author anadal
@@ -62,7 +59,7 @@ public class AuthenticationSuccessListener implements ApplicationListener<Intera
         log.info(" =================================================================");
         log.info(" ============ Login Usuari: " + username);
 
-        // Cercam si té el ROLE_USER o ROLE_ADMIN
+        // Cercam si té el rol basic i/o admin
         Collection<GrantedAuthority> realAuthorities = user.getAuthorities();
         boolean containsRoleUser = false;
         boolean containsRoleAdmin = false;
@@ -71,9 +68,11 @@ public class AuthenticationSuccessListener implements ApplicationListener<Intera
             log.info("Rol REAL : " + rol);
             if (Constants.ROLE_USER.equals(rol)) {
                 containsRoleUser = true;
+                continue;
             }
             if (Constants.ROLE_ADMIN.equals(rol)) {
                 containsRoleAdmin = true;
+                continue;
             }
         }
         UserInfo info = null;

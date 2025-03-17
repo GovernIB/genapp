@@ -499,7 +499,7 @@ public class BackGenerator {
         str.append("import org.springframework.web.multipart.commons.CommonsMultipartFile;\n");
       }
       
-      str.append("import " +  packageForm + "." + project.projectName + "BaseForm;\n");
+      str.append("import " +  packageForm + "." + project.getProjectName() + "BaseForm;\n");
 
       str.append("import " + packageJPA + "." + jpa + ";\n");
       str.append("\n");
@@ -507,7 +507,7 @@ public class BackGenerator {
       str.append(" *  ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!! \n");
       str.append(" * Created by GenApp. Do not modify.\n");
       str.append(" */\n");
-      str.append("public class " + form + " extends " + project.projectName + "BaseForm {\n");
+      str.append("public class " + form + " extends " + project.getProjectName() + "BaseForm {\n");
       //str.append("  \n");
       //str.append("  protected final Log log = LogFactory.getLog(getClass());\n");
       str.append("  \n");
@@ -726,7 +726,7 @@ public class BackGenerator {
       code.append("\n");
       code.append("import " + Field.class.getName() + ";\n");
       code.append("import " + OrderBy.class.getName() + ";\n");
-      code.append("import " + packageForm + "." + project.projectName + "BaseFilterForm;\n");
+      code.append("import " + packageForm + "." + project.getProjectName() + "BaseFilterForm;\n");
       code.append("\n");
       code.append("import " + packages.fieldsPackage + "." + fieldsClass + ";\n");
       code.append("\n");
@@ -737,7 +737,7 @@ public class BackGenerator {
       code.append(" */\n");
       code.append("@Component\n");
       code.append("public class " + form + " extends " 
-          + project.projectName + "BaseFilterForm implements " + fieldsClass + " {\n");
+          + project.getProjectName() + "BaseFilterForm implements " + fieldsClass + " {\n");
       code.append("\n");
       
   

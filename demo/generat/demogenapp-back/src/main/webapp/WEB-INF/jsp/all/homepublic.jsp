@@ -24,7 +24,7 @@ This page is generated automatically. Please edit.
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td valign="top">
-<a href="http://blog.fundaciobit.org/category/admindigital/" target="_blank">
+<a href="https://governdigital.fundaciobit.org" target="_blank">
 <img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit" title="Fundació Bit"/>
 </a>
 </td>

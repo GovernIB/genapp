@@ -7,7 +7,7 @@
 %><%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 <c:set var="url" value="${urlActual}" />
 <div>
-    <h5>Menú ROLE_ADMIN</h5>
+    <h5>Menú ADMIN ACCESS</h5>
 
     <%
     List<List<MenuItem>> menus = new ArrayList<List<MenuItem>>();
@@ -15,7 +15,7 @@
     MenuItem menuGoogle = new MenuItem("=MENU Google", "", "http://www.google.com", 0);
     MenuItem menumeneame = new MenuItem("=MENU Meneame", "", "http://www.meneame.net", 1000);
     */
-    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Constants.DEM_ADMIN); //, menuGoogle, menumeneame);
+    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Constants.MENU_BACK_ADMIN_ACCESS); //, menuGoogle, menumeneame);
     menus.add(discoveredMenus);
     %>
     

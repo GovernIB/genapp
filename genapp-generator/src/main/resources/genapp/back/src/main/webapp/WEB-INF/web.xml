@@ -159,8 +159,9 @@
             <url-pattern>/common/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>${prefix}_USER</role-name>
-            <role-name>${prefix}_ADMIN</role-name>
+            <#list virtual_roles_map as role_key,role_value>            
+            <role-name>${role_key}</role-name>
+            </#list>
         </auth-constraint>
     </security-constraint>
 
@@ -170,7 +171,9 @@
             <url-pattern>/user/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>${prefix}_USER</role-name>
+            <#list basic_virtual_roles_map as role_key,role_value>
+            <role-name>${role_key}</role-name>
+            </#list>
         </auth-constraint>
     </security-constraint>
     
@@ -182,7 +185,9 @@
             <url-pattern>/webdb/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>${prefix}_ADMIN</role-name>
+            <#list admin_virtual_roles_map as role_key,role_value>
+            <role-name>${role_key}</role-name>
+            </#list>
         </auth-constraint>
     </security-constraint>
     
@@ -192,15 +197,19 @@
 		<realm-name>Govern de les Illes Balears</realm-name>
 	</login-config>
 
+    <#list admin_virtual_roles_map as role_key,role_value>
 	<security-role>
-		<description>Administrador de ${fullname}</description>
-		<role-name>${prefix}_ADMIN</role-name>
+		<description>${role_key}: Administrador de ${fullname}</description>
+		<role-name>${role_key}</role-name>
 	</security-role>
+    </#list>
 
+    <#list basic_virtual_roles_map as role_key,role_value>
 	<security-role>
-		<description>Usuari de ${fullname}</description>
-		<role-name>${prefix}_USER</role-name>
+		<description>${role_key}: Usuari de ${fullname}</description>
+		<role-name>${role_key}</role-name>
 	</security-role>
+    </#list>
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

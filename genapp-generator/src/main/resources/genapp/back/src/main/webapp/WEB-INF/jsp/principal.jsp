@@ -25,7 +25,7 @@ This page is generated automatically. Please edit.
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td valign="top">
 <a href="http://blog.fundaciobit.org/category/admindigital/" target="_blank">
-<img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit" title="Fundació Bit"/>
+<img src="<c:url value="/img/fundaciobit.png"/>"  alt="FundaciÃ³ Bit" title="FundaciÃ³ Bit"/>
 </a>
 </td>
 </tr>
@@ -37,8 +37,9 @@ This page is generated automatically. Please edit.
 
 <br/>
 Username: ${dollar}{loginInfo.username}<br/>
-&#36;{${prefixLowercase}:hasRole(ROLE_ADMIN)}= ${dollar}{${prefixLowercase}:hasRole('ROLE_ADMIN')}<br/>
-&#36;{${prefixLowercase}:hasRole(ROLE_USER) }= ${dollar}{${prefixLowercase}:hasRole('ROLE_USER') }<br/>
+
+&#36;{${prefixLowercase}:hasRole(<#list admin_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>)}= ${dollar}{${prefixLowercase}:hasRole(<#list admin_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>)}<br/>
+&#36;{${prefixLowercase}:hasRole(<#list basic_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>) }= ${dollar}{${prefixLowercase}:hasRole(<#list basic_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>) }<br/>
 Locale = <%=LocaleContextHolder.getLocale() %> <br/>
 lang = ${symbol_dollar}{lang} <br/>
 > UserInformation:<br/>

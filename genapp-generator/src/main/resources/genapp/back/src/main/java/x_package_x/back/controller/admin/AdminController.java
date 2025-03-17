@@ -29,33 +29,33 @@ import ${package}.commons.utils.Constants;
 @MenuOption(
         labelCode = "=Menú ADMIN Option 1",
         order = 10,
-        group = Constants.${prefix}_ADMIN,
+        group = Constants.MENU_BACK_ADMIN_ACCESS,
         baseLink = "/admin/option1",
         relativeLink = "")
 @MenuOption(
         labelCode = "=Menú ADMIN Option 2",
         order = 20,
-        group = Constants.${prefix}_ADMIN,
+        group = Constants.MENU_BACK_ADMIN_ACCESS,
         baseLink = "/admin/option2",
         relativeLink = "",
         addSeparatorBefore = true)
 @MenuOption(
         labelCode = "=Contents of ${name}.properties file",
         order = 1000,
-        group = Constants.${prefix}_ADMIN,
+        group = Constants.MENU_BACK_ADMIN_ACCESS,
         baseLink = "/admin/properties",
         relativeLink = "",
         addSeparatorBefore = true)
 @MenuOption(
         labelCode = "=Contents of ${name}.system.properties file",
         order = 1010,
-        group = Constants.${prefix}_ADMIN,
+        group = Constants.MENU_BACK_ADMIN_ACCESS,
         baseLink = "/admin/systemproperties",
         relativeLink = "")
 @MenuOption(
         labelCode = "=Reload contents of property files",
         order = 1020,
-        group = Constants.${prefix}_ADMIN,
+        group = Constants.MENU_BACK_ADMIN_ACCESS,
         baseLink = "/admin/reloadproperties",
         relativeLink = "")
 public class AdminController {

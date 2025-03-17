@@ -144,7 +144,7 @@ public class CodeGenUtils {
 
     public static TableInfo findTableInfoByTableSQLName(Project project, String sqlTableName) {
 
-        for (TableInfo table : project.tables) {
+        for (TableInfo table : project.getTables()) {
 
             if (table.name.equals(sqlTableName)) {
                 return table;

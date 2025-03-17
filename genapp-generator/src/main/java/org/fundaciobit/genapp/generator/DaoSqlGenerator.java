@@ -31,9 +31,9 @@ public class DaoSqlGenerator {
     
     StringBuffer manager = new StringBuffer();
     
-    String iname = "I" + project.projectName + "DaoManagers";
+    String iname = "I" + project.getProjectName() + "DaoManagers";
     
-    String name = project.projectName + "SqlDaoManagers";
+    String name = project.getProjectName() + "SqlDaoManagers";
     
     manager.append("package " + sqldaoPackage + ";\n");
     manager.append("\n");
@@ -43,8 +43,8 @@ public class DaoSqlGenerator {
     manager.append("public final class " + name + " implements " + iname + "{\n");
     
     
-    for (int i = 0; i < project.tables.length; i++) {
-      String managerFileName = project.tables[i].getNameJava() + "Manager";
+    for (int i = 0; i < project.getTables().length; i++) {
+      String managerFileName = project.getTables()[i].getNameJava() + "Manager";
       manager.append("\tpublic I" + managerFileName + " get" + managerFileName + "() {\n");
       manager.append("\t  return " + managerFileName + ".getInstance();\n");
       manager.append("\t};\n");
@@ -71,7 +71,7 @@ public class DaoSqlGenerator {
     String sqldaoPackage, BasicPackages packages,
     FieldInfo[] fields, Project project, BeanCode beanCode) {
     
-    String projectName = project.projectName;
+    String projectName = project.getProjectName();
     String databaseManager = Project.getDBManagerName(projectName);
     DaoCommonCode dao = beanCode.daoCommonCode;
         

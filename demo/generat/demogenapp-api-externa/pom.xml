@@ -93,7 +93,7 @@
                             <outputFileName>openapi_externa_public</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.externa.config</package>
-                                <package>org.fundaciobit.demogenapp.api.externa.all</package>
+                                <package>org.fundaciobit.demogenapp.api.externa.all.exemplepublic</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -108,7 +108,7 @@
                             <outputFileName>openapi_externa_secure</outputFileName>
                             <resourcePackages>
                                 <package>org.fundaciobit.demogenapp.api.externa.config</package>
-                                <package>org.fundaciobit.demogenapp.api.externa.secure</package>
+                                <package>org.fundaciobit.demogenapp.api.externa.secure.exemplesecuritzat</package>
                             </resourcePackages>
                         </configuration>
                     </execution>

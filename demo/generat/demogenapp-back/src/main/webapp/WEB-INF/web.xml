@@ -159,8 +159,8 @@
             <url-pattern>/common/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>DEM_USER</role-name>
             <role-name>DEM_ADMIN</role-name>
+            <role-name>DEM_USER</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -193,12 +193,12 @@
 	</login-config>
 
 	<security-role>
-		<description>Administrador de DemoGenApp</description>
+		<description>DEM_ADMIN: Administrador de DemoGenApp</description>
 		<role-name>DEM_ADMIN</role-name>
 	</security-role>
 
 	<security-role>
-		<description>Usuari de DemoGenApp</description>
+		<description>DEM_USER: Usuari de DemoGenApp</description>
 		<role-name>DEM_USER</role-name>
 	</security-role>
 

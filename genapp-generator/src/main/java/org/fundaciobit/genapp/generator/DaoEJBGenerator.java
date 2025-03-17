@@ -3,6 +3,7 @@ package org.fundaciobit.genapp.generator;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.fundaciobit.genapp.FieldInfo;
@@ -140,7 +141,7 @@ public class DaoEJBGenerator {
 
         manager.append("\n");
 
-        manager.append("    public static final String JNDI_NAME = \"java:app/" + projecte.projectName.toLowerCase()
+        manager.append("    public static final String JNDI_NAME = \"java:app/" + projecte.getProjectName().toLowerCase()
                 + "-ejb/" + managerFileNameEJB + "!" + ejbPackage + "." + managerFileName + "\";\n\n");
 
         // Sobre escriure findByPrimaryKey
@@ -206,8 +207,23 @@ public class DaoEJBGenerator {
         manager.append("\n");
 
         // String prefix = projecte.getPrefix().toUpperCase();
-        final String allRoles = "{Constants.ROLE_EJB_FULL_ACCESS, Constants.ROLE_EJB_BASIC_ACCESS, Constants.ROLE_EJB_WS_ACCESS}";
-        // "{" + prefix + "_ADMIN," + "Constants." + prefix + "_USER}";
+        //final String allRoles = "{Constants.ROLE_EJB_FULL_ ACCESS, Constants.ROLE_EJB_BASIC_ ACCESS, Constants.ROLE_EJB_WS_ ACCESS}";
+        
+        final String allRoles;
+        {
+            StringBuilder sb = new StringBuilder();
+            Map<String, String> ejbRoles = CodeGenerator.generateEjbRoles(projecte);
+            for (String key: ejbRoles.keySet()) {
+                if (sb.length() == 0) {
+                    sb.append("Constants." + key);
+                } else {
+                    sb.append(", Constants." + key);
+                }
+            }
+            
+            allRoles = "{" + sb.toString() + "}";
+        }
+        
 
         TableInfo[] tables = projecte.getTables();
 

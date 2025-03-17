@@ -25,13 +25,13 @@
 		<sec:intercept-url pattern="/error.jsp" access="permitAll"/>
 		<sec:intercept-url pattern="/index.jsp" access="permitAll"/>
 	
-        <sec:intercept-url pattern="/common/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/common/**" access="hasAnyRole(<#list basic_virtual_roles_map as role_key,role>'${role?upper_case}',</#list><#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)"/>
         
-        <sec:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+        <sec:intercept-url pattern="/user/**" access="hasRole(<#list basic_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)"/>
         
-        <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/admin/**" access="hasRole(<#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)"/>
         
-        <sec:intercept-url pattern="/webdb/**" access="hasRole('ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/webdb/**" access="hasRole(<#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)"/>
 
 <!--  OTHER EXAMPLES 
 		<sec:intercept-url pattern="/soli/**" access="hasRole('ROLE_SOLI')"/>
@@ -43,17 +43,9 @@
 		<sec:intercept-url pattern="/cola/**" access="hasRole('ROLE_COLA')"/>
 		
 		<sec:intercept-url pattern="/aden/**" access="hasRole('ROLE_ADEN')"/>
-
-		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-		
-		<sec:intercept-url pattern="/webdb/**" access="hasRole('ROLE_ADMIN')"/>
 		
 -->
-		
-		
 
-		
-		
     <sec:custom-filter position="PRE_AUTH_FILTER" ref="preauthFilter"/>
 		<sec:session-management session-fixation-protection="none"/>
 	</sec:http>
@@ -61,7 +53,6 @@
 	<sec:authentication-manager alias="authenticationManager">
 		<sec:authentication-provider ref="preAuthenticatedAuthenticationProvider"/>
 	</sec:authentication-manager>
-	
 
 	<bean id="preAuthenticatedProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
 
@@ -74,10 +65,12 @@
 	<bean id="attributes2GrantedAuthoritiesMapper" class="${package}.back.security.RolesBasedAttributes2GrantedAuthoritiesMapper">
 		<property name="baseRoleMapping">
 			<map>
-				<entry key="${prefix}_USER" value="ROLE_USER"/>
-				<entry key="${prefix}_ADMIN" value="ROLE_ADMIN"/>
-				<entry key="@${prefix}_USER" value="ROLE_USER"/>
-                <entry key="@${prefix}_ADMIN" value="ROLE_ADMIN"/>
+                <#list virtual_roles_map as role_key,role_value>
+                <entry key="${role_key}" value="${role_value}"/>
+                </#list>
+                <#list virtual_roles_map as role_key,role_value>
+                <entry key="@${role_key}" value="${role_value}"/>
+                </#list>
 			</map>
 		</property>
 	</bean>
@@ -86,8 +79,12 @@
 	<bean id="mappableAttributesRetriever" class="${package}.back.security.RolesBasedMappableAttributesRetriever">
 		<property name="defaultMappableAttributes">
 			<set>
-				<value>${prefix}_USER</value>
-				<value>${prefix}_ADMIN</value>
+            <#list user_roles as role>
+                <value>${role?upper_case}</value>
+            </#list>
+            <#list admin_roles as role>
+				<value>${role?upper_case}</value>
+            </#list>
 			</set>
 		</property>
 	</bean>

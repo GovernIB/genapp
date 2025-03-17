@@ -33,6 +33,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.Project;
+import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.generator.CodeGenerator;
 import org.fundaciobit.genapp.generator.SQL2Java;
 import org.fundaciobit.genapp.generator.gui.SharedData.ProjectType;
@@ -659,24 +660,27 @@ public class RebApp extends JFrame {
     }
 
     public static void cleanProject(Project project) {
-        for (int i = 0; i < project.tables.length; i++) {
+        
+        TableInfo[] tables = project.getTables();
+        
+        for (int i = 0; i < tables.length; i++) {
 
-            if (project.tables[i].getNameJava() == null) {
-                project.tables[i].setNameJava(project.tables[i].getName());
+            if (tables[i].getNameJava() == null) {
+                tables[i].setNameJava(tables[i].getName());
             }
             String[] idiomes = project.getLanguages();
-            Map<String, String> labelsTaula = project.tables[i].getLabels();
+            Map<String, String> labelsTaula = tables[i].getLabels();
             if (labelsTaula == null || labelsTaula.size() == 0) {
                 labelsTaula = new HashMap<String, String>();
                 for (String lang : idiomes) {
-                    labelsTaula.put(lang, project.tables[i].getName());
+                    labelsTaula.put(lang, tables[i].getName());
                 }
-                project.tables[i].setLabels(labelsTaula);
+                tables[i].setLabels(labelsTaula);
             }
 
-            log.info(project.tables[i].getNameJava() + "\t" + project.tables[i].getName());
+            log.info(tables[i].getNameJava() + "\t" + tables[i].getName());
 
-            for (FieldInfo fi : project.tables[i].fields) {
+            for (FieldInfo fi : tables[i].fields) {
                 Map<String, String> labels = fi.getLabels();
                 for (String lang : idiomes) {
                     if (labels.get(lang) == null) {

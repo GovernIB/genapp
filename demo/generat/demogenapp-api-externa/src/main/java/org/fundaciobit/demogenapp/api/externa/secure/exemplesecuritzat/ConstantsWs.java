@@ -16,30 +16,30 @@ import org.fundaciobit.demogenapp.commons.utils.Constants;
 public class ConstantsWs {
 
     @Schema(
-            description = "Constant ROLE_EJB_FULL_ACCESS",
+            description = "Constant ROLE_EJB_FULL _ ACCESS",
             nullable = false,
-            defaultValue = "" + Constants.ROLE_EJB_FULL_ACCESS,
+            defaultValue = "Constants.ROLE_EJB_FULL _ ACCESS",
             implementation = String.class,
             required = true,
             accessMode = AccessMode.READ_ONLY)
-    public String ROLE_EJB_FULL_ACCESS;
+    public String ROLEEJBFULLACCESS;
 
     @Schema(
-            description = "Constant ROLE_EJB_BASIC_ACCESS",
+            description = "Constant ROLE_EJB_BASIC _ ACCESS",
             nullable = false,
-            defaultValue = "" + Constants.ROLE_EJB_BASIC_ACCESS,
+            defaultValue = "Constants.ROLE_EJB_BASIC _ACCESS",
             implementation = Integer.class,
             required = true,
             accessMode = AccessMode.READ_ONLY)
-    public String ROLE_EJB_BASIC_ACCESS;
+    public String ROLEEJBBASICACCESS;
 
     @Schema(
-            description = "Constant ROLE_EJB_WS_ACCESS",
+            description = "Constant ROLE_EJB_WS _ ACCESS",
             nullable = false,
-            defaultValue = "" + Constants.ROLE_EJB_BASIC_ACCESS,
+            defaultValue = "Constants.ROLE_EJB_BASIC _ACCESS",
             implementation = Integer.class,
             required = true,
             accessMode = AccessMode.READ_ONLY)
-    public String ROLE_EJB_WS_ACCESS;
+    public String ROLEEJBWSACCESS;
 
 }

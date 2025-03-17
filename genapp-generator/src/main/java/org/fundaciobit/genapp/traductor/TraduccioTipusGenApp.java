@@ -44,7 +44,7 @@ public class TraduccioTipusGenApp implements ITraduccioTipus {
     public List<ITraduccioItem> read() throws Exception {
 
         List<ITraduccioItem> llista = new ArrayList<ITraduccioItem>();
-        for (TableInfo table : SharedData.data.tables) {
+        for (TableInfo table : SharedData.data.getTables()) {
 
             TraduccioGenAppTableItem trat = new TraduccioGenAppTableItem(getTipus(), table,
                     table.nameJava.toLowerCase() + "." + table.nameJava.toLowerCase());

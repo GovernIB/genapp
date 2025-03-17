@@ -43,25 +43,25 @@
 	    </c:forEach>
 	    --%>
 
-            <sec:authorize access="hasRole('ROLE_USER')">
+            <sec:authorize access="hasRole(<#list basic_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)">
                 <li class="nav-item"><a
                     class="nav-link ${dollar}{(pipella eq 'user')?'active' : '' }"
-                    href="<c:url value="/canviarPipella/user"/>">ROLE_USER</a>
+                    href="<c:url value="/canviarPipella/user"/>">BASIC ACCESS</a>
                 </li>
             </sec:authorize>
 
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <sec:authorize access="hasRole(<#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)">
                 <li class="nav-item"><a
                     class="nav-link ${dollar}{(pipella eq 'admin')?'active' : '' }"
-                    href="<c:url value="/canviarPipella/admin"/>">ROLE_ADMIN</a>
+                    href="<c:url value="/canviarPipella/admin"/>">ADMIN ACCESS</a>
                 </li>
             </sec:authorize>
 
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <sec:authorize access="hasRole(<#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)">
                 <li class="nav-item"><a
                     class="nav-link ${dollar}{(pipella eq 'webdb')?'active' : '' }"
-                    href="<c:url value="/canviarPipella/webdb"/>">
-                        WebDatabase</a></li>
+                    href="<c:url value="/canviarPipella/webdb"/>">WebDatabase</a>
+                </li>
             </sec:authorize>
 
             <c:if test="${dollar}{prefixLowercase}:isDesenvolupament()}">

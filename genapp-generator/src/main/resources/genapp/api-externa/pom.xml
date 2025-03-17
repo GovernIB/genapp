@@ -94,7 +94,7 @@
                             <outputFileName>openapi_externa_public</outputFileName>
                             <resourcePackages>
                                 <package>${package}.api.externa.config</package>
-                                <package>${package}.api.externa.all</package>
+                                <package>${package}.api.externa.all.exemplepublic</package>
                             </resourcePackages>
                         </configuration>
                     </execution>
@@ -109,7 +109,7 @@
                             <outputFileName>openapi_externa_secure</outputFileName>
                             <resourcePackages>
                                 <package>${package}.api.externa.config</package>
-                                <package>${package}.api.externa.secure</package>
+                                <package>${package}.api.externa.secure.exemplesecuritzat</package>
                             </resourcePackages>
                         </configuration>
                     </execution>

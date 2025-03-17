@@ -45,7 +45,9 @@
             <url-pattern>/secure/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>${prefix}_WS</role-name>
+            <#list ws_roles as role>
+            <role-name>${role?upper_case}</role-name>
+            </#list>
         </auth-constraint>
     </security-constraint>
 
@@ -54,9 +56,20 @@
         <realm-name>Govern de les Illes Balears</realm-name>
     </login-config>
 
+    <#list ws_roles as role>
     <security-role>
-        <description>Usuari Aplicació de ${fullname}</description>
-        <role-name>${prefix}_WS</role-name>
+        <description>${role?upper_case}: Usuari Aplicació de ${fullname}</description>
+        <role-name>${role?upper_case}</role-name>
     </security-role>
+    
+    </#list>
+    <error-page>
+      <error-code>401</error-code>
+      <location>/public/errors/error401</location>
+    </error-page>
 
+    <error-page>
+      <error-code>403</error-code>
+      <location>/public/errors/error403</location>
+    </error-page>
 </web-app>

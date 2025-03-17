@@ -38,7 +38,6 @@ import org.fundaciobit.demogenapp.commons.utils.Configuracio;
  * @author anadal
  * 
  */
-@RunAs(Constants.DEM_ADMIN)
 public class InitServlet extends HttpServlet {
 
     protected final Logger log = Logger.getLogger(getClass());

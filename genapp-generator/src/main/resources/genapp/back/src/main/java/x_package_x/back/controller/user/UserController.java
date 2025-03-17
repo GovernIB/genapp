@@ -20,13 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 @MenuOption(
         labelCode = "=Menú USER Option 1",
         order = 10,
-        group = Constants.${prefix}_USER,
+        group = Constants.MENU_BACK_BASIC_ACCESS,
         baseLink = "/user/option1",
         relativeLink = "")
 @MenuOption(
         labelCode = "=Menú USER Option 2",
         order = 20,
-        group = Constants.${prefix}_USER,
+        group = Constants.MENU_BACK_BASIC_ACCESS,
         baseLink = "/user/option2",
         addSeparatorBefore = true,
         relativeLink = "")

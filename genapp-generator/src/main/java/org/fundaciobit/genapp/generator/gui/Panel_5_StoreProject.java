@@ -80,7 +80,7 @@ public class Panel_5_StoreProject extends Paneable {
 
             JFileChooser fileChooser = new JFileChooser();
 
-            fileChooser.setSelectedFile(new File(".\\" + SharedData.data.projectName + ".genappjson"));
+            fileChooser.setSelectedFile(new File(".\\" + SharedData.data.getProjectName() + ".genappjson"));
 
             if (fileChooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
                 return true;
@@ -95,7 +95,7 @@ public class Panel_5_StoreProject extends Paneable {
         Project project = SharedData.data;
 
         // Ordenar per nom java de les taules
-        Arrays.sort(SharedData.data.tables, new Comparator<TableInfo>() {
+        Arrays.sort(SharedData.data.getTables(), new Comparator<TableInfo>() {
             @Override
             public int compare(TableInfo o1, TableInfo o2) {
                 // TODO Auto-generated method stub

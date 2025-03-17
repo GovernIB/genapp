@@ -107,29 +107,29 @@ components:
       type: object
     ConstantsWs:
       example:
-        ROLE_EJB_FULL_ACCESS: DEM_ADMIN
-        ROLE_EJB_BASIC_ACCESS: 6
-        ROLE_EJB_WS_ACCESS: 1
+        ROLEEJBBASICACCESS: 6
+        ROLEEJBFULLACCESS: Constants.ROLE_EJB_FULL _ ACCESS
+        ROLEEJBWSACCESS: 1
       properties:
-        ROLE_EJB_FULL_ACCESS:
-          default: DEM_ADMIN
-          description: Constant ROLE_EJB_FULL_ACCESS
+        ROLEEJBFULLACCESS:
+          default: Constants.ROLE_EJB_FULL _ ACCESS
+          description: Constant ROLE_EJB_FULL _ ACCESS
           readOnly: true
           type: string
-        ROLE_EJB_BASIC_ACCESS:
-          description: Constant ROLE_EJB_BASIC_ACCESS
+        ROLEEJBBASICACCESS:
+          description: Constant ROLE_EJB_BASIC _ ACCESS
           format: int32
           readOnly: true
           type: integer
-        ROLE_EJB_WS_ACCESS:
-          description: Constant ROLE_EJB_WS_ACCESS
+        ROLEEJBWSACCESS:
+          description: Constant ROLE_EJB_WS _ ACCESS
           format: int32
           readOnly: true
           type: integer
       required:
-      - ROLE_EJB_BASIC_ACCESS
-      - ROLE_EJB_FULL_ACCESS
-      - ROLE_EJB_WS_ACCESS
+      - ROLEEJBBASICACCESS
+      - ROLEEJBFULLACCESS
+      - ROLEEJBWSACCESS
       type: object
   securitySchemes:
     BasicAuth:

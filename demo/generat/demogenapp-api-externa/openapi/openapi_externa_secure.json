@@ -139,24 +139,24 @@
         "description" : "Estructura de dades utilitzada per passar informació d'un error"
       },
       "ConstantsWs" : {
-        "required" : [ "ROLE_EJB_BASIC_ACCESS", "ROLE_EJB_FULL_ACCESS", "ROLE_EJB_WS_ACCESS" ],
+        "required" : [ "ROLEEJBBASICACCESS", "ROLEEJBFULLACCESS", "ROLEEJBWSACCESS" ],
         "type" : "object",
         "properties" : {
-          "ROLE_EJB_FULL_ACCESS" : {
+          "ROLEEJBFULLACCESS" : {
             "type" : "string",
-            "description" : "Constant ROLE_EJB_FULL_ACCESS",
+            "description" : "Constant ROLE_EJB_FULL _ ACCESS",
             "readOnly" : true,
-            "default" : "DEM_ADMIN"
+            "default" : "Constants.ROLE_EJB_FULL _ ACCESS"
           },
-          "ROLE_EJB_BASIC_ACCESS" : {
+          "ROLEEJBBASICACCESS" : {
             "type" : "integer",
-            "description" : "Constant ROLE_EJB_BASIC_ACCESS",
+            "description" : "Constant ROLE_EJB_BASIC _ ACCESS",
             "format" : "int32",
             "readOnly" : true
           },
-          "ROLE_EJB_WS_ACCESS" : {
+          "ROLEEJBWSACCESS" : {
             "type" : "integer",
-            "description" : "Constant ROLE_EJB_WS_ACCESS",
+            "description" : "Constant ROLE_EJB_WS _ ACCESS",
             "format" : "int32",
             "readOnly" : true
           }

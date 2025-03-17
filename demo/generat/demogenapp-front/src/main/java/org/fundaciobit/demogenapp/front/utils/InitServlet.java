@@ -24,7 +24,6 @@ import java.util.Properties;
  * @author anadal
  * 
  */
-@RunAs(Constants.DEM_ADMIN)
 public class InitServlet extends HttpServlet {
 
     protected final Logger log = Logger.getLogger(getClass());

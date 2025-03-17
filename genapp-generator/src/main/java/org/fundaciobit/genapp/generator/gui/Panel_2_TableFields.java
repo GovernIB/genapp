@@ -91,8 +91,8 @@ public class Panel_2_TableFields extends Paneable {
 
     public boolean initPanel() {
         try {
-            etiURL.setText("URL: " + SharedData.data.dataBaseInfo.getUrl());
-            etiDriver.setText("Driver: " + SharedData.data.dataBaseInfo.getDriver());
+            etiURL.setText("URL: " + SharedData.data.getDataBaseInfo().getUrl());
+            etiDriver.setText("Driver: " + SharedData.data.getDataBaseInfo().getDriver());
 
             final int defIndex = 0;
 
@@ -118,7 +118,7 @@ public class Panel_2_TableFields extends Paneable {
 
     private void initTable(int defIndex) throws Exception {
 
-        TableInfo tableInfo = SharedData.data.tables[defIndex];
+        TableInfo tableInfo = SharedData.data.getTables()[defIndex];
 
         updateTableInfo(tableInfo);
 
@@ -157,7 +157,7 @@ public class Panel_2_TableFields extends Paneable {
         taula.setRowHeight(50);
         taula.setPreferredScrollableViewportSize(taula.getPreferredSize());
 
-        etiTableName.setText("TAULA " + tableName + " (" + (defIndex + 1) + "/" + SharedData.data.tables.length + ")");
+        etiTableName.setText("TAULA " + tableName + " (" + (defIndex + 1) + "/" + SharedData.data.getTables().length + ")");
 
         generateTable.setSelected(tableInfo.generate);
     }
@@ -192,7 +192,7 @@ public class Panel_2_TableFields extends Paneable {
         botoEditaTableInfo2.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                TableInfo tableInfo = SharedData.data.tables[index];
+                TableInfo tableInfo = SharedData.data.getTables()[index];
                 EditTableInfo editor = new EditTableInfo(frame, tableInfo, SharedData.data.getLanguages());
                 editor.setVisible(true);
 
@@ -212,7 +212,7 @@ public class Panel_2_TableFields extends Paneable {
             public void actionPerformed(ActionEvent e) {
 
                 JDialog dialog = new JDialog(frame);
-                JTable table = TableModelTranslator.getJTable(SharedData.data.tables, SharedData.data.getLanguages());
+                JTable table = TableModelTranslator.getJTable(SharedData.data.getTables(), SharedData.data.getLanguages());
                 dialog.add(new JScrollPane(table));
 
                 dialog.setModalityType(ModalityType.APPLICATION_MODAL);
@@ -273,9 +273,9 @@ public class Panel_2_TableFields extends Paneable {
 
                 log.info(" generateTable.isSelected(): " + generateTable.isSelected());
 
-                log.info(" Valor actual: " + SharedData.data.tables[index].generate);
+                log.info(" Valor actual: " + SharedData.data.getTables()[index].generate);
 
-                SharedData.data.tables[index].generate = generateTable.isSelected();
+                SharedData.data.getTables()[index].generate = generateTable.isSelected();
             }
         });
     }
@@ -312,7 +312,7 @@ public class Panel_2_TableFields extends Paneable {
                 this.txtNomTaulaJava.setBackground(Color.red);
                 return false;
             } else {
-                SharedData.data.tables[index].setNameJava(nomJava);
+                SharedData.data.getTables()[index].setNameJava(nomJava);
             }
             /*
              * this.txtNomTaulaWeb.setBackground(Color.white); String nomWeb =
@@ -322,7 +322,7 @@ public class Panel_2_TableFields extends Paneable {
              */
         }
 
-        if (this.index + 1 == SharedData.data.tables.length || anarADarreraTaula) {
+        if (this.index + 1 == SharedData.data.getTables().length || anarADarreraTaula) {
             return true;
         } else {
             // Passar seg�ent taula
