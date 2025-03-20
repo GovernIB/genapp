@@ -378,21 +378,21 @@ public class DaoJPAGenerator {
         beanCode.append("            " + tableNameJava + " __instance = (" + tableNameJava + ")__obj;\n");
         beanCode.append("            __result = true;\n");
 
-        StringBuilder hashCode = new StringBuilder();
+        //StringBuilder hashCode = new StringBuilder();
         
         if (table.isTranslationMapEntity()) {
             beanCode.append("            __result = super.equals(__instance);\n");
-            hashCode.append("super.hashCode()");
+            //hashCode.append("super.hashCode()");
         } else {
             for (FieldInfo f : fields) {
                 if (f.isPrimaryKey()) {
                     
                     String method = CodeGenUtils.get(f);
                     
-                    if (hashCode.length() > 0) {
-                        hashCode.append(" + \"_\" + ");
-                    }
-                    hashCode.append("String.valueOf(this."+method+")");
+//                    if (hashCode.length() > 0) {
+//                        hashCode.append(" + \"_\" + ");
+//                    }
+//                    hashCode.append("String.valueOf(this."+method+")");
 
                     
                     if (f.getJavaType().isPrimitive()) {
@@ -411,8 +411,8 @@ public class DaoJPAGenerator {
                 }
             }
             
-            String hc = "(" + hashCode.toString() + ").hashCode()";
-            hashCode = new StringBuilder(hc);
+//            String hc = "(" + hashCode.toString() + ").hashCode()";
+//            hashCode = new StringBuilder(hc);
         }
         beanCode.append("        } else {\n");
         beanCode.append("            __result = false;\n");
@@ -421,10 +421,10 @@ public class DaoJPAGenerator {
         beanCode.append("    }\n\n");
         
         // String.valueOf(this.alumneID).hashCode()
-        beanCode.append("    @Override\n"
-                + "    public int hashCode() {\n"
-                + "        return " + hashCode.toString()+ ";\n"
-                + "    }\n\n");
+//        beanCode.append("    @Override\n"
+//                + "    public int hashCode() {\n"
+//                + "        return " + hashCode.toString()+ ";\n"
+//                + "    }\n\n");
 
         HashMap<String, String> importForeignKeys = new HashMap<String, String>();
         HashMap<String, String> exportForeignKeys = new HashMap<String, String>();
