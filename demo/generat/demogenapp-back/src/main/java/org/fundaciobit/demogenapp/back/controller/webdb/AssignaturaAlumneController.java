@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.demogenapp.back.form.webdb.*;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaAlumneForm;
@@ -35,7 +36,11 @@ import org.fundaciobit.demogenapp.back.validator.webdb.AssignaturaAlumneWebValid
 import org.fundaciobit.demogenapp.persistence.AssignaturaAlumneJPA;
 import org.fundaciobit.demogenapp.model.entity.AssignaturaAlumne;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 
 /**
  * Controller per gestionar un AssignaturaAlumne
@@ -43,10 +48,14 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="assignaturaAlumne.assignaturaAlumne.plural", order=20, group="WEBDB")
+@MenuOption(labelCode="assignaturaAlumne.assignaturaAlumne.plural", order=20, group=Constants.MENU_BACK_WEBDB_ACCESS)
 @Controller
 @RequestMapping(value = "/webdb/assignaturaAlumne")
 @SessionAttributes(types = { AssignaturaAlumneForm.class, AssignaturaAlumneFilterForm.class })
+@Tile(name="assignaturaAlumneFormWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne")})
+@Tile(name="assignaturaAlumneListWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne") })
 public class AssignaturaAlumneController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<AssignaturaAlumne, java.lang.Long> implements AssignaturaAlumneFields {
 
@@ -717,12 +726,46 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "assignaturaAlumneFormWebDB";
   }
 
-  public String getTileList() {
-    return "assignaturaAlumneListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "assignaturaAlumneListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
     return "AssignaturaAlumne_FilterForm_" + this.getClass().getName();

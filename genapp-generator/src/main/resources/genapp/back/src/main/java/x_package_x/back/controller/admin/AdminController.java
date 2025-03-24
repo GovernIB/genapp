@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.fundaciobit.demogenapp.back.controller.admin.AdminController;
+import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,7 +62,17 @@ import ${package}.commons.utils.Constants;
         group = Constants.MENU_BACK_ADMIN_ACCESS,
         baseLink = "/admin/reloadproperties",
         relativeLink = "")
+@Tile(
+        name = AdminController.KEYVALUE_ADMIN_TILE,
+        extendsTile = Constants.MENU_BACK_ADMIN_ACCESS,
+        contentJsp = "/WEB-INF/jsp/common/keyvalue.jsp",
+        attributes = {
+            @TileAttribute(name = "titol", value = "admin.admin")
+        },
+        type = org.fundaciobit.genapp.common.web.tiles.TileType.ANOTHER)
 public class AdminController {
+
+    public static final String KEYVALUE_ADMIN_TILE = "keyvalueAdmin";
 
     @RequestMapping(value = "/option1")
     public ModelAndView option1(HttpSession session, HttpServletRequest request, HttpServletResponse response)

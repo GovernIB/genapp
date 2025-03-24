@@ -27,6 +27,9 @@ import org.fundaciobit.genapp.common.query.Where;
 import org.fundaciobit.genapp.common.utils.Utils;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 import org.fundaciobit.genapp.common.web.validation.AbstractWebValidator;
 import org.fundaciobit.genapp.common.web.validation.WebValidationResult;
 
@@ -1374,6 +1377,7 @@ public class BackGenerator {
       code.append("import java.util.List;\n");
       code.append("import java.util.Map;\n");
       code.append("import java.util.HashMap;\n");
+      code.append("import java.util.Set;\n");
 
      
       code.append("\n");
@@ -1418,7 +1422,11 @@ public class BackGenerator {
       code.append("import " + packages.entityPackage + "." + tableJavaName + ";\n");
       //code.append("import " + packages.fieldsPackage + "." + fieldsClass + ";\n");
       code.append("import " + packages.fieldsPackage + ".*;\n");
+      code.append("import " + packages.utilsPackage + ".Constants;\n");
       code.append("import " + MenuOption.class.getName() + ";\n");
+      code.append("import " + Tile.class.getName() + ";\n");
+      code.append("import " + TileAttribute.class.getName() + ";\n");
+      code.append("import " + TileType.class.getName() + ";\n");
       code.append("\n");
       code.append("/**\n");
       code.append(" * Controller per gestionar un " + tableJavaName + "\n");
@@ -1426,10 +1434,14 @@ public class BackGenerator {
       code.append(" * \n");
       code.append(" * @author GenApp\n");
       code.append(" */\n");
-      code.append("@MenuOption(labelCode=\"" + model + "." + model + ".plural\", order=" + (i *10) + ", group=\"WEBDB\")\n");
+      code.append("@MenuOption(labelCode=\"" + model + "." + model + ".plural\", order=" + (i *10) + ", group=Constants.MENU_BACK_WEBDB_ACCESS)\n");
       code.append("@Controller\n");
       code.append("@RequestMapping(value = \"/webdb/" + model + "\")\n");
       code.append("@SessionAttributes(types = { " + form + ".class, " + filterForm + ".class })\n");
+      code.append("@Tile(name=\"" + model + "FormWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model + "Form.jsp\", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,\n"
+                + "      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name=\"titol\", value=\"" + model + "." + model +"\")})\n");
+      code.append("@Tile(name=\"" + model + "ListWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model + "List.jsp\", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,\n"
+               + "       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name=\"titol\", value=\"" + model + "." + model + "\") })\n");
       code.append("public class " + controller + "\n");
       if (fileFields.size() != 0) {
         code.append("    extends " + derivatDe + "<" + tableJavaName + ", " + pkClass +", " + form + ">");
@@ -2498,14 +2510,48 @@ public class BackGenerator {
 
       code.append("\n");
       code.append("  public String getTileForm() {\n");
+      code.append("        try {\n");
+      code.append("            Set<Tile> rm;\n"); 
+      code.append("            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);\n");
+      code.append("            if (rm != null && !rm.isEmpty()) {\n");
+      code.append("                String trobada = null;\n");
+      code.append("                for (Tile tile : rm) {\n");
+      code.append("                    if (tile.type() == TileType.WEBDB_FORM) {\n");
+      code.append("                        trobada = tile.name();\n");
+      code.append("                    }\n");
+      code.append("                }\n");
+      code.append("                if (trobada != null) {\n");
+      code.append("                    return trobada;\n");
+      code.append("                }\n");
+      code.append("            }\n");
+      code.append("        } catch (Exception e) {\n");
+      code.append("            log.error(\"Error en el getTileForm: \" + e.getMessage(), e);\n");
+      code.append("        }\n");
       code.append("    return \"" + model + "FormWebDB\";\n");
       code.append("  }\n");
       
       
       code.append("\n");
-      code.append("  public String getTileList() {\n");
-      code.append("    return \"" + model + "ListWebDB\";\n");
-      code.append("  }\n");
+      code.append("    public String getTileList() {\n");
+      code.append("        try {\n");
+      code.append("            Set<Tile> rm;\n"); 
+      code.append("            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);\n");
+      code.append("            if (rm != null && !rm.isEmpty()) {\n");
+      code.append("                String trobada = null;\n");
+      code.append("                for (Tile tile : rm) {\n");
+      code.append("                    if (tile.type() == TileType.WEBDB_LIST) {\n");
+      code.append("                        trobada = tile.name();\n");
+      code.append("                    }\n");
+      code.append("                }\n");
+      code.append("                if (trobada != null) {\n");
+      code.append("                    return trobada;\n");
+      code.append("                }\n");
+      code.append("            }\n");
+      code.append("        } catch (Exception e) {\n");
+      code.append("            log.error(\"Error en el getTileList: \" + e.getMessage(), e);\n");
+      code.append("        }\n");
+      code.append("        return \"" + model + "ListWebDB\";\n");
+      code.append("    }\n");
 
       code.append("\n");
       code.append("  public String getSessionAttributeFilterForm() {\n");

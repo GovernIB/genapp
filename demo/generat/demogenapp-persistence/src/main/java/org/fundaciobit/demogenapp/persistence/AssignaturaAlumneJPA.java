@@ -110,11 +110,6 @@ public class AssignaturaAlumneJPA implements AssignaturaAlumne {
         return __result;
     }
 
-    @Override
-    public int hashCode() {
-        return (String.valueOf(this.getId())).hashCode();
-    }
-
 // IMP Field:alumneid | Table: dem_alumne | Type: 1  
 
     @ManyToOne(fetch = FetchType.LAZY)

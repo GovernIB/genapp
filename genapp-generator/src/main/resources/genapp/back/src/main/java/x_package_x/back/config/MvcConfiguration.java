@@ -3,6 +3,8 @@ package ${package}.back.config;
 import java.util.Locale;
 
 import ${package}.commons.utils.Configuracio;
+import ${package}.back.preparer.TilesFactoryApp;
+
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -57,7 +59,10 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
+		//tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
+
+		tilesConfigurer.setDefinitionsFactoryClass(TilesFactoryApp.class);
+        //tilesConfigurer.setValidateDefinitions(true);
 
 		return tilesConfigurer;
 	}

@@ -16,7 +16,7 @@ public class MenuOptionManager {
 
     private static final MenuItemOptionComparator MENUITEM_COMPARATOR = new MenuItemOptionComparator();
 
-    private static final Logger log = Logger.getLogger(MenuOptionManager.class);
+    protected static final Logger log = Logger.getLogger(MenuOptionManager.class);
 
     private static DiscoverMenuOptionAnnotations discoverMenuOptionAnnotations = null;
 
@@ -34,12 +34,12 @@ public class MenuOptionManager {
 
         if (discoverMenuOptionAnnotations == null) {
             throw new Exception("MenuOptionManager no ha sigut inicialitzat.\n"
-                    + "Has d'afegir el següetn codi a InitServlet:\n" + "        // Inicialitzar sistema de menus\n"
+                    + "Has d'afegir el següent codi a InitServlet:\n" + "        // Inicialitzar sistema de menus\n"
                     + "        new Thread(\n" + "        new Runnable() {\n" + "            @Override\n"
                     + "            public void run() {\n" + "                try {\r\n"
                     + "                    MenuOptionManager.setDiscoverMenuOptionAnnotations(\n"
                     + "                            "
-                    + "new DiscoverMenuOptionAnnotations(Constants.DEMOGENAPP_PROPERTY_BASE + \"back.controller\"));\n"
+                    + "new DiscoverMenuOptionAnnotations(Constants.[PREFIX_APP]_PROPERTY_BASE + \"back.controller\"));\n"
                     + "                } catch (Throwable th) {\n"
                     + "                    log.error(\"Error inicialitzant sistema de menus: \"+th.getMessage(),th);\n"
                     + "                }\n" + "            }\n" + "        }).start();\n");

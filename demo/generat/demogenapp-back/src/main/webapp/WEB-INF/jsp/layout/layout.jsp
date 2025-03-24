@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%><%@include
-    file="/WEB-INF/jsp/moduls/includes.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+%><%@include file="/WEB-INF/jsp/moduls/includes.jsp"%>
+<un:useConstants var="Constants" className="org.fundaciobit.demogenapp.commons.utils.Constants"/>
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"
     xml:lang="<c:out value="${pageContext.response.locale.language}"/>"
     lang="<c:out value="${pageContext.response.locale.language}"/>">
@@ -45,22 +46,22 @@
 
             <sec:authorize access="hasRole('ROLE_USER',)">
                 <li class="nav-item"><a
-                    class="nav-link ${(pipella eq 'user')?'active' : '' }"
-                    href="<c:url value="/canviarPipella/user"/>">BASIC ACCESS</a>
+                    class="nav-link ${(pipella eq Constants.MENU_BACK_BASIC_ACCESS)?'active' : '' }"
+                    href="<c:url value="/canviarPipella/${Constants.MENU_BACK_BASIC_ACCESS}"/>">BASIC ACCESS</a>
                 </li>
             </sec:authorize>
 
             <sec:authorize access="hasRole('ROLE_ADMIN',)">
                 <li class="nav-item"><a
-                    class="nav-link ${(pipella eq 'admin')?'active' : '' }"
-                    href="<c:url value="/canviarPipella/admin"/>">ADMIN ACCESS</a>
+                    class="nav-link ${(pipella eq Constants.MENU_BACK_ADMIN_ACCESS)?'active' : '' }"
+                    href="<c:url value="/canviarPipella/${Constants.MENU_BACK_ADMIN_ACCESS}"/>">ADMIN ACCESS</a>
                 </li>
             </sec:authorize>
 
             <sec:authorize access="hasRole('ROLE_ADMIN',)">
                 <li class="nav-item"><a
-                    class="nav-link ${(pipella eq 'webdb')?'active' : '' }"
-                    href="<c:url value="/canviarPipella/webdb"/>">WebDatabase</a>
+                    class="nav-link ${(pipella eq Constants.MENU_BACK_WEBDB_ACCESS)?'active' : '' }"
+                    href="<c:url value="/canviarPipella/${Constants.MENU_BACK_WEBDB_ACCESS}"/>">WebDatabase</a>
                 </li>
             </sec:authorize>
 

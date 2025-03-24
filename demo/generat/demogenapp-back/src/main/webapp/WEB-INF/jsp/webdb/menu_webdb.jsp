@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@page import="org.fundaciobit.demogenapp.commons.utils.Constants"%>
  <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
  <c:set var="url" value="${urlActual}" />
  <div>
@@ -10,7 +11,7 @@
     java.util.List<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>> menus;
     menus = new java.util.ArrayList<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>>();
     java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem> discoveredMenus;
-    discoveredMenus = org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager.getMenuItems("WEBDB");
+    discoveredMenus = org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager.getMenuItems(Constants.MENU_BACK_WEBDB_ACCESS);
     menus.add(discoveredMenus);
     %>
     <%@ include file="/WEB-INF/jsp/moduls/menu_role_generator.jsp"%>

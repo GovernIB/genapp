@@ -44,6 +44,12 @@
             <artifactId>classgraph</artifactId>
             <version>4.8.157</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+            <version>3.0.8</version>
+        </dependency>
 
     </dependencies>
 </project>

@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.demogenapp.back.form.webdb.*;
 import org.fundaciobit.demogenapp.back.form.webdb.AlumneForm;
@@ -38,7 +39,11 @@ import org.fundaciobit.genapp.common.web.controller.FilesFormManager;
 import org.fundaciobit.demogenapp.persistence.AlumneJPA;
 import org.fundaciobit.demogenapp.model.entity.Alumne;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 
 /**
  * Controller per gestionar un Alumne
@@ -46,10 +51,14 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="alumne.alumne.plural", order=0, group="WEBDB")
+@MenuOption(labelCode="alumne.alumne.plural", order=0, group=Constants.MENU_BACK_WEBDB_ACCESS)
 @Controller
 @RequestMapping(value = "/webdb/alumne")
 @SessionAttributes(types = { AlumneForm.class, AlumneFilterForm.class })
+@Tile(name="alumneFormWebDB", contentJsp="/WEB-INF/jsp/webdb/alumneForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="alumne.alumne")})
+@Tile(name="alumneListWebDB", contentJsp="/WEB-INF/jsp/webdb/alumneList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="alumne.alumne") })
 public class AlumneController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppFilesBaseController<Alumne, java.lang.Long, AlumneForm> implements AlumneFields {
 
@@ -807,12 +816,46 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "alumneFormWebDB";
   }
 
-  public String getTileList() {
-    return "alumneListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "alumneListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
     return "Alumne_FilterForm_" + this.getClass().getName();

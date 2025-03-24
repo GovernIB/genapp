@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.demogenapp.back.form.webdb.*;
 import org.fundaciobit.demogenapp.back.form.webdb.IdiomaForm;
@@ -33,7 +34,11 @@ import org.fundaciobit.demogenapp.back.validator.webdb.IdiomaWebValidator;
 import org.fundaciobit.demogenapp.persistence.IdiomaJPA;
 import org.fundaciobit.demogenapp.model.entity.Idioma;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 
 /**
  * Controller per gestionar un Idioma
@@ -41,10 +46,14 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="idioma.idioma.plural", order=40, group="WEBDB")
+@MenuOption(labelCode="idioma.idioma.plural", order=40, group=Constants.MENU_BACK_WEBDB_ACCESS)
 @Controller
 @RequestMapping(value = "/webdb/idioma")
 @SessionAttributes(types = { IdiomaForm.class, IdiomaFilterForm.class })
+@Tile(name="idiomaFormWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="idioma.idioma")})
+@Tile(name="idiomaListWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="idioma.idioma") })
 public class IdiomaController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Idioma, java.lang.String> implements IdiomaFields {
 
@@ -589,12 +598,46 @@ public java.lang.String stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "idiomaFormWebDB";
   }
 
-  public String getTileList() {
-    return "idiomaListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "idiomaListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
     return "Idioma_FilterForm_" + this.getClass().getName();

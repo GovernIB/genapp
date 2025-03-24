@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.demogenapp.back.form.webdb.*;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaForm;
@@ -35,7 +36,11 @@ import org.fundaciobit.demogenapp.back.validator.webdb.AssignaturaWebValidator;
 import org.fundaciobit.demogenapp.persistence.AssignaturaJPA;
 import org.fundaciobit.demogenapp.model.entity.Assignatura;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 
 /**
  * Controller per gestionar un Assignatura
@@ -43,10 +48,14 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="assignatura.assignatura.plural", order=10, group="WEBDB")
+@MenuOption(labelCode="assignatura.assignatura.plural", order=10, group=Constants.MENU_BACK_WEBDB_ACCESS)
 @Controller
 @RequestMapping(value = "/webdb/assignatura")
 @SessionAttributes(types = { AssignaturaForm.class, AssignaturaFilterForm.class })
+@Tile(name="assignaturaFormWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="assignatura.assignatura")})
+@Tile(name="assignaturaListWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="assignatura.assignatura") })
 public class AssignaturaController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Assignatura, java.lang.Long> implements AssignaturaFields {
 
@@ -645,12 +654,46 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "assignaturaFormWebDB";
   }
 
-  public String getTileList() {
-    return "assignaturaListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "assignaturaListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
     return "Assignatura_FilterForm_" + this.getClass().getName();

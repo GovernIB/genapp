@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.demogenapp.back.form.webdb.*;
 import org.fundaciobit.demogenapp.back.form.webdb.FitxerForm;
@@ -33,7 +34,11 @@ import org.fundaciobit.demogenapp.back.validator.webdb.FitxerWebValidator;
 import org.fundaciobit.demogenapp.persistence.FitxerJPA;
 import org.fundaciobit.demogenapp.model.entity.Fitxer;
 import org.fundaciobit.demogenapp.model.fields.*;
+import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 
 /**
  * Controller per gestionar un Fitxer
@@ -41,10 +46,14 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="fitxer.fitxer.plural", order=30, group="WEBDB")
+@MenuOption(labelCode="fitxer.fitxer.plural", order=30, group=Constants.MENU_BACK_WEBDB_ACCESS)
 @Controller
 @RequestMapping(value = "/webdb/fitxer")
 @SessionAttributes(types = { FitxerForm.class, FitxerFilterForm.class })
+@Tile(name="fitxerFormWebDB", contentJsp="/WEB-INF/jsp/webdb/fitxerForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="fitxer.fitxer")})
+@Tile(name="fitxerListWebDB", contentJsp="/WEB-INF/jsp/webdb/fitxerList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="fitxer.fitxer") })
 public class FitxerController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Fitxer, java.lang.Long> implements FitxerFields {
 
@@ -586,12 +595,46 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "fitxerFormWebDB";
   }
 
-  public String getTileList() {
-    return "fitxerListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "fitxerListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
     return "Fitxer_FilterForm_" + this.getClass().getName();

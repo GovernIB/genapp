@@ -135,3 +135,14 @@ target
 /demo/generat/demogenapp-api-interna-client-exemplepublic-v1/.openapi-generator/openapi_interna_public.json-openapi_interna_1.sha256
 /demo/generat/demogenapp-api-interna-client-exemplesecure-v1/.openapi-generator/openapi_interna_secure.json-openapi_interna_2.sha256
 /genapp-core/samplefiles
+/demo/backup_tiles_2
+/checkjdkversion.bat
+/configmaven.bat
+/demo/apis.bat
+/demo/demogenapp.ear_MODULS
+/demo/demogenapp.ear_ORIG
+/demo/demogenapp_arreglat.ear
+/demo/genapp.log.1
+/genapp-sqltutorial/genappsqltutorial-tutorial/traduccions.properties
+/genapp.css_canvi_taules.txt
+/run_arche/arche/dep.bat

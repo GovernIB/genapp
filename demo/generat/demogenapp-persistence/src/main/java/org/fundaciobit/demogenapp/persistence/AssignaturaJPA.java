@@ -137,11 +137,6 @@ public class AssignaturaJPA implements Assignatura {
         return __result;
     }
 
-    @Override
-    public int hashCode() {
-        return (String.valueOf(this.getAssignaturaID())).hashCode();
-    }
-
 // EXP  Field:assignaturaid | Table: dem_assignaturaalumne | Type: 0  
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignatura")
