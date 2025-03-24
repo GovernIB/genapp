@@ -886,32 +886,38 @@ public class CodeGenerator {
             {
                 File webdb_jsp = new File(dstBackDir, "src/main/webapp/WEB-INF/tiles.xml");
 
-                String txt;
+                
                 if (webdb_jsp.exists()) {
+                    String txt;
                     txt = FileUtils.readFileToString(webdb_jsp, "UTF-8");
+                    
+                    int startMark = txt.indexOf("<!-- ==== GENAPP MARK START -->");
+                    int endMark = txt.indexOf("<!-- ==== GENAPP MARK END -->");
+
+                    if (startMark == -1 || endMark == -1) {
+                        throw new Exception("El fitxer de " + webdb_jsp.getName() + " no conté l'start i/o l'end tag");
+                    }
+
+                    String links = BackWebGenerator.generateTile(tables);
+
+                    StringBuffer str = new StringBuffer();
+                    str.append(txt.substring(0, startMark));
+                    str.append("<!-- ==== GENAPP MARK START -->\n");
+                    str.append("\n");
+
+                    str.append(links);
+
+                    str.append(txt.substring(endMark));
+
+                    FileUtils.write(webdb_jsp, str.toString(), "UTF8");
+                    
                 } else {
-                    txt = BackWebGenerator.getEmptyTilesXML(backPackage);
+                    // Ja no es genera TILES:XML => https://github.com/GovernIB/genapp/issues/175
+                    // https://github.com/GovernIB/genapp/issues/175
+                    //txt = BackWebGenerator.getEmptyTilesXML(backPackage);
                 }
 
-                int startMark = txt.indexOf("<!-- ==== GENAPP MARK START -->");
-                int endMark = txt.indexOf("<!-- ==== GENAPP MARK END -->");
-
-                if (startMark == -1 || endMark == -1) {
-                    throw new Exception("El fitxer de " + webdb_jsp.getName() + " no conté l'start i/o l'end tag");
-                }
-
-                String links = BackWebGenerator.generateTile(tables);
-
-                StringBuffer str = new StringBuffer();
-                str.append(txt.substring(0, startMark));
-                str.append("<!-- ==== GENAPP MARK START -->\n");
-                str.append("\n");
-
-                str.append(links);
-
-                str.append(txt.substring(endMark));
-
-                FileUtils.write(webdb_jsp, str.toString(), "UTF8");
+                
 
             }
 

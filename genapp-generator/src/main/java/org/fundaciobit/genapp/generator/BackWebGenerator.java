@@ -1467,7 +1467,9 @@ public class BackWebGenerator extends IconUtils {
 		}
 		return code.toString();
 	}
-
+	
+	//Ja no es genera TILES:XML => https://github.com/GovernIB/genapp/issues/175
+/*
 	public static String getEmptyTilesXML(String backPackage) {
 		StringBuffer code = new StringBuffer();
 		code.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
@@ -1637,7 +1639,7 @@ public class BackWebGenerator extends IconUtils {
 		code.append("\n");
 		return code.toString();
 	}
-
+*/
 	public static List<SourceFile> generateFormJsp(String packageControllerBack, String packageFormBack,
 			String packageValidatorBack, String jpaPackage, String ejbPackage, BasicPackages packages, Project project,
 			Map<String, BeanCode> beanCodeBySqlTableName) throws Exception {
