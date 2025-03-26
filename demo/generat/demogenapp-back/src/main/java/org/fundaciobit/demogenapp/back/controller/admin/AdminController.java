@@ -36,7 +36,7 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
         group = Tab.MENU_ADMIN,
         baseLink = "/admin/option1",
         relativeLink = "")
-@Tile(name = "option1Admin",  extendsTile = Tab.MENU_USER, type = TileType.ANOTHER, contentJsp = "/WEB-INF/jsp/admin/admin.jsp")
+@Tile(name = "option1Admin", extendsTile = Tab.MENU_ADMIN, type = TileType.ANOTHER, contentJsp = "/WEB-INF/jsp/admin/admin.jsp")
 @MenuOption(
         labelCode = "=Menú ADMIN Option 2",
         order = 20,
@@ -44,7 +44,7 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
         baseLink = "/admin/option2",
         relativeLink = "",
         addSeparatorBefore = true)
-@Tile(name = "option2Admin",  extendsTile =  "option1Admin", type = TileType.ANOTHER)
+@Tile(name = "option2Admin", extendsTile =  "option1Admin", type = TileType.ANOTHER)
 @MenuOption(
         labelCode = "=Contents of demogenapp.properties file",
         order = 1000,

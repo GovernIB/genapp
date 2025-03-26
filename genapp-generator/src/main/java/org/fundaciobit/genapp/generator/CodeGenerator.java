@@ -841,8 +841,7 @@ public class CodeGenerator {
                 if (webdb_jsp.exists()) {
                     txt = FileUtils.readFileToString(webdb_jsp, "UTF8");
                 } else {
-                    txt = "<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\"%>\n"
-                            + "<%@page import=\"" + backPackage + ".utils.Tab\"%>\n"
+                    txt = "<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\"%>\n"                            
                             + " <%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n"
                             // + " <tiles:useAttribute id=\"opcionsMenu\" name=\"opcionsMenu\" />\n"
                             // + " <tiles:useAttribute id=\"logo\" name=\"logo\" />\n"
@@ -868,7 +867,8 @@ public class CodeGenerator {
 
                 //str.append(links);
                 
-                str.append("    <%\n"
+                str.append("    <%@page import=\"" + backPackage + ".utils.Tab\"%>\n"
+                        + "    <%\n"
                         + "    java.util.List<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>> menus;\n"
                         + "    menus = new java.util.ArrayList<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>>();\n"
                         + "    java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem> discoveredMenus;\n"

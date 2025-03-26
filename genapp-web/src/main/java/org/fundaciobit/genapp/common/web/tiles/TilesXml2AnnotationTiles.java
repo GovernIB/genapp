@@ -57,7 +57,7 @@ public class TilesXml2AnnotationTiles {
 
         Set<String> ignorar = new HashSet<String>(Arrays.asList("base.definition.contingut", "base.menu_i_contingut",
                 "base.cap", "webdb", "base.definition.cap_contingut_peu", "base.definition", "desenvolupament",
-                "base.menu", "base.contingut", "principal", "base.peu"));
+                "base.menu", "base.contingut", "principal", "base.peu" ));
 
         System.out.println(" ----------------------------------------------------------------");
         System.out.println(" - Ha d'afegir el següent codi a la classe TilesFactoryApp.java -");
@@ -170,13 +170,18 @@ public class TilesXml2AnnotationTiles {
             //            }
 
             extendsDefinition = "def_" + extendsAttr.trim().replace('.', '_');
+            
+            if (extendsDefinition.equals("def_base_definition")) {
+                extendsDefinition = "DEF_BASE_DEFINITION";
+            }
+
         }
 
         String n = "def_" + name.replace('.', '_');
         if (extendsDefinition == null) {
             String templateStr = template == null ? "null" : ("\"" + template + "\"");
-            javaCode.append("        Definition " + n + " = new Definition(\"" + name + "\"," + templateStr
-                    + ", new HashMap<String, Attribute>());\n");
+            javaCode.append("        Definition " + n + " = new Definition(\"" + name + "\", new Attribute(" + templateStr
+                    + "), new HashMap<String, Attribute>());\n");
         } else {
             javaCode.append("        Definition " + n + " = new Definition(" + extendsDefinition + ");\n");
             javaCode.append("        " + n + ".setName(\"").append(name).append("\");\n");
@@ -201,7 +206,7 @@ public class TilesXml2AnnotationTiles {
             }
         }
 
-        javaCode.append("        map.put(" + n + ".getName(), ").append(", " + n + ");\n\n");
+        javaCode.append("        map.put(" + n + ".getName(), ").append(n + ");\n\n");
 
         return javaCode.toString();
     }

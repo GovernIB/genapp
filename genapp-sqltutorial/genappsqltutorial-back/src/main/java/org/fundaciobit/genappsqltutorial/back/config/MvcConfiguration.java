@@ -2,6 +2,7 @@ package org.fundaciobit.genappsqltutorial.back.config;
 
 import java.util.Locale;
 
+import org.fundaciobit.genappsqltutorial.back.preparer.TilesFactoryApp;
 import org.fundaciobit.genappsqltutorial.commons.utils.Configuracio;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.MessageSource;
@@ -56,8 +57,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-		tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
-
+		tilesConfigurer.setDefinitionsFactoryClass(TilesFactoryApp.class);
 		return tilesConfigurer;
 	}
 

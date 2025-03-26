@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@page import="org.fundaciobit.demogenapp.back.utils.Tab"%>
  <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
  <c:set var="url" value="${urlActual}" />
  <div>
@@ -7,6 +6,7 @@
  <ul class="tree" style="margin:3px; padding:0px;">
  <%-- ==== GENAPP MARK START --%>
 
+    <%@page import="org.fundaciobit.demogenapp.back.utils.Tab"%>
     <%
     java.util.List<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>> menus;
     menus = new java.util.ArrayList<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>>();
