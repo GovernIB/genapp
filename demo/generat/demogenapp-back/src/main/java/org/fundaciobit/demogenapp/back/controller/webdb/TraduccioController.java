@@ -39,6 +39,7 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**
  * Controller per gestionar un Traduccio
@@ -46,13 +47,13 @@ import org.fundaciobit.genapp.common.web.tiles.TileType;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="traduccio.traduccio.plural", order=50, group=Constants.MENU_BACK_WEBDB_ACCESS)
+@MenuOption(labelCode="traduccio.traduccio.plural", order=50, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/traduccio")
 @SessionAttributes(types = { TraduccioForm.class, TraduccioFilterForm.class })
-@Tile(name="traduccioFormWebDB", contentJsp="/WEB-INF/jsp/webdb/traduccioForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="traduccioFormWebDB", contentJsp="/WEB-INF/jsp/webdb/traduccioForm.jsp", extendsTile=Tab.MENU_WEBDB,
       type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="traduccio.traduccio")})
-@Tile(name="traduccioListWebDB", contentJsp="/WEB-INF/jsp/webdb/traduccioList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="traduccioListWebDB", contentJsp="/WEB-INF/jsp/webdb/traduccioList.jsp", extendsTile=Tab.MENU_WEBDB,
        type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="traduccio.traduccio") })
 public class TraduccioController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Traduccio, java.lang.Long> implements TraduccioFields {

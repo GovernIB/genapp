@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 %><%@page import="org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager"
 %><%@page import="org.fundaciobit.genapp.common.web.menuoptions.MenuItem"
-%><%@page import="${package}.commons.utils.Constants"
+%><%@page import="${package}.back.utils.Tab"
 %><%@page import="java.util.List"
 %><%@page import="java.util.ArrayList"
 %><%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
@@ -63,7 +63,7 @@
                 new MenuItem("=Menú Inici Option 2","/common/option2", 30),
         };
     }
-    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Constants.MENU_BACK_PUBLIC_AND_COMMON_ACCESS, menusAddicionals);
+    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Tab.MENU_PUBLIC_AND_COMMON, menusAddicionals);
     menus.add(discoveredMenus);
     %>
 

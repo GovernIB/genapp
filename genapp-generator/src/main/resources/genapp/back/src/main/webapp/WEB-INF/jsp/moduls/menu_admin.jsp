@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 %><%@page import="org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager"
 %><%@page import="org.fundaciobit.genapp.common.web.menuoptions.MenuItem"
-%><%@page import="${package}.commons.utils.Constants"
+%><%@page import="${package}.back.utils.Tab"
 %><%@page import="java.util.List"
 %><%@page import="java.util.ArrayList"
 %><%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
@@ -15,7 +15,7 @@
     MenuItem menuGoogle = new MenuItem("=MENU Google", "", "http://www.google.com", 0);
     MenuItem menumeneame = new MenuItem("=MENU Meneame", "", "http://www.meneame.net", 1000);
     */
-    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Constants.MENU_BACK_ADMIN_ACCESS); //, menuGoogle, menumeneame);
+    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Tab.MENU_ADMIN); //, menuGoogle, menumeneame);
     menus.add(discoveredMenus);
     %>
     

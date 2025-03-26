@@ -39,6 +39,7 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**
  * Controller per gestionar un Idioma
@@ -46,13 +47,13 @@ import org.fundaciobit.genapp.common.web.tiles.TileType;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="idioma.idioma.plural", order=40, group=Constants.MENU_BACK_WEBDB_ACCESS)
+@MenuOption(labelCode="idioma.idioma.plural", order=40, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/idioma")
 @SessionAttributes(types = { IdiomaForm.class, IdiomaFilterForm.class })
-@Tile(name="idiomaFormWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="idiomaFormWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaForm.jsp", extendsTile=Tab.MENU_WEBDB,
       type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="idioma.idioma")})
-@Tile(name="idiomaListWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="idiomaListWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaList.jsp", extendsTile=Tab.MENU_WEBDB,
        type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="idioma.idioma") })
 public class IdiomaController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Idioma, java.lang.String> implements IdiomaFields {

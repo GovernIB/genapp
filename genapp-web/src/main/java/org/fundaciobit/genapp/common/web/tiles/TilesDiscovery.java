@@ -138,9 +138,12 @@ public class TilesDiscovery {
                 contentJsp = tileInfoOfParentClass.tile.contentJsp();
 
             } else {
-                throw new IllegalArgumentException("La classe " + classe.getName()
+                if (tile.extendsTile() == null || tile.extendsTile().trim().length() == 0) {
+                    throw new IllegalArgumentException("La classe " + classe.getName()
                         + " té definida l'anotació @Tile, però aquesta requereix que la classe estengui"
                         + " de CommonBaseController o afegir l'atribut extendsTile a l'anotació @Tile.");
+                }
+                contentJsp = null;
             }
 
         } else {
@@ -178,11 +181,13 @@ public class TilesDiscovery {
         if (attributes != null && attributes.length != 0) {
             for (TileAttribute attr : attributes) {
                 def.putAttribute(attr.name(), new Attribute(attr.value()));
-                log.error("    NEW ATTRIBUTE => " + attr.name() + " = " + attr.value());
+                //log.error("    NEW ATTRIBUTE => " + attr.name() + " = " + attr.value());
             }
         }
 
-        def.putAttribute(CONTINGUT_PROPERTY, new Attribute(contentJsp));
+        if (contentJsp != null) {
+          def.putAttribute(CONTINGUT_PROPERTY, new Attribute(contentJsp));
+        }
 
         baseDefinitions.put(def.getName(), def);
 

@@ -803,7 +803,7 @@ public class CodeGenerator {
             String packageControllerBase = backPackage + ".controller";
             String packageControllerBack = packageControllerBase + ".webdb";
             {
-                List<SourceFile> controls = BackGenerator.generateControllers(packageControllerBase,
+                List<SourceFile> controls = BackGenerator.generateControllers(backPackage, packageControllerBase,
                         packageControllerBack, packageFormBack, packageValidatorBack, jpaPackage, ejbPackage, packages,
                         project, beanCodeBySqlTableName);
                 File backControllerJavaCode = new File(baseCode, packageControllerBack.replace('.', '/'));
@@ -842,7 +842,7 @@ public class CodeGenerator {
                     txt = FileUtils.readFileToString(webdb_jsp, "UTF8");
                 } else {
                     txt = "<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\"%>\n"
-                            + "<%@page import=\"" + packages.utilsPackage + ".Constants\"%>\n"
+                            + "<%@page import=\"" + backPackage + ".utils.Tab\"%>\n"
                             + " <%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n"
                             // + " <tiles:useAttribute id=\"opcionsMenu\" name=\"opcionsMenu\" />\n"
                             // + " <tiles:useAttribute id=\"logo\" name=\"logo\" />\n"
@@ -872,7 +872,7 @@ public class CodeGenerator {
                         + "    java.util.List<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>> menus;\n"
                         + "    menus = new java.util.ArrayList<java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem>>();\n"
                         + "    java.util.List<org.fundaciobit.genapp.common.web.menuoptions.MenuItem> discoveredMenus;\n"
-                        + "    discoveredMenus = org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager.getMenuItems(Constants.MENU_BACK_WEBDB_ACCESS);\n"
+                        + "    discoveredMenus = org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager.getMenuItems(Tab.MENU_WEBDB);\n"
                         + "    menus.add(discoveredMenus);\n"
                         + "    %>\n"
                         + "    <%@ include file=\"/WEB-INF/jsp/moduls/menu_role_generator.jsp\"%>\n");

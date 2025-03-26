@@ -24,10 +24,5 @@ public interface Constants {
     public static final String ROLE_EJB_FULL_ACCESS = DEM_ADMIN;
     public static final String ROLE_EJB_BASIC_ACCESS = DEM_USER;
     public static final String ROLE_EJB_WS_ACCESS = DEM_WS;
-    
-    // BACK MENU ACCESS GROUPS
-    public static final String MENU_BACK_ADMIN_ACCESS="admin";
-    public static final String MENU_BACK_BASIC_ACCESS="user";
-    public static final String MENU_BACK_PUBLIC_AND_COMMON_ACCESS="common";
-    public static final String MENU_BACK_WEBDB_ACCESS="webdb";
+
 }

@@ -1149,7 +1149,7 @@ public class BackGenerator {
 
   
   
-  public static List<SourceFile> generateControllers( String packageControllerBase,
+  public static List<SourceFile> generateControllers(String backPackage, String packageControllerBase,
       String packageControllerBack,
       String packageFormBack, String packageValidatorBack,String jpaPackage,
       String ejbPackage, BasicPackages packages, Project project,
@@ -1427,6 +1427,7 @@ public class BackGenerator {
       code.append("import " + Tile.class.getName() + ";\n");
       code.append("import " + TileAttribute.class.getName() + ";\n");
       code.append("import " + TileType.class.getName() + ";\n");
+      code.append("import " + backPackage + ".utils.Tab;\n");
       code.append("\n");
       code.append("/**\n");
       code.append(" * Controller per gestionar un " + tableJavaName + "\n");
@@ -1434,13 +1435,13 @@ public class BackGenerator {
       code.append(" * \n");
       code.append(" * @author GenApp\n");
       code.append(" */\n");
-      code.append("@MenuOption(labelCode=\"" + model + "." + model + ".plural\", order=" + (i *10) + ", group=Constants.MENU_BACK_WEBDB_ACCESS)\n");
+      code.append("@MenuOption(labelCode=\"" + model + "." + model + ".plural\", order=" + (i *10) + ", group=Tab.MENU_WEBDB)\n");
       code.append("@Controller\n");
       code.append("@RequestMapping(value = \"/webdb/" + model + "\")\n");
       code.append("@SessionAttributes(types = { " + form + ".class, " + filterForm + ".class })\n");
-      code.append("@Tile(name=\"" + model + "FormWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model + "Form.jsp\", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,\n"
+      code.append("@Tile(name=\"" + model + "FormWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model + "Form.jsp\", extendsTile=Tab.MENU_WEBDB,\n"
                 + "      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name=\"titol\", value=\"" + model + "." + model +"\")})\n");
-      code.append("@Tile(name=\"" + model + "ListWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model + "List.jsp\", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,\n"
+      code.append("@Tile(name=\"" + model + "ListWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model + "List.jsp\", extendsTile=Tab.MENU_WEBDB,\n"
                + "       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name=\"titol\", value=\"" + model + "." + model + "\") })\n");
       code.append("public class " + controller + "\n");
       if (fileFields.size() != 0) {

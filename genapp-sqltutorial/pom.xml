@@ -114,8 +114,8 @@
 
 		<!-- 5.0.2.RELEASE - 5.0.0.RELEASE 4.3.26.RELEASE - 4.2.14.RELEASE 3.2.18.RELEASE 
 			- 3.2.10.RELEASE -->
-		<spring.version>4.3.26.RELEASE</spring.version>
-		<springsecurity.version>4.2.14.RELEASE</springsecurity.version>
+		<spring.version>4.3.30.RELEASE</spring.version>
+		<springsecurity.version>4.2.20.RELEASE</springsecurity.version>
         <spring-data-jpa>1.6.6.RELEASE</spring-data-jpa>
 		
 		<tiles.version>3.0.8</tiles.version>

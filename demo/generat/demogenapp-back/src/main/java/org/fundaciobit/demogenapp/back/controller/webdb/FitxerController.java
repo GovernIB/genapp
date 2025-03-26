@@ -39,6 +39,7 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**
  * Controller per gestionar un Fitxer
@@ -46,13 +47,13 @@ import org.fundaciobit.genapp.common.web.tiles.TileType;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="fitxer.fitxer.plural", order=30, group=Constants.MENU_BACK_WEBDB_ACCESS)
+@MenuOption(labelCode="fitxer.fitxer.plural", order=30, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/fitxer")
 @SessionAttributes(types = { FitxerForm.class, FitxerFilterForm.class })
-@Tile(name="fitxerFormWebDB", contentJsp="/WEB-INF/jsp/webdb/fitxerForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="fitxerFormWebDB", contentJsp="/WEB-INF/jsp/webdb/fitxerForm.jsp", extendsTile=Tab.MENU_WEBDB,
       type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="fitxer.fitxer")})
-@Tile(name="fitxerListWebDB", contentJsp="/WEB-INF/jsp/webdb/fitxerList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="fitxerListWebDB", contentJsp="/WEB-INF/jsp/webdb/fitxerList.jsp", extendsTile=Tab.MENU_WEBDB,
        type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="fitxer.fitxer") })
 public class FitxerController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Fitxer, java.lang.Long> implements FitxerFields {

@@ -31,10 +31,5 @@ public interface Constants {
     <#list ejb_roles as role_key,role_value>
     public static final String ${role_key} = ${role_value};
     </#list>
-    
-    // BACK MENU ACCESS GROUPS
-    public static final String MENU_BACK_ADMIN_ACCESS="admin";
-    public static final String MENU_BACK_BASIC_ACCESS="user";
-    public static final String MENU_BACK_PUBLIC_AND_COMMON_ACCESS="common";
-    public static final String MENU_BACK_WEBDB_ACCESS="webdb";
+
 }

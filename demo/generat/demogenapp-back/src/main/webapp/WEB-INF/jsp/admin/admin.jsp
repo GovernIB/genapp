@@ -23,7 +23,7 @@ import org.fundaciobit.demogenapp.back.controller.webdb.AlumneController;
 import org.fundaciobit.demogenapp.back.form.webdb.AlumneFilterForm;
 import org.fundaciobit.demogenapp.back.form.webdb.AlumneForm;
 
-import org.fundaciobit.demogenapp.commons.utils.Constants;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
@@ -31,12 +31,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@MenuOption(labelCode = "alumne.alumne.plural", order = 25, group = Constants.MENU_BACK_ADMIN_ACCESS)
+@MenuOption(labelCode = "alumne.alumne.plural", order = 25, group = Tab.MENU_ADMIN)
 @Controller
 @RequestMapping(value = "/admin/alumne")
 @SessionAttributes(types = { AlumneForm.class, AlumneFilterForm.class })
-@Tile(name = "alumneListAdmin", type = TileType.WEBDB_LIST, extendsTile = Constants.MENU_BACK_ADMIN_ACCESS)
-@Tile(name = "alumneFormAdmin", type = TileType.WEBDB_FORM, extendsTile = Constants.MENU_BACK_ADMIN_ACCESS)
+@Tile(name = "alumneListAdmin", type = TileType.WEBDB_LIST, extendsTile = Tab.MENU_ADMIN)
+@Tile(name = "alumneFormAdmin", type = TileType.WEBDB_FORM, extendsTile = Tab.MENU_ADMIN)
 public class AlumneAdminController extends AlumneController {
 
 }

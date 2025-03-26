@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 %><%@include file="/WEB-INF/jsp/moduls/includes.jsp"%>
-<un:useConstants var="Constants" className="${package}.commons.utils.Constants"/>
+<un:useConstants var="Tab" className="${package}.back.utils.Tab"/>
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"
     xml:lang="<c:out value="${dollar}{pageContext.response.locale.language}"/>"
     lang="<c:out value="${dollar}{pageContext.response.locale.language}"/>">
@@ -46,22 +46,22 @@
 
             <sec:authorize access="hasRole(<#list basic_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)">
                 <li class="nav-item"><a
-                    class="nav-link ${dollar}{(pipella eq Constants.MENU_BACK_BASIC_ACCESS)?'active' : '' }"
-                    href="<c:url value="/canviarPipella/${dollar}{Constants.MENU_BACK_BASIC_ACCESS}"/>">BASIC ACCESS</a>
+                    class="nav-link ${dollar}{(pipella eq Tab.MENU_USER)?'active' : '' }"
+                    href="<c:url value="/canviarPipella/${dollar}{Tab.MENU_USER}"/>">BASIC ACCESS</a>
                 </li>
             </sec:authorize>
 
             <sec:authorize access="hasRole(<#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)">
                 <li class="nav-item"><a
-                    class="nav-link ${dollar}{(pipella eq Constants.MENU_BACK_ADMIN_ACCESS)?'active' : '' }"
-                    href="<c:url value="/canviarPipella/${dollar}{Constants.MENU_BACK_ADMIN_ACCESS}"/>">ADMIN ACCESS</a>
+                    class="nav-link ${dollar}{(pipella eq Tab.MENU_ADMIN)?'active' : '' }"
+                    href="<c:url value="/canviarPipella/${dollar}{Tab.MENU_ADMIN}"/>">ADMIN ACCESS</a>
                 </li>
             </sec:authorize>
 
             <sec:authorize access="hasRole(<#list admin_virtual_roles_map as role_key,role>'${role?upper_case}',</#list>)">
                 <li class="nav-item"><a
-                    class="nav-link ${dollar}{(pipella eq Constants.MENU_BACK_WEBDB_ACCESS)?'active' : '' }"
-                    href="<c:url value="/canviarPipella/${dollar}{Constants.MENU_BACK_WEBDB_ACCESS}"/>">WebDatabase</a>
+                    class="nav-link ${dollar}{(pipella eq Tab.MENU_WEBDB)?'active' : '' }"
+                    href="<c:url value="/canviarPipella/${dollar}{Tab.MENU_WEBDB}"/>">WebDatabase</a>
                 </li>
             </sec:authorize>
 

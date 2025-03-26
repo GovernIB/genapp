@@ -10,6 +10,7 @@ import org.apache.tiles.request.Request;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.tiles.TileInfo;
 import org.fundaciobit.genapp.common.web.tiles.TilesDiscovery;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**
  * 
@@ -44,9 +45,9 @@ public class TilesFactoryApp implements DefinitionsFactory {
 
         DEF_WEBDB = new Definition(DEF_BASE_DEFINITION);
         //"webdb", new Attribute("/WEB-INF/jsp/layout/layout.jsp"), new HashMap<String, Attribute>());
-        DEF_WEBDB.setName(Constants.MENU_BACK_WEBDB_ACCESS);
+        DEF_WEBDB.setName(Tab.MENU_WEBDB);
         DEF_WEBDB.setExtends(DEF_BASE_DEFINITION.getName());
-        DEF_WEBDB.putAttribute("pipella", new Attribute(Constants.MENU_BACK_WEBDB_ACCESS));
+        DEF_WEBDB.putAttribute("pipella", new Attribute(Tab.MENU_WEBDB));
         DEF_WEBDB.putAttribute("menu", new Attribute("/WEB-INF/jsp/webdb/menu_webdb.jsp"));
 
         definitions.put(DEF_WEBDB.getName(), DEF_WEBDB);
@@ -105,7 +106,7 @@ public class TilesFactoryApp implements DefinitionsFactory {
 
         /*{name=common, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/principal.jsp, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_inici.jsp}}*/
         Definition def_common = new Definition(DEF_BASE_DEFINITION);
-        def_common.setName(Constants.MENU_BACK_PUBLIC_AND_COMMON_ACCESS);
+        def_common.setName(Tab.MENU_PUBLIC_AND_COMMON);
         def_common.putAttribute("menu", new Attribute("/WEB-INF/jsp/moduls/menu_inici.jsp"));
         def_common.putAttribute("contingut", new Attribute("/WEB-INF/jsp/principal.jsp"));
         map.put(def_common.getName(), def_common);
@@ -118,62 +119,20 @@ public class TilesFactoryApp implements DefinitionsFactory {
         map.put(def_principal.getName(), def_principal);
         /* ================================== */
 
-        /*{name=option1Common, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/common/option.jsp, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_inici.jsp}}*/
-        Definition def_option1Common = new Definition(def_common);
-        def_option1Common.setName("option1Common");
-        def_option1Common.putAttribute("contingut", new Attribute("/WEB-INF/jsp/common/option.jsp"));
-        map.put(def_option1Common.getName(), def_option1Common);
-        /* ================================== */
-
-        /*{name=option2Common, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/common/option.jsp, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_inici.jsp}}*/
-        Definition def_option2Common = new Definition(def_common);
-        def_option2Common.setName("option2Common");
-        def_option2Common.putAttribute("contingut", new Attribute("/WEB-INF/jsp/common/option.jsp"));
-        map.put(def_option2Common.getName(), def_option2Common);
-        /* ================================== */
-
         /*{name=user, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, pipella=user, cap=base.cap, contingut=base.contingut, menu=/WEB-INF/jsp/moduls/menu_user.jsp}}*/
         Definition def_user = new Definition(DEF_BASE_DEFINITION);
-        def_user.setName(Constants.MENU_BACK_BASIC_ACCESS);
-        def_user.putAttribute("pipella", new Attribute(Constants.MENU_BACK_BASIC_ACCESS));
+        def_user.setName(Tab.MENU_USER);
+        def_user.putAttribute("pipella", new Attribute(Tab.MENU_USER));
         def_user.putAttribute("menu", new Attribute("/WEB-INF/jsp/moduls/menu_user.jsp"));
         map.put(def_user.getName(), def_user);
         /* ================================== */
 
-        /*{name=option1User, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/user/user.jsp, pipella=user, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_user.jsp}}*/
-        Definition def_option1User = new Definition(def_user);
-        def_option1User.setName("option1User");
-        def_option1User.putAttribute("contingut", new Attribute("/WEB-INF/jsp/user/user.jsp"));
-        map.put(def_option1User.getName(), def_option1User);
-        /* ================================== */
-
-        /*{name=option2User, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/user/user.jsp, pipella=user, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_user.jsp}}*/
-        Definition def_option2User = new Definition(def_user);
-        def_option2User.setName("option2User");
-        def_option2User.putAttribute("contingut", new Attribute("/WEB-INF/jsp/user/user.jsp"));
-        map.put(def_option2User.getName(), def_option2User);
-        /* ================================== */
-
         /*{name=admin, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, pipella=admin, cap=base.cap, contingut=base.contingut, menu=/WEB-INF/jsp/moduls/menu_admin.jsp}}*/
         Definition def_admin = new Definition(DEF_BASE_DEFINITION);
-        def_admin.setName(Constants.MENU_BACK_ADMIN_ACCESS);
-        def_admin.putAttribute("pipella", new Attribute(Constants.MENU_BACK_ADMIN_ACCESS));
+        def_admin.setName(Tab.MENU_ADMIN);
+        def_admin.putAttribute("pipella", new Attribute(Tab.MENU_ADMIN));
         def_admin.putAttribute("menu", new Attribute("/WEB-INF/jsp/moduls/menu_admin.jsp"));
         map.put(def_admin.getName(), def_admin);
-        /* ================================== */
-
-        /*{name=option1Admin, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/admin/admin.jsp, pipella=admin, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_admin.jsp}}*/
-        Definition def_option1Admin = new Definition(def_admin);
-        def_option1Admin.setName("option1Admin");
-        def_option1Admin.putAttribute("contingut", new Attribute("/WEB-INF/jsp/admin/admin.jsp"));
-        map.put(def_option1Admin.getName(), def_option1Admin);
-        /* ================================== */
-
-        /*{name=option2Admin, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, contingut=/WEB-INF/jsp/admin/admin.jsp, pipella=admin, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_admin.jsp}}*/
-        Definition def_option2Admin = new Definition(def_admin);
-        def_option2Admin.setName("option2Admin");
-        def_option2Admin.putAttribute("contingut", new Attribute("/WEB-INF/jsp/admin/admin.jsp"));
-        map.put(def_option2Admin.getName(), def_option2Admin);
         /* ================================== */
 
         /* ================================== */

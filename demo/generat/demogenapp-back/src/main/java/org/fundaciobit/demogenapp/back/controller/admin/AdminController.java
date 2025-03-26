@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.fundaciobit.demogenapp.back.controller.admin.AdminController;
-import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.fundaciobit.demogenapp.commons.utils.Configuracio;
 import org.fundaciobit.demogenapp.commons.utils.Constants;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**
  * 
@@ -33,43 +33,45 @@ import org.fundaciobit.demogenapp.commons.utils.Constants;
 @MenuOption(
         labelCode = "=Menú ADMIN Option 1",
         order = 10,
-        group = Constants.MENU_BACK_ADMIN_ACCESS,
+        group = Tab.MENU_ADMIN,
         baseLink = "/admin/option1",
         relativeLink = "")
+@Tile(name = "option1Admin",  extendsTile = Tab.MENU_USER, type = TileType.ANOTHER, contentJsp = "/WEB-INF/jsp/admin/admin.jsp")
 @MenuOption(
         labelCode = "=Menú ADMIN Option 2",
         order = 20,
-        group = Constants.MENU_BACK_ADMIN_ACCESS,
+        group = Tab.MENU_ADMIN,
         baseLink = "/admin/option2",
         relativeLink = "",
         addSeparatorBefore = true)
+@Tile(name = "option2Admin",  extendsTile =  "option1Admin", type = TileType.ANOTHER)
 @MenuOption(
         labelCode = "=Contents of demogenapp.properties file",
         order = 1000,
-        group = Constants.MENU_BACK_ADMIN_ACCESS,
+        group = Tab.MENU_ADMIN,
         baseLink = "/admin/properties",
         relativeLink = "",
         addSeparatorBefore = true)
 @MenuOption(
         labelCode = "=Contents of demogenapp.system.properties file",
         order = 1010,
-        group = Constants.MENU_BACK_ADMIN_ACCESS,
+        group = Tab.MENU_ADMIN,
         baseLink = "/admin/systemproperties",
         relativeLink = "")
 @MenuOption(
         labelCode = "=Reload contents of property files",
         order = 1020,
-        group = Constants.MENU_BACK_ADMIN_ACCESS,
+        group = Tab.MENU_ADMIN,
         baseLink = "/admin/reloadproperties",
         relativeLink = "")
 @Tile(
         name = AdminController.KEYVALUE_ADMIN_TILE,
-        extendsTile = Constants.MENU_BACK_ADMIN_ACCESS,
+        extendsTile = Tab.MENU_ADMIN,
         contentJsp = "/WEB-INF/jsp/common/keyvalue.jsp",
         attributes = {
             @TileAttribute(name = "titol", value = "admin.admin")
         },
-        type = org.fundaciobit.genapp.common.web.tiles.TileType.ANOTHER)
+        type = TileType.ANOTHER)
 public class AdminController {
 
     public static final String KEYVALUE_ADMIN_TILE = "keyvalueAdmin";

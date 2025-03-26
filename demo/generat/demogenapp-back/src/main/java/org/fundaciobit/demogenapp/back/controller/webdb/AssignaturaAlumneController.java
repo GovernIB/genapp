@@ -41,6 +41,7 @@ import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**
  * Controller per gestionar un AssignaturaAlumne
@@ -48,13 +49,13 @@ import org.fundaciobit.genapp.common.web.tiles.TileType;
  * 
  * @author GenApp
  */
-@MenuOption(labelCode="assignaturaAlumne.assignaturaAlumne.plural", order=20, group=Constants.MENU_BACK_WEBDB_ACCESS)
+@MenuOption(labelCode="assignaturaAlumne.assignaturaAlumne.plural", order=20, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/assignaturaAlumne")
 @SessionAttributes(types = { AssignaturaAlumneForm.class, AssignaturaAlumneFilterForm.class })
-@Tile(name="assignaturaAlumneFormWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneForm.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="assignaturaAlumneFormWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneForm.jsp", extendsTile=Tab.MENU_WEBDB,
       type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne")})
-@Tile(name="assignaturaAlumneListWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneList.jsp", extendsTile=Constants.MENU_BACK_WEBDB_ACCESS,
+@Tile(name="assignaturaAlumneListWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneList.jsp", extendsTile=Tab.MENU_WEBDB,
        type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne") })
 public class AssignaturaAlumneController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<AssignaturaAlumne, java.lang.Long> implements AssignaturaAlumneFields {
