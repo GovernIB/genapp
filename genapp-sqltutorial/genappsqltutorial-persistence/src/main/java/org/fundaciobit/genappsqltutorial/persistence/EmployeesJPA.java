@@ -126,18 +126,18 @@ public class EmployeesJPA implements Employees {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Employees) {
-      Employees __instance = (Employees)__obj;
-      __result = true;
-      __result = __result && (this.getEmployeeid() == __instance.getEmployeeid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Employees) {
+            Employees __instance = (Employees)__obj;
+            __result = true;
+            __result = __result && (this.getEmployeeid() == __instance.getEmployeeid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 // EXP  Field:employeeid | Table: gas_orders | Type: 0  
 

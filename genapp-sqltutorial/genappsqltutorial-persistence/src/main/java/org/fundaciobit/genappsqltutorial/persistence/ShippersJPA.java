@@ -83,18 +83,18 @@ public class ShippersJPA implements Shippers {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Shippers) {
-      Shippers __instance = (Shippers)__obj;
-      __result = true;
-      __result = __result && (this.getShipperid() == __instance.getShipperid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Shippers) {
+            Shippers __instance = (Shippers)__obj;
+            __result = true;
+            __result = __result && (this.getShipperid() == __instance.getShipperid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 // EXP  Field:shipperid | Table: gas_orders | Type: 0  
 

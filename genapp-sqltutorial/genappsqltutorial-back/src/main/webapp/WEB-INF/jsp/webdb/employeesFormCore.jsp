@@ -50,7 +50,7 @@
             </td>
           <td id="employees_birthdate_columnvalueid">
     <form:errors path="employees.birthdate" cssClass="errorField alert alert-danger" />
-            <div class="form-group">
+            <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="employees_birthdate" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,EmployeesFields.BIRTHDATE)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#employees_birthdate" path="employees.birthdate" />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,EmployeesFields.BIRTHDATE)}" >

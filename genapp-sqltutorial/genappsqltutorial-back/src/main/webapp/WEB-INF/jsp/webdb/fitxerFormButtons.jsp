@@ -6,7 +6,7 @@
     <input type="submit" class="btn btn-primary" value="<fmt:message key="genapp.save"/>">
     </c:if>
     <c:if test="${__theForm.cancelButtonVisible}">
-    <input type="button" class="btn btn-secondary" onclick="goTo('<c:url value="${contexte}/${__theForm.fitxer.fitxerID}/cancel"/>')" value="<fmt:message key="genapp.cancel"/>">
+    <input type="button" class="btn btn-secondary" onclick="goTo('<c:url value="${contexte}${__theForm.nou?'':'/'.concat(__theForm.fitxer.fitxerID)}/cancel"/>')" value="<fmt:message key="genapp.cancel"/>">
     </c:if>
     <c:if test="${!__theForm.nou && __theForm.deleteButtonVisible}">
     <button type="button" class="btn btn-danger" onclick="openModal('<c:url value="${contexte}/${__theForm.fitxer.fitxerID}/delete"/>','show');"><fmt:message key="genapp.delete"/></button>
@@ -21,8 +21,8 @@
      <c:url var="thehref" value="${thelink}"/>
      <c:url var="thelink" value=""/>
     </c:if>
-    <a class="btn ${button.type}" 
-       href="${thehref}" onclick="${thelink}" style="${(empty button.type)? '' : 'color: white;'}"  >
+    <a class="btn <c:out value="${button.style}" />" 
+       href="${thehref}" onclick="${thelink}" style="${(empty button.style)? '' : 'color: white;'}"  >
        <i class="${button.icon}"></i><fmt:message key="${button.codeText}"/>
     </a>
     </c:if>

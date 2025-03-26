@@ -94,7 +94,7 @@
             </td>
           <td id="orders_orderdate_columnvalueid">
     <form:errors path="orders.orderdate" cssClass="errorField alert alert-danger" />
-            <div class="form-group">
+            <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="orders_orderdate" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,OrdersFields.ORDERDATE)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#orders_orderdate" path="orders.orderdate" />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,OrdersFields.ORDERDATE)}" >

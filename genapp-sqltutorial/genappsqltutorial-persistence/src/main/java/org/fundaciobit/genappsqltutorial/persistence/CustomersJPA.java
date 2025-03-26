@@ -135,18 +135,18 @@ public class CustomersJPA implements Customers {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Customers) {
-      Customers __instance = (Customers)__obj;
-      __result = true;
-      __result = __result && (this.getCustomerid() == __instance.getCustomerid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Customers) {
+            Customers __instance = (Customers)__obj;
+            __result = true;
+            __result = __result && (this.getCustomerid() == __instance.getCustomerid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 // EXP  Field:customerid | Table: gas_orders | Type: 0  
 

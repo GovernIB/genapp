@@ -13,6 +13,8 @@ import org.fundaciobit.genapp.common.crypt.AlgorithmEncrypter;
 import org.fundaciobit.genapp.common.crypt.FileIDEncrypter;
 import org.fundaciobit.genapp.common.filesystem.FileSystemManager;
 import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
+import org.fundaciobit.genapp.common.web.menuoptions.DiscoverMenuOptionAnnotations;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 import org.fundaciobit.genappsqltutorial.hibernate.HibernateFileUtil;
@@ -21,6 +23,7 @@ import org.fundaciobit.genappsqltutorial.logic.utils.LogicUtils;
 import org.fundaciobit.genappsqltutorial.tutorial.dao.DAOManager;
 import org.fundaciobit.genappsqltutorial.tutorial.printer.PrinterResultsManager;
 import org.fundaciobit.genappsqltutorial.commons.utils.Configuracio;
+import org.fundaciobit.genappsqltutorial.commons.utils.Constants;
 
 /**
  * Servlet emprat per inicialitzar el Back
@@ -36,12 +39,25 @@ public class InitServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
 
+        // Inicialitzar sistema de menus 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    MenuOptionManager.setDiscoverMenuOptionAnnotations(new DiscoverMenuOptionAnnotations(
+                            Constants.GENAPPSQLTUTORIAL_PROPERTY_BASE + "back.controller"));
+                } catch (Throwable th) {
+                    log.error("Error inicialitzant sistema de menus: " + th.getMessage(), th);
+                }
+            }
+        }).start();
+
         // Sistema de Fitxers
         try {
             File fd = Configuracio.getFilesDirectory();
             if (fd == null) {
                 throw new Exception("No s'ha definit la propietat de la ubicació dels fitxers ("
-                        +  "org.fundaciobit.genappsqltutorial.filesdirectory)") ;
+                        + "org.fundaciobit.genappsqltutorial.filesdirectory)");
             }
             if (!fd.exists()) {
                 throw new Exception("El directori " + fd.getAbsolutePath() + " no existeix.");
@@ -122,22 +138,20 @@ public class InitServlet extends HttpServlet {
          * } catch(Throwable e) { log.error("Error inicialitzant els DataExporters: " +
          * e.getMessage(), e); }
          */
-        
-        
+
         // Inicialitzar PrinterResults
         try {
             PrinterResultsManager.setPrinterResults(new WebFormatPrinterResultsImpl());
         } catch (Exception e) {
             log.error("Error assignant el formatejador web  de resultats: " + e.getMessage(), e);
         }
-        
+
         // Inicialitzar DAOProvider
         try {
             DAOManager.setDAOProvider(new DAOProviderEjb());
         } catch (Exception e) {
             log.error("Error assignant el DAOProvider: " + e.getMessage(), e);
         }
-        
 
         // Mostrar Versió
         String ver = LogicUtils.getVersio();

@@ -16,7 +16,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.genappsqltutorial.back.form.webdb.*;
 import org.fundaciobit.genappsqltutorial.back.form.webdb.TraduccioForm;
@@ -34,6 +34,12 @@ import org.fundaciobit.genappsqltutorial.back.validator.webdb.TraduccioWebValida
 import org.fundaciobit.genappsqltutorial.persistence.TraduccioJPA;
 import org.fundaciobit.genappsqltutorial.model.entity.Traduccio;
 import org.fundaciobit.genappsqltutorial.model.fields.*;
+import org.fundaciobit.genappsqltutorial.commons.utils.Constants;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.genappsqltutorial.back.utils.Tab;
 
 /**
  * Controller per gestionar un Traduccio
@@ -41,9 +47,14 @@ import org.fundaciobit.genappsqltutorial.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="traduccio.traduccio.plural", order=100, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/traduccio")
 @SessionAttributes(types = { TraduccioForm.class, TraduccioFilterForm.class })
+@Tile(name="traduccioFormWebDB", contentJsp="/WEB-INF/jsp/webdb/traduccioForm.jsp", extendsTile=Tab.MENU_WEBDB,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="traduccio.traduccio")})
+@Tile(name="traduccioListWebDB", contentJsp="/WEB-INF/jsp/webdb/traduccioList.jsp", extendsTile=Tab.MENU_WEBDB,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="traduccio.traduccio") })
 public class TraduccioController
     extends org.fundaciobit.genappsqltutorial.back.controller.GenAppSqlTutorialBaseController<Traduccio, java.lang.Long> implements TraduccioFields {
 
@@ -302,7 +313,6 @@ public class TraduccioController
 
     if (traduccio == null) {
       createMessageWarning(request, "error.notfound", traduccioID);
-      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, traduccioID), true));
       return llistatPaginat(request, response, 1);
     } else {
       ModelAndView mav = new ModelAndView(getTileForm());
@@ -506,6 +516,14 @@ public java.lang.Long stringToPK(String value) {
      return getRedirectWhenCancel(request, traduccioID);
   }
 
+  /**
+   * Entra aqui al pitjar el boto cancel en el la creació de Traduccio
+   */
+  @RequestMapping(value = "/cancel")
+  public String cancelTraduccio(HttpServletRequest request,HttpServletResponse response) {
+     return getRedirectWhenCancel(request, null);
+  }
+
   @Override
   public String getTableModelName() {
     return _TABLE_MODEL;
@@ -578,15 +596,49 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "traduccioFormWebDB";
   }
 
-  public String getTileList() {
-    return "traduccioListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "traduccioListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
-    return "TraduccioWebDB_FilterForm";
+    return "Traduccio_FilterForm_" + this.getClass().getName();
   }
 
 

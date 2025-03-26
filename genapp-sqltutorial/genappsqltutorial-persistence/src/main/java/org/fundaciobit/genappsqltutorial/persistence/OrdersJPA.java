@@ -115,18 +115,18 @@ public class OrdersJPA implements Orders {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Orders) {
-      Orders __instance = (Orders)__obj;
-      __result = true;
-      __result = __result && (this.getOrderid() == __instance.getOrderid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Orders) {
+            Orders __instance = (Orders)__obj;
+            __result = true;
+            __result = __result && (this.getOrderid() == __instance.getOrderid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 // EXP  Field:orderid | Table: gas_orderdetails | Type: 0  
 

@@ -71,7 +71,8 @@
                         </fmt:message>
                         </c:if>
                         <c:if test="${fn:startsWith(code,'=')}" >
-                        <c:set var="thetext" value="${fn:substringAfter(code, '=')}" />
+                            <c:set var="thetext" value="${fn:substringAfter(code, '=')}" />
+                            <c:set var="thetext" value="${fn:replace(thetext,'\"','\\\'')}" />
                         </c:if>
                     
                     <c:set var="ParentID" value="${groupby_item.value}_${counterParent}" />
@@ -82,8 +83,8 @@
                     </c:if>
                     ,{
                         "id": '${ParentID}',
-                        "text": "<span style='${groupby_item.selected? "font-weight: bold;" : ""}'>${thetext}</span>",
-                        "field": '${groupby_item.value}',
+                        "text": "<span style='${groupby_item.selected? "font-weight: bold;" : ""}'><c:out value="${thetext}" escapeXml="false"/></span>",
+                        "field": '<c:out value="${groupby_item.value}"/>',
                         "hasChildren": true,
                         "children": [
                             
@@ -96,10 +97,10 @@
                             <c:if test="${counterG ne 0}">,</c:if>
                             <c:set var="counterG" value="${counterG + 1}" />
                             {
-                                "id": '${groupby_item.value}_${groupbyvalue_item.value}_${counterG}',
-                                "text": "<span style='${groupbyvalue_item.selected? "font-weight: bold;" : ""}' >${ (empty groupbyvalue_item.codeLabel) ? buit : groupbyvalue_item.codeLabel } (${groupbyvalue_item.count})</span>",
+                                "id": '${groupby_item.value}_${fn:replace(groupbyvalue_item.value,"'","_")}_${counterG}',
+                                "text": '<span style="${groupbyvalue_item.selected? "font-weight: bold;" : ""}" ><c:out value = "${ (empty groupbyvalue_item.codeLabel) ? buit : groupbyvalue_item.codeLabel}" /> (${groupbyvalue_item.count})</span>',
                                 "field": '${groupby_item.value}',
-                                "value" : '${groupbyvalue_item.value}',
+                                "value" : '${fn:replace(groupbyvalue_item.value,'\'','\\\'')}',
                                 "hasChildren": false,
                                 "children": []
                             }
@@ -120,6 +121,10 @@
           uiLibrary: 'bootstrap4',
           select: function (e, node, id) {
               var nodedata = tree.getDataById(id);
+              if (!nodedata) {
+                 alert("No he trobat entrada per id =]" + id + "[");
+                 return;
+              };
               if (!nodedata.hasChildren) {
                   groupByFieldValue(nodedata.field, nodedata.value);                  
               }

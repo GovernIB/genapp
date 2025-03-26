@@ -98,18 +98,18 @@ public class OrderDetailsJPA implements OrderDetails {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof OrderDetails) {
-      OrderDetails __instance = (OrderDetails)__obj;
-      __result = true;
-      __result = __result && (this.getOrderdetailid() == __instance.getOrderdetailid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof OrderDetails) {
+            OrderDetails __instance = (OrderDetails)__obj;
+            __result = true;
+            __result = __result && (this.getOrderdetailid() == __instance.getOrderdetailid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 // IMP Field:orderid | Table: gas_orders | Type: 1  
 

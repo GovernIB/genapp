@@ -79,18 +79,18 @@ public class CategoriesJPA implements Categories {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Categories) {
-      Categories __instance = (Categories)__obj;
-      __result = true;
-      __result = __result && (this.getCategoryid() == __instance.getCategoryid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Categories) {
+            Categories __instance = (Categories)__obj;
+            __result = true;
+            __result = __result && (this.getCategoryid() == __instance.getCategoryid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 
  // ---------------  STATIC METHODS ------------------

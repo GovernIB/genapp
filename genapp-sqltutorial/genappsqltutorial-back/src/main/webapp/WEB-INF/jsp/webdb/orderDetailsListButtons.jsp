@@ -1,7 +1,7 @@
 <%-- ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!! --%>
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
   
-          <c:if test="${__theFilterForm.editButtonVisible || __theFilterForm.deleteButtonVisible || not empty __theFilterForm.additionalButtonsForEachItem || not empty __theFilterForm.additionalButtonsByPK}">
+          <c:if test="${__theFilterForm.editButtonVisible || __theFilterForm.viewButtonVisible ||__theFilterForm.deleteButtonVisible || not empty __theFilterForm.additionalButtonsForEachItem || not empty __theFilterForm.additionalButtonsByPK}">
           <td>
           <c:set var="pk" value="${orderDetails.orderdetailid}"/>
           <c:choose>
@@ -10,6 +10,11 @@
             <c:if test="${__theFilterForm.editButtonVisible}">
             <a class="btn btn-warning" href="<c:url value="${contexte}/${orderDetails.orderdetailid}/edit"/>" role="button"  title="<fmt:message key="genapp.edit"/>">
                <i class="fas fa-edit"></i>
+            </a>
+            </c:if>
+            <c:if test="${__theFilterForm.viewButtonVisible}">
+            <a class="btn btn-info" href="<c:url value="${contexte}/view/${orderDetails.orderdetailid}"/>" role="button"  title="<fmt:message key="genapp.viewtitle"/>">
+               <i class="fas fa-eye"></i>
             </a>
             </c:if>
             <c:if test="${__theFilterForm.deleteButtonVisible}">
@@ -25,7 +30,7 @@
                   <c:url var="thehref" value="${thelink}"/>
                   <c:url var="thelink" value=""/>
                   </c:if>
-                  <a class="btn ${button.type}" href="${thehref}" role="button"  onclick="${thelink}" title="<fmt:message key="${button.codeText}"/>">
+                  <a class="btn <c:out value="${button.style}" />" href="${thehref}" role="button"  onclick="${thelink}" title="<fmt:message key="${button.codeText}"/>">
                      <c:if test="${fn:startsWith(button.icon, '/')}">
                      <img src="<c:url value="${button.icon}"/>"/>
                      </c:if>                     <c:if test="${!fn:startsWith(button.icon, '/')}">
@@ -43,7 +48,7 @@
                   <c:url var="thehref" value="${thelink}"/>
                   <c:url var="thelink" value=""/>
                   </c:if>
-                  <a class="btn ${button.type}" href="${thehref}" role="button"  onclick="${thelink}" title="<fmt:message key="${button.codeText}"/>">
+                  <a class="btn <c:out value="${button.style}" />" href="${thehref}" role="button"  onclick="${thelink}" title="<fmt:message key="${button.codeText}"/>">
                      <c:if test="${fn:startsWith(button.icon, '/')}">
                      <img src="<c:url value="${button.icon}"/>"/>
                      </c:if>                     <c:if test="${!fn:startsWith(button.icon, '/')}">
@@ -71,6 +76,14 @@
             </a>
             </li>
             </c:if>
+            <c:if test="${__theFilterForm.viewButtonVisible}">
+            <li>
+            <a class="btn btn-info btn-sm a_item" style="margin-bottom:5px;color: white;" href="<c:url value="${contexte}/view/${orderDetails.orderdetailid}"/>" onclick="null">
+            <i class="fas fa-eye"></i>
+             <fmt:message key="genapp.viewtitle"/>
+            </a>
+            </li>
+            </c:if>
             <c:if test="${__theFilterForm.deleteButtonVisible}">
             <li>
             <a class="btn btn-danger btn-sm a_item" style="margin-bottom:5px;color: white;" href="#myModal" onclick="openModal('<c:url value="${contexte}/${orderDetails.orderdetailid}/delete"/>','show');">
@@ -88,7 +101,7 @@
                   <c:url var="thelink" value=""/>
                   </c:if>
                   <li>
-                  <a class="btn ${button.type} btn-sm a_item" style="margin-bottom:5px;${(empty button.type)? '' : 'color: white;'};" href="${thehref}" onclick="${thelink}">
+                  <a class="btn <c:out value="${button.style}" /> btn-sm a_item" style="margin-bottom:5px;color: white;" href="${thehref}" onclick="${thelink}">
                   <c:if test="${fn:startsWith(button.icon, '/')}">
                   <img src="<c:url value="${button.icon}"/>"/>
                   </c:if>                  <c:if test="${!fn:startsWith(button.icon, '/')}">
@@ -109,7 +122,7 @@
                   <c:url var="thelink" value=""/>
                   </c:if>
                   <li>
-                  <a class="btn ${button.type} btn-sm a_item" style="margin-bottom:5px;${(empty button.type)? '' : 'color: white;'};" href="${thehref}" onclick="${thelink}">
+                  <a class="btn <c:out value="${button.style}" /> btn-sm a_item" style="margin-bottom:5px;color: white;" href="${thehref}" onclick="${thelink}">
                   <c:if test="${fn:startsWith(button.icon, '/')}">
                   <img src="<c:url value="${button.icon}"/>"/>
                   </c:if>                  <c:if test="${!fn:startsWith(button.icon, '/')}">

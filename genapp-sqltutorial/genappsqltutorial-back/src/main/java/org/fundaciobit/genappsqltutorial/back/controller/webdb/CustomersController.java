@@ -16,7 +16,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.genappsqltutorial.back.form.webdb.*;
 import org.fundaciobit.genappsqltutorial.back.form.webdb.CustomersForm;
@@ -34,6 +34,12 @@ import org.fundaciobit.genappsqltutorial.back.validator.webdb.CustomersWebValida
 import org.fundaciobit.genappsqltutorial.persistence.CustomersJPA;
 import org.fundaciobit.genappsqltutorial.model.entity.Customers;
 import org.fundaciobit.genappsqltutorial.model.fields.*;
+import org.fundaciobit.genappsqltutorial.commons.utils.Constants;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.genappsqltutorial.back.utils.Tab;
 
 /**
  * Controller per gestionar un Customers
@@ -41,9 +47,14 @@ import org.fundaciobit.genappsqltutorial.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="customers.customers.plural", order=10, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/customers")
 @SessionAttributes(types = { CustomersForm.class, CustomersFilterForm.class })
+@Tile(name="customersFormWebDB", contentJsp="/WEB-INF/jsp/webdb/customersForm.jsp", extendsTile=Tab.MENU_WEBDB,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="customers.customers")})
+@Tile(name="customersListWebDB", contentJsp="/WEB-INF/jsp/webdb/customersList.jsp", extendsTile=Tab.MENU_WEBDB,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="customers.customers") })
 public class CustomersController
     extends org.fundaciobit.genappsqltutorial.back.controller.GenAppSqlTutorialBaseController<Customers, java.lang.Long> implements CustomersFields {
 
@@ -302,7 +313,6 @@ public class CustomersController
 
     if (customers == null) {
       createMessageWarning(request, "error.notfound", customerid);
-      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, customerid), true));
       return llistatPaginat(request, response, 1);
     } else {
       ModelAndView mav = new ModelAndView(getTileForm());
@@ -506,6 +516,14 @@ public java.lang.Long stringToPK(String value) {
      return getRedirectWhenCancel(request, customerid);
   }
 
+  /**
+   * Entra aqui al pitjar el boto cancel en el la creació de Customers
+   */
+  @RequestMapping(value = "/cancel")
+  public String cancelCustomers(HttpServletRequest request,HttpServletResponse response) {
+     return getRedirectWhenCancel(request, null);
+  }
+
   @Override
   public String getTableModelName() {
     return _TABLE_MODEL;
@@ -578,15 +596,49 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "customersFormWebDB";
   }
 
-  public String getTileList() {
-    return "customersListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "customersListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
-    return "CustomersWebDB_FilterForm";
+    return "Customers_FilterForm_" + this.getClass().getName();
   }
 
 

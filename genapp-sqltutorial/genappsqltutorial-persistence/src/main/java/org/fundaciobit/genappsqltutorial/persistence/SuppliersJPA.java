@@ -144,18 +144,18 @@ public class SuppliersJPA implements Suppliers {
 
 
 
-  @Override
-  public boolean equals(Object __obj) {
-  boolean __result;
-    if (__obj != null && __obj instanceof Suppliers) {
-      Suppliers __instance = (Suppliers)__obj;
-      __result = true;
-      __result = __result && (this.getSupplierid() == __instance.getSupplierid()) ;
-    } else {
-      __result = false;
+    @Override
+    public boolean equals(Object __obj) {
+        boolean __result;
+        if (__obj != null && __obj instanceof Suppliers) {
+            Suppliers __instance = (Suppliers)__obj;
+            __result = true;
+            __result = __result && (this.getSupplierid() == __instance.getSupplierid()) ;
+        } else {
+            __result = false;
+        }
+        return __result;
     }
-    return __result;
-  }
 
 
  // ---------------  STATIC METHODS ------------------

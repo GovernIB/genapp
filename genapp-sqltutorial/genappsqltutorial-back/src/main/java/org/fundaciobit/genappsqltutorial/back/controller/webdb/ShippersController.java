@@ -16,7 +16,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.fundaciobit.genappsqltutorial.back.form.webdb.*;
 import org.fundaciobit.genappsqltutorial.back.form.webdb.ShippersForm;
@@ -34,6 +34,12 @@ import org.fundaciobit.genappsqltutorial.back.validator.webdb.ShippersWebValidat
 import org.fundaciobit.genappsqltutorial.persistence.ShippersJPA;
 import org.fundaciobit.genappsqltutorial.model.entity.Shippers;
 import org.fundaciobit.genappsqltutorial.model.fields.*;
+import org.fundaciobit.genappsqltutorial.commons.utils.Constants;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
+import org.fundaciobit.genappsqltutorial.back.utils.Tab;
 
 /**
  * Controller per gestionar un Shippers
@@ -41,9 +47,14 @@ import org.fundaciobit.genappsqltutorial.model.fields.*;
  * 
  * @author GenApp
  */
+@MenuOption(labelCode="shippers.shippers.plural", order=80, group=Tab.MENU_WEBDB)
 @Controller
 @RequestMapping(value = "/webdb/shippers")
 @SessionAttributes(types = { ShippersForm.class, ShippersFilterForm.class })
+@Tile(name="shippersFormWebDB", contentJsp="/WEB-INF/jsp/webdb/shippersForm.jsp", extendsTile=Tab.MENU_WEBDB,
+      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="shippers.shippers")})
+@Tile(name="shippersListWebDB", contentJsp="/WEB-INF/jsp/webdb/shippersList.jsp", extendsTile=Tab.MENU_WEBDB,
+       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="shippers.shippers") })
 public class ShippersController
     extends org.fundaciobit.genappsqltutorial.back.controller.GenAppSqlTutorialBaseController<Shippers, java.lang.Long> implements ShippersFields {
 
@@ -302,7 +313,6 @@ public class ShippersController
 
     if (shippers == null) {
       createMessageWarning(request, "error.notfound", shipperid);
-      new ModelAndView(new RedirectView(getRedirectWhenCancel(request, shipperid), true));
       return llistatPaginat(request, response, 1);
     } else {
       ModelAndView mav = new ModelAndView(getTileForm());
@@ -506,6 +516,14 @@ public java.lang.Long stringToPK(String value) {
      return getRedirectWhenCancel(request, shipperid);
   }
 
+  /**
+   * Entra aqui al pitjar el boto cancel en el la creació de Shippers
+   */
+  @RequestMapping(value = "/cancel")
+  public String cancelShippers(HttpServletRequest request,HttpServletResponse response) {
+     return getRedirectWhenCancel(request, null);
+  }
+
   @Override
   public String getTableModelName() {
     return _TABLE_MODEL;
@@ -578,15 +596,49 @@ public java.lang.Long stringToPK(String value) {
   }
 
   public String getTileForm() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_FORM) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileForm: " + e.getMessage(), e);
+        }
     return "shippersFormWebDB";
   }
 
-  public String getTileList() {
-    return "shippersListWebDB";
-  }
+    public String getTileList() {
+        try {
+            Set<Tile> rm;
+            rm=AnnotationUtils.getDeclaredRepeatableAnnotations(this.getClass(), Tile.class);
+            if (rm != null && !rm.isEmpty()) {
+                String trobada = null;
+                for (Tile tile : rm) {
+                    if (tile.type() == TileType.WEBDB_LIST) {
+                        trobada = tile.name();
+                    }
+                }
+                if (trobada != null) {
+                    return trobada;
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error en el getTileList: " + e.getMessage(), e);
+        }
+        return "shippersListWebDB";
+    }
 
   public String getSessionAttributeFilterForm() {
-    return "ShippersWebDB_FilterForm";
+    return "Shippers_FilterForm_" + this.getClass().getName();
   }
 
 
