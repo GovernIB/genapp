@@ -1422,7 +1422,7 @@ public class BackGenerator {
       code.append("import " + packages.entityPackage + "." + tableJavaName + ";\n");
       //code.append("import " + packages.fieldsPackage + "." + fieldsClass + ";\n");
       code.append("import " + packages.fieldsPackage + ".*;\n");
-      code.append("import " + packages.utilsPackage + ".Constants;\n");
+      //code.append("import " + packages.utilsPackage + ".Constants;\n");
       code.append("import " + MenuOption.class.getName() + ";\n");
       code.append("import " + Tile.class.getName() + ";\n");
       code.append("import " + TileAttribute.class.getName() + ";\n");

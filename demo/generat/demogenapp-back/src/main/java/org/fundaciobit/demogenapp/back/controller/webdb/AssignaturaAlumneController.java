@@ -36,7 +36,6 @@ import org.fundaciobit.demogenapp.back.validator.webdb.AssignaturaAlumneWebValid
 import org.fundaciobit.demogenapp.persistence.AssignaturaAlumneJPA;
 import org.fundaciobit.demogenapp.model.entity.AssignaturaAlumne;
 import org.fundaciobit.demogenapp.model.fields.*;
-import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;

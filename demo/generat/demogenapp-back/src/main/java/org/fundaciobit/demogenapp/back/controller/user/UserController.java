@@ -6,11 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.fundaciobit.demogenapp.back.utils.Tab;
 
-import org.apache.tiles.Attribute;
-import org.apache.tiles.Definition;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
-import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

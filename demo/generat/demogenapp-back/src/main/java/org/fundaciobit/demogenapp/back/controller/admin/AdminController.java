@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import org.fundaciobit.demogenapp.commons.utils.Configuracio;
-import org.fundaciobit.demogenapp.commons.utils.Constants;
 import org.fundaciobit.demogenapp.back.utils.Tab;
 
 /**

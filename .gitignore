@@ -146,3 +146,4 @@ target
 /genapp-sqltutorial/genappsqltutorial-tutorial/traduccions.properties
 /genapp.css_canvi_taules.txt
 /run_arche/arche/dep.bat
+/genapp-sqltutorial/genappsqltutorial-back/src/main/java/org/fundaciobit/genappsqltutorial/back/preparer/ConvertTiles.java
