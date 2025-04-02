@@ -46,6 +46,7 @@
 		<url-pattern>*.jar</url-pattern>
 		<url-pattern>*.pdf</url-pattern>
         <url-pattern>*.ico</url-pattern>
+        <url-pattern>*.ttf</url-pattern>
 		<url-pattern>*.properties</url-pattern>
 	</servlet-mapping>
 
@@ -142,7 +143,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>${name}_back-public</web-resource-name>            
-            <url-pattern>/applet/*</url-pattern>
+            <url-pattern>/fonts/*</url-pattern>
             <url-pattern>/css/*</url-pattern>
             <url-pattern>/img/*</url-pattern>
             <url-pattern>/js/*</url-pattern>

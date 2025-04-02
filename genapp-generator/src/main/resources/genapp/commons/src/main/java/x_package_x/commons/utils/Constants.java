@@ -13,13 +13,13 @@ public interface Constants {
 
     // TRUE ROLES
     <#list admin_roles as role>
-    public static final String ${role?upper_case}="${role}";
+    public static final String ${role?upper_case?replace("-","_")?replace(".","_")}="${role}";
     </#list>
     <#list user_roles as role>
-    public static final String ${role?upper_case}="${role}";
+    public static final String ${role?upper_case?replace("-","_")?replace(".","_")}="${role}";
     </#list>
     <#list ws_roles as role>
-    public static final String ${role?upper_case}="${role}";
+    public static final String ${role?upper_case?replace("-","_")?replace(".","_")}="${role}";
     </#list>
 
     // VIRTUAL SECURITY ROLES

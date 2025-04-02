@@ -1060,7 +1060,8 @@ public class CodeGenerator {
             if (role.toUpperCase().startsWith(project.getPrefix().toUpperCase() + "_")) { 
                 virtualRoles.put(role, "ROLE" + role.substring(role.indexOf('_')));
             } else {
-                virtualRoles.put(role, "ROLE_" + role);
+                String cleanRol = role.toUpperCase().replace("-", "_").replace(".", "_");
+                virtualRoles.put(role, "ROLE_" + cleanRol);
             }
         }
         return virtualRoles;
@@ -1071,10 +1072,11 @@ public class CodeGenerator {
         String[] roles = project.getRolesAdminArray();
         for (int r = 0; r < roles.length ; r++ ) {
             String role = roles[r];
-            if (role.toUpperCase().startsWith(project.getPrefix().toUpperCase() + "_")) { 
+            if (role.toUpperCase().startsWith(project.getPrefix().toUpperCase() + "_")) {
                 virtualRoles.put(role, "ROLE" + role.substring(role.indexOf('_')));
             } else {
-                virtualRoles.put(role, "ROLE_" + role);
+                String cleanRol = role.toUpperCase().replace("-", "_").replace(".", "_");
+                virtualRoles.put(role, "ROLE_" + cleanRol);
             }
         }
         return virtualRoles;
@@ -1097,7 +1099,8 @@ public class CodeGenerator {
                 if (role.equals(project.getPrefix().toUpperCase() + "_" + "ADMIN")) { 
                     ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS", role);
                 } else {
-                    ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS_" + role.toUpperCase() , role.toUpperCase());
+                    String cleanRol = role.toUpperCase().replace("-", "_").replace(".", "_");
+                    ejbRoles.put("ROLE_EJB_" + "FULL_ACCESS_" + cleanRol , cleanRol);
                 }
             }
         }
@@ -1108,7 +1111,8 @@ public class CodeGenerator {
                 if (role.equals(project.getPrefix().toUpperCase() + "_" + "USER")) { 
                     ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS", role);
                 } else {
-                    ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS_" + role.toUpperCase() , role.toUpperCase());
+                    String cleanRol = role.toUpperCase().replace("-", "_").replace(".", "_");
+                    ejbRoles.put("ROLE_EJB_" + "BASIC_ACCESS_" + cleanRol ,cleanRol);
                 }
             }
         }
@@ -1120,7 +1124,8 @@ public class CodeGenerator {
                 if (role.equals(project.getPrefix().toUpperCase() + "_" + "WS")) { 
                     ejbRoles.put("ROLE_EJB_" + "WS_ACCESS", role);
                 } else {
-                    ejbRoles.put("ROLE_EJB_" + "WS_ACCESS" + role.toUpperCase() , role.toUpperCase());
+                    String cleanRol = role.toUpperCase().replace("-", "_").replace(".", "_");
+                    ejbRoles.put("ROLE_EJB_" + "WS_ACCESS" + cleanRol , cleanRol);
                 }
             }
         }
