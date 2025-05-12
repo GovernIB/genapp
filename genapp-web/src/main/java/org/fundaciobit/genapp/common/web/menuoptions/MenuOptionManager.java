@@ -95,6 +95,9 @@ public class MenuOptionManager {
                     CommonBaseController<?, ?> cbc = (CommonBaseController<?, ?>) classe.getDeclaredConstructor()
                             .newInstance();
                     baseLink = cbc.getContextWeb();
+                    if (baseLink!= null && !baseLink.endsWith("/")) {
+                        baseLink =  baseLink  + "/";
+                    }
                 } else {
                     throw new Exception("La classe " + classe.getName()
                             + " té definida l'anotació MenuOption, però aquesta requereix que la classe estengui"
