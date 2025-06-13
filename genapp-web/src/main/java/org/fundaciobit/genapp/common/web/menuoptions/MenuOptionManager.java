@@ -95,8 +95,8 @@ public class MenuOptionManager {
                     CommonBaseController<?, ?> cbc = (CommonBaseController<?, ?>) classe.getDeclaredConstructor()
                             .newInstance();
                     baseLink = cbc.getContextWeb();
-                    if (baseLink!= null && !baseLink.endsWith("/")) {
-                        baseLink =  baseLink  + "/";
+                    if (baseLink != null && !baseLink.endsWith("/")) {
+                        baseLink = baseLink + "/";
                     }
                 } else {
                     throw new Exception("La classe " + classe.getName()
@@ -113,8 +113,8 @@ public class MenuOptionManager {
                 items.add(null);
             }
 
-            items.add(new MenuItem(menuOption.getLabel(), baseLink + menuOption.getUrl(), baseLink,
-                    menuOption.getOrder()));
+            items.add(new MenuItem(menuOption.getLabel(), (baseLink + menuOption.getUrl()).replaceAll("//", "/"),
+                    baseLink, menuOption.getOrder()));
 
             if (menuOption.isAddSeparatorAfter()) {
                 items.add(null);
