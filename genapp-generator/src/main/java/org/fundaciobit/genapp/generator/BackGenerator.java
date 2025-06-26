@@ -966,40 +966,42 @@ public class BackGenerator {
                 codeRefList.append("@Component\n");
 
                 codeRefList.append(
-                        "public class " + refList + " extends RefListBase\n    implements " + fieldsClass + " {\n");
+                        "public class " + refList + " extends RefListBase implements " + fieldsClass + " {\n");
                 codeRefList.append("\n");
-                codeRefList.append("  @EJB(mappedName = " + local + ".JNDI_NAME)\n");
-                codeRefList.append("  private " + local + " " + instanceEjb + ";\n");
+                codeRefList.append("    @EJB(mappedName = " + local + ".JNDI_NAME)\n");
+                codeRefList.append("    private " + local + " " + instanceEjb + ";\n");
                 codeRefList.append("\n");
 
                 if (transFields != null && transFields.size() != 0) {
                     // TODO TraducioService llegir-ho de CodeGenutils
-                    codeRefList.append("  @EJB(mappedName = TraduccioService.JNDI_NAME)\n");
-                    codeRefList.append("  private TraduccioService traduccioEjb;\n");
+                    codeRefList.append("    @EJB(mappedName = TraduccioService.JNDI_NAME)\n");
+                    codeRefList.append("    private TraduccioService traduccioEjb;\n");
                 }
 
-                codeRefList.append("  public " + refList + "(" + refList + " __clone) {\n");
-                codeRefList.append("    super(__clone);\n");
-                codeRefList.append("    this." + instanceEjb + " = __clone." + instanceEjb + ";\n");
+                codeRefList.append("    public " + refList + "(" + refList + " __clone) {\n");
+                codeRefList.append("        super(__clone);\n");
+                codeRefList.append("        this." + instanceEjb + " = __clone." + instanceEjb + ";\n");
                 if (transFields != null && transFields.size() != 0) {
-                    codeRefList.append("    this.traduccioEjb = __clone.traduccioEjb;\n");
+                    codeRefList.append("        this.traduccioEjb = __clone.traduccioEjb;\n");
                 }
-                codeRefList.append("  }\n");
+                codeRefList.append("    }\n");
+                codeRefList.append("\n");
 
-                codeRefList.append("  public " + refList + "() {\n");
-                codeRefList.append("    setSelects(new Select<?>[] { " + refSelects.toString() + " });\n");
+                codeRefList.append("    public " + refList + "() {\n");
+                codeRefList.append("        setSelects(new Select<?>[] { " + refSelects.toString() + " });\n");
                 if (transFields != null && transFields.size() != 0) {
                     for (FieldInfo info : transFields) {
-                        codeRefList.append("    addCampTraduible(" + info.getJavaName().toUpperCase() + ".select);\n");
+                        codeRefList.append("        addCampTraduible(" + info.getJavaName().toUpperCase() + ".select);\n");
                     }
                 }
 
                 // TODO Com obtenir l'ordre ?? 
                 //codeRefList.append("    setOrderBy(" + form + ".DEFAULT_ORDER_BY);\n");
-                codeRefList.append("  }\n");
+                codeRefList.append("    }\n");
+                codeRefList.append("\n");
 
                 codeRefList.append(
-                        "  public List<StringKeyValue> getReferenceList(Field<?> keyField, Where where, OrderBy ... orderBy) throws I18NException {\n");
+                        "    public List<StringKeyValue> getReferenceList(Field<?> keyField, Where where, OrderBy ... orderBy) throws I18NException {\n");
                 // TODO ReferencedFieldSelect a GenAPP
 
                 boolean isTaulaTraduccio = (transTable == null) ? false : table.getName().equals(transTable.getName());
@@ -1007,18 +1009,18 @@ public class BackGenerator {
                 if (!isTaulaTraduccio) {
 
                     if (transFields != null && transFields.size() != 0) {
-                        codeRefList.append("    Select<Long> _transSelect = checkTranslationFields();\n");
+                        codeRefList.append("        Select<Long> _transSelect = checkTranslationFields();\n");
                     }
 
-                    codeRefList.append("    Select<StringKeyValue> select =  new " + GenAppPackages.PKG_BASE
+                    codeRefList.append("        Select<StringKeyValue> select =  new " + GenAppPackages.PKG_BASE
                             + ".common.query.SelectMultipleStringKeyValue(keyField.select, getSeparator(), getSelects());\n");
-                    codeRefList.append("    List<StringKeyValue> list = " + instanceEjb
+                    codeRefList.append("        List<StringKeyValue> list = " + instanceEjb
                             + ".executeQuery(select, where, (orderBy==null || orderBy.length == 0) ? getOrderBy() : orderBy);\n");
                     if (traduible) {
-                        codeRefList.append("    for (StringKeyValue skv : list) {\n");
+                        codeRefList.append("        for (StringKeyValue skv : list) {\n");
                         codeRefList.append(
-                                "      skv.setValue(" + I18NUtils.class.getName() + ".tradueix(skv.getValue()));\n");
-                        codeRefList.append("    }\n");
+                                "            skv.setValue(" + I18NUtils.class.getName() + ".tradueix(skv.getValue()));\n");
+                        codeRefList.append("        }\n");
                     }
 
                     if (transFields == null || transFields.size() == 0) {
@@ -1029,59 +1031,63 @@ public class BackGenerator {
                 if (isTaulaTraduccio || (transFields != null && transFields.size() != 0)) {
 
                     if (!isTaulaTraduccio) {
-                        codeRefList.append("    if (_transSelect == null) {\n");
-                        codeRefList.append("      return list;\n");
-                        codeRefList.append("    }\n");
-                        codeRefList.append("    // key => TransID | value => " + instanceEjb + "_PK\n");
-                        codeRefList.append("    java.util.Map<String,String> keysMap = " + Utils.class.getName()
+                        codeRefList.append("        if (_transSelect == null) {\n");
+                        codeRefList.append("            return list;\n");
+                        codeRefList.append("        }\n");
+                        codeRefList.append("        // key => TransID | value => " + instanceEjb + "_PK\n");
+                        codeRefList.append("        java.util.Map<String,String> keysMap = " + Utils.class.getName()
                                 + ".listToMapInverse(list);\n");
-                        codeRefList.append("    " + Where.class.getName() + " _w1 = " + packages.fieldsPackage
+                        codeRefList.append("        " + Where.class.getName() + " _w1;\n"
+                                +"        _w1 = " + packages.fieldsPackage
                                 + ".TraduccioFields.TRADUCCIOID.in(" + instanceEjb
-                                + ".executeQuery(_transSelect, where));\n");
+                                // En referencesList substituir sql in de valors per sql in de subquery
+                                // https://github.com/GovernIB/portafib/issues/1053
+                                //+ ".executeQuery(_transSelect, where));\n");
+                                + ".getSubQuery(_transSelect, where));\n");
                     }
 
                     codeRefList.append(
-                            "    List<" + packages.entityPackage + ".Traduccio> traduccions = traduccioEjb.select("
+                            "        List<" + packages.entityPackage + ".Traduccio> traduccions = traduccioEjb.select("
                                     + (isTaulaTraduccio ? "where" : "_w1") + ");\n");
                     codeRefList.append(
-                            "    List<StringKeyValue> _list = new java.util.ArrayList<StringKeyValue>(traduccions.size());\n");
+                            "        List<StringKeyValue> _list = new java.util.ArrayList<StringKeyValue>(traduccions.size());\n");
                     codeRefList.append(
-                            "    final String _lang = " + I18NUtils.class.getName() + ".getLocale().getLanguage();\n");
+                            "        final String _lang = " + I18NUtils.class.getName() + ".getLocale().getLanguage();\n");
                     codeRefList
-                            .append("    for (" + packages.entityPackage + ".Traduccio traduccio : traduccions) {\n");
-                    codeRefList.append("      " + jpaPackage + ".TraduccioJPA traduccioJPA = (" + jpaPackage
+                            .append("        for (" + packages.entityPackage + ".Traduccio traduccio : traduccions) {\n");
+                    codeRefList.append("            " + jpaPackage + ".TraduccioJPA traduccioJPA = (" + jpaPackage
                             + ".TraduccioJPA) traduccio;\n");
                     if (isTaulaTraduccio) {
-                        codeRefList.append("      String key = String.valueOf(traduccioJPA.getTraduccioID());\n");
+                        codeRefList.append("            String key = String.valueOf(traduccioJPA.getTraduccioID());\n");
                     } else {
                         codeRefList.append(
-                                "      String key = keysMap.get(String.valueOf(traduccioJPA.getTraduccioID()));\n");
+                                "            String key = keysMap.get(String.valueOf(traduccioJPA.getTraduccioID()));\n");
                     }
                     //codeRefList.append("      String value = traduccioJPA.getTraduccio(_lang).getValor();\n");
 
                     codeRefList.append(
-                            "      " + jpaPackage + ".TraduccioMapJPA _tm = traduccioJPA.getTraduccio(_lang);\n");
-                    codeRefList.append("      String value;\n");
-                    codeRefList.append("      if (_tm == null) {\n");
+                            "            " + jpaPackage + ".TraduccioMapJPA _tm = traduccioJPA.getTraduccio(_lang);\n");
+                    codeRefList.append("            String value;\n");
+                    codeRefList.append("            if (_tm == null) {\n");
                     codeRefList.append(
-                            "          value = \"NO_TRADUCCIO_PER_CODI_\" + traduccio.getTraduccioID() + \"_[\" + _lang + \"]\";\n");
-                    codeRefList.append("      } else {\n");
-                    codeRefList.append("          value= _tm.getValor();\n");
-                    codeRefList.append("      }\n");
+                            "                  value = \"NO_TRADUCCIO_PER_CODI_\" + traduccio.getTraduccioID() + \"_[\" + _lang + \"]\";\n");
+                    codeRefList.append("            } else {\n");
+                    codeRefList.append("                  value= _tm.getValor();\n");
+                    codeRefList.append("            }\n");
 
-                    codeRefList.append("      StringKeyValue skv = new StringKeyValue(key, value);\n");
-                    codeRefList.append("      _list.add(skv);\n");
-                    codeRefList.append("    }\n");
-                    codeRefList.append("    if (!_list.isEmpty()) {\n");
-                    codeRefList.append("      java.util.Collections.sort(_list, new " + KeyValue.class.getName()
+                    codeRefList.append("            StringKeyValue skv = new StringKeyValue(key, value);\n");
+                    codeRefList.append("            _list.add(skv);\n");
+                    codeRefList.append("        }\n");
+                    codeRefList.append("        if (!_list.isEmpty()) {\n");
+                    codeRefList.append("              java.util.Collections.sort(_list, new " + KeyValue.class.getName()
                             + ".KeyValueComparator<String>());\n");
-                    codeRefList.append("    }\n");
-                    codeRefList.append("    return _list;\n");
+                    codeRefList.append("        }\n");
+                    codeRefList.append("        return _list;\n");
                     codeRefList.append("\n");
 
                 }
 
-                codeRefList.append("  }\n");
+                codeRefList.append("    }\n");
 
                 codeRefList.append("}\n");
             }
