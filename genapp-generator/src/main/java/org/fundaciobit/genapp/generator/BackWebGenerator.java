@@ -955,7 +955,7 @@ public class BackWebGenerator extends IconUtils {
                     codeButtons.append("            <c:if test=\"${" + instanceFilterForm + ".viewButtonVisible}\">\n");
 
                     codeButtons.append(render.getActionButtonCode("            ", "btn-info",
-                            "<c:url value=\"${contexte}/view" + pkMapping + "\"/>", null, ICON_EYE, "genapp.viewtitle"));
+                            "<c:url value=\"${contexte}/view" + pkMapping + "\"/>", null, ICON_EYE, "genapp.view"));
                     codeButtons.append("            </c:if>\n");
 					
 					

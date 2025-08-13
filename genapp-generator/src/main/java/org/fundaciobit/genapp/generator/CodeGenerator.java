@@ -176,6 +176,34 @@ public class CodeGenerator {
         }
 
     }
+    
+    
+    
+    public static void copySpecificResourcesToDir(String resourceBase, String[] fileNames, File destPath)
+            throws Exception {
+
+        if (fileNames == null || fileNames.length == 0) {
+            return;
+        }
+
+        
+        
+
+        for (String fileName : fileNames) {
+            
+            String res = resourceBase + "/" + fileName; 
+            File dest = new File(destPath, fileName);
+            dest.getParentFile().mkdirs();
+            
+            InputStream is = CodeGenerator.class.getClassLoader().getResourceAsStream(res);
+            FileOutputStream fos = new FileOutputStream(dest);
+            IOUtils.copy(is, fos);
+            fos.close();
+            is.close();
+        }
+    }
+    
+    
 
     public static byte[] getResource(String res) throws Exception {
         InputStream is = CodeGenerator.class.getClassLoader().getResourceAsStream(res);
@@ -1482,6 +1510,14 @@ public class CodeGenerator {
 
             boolean overwrite = false;
             recursiveSubstitution(ejbDir, resourcesEJB, prop, project, overwrite);
+            
+            
+            // Sobreescriure fitxers de traduccions genapp_*.properties
+            copySpecificResourcesToDir(resourcesEJB + "/src/main/resources",
+                    new String[] { "genapp_ca.properties" , "genapp_es.properties", "genapp_en.properties"},
+                    new File(ejbDir, "src/main/resources"));
+            
+            
 
             // (c) Crear Service i EJB
             File ejbSrcDir = new File(ejbDir, "src/main/java/" + ejbPackage.replace('.', '/'));

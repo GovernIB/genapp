@@ -22,22 +22,23 @@ import org.fundaciobit.genapp.common.web.controller.RefListBase;
  * 
  */
 @Component
-public class AssignaturaAlumneRefList extends RefListBase
-    implements AssignaturaAlumneFields {
+public class AssignaturaAlumneRefList extends RefListBase implements AssignaturaAlumneFields {
 
-  @EJB(mappedName = AssignaturaAlumneService.JNDI_NAME)
-  private AssignaturaAlumneService assignaturaAlumneEjb;
+    @EJB(mappedName = AssignaturaAlumneService.JNDI_NAME)
+    private AssignaturaAlumneService assignaturaAlumneEjb;
 
-  public AssignaturaAlumneRefList(AssignaturaAlumneRefList __clone) {
-    super(__clone);
-    this.assignaturaAlumneEjb = __clone.assignaturaAlumneEjb;
-  }
-  public AssignaturaAlumneRefList() {
-    setSelects(new Select<?>[] { ALUMNEID.select, ASSIGNATURAID.select });
-  }
-  public List<StringKeyValue> getReferenceList(Field<?> keyField, Where where, OrderBy ... orderBy) throws I18NException {
-    Select<StringKeyValue> select =  new org.fundaciobit.genapp.common.query.SelectMultipleStringKeyValue(keyField.select, getSeparator(), getSelects());
-    List<StringKeyValue> list = assignaturaAlumneEjb.executeQuery(select, where, (orderBy==null || orderBy.length == 0) ? getOrderBy() : orderBy);
+    public AssignaturaAlumneRefList(AssignaturaAlumneRefList __clone) {
+        super(__clone);
+        this.assignaturaAlumneEjb = __clone.assignaturaAlumneEjb;
+    }
+
+    public AssignaturaAlumneRefList() {
+        setSelects(new Select<?>[] { ALUMNEID.select, ASSIGNATURAID.select });
+    }
+
+    public List<StringKeyValue> getReferenceList(Field<?> keyField, Where where, OrderBy ... orderBy) throws I18NException {
+        Select<StringKeyValue> select =  new org.fundaciobit.genapp.common.query.SelectMultipleStringKeyValue(keyField.select, getSeparator(), getSelects());
+        List<StringKeyValue> list = assignaturaAlumneEjb.executeQuery(select, where, (orderBy==null || orderBy.length == 0) ? getOrderBy() : orderBy);
     return list;
-  }
+    }
 }
