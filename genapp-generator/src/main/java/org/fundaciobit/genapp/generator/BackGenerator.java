@@ -1333,6 +1333,8 @@ public class BackGenerator {
             code.append("import org.springframework.web.bind.annotation.*;\n");
             code.append("import org.springframework.web.bind.support.SessionStatus;\n");
             code.append("import org.springframework.web.servlet.ModelAndView;\n");
+            code.append("import org.springframework.web.context.request.RequestContextHolder;\n");
+            code.append("import org.springframework.web.context.request.ServletRequestAttributes;\n");
             //code.append("import org.springframework.web.servlet.view.RedirectView;\n");
             code.append("\n");
             code.append("import javax.ejb.EJB;\n");
@@ -1344,6 +1346,7 @@ public class BackGenerator {
             code.append("import java.util.Map;\n");
             code.append("import java.util.HashMap;\n");
             code.append("import java.util.Set;\n");
+            code.append("import java.util.Arrays;\n");
 
             code.append("\n");
             if (multiplePKs) {
@@ -2436,12 +2439,44 @@ public class BackGenerator {
             }
 
             code.append("\n");
-            code.append("  @Override\n");
-            code.append("  /** Ha de ser igual que el RequestMapping de la Classe */\n");
-            code.append("  public String getContextWeb() {\n");
+            code.append("    @Override\n");
+            code.append("    /** Ha de ser igual que el RequestMapping de la Classe */\n");
+            code.append("    public String getContextWeb() {\n");
+            
+            code.append("        RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);\n"
+                    + "        final String[] values = rm.value();\n"
+                    + "        if (values.length == 1) {\n"
+                    + "            return values[0];\n"
+                    + "        } else {\n"
+                    + "            final HttpServletRequest request;\n"
+                    + "            request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();\n"
+                    + "\n"
+                    + "            final String servletPath = request.getServletPath();\n"
+                    + "\n"
+                    + "            for (String webcontext : values) {\n"
+                    + "                if (servletPath.startsWith(webcontext)) {\n"
+                    + "                    return webcontext;\n"
+                    + "                }\n"
+                    + "            }\n"
+                    + "\n"
+                    + "            log.warn(\" No puc trobar el contextweb associat a la cridada.\");\n"
+                    + "            log.warn(\" ==== RequestMapping::value=\" + Arrays.toString(values));\n"
+                    + "            log.warn(\" ++++ getContextWeb::Scheme: \" + request.getScheme());\n"
+                    + "            log.warn(\" ++++ getContextWeb::PathInfo: \" + request.getPathInfo());\n"
+                    + "            log.warn(\" ++++ getContextWeb::PathTrans: \" + request.getPathTranslated());\n"
+                    + "            log.warn(\" ++++ getContextWeb::ContextPath: \" + request.getContextPath());\n"
+                    + "            log.warn(\" ++++ getContextWeb::ServletPath: \" + request.getServletPath());\n"
+                    + "            log.warn(\" ++++ getContextWeb::getRequestURI: \" + request.getRequestURI());\n"
+                    + "            log.warn(\" ++++ getContextWeb::getRequestURL: \" + request.getRequestURL().toString());\n"
+                    + "            log.warn(\" ++++ getContextWeb::getQueryString: \" + request.getQueryString());\n"
+                    + "\n"
+                    + "            return values[0];\n"
+                    + "        }");
+            /*
             code.append(
                     "    RequestMapping rm = AnnotationUtils.findAnnotation(this.getClass(), RequestMapping.class);\n");
             code.append("    return rm.value()[0];\n");
+            */
             code.append("  }\n");
 
             code.append("\n");
