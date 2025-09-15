@@ -235,6 +235,24 @@ public class LogicForBaseFilterForm {
 
           continue;
         }
+        
+        
+        if (f instanceof BooleanField) {
+            
+            BooleanField bf =  (BooleanField)f;
+            
+            Object _valueObj =  Utils.getValueOfJavaField(this.filterForm, bf.javaName);
+            
+            if (_valueObj == null) {
+                log.info(" \n\n  XXXXX CLASS[" + f.javaName + "] => _valueObj is NULLL !!!! \n\n");
+                // No fer res
+            } else {
+                log.info(" \n\n  XXXXX CLASS[" + f.javaName + "] => Class " + _valueObj.getClass() + "\n\n");
+                __wheres.add(bf.equal((Boolean)_valueObj));
+            }
+            
+            continue;
+        }
   
         log.error(
             "No s'ha trobat gestor en el metode getFilterWhere de la classe " + this.getClass()
