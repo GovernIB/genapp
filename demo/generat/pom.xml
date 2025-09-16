@@ -85,7 +85,6 @@
         <maven.test.skip>true</maven.test.skip>
         <!-- Versions de les llibreries emprades dins els mòduls -->
         <mp-openapi.version>1.0.1</mp-openapi.version>
-        <!-- <slf4j.version>1.7.30</slf4j.version> -->
         <keycloak.version>6.0.1</keycloak.version>
         <cxf.version>3.2.5.redhat-00001</cxf.version>
         <resteasy.version>3.6.1.SP2-redhat-00001</resteasy.version>
