@@ -393,12 +393,12 @@ public class LogicForBaseFilterForm {
 
             for (Field<?> f : filterForm.getGroupByFields()) {
                 // groupByItems.add(new GroupByItem(get(f), f.javaName, true, null));
-
-                if (f.table == null) {
-                    log.warn("El camp " + f.fullName + " no te taula associada. No es podrà agrupar per aquest camp.");
+                
+                if (f instanceof CustomField) {
+                    // Gestionat per l'usuari
                     continue;
                 }
-
+                
                 if (f instanceof DateField) {
                     groupByItems
                             .addAll(loadDataForGroupByDateAndTimestamp((DateField) f, atm, whereAdditionalCondition));
@@ -423,10 +423,7 @@ public class LogicForBaseFilterForm {
                     continue;
                 }
 
-                if (f instanceof CustomField) {
-                    // Gestionat per l'usuari
-                    continue;
-                }
+
 
                 // TODO Falten altres tipus ???
                 log.error("No s'ha trobat gestor en el metode loadDataForGroupByFilterBy de la classe "
@@ -563,8 +560,9 @@ public class LogicForBaseFilterForm {
         for (Field<?> f : filterForm.getGroupByFields()) {
 
             if (f.javaName.equals(groupBy)) {
-                // En el cas de GroupBy de Camps Virtuals
-                if (f.table == null) {                
+                // En el cas de GroupBy de Camps Virtuals               
+                if (f instanceof CustomField) {
+                    // Ho gestionarà l'usuari dins algun mètode com postList o fillReferencesForList
                     return EMPTY_WHERE;
                 }
 
@@ -706,10 +704,6 @@ public class LogicForBaseFilterForm {
                     }
                 }
 
-                if (f instanceof CustomField) {
-                    // Ho gestionarà l'usuari dins algun mètode com postList o fillReferencesForList
-                    return null;
-                }
 
                 // TODO Falten altres tipus !!!!
                 log.error("No s'ha trobat gestor en el mètode getGroupWhere() de la classe " + this.getClass()
