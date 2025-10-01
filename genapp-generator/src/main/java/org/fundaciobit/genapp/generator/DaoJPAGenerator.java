@@ -189,7 +189,6 @@ public class DaoJPAGenerator {
 
         if (!table.isTranslationMapEntity()) {
             String sequenceSQLName = ProjectValidator.getSequenceOfTable(table.name); // table.name.toLowerCase() + "_seq";
-            
 
             imports.add("javax.persistence.SequenceGenerator");
 
@@ -277,9 +276,6 @@ public class DaoJPAGenerator {
                             + sequenceJPAName + "\")\n");
                 }
 
-                if (defValueClean != null && !isBoolean(field)) {
-                    beanCode.append("    " + "@org.hibernate.annotations.ColumnDefault(\"" + defValueClean + "\")\n");
-                }
                 beanCode.append("    " + "@Column(name=\"" + field.sqlName + "\"");
 
                 // Si té IMP foreign keys llavors no es por modificar, només de lectura
@@ -317,25 +313,29 @@ public class DaoJPAGenerator {
             }
 
             // Definicio
-            String defValue;
+            final String defValue;
             if (defValueClean == null) {
-                defValue = "";
+                defValue = null;
             } else {
                 if (SQL2Java.isStringFromSqlType(field.getSqlType())) {
                     // Llevam primera i darrera cometa
                     if (defValueClean.startsWith("'") && defValueClean.endsWith("'")) {
-                        defValue = " = \"" + defValueClean.substring(1, defValueClean.length() - 1) + "\"";
+                        defValue = "\"" + defValueClean.substring(1, defValueClean.length() - 1) + "\"";
                     } else {
 
-                        defValue = " = \"" + defValueClean + "\"";
+                        defValue = "\"" + defValueClean + "\"";
                     }
                 } else {
                     String defValueWithCast = SQL2Java.formatValueFromSqlType(field.getSqlType(), defValueClean);
-                    defValue = " = " + defValueWithCast;
+                    defValue = "" + defValueWithCast;
                 }
 
             }
-            beanCode.append("    " + type + " " + name + defValue + ";\n\n");
+            if (defValue != null && !isBoolean(field)) {
+                beanCode.append("    " + "@org.hibernate.annotations.ColumnDefault("
+                        + (defValue.startsWith("\"") ? defValue : ("\"" + defValue + "\"")) + ")\n");
+            }
+            beanCode.append("    " + type + " " + name + (defValue == null ? "" : (" = " + defValue)) + ";\n\n");
         }
 
         beanCode.append("\n\n");
@@ -379,25 +379,24 @@ public class DaoJPAGenerator {
         beanCode.append("            __result = true;\n");
 
         //StringBuilder hashCode = new StringBuilder();
-        
+
         if (table.isTranslationMapEntity()) {
             beanCode.append("            __result = super.equals(__instance);\n");
             //hashCode.append("super.hashCode()");
         } else {
             for (FieldInfo f : fields) {
                 if (f.isPrimaryKey()) {
-                    
-                    String method = CodeGenUtils.get(f);
-                    
-//                    if (hashCode.length() > 0) {
-//                        hashCode.append(" + \"_\" + ");
-//                    }
-//                    hashCode.append("String.valueOf(this."+method+")");
 
-                    
+                    String method = CodeGenUtils.get(f);
+
+                    //                    if (hashCode.length() > 0) {
+                    //                        hashCode.append(" + \"_\" + ");
+                    //                    }
+                    //                    hashCode.append("String.valueOf(this."+method+")");
+
                     if (f.getJavaType().isPrimitive()) {
-                        beanCode.append(
-                                "            __result = __result && (this." + method + " == __instance." + method + ") ;\n");
+                        beanCode.append("            __result = __result && (this." + method + " == __instance."
+                                + method + ") ;\n");
                     } else {
 
                         beanCode.append("      if (this." + method + " == null) {\n");
@@ -410,21 +409,21 @@ public class DaoJPAGenerator {
                     }
                 }
             }
-            
-//            String hc = "(" + hashCode.toString() + ").hashCode()";
-//            hashCode = new StringBuilder(hc);
+
+            //            String hc = "(" + hashCode.toString() + ").hashCode()";
+            //            hashCode = new StringBuilder(hc);
         }
         beanCode.append("        } else {\n");
         beanCode.append("            __result = false;\n");
         beanCode.append("        }\n");
         beanCode.append("        return __result;\n");
         beanCode.append("    }\n\n");
-        
+
         // String.valueOf(this.alumneID).hashCode()
-//        beanCode.append("    @Override\n"
-//                + "    public int hashCode() {\n"
-//                + "        return " + hashCode.toString()+ ";\n"
-//                + "    }\n\n");
+        //        beanCode.append("    @Override\n"
+        //                + "    public int hashCode() {\n"
+        //                + "        return " + hashCode.toString()+ ";\n"
+        //                + "    }\n\n");
 
         HashMap<String, String> importForeignKeys = new HashMap<String, String>();
         HashMap<String, String> exportForeignKeys = new HashMap<String, String>();
@@ -710,7 +709,8 @@ public class DaoJPAGenerator {
                 TableInfo expTable = CodeGenUtils.findTableInfoByTableSQLName(project, fk.getTable());
                 FieldInfo expField = CodeGenUtils.findFieldInfoByColumnSQLName(expTable, fk.getField());
 
-                if (expTable == null || expField == null || !expTable.generate || (table.isTranslationEntity() && expTable.isTranslationMapEntity())) {
+                if (expTable == null || expField == null || !expTable.generate
+                        || (table.isTranslationEntity() && expTable.isTranslationMapEntity())) {
                     continue;
                 }
 
@@ -1586,13 +1586,13 @@ public class DaoJPAGenerator {
         manager.append("\n");
 
         TableInfo[] tables = project.getTables();
-        
+
         // Variables
         for (int i = 0; i < tables.length; i++) {
             if (!tables[i].generate || tables[i].isTranslationMapEntity()) {
                 continue;
             }
-            String managerFileName =tables[i].getNameJava() + "JPAManager";
+            String managerFileName = tables[i].getNameJava() + "JPAManager";
             manager.append("   private final " + managerFileName + " " + project.getTables()[i].name + ";\n");
         }
 
@@ -1600,8 +1600,6 @@ public class DaoJPAGenerator {
         manager.append("\n");
         manager.append("  public  " + name + "(EntityManager __em) {\n");
         // manager.append(" this.__em = __em;\n");
-        
-       
 
         for (int i = 0; i < tables.length; i++) {
             if (!tables[i].generate || tables[i].isTranslationMapEntity()) {
