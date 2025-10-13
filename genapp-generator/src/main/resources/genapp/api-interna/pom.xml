@@ -65,7 +65,6 @@
             <artifactId>pluginsib-utils-swagger-ui-configurable-webjar</artifactId>
             <version>${symbol_dollar}{pluginsib.utils.version}</version>
         </dependency>
-
     </dependencies>
     <build>
         <finalName>${symbol_dollar}{project.artifactId}</finalName>
@@ -184,8 +183,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>
-                                ${symbol_dollar}{project.basedir}/openapi/openapi_interna_secure.json</inputSpec>
+                            <inputSpec>${symbol_dollar}{project.basedir}/openapi/openapi_interna_secure.json</inputSpec>
                             <generatorName>java</generatorName>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configHelp>java</configHelp>
@@ -214,7 +212,6 @@
                 </executions>
             </plugin>
 
-            <!--NOU TODO -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

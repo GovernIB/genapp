@@ -114,10 +114,6 @@
             <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.fundaciobit.genapp</groupId>
             <artifactId>genapp-core</artifactId>
             <version>${genapp.version}</version>

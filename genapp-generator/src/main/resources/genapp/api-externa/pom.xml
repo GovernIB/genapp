@@ -81,7 +81,7 @@
                     <prettyPrint>TRUE</prettyPrint>
                     <outputPath>${symbol_dollar}{project.basedir}/openapi/</outputPath>                   
                 </configuration>
-                
+
                 <executions>
                     <execution>
                         <id>openapi_externa_1</id>
@@ -115,13 +115,17 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Genera el Client Rest per Java a partir del fitxer openapi.json -->
-            <plugin>
 
+
+            <!-- ==================================================================  -->
+            <!-- Genera el Client Rest per Java a partir del fitxers openapi_*.json -->
+            <!-- ==================================================================  -->
+            <plugin>
                 <!-- https://openapi-generator.tech/docs/generators/java/ -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.3.0</version>
+                <version>7.10.0</version>
+
                 <executions>
                     <execution>
                         <id>openapi_externa_1</id>
@@ -223,8 +227,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
-            
 
             <!-- Inclou el openapi.json i el swagger-ui dins el war -->
             <plugin>

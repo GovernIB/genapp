@@ -23,18 +23,7 @@
 			<version>${symbol_dollar}{genapp.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-
 	</dependencies>
-
-
-
 
 	<build>
 		<filters>

@@ -57,7 +57,8 @@ paths:
       summary: Versio de l'Aplicació
       tags:
       - Versio
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   schemas:
     ExamplePojo:

@@ -73,7 +73,8 @@ paths:
       summary: Fa un ECHO
       tags:
       - ExempleSeguritzat
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   schemas:
     RestExceptionInfo:

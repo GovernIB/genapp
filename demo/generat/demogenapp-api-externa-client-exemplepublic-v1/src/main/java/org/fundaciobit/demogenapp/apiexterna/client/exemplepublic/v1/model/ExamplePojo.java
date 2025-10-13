@@ -29,24 +29,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ExamplePojo.JSON_PROPERTY_VERSIO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class ExamplePojo {
   public static final String JSON_PROPERTY_VERSIO = "versio";
+  @javax.annotation.Nullable
   private String versio;
 
   public ExamplePojo() {
   }
 
-  public ExamplePojo versio(String versio) {
+  public ExamplePojo versio(@javax.annotation.Nullable String versio) {
     
     this.versio = versio;
     return this;
   }
 
-   /**
+  /**
    * Get versio
    * @return versio
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_VERSIO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -58,7 +59,7 @@ public class ExamplePojo {
 
   @JsonProperty(JSON_PROPERTY_VERSIO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersio(String versio) {
+  public void setVersio(@javax.annotation.Nullable String versio) {
     this.versio = versio;
   }
 

@@ -31,20 +31,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConstantsWs.JSON_PROPERTY_R_O_L_E_E_J_B_B_A_S_I_C_A_C_C_E_S_S,
   ConstantsWs.JSON_PROPERTY_R_O_L_E_E_J_B_W_S_A_C_C_E_S_S
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class ConstantsWs {
   public static final String JSON_PROPERTY_R_O_L_E_E_J_B_F_U_L_L_A_C_C_E_S_S = "ROLEEJBFULLACCESS";
+  @javax.annotation.Nonnull
   private String ROLEEJBFULLACCESS = "Constants.ROLE_EJB_FULL _ ACCESS";
 
   public static final String JSON_PROPERTY_R_O_L_E_E_J_B_B_A_S_I_C_A_C_C_E_S_S = "ROLEEJBBASICACCESS";
+  @javax.annotation.Nonnull
   private Integer ROLEEJBBASICACCESS;
 
   public static final String JSON_PROPERTY_R_O_L_E_E_J_B_W_S_A_C_C_E_S_S = "ROLEEJBWSACCESS";
+  @javax.annotation.Nonnull
   private Integer ROLEEJBWSACCESS;
 
   public ConstantsWs() {
   }
-
+  /**
+   * Constructor with only readonly parameters
+   */
   @JsonCreator
   public ConstantsWs(
     @JsonProperty(JSON_PROPERTY_R_O_L_E_E_J_B_F_U_L_L_A_C_C_E_S_S) String ROLEEJBFULLACCESS, 
@@ -57,10 +62,10 @@ public class ConstantsWs {
     this.ROLEEJBWSACCESS = ROLEEJBWSACCESS;
   }
 
-   /**
+  /**
    * Constant ROLE_EJB_FULL _ ACCESS
    * @return ROLEEJBFULLACCESS
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_R_O_L_E_E_J_B_F_U_L_L_A_C_C_E_S_S)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -71,11 +76,10 @@ public class ConstantsWs {
 
 
 
-
-   /**
+  /**
    * Constant ROLE_EJB_BASIC _ ACCESS
    * @return ROLEEJBBASICACCESS
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_R_O_L_E_E_J_B_B_A_S_I_C_A_C_C_E_S_S)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -86,11 +90,10 @@ public class ConstantsWs {
 
 
 
-
-   /**
+  /**
    * Constant ROLE_EJB_WS _ ACCESS
    * @return ROLEEJBWSACCESS
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_R_O_L_E_E_J_B_W_S_A_C_C_E_S_S)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -16,9 +16,9 @@ package org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.api;
 import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.services.ApiException;
 import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.model.ConstantsWs;
 import org.fundaciobit.demogenapp.apiexterna.client.exemplesecure.v1.model.RestExceptionInfo;
-import org.junit.Test;
-import org.junit.Ignore;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * API tests for ExempleSeguritzatApi
  */
-public class ExempleSeguritzatApiTest {
+class ExempleSeguritzatApiTest {
 
     private final ExempleSeguritzatApi api = new ExempleSeguritzatApi();
 
@@ -41,7 +41,7 @@ public class ExempleSeguritzatApiTest {
      *          if the Api call fails
      */
     @Test
-    public void echoTest() throws ApiException {
+    void echoTest() throws ApiException {
         //
         //String echoInput = null;
         //
