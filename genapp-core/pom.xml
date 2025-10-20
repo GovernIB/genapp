@@ -63,7 +63,7 @@
     </dependencies>
     
     
-        <profiles>
+    <profiles>
     
         <!-- Profile jboss72: actiu per defecte -->
         <profile>
@@ -133,9 +133,9 @@
                     <version>1.2.2.redhat-00001</version>
                 </dependency>
                 <dependency>
-                        <groupId>jakarta.persistence</groupId>
-                        <artifactId>jakarta.persistence-api</artifactId>
-                        <version>2.2.3.redhat-00001</version>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                    <version>2.2.3.redhat-00001</version>
                 </dependency>
             </dependencies>
         </profile>
