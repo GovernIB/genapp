@@ -23,7 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
  * 5 nov 2025 10:57:58
  */
 
-@MenuOption(labelCode = "assignatura.assignatura.plural", order = 50, group = Tab.MENU_PUBLIC_AND_COMMON, addSeparatorBefore = true)
+@MenuOption(
+        labelCode = "assignatura.assignatura.plural",
+        order = 50,
+        group = Tab.MENU_PUBLIC_AND_COMMON,
+        addSeparatorBefore = true)
 @Controller
 @RequestMapping(value = "/public/assignatura")
 @SessionAttributes(types = { AssignaturaForm.class, AssignaturaFilterForm.class })
@@ -39,7 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
         extendsTile = Tab.MENU_PUBLIC_AND_COMMON,
         type = TileType.WEBDB_LIST,
         attributes = { @TileAttribute(name = "titol", value = "assignatura.assignatura") })
-public class AlumneAllController extends AssignaturaController {
+public class AssignaturaAllController extends AssignaturaController {
 
     /**
      * 
@@ -51,7 +55,41 @@ public class AlumneAllController extends AssignaturaController {
 
         HtmlUtils.saveMessageInfo(request, "Exemple de gestió tota encapsulada en un Controller");
 
+        if (assignaturaFilterForm.isNou()) {
+
+            assignaturaFilterForm.setEditButtonVisible(false);
+            assignaturaFilterForm.setViewButtonVisible(true);
+            assignaturaFilterForm.setDeleteButtonVisible(false);
+
+            assignaturaFilterForm.setAddButtonVisible(false);
+
+            assignaturaFilterForm.setDeleteSelectedButtonVisible(false);
+
+            assignaturaFilterForm.setVisibleMultipleSelection(false);
+
+        }
+
         return assignaturaFilterForm;
+    }
+
+    @Override
+    public boolean isActiveFormNew() {
+        return false;
+    }
+
+    @Override
+    public boolean isActiveFormEdit() {
+        return false;
+    }
+
+    @Override
+    public boolean isActiveDelete() {
+        return false;
+    }
+
+    @Override
+    public boolean isActiveFormView() {
+        return true;
     }
 
 }
