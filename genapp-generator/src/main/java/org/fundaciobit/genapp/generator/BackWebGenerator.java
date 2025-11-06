@@ -274,7 +274,7 @@ public class BackWebGenerator extends IconUtils {
 				codeSubtitle.append("\n");
 				codeSubtitle.append("  <c:if test=\"${not empty " + instanceFilterForm + ".subTitleCode}\">\n");
 				codeSubtitle.append(
-						"<h6 style=\"line-height: 10px; margin-top: -10px; margin-bottom: 10px; font-style:italic;\">\n");
+						"<h6 style=\"margin-top:-10px; margin-bottom:10px; font-style:italic;\">\n");
 				codeSubtitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceFilterForm
 						+ ".subTitleCode,'=')}\" />\n");
 				codeSubtitle.append("<c:if test=\"${subtitleTranslated}\">\n");
