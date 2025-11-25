@@ -1,7 +1,4 @@
-package org.fundaciobit.genapp.core.test;
-
-import org.fundaciobit.genapp.common.crypt.AlgorithmEncrypter;
-import org.fundaciobit.genapp.common.crypt.EncrypterManager;
+package org.fundaciobit.genapp.common.crypt;
 
 /**
  * 

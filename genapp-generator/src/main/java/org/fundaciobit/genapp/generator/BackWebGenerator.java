@@ -308,9 +308,13 @@ public class BackWebGenerator extends IconUtils {
 				codeHeaderButtons.append("      </fmt:message>\n");
 				codeHeaderButtons.append("  </c:if>\n");
 				codeHeaderButtons.append("  <c:if test=\"${empty " + instanceFilterForm + ".titleCode}\">\n");
-				codeHeaderButtons.append("    <fmt:message key=\"genapp.listtitle\">\n");
-				codeHeaderButtons.append("      <fmt:param value=\"${entitynameplural}\"/>\n");
-				codeHeaderButtons.append("    </fmt:message>\n");
+				codeHeaderButtons.append("      <c:set var=\"keyTitle\" value=\"genapp.listtitle\" />\n");
+		        codeHeaderButtons.append("      <c:if test=\"${fn:startsWith(fn:toLowerCase(entitynameplural), 'a') or fn:startsWith(fn:toLowerCase(entitynameplural), 'e') or fn:startsWith(fn:toLowerCase(entitynameplural), 'i') or fn:startsWith(fn:toLowerCase(entitynameplural), 'o') or fn:startsWith(fn:toLowerCase(entitynameplural), 'u')}\">\n");
+		        codeHeaderButtons.append("        <c:set var=\"keyTitle\" value=\"genapp.listtitle2\" />\n");
+		        codeHeaderButtons.append("      </c:if>\n");
+		        codeHeaderButtons.append("      <fmt:message key=\"${keyTitle}\">\n");
+		        codeHeaderButtons.append("          <fmt:param value=\"${entitynameplural}\"/>\n");
+		        codeHeaderButtons.append("      </fmt:message>\n");
 				codeHeaderButtons.append("  </c:if>\n");
 				codeHeaderButtons.append("  </label>\n");
 				codeHeaderButtons.append("\n");
