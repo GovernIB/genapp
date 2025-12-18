@@ -13,6 +13,7 @@
     <name>DemoGenApp - API Rest - Interna Server</name>
     <properties>
         <client.default.package>org.fundaciobit.demogenapp.api.interna.client</client.default.package>
+        <authMethod>BASIC</authMethod>
     </properties>
 
     <dependencies>
@@ -269,5 +270,14 @@
         </plugins>
 
     </build>
+
+    <profiles>
+        <profile>
+            <id>keycloak</id>
+            <properties>
+                <authMethod>KEYCLOAK</authMethod>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

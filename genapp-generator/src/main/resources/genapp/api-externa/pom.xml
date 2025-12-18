@@ -12,6 +12,7 @@
     <name>${fullname} - API Rest - Externa Server</name>
     <properties>
         <client.default.package>${package}.apiexterna.client</client.default.package>
+        <authMethod>BASIC</authMethod>
     </properties>
 
     <dependencies>
@@ -252,5 +253,14 @@
         </plugins>
 
     </build>
+
+    <profiles>
+        <profile>
+            <id>keycloak</id>
+            <properties>
+                <authMethod>KEYCLOAK</authMethod>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

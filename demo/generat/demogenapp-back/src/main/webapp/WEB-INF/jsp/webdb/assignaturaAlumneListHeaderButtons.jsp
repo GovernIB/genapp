@@ -9,7 +9,7 @@
   </c:if>
   <c:if test="${empty __theFilterForm.titleCode}">
       <c:set var="keyTitle" value="genapp.listtitle" />
-      <c:if test="${fn:startsWith(fn:toLowerCase(entitynameplural), 'a') or fn:startsWith(fn:toLowerCase(entitynameplural), 'e') or fn:startsWith(fn:toLowerCase(entitynameplural), 'i') or fn:startsWith(fn:toLowerCase(entitynameplural), 'o') or fn:startsWith(fn:toLowerCase(entitynameplural), 'u')}">
+      <c:if test="${fn:startsWith(fn:toLowerCase(entitynameplural), 'a') or fn:startsWith(fn:toLowerCase(entitynameplural), 'e') or fn:startsWith(fn:toLowerCase(entitynameplural), 'i') or fn:startsWith(fn:toLowerCase(entitynameplural), 'o') or fn:startsWith(fn:toLowerCase(entitynameplural), 'u') or fn:startsWith(fn:toLowerCase(entitynameplural), 'h')}">
         <c:set var="keyTitle" value="genapp.listtitle2" />
       </c:if>
       <fmt:message key="${keyTitle}">

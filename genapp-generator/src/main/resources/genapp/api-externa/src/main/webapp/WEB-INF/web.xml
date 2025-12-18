@@ -52,7 +52,9 @@
     </security-constraint>
 
     <login-config>
-        <auth-method>BASIC</auth-method>
+        <!-- Per defecte BASIC. Si profile -Pcaib llavors KEYCLOAK -->
+        <!-- ${symbol_dollar}{auth.method} -->
+        <auth-method>${symbol_dollar}{authMethod}</auth-method>
         <realm-name>Govern de les Illes Balears</realm-name>
     </login-config>
 
