@@ -112,6 +112,11 @@
                 <version>
                     ${symbol_dollar}{pluginsib.userinformation.version}</version>
             </dependency>
+            <dependency>
+                <artifactId>pluginsib-userinformation-soffid</artifactId>
+                <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+                <version>${symbol_dollar}{pluginsib.userinformation.version}</version>
+            </dependency>
 
 <#if generateback>
                 <!-- ============================================ -->

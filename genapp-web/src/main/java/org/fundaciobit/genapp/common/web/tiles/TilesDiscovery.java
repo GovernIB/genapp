@@ -1,5 +1,6 @@
 package org.fundaciobit.genapp.common.web.tiles;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -91,8 +92,32 @@ public class TilesDiscovery {
             if (CommonBaseController.class.isAssignableFrom(classe)) {
                 CommonBaseController<?, ?> cbc;
 
-                // Cercam el tileName de la classe pare
-                classe = classe.getSuperclass();
+                // Cercam el tileName d'alguna de les classe pare
+                Class<?> classeOriginal = classe; 
+                
+                // Cercam una classe pare que no sigui abstracta ni interfície
+                boolean trobada = false;
+                do {
+       
+                    classe = classe.getSuperclass();
+                    
+                    if (classe == null || classe.equals(CommonBaseController.class) || classe.equals(Object.class)) {
+                        trobada = false;
+                        break;
+                    } else if (Modifier.isAbstract(classe.getModifiers()) || classe.isInterface()) {
+                      continue;
+                    } else {
+                        trobada = true;
+                        break;
+                    }
+                    
+                }  while(true);
+                
+                
+                if (!trobada) {
+                    classe = classeOriginal;
+                }
+                
                 try {
                     cbc = (CommonBaseController<?, ?>) classe.getDeclaredConstructor().newInstance();
 
