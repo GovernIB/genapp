@@ -1921,7 +1921,7 @@ public class CodeGenerator {
         String contentSet;
     }
 
-    private static BeanCode generateBeanPartialCode(String iname, FieldInfo[] fields) {
+    private static BeanCode generateBeanPartialCode(String iname, FieldInfo[] fields) throws Exception {
         BeanCode beanGenCode;
         {
             beanGenCode = new BeanCode();
@@ -2108,7 +2108,7 @@ public class CodeGenerator {
 
         public String pkClass = null;
 
-        public DaoCommonCode(String iname, FieldInfo[] fields) {
+        public DaoCommonCode(String iname, FieldInfo[] fields) throws Exception {
 
             log.info("DAO de " + iname);
 
@@ -2171,6 +2171,13 @@ public class CodeGenerator {
             if (findParamsCall.length() > 0) {
                 findParamsCall.deleteCharAt(0);
             }
+            
+            
+            if (pkClass == null) {
+                throw new Exception("No s'ha detectat cap camp de clau primària per la taula " + iname);
+            }
+            
+            
 
             if (findParamsCall.toString().indexOf(',') != -1) {
                 // Dues o més claus privades
