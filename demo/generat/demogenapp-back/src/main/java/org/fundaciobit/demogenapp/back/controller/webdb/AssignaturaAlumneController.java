@@ -55,10 +55,14 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
 @Controller
 @RequestMapping(value = "/webdb/assignaturaAlumne")
 @SessionAttributes(types = { AssignaturaAlumneForm.class, AssignaturaAlumneFilterForm.class })
-@Tile(name="assignaturaAlumneFormWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneForm.jsp", extendsTile=Tab.MENU_WEBDB,
-      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne")})
-@Tile(name="assignaturaAlumneListWebDB", contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneList.jsp", extendsTile=Tab.MENU_WEBDB,
-       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne") })
+@Tile(name="assignaturaAlumneFormWebDB", extendsTile=Tab.MENU_WEBDB,
+    // Els següents atributs no són necessaris si heredes aquesta classe
+    contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneForm.jsp", type=TileType.WEBDB_FORM,
+    attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne")})
+@Tile(name="assignaturaAlumneListWebDB", extendsTile=Tab.MENU_WEBDB,
+    // Els següents atributs no són necessaris si heredes aquesta classe 
+    contentJsp="/WEB-INF/jsp/webdb/assignaturaAlumneList.jsp", type=TileType.WEBDB_LIST,
+    attributes={ @TileAttribute(name="titol", value="assignaturaAlumne.assignaturaAlumne")})
 public class AssignaturaAlumneController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<AssignaturaAlumne, java.lang.Long> implements AssignaturaAlumneFields {
 

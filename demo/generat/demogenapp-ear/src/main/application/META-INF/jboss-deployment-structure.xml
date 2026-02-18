@@ -43,6 +43,27 @@
             <module name="org.slf4j" export="TRUE"/>
             <module name="org.apache.log4j" export="TRUE"/>
             <module name="org.jboss.logging.commons.logging" export="TRUE"/>
+
+            <module name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310" export="TRUE"/>
+            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
+            <module name="com.github.fge.json-patch" export="TRUE"/>
+            <module name="com.google.guava" export="TRUE"/>
+            <module name="com.sun.istack" export="TRUE"/>
+            <module name="com.sun.xml.bind" export="TRUE"/>
+            <module name="com.sun.xml.fastinfoset" export="TRUE"/>
+            <module name="com.sun.xml.txw2" export="TRUE"/>
+            <module name="javax.json.bind.api" export="TRUE"/>
+            <module name="javax.validation.api" export="TRUE"/>
+            <module name="javax.ws.rs.api" export="TRUE"/>
+            <module name="net.jcip" export="TRUE"/>
+            <module name="org.apache.httpcomponents.core" export="TRUE"/>
+            <module name="org.apache.james.mime4j" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-jackson2-provider" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-jaxb-provider" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-jaxrs" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-multipart-provider" export="TRUE"/>
+            <module name="org.reactivestreams" export="TRUE"/>
+
         </dependencies>
         <exclusions>
             <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>

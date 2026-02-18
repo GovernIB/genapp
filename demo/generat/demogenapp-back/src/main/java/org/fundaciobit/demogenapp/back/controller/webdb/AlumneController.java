@@ -58,10 +58,14 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
 @Controller
 @RequestMapping(value = "/webdb/alumne")
 @SessionAttributes(types = { AlumneForm.class, AlumneFilterForm.class })
-@Tile(name="alumneFormWebDB", contentJsp="/WEB-INF/jsp/webdb/alumneForm.jsp", extendsTile=Tab.MENU_WEBDB,
-      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="alumne.alumne")})
-@Tile(name="alumneListWebDB", contentJsp="/WEB-INF/jsp/webdb/alumneList.jsp", extendsTile=Tab.MENU_WEBDB,
-       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="alumne.alumne") })
+@Tile(name="alumneFormWebDB", extendsTile=Tab.MENU_WEBDB,
+    // Els següents atributs no són necessaris si heredes aquesta classe
+    contentJsp="/WEB-INF/jsp/webdb/alumneForm.jsp", type=TileType.WEBDB_FORM,
+    attributes={ @TileAttribute(name="titol", value="alumne.alumne")})
+@Tile(name="alumneListWebDB", extendsTile=Tab.MENU_WEBDB,
+    // Els següents atributs no són necessaris si heredes aquesta classe 
+    contentJsp="/WEB-INF/jsp/webdb/alumneList.jsp", type=TileType.WEBDB_LIST,
+    attributes={ @TileAttribute(name="titol", value="alumne.alumne")})
 public class AlumneController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppFilesBaseController<Alumne, java.lang.Long, AlumneForm> implements AlumneFields {
 

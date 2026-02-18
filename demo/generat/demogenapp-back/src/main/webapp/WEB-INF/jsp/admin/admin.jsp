@@ -43,3 +43,10 @@ public class AlumneAdminController extends AlumneController {
 </textarea>
 </td></tr>
 </table>
+
+<center>
+<img src="<c:url value='/img/atom_spinner.svg'/>" alt="Atom Spinner"/>
+</center>
+
+
+

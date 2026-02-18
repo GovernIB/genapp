@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-            <version>3.3.3.Final-redhat-00001</version>
+            <version>3.3.2.Final-redhat-00001</version>
             <scope>compile</scope>
         </dependency>
 

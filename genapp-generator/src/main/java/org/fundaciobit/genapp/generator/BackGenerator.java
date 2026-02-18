@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.GenAppPackages;
@@ -1407,14 +1407,14 @@ public class BackGenerator {
             code.append("@Controller\n");
             code.append("@RequestMapping(value = \"/webdb/" + model + "\")\n");
             code.append("@SessionAttributes(types = { " + form + ".class, " + filterForm + ".class })\n");
-            code.append("@Tile(name=\"" + model + "FormWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model
-                    + "Form.jsp\", extendsTile=Tab.MENU_WEBDB,\n"
-                    + "      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name=\"titol\", value=\"" + model
-                    + "." + model + "\")})\n");
-            code.append("@Tile(name=\"" + model + "ListWebDB\", contentJsp=\"/WEB-INF/jsp/webdb/" + model
-                    + "List.jsp\", extendsTile=Tab.MENU_WEBDB,\n"
-                    + "       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name=\"titol\", value=\"" + model
-                    + "." + model + "\") })\n");
+            code.append("@Tile(name=\"" + model + "FormWebDB\", extendsTile=Tab.MENU_WEBDB,\n"
+                    + "    // Els següents atributs no són necessaris si heredes aquesta classe\n"
+                   + "    contentJsp=\"/WEB-INF/jsp/webdb/" + model + "Form.jsp\", type=TileType.WEBDB_FORM,\n"
+                   + "    attributes={ @TileAttribute(name=\"titol\", value=\"" + model + "." + model + "\")})\n");
+            code.append("@Tile(name=\"" + model + "ListWebDB\", extendsTile=Tab.MENU_WEBDB,\n"
+                    + "    // Els següents atributs no són necessaris si heredes aquesta classe \n"
+                    + "    contentJsp=\"/WEB-INF/jsp/webdb/" + model + "List.jsp\", type=TileType.WEBDB_LIST,\n"
+                    + "    attributes={ @TileAttribute(name=\"titol\", value=\"" + model + "." + model + "\")})\n");
             code.append("public class " + controller + "\n");
             if (fileFields.size() != 0) {
                 code.append("    extends " + derivatDe + "<" + tableJavaName + ", " + pkClass + ", " + form + ">");

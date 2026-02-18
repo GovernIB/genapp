@@ -53,10 +53,14 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
 @Controller
 @RequestMapping(value = "/webdb/idioma")
 @SessionAttributes(types = { IdiomaForm.class, IdiomaFilterForm.class })
-@Tile(name="idiomaFormWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaForm.jsp", extendsTile=Tab.MENU_WEBDB,
-      type=TileType.WEBDB_FORM , attributes={ @TileAttribute(name="titol", value="idioma.idioma")})
-@Tile(name="idiomaListWebDB", contentJsp="/WEB-INF/jsp/webdb/idiomaList.jsp", extendsTile=Tab.MENU_WEBDB,
-       type=TileType.WEBDB_LIST, attributes={ @TileAttribute(name="titol", value="idioma.idioma") })
+@Tile(name="idiomaFormWebDB", extendsTile=Tab.MENU_WEBDB,
+    // Els següents atributs no són necessaris si heredes aquesta classe
+    contentJsp="/WEB-INF/jsp/webdb/idiomaForm.jsp", type=TileType.WEBDB_FORM,
+    attributes={ @TileAttribute(name="titol", value="idioma.idioma")})
+@Tile(name="idiomaListWebDB", extendsTile=Tab.MENU_WEBDB,
+    // Els següents atributs no són necessaris si heredes aquesta classe 
+    contentJsp="/WEB-INF/jsp/webdb/idiomaList.jsp", type=TileType.WEBDB_LIST,
+    attributes={ @TileAttribute(name="titol", value="idioma.idioma")})
 public class IdiomaController
     extends org.fundaciobit.demogenapp.back.controller.DemoGenAppBaseController<Idioma, java.lang.String> implements IdiomaFields {
 
