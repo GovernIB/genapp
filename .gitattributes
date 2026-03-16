@@ -1,0 +1,2 @@
+# Forçar un llenguatge per a fitxers concrets
+*.md linguist-language=Java
