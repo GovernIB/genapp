@@ -134,6 +134,54 @@
                 </executions>
             </plugin>
 
+            
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>groovy-maven-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>    
+                
+                    <!-- Processa l'atribut 'example' del @Schema dels enums swagger i   -->
+                    <!-- converteix aquest en noms de variables correctes: -->
+                    <!-- Exemple:    example="SIGNTYPE_PADES|SIGNTYPE_CADES|SIGNTYPE_XADES", -->
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>${symbol_dollar}{project.basedir}/ProcessEnumVarNamesAndDescriptionsInOpenApiFiles.groovy</source>
+                            <properties>
+                                <openapifolder>${symbol_dollar}{project.basedir}/openapi/</openapifolder>
+                            </properties>
+                        </configuration>
+                    </execution>                                             
+
+                    <!-- Convertim \r\n a \n en els fitxers .json creats -->
+                    <execution>
+                        <id>normalize-line-endings</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                <![CDATA[
+                                // Normalitza els salts de línia dels fitxers openapi_*.json a LF (\n)
+                                def folder = new File(project.basedir, 'openapi')
+                                folder.eachFileMatch(~/openapi_.*\.json/) { f ->
+                                    def text = f.getText('UTF-8')
+                                    def normalized = text.replaceAll('\r\n', '\n').replaceAll('\r', '\n')
+                                    f.withWriter('UTF-8') { w -> w.write(normalized) }
+                                    println "Normalitzat a LF: ${symbol_dollar}{f.name}"
+                                }
+                                ]]>
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
 
             <!-- ==================================================================  -->
             <!-- Genera el Client Rest per Java a partir del fitxers openapi_*.json -->

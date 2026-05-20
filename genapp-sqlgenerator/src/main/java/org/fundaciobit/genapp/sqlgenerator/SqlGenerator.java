@@ -673,6 +673,7 @@ public class SqlGenerator {
 //            System.out.println("getTypeName(Types.NCLOB) => " + super.getTypeName(Types.NCLOB));
             
             registerColumnType(Types.NUMERIC, "number");
+            registerColumnType(java.sql.Types.DOUBLE, "binary_double");
             
 
         }

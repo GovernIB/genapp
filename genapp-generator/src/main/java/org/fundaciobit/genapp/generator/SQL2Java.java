@@ -214,6 +214,7 @@ public class SQL2Java {
         }
     }
 
+
     public static String formatValueFromSqlType(int sqlType, String defValueClean) {
         switch (sqlType) {
             case Types.DOUBLE:

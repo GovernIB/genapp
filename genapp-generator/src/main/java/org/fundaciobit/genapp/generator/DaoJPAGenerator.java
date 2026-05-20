@@ -313,29 +313,37 @@ public class DaoJPAGenerator {
             }
 
             // Definicio
-            final String defValue;
+            final String defValueSql;
+            final String defValueJavaCode;
+            
+                
+            
             if (defValueClean == null) {
-                defValue = null;
+                defValueJavaCode = null;
+                defValueSql = null;
             } else {
                 if (SQL2Java.isStringFromSqlType(field.getSqlType())) {
                     // Llevam primera i darrera cometa
                     if (defValueClean.startsWith("'") && defValueClean.endsWith("'")) {
-                        defValue = "\"" + defValueClean.substring(1, defValueClean.length() - 1) + "\"";
+                        defValueJavaCode = "\"" + defValueClean.substring(1, defValueClean.length() - 1) + "\"";
+                        defValueSql = new String(defValueJavaCode);
                     } else {
-
-                        defValue = "\"" + defValueClean + "\"";
+                        defValueJavaCode = "\"" + defValueClean + "\"";
+                        defValueSql = new String(defValueJavaCode);
                     }
                 } else {
                     String defValueWithCast = SQL2Java.formatValueFromSqlType(field.getSqlType(), defValueClean);
-                    defValue = "" + defValueWithCast;
+                    defValueJavaCode = "" + defValueWithCast;
+                    defValueSql = new String(defValueClean);
                 }
 
             }
-            if (defValue != null && !isBoolean(field)) {
+            // DEF VALUE
+            if (defValueJavaCode != null && !isBoolean(field)) {
                 beanCode.append("    " + "@org.hibernate.annotations.ColumnDefault("
-                        + (defValue.startsWith("\"") ? defValue : ("\"" + defValue + "\"")) + ")\n");
+                        + (defValueJavaCode.startsWith("\"") ? defValueSql : ("\"" + defValueSql + "\"")) + ")\n");
             }
-            beanCode.append("    " + type + " " + name + (defValue == null ? "" : (" = " + defValue)) + ";\n\n");
+            beanCode.append("    " + type + " " + name + (defValueJavaCode == null ? "" : (" = " + defValueJavaCode)) + ";\n\n");
         }
 
         beanCode.append("\n\n");

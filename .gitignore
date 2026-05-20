@@ -147,3 +147,5 @@ target
 /genapp.css_canvi_taules.txt
 /run_arche/arche/dep.bat
 /genapp-sqltutorial/genappsqltutorial-back/src/main/java/org/fundaciobit/genappsqltutorial/back/preparer/ConvertTiles.java
+/demo/generat/demogenapp-api-interna-client-exemplepublic-v1/gradle
+/demo/generat/demogenapp-api-interna-client-exemplesecure-v1/gradle
