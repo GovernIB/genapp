@@ -203,6 +203,7 @@ public class TilesFactoryApp implements DefinitionsFactory {
         def_webdb.setExtends(def_base_definition.getName());
         def_webdb.putAttribute("pipella", new Attribute(Tab.MENU_WEBDB));
         def_webdb.putAttribute("menu", new Attribute("/WEB-INF/jsp/webdb/menu_webdb.jsp"));
+        def_webdb.putAttribute("contingut", new Attribute("/WEB-INF/jsp/webdbmodificable/webdbavis.jsp"));
 
         map.put(def_webdb.getName(), def_webdb);
 

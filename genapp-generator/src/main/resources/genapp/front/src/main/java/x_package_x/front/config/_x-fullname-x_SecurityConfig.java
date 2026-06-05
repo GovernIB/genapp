@@ -43,7 +43,9 @@ public class ${fullname}SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/public/**", "/inici",
                         // Plugin Login
-                        PluginLoginController.MAPPING_PRELOGIN + "/**", PluginLoginController.MAPPING_LOGOUT, 
+                        PluginLoginController.MAPPING_PRELOGIN + "/**",
+                        PluginLoginController.MAPPING_LOGOUT,
+                        PluginLoginController.MAPPING_ERROR_LOGIN + "/**",
                         "/js/**", "/error", "/css/**", "/images/**", "/fonts/**").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().access("isAuthenticated()")
