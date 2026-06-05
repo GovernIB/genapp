@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ${package}.back.utils.Tab;
+
 /**
  * 
  * @autor anadal
@@ -67,16 +69,16 @@ public class PrincipalController {
 			 * true)); }
 			 */
 
-			if ("admin".equals(pipella)) {
+			if (Tab.MENU_ADMIN.equals(pipella)) {
 				return new ModelAndView(new RedirectView("/admin/option1", true));
 			}
 
-			if ("user".equals(pipella)) {
+			if (Tab.MENU_USER.equals(pipella)) {
 				return new ModelAndView(new RedirectView("/user/option1", true));
 			}
 
-			if ("webdb".equals(pipella)) {
-				return new ModelAndView("webdb");
+			if (Tab.MENU_WEBDB.equals(pipella)) {
+				return new ModelAndView(Tab.MENU_WEBDB);
 			}
 
 			if (Configuracio.isDesenvolupament() && "desenvolupament".equals(pipella)) {
