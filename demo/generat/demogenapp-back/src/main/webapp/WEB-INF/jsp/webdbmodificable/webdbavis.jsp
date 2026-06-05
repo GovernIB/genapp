@@ -14,7 +14,7 @@
         </li>
         <li class="d-flex align-items-start mb-3">
             <span class="badge bg-warning text-dark me-3 mt-1 p-2" style="font-size: 1rem;">&#9940; </span>
-            <h5 class="mb-0"><strong>&nbsp;NO FER ESBORRATS NI MODIFICACIONS</strong> sense el vist i plau del DESENVOLUPADOR</h5>
+            <h5 class="mb-0"><strong>&nbsp;NO FER ESBORRATS NI MODIFICACIONS NI ALTES</strong> sense el vist i plau del DESENVOLUPADOR</h5>
         </li>
         <li class="d-flex align-items-start">
             <span class="badge bg-dark me-3 mt-1 p-2" style="font-size: 1rem;">&#9889;</span>
