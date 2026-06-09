@@ -2105,7 +2105,7 @@ public class BackWebGenerator extends IconUtils {
 
 			code.append("            <li class=\"nav-item \">\n");
 			code.append(
-					"                 <a class=\"nav-link ${(counter.index == 0)? 'active':''}\" href=\"#${counter.index}_tab_"
+					"                 <a class=\"nav-link ${(counter.index == 0)? 'active':''}\" href=\"#tab_${counter.index}_"
 							+ simpleName + "_${idioma.idiomaID}\" data-toggle=\"tab\">${idioma.nom}</a>\n");
 			code.append("            </li>\n");
 			code.append("          </c:forEach>\n");
@@ -2115,7 +2115,7 @@ public class BackWebGenerator extends IconUtils {
 			code.append(
 					"           <c:forEach items=\"${__theForm.idiomesTraduccio}\" var=\"idioma\" varStatus=\"counter\">\n");
 			code.append(
-					"           <div class=\"tab-pane ${(counter.index == 0)? 'active':'' }\" id=\"${counter.index}_tab_"
+					"           <div class=\"tab-pane ${(counter.index == 0)? 'active':'' }\" id=\"tab_${counter.index}_"
 							+ simpleName + "_${idioma.idiomaID}\">\n");
 			code.append("               <form:errors path=\"" + fullmodel
 					+ ".traduccions['${idioma.idiomaID}'].valor\" cssClass=\"errorField alert alert-danger\"/>\n");
