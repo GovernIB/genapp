@@ -127,6 +127,10 @@ public class FileSystemManager {
     return fileSystemManager.getAllFiles(getFilesPath());
   }
   
+  public static String[] getAllFileNames() {
+      return fileSystemManager.getAllFileNames(getFilesPath());
+    }
+  
 
   // ------------------------------------------------------------------
   // UTILITATS

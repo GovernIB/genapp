@@ -5,7 +5,9 @@ import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,134 +20,182 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * @author anadal
  *
  */
-public class ThreeFolderFileSystemManager extends SimpleFileSystemManager implements
-    IFileSystemManager {
+public class ThreeFolderFileSystemManager extends SimpleFileSystemManager implements IFileSystemManager {
 
-  /**
-   * 
-   */
-  public ThreeFolderFileSystemManager() {
-    super();
-  }
-
-  public static File getTreeFolder(File filesPath, Long id) {
-    id = Math.abs(id);
-    File dir = new File(filesPath, ((id / 100) % 10) + "/" + ((id / 10) % 10) + "/"
-        + (id % 10));
-    dir.mkdirs();
-    return dir;
-
-  }
-
-  @Override
-  public File getFile(File filesPath, Long id) {
-    return super.getFile(getTreeFolder(filesPath, id), id);
-  }
-
-  @Override
-  public String getChecksum(File filesPath, Long id) throws Exception {
-
-    return super.getChecksum(getTreeFolder(filesPath, id), id);
-  }
-
-  @Override
-  public File crearFitxer(File filesPath, InputStream is, Long id) throws I18NException {
-
-    return super.crearFitxer(getTreeFolder(filesPath, id), is, id);
-  }
-
-  @Override
-  public File crearFitxer(File filesPath, File input, Long id) throws I18NException {
-    return super.crearFitxer(getTreeFolder(filesPath, id), input, id);
-  }
-
-  @Override
-  public File sobreescriureFitxer(File filesPath, File src, Long id) {
-
-    return super.sobreescriureFitxer(getTreeFolder(filesPath, id), src, id);
-  }
-
-  @Override
-  public boolean eliminarArxiu(File filesPath, Long id) {
-    return super.eliminarArxiu(getTreeFolder(filesPath, id), id);
-  }
-
-  @Override
-  public boolean eliminarArxius(File filesPath, Set<Long> fitxers) {
-
-    boolean resultat = true;
-    if (fitxers != null && !fitxers.isEmpty()) {
-      for (Long fitxerID : fitxers) {
-        resultat = resultat
-            && super.eliminarArxiu(getTreeFolder(filesPath, fitxerID), fitxerID);
-      }
+    /**
+     * 
+     */
+    public ThreeFolderFileSystemManager() {
+        super();
     }
-    return resultat;
 
-  }
+    public static File getTreeFolder(File filesPath, Long id) {
+        id = Math.abs(id);
+        File dir = new File(filesPath, ((id / 100) % 10) + "/" + ((id / 10) % 10) + "/" + (id % 10));
+        dir.mkdirs();
+        return dir;
 
-  @Override
-  public File getTmpFile(File filesPath, Long dstId) {
-    // Crearem el temporal en l'arrel
-    return super.getTmpFile(filesPath, dstId);
-  }
+    }
 
-  @Override
-  public byte[] getFileContent(File filesPath, long id) throws FileNotFoundException,
-      IOException {
-    return FileSystemManager.readFileToByteArray(getFile(filesPath, id)); 
-  }
-  
-  @Override
-  public Map<Long, File> getAllFiles(File filesPath) {
-    File[] rootDirs1 = filesPath.listFiles(new FileFilter() {
+    @Override
+    public File getFile(File filesPath, Long id) {
+        return super.getFile(getTreeFolder(filesPath, id), id);
+    }
 
-      @Override
-      public boolean accept(File pathname) {
+    @Override
+    public String getChecksum(File filesPath, Long id) throws Exception {
 
-        if (pathname.isDirectory()) {
-          String name = pathname.getName();
-          if (name.length() == 1 && Character.isDigit(name.charAt(0))) {
-            return true;
-          }
-        }
+        return super.getChecksum(getTreeFolder(filesPath, id), id);
+    }
 
-        return false;
-      }
+    @Override
+    public File crearFitxer(File filesPath, InputStream is, Long id) throws I18NException {
 
-    });
+        return super.crearFitxer(getTreeFolder(filesPath, id), is, id);
+    }
 
-    Map<Long, File> map = new HashMap<Long, File>();
+    @Override
+    public File crearFitxer(File filesPath, File input, Long id) throws I18NException {
+        return super.crearFitxer(getTreeFolder(filesPath, id), input, id);
+    }
 
-    for (File rootDir1 : rootDirs1) {
-      
-      File[] rootDirs2 = rootDir1.listFiles();
+    @Override
+    public File sobreescriureFitxer(File filesPath, File src, Long id) {
 
-      for (File rootDir2 : rootDirs2) {
-        
-        File[] rootDirs3 = rootDir2.listFiles();
+        return super.sobreescriureFitxer(getTreeFolder(filesPath, id), src, id);
+    }
 
-        for (File rootDir3 : rootDirs3) {
+    @Override
+    public boolean eliminarArxiu(File filesPath, Long id) {
+        return super.eliminarArxiu(getTreeFolder(filesPath, id), id);
+    }
 
-          File[] files = rootDir3.listFiles();
-          
-          for (File file : files) {
-            Long id;
-            try {
-              id = Long.parseLong(file.getName());
-  
-              map.put(id, file);
-  
-            } catch (Throwable th) {
-              th.printStackTrace();
+    @Override
+    public boolean eliminarArxius(File filesPath, Set<Long> fitxers) {
+
+        boolean resultat = true;
+        if (fitxers != null && !fitxers.isEmpty()) {
+            for (Long fitxerID : fitxers) {
+                resultat = resultat && super.eliminarArxiu(getTreeFolder(filesPath, fitxerID), fitxerID);
             }
-          }
         }
-      }
-    }
-    
-    return map;
+        return resultat;
 
-  }
-  
+    }
+
+    @Override
+    public File getTmpFile(File filesPath, Long dstId) {
+        // Crearem el temporal en l'arrel
+        return super.getTmpFile(filesPath, dstId);
+    }
+
+    @Override
+    public byte[] getFileContent(File filesPath, long id) throws FileNotFoundException, IOException {
+        return FileSystemManager.readFileToByteArray(getFile(filesPath, id));
+    }
+
+    @Override
+    public Map<Long, File> getAllFiles(File filesPath) {
+        File[] rootDirs1 = filesPath.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+
+                if (pathname.isDirectory()) {
+                    String name = pathname.getName();
+                    if (name.length() == 1 && Character.isDigit(name.charAt(0))) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+        });
+
+        Map<Long, File> map = new HashMap<Long, File>();
+
+        for (File rootDir1 : rootDirs1) {
+
+            File[] rootDirs2 = rootDir1.listFiles();
+
+            for (File rootDir2 : rootDirs2) {
+
+                File[] rootDirs3 = rootDir2.listFiles();
+
+                for (File rootDir3 : rootDirs3) {
+
+                    File[] files = rootDir3.listFiles();
+
+                    for (File file : files) {
+                        Long id;
+                        try {
+                            id = Long.parseLong(file.getName());
+
+                            map.put(id, file);
+
+                        } catch (Throwable th) {
+                            th.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+
+        return map;
+
+    }
+
+    @Override
+    public String[] getAllFileNames(File filesPath) {
+
+        File[] rootDirs1 = filesPath.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+
+                if (pathname.isDirectory()) {
+                    String name = pathname.getName();
+                    if (name.length() == 1 && Character.isDigit(name.charAt(0))) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+        });
+
+        // Afegim directament els noms a una única llista sense passes intermèdies
+        List<String> resultList = new ArrayList<String>();
+
+        for (File rootDir1 : rootDirs1) {
+
+            File[] rootDirs2 = rootDir1.listFiles();
+            if (rootDirs2 == null)
+                continue;
+
+            for (File rootDir2 : rootDirs2) {
+
+                File[] rootDirs3 = rootDir2.listFiles();
+                if (rootDirs3 == null)
+                    continue;
+
+                for (File rootDir3 : rootDirs3) {
+
+                    String[] files = rootDir3.list();
+                    if (files == null)
+                        continue;
+
+                    for (String file : files) {
+                        resultList.add(file);
+                    }
+                }
+            }
+        }
+
+        return resultList.toArray(new String[0]);
+
+    }
+
 }

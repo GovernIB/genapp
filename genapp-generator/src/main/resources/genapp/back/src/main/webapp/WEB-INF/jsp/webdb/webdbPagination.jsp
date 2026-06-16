@@ -1,8 +1,6 @@
-<%@page
-    import="org.fundaciobit.genapp.common.web.exportdata.IDataExporter"%>
+<%@page import="org.fundaciobit.genapp.common.web.exportdata.IDataExporter"%>
 <%@page import="java.util.List"%>
-<%@page
-    import="org.fundaciobit.genapp.common.web.exportdata.DataExporterManager"%>
+<%@page import="org.fundaciobit.genapp.common.web.exportdata.DataExporterManager"%>
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
 <script type="text/javascript">
@@ -58,6 +56,7 @@ function reassignAction() {
     <div class="col" style="text-align: right"
         id="${dollar}{formName}_pagination_right">
         <div class="row float-right">
+        <c:if test="${dollar}{not empty __theFilterForm.allItemsPerPage}">
         <label><fmt:message key="genapp.form.itemsperpage" />:</label>
         <form:select cssClass="input-small" cssStyle="width:4em;"
             onchange="document.${dollar}{formName}.submit()"
@@ -68,6 +67,7 @@ function reassignAction() {
                     label="${dollar}{ (num == -1)? allitems : num}" />
             </c:forEach>
         </form:select>
+        </c:if>
         </div>
     </div>
 
