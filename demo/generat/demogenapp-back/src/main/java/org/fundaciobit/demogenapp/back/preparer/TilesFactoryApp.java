@@ -192,8 +192,11 @@ public class TilesFactoryApp implements DefinitionsFactory {
         /*{name=desenvolupament, template=/WEB-INF/jsp/layout/layout.jsp, role=null, preparerInstance=org.fundaciobit.demogenapp.back.preparer.BasePreparer, attributes={menu_i_contingut=base.menu_i_contingut, peu=base.peu, pipella=desenvolupament, contingut=/WEB-INF/jsp/desenvolupament.jsp, cap=base.cap, menu=/WEB-INF/jsp/moduls/menu_desenvolupament.jsp}}*/
         Definition def_desenvolupament = new Definition(def_base_definition);
         def_desenvolupament.setName("desenvolupament");
-        def_desenvolupament.putAttribute("contingut", new Attribute("/WEB-INF/jsp/desenvolupament.jsp"));
+        def_desenvolupament.putAttribute("pipella", new Attribute(Tab.MENU_DESENVOLUPAMENT));
+        def_desenvolupament.putAttribute("menu", new Attribute("/WEB-INF/jsp/moduls/menu_desenvolupament.jsp"));
         map.put(def_desenvolupament.getName(), def_desenvolupament);
+        
+        
         /* ================================== */
         
         

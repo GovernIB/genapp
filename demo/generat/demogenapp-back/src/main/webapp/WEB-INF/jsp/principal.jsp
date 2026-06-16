@@ -41,7 +41,7 @@ Username: ${loginInfo.username}<br/>
 &#36;{dem:hasRole('ROLE_USER') }= ${dem:hasRole('ROLE_USER') }<br/>
 Locale = <%=LocaleContextHolder.getLocale() %> <br/>
 lang = ${lang} <br/>
-> UserInformation:<br/>
++ <b> UserInformation: </b><br/>
  <c:if test="${not empty loginInfo.userInfo}">
 	name= ${loginInfo.userInfo.name} <br/> 
  	surname1= ${loginInfo.userInfo.surname1} <br/>
@@ -53,6 +53,8 @@ lang = ${lang} <br/>
 <c:if test="${empty loginInfo.userInfo}">
 	Error carregant Plugin UserInfo. Revisar logs per mes informacio.<br/>
 </c:if>
+
+dem:isDesenvolupament() = ${dem:isDesenvolupament()}<br/>
 
 <c:if test="${dem:isDesenvolupament()}">
 Only in Development Mode

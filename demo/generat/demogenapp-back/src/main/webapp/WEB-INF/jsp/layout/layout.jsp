@@ -65,11 +65,11 @@
                 </li>
             </sec:authorize>
 
-            <c:if test="${prefixLowercase}:isDesenvolupament()}">
+            <c:if test="${dem:isDesenvolupament()}">
                 <li class="nav-item"><a
                     class="nav-link ${(pipella eq 'desenvolupament')?'active' : '' }"
                     href="<c:url value="/canviarPipella/desenvolupament"/>">
-                        <fmt:message key="desenvolupament" />
+                        Desenvolupament
                 </a></li>
             </c:if>
 
