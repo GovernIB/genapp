@@ -482,7 +482,7 @@ public abstract class AbstractTableManager<E extends IGenAppEntity, PK extends O
     }
 
     protected String processHaving(Where having) {
-        return having == null ? "" : having.toSQL();
+        return (having == null) ? "" : (" having " + having.toSQL());
     }
 
     @Override
