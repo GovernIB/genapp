@@ -105,6 +105,11 @@
             <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
             <module name="javax.ws.rs.api" export="TRUE"/>
         </dependencies>
+        <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
     </sub-deployment>
     </#if>    
     <#if generateapiinterna>
@@ -114,6 +119,11 @@
             <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
             <module name="javax.ws.rs.api" export="TRUE"/>
         </dependencies>
+        <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
     </sub-deployment>
     </#if>
 </jboss-deployment-structure>
