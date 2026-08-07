@@ -144,9 +144,9 @@ public class InitServlet extends HttpServlet {
                 for (Class<? extends IExportDataPlugin> class1 : plugins) {
                     IExportDataPlugin edp = (IExportDataPlugin) PluginsManager.instancePluginByClass(class1);
                     if (edp == null) {
-                        log.warn("No s'ha pogut instanciar Plugin associat a la classe " + class1.getName());
+                        log.error("No s'ha pogut instanciar Plugin associat a la classe " + class1.getName());
                     } else {
-                        log.warn("Registrant DataExporter: " + class1.getName());
+                        log.info("Registrant DataExporter: " + class1.getName());
                         DataExporterManager.addDataExporter(new org.fundaciobit.demogenapp.back.utils.DemoGenAppDataExporter(edp));
                     }
                 }
