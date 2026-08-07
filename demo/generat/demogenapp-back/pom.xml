@@ -297,6 +297,11 @@
                         <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
                         **/jboss-jaxb-api*-redhat*.jar
                     </packagingExcludes>
+                    <archive>
+                        <manifest>
+                            <addClasspath>false</addClasspath>
+                        </manifest>
+                    </archive>
                     <webResources>
                         <resource>
                                 <!-- this is relative to the pom.xml directory -->

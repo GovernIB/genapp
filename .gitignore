@@ -149,3 +149,4 @@ target
 /genapp-sqltutorial/genappsqltutorial-back/src/main/java/org/fundaciobit/genappsqltutorial/back/preparer/ConvertTiles.java
 /demo/generat/demogenapp-api-interna-client-exemplepublic-v1/gradle
 /demo/generat/demogenapp-api-interna-client-exemplesecure-v1/gradle
+/demo/generat/rungenapp/lastconfig.properties

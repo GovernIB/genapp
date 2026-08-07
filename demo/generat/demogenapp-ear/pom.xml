@@ -193,6 +193,7 @@
 					<generateApplicationXml>true</generateApplicationXml>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
                     <skinnyWars>true</skinnyWars>
+                    <skipClassPathModification>true</skipClassPathModification>
                     
                     <packagingExcludes>                        
                         <!-- Requereix afegir mòdul 'javax.activation.api' a jboss-deployment-structure.xml -->
