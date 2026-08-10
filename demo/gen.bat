@@ -22,6 +22,13 @@ if exist "%GENERAT_DIR%\demogenapp-back\" (
     set "DEMOGENAPP_BACK_EXISTS=1"
 )
 
+REM Comprovar si existeix demogenapp-ejb
+set "DEMOGENAPP_EJB_EXISTS=0"
+
+if exist "%GENERAT_DIR%\demogenapp-ejb\" (
+    set "DEMOGENAPP_EJB_EXISTS=1"
+)
+
 REM (1) Crear generat
 if not exist "%GENERAT_DIR%" mkdir "%GENERAT_DIR%"
 
@@ -49,13 +56,22 @@ popd
 if "%DEMOGENAPP_BACK_EXISTS%"=="0" (
 
     echo.
-    echo === Restaurant fitxers especifics de Back ===
+    echo === Restaurant fitxers de proves de Back ===
 
     pushd "%GENERAT_DIR%\demogenapp-back"
-
     call git restore src/main/java/org/fundaciobit/demogenapp/back/controller/admin/AlumneAdminController.java
     call git restore src/main/java/org/fundaciobit/demogenapp/back/controller/all/AssignaturaAllController.java
+    popd
+)
 
+if "%DEMOGENAPP_EJB_EXISTS%"=="0" (
+
+    echo.
+    echo === Restaurant fitxers de proves de EJB ===
+
+    pushd "%GENERAT_DIR%\demogenapp-ejb"
+    call git restore src/main/java/org/fundaciobit/demogenapp/logic/AssignaturaRunAsUserLogicaService.java
+    call git restore src/main/java/org/fundaciobit/demogenapp/logic/AssignaturaRunAsUserLogicaEJB.java
     popd
 )
 
