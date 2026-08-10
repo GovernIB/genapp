@@ -1,11 +1,14 @@
 package org.fundaciobit.demogenapp.back.controller.all;
 
+import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 
 import org.fundaciobit.demogenapp.back.controller.webdb.AssignaturaController;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaFilterForm;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaForm;
 import org.fundaciobit.demogenapp.back.utils.Tab;
+import org.fundaciobit.demogenapp.ejb.AssignaturaRunAsUserService;
+import org.fundaciobit.demogenapp.persistence.AssignaturaJPA;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
@@ -22,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author anadal
  * 5 nov 2025 10:57:58
  */
-
 @MenuOption(
         labelCode = "assignatura.assignatura.plural",
         order = 50,
@@ -45,6 +47,10 @@ import org.springframework.web.servlet.ModelAndView;
         attributes = { @TileAttribute(name = "titol", value = "assignatura.assignatura") })
 public class AssignaturaAllController extends AssignaturaController {
 
+    // Delegat (EJB) que executa la crida a l'EJB simulant el rol DEM_USER (@RunAs)
+    @EJB(mappedName = AssignaturaRunAsUserService.JNDI_NAME)
+    protected AssignaturaRunAsUserService assignaturaRunAsUserEjb;
+
     /**
      * 
      */
@@ -56,20 +62,28 @@ public class AssignaturaAllController extends AssignaturaController {
         HtmlUtils.saveMessageInfo(request, "Exemple de gestió tota encapsulada en un Controller");
 
         if (assignaturaFilterForm.isNou()) {
-
+            // Ocultar botó d'edició d'assignatura
             assignaturaFilterForm.setEditButtonVisible(false);
+            // Ocultar botó de visualització d'assignatura
             assignaturaFilterForm.setViewButtonVisible(true);
+            // Ocultar botó de borrat d'assignatura 
             assignaturaFilterForm.setDeleteButtonVisible(false);
-
+            // Ocultar boto de creació de Nova Assignatura  
             assignaturaFilterForm.setAddButtonVisible(false);
-
+            // Ocultar boto de borrat d'assignatures seleccionades
             assignaturaFilterForm.setDeleteSelectedButtonVisible(false);
-
+            // Ocultar CheckBox de selecció múltiple d'assignatures
             assignaturaFilterForm.setVisibleMultipleSelection(false);
-
         }
 
         return assignaturaFilterForm;
+    }
+
+    @Override
+    public AssignaturaJPA findByPrimaryKey(HttpServletRequest request, java.lang.Long assignaturaID)
+            throws I18NException {
+        // La crida passa per l'EJB delegat, per tant s'aplica @RunAs(DEM_USER)
+        return assignaturaRunAsUserEjb.findByPrimaryKey(assignaturaID);
     }
 
     @Override
