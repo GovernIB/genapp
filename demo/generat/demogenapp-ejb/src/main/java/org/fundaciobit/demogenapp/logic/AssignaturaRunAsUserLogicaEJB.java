@@ -1,4 +1,4 @@
-package org.fundaciobit.demogenapp.ejb;
+package org.fundaciobit.demogenapp.logic;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RunAs;
@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import org.fundaciobit.demogenapp.commons.utils.Constants;
+import org.fundaciobit.demogenapp.ejb.AssignaturaService;
 import org.fundaciobit.demogenapp.persistence.AssignaturaJPA;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 
@@ -29,7 +30,7 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
 @Stateless
 @RunAs(Constants.DEM_USER)
 @PermitAll
-public class AssignaturaRunAsUserEJB implements AssignaturaRunAsUserService {
+public class AssignaturaRunAsUserLogicaEJB implements AssignaturaRunAsUserLogicaService {
 
     @EJB(mappedName = AssignaturaService.JNDI_NAME)
     protected AssignaturaService assignaturaEjb;

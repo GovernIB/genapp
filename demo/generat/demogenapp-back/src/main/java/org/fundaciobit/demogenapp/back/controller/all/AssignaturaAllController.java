@@ -7,7 +7,7 @@ import org.fundaciobit.demogenapp.back.controller.webdb.AssignaturaController;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaFilterForm;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaForm;
 import org.fundaciobit.demogenapp.back.utils.Tab;
-import org.fundaciobit.demogenapp.ejb.AssignaturaRunAsUserService;
+import org.fundaciobit.demogenapp.logic.AssignaturaRunAsUserLogicaService;
 import org.fundaciobit.demogenapp.persistence.AssignaturaJPA;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
@@ -48,8 +48,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class AssignaturaAllController extends AssignaturaController {
 
     // Delegat (EJB) que executa la crida a l'EJB simulant el rol DEM_USER (@RunAs)
-    @EJB(mappedName = AssignaturaRunAsUserService.JNDI_NAME)
-    protected AssignaturaRunAsUserService assignaturaRunAsUserEjb;
+    @EJB(mappedName = AssignaturaRunAsUserLogicaService.JNDI_NAME)
+    protected AssignaturaRunAsUserLogicaService assignaturaRunAsUserEjb;
 
     /**
      * 
