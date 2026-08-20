@@ -38,11 +38,14 @@ This page is generated automatically. Please edit.
 
 <br/>
 
-LOGIN ANONIM <br/>
-Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-lang = ${dollar}{lang} <br/>
+<c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
+
+Aquest informaci&oacute; es mostra ja que la propietat ${package}.development &eacute;s true<br/>
+<br>
+
++ LOGIN ANONIM <br/>
++ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
++ lang = ${dollar}{lang} <br/>
 <br/>
 
-<c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
-Only in Development Mode
 </c:if>

@@ -37,11 +37,14 @@ This page is generated automatically. Please edit.
 
 <br/>
 
-LOGIN ANONIM <br/>
-Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-lang = ${lang} <br/>
+<c:if test="${dem:isDesenvolupament()}">
+
+Aquest informaci&oacute; es mostra ja que la propietat org.fundaciobit.demogenapp.development &eacute;s true<br/>
+<br>
+
++ LOGIN ANONIM <br/>
++ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
++ lang = ${lang} <br/>
 <br/>
 
-<c:if test="${dem:isDesenvolupament()}">
-Only in Development Mode
 </c:if>

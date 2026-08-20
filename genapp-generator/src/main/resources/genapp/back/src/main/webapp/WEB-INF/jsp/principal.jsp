@@ -36,12 +36,16 @@ This page is generated automatically. Please edit.
 </div>
 
 <br/>
-Username: ${dollar}{loginInfo.username}<br/>
+<c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
 
-&#36;{${prefixLowercase}:hasRole(<#list admin_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>)}= ${dollar}{${prefixLowercase}:hasRole(<#list admin_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>)}<br/>
-&#36;{${prefixLowercase}:hasRole(<#list basic_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>) }= ${dollar}{${prefixLowercase}:hasRole(<#list basic_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>) }<br/>
-Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-lang = ${symbol_dollar}{lang} <br/>
+Aquest informaci&oacute; es mostra ja que la propietat ${package}.development &eacute;s true<br/><br>
+
+
++ Username: ${dollar}{loginInfo.username}<br/>
++ &#36;{${prefixLowercase}:hasRole(<#list admin_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>)}= ${dollar}{${prefixLowercase}:hasRole(<#list admin_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>)}<br/>
++ &#36;{${prefixLowercase}:hasRole(<#list basic_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>) }= ${dollar}{${prefixLowercase}:hasRole(<#list basic_virtual_roles_map as role_key,role_value>'${role_value?upper_case}'<#if role_key?is_last><#else>,</#if></#list>) }<br/>
++ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
++ lang = ${symbol_dollar}{lang} <br/>
 + <b> UserInformation: </b><br/>
  <c:if test="${dollar}{not empty loginInfo.userInfo}">
 	name= ${dollar}{loginInfo.userInfo.name} <br/> 
@@ -54,10 +58,8 @@ lang = ${symbol_dollar}{lang} <br/>
 <c:if test="${dollar}{empty loginInfo.userInfo}">
 	Error carregant Plugin UserInfo. Revisar logs per mes informacio.<br/>
 </c:if>
++ ${prefixLowercase}:isDesenvolupament() = ${dollar}{${prefixLowercase}:isDesenvolupament()}<br/>
+<br/>
 
-${prefixLowercase}:isDesenvolupament() = ${dollar}{${prefixLowercase}:isDesenvolupament()}<br/>
-
-<c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
-Only in Development Mode
 </c:if>
   

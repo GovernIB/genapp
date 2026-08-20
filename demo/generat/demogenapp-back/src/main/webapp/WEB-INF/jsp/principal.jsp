@@ -35,12 +35,16 @@ This page is generated automatically. Please edit.
 </div>
 
 <br/>
-Username: ${loginInfo.username}<br/>
+<c:if test="${dem:isDesenvolupament()}">
 
-&#36;{dem:hasRole('ROLE_ADMIN')}= ${dem:hasRole('ROLE_ADMIN')}<br/>
-&#36;{dem:hasRole('ROLE_USER') }= ${dem:hasRole('ROLE_USER') }<br/>
-Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-lang = ${lang} <br/>
+Aquest informaci&oacute; es mostra ja que la propietat org.fundaciobit.demogenapp.development &eacute;s true<br/><br>
+
+
++ Username: ${loginInfo.username}<br/>
++ &#36;{dem:hasRole('ROLE_ADMIN')}= ${dem:hasRole('ROLE_ADMIN')}<br/>
++ &#36;{dem:hasRole('ROLE_USER') }= ${dem:hasRole('ROLE_USER') }<br/>
++ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
++ lang = ${lang} <br/>
 + <b> UserInformation: </b><br/>
  <c:if test="${not empty loginInfo.userInfo}">
 	name= ${loginInfo.userInfo.name} <br/> 
@@ -53,9 +57,7 @@ lang = ${lang} <br/>
 <c:if test="${empty loginInfo.userInfo}">
 	Error carregant Plugin UserInfo. Revisar logs per mes informacio.<br/>
 </c:if>
++ dem:isDesenvolupament() = ${dem:isDesenvolupament()}<br/>
+<br/>
 
-dem:isDesenvolupament() = ${dem:isDesenvolupament()}<br/>
-
-<c:if test="${dem:isDesenvolupament()}">
-Only in Development Mode
 </c:if>
