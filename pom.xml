@@ -94,24 +94,18 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- reload4j és un fork de Log4j 1.2.17 que corregeix les vulnerabilitats conegudes mantenint la mateixa API -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>ch.qos.reload4j</groupId>
+            <artifactId>reload4j</artifactId>
+            <version>1.2.26</version>
         </dependency>
-    
-    <!--
+
+        <!--
         <dependency>
             <groupId>org.jboss.logmanager</groupId>
             <artifactId>log4j-jboss-logmanager</artifactId>
-        </dependency>
-    -->
-
-        <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
-       <!--        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
         </dependency>
         -->
 
