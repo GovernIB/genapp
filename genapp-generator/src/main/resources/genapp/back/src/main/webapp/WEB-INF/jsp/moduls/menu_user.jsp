@@ -7,7 +7,7 @@
 %><%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 <c:set var="url" value="${dollar}{urlActual}" />
 <div>
-    <h5>Menú BASIC ACCESS</h5>
+    <span style="font-size: 1.25rem">Menú BASIC ACCESS</span>
 
     <%
     List<List<MenuItem>> menus = new ArrayList<List<MenuItem>>();

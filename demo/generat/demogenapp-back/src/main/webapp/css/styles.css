@@ -74,6 +74,15 @@ a:hover{
 	margin-left: auto;
 	margin-right: auto;
 }
+/* Menú d'inici (arbre) amb contrast suficient (WCAG AA).
+   Sobreescriu el blau #007bff (~4.0:1) per un blau més fosc accessible. */
+.tree a {
+    color: #0069d9;
+}
+.tree a:hover,
+.tree a:focus {
+    color: #000;
+}
 /* FI Estils generals */
 
 /* Motlla de pa */
@@ -259,9 +268,16 @@ a:hover{
 	content: '\e024\0000a0' !important;
 }
 .bg-aplicacio{
-	background-color: #4dba79 !important;
+	background-color: #317a4c !important;
 	padding-left: 0px;
 	padding-right: 0px;
+}
+/* El text d'usuari de la capçalera heretava un blanc translúcid de Bootstrap
+   (navbar-dark) que no complia el contrast. Es força blanc pur perquè, sobre
+   el verd corporatiu enfosquit, compleixi WCAG AA. */
+.menuGovern .subtitol,
+.menuGovern .subtitolMay {
+    color: #fff !important;
 }
 .menuGovern{
 	min-width: 400px;
@@ -302,9 +318,19 @@ a:hover{
 .minW0{
 	min-width: 0;
 }
-/* FI Cap�alera */
+/* Sobreescriu el color per defecte de Bootstrap de .nav-link per millorar l'accessibilitat (contrast) */
+.nav-link{
+	color: rgb(0, 95, 255) !important;
+}
+.titol {
+    font-weight: bold;
+}
+.subtitolMay {
+    font-weight: bold;
+}
+/* FI Capçalera */
 
-/* Men� m�bil */
+/* Menú mòbil */
 .botoMobil{
 	position: absolute;
 	right: 10px;
@@ -381,6 +407,23 @@ a.dropdown-item.mobil:hover{
 /* FI Suport */
 
 /* Peu */
+
+/* Text informatiu del peu amb contrast suficient (WCAG AA).
+   Sobreescriu el gris clar (#999 -> 3.97:1) heretat de Bootstrap. */
+#footer small,
+#footer small i,
+#footer small span {
+    color: #595959;
+}
+
+/* Tots els enllaços del peu amb contrast suficient (WCAG AA) */
+#footer a {
+    color: #0069d9;
+}
+#footer a:hover,
+#footer a:focus {
+    color: #000;
+}
 .opcionsPeu li::before {
 	content: "\0000a0\0000a0|\0000a0\0000a0";
 }

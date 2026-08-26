@@ -11,7 +11,7 @@
 <div>
 <br/>
 <center>
-<img src="<c:url value="/img/app-logo.png"/>"  alt="DemoGenApp" title="DemoGenApp"/>
+<img src="<c:url value="/img/app-logo.png"/>"  alt="DemoGenApp"/>
 
 <br/>
 <br/>
@@ -19,16 +19,11 @@ This page is generated automatically. Please edit.
 
 <br/>
 <br/>
-<table border="0" >
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td valign="top">
+<div>
 <a href="http://blog.fundaciobit.org/category/admindigital/" target="_blank">
-<img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit" title="Fundació Bit"/>
+<img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit"/>
 </a>
-</td>
-</tr>
-</table>
+</div>
 <br/>
 </center>
  

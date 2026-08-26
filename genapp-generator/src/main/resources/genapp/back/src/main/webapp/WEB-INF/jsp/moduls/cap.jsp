@@ -23,13 +23,12 @@
 			<div class="logoGovern">
 				<a href="https://governdigital.fundaciobit.org"> <img
 					src="<c:url value="/img/fundaciobit-logo-cap.png"/>"
-					alt="FundacioBit-Govern Digital" />
+					alt="IBDigital-Govern Digital" />
 				</a>
 			</div>
 
 			<div class="logoGovern">
-				<img src="<c:url value="/img/app-logo.png"/>" alt="${fullname}"
-					title="${fullname}" />
+				<img src="<c:url value="/img/app-logo.png"/>" alt="${fullname}" />
 			</div>
 
 			<div>
@@ -100,8 +99,9 @@
 
 					<button class="btn colorVerd dropdown-toggle" type="button"
 						id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">
-						<i class="fas fa-ellipsis-v"></i>
+						aria-expanded="false" aria-label="Opcions">
+						<i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+						<span class="sr-only">Opcions</span>
 					</button>
 					<div class="dropdown-menu  dropdown-menu-right"
 						aria-labelledby="dropdownMenu3">

@@ -8,7 +8,7 @@
 %><%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 <c:set var="url" value="${symbol_dollar}{urlActual}" />
 <div>
-  <h5><fmt:message key="menuinici" /></h5>
+  <span style="font-size: 1.25rem"><fmt:message key="menuinici" /></span>
   
   <%--
   <ul class="tree" style="margin: 3px; padding: 0px;">

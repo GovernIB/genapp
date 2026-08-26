@@ -50,7 +50,7 @@
 			</a> <br />
 
 			<!-- Button to trigger modal -->
-			<small><a href="#modalAjuda" role="button"
+			<small><a class="linkAjudaPeu" href="#modalAjuda" role="button"
 				data-toggle="modal"><fmt:message key="ajuda.necessitau" /></a></small>
 		</div>
 

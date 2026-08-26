@@ -873,7 +873,7 @@ public class CodeGenerator {
                             + " <%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n"
                             // + " <tiles:useAttribute id=\"opcionsMenu\" name=\"opcionsMenu\" />\n"
                             // + " <tiles:useAttribute id=\"logo\" name=\"logo\" />\n"
-                            + " <c:set var=\"url\" value=\"${urlActual}\" />\n" + " <div>\n" + " <h5>WebDatabase</h5>\n"
+                            + " <c:set var=\"url\" value=\"${urlActual}\" />\n" + " <div>\n" + " <span style=\"font-size: 1.25rem\">WebDatabase</span>\n"
                             + " <ul class=\"tree\" style=\"margin:3px; padding:0px;\">\n"
                             + " <%-- ==== GENAPP MARK START --%>\n" + " <%-- ==== GENAPP MARK END --%>\n" + " </ul>\n"
                             + " </div>\n";

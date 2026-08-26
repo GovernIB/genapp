@@ -22,7 +22,7 @@
   <c:if test="${fn:length(groupby_items) > 0}">
       <c:set var="displayGroupBut" value="${__theFilterForm.visibleGroupBy?'display:none;':''}" />
       <a id="GroupButton" style="${displayGroupBut}" title="<fmt:message key="genapp.form.groupby"/>" onclick="document.getElementById('GroupDiv').style.display = 'inherit'; document.getElementById('GroupButton').style.display = 'none';" class="btn btn-sm btn-secondary" role="button" data-toggle="modal">
-         <img src="<c:url value="/img/treeicon.png"/>"/>
+         <img alt="Tree" src="<c:url value="/img/treeicon.png"/>"/>
       </a>
   </c:if>
       <%-- AGRUPAR PER BOTO - FINAL  --%>
