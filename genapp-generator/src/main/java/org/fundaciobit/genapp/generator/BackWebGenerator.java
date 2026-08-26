@@ -324,7 +324,7 @@ public class BackWebGenerator extends IconUtils {
 						+ ".visibleGroupBy?'display:none;':''}\" />\n");
 				codeHeaderButtons.append(
 						"      <a id=\"GroupButton\" style=\"${displayGroupBut}\" title=\"<fmt:message key=\"genapp.form.groupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display = 'inherit'; document.getElementById('GroupButton').style.display = 'none';\" class=\"btn btn-sm btn-secondary\" role=\"button\" data-toggle=\"modal\">\n");
-				codeHeaderButtons.append("         <img src=\"<c:url value=\"/img/treeicon.png\"/>\"/>\n");
+				codeHeaderButtons.append("         <img alt=\"Tree\" src=\"<c:url value=\"/img/treeicon.png\"/>\"/>\n");
 				codeHeaderButtons.append("      </a>\n");
 				codeHeaderButtons.append("  </c:if>\n");
 				codeHeaderButtons.append("      <%-- AGRUPAR PER BOTO - FINAL  --%>\n");
