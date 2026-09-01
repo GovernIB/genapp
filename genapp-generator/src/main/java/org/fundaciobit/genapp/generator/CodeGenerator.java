@@ -102,17 +102,75 @@ public class CodeGenerator {
                  * log.info("FILE: " + dest.getAbsolutePath()); log.info("-----------");
                  */
 
+                
                 if (dest.exists() && !overwrite) {
                     continue;
                 }
+                
 
                 dest.getParentFile().mkdirs();
 
-                final byte[] data = getResource(res);
-                if (skipSubstitutions(skipSubstitutions, dest)) {
-                    FileUtils.writeByteArrayToFile(dest, data);
+                final String filenameExtension;
+                
+                int index = dest.getName().lastIndexOf(".");
+                
+                if (index == -1) {
+                    // Binary
+                    filenameExtension = "png";
                 } else {
-                    SourceFile persist = substitution(dest.getName(), new String(data, "UTF8"), prop);
+                    filenameExtension = dest.getName().substring(index + 1);
+                }
+                
+                
+                boolean isBinaryFile = filenameExtension.equals("png") || filenameExtension.equals("jpg")
+                        || filenameExtension.equals("gif") || filenameExtension.equals("ico")
+                        || filenameExtension.equals("jar") || filenameExtension.equals("zip")
+                        || filenameExtension.equals("war") || filenameExtension.equals("ear")
+                        || filenameExtension.equals("class") || filenameExtension.equals("ttf")
+                        || filenameExtension.equals("svg")  || filenameExtension.equals("eot")
+                        || filenameExtension.equals("otf") 
+                        || filenameExtension.equals("woff") || filenameExtension.equals("woff2");
+                
+                
+                boolean isPlainFile = filenameExtension.equals("txt") || filenameExtension.equals("properties")
+                        || filenameExtension.equals("xml") || filenameExtension.equals("html")
+                        || filenameExtension.equals("htm")
+                        || filenameExtension.equals("jsp") || filenameExtension.equals("js")
+                        || filenameExtension.equals("css") || filenameExtension.equals("json")
+                        || filenameExtension.equals("map") || filenameExtension.equals("swf")
+                        || filenameExtension.equals("md") || filenameExtension.equals("csv")
+                        || filenameExtension.equals("java") || filenameExtension.equals("sql") 
+                        || filenameExtension.equals("yml") || filenameExtension.equals("PersistenceProvider")
+                        || filenameExtension.equals("tld") || filenameExtension.equals("gitignore") 
+                        || filenameExtension.equals("gitattributes") || filenameExtension.equals("gradle")
+                        || filenameExtension.equals("bat") || filenameExtension.equals("sh")
+                        || filenameExtension.equals("part") || filenameExtension.equals("template")
+                        || filenameExtension.equals("groovy");
+                
+                
+                if (!isBinaryFile && !isPlainFile) {
+                    throw new Exception("File " + res + " is not a binary file and not a plain text file."
+                            + " Define extension '" + filenameExtension  
+                            + "'  in recursiveSubstitution() method of class CodeGenerator.");
+                }
+                
+                
+                
+                if (isBinaryFile || skipSubstitutions(skipSubstitutions, dest)) {
+                    //FileUtils.writeByteArrayToFile(dest, data);
+                    
+                    // Copy from inputstream to File
+                    InputStream is = getResourceInputStream(res);
+                    FileOutputStream fos = new FileOutputStream(dest);
+                    IOUtils.copy(is, fos);
+                    fos.close();
+                    is.close();
+                    
+                    
+                } else {
+                    final byte[] data = getResource(res);
+                                        
+                    SourceFile persist = substitution(dest.getName(), new String(data, StandardCharsets.UTF_8), prop);
                     persist.saveToPath(dest.getParentFile());
                 }
             }
@@ -212,6 +270,10 @@ public class CodeGenerator {
         fos.close();
         is.close();
         return fos.toByteArray();
+    }
+    
+    public static InputStream getResourceInputStream(String res) throws Exception {
+        return CodeGenerator.class.getClassLoader().getResourceAsStream(res);
     }
 
     public static List<String> llistatDeRecursos(String path) throws Exception {

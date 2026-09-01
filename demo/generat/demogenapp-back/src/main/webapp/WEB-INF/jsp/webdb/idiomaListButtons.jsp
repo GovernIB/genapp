@@ -32,7 +32,7 @@
                   </c:if>
                   <a class="btn <c:out value="${button.style}" />" href="${thehref}" role="button"  onclick="${thelink}" title="<fmt:message key="${button.codeText}"/>">
                      <c:if test="${fn:startsWith(button.icon, '/')}">
-                     <img src="<c:url value="${button.icon}"/>"/>
+                     <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                      </c:if>                     <c:if test="${!fn:startsWith(button.icon, '/')}">
                      <i class="${button.icon}"></i>
                      </c:if>
@@ -50,7 +50,7 @@
                   </c:if>
                   <a class="btn <c:out value="${button.style}" />" href="${thehref}" role="button"  onclick="${thelink}" title="<fmt:message key="${button.codeText}"/>">
                      <c:if test="${fn:startsWith(button.icon, '/')}">
-                     <img src="<c:url value="${button.icon}"/>"/>
+                     <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                      </c:if>                     <c:if test="${!fn:startsWith(button.icon, '/')}">
                      <i class="${button.icon}"></i>
                      </c:if>
@@ -66,7 +66,7 @@
            <c:when test="${__theFilterForm.actionsRenderer == 2}">
                 <div class="btn-group">
       <a class="btn btn-sm  ${(empty __theFilterForm.additionalInfoForActionsRendererByPK[pk])?'btn-secondary' : __theFilterForm.additionalInfoForActionsRendererByPK[pk]}" href="#" style="${(empty __theFilterForm.additionalInfoForActionsRendererByPK[pk])? '' : 'color: white;'}"><i class="fas fa-list ${(empty __theFilterForm.additionalInfoForActionsRendererByPK[pk])? '' : 'icon-white'}"></i> <fmt:message key="genapp.actions" /></a>
-      <a class="btn btn-sm ${(empty __theFilterForm.additionalInfoForActionsRendererByPK[pk])?'btn-secondary' : __theFilterForm.additionalInfoForActionsRendererByPK[pk]} dropdown-toggle" data-toggle="dropdown" href="#">&nbsp;<span class="caret"> </span></a>
+      <a class="btn btn-sm ${(empty __theFilterForm.additionalInfoForActionsRendererByPK[pk])?'btn-secondary' : __theFilterForm.additionalInfoForActionsRendererByPK[pk]} dropdown-toggle" data-toggle="dropdown" href="#" aria-label="Opcions">&nbsp;<span class="caret"> </span></a>
   <ul class="dropdown-menu float-right" style="min-width:35px;padding:5px 5px 0px 5px;margin:0px;font-size: 12px" >
             <c:if test="${__theFilterForm.editButtonVisible}">
             <li>
@@ -103,7 +103,7 @@
                   <li>
                   <a class="btn <c:out value="${button.style}" /> btn-sm a_item" style="margin-bottom:5px;color: white;" href="${thehref}" onclick="${thelink}">
                   <c:if test="${fn:startsWith(button.icon, '/')}">
-                  <img src="<c:url value="${button.icon}"/>"/>
+                  <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                   </c:if>                  <c:if test="${!fn:startsWith(button.icon, '/')}">
                   <i class="${button.icon}"></i>
                   </c:if>
@@ -124,7 +124,7 @@
                   <li>
                   <a class="btn <c:out value="${button.style}" /> btn-sm a_item" style="margin-bottom:5px;color: white;" href="${thehref}" onclick="${thelink}">
                   <c:if test="${fn:startsWith(button.icon, '/')}">
-                  <img src="<c:url value="${button.icon}"/>"/>
+                  <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                   </c:if>                  <c:if test="${!fn:startsWith(button.icon, '/')}">
                   <i class="${button.icon}"></i>
                   </c:if>

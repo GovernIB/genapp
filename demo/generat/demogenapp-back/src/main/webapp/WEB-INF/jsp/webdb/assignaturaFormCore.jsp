@@ -5,7 +5,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AssignaturaFields.NOM)}">
         <tr id="assignatura_nom_rowid">
           <td id="assignatura_nom_columnlabelid">
-            <label>
+            <label for="assignatura.nom">
               <fmt:message key="${(empty __theForm.labels[AssignaturaFields.NOM])?'assignatura.nom':__theForm.labels[AssignaturaFields.NOM]}" /> &nbsp;(*)
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.NOM]}">
@@ -23,7 +23,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AssignaturaFields.CREDITS)}">
         <tr id="assignatura_credits_rowid">
           <td id="assignatura_credits_columnlabelid">
-            <label>
+            <label for="assignatura.credits">
               <fmt:message key="${(empty __theForm.labels[AssignaturaFields.CREDITS])?'assignatura.credits':__theForm.labels[AssignaturaFields.CREDITS]}" /> &nbsp;(*)
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.CREDITS]}">
@@ -41,7 +41,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AssignaturaFields.DIASETMANA)}">
         <tr id="assignatura_diaSetmana_rowid">
           <td id="assignatura_diaSetmana_columnlabelid">
-            <label>
+            <label for="assignatura.diaSetmana">
               <fmt:message key="${(empty __theForm.labels[AssignaturaFields.DIASETMANA])?'assignatura.diaSetmana':__theForm.labels[AssignaturaFields.DIASETMANA]}" />
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.DIASETMANA]}">
@@ -52,11 +52,11 @@
           <form:errors path="assignatura.diaSetmana" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DIASETMANA)}" >
           <form:hidden path="assignatura.diaSetmana"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignatura.diaSetmana,__theForm.listOfValuesForDiaSetmana)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignatura.diaSetmana,__theForm.listOfValuesForDiaSetmana)}" aria-label="assignatura.diaSetmana" />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DIASETMANA)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="assignatura_diaSetmana"  onchange="if(typeof onChangeDiaSetmana == 'function') {  onChangeDiaSetmana(this); };"  cssClass="form-control col-md-9-optional" path="assignatura.diaSetmana">
+          <form:select id="assignatura_diaSetmana"  onchange="if(typeof onChangeDiaSetmana == 'function') {  onChangeDiaSetmana(this); };"  cssClass="form-control col-md-9-optional" path="assignatura.diaSetmana"  aria-label="assignatura.diaSetmana" >
             <c:forEach items="${__theForm.listOfValuesForDiaSetmana}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -86,7 +86,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AssignaturaFields.HORA)}">
         <tr id="assignatura_hora_rowid">
           <td id="assignatura_hora_columnlabelid">
-            <label>
+            <label for="assignatura.hora">
               <fmt:message key="${(empty __theForm.labels[AssignaturaFields.HORA])?'assignatura.hora':__theForm.labels[AssignaturaFields.HORA]}" />
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.HORA]}">
@@ -97,7 +97,7 @@
     <form:errors path="assignatura.hora" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="assignatura_hora" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_hora" path="assignatura.hora" />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_hora" path="assignatura.hora" aria-label="assignatura.hora"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)}" >
                     <div class="input-group-append"  data-target="#assignatura_hora"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -122,7 +122,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AssignaturaFields.DESCRIPCIO)}">
         <tr id="assignatura_descripcio_rowid">
           <td id="assignatura_descripcio_columnlabelid">
-            <label>
+            <label for="assignatura.descripcio">
               <fmt:message key="${(empty __theForm.labels[AssignaturaFields.DESCRIPCIO])?'assignatura.descripcio':__theForm.labels[AssignaturaFields.DESCRIPCIO]}" />
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.DESCRIPCIO]}">
@@ -138,7 +138,7 @@
    </td>
    <td style="width:40px">
       <div id="dropdownMenuButton_descripcio" style="vertical-align:top;display:inline;position:relative;">
-        <button  class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="margin-left:0px;"><span class="caret"></span></button>
+        <button  class="btn btn-secondary btn-sm dropdown-toggle" type="button" style="margin-left:0px;" aria-label="Opcions de format"><span class="caret"></span></button>
         <div id="dropdownMenuContainer_descripcio" class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item" href="#" onclick="javascript:var ta=document.getElementById('assignatura.descripcio'); ta.wrap='off';" >No Wrap</a>
           <a class="dropdown-item"  href="#" onclick="javascript:var ta=document.getElementById('assignatura.descripcio'); ta.wrap='soft';">Soft Wrap</a>

@@ -5,7 +5,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.NOM)}">
         <tr id="alumne_nom_rowid">
           <td id="alumne_nom_columnlabelid">
-            <label>
+            <label for="alumne.nom">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.NOM])?'alumne.nom':__theForm.labels[AlumneFields.NOM]}" /> &nbsp;(*)
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.NOM]}">
@@ -23,7 +23,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.IDIOMAID)}">
         <tr id="alumne_idiomaID_rowid">
           <td id="alumne_idiomaID_columnlabelid">
-            <label>
+            <label for="alumne.idiomaID">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.IDIOMAID])?'alumne.idiomaID':__theForm.labels[AlumneFields.IDIOMAID]}" /> &nbsp;(*)
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.IDIOMAID]}">
@@ -34,11 +34,11 @@
           <form:errors path="alumne.idiomaID" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.IDIOMAID)}" >
           <form:hidden path="alumne.idiomaID"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.idiomaID,__theForm.listOfIdiomaForIdiomaID)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.idiomaID,__theForm.listOfIdiomaForIdiomaID)}" aria-label="alumne.idiomaID" />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.IDIOMAID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="alumne_idiomaID"  onchange="if(typeof onChangeIdiomaID == 'function') {  onChangeIdiomaID(this); };"  cssClass="form-control col-md-9-optional" path="alumne.idiomaID">
+          <form:select id="alumne_idiomaID"  onchange="if(typeof onChangeIdiomaID == 'function') {  onChangeIdiomaID(this); };"  cssClass="form-control col-md-9-optional" path="alumne.idiomaID"  aria-label="alumne.idiomaID" >
             <c:forEach items="${__theForm.listOfIdiomaForIdiomaID}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -59,7 +59,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.DATANAIXEMENT)}">
         <tr id="alumne_dataNaixement_rowid">
           <td id="alumne_dataNaixement_columnlabelid">
-            <label>
+            <label for="alumne.dataNaixement">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.DATANAIXEMENT])?'alumne.dataNaixement':__theForm.labels[AlumneFields.DATANAIXEMENT]}" /> &nbsp;(*)
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.DATANAIXEMENT]}">
@@ -70,7 +70,7 @@
     <form:errors path="alumne.dataNaixement" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_dataNaixement" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixement" path="alumne.dataNaixement" />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixement" path="alumne.dataNaixement" aria-label="alumne.dataNaixement"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)}" >
                     <div class="input-group-append"  data-target="#alumne_dataNaixement"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -95,7 +95,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.SEXE)}">
         <tr id="alumne_sexe_rowid">
           <td id="alumne_sexe_columnlabelid">
-            <label>
+            <label for="alumne.sexe">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.SEXE])?'alumne.sexe':__theForm.labels[AlumneFields.SEXE]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.SEXE]}">
@@ -106,11 +106,11 @@
           <form:errors path="alumne.sexe" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.SEXE)}" >
           <form:hidden path="alumne.sexe"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.sexe,__theForm.listOfValuesForSexe)}"  />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.sexe,__theForm.listOfValuesForSexe)}" aria-label="alumne.sexe" />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.SEXE)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="alumne_sexe"  onchange="if(typeof onChangeSexe == 'function') {  onChangeSexe(this); };"  cssClass="form-control col-md-9-optional" path="alumne.sexe">
+          <form:select id="alumne_sexe"  onchange="if(typeof onChangeSexe == 'function') {  onChangeSexe(this); };"  cssClass="form-control col-md-9-optional" path="alumne.sexe"  aria-label="alumne.sexe" >
             <c:forEach items="${__theForm.listOfValuesForSexe}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
                 <c:if test="${empty tmp.key}">
@@ -135,7 +135,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.ACTIU)}">
         <tr id="alumne_actiu_rowid">
           <td id="alumne_actiu_columnlabelid">
-            <label>
+            <label for="alumne.actiu">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.ACTIU])?'alumne.actiu':__theForm.labels[AlumneFields.ACTIU]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.ACTIU]}">
@@ -144,8 +144,8 @@
             </td>
           <td id="alumne_actiu_columnvalueid">
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)}" >
-              <form:errors path="alumne.actiu" cssClass="errorField alert alert-danger" />
-              <form:checkbox cssClass="" onclick="javascript:return ${ gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)? 'false' : 'true'}" path="alumne.actiu" />
+              <form:errors  path="alumne.actiu" cssClass="errorField alert alert-danger" />
+              <form:checkbox cssClass="" onclick="javascript:return ${ gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)? 'false' : 'true'}" path="alumne.actiu"  aria-label="alumne.actiu" />
           </c:if>
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)}" >
                 <fmt:message key="genapp.checkbox.${__theForm.alumne.actiu}" />
@@ -157,7 +157,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.DARRERACCES)}">
         <tr id="alumne_darrerAcces_rowid">
           <td id="alumne_darrerAcces_columnlabelid">
-            <label>
+            <label for="alumne.darrerAcces">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.DARRERACCES])?'alumne.darrerAcces':__theForm.labels[AlumneFields.DARRERACCES]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.DARRERACCES]}">
@@ -168,7 +168,7 @@
     <form:errors path="alumne.darrerAcces" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_darrerAcces" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAcces" path="alumne.darrerAcces" />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAcces" path="alumne.darrerAcces" aria-label="alumne.darrerAcces"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)}" >
                     <div class="input-group-append"  data-target="#alumne_darrerAcces"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -193,7 +193,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.FOTOID)}">
         <tr id="alumne_fotoID_rowid">
           <td id="alumne_fotoID_columnlabelid">
-            <label>
+            <label for="alumne.fotoID">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.FOTOID])?'alumne.fotoID':__theForm.labels[AlumneFields.FOTOID]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.FOTOID]}">
@@ -209,7 +209,7 @@
               <div class="input-group col-md-9-optional" style="padding: 0px">
                 <div class="custom-file">
                   <form:input  readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? 'true' : 'false'}" cssClass="custom-file-input form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? ' uneditable-input' : ''}"   path="fotoID" type="file" />
-                  <label class="custom-file-label" for="fotoID">
+                  <label class="custom-file-label" for="fotoID" aria-label="Browser">
                   </label>
                 </div>
                 <c:choose>
@@ -219,9 +219,11 @@
                   <small>              <a target="_blank" href="<c:url value="${dem:fileUrl(__theForm.alumne.foto)}"/>">${__theForm.alumne.foto.nom}</a>
 </small>
                   </span>
-                  <span class="input-group-text" id="">
-                        <form:checkbox path="fotoIDDelete"/>
-                        <small><fmt:message key="genapp.form.file.delete"/></small>
+                  <span class="input-group-text" >
+                        <form:checkbox aria-label="alumne.fotoIDDelete"  path="fotoIDDelete"/>
+                        <label style="margin-bottom:0px" for="alumne.fotoIDDelete">
+                        <small style="color:#000">&nbsp;<fmt:message key="genapp.form.file.delete"/></small>
+                        </label>
                   </span>
                 </div>
                 </c:when>
@@ -249,7 +251,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.TITOLACADEMICID)}">
         <tr id="alumne_titolAcademicID_rowid">
           <td id="alumne_titolAcademicID_columnlabelid">
-            <label>
+            <label for="alumne.titolAcademicID">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.TITOLACADEMICID])?'alumne.titolAcademicID':__theForm.labels[AlumneFields.TITOLACADEMICID]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.TITOLACADEMICID]}">
@@ -271,7 +273,7 @@
            <c:forEach items="${__theForm.idiomesTraduccio}" var="idioma" varStatus="counter">
            <div class="tab-pane ${(counter.index == 0)? 'active':'' }" id="tab_${counter.index}_titolAcademic_${idioma.idiomaID}">
                <form:errors path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="errorField alert alert-danger"/>
-               <form:input path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)? ' uneditable-input' : ''}" readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)}" maxlength="4000" />
+               <form:input aria-label="alumne.titolAcademicID"  path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)? ' uneditable-input' : ''}" readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)}" maxlength="4000" />
            </div>
            </c:forEach>
          </div>
@@ -284,7 +286,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.DESPERTADOR)}">
         <tr id="alumne_despertador_rowid">
           <td id="alumne_despertador_columnlabelid">
-            <label>
+            <label for="alumne.despertador">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.DESPERTADOR])?'alumne.despertador':__theForm.labels[AlumneFields.DESPERTADOR]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.DESPERTADOR]}">
@@ -295,7 +297,7 @@
     <form:errors path="alumne.despertador" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_despertador" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertador" path="alumne.despertador" />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertador" path="alumne.despertador" aria-label="alumne.despertador"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)}" >
                     <div class="input-group-append"  data-target="#alumne_despertador"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -320,7 +322,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.PAGINAWEB)}">
         <tr id="alumne_paginaWeb_rowid">
           <td id="alumne_paginaWeb_columnlabelid">
-            <label>
+            <label for="alumne.paginaWeb">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.PAGINAWEB])?'alumne.paginaWeb':__theForm.labels[AlumneFields.PAGINAWEB]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.PAGINAWEB]}">
@@ -350,7 +352,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.DESCRIPCIO)}">
         <tr id="alumne_descripcio_rowid">
           <td id="alumne_descripcio_columnlabelid">
-            <label>
+            <label for="alumne.descripcio">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.DESCRIPCIO])?'alumne.descripcio':__theForm.labels[AlumneFields.DESCRIPCIO]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.DESCRIPCIO]}">

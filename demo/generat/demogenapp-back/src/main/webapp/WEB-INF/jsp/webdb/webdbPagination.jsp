@@ -57,7 +57,7 @@ function reassignAction() {
         id="${formName}_pagination_right">
         <div class="row float-right">
         <c:if test="${not empty __theFilterForm.allItemsPerPage}">
-        <label><fmt:message key="genapp.form.itemsperpage" />:</label>
+        <label for="itemsPerPage"><fmt:message key="genapp.form.itemsperpage" />:</label>
         <form:select cssClass="input-small" cssStyle="width:4em;"
             onchange="document.${formName}.submit()"
             path="itemsPerPage">
