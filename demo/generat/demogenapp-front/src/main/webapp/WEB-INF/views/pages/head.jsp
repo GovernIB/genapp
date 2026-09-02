@@ -6,7 +6,7 @@
 
 
 <%-- JQuery --%>
-<script src="<c:url value="js/jquery-3.5.0.js"/>"></script>
+<script src="<c:url value="js/jquery.js"/>"></script>
 <script src="<c:url value="js/jquery-ui.min.js"/>"></script>
 <%-- Bootstrap --%>
 <script src="<c:url value="js/bootstrap.min.js"/>"></script>
