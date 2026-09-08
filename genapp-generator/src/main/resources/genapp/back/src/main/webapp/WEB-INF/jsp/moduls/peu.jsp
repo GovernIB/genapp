@@ -10,7 +10,7 @@
 
 		<!-- Esquerra -->
 		<div class="col-4 pt-2 elementPeuResponsive">
-			<strong class="font-weight-bold h6">
+			<strong class="font-weight-bold">
 				${symbol_dollar}{versio.projectName}
 				v${symbol_dollar}{versio.version}<%=Configuracio.isCAIB() ? "-caib" : ""%>
 			</strong> <br /> 
@@ -33,9 +33,9 @@
 
 			<a styleClass="text-dark linkPeu" href="/mapaweb"> <fmt:message
 					key="labels.mapaweb" />
-			</a><br /> <a styleClass="text-dark linkPeu" href="/accessibilitat">
+			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/accessibilitat"/>">
 				<fmt:message key="labels.accessibilitat" />
-			</a><br /> <a styleClass="text-dark linkPeu" href="/protecciodades">
+			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/protecciodades"/>">
 				<fmt:message key="labels.protecciodades" />
 			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/avislegal"/>"> <fmt:message
 					key="labels.avislegal" />

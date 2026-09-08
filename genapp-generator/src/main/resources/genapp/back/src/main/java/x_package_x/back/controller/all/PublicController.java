@@ -3,9 +3,9 @@ package ${package}.back.controller.all;
 import org.apache.log4j.Logger;
 
 import org.fundaciobit.genapp.common.web.HtmlUtils;
+import org.fundaciobit.genapp.common.web.tiles.Tile;
+import org.fundaciobit.genapp.common.web.tiles.TileType;
 import org.springframework.context.i18n.LocaleContextHolder;
-
-import ${package}.commons.utils.Version;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ${package}.commons.utils.Configuracio;
+import ${package}.back.utils.Tab;
+import ${package}.commons.utils.Version;
+
 /**
  * 
  * @autor anadal
  * 
  */
+// Tile per accessibilitat
+@Tile(name = "acessibilitat", extendsTile = Tab.MENU_PUBLIC_AND_COMMON, type = TileType.ANOTHER, contentJsp = "/WEB-INF/jsp/all/acessibilitat.jsp")
 @Controller
 public class PublicController {
 
@@ -65,6 +71,19 @@ public class PublicController {
         } else {
             return new ModelAndView("avislegal_ca");
         }
+    }
+    
+    
+    @RequestMapping(value = "/public/accessibilitat")
+    public ModelAndView accessibilitat(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        ModelAndView mav = new ModelAndView("acessibilitat");
+        
+        mav.addObject("backurl", Configuracio.getBackUrl());
+        
+        return mav;
+        
     }
 
 }

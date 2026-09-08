@@ -1,6 +1,5 @@
 package org.fundaciobit.demogenapp.back.controller.admin;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -8,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +27,10 @@ import javax.servlet.http.HttpSession;
 import org.fundaciobit.genapp.common.i18n.I18NException;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
+import org.fundaciobit.genapp.common.web.i18n.I18NUtils;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuItem;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOptionManager;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
 import org.fundaciobit.genapp.common.web.tiles.TileAttribute;
@@ -58,7 +61,11 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
         group = Tab.MENU_ADMIN,
         baseLink = "/admin/option1",
         relativeLink = "")
-@Tile(name = "option1Admin", extendsTile = Tab.MENU_ADMIN, type = TileType.ANOTHER, contentJsp = "/WEB-INF/jsp/admin/admin.jsp")
+@Tile(
+        name = "option1Admin",
+        extendsTile = Tab.MENU_ADMIN,
+        type = TileType.ANOTHER,
+        contentJsp = "/WEB-INF/jsp/admin/admin.jsp")
 @MenuOption(
         labelCode = "=Menú ADMIN Option 2",
         order = 20,
@@ -66,7 +73,7 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
         baseLink = "/admin/option2",
         relativeLink = "",
         addSeparatorBefore = true)
-@Tile(name = "option2Admin", extendsTile =  "option1Admin", type = TileType.ANOTHER)
+@Tile(name = "option2Admin", extendsTile = "option1Admin", type = TileType.ANOTHER)
 @MenuOption(
         labelCode = "=Contents of demogenapp.properties file",
         order = 1000,
@@ -96,9 +103,7 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
         name = "editpropertiesAdmin",
         extendsTile = Tab.MENU_ADMIN,
         contentJsp = "/WEB-INF/jsp/admin/editproperties.jsp",
-        attributes = {
-            @TileAttribute(name = "titol", value = "=Editar Properties")
-        },
+        attributes = { @TileAttribute(name = "titol", value = "=Editar Properties") },
         type = TileType.ANOTHER)
 @MenuOption(
         labelCode = "=Size of database tables",
@@ -106,21 +111,24 @@ import org.fundaciobit.demogenapp.back.utils.Tab;
         group = Tab.MENU_ADMIN,
         baseLink = "/admin/sizeofdatabasetables",
         relativeLink = "")
+@MenuOption(
+        labelCode = "=WebPages list",
+        order = 1050,
+        group = Tab.MENU_ADMIN,
+        baseLink = "/admin/webpages",
+        relativeLink = "")
 @Tile(
         name = AdminController.KEYVALUE_ADMIN_TILE,
         extendsTile = Tab.MENU_ADMIN,
         contentJsp = "/WEB-INF/jsp/common/keyvalue.jsp",
-        attributes = {
-            @TileAttribute(name = "titol", value = "admin.admin")
-        },
+        attributes = { @TileAttribute(name = "titol", value = "admin.admin") },
         type = TileType.ANOTHER)
 public class AdminController {
 
     public static final String KEYVALUE_ADMIN_TILE = "keyvalueAdmin";
-    
+
     @EJB(mappedName = FitxerService.JNDI_NAME)
     protected FitxerService fitxerEjb;
-    
 
     @RequestMapping(value = "/option1")
     public ModelAndView option1(HttpSession session, HttpServletRequest request, HttpServletResponse response)
@@ -140,7 +148,6 @@ public class AdminController {
         mav.addObject("optionNumber", "OPCIÓ ADMIN -2-");
         return mav;
     }
-
 
     @RequestMapping(value = "/properties")
     public ModelAndView properties(HttpSession session, HttpServletRequest request, HttpServletResponse response)
@@ -193,8 +200,7 @@ public class AdminController {
 
         return "redirect:/admin/properties";
     }
-    
-    
+
     /**
     * Show the form to edit the contents of the demogenapp.properties file.
     * 
@@ -221,7 +227,7 @@ public class AdminController {
         }
 
     }
-    
+
     @RequestMapping(value = "/editproperties", method = RequestMethod.POST)
     public String saveFile(@RequestParam("fileContent")
     String fileContent, RedirectAttributes redirectAttributes, HttpServletRequest request) {
@@ -239,8 +245,7 @@ public class AdminController {
 
         return "redirect:/admin/editproperties";
     }
-    
-    
+
     @RequestMapping(value = "/sizeofdatabasetables")
     public ModelAndView tablesize(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
@@ -260,9 +265,7 @@ public class AdminController {
         mav.addObject("keyValueList", keyValuelist);
         return mav;
     }
-    
-    
-    
+
     public Map<String, Long> getTableSizes() throws I18NException {
 
         String dialect = Configuracio.getAppProperties()
@@ -290,9 +293,6 @@ public class AdminController {
         return getTableSizes(fitxerEjb.getEntityManager(), isPostgres);
     }
 
-    
-    
-    
     public static Map<String, Long> getTableSizes(EntityManager entityManager, boolean isPostgres) {
 
         Map<String, Long> tableSizes = new TreeMap<String, Long>();
@@ -331,7 +331,75 @@ public class AdminController {
         return sortedTableSizes;
     }
 
-    
+    @RequestMapping(value = "/webpages")
+    public ModelAndView webPages(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        String[] tabs = { Tab.MENU_PUBLIC_AND_COMMON, Tab.MENU_USER, Tab.MENU_ADMIN };
+
+        List<KeyValueItem> keyValuelist = new ArrayList<KeyValueItem>();
+
+        for (String tab : tabs) {
+            List<MenuItem> items = MenuOptionManager.getMenuItems(tab);
+            for (MenuItem item : items) {
+
+                if (item == null) {
+                    continue;
+                }
+
+                String label = item.getLabel();
+
+                if (label.startsWith("=")) {
+                    label = label.substring(1);
+                } else {
+                    label = I18NUtils.tradueix(label);
+                }
+
+                KeyValueItem keyValueItem = new KeyValueItem(label, Configuracio.getBackUrl() + item.getUrl());
+
+                keyValueItem.setPre(tab);
+
+                keyValuelist.add(keyValueItem);
+
+                // System.out.println("Tab: " + tab + ", Label: " + item.getLabel() + ", Link: " + item.getLink());
+            }
+        }
+
+        ModelAndView mav = new ModelAndView("keyvalueAdmin");
+        mav.addObject("title", "Llistat d'Opcions de Menú");
+        mav.addObject("subtitle",
+                "Per descarregar les URL a les pàgines web en format pla, feis clic <a target=\"_blank\"  href=\""
+                        + request.getContextPath() + "/admin/webpagesplain\" >aquí</a>");
+        mav.addObject("keyValueList", keyValuelist);
+        return mav;
+    }
+
+    @RequestMapping(value = "/webpagesplain")
+    public void webPagesPlain(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+
+        String[] tabs = { Tab.MENU_PUBLIC_AND_COMMON, Tab.MENU_USER, Tab.MENU_ADMIN };
+
+        // Plain text response
+        response.setContentType("text/plain");
+
+        PrintWriter writer = response.getWriter();
+
+        for (String tab : tabs) {
+
+            List<MenuItem> items = MenuOptionManager.getMenuItems(tab);
+            for (MenuItem item : items) {
+
+                if (item == null) {
+                    continue;
+                }
+
+                writer.println(Configuracio.getBackUrl() + item.getUrl());
+            }
+        }
+        writer.flush();
+        writer.close();
+    }
 
     public class KeyValueItem implements Comparable<KeyValueItem> {
         private String key;
@@ -388,9 +456,6 @@ public class AdminController {
             return this.getKey().compareTo(o2.getKey());
         }
     }
-    
-    
-   
 
     public static String humanReadableByteCount(long bytes) {
         int unit = 1024;
@@ -401,6 +466,5 @@ public class AdminController {
         String prefix = "KMGTPE".charAt(exp - 1) + "B"; // KB, MB, GB, TB, PB, EB
         return String.format("%.2f %s", bytes / Math.pow(unit, exp), prefix);
     }
-
 
 }
