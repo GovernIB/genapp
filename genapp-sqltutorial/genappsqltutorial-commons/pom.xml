@@ -19,7 +19,7 @@
 		<version_template_file>./templates/StaticVersion.java.template</version_template_file>
 		<version_file>src/main/java/org/fundaciobit/genappsqltutorial/commons/utils/StaticVersion.java</version_file>
         <project.buildtime>${maven.build.timestamp}</project.buildtime>
-        <maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
 	</properties>
 
 
