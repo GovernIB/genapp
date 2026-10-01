@@ -1,0 +1,384 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.fundaciobit.demogenapp</groupId>
+    <version>1.0.0</version>
+    <artifactId>demogenapp</artifactId>
+    <packaging>pom</packaging>
+    <name>DemoGenApp</name>
+
+    <parent>
+        <artifactId>caib-artifacts-jdk11-jboss72or74-with-github-governib-distribution</artifactId>
+        <groupId>es.caib.maven</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+    <modules>
+        <module>demogenapp-model</module>
+        <module>demogenapp-persistence</module>
+        <module>demogenapp-ejb</module>
+        <module>demogenapp-commons</module>
+        <module>demogenapp-api-externa</module>
+        <module>demogenapp-api-interna</module>
+        <module>demogenapp-back</module>
+        <module>demogenapp-front</module>
+        <module>demogenapp-ear</module>
+        <module>scripts</module>
+    </modules>
+    <licenses>
+        <license>
+            <name>GPL-v2.0</name>
+            <url>http://www.gnu.org/licenses/gpl-2.0.txt</url>
+        </license>
+        <license>
+            <name>EUPL-v1.1</name>
+            <url>http://joinup.ec.europa.eu/system/files/ES/EUPL%20v.1.1%20-%20Licencia.pdf</url>
+        </license>
+    </licenses> 
+    <repositories>
+        <repository>
+            <id>github_governib_maven</id>
+            <name>GitHub GovernIB Maven Repository</name>
+            <url>https://governib.github.io/maven/maven/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+    <dependencies>
+
+        <!-- A partir de Java 11 les llibreries JAXB ja no s'inclouen al JDK -->
+        <dependency>
+            <!--
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            -->
+            <groupId>org.jboss.spec.javax.xml.bind</groupId>
+            <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+
+    </dependencies>
+    <!-- Referència al sistema de control de versions, ja sigui GIT, SVN, CVS... -->
+    <!-- permetrà al plugin buildnumber-maven-plugin agafar la revisió/versió -->
+    <scm>
+        <connection>scm:git:https://github.com/GovernIB/demogenapp.git</connection>
+        <url>https://github.com/GovernIB/demogenapp</url>
+    </scm>
+    <properties>
+        <!-- No fer els tests per defecte. -->
+        <maven.test.skip>true</maven.test.skip>
+        <!-- Versions de les llibreries emprades dins els mòduls -->
+        <mp-openapi.version>1.0.1</mp-openapi.version>
+        <keycloak.version>6.0.1</keycloak.version>
+        <cxf.version>3.2.5.redhat-00001</cxf.version>
+        <resteasy.version>3.6.1.SP2-redhat-00001</resteasy.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
+        <springsecurity.version>4.2.20.RELEASE</springsecurity.version>
+        <tiles.version>3.0.8</tiles.version>
+        <cglib.version>2.2.2</cglib.version>
+        <!-- XYZ ZZZ S'ha de fer la substitució -->
+        <genapp.version>2.0.0-SNAPSHOT</genapp.version>
+        <version_txt_template_file>./scripts/templates/versio.txt.template</version_txt_template_file>
+        <pluginsib.core.version>3.0.0-SNAPSHOT</pluginsib.core.version>
+        <pluginsib.utils.version>3.0.0-SNAPSHOT</pluginsib.utils.version>
+        <pluginsib.utils.rest.version>3.0.1-SNAPSHOT</pluginsib.utils.rest.version>
+        <pluginsib.userinformation.version>4.0.0-SNAPSHOT</pluginsib.userinformation.version>
+        <pluginsib.exportdata.version>3.0.0-SNAPSHOT</pluginsib.exportdata.version>
+        <pluginsib.login.version>2.0.0-SNAPSHOT</pluginsib.login.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            
+            <!--  REST SERVICES -->
+            <!-- Anotacions de documentació de openapi -->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>2.1.13</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.microprofile.openapi</groupId>
+                <artifactId>microprofile-openapi-api</artifactId>
+                <version>${mp-openapi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-core</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Altres plugins generals -->
+                <plugin>
+                    <groupId>com.googlecode.maven-download-plugin</groupId>
+                    <artifactId>download-maven-plugin</artifactId>
+                    <version>1.4.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.code.maven-replacer-plugin</groupId>
+                    <artifactId>replacer</artifactId>
+                    <version>1.5.3</version>
+                </plugin>
+                <!-- Pluguin per generar informació OpenAPI de apis REST -->
+                <plugin>
+                    <groupId>org.apache.geronimo</groupId>
+                    <artifactId>geronimo-openapi-maven-plugin</artifactId>
+                    <version>1.0.12</version>
+                </plugin>
+                <!-- Plugin per generar la propietat ${buildNumber} amb 
+                    la versio/revisio de GIT o SVN o CVS... -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.4</version>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>create</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <!-- Veure https://www.mojohaus.org/buildnumber-maven-plugin/usage.html -->
+                        <!-- si volem que falli si s'intenta compilar i hi ha canvis no pujats 
+                            o hi ha canvis no davallats. -->
+                        <!-- S'hauria de crear un profile per quan es fa una release s'activin. -->
+                        <!-- Sinó val més que estiguin a false (per defecte): -->
+                        <!-- <doCheck>true</doCheck> -->
+                        <!-- <doUpdate>true</doUpdate> -->
+                        <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                        <!-- Longitut màxima de la revisió -->
+                        <shortRevisionLength>8</shortRevisionLength>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- Gestió de versions de dependències/plugins -->
+            <!-- Veure: https://www.mojohaus.org/versions-maven-plugin/ -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <allowAnyUpdates>false</allowAnyUpdates>
+                    <allowSnapshots>false</allowSnapshots>
+                    <allowMajorUpdates>false</allowMajorUpdates>
+                    <allowMinorUpdates>false</allowMinorUpdates>
+                    <allowIncrementalUpdates>true</allowIncrementalUpdates>
+                    <rulesUri>file:///${session.executionRootDirectory}/version-ruleset.xml</rulesUri>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>maven-replacer-plugin</artifactId>
+                <version>1.4.0</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <file>${version_txt_template_file}</file>
+                    <outputFile>versio.txt</outputFile>
+                    <replacements>
+                        <replacement>
+                            <token>@project.version@</token>
+                            <value>${project.version}</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
+<!--
+            <plugin>
+
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <noJekyll>true</noJekyll>
+                    <branch>refs/heads/gh-pages</branch>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <path>maven</path>
+                    <repositoryName>maven</repositoryName>
+                    <repositoryOwner>GovernIB</repositoryOwner>
+                    <server>github_governib_maven</server>
+                    <merge>true</merge>
+                    <dryRun>false</dryRun>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+-->
+        </plugins>
+    </build>
+<!--
+    <distributionManagement>
+        <repository>
+            <id>github_governib_maven</id>
+            <name>GitHub GovernIB Maven Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+-->
+    <profiles>
+        <profile>
+            <id>checkcode</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                   <plugin>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                        <version>4.7.3.0</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- Define el esfuerzo de análisis: min, default, max -->
+                            <effort>Max</effort>
+                            <!-- Solo mostrar errores de prioridad alta: High, Medium, Low -->
+                            <threshold>High</threshold>
+                            <!-- Opcional: Parar si hay errores -->        
+                            <failOnError>true</failOnError>
+                        </configuration>
+                    </plugin>
+                
+                    <plugin>                                                         
+                        <groupId>org.codehaus.gmaven</groupId>                       
+                        <artifactId>groovy-maven-plugin</artifactId>                 
+                        <version>2.0</version>                                       
+                        <executions>                                                 
+                            <execution>                                              
+                                <phase>verify</phase>                              
+                                <goals>                                              
+                                    <goal>execute</goal>                             
+                                </goals>                                             
+                                <configuration>                                      
+                                    <source>                                         
+                                        log.info('\n\n\n   Per revisar els BUG i ERRORS trobats has de fer el següent:\n'
+                                               + '      (1) Executar des de consola "mvn spotbugs:gui -Pcheckcode"\n'
+                                               + '      (2) Des de GUI es recomana filtrar només per errors greus:\n'
+                                               + '             - Menu "Ver" >> Seleccionar "High priority only"\n'
+                                               + '\n\n\n')
+                                    </source>                                        
+                                </configuration>                                     
+                            </execution>                                             
+                        </executions>                                                
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>revisionnumber</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>buildnumber-maven-plugin</artifactId>
+                            <version>1.4</version>
+                            <executions>
+                                <execution>
+                                    <phase>validate</phase>
+                                    <goals>
+                                        <goal>create</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>api-externa-client-exemplepublic-v1</id>
+            <activation>
+                <file>
+                    <exists>demogenapp-api-externa-client-exemplepublic-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>demogenapp-api-externa-client-exemplepublic-v1</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>api-externa-client-exemplesecure-v1</id>
+            <activation>
+                <file>
+                    <exists>demogenapp-api-externa-client-exemplesecure-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>demogenapp-api-externa-client-exemplesecure-v1</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>api-interna-client-exemplepublic-v1</id>
+            <activation>
+                <file>
+                    <exists>demogenapp-api-interna-client-exemplepublic-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>demogenapp-api-interna-client-exemplepublic-v1</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>api-interna-client-exemplesecure-v1</id>
+            <activation>
+                <file>
+                    <exists>demogenapp-api-interna-client-exemplesecure-v1</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>demogenapp-api-interna-client-exemplesecure-v1</module>
+            </modules>
+        </profile>
+    </profiles>
+</project>

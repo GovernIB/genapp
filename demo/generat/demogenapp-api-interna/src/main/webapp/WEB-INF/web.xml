@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+    version="4.0">
+
+    <display-name>DemoGenApp: API REST INTERNA</display-name>
+
+    <!-- Any file in the root path -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/ignore.html</url-pattern>
+    </servlet-mapping>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>demogenapp_api_interna_public</web-resource-name>
+            <url-pattern>/public/*</url-pattern>
+        </web-resource-collection>
+        <!-- No auth-constraint means everybody has access! -->
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>demogenapp_api_interna_secured</web-resource-name>
+            <url-pattern>/secure/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>DEM_WS</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <!-- Per defecte BASIC. Si profile -Pcaib llavors KEYCLOAK -->
+        <!-- ${auth.method} -->
+        <auth-method>${authMethod}</auth-method>
+        <realm-name>Govern de les Illes Balears</realm-name>
+    </login-config>
+
+    <security-role>
+        <description>DEM_WS: Usuari Aplicació de DemoGenApp</description>
+        <role-name>DEM_WS</role-name>
+    </security-role>
+    
+    <error-page>
+      <error-code>401</error-code>
+      <location>/public/errors/error401</location>
+    </error-page>
+
+    <error-page>
+      <error-code>403</error-code>
+      <location>/public/errors/error403</location>
+    </error-page>
+
+</web-app>

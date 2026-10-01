@@ -1,0 +1,22 @@
+﻿<datasources>
+    ...
+    <datasource jndi-name="java:jboss/datasources/demogenappDS" pool-name="demogenappDS" enabled="true" use-java-context="true">
+        <connection-url>jdbc:oracle:thin:@oraclehost:1521:xe</connection-url>
+        <driver>oracle</driver>
+        <pool>
+            <min-pool-size>1</min-pool-size>
+            <max-pool-size>20</max-pool-size>
+            <prefill>true</prefill>
+        </pool>
+        <security>
+            <user-name>demogenapp</user-name>
+            <password>demogenapp</password>
+        </security>
+        <new-connection-sql>
+            BEGIN
+            EXECUTE IMMEDIATE 'ALTER SESSION SET CURRENT_SCHEMA = demogenapp';
+            END;
+        </new-connection-sql>
+    </datasource>
+    ...
+</datasources>

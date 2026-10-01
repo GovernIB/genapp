@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>demogenapp-ear</artifactId>
+	<packaging>ear</packaging>
+
+	<parent>
+		<groupId>org.fundaciobit.demogenapp</groupId>
+		<artifactId>demogenapp</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<name>DemoGenApp - Ear</name>
+
+	<properties>
+		<!-- Format del timestamp -->
+		<maven.build.timestamp.format>dd/MM/yyyy HH:mm</maven.build.timestamp.format>
+	</properties>
+
+	<dependencies>
+
+            <!-- Internes -->
+            <dependency>
+                <groupId>org.fundaciobit.demogenapp</groupId>
+                <artifactId>demogenapp-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.fundaciobit.demogenapp</groupId>
+                <artifactId>demogenapp-ejb</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
+
+
+    		<dependency>
+    			<groupId>org.fundaciobit.demogenapp</groupId>
+    			<artifactId>demogenapp-back</artifactId>
+    			<version>${project.version}</version>
+    			<type>war</type>
+    		</dependency>
+    
+    		<dependency>
+    			<groupId>org.fundaciobit.demogenapp</groupId>
+    			<artifactId>demogenapp-front</artifactId>
+    			<version>${project.version}</version>
+    			<type>war</type>
+    		</dependency>
+
+            <!-- Tenir en compte a l'hora de incloure dependències només si és
+            imprescindible 
+			i no està ja dins un mòdul sobre el que es pugui establir una dependència 
+			als descriptors.
+            https://docs.jboss.org/author/display/AS72/Implicit+module+dependencies+for+deployments -->
+
+            <!-- Externes -->
+
+            <!-- ====================================== -->
+            <!-- ===== PLUGINS DE USERINFORMATION ===== -->
+            <!-- ====================================== -->
+
+            <dependency>
+                <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+                <artifactId>pluginsib-userinformation-api</artifactId>
+                <version>${pluginsib.userinformation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+                <artifactId>pluginsib-userinformation-keycloak</artifactId>
+                <version>${pluginsib.userinformation.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-client</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-multipart-provider</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-jaxrs</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-jaxb-provider</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-jackson2-provider</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+                <artifactId>pluginsib-userinformation-database</artifactId>
+                <version>${pluginsib.userinformation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+                <artifactId>pluginsib-userinformation-ldap</artifactId>
+                <version>
+                    ${pluginsib.userinformation.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>pluginsib-userinformation-soffid</artifactId>
+                <groupId>org.fundaciobit.pluginsib.userinformation</groupId>
+                <version>${pluginsib.userinformation.version}</version>
+            </dependency>
+
+                <!-- ============================================ -->
+                <!-- ========== PLUGINS DE DATAEXPORT =========== -->
+                <!-- ============================================ -->
+
+                <!-- API -->
+                <dependency>
+                    <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
+                    <artifactId>pluginsib-exportdata-api</artifactId>
+                    <version>${pluginsib.exportdata.version}</version>
+                </dependency>
+
+
+                <!-- Excel Plugin -->
+                <dependency>
+                    <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
+                    <artifactId>pluginsib-exportdata-excel</artifactId>
+                    <version>${pluginsib.exportdata.version}</version>
+                </dependency>
+
+                <!-- ODS Plugin -->
+                <dependency>
+                    <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
+                    <artifactId>pluginsib-exportdata-ods</artifactId>
+                    <version>${pluginsib.exportdata.version}</version>
+                </dependency>
+
+                <!-- CSV Plugin -->
+                <dependency>
+                    <groupId>org.fundaciobit.pluginsib.exportdata</groupId>
+                    <artifactId>pluginsib-exportdata-csv</artifactId>
+                    <version>${pluginsib.exportdata.version}</version>
+                </dependency>
+
+                <!-- API REST de DemoGenApp -->
+
+                <!-- API EXTERNA START -->
+                <!-- http://localhost:8080/demogenappapi/externa/index.html -->
+    		<dependency>
+    			<groupId>org.fundaciobit.demogenapp</groupId>
+    			<artifactId>demogenapp-api-externa</artifactId>
+    			<version>${project.version}</version>
+    			<type>war</type>
+    		</dependency>
+                <!-- API EXTERNA END -->
+                <!-- API INTERNA START -->
+                <!-- http://localhost:8080/demogenappapi/interna/index.html -->
+    		<dependency>
+    			<groupId>org.fundaciobit.demogenapp</groupId>
+    			<artifactId>demogenapp-api-interna</artifactId>
+    			<version>${project.version}</version>
+    			<type>war</type>
+    		</dependency>
+                <!-- API INTERNA END -->
+
+	</dependencies>
+
+
+
+	<build>
+		<finalName>demogenapp</finalName>
+
+		<filters>
+			<filter>../config.properties</filter>
+		</filters>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+
+                    <!-- configuring the ear plugin -->
+				<configuration>
+
+					<displayName>DemoGenApp</displayName>
+					<description>DemoGenApp</description>
+
+					<generateApplicationXml>true</generateApplicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <skinnyWars>true</skinnyWars>
+                    <skipClassPathModification>true</skipClassPathModification>
+                    
+                    <packagingExcludes>                        
+                        <!-- Requereix afegir mòdul 'javax.activation.api' a jboss-deployment-structure.xml -->
+                         **/activation*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.antlr' a jboss-deployment-structure.xml -->
+                         **/antlr*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.bouncycastle' a jboss-deployment-structure.xml -->
+                         **/bcprov-jdk15on*redhat*.jar,
+                         **/bcmail-jdk15on*redhat*.jar,
+                         **/bcpkix-jdk15on*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'net.bytebuddy' a jboss-deployment-structure.xml -->
+                         **/byte-buddy*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.classmate' a jboss-deployment-structure.xml -->
+                         **/classmate*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.codec' a jboss-deployment-structure.xml -->
+                         **/commons-codec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.io' a jboss-deployment-structure.xml -->
+                         **/commons-io*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.commons.lang3' a jboss-deployment-structure.xml -->
+                         **/commons-lang3*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.hibernate.commons-annotations' a jboss-deployment-structure.xml -->
+                         **/hibernate-commons-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.hibernate' a jboss-deployment-structure.xml -->
+                         **/hibernate-core*redhat*.jar,
+                         **/hibernate-envers*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.core.jackson-annotations' a jboss-deployment-structure.xml -->
+                         **/jackson-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.core.jackson-core' a jboss-deployment-structure.xml -->
+                         **/jackson-core*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.core.jackson-databind' a jboss-deployment-structure.xml -->
+                         **/jackson-databind*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.jandex' a jboss-deployment-structure.xml -->
+                         **/jandex*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.javassist' a jboss-deployment-structure.xml -->
+                         **/javassist*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.mail.api' a jboss-deployment-structure.xml -->
+                         **/javax.mail*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.persistence.api' a jboss-deployment-structure.xml -->
+                         **/javax.persistence-api*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.annotation.api' a jboss-deployment-structure.xml -->
+                         **/jboss-annotations-api_1.3_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.xml.bind.api' a jboss-deployment-structure.xml -->
+                         **/jboss-jaxb-api_2.3_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.logging' a jboss-deployment-structure.xml -->
+                         **/jboss-logging*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.transaction.api' a jboss-deployment-structure.xml -->
+                         **/jboss-transaction-api_1.2_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.slf4j' a jboss-deployment-structure.xml -->
+                         **/slf4j-api*redhat*.jar,
+                        <!-- Requereix afegir mòdul org.apache.log4j a jboss-deployment-structure.xml -->
+                         **/log4j-*.jar,
+                        <!-- Requereix afegir mòdul javax.activation.api a jboss-deployment-structure.xml -->
+                         **/javax.activation-api-*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.logging.commons.logging' a jboss-deployment-structure.xml -->
+                         **/commons-logging-jboss-logging*redhat*.jar,
+                         
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.datatype.jackson-datatype-jsr310' a jboss-deployment-structure.xml -->
+                        **/jackson-datatype-jsr310*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider' a jboss-deployment-structure.xml -->
+                        **/jackson-jaxrs-json-provider*redhat*.jar,
+                        **/jackson-jaxrs-base*redhat*.jar,
+                        **/jackson-module-jaxb-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.github.fge.json-patch' a jboss-deployment-structure.xml -->
+                        **/json-patch*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.google.guava' a jboss-deployment-structure.xml -->
+                        **/guava*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.sun.istack' a jboss-deployment-structure.xml -->
+                        **/istack-commons-runtime*redhat*.jar,
+                        **/istack-commons-tools*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.sun.xml.bind' a jboss-deployment-structure.xml -->
+                        **/jaxb-runtime*redhat*.jar,
+                        **/jaxb-xjc*redhat*.jar,
+                        **/jaxb-jxc*redhat*.jar,
+                        **/codemodel*redhat*.jar,
+                        **/rngom*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.sun.xml.fastinfoset' a jboss-deployment-structure.xml -->
+                        **/FastInfoset*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'com.sun.xml.txw2' a jboss-deployment-structure.xml -->
+                        **/txw2*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.json.bind.api' a jboss-deployment-structure.xml -->
+                        **/javax.json.bind-api*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.validation.api' a jboss-deployment-structure.xml -->
+                        **/validation-api*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.ws.rs.api' a jboss-deployment-structure.xml -->
+                        **/jboss-jaxrs-api_2.1_spec*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'net.jcip' a jboss-deployment-structure.xml -->
+                        **/jcip-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.httpcomponents.core' a jboss-deployment-structure.xml -->
+                        **/httpclient*redhat*.jar,
+                        **/httpcore*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.apache.james.mime4j' a jboss-deployment-structure.xml -->
+                        **/apache-mime4j*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.resteasy.resteasy-jackson2-provider' a jboss-deployment-structure.xml -->
+                        **/resteasy-jackson2-provider*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.resteasy.resteasy-jaxb-provider' a jboss-deployment-structure.xml -->
+                        **/resteasy-jaxb-provider*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.resteasy.resteasy-jaxrs' a jboss-deployment-structure.xml -->
+                        **/resteasy-jaxrs*redhat*.jar,
+                        **/resteasy-client*redhat*.jar,
+                        **/resteasy-client-microprofile*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.jboss.resteasy.resteasy-multipart-provider' a jboss-deployment-structure.xml -->
+                        **/resteasy-multipart-provider*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'org.reactivestreams' a jboss-deployment-structure.xml -->
+                        **/reactive-streams*redhat*.jar
+                    </packagingExcludes>
+
+					<includeLibInApplicationXml>false</includeLibInApplicationXml>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <!-- Nom mòduls d'acord amb punt 4.2 de l'Estàndard CAIB -->
+					<outputFileNameMapping>@{artifactId}@-@{version}@.@{extension}@</outputFileNameMapping>
+					<version>8</version>
+
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<project-version>${project.version}</project-version>
+							<project-buildtime>${maven.build.timestamp}</project-buildtime>
+							<scm-revision>${buildNumber}</scm-revision>
+						</manifestEntries>
+					</archive>
+
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+
+					<modules>
+
+						<webModule>
+							<groupId>org.fundaciobit.demogenapp</groupId>
+							<artifactId>demogenapp-back</artifactId>
+							<contextRoot>demogenappback</contextRoot>
+                            <bundleFileName>demogenapp-back.war</bundleFileName>
+						</webModule>
+                        
+                        
+						<webModule>
+							<groupId>org.fundaciobit.demogenapp</groupId>
+							<artifactId>demogenapp-front</artifactId>
+							<contextRoot>demogenappfront</contextRoot>
+                            <bundleFileName>demogenapp-front.war</bundleFileName>
+						</webModule>
+
+						<ejbModule>
+							<groupId>org.fundaciobit.demogenapp</groupId>
+							<artifactId>demogenapp-ejb</artifactId>
+							<bundleFileName>demogenapp-ejb.jar</bundleFileName>
+						</ejbModule>
+
+                                <!-- API EXTERNA START -->
+						<webModule>
+							<groupId>org.fundaciobit.demogenapp</groupId>
+							<artifactId>demogenapp-api-externa</artifactId>
+							<contextRoot>/demogenappapi/externa</contextRoot>
+							<bundleFileName>demogenapp-api-externa.war</bundleFileName>
+						</webModule>
+                                <!-- API EXTERNA END -->
+                                <!-- API INTERNA START -->
+						<webModule>
+							<groupId>org.fundaciobit.demogenapp</groupId>
+							<artifactId>demogenapp-api-interna</artifactId>
+							<contextRoot>/demogenappapi/interna</contextRoot>
+							<bundleFileName>demogenapp-api-interna.war</bundleFileName>
+						</webModule>
+                                <!-- API INTERNA END -->
+					</modules>
+
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+	
+    <profiles>
+        <profile>
+          <id>revisionnumber</id>
+          <build>
+            <plugins>
+                        <!-- Defineix la propietat ${buildNumber} que s'empra al filtrat -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+          </build>
+        </profile>
+    </profiles>
+
+</project>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>demogenapp</artifactId>
+        <groupId>org.fundaciobit.demogenapp</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>demogenapp-api-interna</artifactId>
+    <packaging>war</packaging>
+    <name>DemoGenApp - API Rest - Interna Server</name>
+    <properties>
+        <client.default.package>org.fundaciobit.demogenapp.api.interna.client</client.default.package>
+        <authMethod>BASIC</authMethod>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- Altres mòduls del projecte -->
+        <dependency>
+            <groupId>org.fundaciobit.demogenapp</groupId>
+            <artifactId>demogenapp-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fundaciobit.demogenapp</groupId>
+            <artifactId>demogenapp-persistence</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fundaciobit.demogenapp</groupId>
+            <artifactId>demogenapp-ejb</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Anotacions de documentació de openapi -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+        </dependency>
+
+        <dependency>
+            <artifactId>pluginsib-utils-rest</artifactId>
+            <groupId>org.fundaciobit.pluginsib.utils</groupId>
+            <version>${pluginsib.utils.rest.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fundaciobit.pluginsib.utils</groupId>
+            <artifactId>pluginsib-utils-swagger-ui-configurable-webjar</artifactId>
+            <version>${pluginsib.utils.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- Genera el descriptor openapi.json de forma estàtica, després 
+                el posarem l'arrel del WAR -->
+            <!-- https://github.com/swagger-api/swagger-core/tree/master/modules/swagger-maven-plugin -->
+            <plugin>
+
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>2.2.15</version>
+                
+                <configuration>
+                    <outputFormat>JSON</outputFormat>
+                    <prettyPrint>TRUE</prettyPrint>
+                    <outputPath>${project.basedir}/openapi/</outputPath>                   
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>openapi_interna_1</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                        <configuration>
+                            <contextId>Exemple Interna Public</contextId>
+                            <outputFileName>openapi_interna_public</outputFileName>
+                            <resourcePackages>
+                                <package>org.fundaciobit.demogenapp.api.interna.config</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.all.exemplepublic</package>
+                            </resourcePackages>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>openapi_interna_2</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                        <configuration>
+                            <contextId>Exemple Interna Seguretat</contextId>
+                            <outputFileName>openapi_interna_secure</outputFileName>
+                            <resourcePackages>
+                                <package>org.fundaciobit.demogenapp.api.interna.config</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.secure.exempleenumsecuritzat</package>
+                            </resourcePackages>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>openapi_interna_3</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                        <configuration>
+                            <contextId>Exemple Interna Dades Obertes</contextId>
+                            <outputFileName>openapi_interna_dadesobertes</outputFileName>
+                            <resourcePackages>
+                                <package>org.fundaciobit.demogenapp.api.interna.config</package>
+                                <package>org.fundaciobit.demogenapp.api.interna.all.exemplereutilitzacio</package>
+                            </resourcePackages>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>groovy-maven-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>    
+                
+                    <!-- Processa l'atribut 'example' del @Schema dels enums swagger i   -->
+                    <!-- converteix aquest en noms de variables correctes: -->
+                    <!-- Exemple:    example="SIGNTYPE_PADES|SIGNTYPE_CADES|SIGNTYPE_XADES", -->
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>${project.basedir}/ProcessEnumVarNamesAndDescriptionsInOpenApiFiles.groovy</source>
+                            <properties>
+                                <openapifolder>${project.basedir}/openapi/</openapifolder>
+                            </properties>
+                        </configuration>
+                    </execution>                                             
+
+                    <!-- Convertim \r\n a \n en els fitxers .json creats -->
+                    <execution>
+                        <id>normalize-line-endings</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                <![CDATA[
+                                // Normalitza els salts de línia dels fitxers openapi_*.json a LF (\n)
+                                def folder = new File(project.basedir, 'openapi')
+                                folder.eachFileMatch(~/openapi_.*\.json/) { f ->
+                                    def text = f.getText('UTF-8')
+                                    def normalized = text.replaceAll('\r\n', '\n').replaceAll('\r', '\n')
+                                    f.withWriter('UTF-8') { w -> w.write(normalized) }
+                                    println "Normalitzat a LF: ${f.name}"
+                                }
+                                ]]>
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- ==================================================================  -->
+            <!-- Genera el Client Rest per Java a partir del fitxers openapi_*.json -->
+            <!-- ==================================================================  -->
+            <plugin>
+                <!-- https://openapi-generator.tech/docs/generators/java/ -->
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.10.0</version>
+
+                <executions>
+                    <execution>
+                        <id>openapi_interna_1</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/openapi/openapi_interna_public.json</inputSpec>
+                            <generatorName>java</generatorName>
+                            <skipValidateSpec>true</skipValidateSpec>
+                            <configHelp>java</configHelp>
+                            <library>resteasy</library>
+                            <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
+                            <!-- <configHelp>true</configHelp> -->
+                            <addCompileSourceRoot>false</addCompileSourceRoot>
+                            <output>${project.basedir}/../demogenapp-api-interna-client-exemplepublic-v1</output>
+                            <apiPackage>${client.default.package}.exemplepublic.v1.api</apiPackage>
+                            <modelPackage>${client.default.package}.exemplepublic.v1.model</modelPackage>
+                            <invokerPackage>${client.default.package}.exemplepublic.v1.services</invokerPackage>
+                            <generateModelTests>false</generateModelTests>
+                            <configOptions>
+                                <groupId>org.fundaciobit.demogenapp</groupId>
+                                <artifactId>demogenapp-api-interna-client-exemplepublic-v1</artifactId>
+                                <artifactVersion>1.0-SNAPSHOT</artifactVersion>
+                                <artifactDescription>DemoGenApp - API Rest - Interna Client - Exemple Public v1</artifactDescription>
+                                <dateLibrary>java8</dateLibrary>
+                                <useTags>true</useTags>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <java11>true</java11>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>openapi_interna_2</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/openapi/openapi_interna_secure.json</inputSpec>
+                            <generatorName>java</generatorName>
+                            <skipValidateSpec>true</skipValidateSpec>
+                            <configHelp>java</configHelp>
+                            <library>resteasy</library>
+                            <!--    ** AMOLLA AJUDA D'AQUEST PLUGIN PER PANTALLA***  -->
+                            <!-- <configHelp>true</configHelp> -->
+                            <addCompileSourceRoot>false</addCompileSourceRoot>
+                            <output>${project.basedir}/../demogenapp-api-interna-client-exemplesecure-v1</output>
+                            <apiPackage>${client.default.package}.exemplesecure.v1.api</apiPackage>
+                            <modelPackage>${client.default.package}.exemplesecure.v1.model</modelPackage>
+                            <invokerPackage>${client.default.package}.exemplesecure.v1.services</invokerPackage>
+                            <generateModelTests>false</generateModelTests>
+                            <configOptions>
+                                <groupId>org.fundaciobit.demogenapp</groupId>
+                                <artifactId>demogenapp-api-interna-client-exemplesecure-v1</artifactId>
+                                <artifactVersion>1.0-SNAPSHOT</artifactVersion>
+                                <artifactDescription>DemoGenApp - API Rest - Interna Client - Exemple Secure v1</artifactDescription>
+                                <dateLibrary>java8</dateLibrary>
+                                <useTags>true</useTags>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <java11>true</java11>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <!-- openapi3:  Dades Obertes no necessita Client JAVA -->
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeProjectDependencies>false</includeProjectDependencies>
+                    <includePluginDependencies>true</includePluginDependencies>
+                    <executableDependency>
+                        <artifactId>pluginsib-utils-rest</artifactId>
+                        <groupId>org.fundaciobit.pluginsib.utils</groupId>
+                    </executableDependency>
+                    <mainClass>
+                        org.fundaciobit.pluginsib.utils.rest.pomadaptertojboss72.AdaptApiClientPomToJboss72</mainClass>
+                    <arguments>
+                        <argument>${project.basedir}</argument>
+                    </arguments>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <artifactId>pluginsib-utils-rest</artifactId>
+                        <groupId>org.fundaciobit.pluginsib.utils</groupId>
+                        <version>${pluginsib.utils.rest.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- Inclou el openapi.json i el swagger-ui dins el war -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>false</addClasspath>
+                        </manifest>
+                    </archive>
+                    <packagingExcludes>
+                        <!-- Requereix afegir mòdul 'com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider' a jboss-deployment-structure.xml -->
+                         **/jackson-jaxrs-json-provider*redhat*.jar,
+                         **/jackson-jaxrs-base*redhat*.jar,
+                         **/jackson-module-jaxb-annotations*redhat*.jar,
+                        <!-- Requereix afegir mòdul 'javax.ws.rs.api' a jboss-deployment-structure.xml -->
+                         **/jboss-jaxrs-api_2.1_spec*redhat*.jar,
+                    </packagingExcludes>
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/openapi</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+    <profiles>
+        <profile>
+            <id>keycloak</id>
+            <properties>
+                <authMethod>KEYCLOAK</authMethod>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

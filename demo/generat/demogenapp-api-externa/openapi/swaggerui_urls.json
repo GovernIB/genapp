@@ -1,0 +1,11 @@
+[
+    {
+        "url": "./openapi_externa_public.json",
+        "name": "Exemple Externa Public"
+    }
+,
+    {
+        "url": "./openapi_externa_secure.json",
+        "name": "Exemple Externa Seguretat"
+    }
+]

@@ -1,0 +1,13 @@
+﻿<datasources>
+    ...
+    <datasource jndi-name="java:jboss/datasources/genappsqltutorialDS" pool-name="genappsqltutorialDS" enabled="true"
+                use-java-context="true">
+        <connection-url>jdbc:postgresql://localhost:5432/genappsqltutorial</connection-url>
+        <driver>postgresql</driver>
+        <security>
+            <user-name>genappsqltutorial</user-name>
+            <password>genappsqltutorial</password>
+        </security>
+    </datasource>
+    ...
+</datasources>

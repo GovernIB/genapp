@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="genappsqltutorialPULocal" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>org.fundaciobit.genappsqltutorial.persistence.CategoriesJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.CustomersJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.EmployeesJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.FitxerJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.IdiomaJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.OrderDetailsJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.OrdersJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.ProductsJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.ShippersJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.SuppliersJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.TraduccioJPA</class>
+		<class>org.fundaciobit.genappsqltutorial.persistence.TraduccioMapJPA</class>
+
+        <!-- Desactivar cache -->
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <!-- Desactivar validació -->
+        <validation-mode>NONE</validation-mode>
+
+        <properties>
+         
+        </properties>
+    </persistence-unit>
+</persistence>

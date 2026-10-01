@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: otae@fundaciobit.org
+    name: Departament de Govern Digital a la Fundació Bit
+    url: https://governdigital.fundaciobit.org
+  description: Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació
+  license:
+    name: European Union Public Licence (EUPL v1.2)
+    url: https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf
+  title: API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat
+  version: 1.0-SNAPSHOT
+externalDocs:
+  description: Java Client (GovernIB Github)
+  url: https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client-exemplesecure-v1
+servers:
+- url: /demogenappapi/externa
+- url: http://localhost:8080/demogenappapi/externa
+- url: https://dev.caib.es/demogenappapi/externa
+- url: https://proves.caib.es/demogenappapi/externa
+- url: https://se.caib.es/demogenappapi/externa
+- url: https://www.caib.es/demogenappapi/externa
+tags:
+- description: Exemple de Servei Securitzat
+  name: ExempleSeguritzat
+paths:
+  /secure/exempleseguritzat/echo:
+    get:
+      operationId: echo
+      parameters:
+      - description: Cadena a retornar
+        example: hola caracola
+        explode: true
+        in: query
+        name: echoInput
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Respon el valor enviat per paràmetre
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: Paràmetres incorrectes
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: No Autenticat
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestExceptionInfo'
+          description: No Autoritzat
+        "510":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConstantsWs'
+          description: Només s'utilitza per crear fitxer de constants...
+      security:
+      - BasicAuth: []
+      summary: Fa un ECHO
+      tags:
+      - ExempleSeguritzat
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    RestExceptionInfo:
+      description: Estructura de dades utilitzada per passar informació d'un error
+      example:
+        field: field
+        errorMessage: errorMessage
+        stackTraceCause: stackTraceCause
+        errorCode: 0
+        stackTrace: stackTrace
+      properties:
+        errorCode:
+          description: Codi intern de l'error. Si l'Aplicació no gestiona codis d'error
+            llavors val null.
+          format: int32
+          type: integer
+        errorMessage:
+          description: Missatge de l'error
+          type: string
+        stackTrace:
+          description: Stacktrace de l'excepció
+          type: string
+        stackTraceCause:
+          description: Stacktrace de l'excepció causant de l'error si n'hi hagués.
+          type: string
+        field:
+          description: Indica el camp en que hi ha un error de validació.
+          type: string
+      required:
+      - errorMessage
+      type: object
+    ConstantsWs:
+      example:
+        ROLEEJBBASICACCESS: 6
+        ROLEEJBFULLACCESS: Constants.ROLE_EJB_FULL _ ACCESS
+        ROLEEJBWSACCESS: 1
+      properties:
+        ROLEEJBFULLACCESS:
+          default: Constants.ROLE_EJB_FULL _ ACCESS
+          description: Constant ROLE_EJB_FULL _ ACCESS
+          readOnly: true
+          type: string
+        ROLEEJBBASICACCESS:
+          description: Constant ROLE_EJB_BASIC _ ACCESS
+          format: int32
+          readOnly: true
+          type: integer
+        ROLEEJBWSACCESS:
+          description: Constant ROLE_EJB_WS _ ACCESS
+          format: int32
+          readOnly: true
+          type: integer
+      required:
+      - ROLEEJBBASICACCESS
+      - ROLEEJBFULLACCESS
+      - ROLEEJBWSACCESS
+      type: object
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+

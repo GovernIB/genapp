@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- FITXER AUTOGENERAT -->
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="demogenappPU" transaction-type="JTA">
+        <provider>org.fundaciobit.demogenapp.hibernate.CustomHibernatePersistenceProvider</provider>
+        <jta-data-source>java:jboss/datasources/demogenappDS</jta-data-source>
+        
+		<class>org.fundaciobit.demogenapp.persistence.AlumneJPA</class>
+		<class>org.fundaciobit.demogenapp.persistence.AssignaturaJPA</class>
+		<class>org.fundaciobit.demogenapp.persistence.AssignaturaAlumneJPA</class>
+		<class>org.fundaciobit.demogenapp.persistence.FitxerJPA</class>
+		<class>org.fundaciobit.demogenapp.persistence.IdiomaJPA</class>
+		<class>org.fundaciobit.demogenapp.persistence.TraduccioJPA</class>
+		<class>org.fundaciobit.demogenapp.persistence.TraduccioMapJPA</class>
+
+        <!-- Activar cache només per aquelles entitats on volguem expressament -->
+        <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+        <!-- Sempre activar la validació de les propietats -->
+        <validation-mode>CALLBACK</validation-mode>
+
+    </persistence-unit>
+</persistence>

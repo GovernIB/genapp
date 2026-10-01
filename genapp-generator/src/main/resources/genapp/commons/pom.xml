@@ -1,0 +1,54 @@
+<#assign symbol_dollar = "$">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>${name}-commons</artifactId>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>${package}</groupId>
+		<artifactId>${name}</artifactId>
+		<version>${app_current_version}</version>
+	</parent>
+
+	<name>${fullname} - Commons</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.buildtime>${symbol_dollar}{maven.build.timestamp}</project.buildtime>
+	</properties>
+
+
+	<build>
+		<finalName>${symbol_dollar}{project.artifactId}-${symbol_dollar}{project.version}</finalName>
+		<resources>
+			<!-- Activam filtre per fer substitucions al fitxer Version.properties -->
+			<resource>
+				<directory>${symbol_dollar}{project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<!-- Defineix la propietat {buildNumber} que s'empra al filtrat -->
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+  
+		</plugins>
+
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>

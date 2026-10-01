@@ -1,0 +1,173 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API REST EXTERNA de DemoGenApp - Exemple de Servei Securitzat",
+    "description" : "Conjunt de Serveis REST de DemoGenApp per ser accedits emprant autenticació",
+    "contact" : {
+      "name" : "Departament de Govern Digital a la Fundació Bit",
+      "url" : "https://governdigital.fundaciobit.org",
+      "email" : "otae@fundaciobit.org"
+    },
+    "license" : {
+      "name" : "European Union Public Licence (EUPL v1.2)",
+      "url" : "https://joinup.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_es.pdf"
+    },
+    "version" : "1.0-SNAPSHOT"
+  },
+  "externalDocs" : {
+    "description" : "Java Client (GovernIB Github)",
+    "url" : "https://github.com/GovernIB/demogenapp/tree/demogenapp-1.0/demogenapp-api-externa-client-exemplesecure-v1"
+  },
+  "servers" : [ {
+    "url" : "/demogenappapi/externa"
+  }, {
+    "url" : "http://localhost:8080/demogenappapi/externa"
+  }, {
+    "url" : "https://dev.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://proves.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://se.caib.es/demogenappapi/externa"
+  }, {
+    "url" : "https://www.caib.es/demogenappapi/externa"
+  } ],
+  "tags" : [ {
+    "name" : "ExempleSeguritzat",
+    "description" : "Exemple de Servei Securitzat"
+  } ],
+  "paths" : {
+    "/secure/exempleseguritzat/echo" : {
+      "get" : {
+        "tags" : [ "ExempleSeguritzat" ],
+        "summary" : "Fa un ECHO",
+        "operationId" : "echo",
+        "parameters" : [ {
+          "name" : "echoInput",
+          "in" : "query",
+          "description" : "Cadena a retornar",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "hola caracola"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Respon el valor enviat per paràmetre",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Paràmetres incorrectes",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "No Autenticat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "No Autoritzat",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RestExceptionInfo"
+                }
+              }
+            }
+          },
+          "510" : {
+            "description" : "Només s'utilitza per crear fitxer de constants...",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ConstantsWs"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "RestExceptionInfo" : {
+        "required" : [ "errorMessage" ],
+        "type" : "object",
+        "properties" : {
+          "errorCode" : {
+            "type" : "integer",
+            "description" : "Codi intern de l'error. Si l'Aplicació no gestiona codis d'error llavors val null.",
+            "format" : "int32"
+          },
+          "errorMessage" : {
+            "type" : "string",
+            "description" : "Missatge de l'error"
+          },
+          "stackTrace" : {
+            "type" : "string",
+            "description" : "Stacktrace de l'excepció"
+          },
+          "stackTraceCause" : {
+            "type" : "string",
+            "description" : "Stacktrace de l'excepció causant de l'error si n'hi hagués."
+          },
+          "field" : {
+            "type" : "string",
+            "description" : "Indica el camp en que hi ha un error de validació."
+          }
+        },
+        "description" : "Estructura de dades utilitzada per passar informació d'un error"
+      },
+      "ConstantsWs" : {
+        "required" : [ "ROLEEJBBASICACCESS", "ROLEEJBFULLACCESS", "ROLEEJBWSACCESS" ],
+        "type" : "object",
+        "properties" : {
+          "ROLEEJBFULLACCESS" : {
+            "type" : "string",
+            "description" : "Constant ROLE_EJB_FULL _ ACCESS",
+            "readOnly" : true,
+            "default" : "Constants.ROLE_EJB_FULL _ ACCESS"
+          },
+          "ROLEEJBBASICACCESS" : {
+            "type" : "integer",
+            "description" : "Constant ROLE_EJB_BASIC _ ACCESS",
+            "format" : "int32",
+            "readOnly" : true
+          },
+          "ROLEEJBWSACCESS" : {
+            "type" : "integer",
+            "description" : "Constant ROLE_EJB_WS _ ACCESS",
+            "format" : "int32",
+            "readOnly" : true
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "BasicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      }
+    }
+  }
+}

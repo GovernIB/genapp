@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <!--
+    Permet introduïr configuracions relacionades amb el desplegament.
+    Com ara ignorar mòduls del servidor si el nostre EAR conté versions més recents.
+    -->
+	<deployment>
+        <dependencies>
+            <module name="org.hibernate" slot="5.3" export="TRUE" />
+			<module name="org.keycloak.keycloak-core" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-adapter-spi" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-adapter-subsystem" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-authz-client" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-common" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-jboss-adapter-core" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-undertow-adapter" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-wildfly-adapter" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-wildfly-elytron-oidc-adapter" optional="TRUE"/>
+			<module name="org.keycloak.keycloak-wildfly-subsystem" optional="TRUE"/>
+
+            <!-- packagingExcludes definits al plugin de ear del pom.xml  -->
+            <module name="javax.activation.api" export="TRUE"/>
+            <module name="org.antlr" export="TRUE"/>
+            <module name="org.bouncycastle" export="TRUE"/>
+            <module name="net.bytebuddy" export="TRUE"/>
+            <module name="com.fasterxml.classmate" export="TRUE"/>
+            <module name="org.apache.commons.codec" export="TRUE"/>
+            <module name="org.apache.commons.io" export="TRUE"/>
+            <module name="org.apache.commons.lang3" export="TRUE"/>
+            <module name="org.hibernate.commons-annotations" export="TRUE"/>
+            <module name="org.hibernate" export="TRUE"/>
+            <module name="com.fasterxml.jackson.core.jackson-annotations" export="TRUE"/>
+            <module name="com.fasterxml.jackson.core.jackson-core" export="TRUE"/>
+            <module name="com.fasterxml.jackson.core.jackson-databind" export="TRUE"/>
+            <module name="org.jboss.jandex" export="TRUE"/>
+            <module name="org.javassist" export="TRUE"/>
+            <module name="javax.mail.api" export="TRUE"/>
+            <module name="javax.persistence.api" export="TRUE"/>
+            <module name="javax.annotation.api" export="TRUE"/>
+            <module name="javax.xml.bind.api" export="TRUE"/>
+            <module name="org.jboss.logging" export="TRUE"/>
+            <module name="javax.transaction.api" export="TRUE"/>
+            <module name="org.slf4j" export="TRUE"/>
+            <module name="org.apache.log4j" export="TRUE"/>
+            <module name="org.jboss.logging.commons.logging" export="TRUE"/>
+
+            <module name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310" export="TRUE"/>
+            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
+            <module name="com.github.fge.json-patch" export="TRUE"/>
+            <module name="com.google.guava" export="TRUE"/>
+            <module name="com.sun.istack" export="TRUE"/>
+            <module name="com.sun.xml.bind" export="TRUE"/>
+            <module name="com.sun.xml.fastinfoset" export="TRUE"/>
+            <module name="com.sun.xml.txw2" export="TRUE"/>
+            <module name="javax.json.bind.api" export="TRUE"/>
+            <module name="javax.validation.api" export="TRUE"/>
+            <module name="javax.ws.rs.api" export="TRUE"/>
+            <module name="net.jcip" export="TRUE"/>
+            <module name="org.apache.httpcomponents.core" export="TRUE"/>
+            <module name="org.apache.james.mime4j" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-jackson2-provider" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-jaxb-provider" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-jaxrs" export="TRUE"/>
+            <module name="org.jboss.resteasy.resteasy-multipart-provider" export="TRUE"/>
+            <module name="org.reactivestreams" export="TRUE"/>
+
+        </dependencies>
+        <exclusions>
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </deployment>
+
+    
+    <sub-deployment name="demogenapp-back.war">
+        <dependencies>
+            <module name="org.apache.commons.beanutils" export="TRUE" />
+            <module name="org.apache.commons.collections" export="TRUE" />
+            <module name="javax.xml.bind.api" export="TRUE"/>  
+        </dependencies>
+        <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </sub-deployment>
+
+    <sub-deployment name="demogenapp-front.war">
+        <dependencies>
+            <module name="com.google.code.gson" export="TRUE"/>
+        </dependencies>
+        <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </sub-deployment>
+
+    <sub-deployment name="demogenapp-api-externa.war">
+        <dependencies>
+            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
+            <module name="javax.ws.rs.api" export="TRUE"/>
+        </dependencies>
+        <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </sub-deployment>
+
+    <sub-deployment name="demogenapp-api-interna.war">
+        <dependencies>
+            <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider" export="TRUE"/>
+            <module name="javax.ws.rs.api" export="TRUE"/>
+        </dependencies>
+        <exclusions>
+            <!-- Per evitar problemes amb els Bindings de les APIs RestEasy -->
+            <!-- Així suporten tipus especials com byte[], timestamp, ...   -->
+            <module name="org.jboss.resteasy.resteasy-json-binding-provider"/>
+        </exclusions>
+    </sub-deployment>
+</jboss-deployment-structure>
