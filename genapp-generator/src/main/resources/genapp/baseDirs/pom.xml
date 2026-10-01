@@ -71,6 +71,7 @@
     <properties>
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <!-- Versions de les llibreries emprades dins els mòduls -->
         <mp-openapi.version>1.0.1</mp-openapi.version>
         <keycloak.version>6.0.1</keycloak.version>
