@@ -31,6 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- No fer els tests per defecte. -->
         <maven.test.skip>true</maven.test.skip>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <spring.version>4.3.30.RELEASE</spring.version>
     </properties>
     <repositories>
