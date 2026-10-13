@@ -55,7 +55,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.ID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne.id" style="display: inline;">
+              <label for="assignaturaAlumne_id" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.id" />:</span>
               </label>
 
@@ -75,7 +75,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.ALUMNEID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne.alumneID" style="display: inline;">
+              <label for="assignaturaAlumne_alumneID" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.alumneID" />:</span>
               </label>
 
@@ -95,7 +95,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.ASSIGNATURAID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne.assignaturaID" style="display: inline;">
+              <label for="assignaturaAlumne_assignaturaID" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.assignaturaID" />:</span>
               </label>
 
@@ -115,7 +115,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.NOTA)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne.nota" style="display: inline;">
+              <label for="assignaturaAlumne_nota" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.nota" />:</span>
               </label>
 

@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
-<script type="text/javascript">
+<script>
 
 function submitPage(page) {
     submitForm("<c:url value="${contexte}/list/" />" + page, false);

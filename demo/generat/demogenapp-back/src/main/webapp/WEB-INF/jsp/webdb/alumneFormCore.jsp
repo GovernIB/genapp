@@ -69,7 +69,7 @@
           <td id="alumne_dataNaixement_columnvalueid">
     <form:errors path="alumne.dataNaixement" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="alumne_dataNaixement" data-target-input="nearest">
+                <div class="input-group date" id="alumne_dataNaixementDiv" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixement" path="alumne.dataNaixement" aria-label="alumne.dataNaixement"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)}" >
                     <div class="input-group-append"  data-target="#alumne_dataNaixement"  data-toggle="datetimepicker">
@@ -78,7 +78,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#alumne_dataNaixement').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
@@ -88,7 +88,8 @@
                     }
                 });
             });
-        </script>           </td>
+        </script>
+           </td>
         </tr>
         </c:if>
         
@@ -167,7 +168,7 @@
           <td id="alumne_darrerAcces_columnvalueid">
     <form:errors path="alumne.darrerAcces" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="alumne_darrerAcces" data-target-input="nearest">
+                <div class="input-group date" id="alumne_darrerAccesDiv" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAcces" path="alumne.darrerAcces" aria-label="alumne.darrerAcces"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)}" >
                     <div class="input-group-append"  data-target="#alumne_darrerAcces"  data-toggle="datetimepicker">
@@ -176,7 +177,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#alumne_darrerAcces').datetimepicker({
                     format: '${gen:getJSDateTimePattern()}',
@@ -186,7 +187,8 @@
                     }
                 });
             });
-        </script>           </td>
+        </script>
+           </td>
         </tr>
         </c:if>
         
@@ -233,7 +235,7 @@
                   <small></small>
                   </span>
                 </div>
-                <script type="text/javascript">
+                <script>
 					$('#fotoID').on('change', function(){
 						var ruta = $('#fotoID').val(); 
 						var rutaArray = ruta.split('\\');
@@ -296,7 +298,7 @@
           <td id="alumne_despertador_columnvalueid">
     <form:errors path="alumne.despertador" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="alumne_despertador" data-target-input="nearest">
+                <div class="input-group date" id="alumne_despertadorDiv" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertador" path="alumne.despertador" aria-label="alumne.despertador"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)}" >
                     <div class="input-group-append"  data-target="#alumne_despertador"  data-toggle="datetimepicker">
@@ -305,7 +307,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#alumne_despertador').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
@@ -315,7 +317,8 @@
                     }
                 });
             });
-        </script>           </td>
+        </script>
+           </td>
         </tr>
         </c:if>
         

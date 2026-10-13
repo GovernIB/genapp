@@ -46,7 +46,7 @@
           <a class="dropdown-item" href="#" onclick="javascript:var ta=document.getElementById('fitxer.descripcio'); ta.wrap='hard';">Hard Wrap</a>
         </div>
       </div>
-      <script type="text/javascript">
+      <script>
 			$('#dropdownMenuButton_descripcio').on('click', function(){
 					var valor = ($('#dropdownMenuContainer_descripcio').css('display') != 'none') ? 'none' : 'block';
                  $('#dropdownMenuContainer_descripcio').css('display', valor);

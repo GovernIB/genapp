@@ -53,11 +53,11 @@ request.setAttribute("stacktrace", stackTrace);
 <%@include file="/WEB-INF/views/pages/head.jsp"%>
 <body>
 
-    <script type="text/javascript">
-                    function tornaEnrera(path) {
-                        window.location.href = "/";
-                    }
-                </script>
+    <script>
+        function tornaEnrera(path) {
+            window.location.href = "/";
+        }
+    </script>
 
 
     <div class="alert alert-danger" role="alert">

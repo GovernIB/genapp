@@ -55,7 +55,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.ALUMNEID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="alumne.alumneID" style="display: inline;">
+              <label for="alumne_alumneID" style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.alumneID" />:</span>
               </label>
 
@@ -75,14 +75,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.NOM)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="alumne.nom" style="display: inline;">
+              <label for="nom" style="display: inline;">
               <fmt:message key="alumne.nom" var="nom" />
               <fmt:message key="genapp.form.searchby" var="cercapernom" >                
                  <fmt:param value="${nom}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${nom}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="alumne.nom" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="nom" />
             </div>
 
 
@@ -90,14 +90,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.IDIOMAID)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="alumne.idiomaID" style="display: inline;">
+              <label for="idiomaID" style="display: inline;">
               <fmt:message key="alumne.idiomaID" var="idiomaID" />
               <fmt:message key="genapp.form.searchby" var="cercaperidiomaID" >                
                  <fmt:param value="${idiomaID}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${idiomaID}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercaperidiomaID}" path="idiomaID" aria-label="alumne.idiomaID" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercaperidiomaID}" path="idiomaID" aria-label="idiomaID" />
             </div>
 
 
@@ -105,13 +105,13 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DATANAIXEMENT)}">
             <%-- FILTRE DATE --%>
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <label for="alumne.dataNaixement" style="display: inline;">
+              <span style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.dataNaixement" />:</span>
-              </label>
+              </span>
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="dataNaixementDesde" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementDesde" path="dataNaixementDesde" aria-label="alumne.dataNaixement"  />
+                <div class="input-group date" id="dataNaixementDesdeDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementDesde" path="dataNaixementDesde" aria-label="alumne_dataNaixement"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#dataNaixementDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -119,7 +119,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#dataNaixementDesde').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
@@ -130,10 +130,11 @@
                 });
             });
         </script>
+
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="dataNaixementFins" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementFins" path="dataNaixementFins" aria-label="alumne.dataNaixement"  />
+                <div class="input-group date" id="dataNaixementFinsDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementFins" path="dataNaixementFins" aria-label="alumne_dataNaixement"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#dataNaixementFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -141,7 +142,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#dataNaixementFins').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
@@ -151,13 +152,14 @@
                     }
                 });
             });
-        </script>            </div>
+        </script>
+            </div>
     
         </c:if>
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.ACTIU)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="alumne.actiu" style="display: inline;">
+              <label for="alumne_actiu" style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.actiu" />:</span>
               </label>
 
@@ -177,13 +179,13 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DARRERACCES)}">
 <%-- FILTRE DATE-TIME --%>
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <label for="alumne.darrerAcces" style="display: inline;">
-              <span class="add-on"><fmt:message key="alumne.darrerAcces" />:</span>
-              </label>
+              <span style="display: inline;">
+              <span class="add-on"><fmt:message key="alumne_darrerAcces" />:</span>
+              </span>
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="darrerAccesDesde" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesDesde" path="darrerAccesDesde" aria-label="alumne.darrerAcces"  />
+                <div class="input-group date" id="darrerAccesDesdeDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesDesde" path="darrerAccesDesde" aria-label="alumne_darrerAcces"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#darrerAccesDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -191,7 +193,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#darrerAccesDesde').datetimepicker({
                     format: '${gen:getJSDateTimePattern()}',
@@ -201,10 +203,11 @@
                     }
                 });
             });
-        </script>              <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
+        </script>
+              <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="darrerAccesFins" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesFins" path="darrerAccesFins" aria-label="alumne.darrerAcces"  />
+                <div class="input-group date" id="darrerAccesFinsDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesFins" path="darrerAccesFins" aria-label="alumne_darrerAcces"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#darrerAccesFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -212,7 +215,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#darrerAccesFins').datetimepicker({
                     format: '${gen:getJSDateTimePattern()}',
@@ -222,14 +225,15 @@
                     }
                 });
             });
-        </script>            </div>
+        </script>
+            </div>
 
     
         </c:if>
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.TITOLACADEMICID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="alumne.titolAcademicID" style="display: inline;">
+              <label for="alumne_titolAcademicID" style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.titolAcademicID" />:</span>
               </label>
 
@@ -249,14 +253,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DESPERTADOR)}">
             <%-- FILTRE TIME --%>      
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <label for="alumne.despertador" style="display: inline;">
-              <span class="add-on"><fmt:message key="alumne.despertador" />:</span>
-              </label>
+              <span style="display: inline;">
+              <span class="add-on"><fmt:message key="alumne_despertador" />:</span>
+              </span>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="despertadorDesde" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorDesde" path="despertadorDesde" aria-label="alumne.despertador"  />
+                <div class="input-group date" id="despertadorDesdeDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorDesde" path="despertadorDesde" aria-label="alumne_despertador"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#despertadorDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -264,7 +268,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#despertadorDesde').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
@@ -274,12 +278,13 @@
                     }
                 });
             });
-        </script>              
+        </script>
+              
               
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="despertadorFins" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorFins" path="despertadorFins" aria-label="alumne.despertador"  />
+                <div class="input-group date" id="despertadorFinsDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorFins" path="despertadorFins" aria-label="alumne_despertador"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#despertadorFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -287,7 +292,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#despertadorFins').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
@@ -297,20 +302,21 @@
                     }
                 });
             });
-        </script>            </div>
+        </script>
+            </div>
 
         </c:if>
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.PAGINAWEB)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="alumne.paginaWeb" style="display: inline;">
+              <label for="paginaWeb" style="display: inline;">
               <fmt:message key="alumne.paginaWeb" var="paginaWeb" />
               <fmt:message key="genapp.form.searchby" var="cercaperpaginaWeb" >                
                  <fmt:param value="${paginaWeb}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${paginaWeb}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercaperpaginaWeb}" path="paginaWeb" aria-label="alumne.paginaWeb" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercaperpaginaWeb}" path="paginaWeb" aria-label="paginaWeb" />
             </div>
 
 
@@ -318,14 +324,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DESCRIPCIO)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="alumne.descripcio" style="display: inline;">
+              <label for="descripcio" style="display: inline;">
               <fmt:message key="alumne.descripcio" var="descripcio" />
               <fmt:message key="genapp.form.searchby" var="cercaperdescripcio" >                
                  <fmt:param value="${descripcio}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${descripcio}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercaperdescripcio}" path="descripcio" aria-label="alumne.descripcio" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercaperdescripcio}" path="descripcio" aria-label="descripcio" />
             </div>
 
 

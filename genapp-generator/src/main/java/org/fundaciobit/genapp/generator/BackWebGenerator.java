@@ -162,9 +162,9 @@ public class BackWebGenerator extends IconUtils {
                 codeCommon.append("  <form:hidden id=\"orderBy\" path=\"orderBy\"/> \n");
                 codeCommon.append("  <form:hidden id=\"orderAsc\" path=\"orderAsc\"/>\n\n");
 
-                codeCommon.append("  <form:hidden path=\"nou\" value=\"false\"/>\n\n");
+                codeCommon.append("  <form:hidden path=\"nou\"/>\n\n");
 
-                codeCommon.append("<script type=\"text/javascript\">\n");
+                codeCommon.append("<script>\n");
                 codeCommon.append("  function executeOrderBy(orderBy, orderType) {\n");
                 codeCommon.append("    document.getElementById('orderBy').value = orderBy;\n");
                 codeCommon.append("    document.getElementById('orderAsc').value = orderType;\n");
@@ -513,7 +513,7 @@ public class BackWebGenerator extends IconUtils {
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right: 24px;padding-bottom: 4px;\">\n");
                             if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
-                                String ariaLabel = model + "." + modelCamp + "Select";
+                                String ariaLabel = model + "_" + modelCamp + "Select";
                                 codeFilterBy.append("              <%-- FILTRE NUMERO SELECT MULTIPLE --%>\n"
                                         + "              <div class=\"input-group-prepend\" style=\"padding-top: 5px;padding-right: 24px;\">\n"
                                         + "              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n"
@@ -530,7 +530,7 @@ public class BackWebGenerator extends IconUtils {
                                         + modelCamp + "Select, _entry.key)?'selected':''} >${_entry.value}</option>\n"
                                         + "                    </c:forEach>\n" + "                </form:select>\n"
                                         + "              </div>\n" + "\n"
-                                        + "              <script type=\"text/javascript\">\n"
+                                        + "              <script>\n"
                                         + "                $(document).ready(function() {\n"
                                         + "                    var $select = $('#" + id + "');\n"
                                         + "                    var ariaLabel = $select.attr('aria-label');\n"
@@ -555,7 +555,7 @@ public class BackWebGenerator extends IconUtils {
 
                             } else {
 
-                                String ariaLabel = model + "." + modelCamp;
+                                String ariaLabel = model + "_" + modelCamp;
                                 codeFilterBy.append("            <%-- FILTRE NUMERO DESDE-FINS --%>\n");
 
                                 codeFilterBy.append("              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
@@ -585,11 +585,12 @@ public class BackWebGenerator extends IconUtils {
                             continue;
                         }
                         if (cls.equals(String.class)) {
+                            String ariaLabel = modelCamp;
                             codeFilterBy.append("            <%-- FILTRE STRING --%>\n");
                             codeFilterBy.append(
                                     "            <div class=\"input-prepend\" style=\"padding-right: 24px;padding-bottom: 4px;\">\n");
                             codeFilterBy.append(
-                                    "              <label for=\"" + model + "." + modelCamp + "\" style=\"display: inline;\">\n");
+                                    "              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
                             codeFilterBy.append("              <fmt:message key=\"" + model + "." + modelCamp
                                     + "\" var=\"" + modelCamp + "\" />\n");
                             codeFilterBy.append("              <fmt:message key=\"genapp.form.searchby\" var=\"cercaper"
@@ -601,20 +602,21 @@ public class BackWebGenerator extends IconUtils {
                             codeFilterBy.append("              </label>\n");
                             codeFilterBy.append(
                                     "              <form:input cssClass=\"search-query input-medium\" placeholder=\"${cercaper"
-                                            + modelCamp + "}\" path=\"" + modelCamp + "\" aria-label=\"" + model + "." + modelCamp  + "\" />\n");
+                                            + modelCamp + "}\" path=\"" + modelCamp + "\" aria-label=\"" + ariaLabel  + "\" />\n");
                             codeFilterBy.append("            </div>\n");
                             codeFilterBy.append("\n\n");
                             continue;
                         }
                         if (cls.equals(Time.class)) {
-                            String ariaLabel = model + "." + modelCamp;
+                            String ariaLabel = model + "_" + modelCamp;
                             codeFilterBy.append("            <%-- FILTRE TIME --%>      \n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
+                            // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
                             codeFilterBy.append(
-                                    "              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
+                                    "              <span style=\"display: inline;\">\n");
                             codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + ariaLabel + "\" />:</span>\n");
-                            codeFilterBy.append("              </label>\n");
+                            codeFilterBy.append("              </span>\n");
                             codeFilterBy.append("\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
@@ -638,15 +640,16 @@ public class BackWebGenerator extends IconUtils {
 
                         if (cls.equals(Date.class)) {
 
-                            String ariaLabel = model + "." + modelCamp;
+                            String ariaLabel = model + "_" + modelCamp;
                             codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             
-                            codeFilterBy.append("              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
+                            // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
+                            codeFilterBy.append("              <span style=\"display: inline;\">\n");
                             codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
                                     + modelCamp + "\" />:</span>\n");
-                            codeFilterBy.append("              </label>\n");
+                            codeFilterBy.append("              </span>\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
@@ -665,17 +668,18 @@ public class BackWebGenerator extends IconUtils {
                         }
 
                         if (cls.equals(Timestamp.class)) {
-                            final String ariaLabel = model + "." + modelCamp;
+                            final String ariaLabel = model + "_" + modelCamp;
               
 
                             codeFilterBy.append("<%-- FILTRE DATE-TIME --%>\n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
+                            // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
                             codeFilterBy.append(
-                                    "              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
+                                    "              <span style=\"display: inline;\">\n");
                             codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + ariaLabel + "\" />:</span>\n");
                             codeFilterBy.append(
-                                    "              </label>\n");
+                                    "              </span>\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
@@ -741,7 +745,7 @@ public class BackWebGenerator extends IconUtils {
 
                 codeGroupBy.append("\n");
                 codeGroupBy.append("<%-- AGRUPAR PER - FUNCIONS --%>   \n");
-                codeGroupBy.append("<script type=\"text/javascript\">\n");
+                codeGroupBy.append("<script>\n");
                 codeGroupBy.append("  $(\"body\").on(\"nodeselect.tree.data-api\", \"[role=leaf]\", function (e) {\n");
                 codeGroupBy.append("\n");
                 codeGroupBy.append("      var parentstr = \"\" + e.node.parentage[e.node.parentage.length - 1];\n");
@@ -784,10 +788,6 @@ public class BackWebGenerator extends IconUtils {
                 codeGroupBy.append("      </div>\n");
                 codeGroupBy.append("\n");
                 codeGroupBy.append("\n");
-
-                codeGroupBy.append("<style>" + " ul.gj-list-bootstrap li [data-role=display]{padding:0px 0px 0px 0px;} "
-                        + " ul.gj-list-bootstrap li [data-role=expander].gj-tree-material-icons-expander { padding-top: 0px; padding-bottom: 0px; }"
-                        + " </style>");
 
                 codeGroupBy.append("      <div id=\"tree\"></div>\n" + "      \n" + "      <script>\n" + "      \n"
                         + "      \n" + "      <c:set var=\"expandID\" value=\"-\" />\n" + "      \n"
@@ -2109,7 +2109,7 @@ public class BackWebGenerator extends IconUtils {
             code.append("                  <small></small>\n");
             code.append("                  </span>\n");
             code.append("                </div>\n");
-            code.append("                <script type=\"text/javascript\">\n");
+            code.append("                <script>\n");
             code.append("					$('#" + modelCamp + "').on('change', function(){\n");
             code.append("						var ruta = $('#" + modelCamp + "').val(); \n");
             code.append("						var rutaArray = ruta.split('\\\\');\n");
@@ -2362,7 +2362,7 @@ public class BackWebGenerator extends IconUtils {
                             + "'); ta.wrap='hard';\">Hard Wrap</a>\n");
                     code.append("        </div>\n");
                     code.append("      </div>\n");
-                    code.append("      <script type=\"text/javascript\">\n");
+                    code.append("      <script>\n");
                     code.append("			$('#dropdownMenuButton_" + modelCamp + "').on('click', function(){\n"
                             + "					var valor = ($('#dropdownMenuContainer_" + modelCamp
                             + "').css('display') != 'none') ? 'none' : 'block';\n"
@@ -2556,7 +2556,7 @@ public class BackWebGenerator extends IconUtils {
 
         code.append("            <div class=\"form-group\"  style=\"margin-bottom: 0px;\" >\n");
         code.append("                <div class=\"input-group date\" id=\"" + componentID
-                + "\" data-target-input=\"nearest\">\n");
+                + "Div\" data-target-input=\"nearest\">\n");
 
         code.append("                      <form:input " + readOnlyAttribute
                 + " cssClass=\"form-control datetimepicker-input\" " + " data-target=\"#" + componentID + "\""
@@ -2570,7 +2570,7 @@ public class BackWebGenerator extends IconUtils {
         code.append("                </div>\n");
         code.append("            </div>\n");
 
-        code.append("        <script type=\"text/javascript\">\n");
+        code.append("        <script>\n");
         code.append("            $(function () {\n");
         code.append("                $('#" + componentID + "').datetimepicker({\n");
         code.append("                    format: '" + pattern + "',\n");
@@ -2580,7 +2580,7 @@ public class BackWebGenerator extends IconUtils {
         code.append("                    }\n");
         code.append("                });\n");
         code.append("            });\n");
-        code.append("        </script>");
+        code.append("        </script>\n");
         return code.toString();
     }
 

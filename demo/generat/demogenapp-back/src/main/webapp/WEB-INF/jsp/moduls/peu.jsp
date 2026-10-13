@@ -30,13 +30,13 @@
 		<!-- Centre esquerra -->
 		<div class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
 
-			<a styleClass="text-dark linkPeu" href="/mapaweb"> <fmt:message
+			<a class="text-dark linkPeu" href="/mapaweb"> <fmt:message
 					key="labels.mapaweb" />
-			</a><br> <a styleClass="text-dark linkPeu" href="<c:url value="/public/accessibilitat"/>">
+			</a><br> <a class="text-dark linkPeu" href="<c:url value="/public/accessibilitat"/>">
 				<fmt:message key="labels.accessibilitat" />
-			</a><br> <a styleClass="text-dark linkPeu" href="<c:url value="/public/protecciodades"/>">
+			</a><br> <a class="text-dark linkPeu" href="<c:url value="/public/protecciodades"/>">
 				<fmt:message key="labels.protecciodades" />
-			</a><br> <a styleClass="text-dark linkPeu" href="<c:url value="/public/avislegal"/>"> <fmt:message
+			</a><br> <a class="text-dark linkPeu" href="<c:url value="/public/avislegal"/>"> <fmt:message
 					key="labels.avislegal" />
 			</a>
 
@@ -78,7 +78,7 @@
                         <li><fmt:message key="ajuda.viatelefon" /><%=Configuracio.getAjudaViaTelefon()%></li>
                         <li><fmt:message key="ajuda.viaweb" /><%=Configuracio.getAjudaViaWeb()%></li>
                         <li><fmt:message key="ajuda.viaemail" />
-                            <a href="mailto: help@help.hl"><%=Configuracio.getAjudaViaEmail()%></a>
+                            <a href="mailto:help@help.hl"><%=Configuracio.getAjudaViaEmail()%></a>
                         </li>
                     </ul>
                 </div>

@@ -55,14 +55,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,IdiomaFields.IDIOMAID)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="idioma.idiomaID" style="display: inline;">
+              <label for="idiomaID" style="display: inline;">
               <fmt:message key="idioma.idiomaID" var="idiomaID" />
               <fmt:message key="genapp.form.searchby" var="cercaperidiomaID" >                
                  <fmt:param value="${idiomaID}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${idiomaID}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercaperidiomaID}" path="idiomaID" aria-label="idioma.idiomaID" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercaperidiomaID}" path="idiomaID" aria-label="idiomaID" />
             </div>
 
 
@@ -70,14 +70,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,IdiomaFields.NOM)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="idioma.nom" style="display: inline;">
+              <label for="nom" style="display: inline;">
               <fmt:message key="idioma.nom" var="nom" />
               <fmt:message key="genapp.form.searchby" var="cercapernom" >                
                  <fmt:param value="${nom}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${nom}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="idioma.nom" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="nom" />
             </div>
 
 
@@ -85,7 +85,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,IdiomaFields.SUPORTAT)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="idioma.suportat" style="display: inline;">
+              <label for="idioma_suportat" style="display: inline;">
               <span class="add-on"><fmt:message key="idioma.suportat" />:</span>
               </label>
 
@@ -105,7 +105,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,IdiomaFields.ORDRE)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="idioma.ordre" style="display: inline;">
+              <label for="idioma_ordre" style="display: inline;">
               <span class="add-on"><fmt:message key="idioma.ordre" />:</span>
               </label>
 

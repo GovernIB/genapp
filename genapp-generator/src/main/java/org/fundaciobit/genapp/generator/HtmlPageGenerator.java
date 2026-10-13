@@ -133,12 +133,12 @@ public class HtmlPageGenerator {
 				+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n" + "<title>" + title
 				+ "</title>\n" + "<link rel=\"StyleSheet\" href=\"style.css\" type=\"text/css\">\n"
 				+ "<link rel=\"StyleSheet\" href=\"table/datatable.css\" type=\"text/css\">\n"
-				+ "<script type=\"text/javascript\" src=\"javascript.js\"></script>\n"
+				+ "<script src=\"javascript.js\"></script>\n"
 				// @todo only if exists field Date or Time
 				+ "<script src=\"calendar/datetimepicker_css.js\"></script>\n"
 				// @todo Add only if exists field RichText
-				+ "<script type=\"text/javascript\" src=\"tiny_mce/tiny_mce.js\"></script>\n"
-				+ "<script type=\"text/javascript\">\n" + javaScript + "</script>\n" + "</head>\n" + "<body "
+				+ "<script src=\"tiny_mce/tiny_mce.js\"></script>\n"
+				+ "<script>\n" + javaScript + "</script>\n" + "</head>\n" + "<body "
 				+ ((onLoad == null) ? "" : onLoad) + " >\n" + "<FORM name=\"" + FORM_NAME + "\" method=\"post\">\n"
 				+ formCode.toString() + "   <input type=\"hidden\" name=\"loadedPage\" value=\"true\">\n"
 				+ (tableName == null ? "" : generateButtonBar(tableName)) + "\n";
@@ -198,7 +198,7 @@ public class HtmlPageGenerator {
 			but.append("  </td></tr>\n");
 			but.append("</table>\n");
 			if (submitButton.getJavascript() != null) {
-				but.append("<script type=\"text/javascript\">\n");
+				but.append("<script>\n");
 				but.append("   " + submitButton.getJavascript() + ";\n");
 				but.append("</script>\n");
 			}

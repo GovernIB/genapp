@@ -55,7 +55,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,FitxerFields.FITXERID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="fitxer.fitxerID" style="display: inline;">
+              <label for="fitxer_fitxerID" style="display: inline;">
               <span class="add-on"><fmt:message key="fitxer.fitxerID" />:</span>
               </label>
 
@@ -75,14 +75,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,FitxerFields.NOM)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="fitxer.nom" style="display: inline;">
+              <label for="nom" style="display: inline;">
               <fmt:message key="fitxer.nom" var="nom" />
               <fmt:message key="genapp.form.searchby" var="cercapernom" >                
                  <fmt:param value="${nom}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${nom}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="fitxer.nom" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="nom" />
             </div>
 
 
@@ -90,14 +90,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,FitxerFields.DESCRIPCIO)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="fitxer.descripcio" style="display: inline;">
+              <label for="descripcio" style="display: inline;">
               <fmt:message key="fitxer.descripcio" var="descripcio" />
               <fmt:message key="genapp.form.searchby" var="cercaperdescripcio" >                
                  <fmt:param value="${descripcio}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${descripcio}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercaperdescripcio}" path="descripcio" aria-label="fitxer.descripcio" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercaperdescripcio}" path="descripcio" aria-label="descripcio" />
             </div>
 
 
@@ -105,14 +105,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,FitxerFields.MIME)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="fitxer.mime" style="display: inline;">
+              <label for="mime" style="display: inline;">
               <fmt:message key="fitxer.mime" var="mime" />
               <fmt:message key="genapp.form.searchby" var="cercapermime" >                
                  <fmt:param value="${mime}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${mime}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercapermime}" path="mime" aria-label="fitxer.mime" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercapermime}" path="mime" aria-label="mime" />
             </div>
 
 
@@ -120,7 +120,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,FitxerFields.TAMANY)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="fitxer.tamany" style="display: inline;">
+              <label for="fitxer_tamany" style="display: inline;">
               <span class="add-on"><fmt:message key="fitxer.tamany" />:</span>
               </label>
 

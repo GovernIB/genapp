@@ -9,7 +9,7 @@
   <form:hidden id="agruparPerValor"  path="groupValue"/>
 
 <%-- AGRUPAR PER - FUNCIONS --%>   
-<script type="text/javascript">
+<script>
   $("body").on("nodeselect.tree.data-api", "[role=leaf]", function (e) {
 
       var parentstr = "" + e.node.parentage[e.node.parentage.length - 1];
@@ -41,7 +41,7 @@
       </div>
 
 
-<style> ul.gj-list-bootstrap li [data-role=display]{padding:0px 0px 0px 0px;}  ul.gj-list-bootstrap li [data-role=expander].gj-tree-material-icons-expander { padding-top: 0px; padding-bottom: 0px; } </style>      <div id="tree"></div>
+      <div id="tree"></div>
       
       <script>
       

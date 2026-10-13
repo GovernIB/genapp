@@ -944,19 +944,7 @@ public class WebGenerator {
 
                         String onKeyUp = "";
                         if (field.isNotNullable) {
-                            onKeyUp = "<script type=\"text/javascript\">\n" +
-                            /*
-                              "var previousOnload = window.onload;\n" +
-                              "window.onload = function() {\n" +
-                              "    if (previousOnload) {\n" +
-                              "        previousOnload();\n" +
-                              "    }\n" +
-                              "var ed = tinyMCE.get('" + random + "');\n" +   
-                              "    ed.onKeyUp.add(function(ed, e) {\n" +
-                              "   checks();\n" +
-                              "});\n" +
-                              "}\n" +
-                             */
+                            onKeyUp = "<script>\n" +
                                     "function check_" + name + "() {\n" + "  var value = tinyMCE.get('" + random
                                     + "').getContent();\n" + "  if (value==null || value.length==0) {\n"
                                     + "    document.REB2010.SubmitButton.disabled = true;\n" + "    return true;\n"

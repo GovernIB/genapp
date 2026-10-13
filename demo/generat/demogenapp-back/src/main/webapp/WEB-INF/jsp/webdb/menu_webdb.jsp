@@ -3,7 +3,6 @@
  <c:set var="url" value="${urlActual}" />
  <div>
  <span style="font-size: 1.25rem">WebDatabase</span>
- <ul class="tree" style="margin:3px; padding:0px;">
  <%-- ==== GENAPP MARK START --%>
 
     <%@page import="org.fundaciobit.demogenapp.back.utils.Tab"%>
@@ -16,5 +15,4 @@
     %>
     <%@ include file="/WEB-INF/jsp/moduls/menu_role_generator.jsp"%>
 <%-- ==== GENAPP MARK END --%>
- </ul>
  </div>

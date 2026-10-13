@@ -96,7 +96,7 @@
           <td id="assignatura_hora_columnvalueid">
     <form:errors path="assignatura.hora" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="assignatura_hora" data-target-input="nearest">
+                <div class="input-group date" id="assignatura_horaDiv" data-target-input="nearest">
                       <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_hora" path="assignatura.hora" aria-label="assignatura.hora"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)}" >
                     <div class="input-group-append"  data-target="#assignatura_hora"  data-toggle="datetimepicker">
@@ -105,7 +105,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#assignatura_hora').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
@@ -115,7 +115,8 @@
                     }
                 });
             });
-        </script>           </td>
+        </script>
+           </td>
         </tr>
         </c:if>
         
@@ -145,7 +146,7 @@
           <a class="dropdown-item" href="#" onclick="javascript:var ta=document.getElementById('assignatura.descripcio'); ta.wrap='hard';">Hard Wrap</a>
         </div>
       </div>
-      <script type="text/javascript">
+      <script>
 			$('#dropdownMenuButton_descripcio').on('click', function(){
 					var valor = ($('#dropdownMenuContainer_descripcio').css('display') != 'none') ? 'none' : 'block';
                  $('#dropdownMenuContainer_descripcio').css('display', valor);

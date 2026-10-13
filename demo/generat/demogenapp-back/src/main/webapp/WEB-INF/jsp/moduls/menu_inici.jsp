@@ -8,42 +8,8 @@
 <c:set var="url" value="${urlActual}" />
 <div>
   <span style="font-size: 1.25rem"><fmt:message key="menuinici" /></span>
-  
-  <%--
-  <ul class="tree" style="margin: 3px; padding: 0px;">
-  
-  <c:if test="${empty loginInfo}">
-        <li style="list-style-type: disc; list-style-position: inside;">
-          <a href="<c:url value="/public/index.html"/>">
-            <span style="${(fn:contains(url, 'principal'))? "font-weight: bold;" : ""}">Pàgina Inicial</span>
-          </a>
-        </li>
-    </c:if>
-    <c:if test="${not empty loginInfo}">
-
-    <li style="list-style-type: disc; list-style-position: inside;">
-      <a href="<c:url value="/common/principal.html"/>">
-        <span style="${(fn:contains(url, 'principal'))? "font-weight: bold;" : ""}">Pàgina Inicial</span>
-      </a>
-    </li>
-
-    <hr  style="margin-top: 6px;  margin-bottom: 6px;" />
-    <li style="list-style-type: disc; list-style-position: inside;">
-      <a href="<c:url value="/common/option1"/>">
-        <span style="${(fn:contains(url, 'option1'))? "font-weight: bold;" : ""}">Menú Option 1</span>
-      </a>
-    </li>
-
-
-    <hr  style="margin-top: 6px;  margin-bottom: 6px;" />
-    <li style="list-style-type: disc; list-style-position: inside;">
-      <a href="<c:url value="/common/option2"/>">
-        <span style="${(fn:contains(url, 'option2'))? "font-weight: bold;" : ""}">Menú Option 2</span>
-      </a>
-    </li>
-       </c:if>
-    --%>
-    
+ 
+   
     <%
     List<List<MenuItem>> menus = new ArrayList<List<MenuItem>>();
     MenuItem[] menusAddicionals;

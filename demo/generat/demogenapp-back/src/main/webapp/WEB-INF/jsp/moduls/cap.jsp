@@ -75,7 +75,7 @@
 						<i class="fas fa-language fa-lg"></i>
 						<fmt:message key="idiomes" />
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+					<div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
 						<c:forEach var="idioma" items="${idiomes}"
 							varStatus="status">
 							<c:set var="idiomaID" value="${idioma.idiomaID}" />
@@ -84,7 +84,7 @@
 
 								<img
 								src="<c:url value="/img/${idiomaID}_petit_${lang eq idiomaID? 'on' : 'off'}.gif"/>"
-								alt="${idiomaID}" style="margin-right: 0.5rem;" width="17" height="14" border="0" />${idioma.nom}
+								alt="${idiomaID}" style="margin-right: 0.5rem;border:0px;" width="17" height="14" />${idioma.nom}
 							</a>
 						</c:forEach>
 
@@ -102,7 +102,7 @@
 						<i class="fas fa-ellipsis-v" aria-hidden="true"></i>
 						<span class="sr-only">Opcions</span>
 					</button>
-					<div class="dropdown-menu  dropdown-menu-right"
+					<div class="dropdown-menu  dropdown-menu-right" role="menu"
 						aria-labelledby="dropdownMenu3">
 
 
@@ -139,7 +139,7 @@
 	</nav>
 
 	<!-- FI Header -->
-	<script type="text/javascript">
+	<script>
 		var xrknpass = 0;
 		$(function() {
 			$(window)

@@ -55,7 +55,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.ASSIGNATURAID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignatura.assignaturaID" style="display: inline;">
+              <label for="assignatura_assignaturaID" style="display: inline;">
               <span class="add-on"><fmt:message key="assignatura.assignaturaID" />:</span>
               </label>
 
@@ -75,14 +75,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.NOM)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="assignatura.nom" style="display: inline;">
+              <label for="nom" style="display: inline;">
               <fmt:message key="assignatura.nom" var="nom" />
               <fmt:message key="genapp.form.searchby" var="cercapernom" >                
                  <fmt:param value="${nom}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${nom}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="assignatura.nom" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercapernom}" path="nom" aria-label="nom" />
             </div>
 
 
@@ -90,7 +90,7 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.CREDITS)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignatura.credits" style="display: inline;">
+              <label for="assignatura_credits" style="display: inline;">
               <span class="add-on"><fmt:message key="assignatura.credits" />:</span>
               </label>
 
@@ -111,20 +111,20 @@
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
               <%-- FILTRE NUMERO SELECT MULTIPLE --%>
               <div class="input-group-prepend" style="padding-top: 5px;padding-right: 24px;">
-              <label for="assignatura.diaSetmanaSelect" style="display: inline;">
+              <label for="assignatura_diaSetmanaSelect" style="display: inline;">
                  <span class="add-on"><fmt:message key="assignatura.diaSetmana" />:</span>
               </label>
               </div>
 
               <div class="input-group-prepend" style="min-width:200px">
-                <form:select aria-label="assignatura.diaSetmanaSelect"   id="assign_diaSetmana_select" path="diaSetmanaSelect" cssClass="search-query input-medium form-control select2 select2-hidden-accessible" multiple="true" style="width:100%;" tabindex="-1" aria-hidden="true">
+                <form:select aria-label="assignatura_diaSetmanaSelect"   id="assign_diaSetmana_select" path="diaSetmanaSelect" cssClass="search-query input-medium form-control select2 select2-hidden-accessible" multiple="true" style="width:100%;" tabindex="-1" aria-hidden="true">
                     <c:forEach var="_entry" items="${__theFilterForm.mapOfValuesForDiaSetmana}">
                       <option value="${_entry.key}" ${fn:contains(__theFilterForm.diaSetmanaSelect, _entry.key)?'selected':''} >${_entry.value}</option>
                     </c:forEach>
                 </form:select>
               </div>
 
-              <script type="text/javascript">
+              <script>
                 $(document).ready(function() {
                     var $select = $('#assign_diaSetmana_select');
                     var ariaLabel = $select.attr('aria-label');
@@ -152,14 +152,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.HORA)}">
             <%-- FILTRE TIME --%>      
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <label for="assignatura.hora" style="display: inline;">
-              <span class="add-on"><fmt:message key="assignatura.hora" />:</span>
-              </label>
+              <span style="display: inline;">
+              <span class="add-on"><fmt:message key="assignatura_hora" />:</span>
+              </span>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="horaDesde" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaDesde" path="horaDesde" aria-label="assignatura.hora"  />
+                <div class="input-group date" id="horaDesdeDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaDesde" path="horaDesde" aria-label="assignatura_hora"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#horaDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -167,7 +167,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#horaDesde').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
@@ -177,12 +177,13 @@
                     }
                 });
             });
-        </script>              
+        </script>
+              
               
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
-                <div class="input-group date" id="horaFins" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaFins" path="horaFins" aria-label="assignatura.hora"  />
+                <div class="input-group date" id="horaFinsDiv" data-target-input="nearest">
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaFins" path="horaFins" aria-label="assignatura_hora"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#horaFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -190,7 +191,7 @@
                     </c:if>
                 </div>
             </div>
-        <script type="text/javascript">
+        <script>
             $(function () {
                 $('#horaFins').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
@@ -200,20 +201,21 @@
                     }
                 });
             });
-        </script>            </div>
+        </script>
+            </div>
 
         </c:if>
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.DESCRIPCIO)}">
             <%-- FILTRE STRING --%>
             <div class="input-prepend" style="padding-right: 24px;padding-bottom: 4px;">
-              <label for="assignatura.descripcio" style="display: inline;">
+              <label for="descripcio" style="display: inline;">
               <fmt:message key="assignatura.descripcio" var="descripcio" />
               <fmt:message key="genapp.form.searchby" var="cercaperdescripcio" >                
                  <fmt:param value="${descripcio}"/>
               </fmt:message>
               <span class="add-on"><c:out value="${descripcio}" />:</span>
               </label>
-              <form:input cssClass="search-query input-medium" placeholder="${cercaperdescripcio}" path="descripcio" aria-label="assignatura.descripcio" />
+              <form:input cssClass="search-query input-medium" placeholder="${cercaperdescripcio}" path="descripcio" aria-label="descripcio" />
             </div>
 
 

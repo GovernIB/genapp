@@ -109,7 +109,7 @@ try {
 <script src="<c:url value="/js/jquery.js" />"></script>
 <script src="<c:url value="/js/bootstrap.js"/>"></script>
 
-<script type="text/javascript">
+<script>
   function showError(){
     $(".trace").toggle();
   }

@@ -1,7 +1,7 @@
 <#assign symbol_dollar = "$">
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
-<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="<c:url value="/img/favicon.ico"/>" rel="shortcut icon" type="image/x-icon">
 
@@ -54,18 +54,18 @@
 <script src="<c:url value="/js/datetimepicker/tempusdominus-bootstrap-4.js"/>"></script>
 
 <%-- TinyMCE --%>
-<script type="text/javascript">
+<script>
     var lang = '<c:out value="${symbol_dollar}{pageContext.response.locale.language}"/>';
 </script>
-<script src="<c:url value="/js/tiny_mce/tiny_mce.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/tinymce.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/js/tiny_mce/tiny_mce.js"/>" ></script>
+<script src="<c:url value="/js/tinymce.js"/>" ></script>
 
 <%-- Select Multiple --%>
 <script src="<c:url value="/js/select2.min.js"/>"></script>
 <script src="<c:url value="/js/select2_i18n/${symbol_dollar}{lang}.js"/>"></script>
 
 
-<script type="text/javascript">
+<script>
     function clear_form_elements(ele) {
 
         tags = ele.getElementsByTagName('input');

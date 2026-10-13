@@ -933,11 +933,10 @@ public class CodeGenerator {
                 } else {
                     txt = "<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\"%>\n"                            
                             + " <%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n"
-                            // + " <tiles:useAttribute id=\"opcionsMenu\" name=\"opcionsMenu\" />\n"
-                            // + " <tiles:useAttribute id=\"logo\" name=\"logo\" />\n"
-                            + " <c:set var=\"url\" value=\"${urlActual}\" />\n" + " <div>\n" + " <span style=\"font-size: 1.25rem\">WebDatabase</span>\n"
-                            + " <ul class=\"tree\" style=\"margin:3px; padding:0px;\">\n"
-                            + " <%-- ==== GENAPP MARK START --%>\n" + " <%-- ==== GENAPP MARK END --%>\n" + " </ul>\n"
+                            + " <c:set var=\"url\" value=\"${urlActual}\" />\n" + " <div>\n" 
+                            + " <span style=\"font-size: 1.25rem\">WebDatabase</span>\n"                           
+                            + " <%-- ==== GENAPP MARK START --%>\n" 
+                            + " <%-- ==== GENAPP MARK END --%>\n"
                             + " </div>\n";
                 }
 
