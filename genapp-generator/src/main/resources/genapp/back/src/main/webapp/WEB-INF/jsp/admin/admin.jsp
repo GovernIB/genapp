@@ -12,11 +12,11 @@
 <center><img src="<c:url value="/img/icn_alert_success.png"/>"  alt="exemple" title="exemple"/></center>
 
 
-Exemple de Controler que "extends" de WebDB:
+<label id="thelabel" style="font-size: 1.25rem; font-weight: bold;">Exemple de Controler que "extends" de WebDB:</label>
 
 <table border="1" >
 <tr><td>
-<textarea cols="120" rows="25" style="font-family: 'Courier New'">
+<textarea cols="120" rows="25" style="font-family: 'Courier New'" aria-label="thelabel">
 package ${package}.back.controller.admin;
 
 import ${package}.back.controller.webdb.AlumneController;

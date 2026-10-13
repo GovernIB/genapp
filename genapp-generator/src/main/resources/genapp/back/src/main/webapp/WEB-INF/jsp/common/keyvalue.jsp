@@ -7,9 +7,11 @@
 <div id="propietatGlobal_listheader" class="filterLine lead" style="margin-bottom: 10px">
     <label style="font-size: 1.25rem; font-weight: bold;">${dollar}{title}</label>
 </div>
+<c:if test="${dollar}{not empty subtitle}">
 <h6 style="line-height: 10px; margin-top: -10px; margin-bottom: 10px; font-style: italic;">
     ${dollar}{subtitle}
 </h6>
+</c:if>
 
 <div>
     <div style="width: 100%;">
@@ -17,7 +19,7 @@
             <table class="table table-sm table-bordered table-striped table-genapp table-genapp-list" style="width: auto;">
                 <thead>
                     <tr>
-                        <th><b>&nbsp;</b></th>
+                        <td></td>
                         <th>Key</th>
                         <th>Value</th>
                         <th>Action</th>

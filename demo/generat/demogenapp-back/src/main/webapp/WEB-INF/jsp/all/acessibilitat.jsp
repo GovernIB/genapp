@@ -175,7 +175,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th></th>
+            <td></td>
             <th>Resultat</th>
         </tr>
     </thead>

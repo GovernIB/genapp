@@ -20,7 +20,7 @@
     <textarea id="editor" name="fileContent" >${symbol_dollar}{fileContent}</textarea>
 </div>
     <br>
-    <small>L´acció de guardar no recarrega les propietats. Ha de recarregar les propietats manualment després de guardar.</small>
+    <small style="color:#000">L´acció de guardar no recarrega les propietats. Ha de recarregar les propietats manualment després de guardar.</small>
     <br> <input class="btn btn-warning" type="submit" value="Guardar" />
 </form>
 
