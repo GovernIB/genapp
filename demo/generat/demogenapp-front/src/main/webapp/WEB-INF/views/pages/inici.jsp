@@ -17,11 +17,11 @@ function doLogin() {
                     }
 </script>
     <center>
-        <br /> <br />
+        <br> <br>
         <h1>
             <fmt:message key="titol.tab" />
         </h1>
-        <br />
+        <br>
         <div class="row justify-content-center">
             <div>
                 <img style="background: #000" src="<c:url value="/images/app-logo.png"/>" />
@@ -64,7 +64,7 @@ function doLogin() {
 
         </div>
 
-        <br /> <br />
+        <br> <br>
         <div>
             <sec:authorize access="!isAuthenticated()">
                 <h2>

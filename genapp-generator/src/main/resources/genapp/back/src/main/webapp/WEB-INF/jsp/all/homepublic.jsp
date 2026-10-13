@@ -8,39 +8,39 @@
 <div class="spacer"></div>
 
 <div>
-<br/>
+<br>
 <center>
 <img src="<c:url value="/img/app-logo.png"/>"  alt="${fullname}"/>
 
-<br/>
-<br/>
+<br>
+<br>
 
-PAGINA PUBLICA <br/>
+PAGINA PUBLICA <br>
 
 This page is generated automatically. Please edit.
 
-<br/>
-<br/>
+<br>
+<br>
 <div>
 <a href="https://governdigital.fundaciobit.org" target="_blank">
 <img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit"/>
 </a>
 </div>
-<br/>
+<br>
 </center>
  
 </div>
 
-<br/>
+<br>
 
 <c:if test="${dollar}{${prefixLowercase}:isDesenvolupament()}">
 
-Aquest informaci&oacute; es mostra ja que la propietat ${package}.development &eacute;s true<br/>
+Aquest informaci&oacute; es mostra ja que la propietat ${package}.development &eacute;s true<br>
 <br>
 
-+ LOGIN ANONIM <br/>
-+ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-+ lang = ${dollar}{lang} <br/>
-<br/>
++ LOGIN ANONIM <br>
++ Locale = <%=LocaleContextHolder.getLocale() %> <br>
++ lang = ${dollar}{lang} <br>
+<br>
 
 </c:if>

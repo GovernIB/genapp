@@ -9,50 +9,50 @@
 <div class="spacer"></div>
 
 <div>
-<br/>
+<br>
 <center>
 <img src="<c:url value="/img/app-logo.png"/>"  alt="DemoGenApp"/>
 
-<br/>
-<br/>
+<br>
+<br>
 This page is generated automatically. Please edit.
 
-<br/>
-<br/>
+<br>
+<br>
 <div>
 <a href="http://blog.fundaciobit.org/category/admindigital/" target="_blank">
 <img src="<c:url value="/img/fundaciobit.png"/>"  alt="Fundació Bit"/>
 </a>
 </div>
-<br/>
+<br>
 </center>
  
 </div>
 
-<br/>
+<br>
 <c:if test="${dem:isDesenvolupament()}">
 
-Aquest informaci&oacute; es mostra ja que la propietat org.fundaciobit.demogenapp.development &eacute;s true<br/><br>
+Aquest informaci&oacute; es mostra ja que la propietat org.fundaciobit.demogenapp.development &eacute;s true<br><br>
 
 
-+ Username: ${loginInfo.username}<br/>
-+ &#36;{dem:hasRole('ROLE_ADMIN')}= ${dem:hasRole('ROLE_ADMIN')}<br/>
-+ &#36;{dem:hasRole('ROLE_USER') }= ${dem:hasRole('ROLE_USER') }<br/>
-+ Locale = <%=LocaleContextHolder.getLocale() %> <br/>
-+ lang = ${lang} <br/>
-+ <b> UserInformation: </b><br/>
++ Username: ${loginInfo.username}<br>
++ &#36;{dem:hasRole('ROLE_ADMIN')}= ${dem:hasRole('ROLE_ADMIN')}<br>
++ &#36;{dem:hasRole('ROLE_USER') }= ${dem:hasRole('ROLE_USER') }<br>
++ Locale = <%=LocaleContextHolder.getLocale() %> <br>
++ lang = ${lang} <br>
++ <b> UserInformation: </b><br>
  <c:if test="${not empty loginInfo.userInfo}">
-	name= ${loginInfo.userInfo.name} <br/> 
- 	surname1= ${loginInfo.userInfo.surname1} <br/>
- 	surname2= ${loginInfo.userInfo.surname2} <br/>
- 	email= ${loginInfo.userInfo.email} <br/>
- 	nif= ${loginInfo.userInfo.attributes["nif"]} <br/> 
-  <br/>
+	name= ${loginInfo.userInfo.name} <br> 
+ 	surname1= ${loginInfo.userInfo.surname1} <br>
+ 	surname2= ${loginInfo.userInfo.surname2} <br>
+ 	email= ${loginInfo.userInfo.email} <br>
+ 	nif= ${loginInfo.userInfo.attributes["nif"]} <br> 
+  <br>
 </c:if>
 <c:if test="${empty loginInfo.userInfo}">
-	Error carregant Plugin UserInfo. Revisar logs per mes informacio.<br/>
+	Error carregant Plugin UserInfo. Revisar logs per mes informacio.<br>
 </c:if>
-+ dem:isDesenvolupament() = ${dem:isDesenvolupament()}<br/>
-<br/>
++ dem:isDesenvolupament() = ${dem:isDesenvolupament()}<br>
+<br>
 
 </c:if>

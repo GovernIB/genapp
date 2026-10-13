@@ -13,16 +13,16 @@
 			<strong class="font-weight-bold">
 				${symbol_dollar}{versio.projectName}
 				v${symbol_dollar}{versio.version}<%=Configuracio.isCAIB() ? "-caib" : ""%>
-			</strong> <br /> 
+			</strong> <br> 
 			<small>
-			Build: ${symbol_dollar}{versio.buildTime} <br />
-            JDK: ${symbol_dollar}{version.jdkVersion} <br />
+			Build: ${symbol_dollar}{versio.buildTime} <br>
+            JDK: ${symbol_dollar}{version.jdkVersion} <br>
 			<fmt:message key="revisio" />: 
 			<c:if test="${symbol_dollar}{empty versio.scmRevision}">
 				<fmt:message key="scmversion.msg" />
 			</c:if>
 			<c:if test="${symbol_dollar}{not empty versio.scmRevision}">${symbol_dollar}{versio.scmRevision}</c:if>
-			<br />
+			<br>
 			<span style="padding-top: 2px">
 			 <i><fmt:message key="desenvolupatper" /></i></span>
 			 </small>
@@ -33,11 +33,11 @@
 
 			<a styleClass="text-dark linkPeu" href="/mapaweb"> <fmt:message
 					key="labels.mapaweb" />
-			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/accessibilitat"/>">
+			</a><br> <a styleClass="text-dark linkPeu" href="<c:url value="/public/accessibilitat"/>">
 				<fmt:message key="labels.accessibilitat" />
-			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/protecciodades"/>">
+			</a><br> <a styleClass="text-dark linkPeu" href="<c:url value="/public/protecciodades"/>">
 				<fmt:message key="labels.protecciodades" />
-			</a><br /> <a styleClass="text-dark linkPeu" href="<c:url value="/public/avislegal"/>"> <fmt:message
+			</a><br> <a styleClass="text-dark linkPeu" href="<c:url value="/public/avislegal"/>"> <fmt:message
 					key="labels.avislegal" />
 			</a>
 
@@ -48,7 +48,7 @@
 			<a href="https://governdigital.fundaciobit.org/"  target="_blank"> <img style="padding-top: 10px"
 				src="<c:url value="/img/fundaciobit-logo-peu.png"/>"
 				alt="Fundacio Bit" />
-			</a> <br />
+			</a> <br>
 
 			<!-- Button to trigger modal -->
 			<small><a class="linkAjudaPeu" href="#modalAjuda" role="button"

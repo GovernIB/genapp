@@ -17,7 +17,7 @@
 <h2>Situació de compliment</h2>
 
 <p>
-    Aquest lloc web és parcialment conforme amb
+    Aquest lloc web és <span style="background-color: #ffff00;"><b>No Conforme / Parcialment Conforme / Conforme</b></span> amb
     <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2018-12699" target="_blank" rel="noopener noreferrer">
         el RD 1112/2018
     </a>
@@ -169,7 +169,7 @@
 
 <p>
     S’han utilitzat eines automàtiques per verificar l’accessibilitat de la pàgina (Observatori d’Accessibilitat).
-    El resultat obtingut ha estat el següent:
+    El resultat obtingut ha sigut el següent:
 </p>
 
 <table class="table table-bordered">
@@ -186,11 +186,11 @@
         </tr>
         <tr>
             <td>Nivell d’adequació estimat</td>
-            <td><span style="background-color: #ffff00;">AA</span></td>
+            <td><span style="background-color: #ffff00;">No Vàlid / A / AA</span></td>
         </tr>
         <tr>
             <td>Situació de compliment estimada</td>
-            <td><span style="background-color: #ffff00;">Parcialment conforme</span></td>
+            <td><span style="background-color: #ffff00;">No Conforme / Parcialment Conforme / Conforme</span></td>
         </tr>
     </tbody>
 </table>
@@ -200,7 +200,9 @@
 </p>
 <br>
 <p>
+<span style="background-color: #ffff00;">
     El lloc web està dissenyat per a la seva visualització <i>responsive</i>, de manera que es visualitza de forma òptima en dispositius tauleta i mòbils.
+</span>
 </p>
 
 </div>
