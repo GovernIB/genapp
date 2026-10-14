@@ -34,6 +34,5 @@
     %>
 
    <%@ include file="/WEB-INF/jsp/moduls/menu_role_generator.jsp"%>
-  </ul>
 </div>
 

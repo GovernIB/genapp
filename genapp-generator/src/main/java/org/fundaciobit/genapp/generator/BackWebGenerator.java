@@ -12,6 +12,7 @@ import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
+import org.fundaciobit.genapp.WebFieldInfo;
 import org.fundaciobit.genapp.WebType;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 import org.fundaciobit.genapp.common.web.html.HtmlCSS;
@@ -513,7 +514,7 @@ public class BackWebGenerator extends IconUtils {
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right: 24px;padding-bottom: 4px;\">\n");
                             if (field.getWebFieldInfo().getWebtype() == WebType.ComboBox) {
-                                String ariaLabel = model + "_" + modelCamp + "Select";
+                                String ariaLabel = id;
                                 codeFilterBy.append("              <%-- FILTRE NUMERO SELECT MULTIPLE --%>\n"
                                         + "              <div class=\"input-group-prepend\" style=\"padding-top: 5px;padding-right: 24px;\">\n"
                                         + "              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n"
@@ -608,28 +609,28 @@ public class BackWebGenerator extends IconUtils {
                             continue;
                         }
                         if (cls.equals(Time.class)) {
-                            String ariaLabel = model + "_" + modelCamp;
+                            String ariaLabelledBy = model + "_" + modelCamp + "_label";
+                            String translationKey = model + "." + modelCamp;
                             codeFilterBy.append("            <%-- FILTRE TIME --%>      \n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
-                            codeFilterBy.append(
-                                    "              <span style=\"display: inline;\">\n");
-                            codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + ariaLabel + "\" />:</span>\n");
-                            codeFilterBy.append("              </span>\n");
+                            codeFilterBy.append("              <label id=\"" + ariaLabelledBy + "\" style=\"display: inline;\">\n");
+                            codeFilterBy.append("                  <span class=\"add-on\"><fmt:message key=\"" + translationKey + "\" />:</span>\n");
+                            codeFilterBy.append("              </label>\n");
                             codeFilterBy.append("\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
-                            codeFilterBy.append(generateTimePicker(modelCamp + "Desde", modelCamp + "Desde", ariaLabel));
+                            codeFilterBy.append(generateTimePicker(modelCamp + "Desde", modelCamp + "Desde", ariaLabelledBy));
 
-                            codeFilterBy.append("              \n");
-                            codeFilterBy.append("              \n");
+                            codeFilterBy.append("\n\n");
 
-                            codeFilterBy.append(
-                                    "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
+                            codeFilterBy.append("              <span class=\"add-on\">");
+                            codeFilterBy.append("                   &nbsp;<fmt:message key=\"genapp.to\" />&nbsp;");
+                            codeFilterBy.append("              </span>\n");
 
-                            codeFilterBy.append(generateTimePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabel));
+                            codeFilterBy.append(generateTimePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabelledBy));
 
                             codeFilterBy.append("            </div>\n");
 
@@ -640,26 +641,26 @@ public class BackWebGenerator extends IconUtils {
 
                         if (cls.equals(Date.class)) {
 
-                            String ariaLabel = model + "_" + modelCamp;
+                            String ariaLabelledBy = model + "_" + modelCamp + "_label";
                             codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             
                             // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
-                            codeFilterBy.append("              <span style=\"display: inline;\">\n");
-                            codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model + "."
+                            codeFilterBy.append("              <label id=\"" + ariaLabelledBy + "\" style=\"display: inline;\">\n");
+                            codeFilterBy.append("                  <span class=\"add-on\"><fmt:message key=\"" + model + "."
                                     + modelCamp + "\" />:</span>\n");
-                            codeFilterBy.append("              </span>\n");
+                            codeFilterBy.append("              </label>\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
-                            codeFilterBy.append(generateDatePicker(modelCamp + "Desde", modelCamp + "Desde",ariaLabel));
+                            codeFilterBy.append(generateDatePicker(modelCamp + "Desde", modelCamp + "Desde",ariaLabelledBy));
 
                             codeFilterBy.append("\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
 
-                            codeFilterBy.append(generateDatePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabel));
+                            codeFilterBy.append(generateDatePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabelledBy));
 
                             codeFilterBy.append("            </div>\n");
 
@@ -668,27 +669,26 @@ public class BackWebGenerator extends IconUtils {
                         }
 
                         if (cls.equals(Timestamp.class)) {
-                            final String ariaLabel = model + "_" + modelCamp;
+                            final String ariaLabelledBy = model + "_" + modelCamp + "_label";
+                            final String translationKey = model + "." + modelCamp;
               
 
                             codeFilterBy.append("<%-- FILTRE DATE-TIME --%>\n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
-                            codeFilterBy.append(
-                                    "              <span style=\"display: inline;\">\n");
-                            codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + ariaLabel + "\" />:</span>\n");
-                            codeFilterBy.append(
-                                    "              </span>\n");
+                            codeFilterBy.append("              <label id=\"" + ariaLabelledBy + "\" style=\"display: inline;\">\n");
+                            codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + translationKey + "\" />:</span>\n");
+                            codeFilterBy.append("              </label>\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
-                            codeFilterBy.append(generateDateTimePicker(modelCamp + "Desde", modelCamp + "Desde", ariaLabel));
+                            codeFilterBy.append(generateDateTimePicker(modelCamp + "Desde", modelCamp + "Desde", ariaLabelledBy));
 
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
 
-                            codeFilterBy.append(generateDateTimePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabel));
+                            codeFilterBy.append(generateDateTimePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabelledBy));
 
                             codeFilterBy.append("            </div>\n");
 
@@ -2003,7 +2003,15 @@ public class BackWebGenerator extends IconUtils {
                         code.append("        <tr id=\"" + model + "_" + modelCamp + "_rowid\">\n");
 
                         code.append("          <td id=\"" + model + "_" + modelCamp + "_columnlabelid\">\n");
-                        code.append("            <label for=\"" + model + "." + modelCamp + "\">\n");
+                        
+                        // Si field es traduccions llavors feim un label amb ID
+                        if (translationFields.contains(field)) {
+                            code.append("            <label id=\"" + model + "_" + modelCamp + "_labelid\">\n");
+                        } else {
+                            code.append("            <label for=\"" + model + "." + modelCamp + "\">\n");
+                        }
+                       
+                      
                         code.append("              <fmt:message key=\"" + "${(empty " + instanceForm + ".labels["
                                 + modelCampMay + "])?'" + model + "." + modelCamp + "':" + instanceForm + ".labels["
                                 + modelCampMay + "]}" + "\" />" + required + "\n");
@@ -2040,13 +2048,11 @@ public class BackWebGenerator extends IconUtils {
         StringBuffer code = new StringBuffer();
 
         final String readOnlyCondition = "gen:contains(" + instanceForm + ".readOnlyFields ," + modelCampMay + ")";
-        final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'true' : 'false'}\"";
+        final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'readonly' : ''}\"";
         final String cssClass = "form-control  ${" + readOnlyCondition + "? ' uneditable-input' : ''}"; // col-md-9-optional
         final String formInputReadOnly = readOnlyAttribute + " cssClass=\"" + cssClass + "\" ";
 
         if (fileFields.contains(field)) {
-
-            String formInputReadOnlyFile = readOnlyAttribute + " cssClass=\"custom-file-input " + cssClass + "\" ";
 
             String fileObj = modelCamp;
             if (modelCamp.endsWith("ID")) {
@@ -2066,16 +2072,18 @@ public class BackWebGenerator extends IconUtils {
             code.append("                <div class=\"custom-file\">\n");
             // code.append(" <input type=\"file\" class=\"custom-file-input\"
             // id=\"inputGroupFile02\">\n");
-            code.append("                  <form:input  " + formInputReadOnlyFile + "  path=\"" + modelCamp
-                    + "\" type=\"file\" />\n");
+            // S'utilitza un <input> HTML pla (en lloc de <form:input>) per evitar que
+            // Spring afegeixi automaticament l'atribut value="" (els camps de tipus
+            // fitxer mai s'han de precarregar amb un valor)
+            String classFile = "custom-file-input " + cssClass;
+            code.append("                  <input id=\"" + model + "." + modelCamp + "\" name=\"" + modelCamp + "\" class=\""
+                    + classFile + "\" " + " type=\"file\" />\n");
 
-            code.append("                  <label class=\"custom-file-label\" for=\"" + modelCamp + "\" aria-label=\"Browser\">\n");
+            code.append("                  <label class=\"custom-file-label\" for=\"" + model + "." + modelCamp + "\" >\n");
             // code.append(" <fmt:message key=\"genapp.form.file.select\"/>\n");
             code.append("                  </label>\n");
 
             code.append("                </div>\n");
-            // code.append(" <div class=\"input-group-append\">\n");
-            // code.append(" <span class=\"input-group-text\" id=\"\">Upload</span>\n");
 
             code.append("                <c:choose>\n");
             code.append("                <c:when test=\"${not empty " + instanceForm + "." + model + "." + fileObj
@@ -2083,7 +2091,7 @@ public class BackWebGenerator extends IconUtils {
 
             // code.append(" <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
             code.append("                <div class=\"input-group-append\">\n");
-            code.append("                  <span class=\"input-group-text\" id=\"\">\n");
+            code.append("                  <span class=\"input-group-text\">\n");
             // code.append(" <fmt:message key=\"genapp.form.file.change\"/>\n");
             code.append("                  <small>"
                     + getOnlyReadFileFieldWithoutCondition(project, instanceForm + "." + model, fileObj)
@@ -2092,8 +2100,8 @@ public class BackWebGenerator extends IconUtils {
             code.append("                  </span>\n");
             if (!field.isNotNullable) {
                 code.append("                  <span class=\"input-group-text\" >\n");
-                code.append("                        <form:checkbox aria-label=\"" + model + "." + modelCamp + "Delete\"  path=\"" + modelCamp + "Delete\"/>\n");
-                code.append("                        <label style=\"margin-bottom:0px\" for=\"" + model + "." + modelCamp + "Delete\">\n");
+                code.append("                        <form:checkbox aria-label=\"" + model + "." + modelCamp + "Delete\" id=\"" + modelCamp + "Delete\" path=\"" + modelCamp + "Delete\"/>\n");
+                code.append("                        <label style=\"margin-bottom:0px\" for=\"" + modelCamp + "Delete\">\n");
                 code.append("                        <small style=\"color:#000\">&nbsp;<fmt:message key=\"genapp.form.file.delete\"/></small>\n");
                 code.append("                        </label>\n");
                 code.append("                  </span>\n");
@@ -2170,7 +2178,7 @@ public class BackWebGenerator extends IconUtils {
                 config = "";
             }
             
-            type = type + " aria-label=\"" + model + "." + modelCamp +  "\" ";
+            type = type + " aria-labelledby=\"" + model + "." + modelCamp +  "_labelid\"";
 
             code.append("               " + type + " path=\"" + fullmodel
                     + ".traduccions['${idioma.idiomaID}'].valor\" " + "cssClass=\"" + cssClass + "\" " + "readonly=\"${"
@@ -2251,7 +2259,7 @@ public class BackWebGenerator extends IconUtils {
 
             case WebType.ComboBox:
             case WebType.Query:
-                String id = model + "_" + modelCamp;
+                String id = model + "." + modelCamp;
 
                 String fkTableName = "Values";
                 if (webType == WebType.Query) {
@@ -2279,14 +2287,14 @@ public class BackWebGenerator extends IconUtils {
                 code.append("          </c:if>\n");
                 code.append("          <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
                 code.append("          <c:set var=\"containEmptyValue\"  value=\"false\" />\n");
-                code.append("          <form:select id=\"" + id + "\"  onchange=\"if(typeof onChange" + name
+                code.append("          <form:select path=\"" + model + "." + modelCamp + "\" onchange=\"if(typeof onChange" + name
                         + " == 'function') {  onChange" + name
-                        + "(this); };\"  cssClass=\"form-control col-md-9-optional\" path=\"" + model + "." + modelCamp
-                        + "\"  aria-label=\"" + model + "." + modelCamp +  "\" >\n");
+                        + "(this); };\"  cssClass=\"form-control col-md-9-optional\"" 
+                        + "  aria-label=\"" + model + "." + modelCamp +  "\" >\n\n\n");
 
                 code.append("            <c:forEach items=\"${" + instanceForm + ".listOf" + fkTableName + "For" + name
                         + "}\" var=\"tmp\">\n");
-                code.append("                <form:option value=\"${tmp.key}\">${tmp.value}</form:option>\n");
+                code.append("                <form:option value=\"${tmp.key}\">${tmp.value}</form:option>\n\n");
                 code.append("                <c:if test=\"${empty tmp.key}\">\n");
                 code.append("                  <c:set var=\"containEmptyValue\"  value=\"true\" />\n");
                 code.append("                </c:if>\n");
@@ -2298,11 +2306,11 @@ public class BackWebGenerator extends IconUtils {
                     code.append("            <c:if test=\"${not containEmptyValue}\">\n");
                     // No funciona el seleccionar automàticamernt un valor buit o null
                     code.append("              <c:if test=\"${empty __theForm." + model + "." + modelCamp + " }\">\n");
-                    code.append("                  <form:option value=\"\" selected=\"true\" ></form:option>\n");
+                    code.append("                  <option value=\"\" label=\" \" selected></option>\n\n");
                     code.append("              </c:if>\n");
                     code.append(
-                            "              <c:if test=\"${not empty __theForm." + model + "." + modelCamp + " }\">\n");
-                    code.append("                  <form:option value=\"\" ></form:option>\n");
+                            "              <c:if test=\"${not empty __theForm." + model + "." + modelCamp + " }\">\n\n");
+                    code.append("                  <option value=\"\" label=\" \"></option>\n");
                     code.append("              </c:if>\n");
                     code.append("            </c:if>\n");
                 }
@@ -2387,7 +2395,8 @@ public class BackWebGenerator extends IconUtils {
                     code.append("              <form:errors  path=\"" + model + "." + modelCamp
                             + "\" cssClass=\"errorField alert alert-danger\" />\n");
                     code.append("              <form:checkbox cssClass=\"\" onclick=\"javascript:return ${ "
-                            + readOnlyCondition + "? 'false' : 'true'}\" path=\"" + model + "." + modelCamp
+                            + readOnlyCondition + "? 'false' : 'true'}\" id=\"" + model + "." + modelCamp
+                            + "\" path=\"" + model + "." + modelCamp
                             + "\"  aria-label=\"" +  model + "." + modelCamp + "\" />\n"); // style=\"width:1%\"
                                                                                                                                                                                                                    // ????
                 } else {
@@ -2502,11 +2511,11 @@ public class BackWebGenerator extends IconUtils {
 
     }
 
-    protected static String generateTimePicker(String componentID, String path, String ariaLabel) throws Exception {
+    protected static String generateTimePicker(String componentID, String path, String ariaLabelledBy) throws Exception {
         final int webType = WebType.Time;
         final String readOnlyCondition = "false";
         final String readOnlyAttribute = "";
-        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabel);
+        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabelledBy);
     }
 
     protected static String generateDateTimePicker(String componentID, String path, String ariaLabel) throws Exception {
@@ -2516,16 +2525,16 @@ public class BackWebGenerator extends IconUtils {
         return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabel);
     }
 
-    protected static String generateDatePicker(String componentID, String path, String ariaLabel) throws Exception {
+    protected static String generateDatePicker(String componentID, String path, String ariaLabelledBy) throws Exception {
 
         final int webType = WebType.Date;
         final String readOnlyCondition = "false";
         final String readOnlyAttribute = "";
-        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabel);
+        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabelledBy);
     }
 
     protected static String generateCommonDateTimePicker(int webType, final String readOnlyCondition,
-            final String readOnlyAttribute, String componentID, String path, String ariaLabel) throws Exception {
+            final String readOnlyAttribute, String componentID, String path, String ariaLabelledBy) throws Exception {
 
         String pattern;
         String icon;
@@ -2560,7 +2569,7 @@ public class BackWebGenerator extends IconUtils {
 
         code.append("                      <form:input " + readOnlyAttribute
                 + " cssClass=\"form-control datetimepicker-input\" " + " data-target=\"#" + componentID + "\""
-                + " path=\"" + path + "\" aria-label=\"" + ariaLabel + "\"  />\n");
+                + " path=\"" + path + "\" aria-labelledby=\"" + ariaLabelledBy + "\"  />\n");
         code.append("                    <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
         code.append("                    <div class=\"input-group-append\"  data-target=\"#" + componentID
                 + "\"  data-toggle=\"datetimepicker\">\n");

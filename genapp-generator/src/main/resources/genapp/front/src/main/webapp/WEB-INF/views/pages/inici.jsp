@@ -1,10 +1,10 @@
 <#assign symbol_dollar = "$">
-<%@page import="org.fundaciobit.pluginsib.login.springutils.PluginLoginController"%>
-<%@page contentType="text/html;charset=UTF-8" language="java"%>
-<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@include file="/WEB-INF/views/pages/taglib.jsp"%>
-<c:set var="currentLang" value="${symbol_dollar}{pageContext.response.locale.language}" />
-<!DOCTYPE html>
+<%@page import="org.fundaciobit.pluginsib.login.springutils.PluginLoginController"
+%><%@page contentType="text/html;charset=UTF-8" language="java"
+%><%@page import="org.springframework.security.core.context.SecurityContextHolder"
+%><%@include file="/WEB-INF/views/pages/taglib.jsp"
+%><c:set var="currentLang" value="${symbol_dollar}{pageContext.response.locale.language}" />
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${symbol_dollar}{currentLang}" lang="${symbol_dollar}{pageContext.response.locale.language}">
 <%@include file="/WEB-INF/views/pages/head.jsp"%>
 <body>
@@ -17,7 +17,7 @@ function doLogin() {
                         window.location.href = newUrl;
                     }
 </script>
-    <center>
+    <div style="text-align:center;">
         <br> <br>
         <h1>
             <fmt:message key="titol.tab" />
@@ -150,6 +150,6 @@ function doLogin() {
                 </table>
             </sec:authorize>
         </div>
-    </center>
+    </div>
 </body>
 </html>

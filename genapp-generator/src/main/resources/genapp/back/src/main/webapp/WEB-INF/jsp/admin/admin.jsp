@@ -7,15 +7,13 @@
 <div class="clear"></div>
 <div class="spacer"></div>
 
-<center><h1>Option Page ${dollar}{optionNumber}</h1></center>
+<div style="text-align:center;"><h2>Option Page ${dollar}{optionNumber}</h2></div>
 
-<center><img src="<c:url value="/img/icn_alert_success.png"/>"  alt="exemple" title="exemple"/></center>
-
-
+<div style="text-align:center;"><img src="<c:url value="/img/icn_alert_success.png"/>"  alt="exemple" title="exemple"/></div>
 <label id="thelabel" style="font-size: 1.25rem; font-weight: bold;">Exemple de Controler que "extends" de WebDB:</label>
 
-<table border="1" >
-<tr><td>
+<table style="border: 1px solid; border-collapse: collapse;">
+<tr><td style="border: 1px solid;">
 <textarea cols="120" rows="25" style="font-family: 'Courier New'" aria-label="thelabel">
 package ${package}.back.controller.admin;
 
@@ -44,9 +42,9 @@ public class AlumneAdminController extends AlumneController {
 </td></tr>
 </table>
 
-<center>
+<div style="text-align:center;">
 <img src="<c:url value='/img/atom_spinner.svg'/>" alt="Atom Spinner"/>
-</center>
+</div>
 
 
 
