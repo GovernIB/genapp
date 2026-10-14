@@ -14,7 +14,7 @@
             </td>
           <td id="alumne_nom_columnvalueid">
             <form:errors path="alumne.nom" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="alumne.nom"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="alumne.nom"   />
 
            </td>
         </tr>
@@ -38,16 +38,19 @@
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.IDIOMAID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="alumne_idiomaID"  onchange="if(typeof onChangeIdiomaID == 'function') {  onChangeIdiomaID(this); };"  cssClass="form-control col-md-9-optional" path="alumne.idiomaID"  aria-label="alumne.idiomaID" >
+          <form:select path="alumne.idiomaID" onchange="if(typeof onChangeIdiomaID == 'function') {  onChangeIdiomaID(this); };"  cssClass="form-control col-md-9-optional"  aria-label="alumne.idiomaID" >
+
+
             <c:forEach items="${__theForm.listOfIdiomaForIdiomaID}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
+
                 <c:if test="${empty tmp.key}">
                   <c:set var="containEmptyValue"  value="true" />
                 </c:if>
             </c:forEach>
           <script>
               $(document).ready(function() {
-                  $('#alumne_idiomaID').select2();
+                  $('#alumne.idiomaID').select2();
               });
           </script>
           </form:select>
@@ -70,7 +73,7 @@
     <form:errors path="alumne.dataNaixement" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_dataNaixementDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixement" path="alumne.dataNaixement" aria-label="alumne.dataNaixement"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixement" path="alumne.dataNaixement" aria-labelledby="alumne.dataNaixement"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)}" >
                     <div class="input-group-append"  data-target="#alumne_dataNaixement"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -111,9 +114,12 @@
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.SEXE)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="alumne_sexe"  onchange="if(typeof onChangeSexe == 'function') {  onChangeSexe(this); };"  cssClass="form-control col-md-9-optional" path="alumne.sexe"  aria-label="alumne.sexe" >
+          <form:select path="alumne.sexe" onchange="if(typeof onChangeSexe == 'function') {  onChangeSexe(this); };"  cssClass="form-control col-md-9-optional"  aria-label="alumne.sexe" >
+
+
             <c:forEach items="${__theForm.listOfValuesForSexe}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
+
                 <c:if test="${empty tmp.key}">
                   <c:set var="containEmptyValue"  value="true" />
                 </c:if>
@@ -121,10 +127,12 @@
             <%-- El camp pot ser null, per la qual cosa afegim una entrada buida si no s'ha definit abans --%>
             <c:if test="${not containEmptyValue}">
               <c:if test="${empty __theForm.alumne.sexe }">
-                  <form:option value="" selected="true" ></form:option>
+                  <option value="" label=" " selected></option>
+
               </c:if>
               <c:if test="${not empty __theForm.alumne.sexe }">
-                  <form:option value="" ></form:option>
+
+                  <option value="" label=" "></option>
               </c:if>
             </c:if>
           </form:select>
@@ -146,7 +154,7 @@
           <td id="alumne_actiu_columnvalueid">
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)}" >
               <form:errors  path="alumne.actiu" cssClass="errorField alert alert-danger" />
-              <form:checkbox cssClass="" onclick="javascript:return ${ gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)? 'false' : 'true'}" path="alumne.actiu"  aria-label="alumne.actiu" />
+              <form:checkbox cssClass="" onclick="javascript:return ${ gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)? 'false' : 'true'}" id="alumne.actiu" path="alumne.actiu"  aria-label="alumne.actiu" />
           </c:if>
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)}" >
                 <fmt:message key="genapp.checkbox.${__theForm.alumne.actiu}" />
@@ -169,7 +177,7 @@
     <form:errors path="alumne.darrerAcces" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_darrerAccesDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAcces" path="alumne.darrerAcces" aria-label="alumne.darrerAcces"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAcces" path="alumne.darrerAcces" aria-labelledby="alumne.darrerAcces"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)}" >
                     <div class="input-group-append"  data-target="#alumne_darrerAcces"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -210,20 +218,20 @@
             <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)}" >
               <div class="input-group col-md-9-optional" style="padding: 0px">
                 <div class="custom-file">
-                  <form:input  readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? 'true' : 'false'}" cssClass="custom-file-input form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? ' uneditable-input' : ''}"   path="fotoID" type="file" />
-                  <label class="custom-file-label" for="fotoID" aria-label="Browser">
+                  <input id="alumne.fotoID" name="fotoID" class="custom-file-input form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? ' uneditable-input' : ''}"  type="file" />
+                  <label class="custom-file-label" for="alumne.fotoID" >
                   </label>
                 </div>
                 <c:choose>
                 <c:when test="${not empty __theForm.alumne.foto}">
                 <div class="input-group-append">
-                  <span class="input-group-text" id="">
+                  <span class="input-group-text">
                   <small>              <a target="_blank" href="<c:url value="${dem:fileUrl(__theForm.alumne.foto)}"/>">${__theForm.alumne.foto.nom}</a>
 </small>
                   </span>
                   <span class="input-group-text" >
-                        <form:checkbox aria-label="alumne.fotoIDDelete"  path="fotoIDDelete"/>
-                        <label style="margin-bottom:0px" for="alumne.fotoIDDelete">
+                        <form:checkbox aria-label="alumne.fotoIDDelete" id="fotoIDDelete" path="fotoIDDelete"/>
+                        <label style="margin-bottom:0px" for="fotoIDDelete">
                         <small style="color:#000">&nbsp;<fmt:message key="genapp.form.file.delete"/></small>
                         </label>
                   </span>
@@ -253,7 +261,7 @@
         <c:if test="${!gen:contains(__theForm.hiddenFields,AlumneFields.TITOLACADEMICID)}">
         <tr id="alumne_titolAcademicID_rowid">
           <td id="alumne_titolAcademicID_columnlabelid">
-            <label for="alumne.titolAcademicID">
+            <label id="alumne_titolAcademicID_labelid">
               <fmt:message key="${(empty __theForm.labels[AlumneFields.TITOLACADEMICID])?'alumne.titolAcademicID':__theForm.labels[AlumneFields.TITOLACADEMICID]}" />
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.TITOLACADEMICID]}">
@@ -275,7 +283,7 @@
            <c:forEach items="${__theForm.idiomesTraduccio}" var="idioma" varStatus="counter">
            <div class="tab-pane ${(counter.index == 0)? 'active':'' }" id="tab_${counter.index}_titolAcademic_${idioma.idiomaID}">
                <form:errors path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="errorField alert alert-danger"/>
-               <form:input aria-label="alumne.titolAcademicID"  path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)? ' uneditable-input' : ''}" readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)}" maxlength="4000" />
+               <form:input aria-labelledby="alumne.titolAcademicID_labelid" path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)? ' uneditable-input' : ''}" readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)}" maxlength="4000" />
            </div>
            </c:forEach>
          </div>
@@ -299,7 +307,7 @@
     <form:errors path="alumne.despertador" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_despertadorDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertador" path="alumne.despertador" aria-label="alumne.despertador"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertador" path="alumne.despertador" aria-labelledby="alumne.despertador"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)}" >
                     <div class="input-group-append"  data-target="#alumne_despertador"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -344,7 +352,7 @@
            <c:if test="${not (gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB))}">
 
             <form:errors path="alumne.paginaWeb" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? ' uneditable-input' : ''}"  style="" maxlength="255" path="alumne.paginaWeb"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? ' uneditable-input' : ''}"  style="" maxlength="255" path="alumne.paginaWeb"   />
 
            </c:if>
 

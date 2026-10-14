@@ -14,7 +14,7 @@
             </td>
           <td id="assignatura_nom_columnvalueid">
             <form:errors path="assignatura.nom" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="assignatura.nom"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="assignatura.nom"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
           <td id="assignatura_credits_columnvalueid">
             <form:errors path="assignatura.credits" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? 'true' : 'false'}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? ' uneditable-input' : ''}"  style=""  path="assignatura.credits"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? 'readonly' : ''}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? ' uneditable-input' : ''}"  style=""  path="assignatura.credits"   />
 
            </td>
         </tr>
@@ -56,9 +56,12 @@
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DIASETMANA)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="assignatura_diaSetmana"  onchange="if(typeof onChangeDiaSetmana == 'function') {  onChangeDiaSetmana(this); };"  cssClass="form-control col-md-9-optional" path="assignatura.diaSetmana"  aria-label="assignatura.diaSetmana" >
+          <form:select path="assignatura.diaSetmana" onchange="if(typeof onChangeDiaSetmana == 'function') {  onChangeDiaSetmana(this); };"  cssClass="form-control col-md-9-optional"  aria-label="assignatura.diaSetmana" >
+
+
             <c:forEach items="${__theForm.listOfValuesForDiaSetmana}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
+
                 <c:if test="${empty tmp.key}">
                   <c:set var="containEmptyValue"  value="true" />
                 </c:if>
@@ -66,15 +69,17 @@
             <%-- El camp pot ser null, per la qual cosa afegim una entrada buida si no s'ha definit abans --%>
             <c:if test="${not containEmptyValue}">
               <c:if test="${empty __theForm.assignatura.diaSetmana }">
-                  <form:option value="" selected="true" ></form:option>
+                  <option value="" label=" " selected></option>
+
               </c:if>
               <c:if test="${not empty __theForm.assignatura.diaSetmana }">
-                  <form:option value="" ></form:option>
+
+                  <option value="" label=" "></option>
               </c:if>
             </c:if>
           <script>
               $(document).ready(function() {
-                  $('#assignatura_diaSetmana').select2();
+                  $('#assignatura.diaSetmana').select2();
               });
           </script>
           </form:select>
@@ -97,7 +102,7 @@
     <form:errors path="assignatura.hora" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="assignatura_horaDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_hora" path="assignatura.hora" aria-label="assignatura.hora"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_hora" path="assignatura.hora" aria-labelledby="assignatura.hora"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)}" >
                     <div class="input-group-append"  data-target="#assignatura_hora"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -135,7 +140,7 @@
   <table style="width:100%">
   <tr>
   <td>
-       <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DESCRIPCIO)? 'true' : 'false'}" path="assignatura.descripcio"  />
+       <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DESCRIPCIO)? 'readonly' : ''}" path="assignatura.descripcio"  />
    </td>
    <td style="width:40px">
       <div id="dropdownMenuButton_descripcio" style="vertical-align:top;display:inline;position:relative;">

@@ -612,11 +612,11 @@ public java.lang.Long stringToPK(String value) {
   public List<StringKeyValue> getReferenceListForDiaSetmana(HttpServletRequest request,
        ModelAndView mav, Where where)  throws I18NException {
     List<StringKeyValue> __tmp = new java.util.ArrayList<StringKeyValue>();
-    __tmp.add(new StringKeyValue("1" , "1"));
-    __tmp.add(new StringKeyValue("2" , "2"));
-    __tmp.add(new StringKeyValue("3" , "3"));
-    __tmp.add(new StringKeyValue("4" , "4"));
-    __tmp.add(new StringKeyValue("5" , "5"));
+    __tmp.add(new StringKeyValue("1" , "dilluns"));
+    __tmp.add(new StringKeyValue("2" , "dimarts"));
+    __tmp.add(new StringKeyValue("3" , "dimecres"));
+    __tmp.add(new StringKeyValue("4" , "dijous"));
+    __tmp.add(new StringKeyValue("5" , "divendres"));
     return __tmp;
   }
 

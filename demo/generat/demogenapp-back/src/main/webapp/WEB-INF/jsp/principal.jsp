@@ -10,7 +10,7 @@
 
 <div>
 <br>
-<center>
+<div style="text-align:center;">
 <img src="<c:url value="/img/app-logo.png"/>"  alt="DemoGenApp"/>
 
 <br>
@@ -25,7 +25,7 @@ This page is generated automatically. Please edit.
 </a>
 </div>
 <br>
-</center>
+</div>
  
 </div>
 

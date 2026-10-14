@@ -111,13 +111,13 @@
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
               <%-- FILTRE NUMERO SELECT MULTIPLE --%>
               <div class="input-group-prepend" style="padding-top: 5px;padding-right: 24px;">
-              <label for="assignatura_diaSetmanaSelect" style="display: inline;">
+              <label for="assign_diaSetmana_select" style="display: inline;">
                  <span class="add-on"><fmt:message key="assignatura.diaSetmana" />:</span>
               </label>
               </div>
 
               <div class="input-group-prepend" style="min-width:200px">
-                <form:select aria-label="assignatura_diaSetmanaSelect"   id="assign_diaSetmana_select" path="diaSetmanaSelect" cssClass="search-query input-medium form-control select2 select2-hidden-accessible" multiple="true" style="width:100%;" tabindex="-1" aria-hidden="true">
+                <form:select aria-label="assign_diaSetmana_select"   id="assign_diaSetmana_select" path="diaSetmanaSelect" cssClass="search-query input-medium form-control select2 select2-hidden-accessible" multiple="true" style="width:100%;" tabindex="-1" aria-hidden="true">
                     <c:forEach var="_entry" items="${__theFilterForm.mapOfValuesForDiaSetmana}">
                       <option value="${_entry.key}" ${fn:contains(__theFilterForm.diaSetmanaSelect, _entry.key)?'selected':''} >${_entry.value}</option>
                     </c:forEach>
@@ -152,14 +152,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.HORA)}">
             <%-- FILTRE TIME --%>      
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <span style="display: inline;">
-              <span class="add-on"><fmt:message key="assignatura_hora" />:</span>
-              </span>
+              <label id="assignatura_hora_label" style="display: inline;">
+                  <span class="add-on"><fmt:message key="assignatura.hora" />:</span>
+              </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="horaDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaDesde" path="horaDesde" aria-label="assignatura_hora"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaDesde" path="horaDesde" aria-labelledby="assignatura_hora_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#horaDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -178,12 +178,12 @@
                 });
             });
         </script>
-              
-              
-              <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
+
+
+              <span class="add-on">                   &nbsp;<fmt:message key="genapp.to" />&nbsp;              </span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="horaFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaFins" path="horaFins" aria-label="assignatura_hora"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaFins" path="horaFins" aria-labelledby="assignatura_hora_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#horaFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>

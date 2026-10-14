@@ -1,9 +1,9 @@
-<%@page import="org.fundaciobit.pluginsib.login.springutils.PluginLoginController"%>
-<%@page contentType="text/html;charset=UTF-8" language="java"%>
-<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@include file="/WEB-INF/views/pages/taglib.jsp"%>
-<c:set var="currentLang" value="${pageContext.response.locale.language}" />
-<!DOCTYPE html>
+<%@page import="org.fundaciobit.pluginsib.login.springutils.PluginLoginController"
+%><%@page contentType="text/html;charset=UTF-8" language="java"
+%><%@page import="org.springframework.security.core.context.SecurityContextHolder"
+%><%@include file="/WEB-INF/views/pages/taglib.jsp"
+%><c:set var="currentLang" value="${pageContext.response.locale.language}" />
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${currentLang}" lang="${pageContext.response.locale.language}">
 <%@include file="/WEB-INF/views/pages/head.jsp"%>
 <body>
@@ -16,7 +16,7 @@ function doLogin() {
                         window.location.href = newUrl;
                     }
 </script>
-    <center>
+    <div style="text-align:center;">
         <br> <br>
         <h1>
             <fmt:message key="titol.tab" />
@@ -36,7 +36,7 @@ function doLogin() {
                 <div style="text-align: center; margin-left: 20px">
                     <a href="?lang=${idiomaID}"> <img
                         src="<c:url value="/images/${idiomaID}_petit_${currentLang eq idiomaID? 'on' : 'off'}.gif"/>"
-                        alt="${idiomaID}" style="margin-right: 0.5rem;" width="17" height="14" border="0" /> <br>
+                        alt="${idiomaID}" style="margin-right: 0.5rem;border:0px" width="17" height="14" /> <br>
                         <small> ${currentLang eq idiomaID? '<b>' : ''} <fmt:message key="idioma.${idiomaID}" />
                             ${currentLang eq idiomaID? '</b>' : ''}
                     </small>
@@ -149,6 +149,6 @@ function doLogin() {
                 </table>
             </sec:authorize>
         </div>
-    </center>
+    </div>
 </body>
 </html>

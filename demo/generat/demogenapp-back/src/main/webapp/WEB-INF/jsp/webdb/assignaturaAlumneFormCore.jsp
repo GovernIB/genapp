@@ -20,9 +20,12 @@
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.ALUMNEID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="assignaturaAlumne_alumneID"  onchange="if(typeof onChangeAlumneID == 'function') {  onChangeAlumneID(this); };"  cssClass="form-control col-md-9-optional" path="assignaturaAlumne.alumneID"  aria-label="assignaturaAlumne.alumneID" >
+          <form:select path="assignaturaAlumne.alumneID" onchange="if(typeof onChangeAlumneID == 'function') {  onChangeAlumneID(this); };"  cssClass="form-control col-md-9-optional"  aria-label="assignaturaAlumne.alumneID" >
+
+
             <c:forEach items="${__theForm.listOfAlumneForAlumneID}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
+
                 <c:if test="${empty tmp.key}">
                   <c:set var="containEmptyValue"  value="true" />
                 </c:if>
@@ -51,9 +54,12 @@
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.ASSIGNATURAID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select id="assignaturaAlumne_assignaturaID"  onchange="if(typeof onChangeAssignaturaID == 'function') {  onChangeAssignaturaID(this); };"  cssClass="form-control col-md-9-optional" path="assignaturaAlumne.assignaturaID"  aria-label="assignaturaAlumne.assignaturaID" >
+          <form:select path="assignaturaAlumne.assignaturaID" onchange="if(typeof onChangeAssignaturaID == 'function') {  onChangeAssignaturaID(this); };"  cssClass="form-control col-md-9-optional"  aria-label="assignaturaAlumne.assignaturaID" >
+
+
             <c:forEach items="${__theForm.listOfAssignaturaForAssignaturaID}" var="tmp">
                 <form:option value="${tmp.key}">${tmp.value}</form:option>
+
                 <c:if test="${empty tmp.key}">
                   <c:set var="containEmptyValue"  value="true" />
                 </c:if>
@@ -76,7 +82,7 @@
             </td>
           <td id="assignaturaAlumne_nota_columnvalueid">
             <form:errors path="assignaturaAlumne.nota" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? 'true' : 'false'}" cssClass="w-50 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? ' uneditable-input' : ''}"  style=""  path="assignaturaAlumne.nota"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? 'readonly' : ''}" cssClass="w-50 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? ' uneditable-input' : ''}"  style=""  path="assignaturaAlumne.nota"   />
 
            </td>
         </tr>

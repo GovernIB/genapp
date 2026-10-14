@@ -105,13 +105,13 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DATANAIXEMENT)}">
             <%-- FILTRE DATE --%>
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <span style="display: inline;">
-              <span class="add-on"><fmt:message key="alumne.dataNaixement" />:</span>
-              </span>
+              <label id="alumne_dataNaixement_label" style="display: inline;">
+                  <span class="add-on"><fmt:message key="alumne.dataNaixement" />:</span>
+              </label>
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="dataNaixementDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementDesde" path="dataNaixementDesde" aria-label="alumne_dataNaixement"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementDesde" path="dataNaixementDesde" aria-labelledby="alumne_dataNaixement_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#dataNaixementDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -134,7 +134,7 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="dataNaixementFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementFins" path="dataNaixementFins" aria-label="alumne_dataNaixement"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementFins" path="dataNaixementFins" aria-labelledby="alumne_dataNaixement_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#dataNaixementFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -179,13 +179,13 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DARRERACCES)}">
 <%-- FILTRE DATE-TIME --%>
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <span style="display: inline;">
-              <span class="add-on"><fmt:message key="alumne_darrerAcces" />:</span>
-              </span>
+              <label id="alumne_darrerAcces_label" style="display: inline;">
+              <span class="add-on"><fmt:message key="alumne.darrerAcces" />:</span>
+              </label>
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="darrerAccesDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesDesde" path="darrerAccesDesde" aria-label="alumne_darrerAcces"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesDesde" path="darrerAccesDesde" aria-labelledby="alumne_darrerAcces_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#darrerAccesDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -207,7 +207,7 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="darrerAccesFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesFins" path="darrerAccesFins" aria-label="alumne_darrerAcces"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesFins" path="darrerAccesFins" aria-labelledby="alumne_darrerAcces_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#darrerAccesFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -253,14 +253,14 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.DESPERTADOR)}">
             <%-- FILTRE TIME --%>      
             <div class="input-group" style="padding-right:24px;padding-bottom:4px;align-items:center;">
-              <span style="display: inline;">
-              <span class="add-on"><fmt:message key="alumne_despertador" />:</span>
-              </span>
+              <label id="alumne_despertador_label" style="display: inline;">
+                  <span class="add-on"><fmt:message key="alumne.despertador" />:</span>
+              </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="despertadorDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorDesde" path="despertadorDesde" aria-label="alumne_despertador"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorDesde" path="despertadorDesde" aria-labelledby="alumne_despertador_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#despertadorDesde"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -279,12 +279,12 @@
                 });
             });
         </script>
-              
-              
-              <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
+
+
+              <span class="add-on">                   &nbsp;<fmt:message key="genapp.to" />&nbsp;              </span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="despertadorFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorFins" path="despertadorFins" aria-label="alumne_despertador"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorFins" path="despertadorFins" aria-labelledby="alumne_despertador_label"  />
                     <c:if test="${!false}" >
                     <div class="input-group-append"  data-target="#despertadorFins"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
