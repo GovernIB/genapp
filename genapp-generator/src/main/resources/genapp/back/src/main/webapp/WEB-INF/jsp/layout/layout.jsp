@@ -17,7 +17,7 @@
 
 
     <!--  PIPELLES -->
-    <div class="row-fluid container main" style="max-width: none;">
+    <main class="row-fluid container main" style="max-width: none;">
 
         <ul class="nav nav-tabs custom-submenu">
             <%
@@ -87,7 +87,7 @@
         </div>
 
         <%-- FINAL DIV PIPELLES --%>
-    </div>
+    </main>
 
     <div class="container-fluid">
         <tiles:insertAttribute name="peu">

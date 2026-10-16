@@ -12,7 +12,6 @@ import org.fundaciobit.genapp.FieldInfo;
 import org.fundaciobit.genapp.ForeignKey;
 import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
-import org.fundaciobit.genapp.WebFieldInfo;
 import org.fundaciobit.genapp.WebType;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
 import org.fundaciobit.genapp.common.web.html.HtmlCSS;
@@ -189,6 +188,15 @@ public class BackWebGenerator extends IconUtils {
 
                 code.append("  <c:if test=\"${not empty " + model + "Items}\">\n\n");
                 code.append("  <div class=\"row\" style=\"margin-left: 0px;\">\n");
+                // NOTA (ca): quan hi ha seleccio multiple es generen diversos checkbox amb
+                // el mateix name="selectedItems" (un per fila). Les eines d'accessibilitat
+                // exigeixen que grups de 3 o mes checkboxes/radios amb el mateix name
+                // estiguin agrupats amb <fieldset>/<legend>. S'embolcalla la taula
+                // amb un fieldset (legend amagada visualment amb sr-only, text en catala a pinyo fix).
+                code.append("  <c:if test=\"${" + instanceFilterForm + ".visibleMultipleSelection}\">\n");
+                code.append("  <fieldset>\n");
+                code.append("  <legend class=\"sr-only\">Selecció d'elements de la llista</legend>\n");
+                code.append("  </c:if>\n");
                 code.append(
                         "  <table class=\"table table-sm table-bordered table-striped table-genapp table-genapp-list\" style=\"width:auto;\"> \n");
                 code.append("    <thead>\n");
@@ -225,6 +233,9 @@ public class BackWebGenerator extends IconUtils {
                 code.append("\n");
                 code.append("    </tbody>\n");
                 code.append("  </table>\n");
+                code.append("  <c:if test=\"${" + instanceFilterForm + ".visibleMultipleSelection}\">\n");
+                code.append("  </fieldset>\n");
+                code.append("  </c:if>\n");
                 code.append("  </div>\n");
                 code.append("  </c:if>\n");
                 code.append("  \n");
@@ -318,9 +329,9 @@ public class BackWebGenerator extends IconUtils {
                 codeHeaderButtons.append("          <fmt:param value=\"${entitynameplural}\"/>\n");
                 codeHeaderButtons.append("      </fmt:message>\n");
                 codeHeaderButtons.append("  </c:if>\n");
-                codeHeaderButtons.append("  </label>\n");
+                codeHeaderButtons.append(HtmlCSS.TITOL_END + "\n");
                 codeHeaderButtons.append("\n");
-                codeHeaderButtons.append("      <%-- AGRUPAR PER BOTO - INICI  --%>\n");
+                codeHeaderButtons.append("  <%-- AGRUPAR PER BOTO - INICI  --%>\n");
                 codeHeaderButtons.append("  <c:if test=\"${fn:length(groupby_items) > 0}\">\n");
                 codeHeaderButtons.append("      <c:set var=\"displayGroupBut\" value=\"${" + instanceFilterForm
                         + ".visibleGroupBy?'display:none;':''}\" />\n");
@@ -363,8 +374,11 @@ public class BackWebGenerator extends IconUtils {
                 codeHeaderButtons.append("      <%-- BOTO DE ESBORRAT MULTIPLE  --%>\n");
                 codeHeaderButtons.append("    <c:if test=\"${" + instanceFilterForm + ".deleteSelectedButtonVisible && "
                         + instanceFilterForm + ".visibleMultipleSelection && not empty " + model + "Items}\">\n");
+                // NOTA (ca): s'ha substituit href="#myModal" per href="javascript:void(0);"
+                // perque l'element amb id="myModal" no existeix al carregar la pagina (es crea
+                // dinamicament amb JS en fer click), cosa que WAVE marca com "Broken same-page link".
                 codeHeaderButtons.append(
-                        "      <a class=\"btn btn-danger btn-sm float-right botoselecciolist\" style=\"\" href=\"#myModal\"\n");
+                        "      <a class=\"btn btn-danger btn-sm float-right botoselecciolist\" style=\"\" href=\"javascript:void(0);\"\n");
                 codeHeaderButtons.append(
                         "        onclick=\"openModalSubmit('<c:url value=\"${contexte}/deleteSelected\"/>','show', '"
                                 + model + "');\"\n");
@@ -440,8 +454,12 @@ public class BackWebGenerator extends IconUtils {
                 codeFilterBy.append("        \n");
                 codeFilterBy.append("        <div class=\"float-right\">\n");
                 codeFilterBy.append("\n");
+                // NOTA (ca): l'onclick es mou a l'<a> (en lloc de la <i>) perque sigui
+                // un element device-independent, i s'afegeix un <span class="sr-only">
+                // amb el text, ja que un enllac nomes amb icona (sense text visible)
+                // no es accessible per lectors de pantalla ("Links whose text is empty").
                 codeFilterBy.append(
-                        "           <a class=\"float-right\" style=\"margin-left:10px\" href=\"#\"> <i title=\"<fmt:message key=\"genapp.form.hidefilter\"/>\" onclick=\"document.getElementById('FilterDiv').style.display='none'; document.getElementById('FilterButton').style.display='inline';\" class=\"far fa-window-close\"></i></a>\n");
+                        "           <a class=\"float-right\" style=\"margin-left:10px\" href=\"#\" title=\"<fmt:message key=\"genapp.form.hidefilter\"/>\" onclick=\"document.getElementById('FilterDiv').style.display='none'; document.getElementById('FilterButton').style.display='inline'; return false;\"> <i aria-hidden=\"true\" class=\"far fa-window-close\"></i><span class=\"sr-only\"><fmt:message key=\"genapp.form.hidefilter\"/></span></a>\n");
                 codeFilterBy.append(
                         "           <input style=\"margin-left: 3px\" class=\"btn btn-sm btn-warning float-right\" type=\"button\" onclick=\"clear_form_elements(this.form)\" value=\"<fmt:message key=\"genapp.form.clean\"/>\"/>\n");
                 codeFilterBy.append(
@@ -603,7 +621,7 @@ public class BackWebGenerator extends IconUtils {
                             codeFilterBy.append("              </label>\n");
                             codeFilterBy.append(
                                     "              <form:input cssClass=\"search-query input-medium\" placeholder=\"${cercaper"
-                                            + modelCamp + "}\" path=\"" + modelCamp + "\" aria-label=\"" + ariaLabel  + "\" />\n");
+                                            + modelCamp + "}\" path=\"" + modelCamp + "\" />\n");
                             codeFilterBy.append("            </div>\n");
                             codeFilterBy.append("\n\n");
                             continue;
@@ -781,9 +799,15 @@ public class BackWebGenerator extends IconUtils {
                 // codeGroupBy.append(" <div class=\"span10\">\n");
                 // codeFilterBy.append(" <div class=\"float-right\">\n");
                 // codeFilterBy.append("\n");
-                codeGroupBy.append("           <a style=\"margin-right:4px\" href=\"#\">" + "\n");
+                codeGroupBy.append("           <a style=\"margin-right:4px\" href=\"#\""
+                        + " title=\"<fmt:message key=\"genapp.form.hidegroupby\"/>\""
+                        + " onclick=\"document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline'; return false;\">"
+                        + "\n");
+                // NOTA (ca): l'onclick es mou a l'<a> i s'afegeix <span class="sr-only">
+                // amb el text, ja que un enllac nomes amb icona no es accessible
+                // ("Links whose text is empty").
                 codeGroupBy.append(
-                        "               <i title=\"<fmt:message key=\"genapp.form.hidegroupby\"/>\" onclick=\"document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline';\" class=\"far fa-window-close\"></i>\n");
+                        "               <i aria-hidden=\"true\" class=\"far fa-window-close\"></i><span class=\"sr-only\"><fmt:message key=\"genapp.form.hidegroupby\"/></span>\n");
                 codeGroupBy.append("            </a>\n");
                 codeGroupBy.append("      </div>\n");
                 codeGroupBy.append("\n");
@@ -997,7 +1021,10 @@ public class BackWebGenerator extends IconUtils {
                     codeButtons
                             .append("            <c:if test=\"${" + instanceFilterForm + ".deleteButtonVisible}\">\n");
 
-                    codeButtons.append(render.getActionButtonCode("            ", "btn-danger", "#myModal",
+                    // NOTA (ca): s'ha substituit "#myModal" per "javascript:void(0);" al href
+                    // perque l'id="myModal" no existeix al DOM en carregar la pagina (es crea
+                    // dinamicament amb JS), evitant aixi l'error "Broken same-page link" de WAVE.
+                    codeButtons.append(render.getActionButtonCode("            ", "btn-danger", "javascript:void(0);",
                             "openModal('<c:url value=\"${contexte}" + pkMapping + "/delete\"/>','show');",
                             getWhite(ICON_TRASH), "genapp.delete"));
                     codeButtons.append("            </c:if>\n");
@@ -1301,12 +1328,15 @@ public class BackWebGenerator extends IconUtils {
                 code.append(tab + "<img src=\"<c:url value=\"" + icon + "\"/>\" alt=\"" + codeMessage + "\"/>\n");
                 code.append(tab + "</c:if>");
                 code.append(tab + "<c:if test=\"${!fn:startsWith(" + simpleVar + ", '/')}\">\n");
-                code.append(tab + "<i class=\"" + icon + "\"></i>\n");
+                code.append(tab + "<i aria-hidden=\"true\" class=\"" + icon + "\"></i>\n");
                 code.append(tab + "</c:if>");
 
                 return code.toString();
             } else {
-                return tab + "<i class=\"" + icon + "\"></i>";
+                // NOTA (ca): aria-hidden="true" ja que la icona es purament decorativa;
+                // el text accessible el proporciona el <span class="sr-only"> afegit
+                // al voltant de la crida (veure getActionButtonCode).
+                return tab + "<i aria-hidden=\"true\" class=\"" + icon + "\"></i>";
             }
 
         }
@@ -1397,6 +1427,10 @@ public class BackWebGenerator extends IconUtils {
             }
             codeButtons.append(" title=\"<fmt:message key=\"" + codeMessage + "\"/>\">\n");
             codeButtons.append(getImage(icon, tab + "   ",  codeMessage) + "\n");
+            // NOTA (ca): s'afegeix text accessible (sr-only) ja que l'enllac nomes
+            // conte una icona (sense text visible), cosa que WAVE marca com a
+            // "Links whose text is empty".
+            codeButtons.append(tab + "   <span class=\"sr-only\"><fmt:message key=\"" + codeMessage + "\"/></span>\n");
             codeButtons.append(tab + "</a>\n");
             return codeButtons.toString();
         }
