@@ -9,17 +9,20 @@
             <div class="btn-group" role="group" >
             <c:if test="${__theFilterForm.editButtonVisible}">
             <a class="btn btn-warning" href="<c:url value="${contexte}/${idioma.idiomaID}/edit"/>" role="button"  title="<fmt:message key="genapp.edit"/>">
-               <i class="fas fa-edit"></i>
+               <i aria-hidden="true" class="fas fa-edit"></i>
+               <span class="sr-only"><fmt:message key="genapp.edit"/></span>
             </a>
             </c:if>
             <c:if test="${__theFilterForm.viewButtonVisible}">
             <a class="btn btn-info" href="<c:url value="${contexte}/view/${idioma.idiomaID}"/>" role="button"  title="<fmt:message key="genapp.view"/>">
-               <i class="fas fa-eye"></i>
+               <i aria-hidden="true" class="fas fa-eye"></i>
+               <span class="sr-only"><fmt:message key="genapp.view"/></span>
             </a>
             </c:if>
             <c:if test="${__theFilterForm.deleteButtonVisible}">
-            <a class="btn btn-danger" href="#myModal" role="button"  onclick="openModal('<c:url value="${contexte}/${idioma.idiomaID}/delete"/>','show');" title="<fmt:message key="genapp.delete"/>">
-               <i class="fas fa-trash icon-white"></i>
+            <a class="btn btn-danger" href="javascript:void(0);" role="button"  onclick="openModal('<c:url value="${contexte}/${idioma.idiomaID}/delete"/>','show');" title="<fmt:message key="genapp.delete"/>">
+               <i aria-hidden="true" class="fas fa-trash icon-white"></i>
+               <span class="sr-only"><fmt:message key="genapp.delete"/></span>
             </a>
             </c:if>
             <c:set var="bracket" value="{0}"/>
@@ -34,8 +37,9 @@
                      <c:if test="${fn:startsWith(button.icon, '/')}">
                      <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                      </c:if>                     <c:if test="${!fn:startsWith(button.icon, '/')}">
-                     <i class="${button.icon}"></i>
+                     <i aria-hidden="true" class="${button.icon}"></i>
                      </c:if>
+                     <span class="sr-only"><fmt:message key="${button.codeText}"/></span>
                   </a>
             </c:forEach>
 
@@ -52,8 +56,9 @@
                      <c:if test="${fn:startsWith(button.icon, '/')}">
                      <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                      </c:if>                     <c:if test="${!fn:startsWith(button.icon, '/')}">
-                     <i class="${button.icon}"></i>
+                     <i aria-hidden="true" class="${button.icon}"></i>
                      </c:if>
+                     <span class="sr-only"><fmt:message key="${button.codeText}"/></span>
                   </a>
                   </c:forEach>
 
@@ -71,7 +76,7 @@
             <c:if test="${__theFilterForm.editButtonVisible}">
             <li>
             <a class="btn btn-warning btn-sm a_item" style="margin-bottom:5px;color: white;" href="<c:url value="${contexte}/${idioma.idiomaID}/edit"/>" onclick="null">
-            <i class="fas fa-edit"></i>
+            <i aria-hidden="true" class="fas fa-edit"></i>
              <fmt:message key="genapp.edit"/>
             </a>
             </li>
@@ -79,15 +84,15 @@
             <c:if test="${__theFilterForm.viewButtonVisible}">
             <li>
             <a class="btn btn-info btn-sm a_item" style="margin-bottom:5px;color: white;" href="<c:url value="${contexte}/view/${idioma.idiomaID}"/>" onclick="null">
-            <i class="fas fa-eye"></i>
+            <i aria-hidden="true" class="fas fa-eye"></i>
              <fmt:message key="genapp.view"/>
             </a>
             </li>
             </c:if>
             <c:if test="${__theFilterForm.deleteButtonVisible}">
             <li>
-            <a class="btn btn-danger btn-sm a_item" style="margin-bottom:5px;color: white;" href="#myModal" onclick="openModal('<c:url value="${contexte}/${idioma.idiomaID}/delete"/>','show');">
-            <i class="fas fa-trash icon-white"></i>
+            <a class="btn btn-danger btn-sm a_item" style="margin-bottom:5px;color: white;" href="javascript:void(0);" onclick="openModal('<c:url value="${contexte}/${idioma.idiomaID}/delete"/>','show');">
+            <i aria-hidden="true" class="fas fa-trash icon-white"></i>
              <fmt:message key="genapp.delete"/>
             </a>
             </li>
@@ -105,7 +110,7 @@
                   <c:if test="${fn:startsWith(button.icon, '/')}">
                   <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                   </c:if>                  <c:if test="${!fn:startsWith(button.icon, '/')}">
-                  <i class="${button.icon}"></i>
+                  <i aria-hidden="true" class="${button.icon}"></i>
                   </c:if>
                    <fmt:message key="${button.codeText}"/>
                   </a>
@@ -126,7 +131,7 @@
                   <c:if test="${fn:startsWith(button.icon, '/')}">
                   <img src="<c:url value="${button.icon}"/>" alt="${button.codeText}"/>
                   </c:if>                  <c:if test="${!fn:startsWith(button.icon, '/')}">
-                  <i class="${button.icon}"></i>
+                  <i aria-hidden="true" class="${button.icon}"></i>
                   </c:if>
                    <fmt:message key="${button.codeText}"/>
                   </a>

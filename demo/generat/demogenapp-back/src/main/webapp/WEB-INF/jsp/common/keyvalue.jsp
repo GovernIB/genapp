@@ -5,7 +5,7 @@
 <div class="spacer"></div>
 
 <div id="propietatGlobal_listheader" class="filterLine lead" style="margin-bottom: 10px">
-    <label style="font-size: 1.25rem; font-weight: bold;">${title}</label>
+    <span style="font-size: 1.25rem; font-weight: bold;">${title}</span>
 </div>
 <c:if test="${not empty subtitle}">
 <h6 style="line-height: 10px; margin-top: -10px; margin-bottom: 10px; font-style: italic;">

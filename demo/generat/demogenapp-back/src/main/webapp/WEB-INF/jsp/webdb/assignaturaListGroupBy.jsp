@@ -35,8 +35,8 @@
   
   <div id="GroupDiv" class="wellgroupfilter" style="${displayGroupDiv} padding:1px; margin-right:4px; float:left; ">
       <div  style="text-align:right">
-           <a style="margin-right:4px" href="#">
-               <i title="<fmt:message key="genapp.form.hidegroupby"/>" onclick="document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline';" class="far fa-window-close"></i>
+           <a style="margin-right:4px" href="#" title="<fmt:message key="genapp.form.hidegroupby"/>" onclick="document.getElementById('GroupDiv').style.display='none'; document.getElementById('GroupButton').style.display='inline'; return false;">
+               <i aria-hidden="true" class="far fa-window-close"></i><span class="sr-only"><fmt:message key="genapp.form.hidegroupby"/></span>
             </a>
       </div>
 

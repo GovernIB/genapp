@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- Centre esquerra -->
-		<div class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive">
+		<div class="col-4 text-center pt-2 text-decoration-none bg-transparent text-uppercase p-2 opcionsPeu elementPeuResponsive" style="line-height: 1.8;">
 
 			<a class="text-dark linkPeu" href="/mapaweb"> <fmt:message
 					key="labels.mapaweb" />

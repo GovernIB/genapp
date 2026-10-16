@@ -6,6 +6,10 @@
   <c:if test="${not empty fitxerItems}">
 
   <div class="row" style="margin-left: 0px;">
+  <c:if test="${__theFilterForm.visibleMultipleSelection}">
+  <fieldset>
+  <legend class="sr-only">Selecció d'elements de la llista</legend>
+  </c:if>
   <table class="table table-sm table-bordered table-striped table-genapp table-genapp-list" style="width:auto;"> 
     <thead>
       <tr>
@@ -41,6 +45,9 @@
 
     </tbody>
   </table>
+  <c:if test="${__theFilterForm.visibleMultipleSelection}">
+  </fieldset>
+  </c:if>
   </div>
   </c:if>
   

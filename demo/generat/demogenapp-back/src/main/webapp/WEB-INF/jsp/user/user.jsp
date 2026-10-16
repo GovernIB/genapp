@@ -11,7 +11,7 @@
 
 <div style="text-align:center;"><img src="<c:url value="/img/icn_alert_success.png"/>"  alt="exemple" title="exemple"/></div>
 
-<label id="thelabel" style="font-size: 1.25rem; font-weight: bold;">Exemple de Controler que "extends" de WebDB:</label>
+<span id="thelabel" style="font-size: 1.25rem; font-weight: bold;">Exemple de Controler que "extends" de WebDB:</span>
 
 <table style="border: 1px solid; border-collapse: collapse;">
 <tr><td style="border: 1px solid;">

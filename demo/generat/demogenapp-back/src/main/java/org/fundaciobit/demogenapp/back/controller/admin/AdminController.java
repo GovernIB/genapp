@@ -368,8 +368,11 @@ public class AdminController {
         ModelAndView mav = new ModelAndView("keyvalueAdmin");
         mav.addObject("title", "Llistat d'Opcions de Menú");
         mav.addObject("subtitle",
-                "Per descarregar les URL a les pàgines web en format pla, feis clic <a target=\"_blank\"  href=\""
-                        + request.getContextPath() + "/admin/webpagesplain\" >aquí</a>");
+                "Per descarregar les URL a les pàgines web en format pla, feis clic aquí:"
+                + " <b><a target=\"_blank\"  href=\"" + request.getContextPath() 
+                + "/admin/webpagesplain?includenew=true\" >[AMB NEW]</a></b>"
+                + " &nbsp;&nbsp;<b><a target=\"_blank\"  href=\"" + request.getContextPath() 
+                + "/admin/webpagesplain?includenew=false\" >[SENSE NEW]</a></b>");
         mav.addObject("keyValueList", keyValuelist);
         return mav;
     }
@@ -377,6 +380,10 @@ public class AdminController {
     @RequestMapping(value = "/webpagesplain")
     public void webPagesPlain(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+
+        String includeNewStr = request.getParameter("includenew");
+
+        boolean includeNew = "true".equalsIgnoreCase(includeNewStr);
 
         String[] tabs = { Tab.MENU_PUBLIC_AND_COMMON, Tab.MENU_USER, Tab.MENU_ADMIN };
 
@@ -387,16 +394,53 @@ public class AdminController {
 
         for (String tab : tabs) {
 
-            List<MenuItem> items = MenuOptionManager.getMenuItems(tab);
-            for (MenuItem item : items) {
+            Map<Class<?>, List<MenuItem>> fullInfo = MenuOptionManager.getMenuItemsByClass(tab);
 
-                if (item == null) {
-                    continue;
+            fullInfo.forEach((classe, items) -> {
+                //writer.println("Class: " + classe.getName());
+                for (MenuItem item : items) {
+                    if (item == null) {
+                        continue;
+                    }
+                    writer.println(Configuracio.getBackUrl() + item.getUrl());
                 }
 
-                writer.println(Configuracio.getBackUrl() + item.getUrl());
-            }
+                // Si classe  té mètode isActiveFormNew i retorna true, afegir una URL amb /new
+                if (includeNew) {
+
+                    try {
+                        if (classe.getMethod("isActiveFormNew") != null) {
+                            Object obj = classe.getDeclaredConstructor().newInstance();
+                            Boolean isActiveFormNew = (Boolean) classe.getMethod("isActiveFormNew").invoke(obj);
+
+                            if (Boolean.TRUE.equals(isActiveFormNew)) {
+
+                                // Cercar si classe té un mètode "String getContextWeb()"
+
+                                if (classe.getMethod("getContextWeb") != null) {
+
+                                    String contextWeb = (String) classe.getMethod("getContextWeb").invoke(obj);
+
+                                    writer.println(Configuracio.getBackUrl() + contextWeb + "/new");
+                                }
+
+                            }
+
+                        }
+                    } catch (Throwable e) {
+                        // No action needed, just skip
+
+                        e.printStackTrace();
+                    }
+                }
+
+            });
+
         }
+
+        writer.println(Configuracio.getBackUrl() + "/public/index.html");
+        writer.println(Configuracio.getBackUrl() + "/common/principal.html");
+
         writer.flush();
         writer.close();
     }

@@ -75,11 +75,15 @@
 						<i class="fas fa-language fa-lg"></i>
 						<fmt:message key="idiomes" />
 					</button>
-					<div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+					<%-- No es posa role="menu" perque Bootstrap 4+ no el necessita i WAVE el marca com "Broken ARIA menu" si els items no tenen role="menuitem" --%>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 						<c:forEach var="idioma" items="${idiomes}"
 							varStatus="status">
 							<c:set var="idiomaID" value="${idioma.idiomaID}" />
-							<a class="dropdown-item"
+							<%-- NOTA (ca): s'afegeix l'atribut lang amb el codi IANA de l'idioma
+								 de desti, ja que el text de l'enllac (p.ex. "English") esta escrit
+								 en aquell idioma i no en l'idioma actual de la pagina. --%>
+							<a class="dropdown-item" lang="${idiomaID}"
 								href="?lang=${idiomaID}">
 
 								<img
@@ -102,7 +106,8 @@
 						<i class="fas fa-ellipsis-v" aria-hidden="true"></i>
 						<span class="sr-only">Opcions</span>
 					</button>
-					<div class="dropdown-menu  dropdown-menu-right" role="menu"
+					<%-- No es posa role="menu" perque Bootstrap 4+ no el necessita i WAVE el marca com "Broken ARIA menu" si els items no tenen role="menuitem" --%>
+					<div class="dropdown-menu  dropdown-menu-right"
 						aria-labelledby="dropdownMenu3">
 
 

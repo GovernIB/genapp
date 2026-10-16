@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
   
 <div class="lead" style="margin-bottom:10px">
-<label style="font-size: 1.25rem;font-weight: bold;">
+<span style="font-size: 1.25rem;font-weight: bold;">
  <c:choose>
   <c:when test="${fn:startsWith(fitxerForm.titleCode,'=')}">
        <c:out value="${fn:substringAfter(fitxerForm.titleCode, '=')}" escapeXml="false"/>
@@ -24,7 +24,7 @@
       <fmt:param value="${entityname}"/>
     </fmt:message>
     </c:otherwise>
- </c:choose></label>
+ </c:choose></span>
   <c:if test="${not empty fitxerForm.subTitleCode}">
 <h6 style="line-height: 10px; margin-top: 0px; margin-bottom: 0px;font-style:italic;">
 <c:set var="subtitleTranslated" value="${fn:startsWith(fitxerForm.subTitleCode,'=')}" />

@@ -1,7 +1,9 @@
 package org.fundaciobit.genapp.common.web.menuoptions;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
@@ -124,5 +126,121 @@ public class MenuOptionManager {
         return items;
 
     }
+    
+    
+    /**
+     * Retorna els MenuItem agrupats per la classe Controller que els declara.
+     * 
+     * @param group
+     * @param additionalMenuItems MenuItems addicionals que no provenen de cap classe anotada
+     *                             (s'afegiran agrupats sota la clau {@code null})
+     * @return Un Map on la clau és la classe Controller i el valor la llista de MenuItem
+     *         que aquesta classe declara (ordenats igual que a {@link #getMenuItems(String, MenuItem...)}).
+     * @throws Exception
+     */
+    public static Map<Class<?>, List<MenuItem>> getMenuItemsByClass(String group, MenuItem... additionalMenuItems)
+            throws Exception {
+
+        if (discoverMenuOptionAnnotations == null) {
+            throw new Exception("MenuOptionManager no ha sigut inicialitzat.\n"
+                    + "Has d'afegir el següent codi a InitServlet:\n" + "        // Inicialitzar sistema de menus\n"
+                    + "        new Thread(\n" + "        new Runnable() {\n" + "            @Override\n"
+                    + "            public void run() {\n" + "                try {\r\n"
+                    + "                    MenuOptionManager.setDiscoverMenuOptionAnnotations(\n"
+                    + "                            "
+                    + "new DiscoverMenuOptionAnnotations(Constants.[PREFIX_APP]_PROPERTY_BASE + \"back.controller\"));\n"
+                    + "                } catch (Throwable th) {\n"
+                    + "                    log.error(\"Error inicialitzant sistema de menus: \"+th.getMessage(),th);\n"
+                    + "                }\n" + "            }\n" + "        }).start();\n");
+
+        }
+
+        TreeMap<MenuItemOption, Class<?>> menuOptions = discoverMenuOptionAnnotations.getMenuOptionByGroup(group);
+
+        if (menuOptions == null) {
+            menuOptions = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
+        } else {
+            TreeMap<MenuItemOption, Class<?>> menuOptions2 = new TreeMap<MenuItemOption, Class<?>>(MENUITEM_COMPARATOR);
+            menuOptions2.putAll(menuOptions);
+            menuOptions = menuOptions2;
+        }
+
+        if (additionalMenuItems != null && additionalMenuItems.length != 0) {
+            MenuItemOption lastOption = null;
+            for (MenuItem menuItem : additionalMenuItems) {
+                if (menuItem == null) {
+                    if (lastOption != null) {
+                        lastOption.setAddSeparatorAfter(true);
+                    }
+                } else {
+                    MenuItemOption mio = new MenuItemOption(menuItem.getLabel(), menuItem.getUrl(),
+                            menuItem.getUrlbase(), menuItem.getOrder());
+                    mio.setGroup(group);
+                    // Els additionalMenuItems no provenen de cap classe, per tant s'agrupen amb clau null
+                    menuOptions.put(mio, null);
+                    lastOption = mio;
+                }
+            }
+        }
+
+        // Convertir menuoption a menuitems, agrupats per classe
+        Map<Class<?>, List<MenuItem>> itemsByClass = new LinkedHashMap<Class<?>, List<MenuItem>>();
+
+        for (MenuItemOption menuOption : menuOptions.keySet()) {
+            String baseLink;
+            Class<?> classe = menuOptions.get(menuOption);
+
+            if (menuOption.getUrlbase() == null) {
+                baseLink = "";
+            } else if (menuOption.getUrlbase().isEmpty()) {
+
+                // Cercar el request mapping de la classe
+
+                if (classe != null && CommonBaseController.class.isAssignableFrom(classe)) {
+                    CommonBaseController<?, ?> cbc = (CommonBaseController<?, ?>) classe.getDeclaredConstructor()
+                            .newInstance();
+                    baseLink = cbc.getContextWeb();
+                    if (baseLink != null && !baseLink.endsWith("/")) {
+                        baseLink = baseLink + "/";
+                    }
+                } else if (classe != null) {
+                    throw new Exception("La classe " + classe.getName()
+                            + " té definida l'anotació MenuOption, però aquesta requereix que la classe estengui"
+                            + " de CommonBaseController "
+                            + "o afegir l'atribut baseLink amb valor null a l'anotació @MenuOption.");
+                } else {
+                    baseLink = "";
+                }
+
+            } else {
+                baseLink = menuOption.getUrlbase();
+            }
+
+            List<MenuItem> items = itemsByClass.get(classe);
+            if (items == null) {
+                items = new ArrayList<MenuItem>();
+                itemsByClass.put(classe, items);
+            }
+
+            if (menuOption.isAddSeparatorBefore()) {
+                items.add(null);
+            }
+
+            items.add(new MenuItem(menuOption.getLabel(), (baseLink + menuOption.getUrl()).replaceAll("//", "/"),
+                    baseLink, menuOption.getOrder()));
+
+            if (menuOption.isAddSeparatorAfter()) {
+                items.add(null);
+            }
+        }
+
+        return itemsByClass;
+
+    }
+
+    
+    
+    
+    
 
 }
