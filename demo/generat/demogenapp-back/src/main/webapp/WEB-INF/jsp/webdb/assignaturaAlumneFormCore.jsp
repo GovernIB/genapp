@@ -6,7 +6,7 @@
         <tr id="assignaturaAlumne_alumneID_rowid">
           <td id="assignaturaAlumne_alumneID_columnlabelid">
             <label for="assignaturaAlumne.alumneID">
-              <fmt:message key="${(empty __theForm.labels[AssignaturaAlumneFields.ALUMNEID])?'assignaturaAlumne.alumneID':__theForm.labels[AssignaturaAlumneFields.ALUMNEID]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AssignaturaAlumneFields.ALUMNEID])?'assignaturaAlumne.alumneID':__theForm.labels[AssignaturaAlumneFields.ALUMNEID]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaAlumneFields.ALUMNEID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AssignaturaAlumneFields.ALUMNEID]}" ></i>
@@ -16,11 +16,11 @@
           <form:errors path="assignaturaAlumne.alumneID" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.ALUMNEID)}" >
           <form:hidden path="assignaturaAlumne.alumneID"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignaturaAlumne.alumneID,__theForm.listOfAlumneForAlumneID)}" aria-label="assignaturaAlumne.alumneID" />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignaturaAlumne.alumneID,__theForm.listOfAlumneForAlumneID)}" aria-label="assignaturaAlumne.alumneID"   required aria-required="true"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.ALUMNEID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select path="assignaturaAlumne.alumneID" onchange="if(typeof onChangeAlumneID == 'function') {  onChangeAlumneID(this); };"  cssClass="form-control col-md-9-optional"  aria-label="assignaturaAlumne.alumneID" >
+          <form:select path="assignaturaAlumne.alumneID" cssClass="form-control col-md-9-optional"  required="required"  aria-required="true"  onchange="if(typeof onChangeAlumneID == 'function') {  onChangeAlumneID(this); };">
 
 
             <c:forEach items="${__theForm.listOfAlumneForAlumneID}" var="tmp">
@@ -40,7 +40,7 @@
         <tr id="assignaturaAlumne_assignaturaID_rowid">
           <td id="assignaturaAlumne_assignaturaID_columnlabelid">
             <label for="assignaturaAlumne.assignaturaID">
-              <fmt:message key="${(empty __theForm.labels[AssignaturaAlumneFields.ASSIGNATURAID])?'assignaturaAlumne.assignaturaID':__theForm.labels[AssignaturaAlumneFields.ASSIGNATURAID]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AssignaturaAlumneFields.ASSIGNATURAID])?'assignaturaAlumne.assignaturaID':__theForm.labels[AssignaturaAlumneFields.ASSIGNATURAID]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaAlumneFields.ASSIGNATURAID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AssignaturaAlumneFields.ASSIGNATURAID]}" ></i>
@@ -50,11 +50,11 @@
           <form:errors path="assignaturaAlumne.assignaturaID" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.ASSIGNATURAID)}" >
           <form:hidden path="assignaturaAlumne.assignaturaID"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignaturaAlumne.assignaturaID,__theForm.listOfAssignaturaForAssignaturaID)}" aria-label="assignaturaAlumne.assignaturaID" />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignaturaAlumne.assignaturaID,__theForm.listOfAssignaturaForAssignaturaID)}" aria-label="assignaturaAlumne.assignaturaID"   required aria-required="true"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.ASSIGNATURAID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select path="assignaturaAlumne.assignaturaID" onchange="if(typeof onChangeAssignaturaID == 'function') {  onChangeAssignaturaID(this); };"  cssClass="form-control col-md-9-optional"  aria-label="assignaturaAlumne.assignaturaID" >
+          <form:select path="assignaturaAlumne.assignaturaID" cssClass="form-control col-md-9-optional"  required="required"  aria-required="true"  onchange="if(typeof onChangeAssignaturaID == 'function') {  onChangeAssignaturaID(this); };">
 
 
             <c:forEach items="${__theForm.listOfAssignaturaForAssignaturaID}" var="tmp">

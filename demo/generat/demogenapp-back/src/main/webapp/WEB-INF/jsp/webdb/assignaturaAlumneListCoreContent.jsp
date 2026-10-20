@@ -25,29 +25,41 @@
 
 
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AssignaturaAlumneFields.ID)}">
-          <td>
+        <td>
           ${assignaturaAlumne.id}
+             <c:if test="${empty assignaturaAlumne.id}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AssignaturaAlumneFields.ALUMNEID)}">
-          <td>
+        <td>
           <c:set var="tmp">${assignaturaAlumne.alumneID}</c:set>
           <c:if test="${not empty tmp}">
           ${__theFilterForm.mapOfAlumneForAlumneID[tmp]}
           </c:if>
+             <c:if test="${empty assignaturaAlumne.alumneID}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AssignaturaAlumneFields.ASSIGNATURAID)}">
-          <td>
+        <td>
           <c:set var="tmp">${assignaturaAlumne.assignaturaID}</c:set>
           <c:if test="${not empty tmp}">
           ${__theFilterForm.mapOfAssignaturaForAssignaturaID[tmp]}
           </c:if>
+             <c:if test="${empty assignaturaAlumne.assignaturaID}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AssignaturaAlumneFields.NOTA)}">
-          <td>
+        <td>
           ${assignaturaAlumne.nota}
+             <c:if test="${empty assignaturaAlumne.nota}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
 

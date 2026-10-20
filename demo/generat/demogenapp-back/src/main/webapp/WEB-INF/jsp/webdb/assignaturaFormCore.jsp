@@ -6,7 +6,7 @@
         <tr id="assignatura_nom_rowid">
           <td id="assignatura_nom_columnlabelid">
             <label for="assignatura.nom">
-              <fmt:message key="${(empty __theForm.labels[AssignaturaFields.NOM])?'assignatura.nom':__theForm.labels[AssignaturaFields.NOM]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AssignaturaFields.NOM])?'assignatura.nom':__theForm.labels[AssignaturaFields.NOM]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.NOM]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AssignaturaFields.NOM]}" ></i>
@@ -14,7 +14,7 @@
             </td>
           <td id="assignatura_nom_columnvalueid">
             <form:errors path="assignatura.nom" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="assignatura.nom"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="assignatura.nom"  required="required"  aria-required="true"   />
 
            </td>
         </tr>
@@ -24,7 +24,7 @@
         <tr id="assignatura_credits_rowid">
           <td id="assignatura_credits_columnlabelid">
             <label for="assignatura.credits">
-              <fmt:message key="${(empty __theForm.labels[AssignaturaFields.CREDITS])?'assignatura.credits':__theForm.labels[AssignaturaFields.CREDITS]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AssignaturaFields.CREDITS])?'assignatura.credits':__theForm.labels[AssignaturaFields.CREDITS]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AssignaturaFields.CREDITS]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AssignaturaFields.CREDITS]}" ></i>
@@ -32,7 +32,7 @@
             </td>
           <td id="assignatura_credits_columnvalueid">
             <form:errors path="assignatura.credits" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? 'readonly' : ''}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? ' uneditable-input' : ''}"  style=""  path="assignatura.credits"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? 'readonly' : ''}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? ' uneditable-input' : ''}"  style=""  path="assignatura.credits"  required="required"  aria-required="true"   />
 
            </td>
         </tr>
@@ -52,11 +52,11 @@
           <form:errors path="assignatura.diaSetmana" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DIASETMANA)}" >
           <form:hidden path="assignatura.diaSetmana"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignatura.diaSetmana,__theForm.listOfValuesForDiaSetmana)}" aria-label="assignatura.diaSetmana" />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.assignatura.diaSetmana,__theForm.listOfValuesForDiaSetmana)}" aria-label="assignatura.diaSetmana"   />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DIASETMANA)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select path="assignatura.diaSetmana" onchange="if(typeof onChangeDiaSetmana == 'function') {  onChangeDiaSetmana(this); };"  cssClass="form-control col-md-9-optional"  aria-label="assignatura.diaSetmana" >
+          <form:select path="assignatura.diaSetmana" cssClass="form-control col-md-9-optional"  onchange="if(typeof onChangeDiaSetmana == 'function') {  onChangeDiaSetmana(this); };">
 
 
             <c:forEach items="${__theForm.listOfValuesForDiaSetmana}" var="tmp">
@@ -79,7 +79,7 @@
             </c:if>
           <script>
               $(document).ready(function() {
-                  $('#assignatura.diaSetmana').select2();
+                  $('#assignatura\\.diaSetmana').select2();
               });
           </script>
           </form:select>
@@ -102,9 +102,9 @@
     <form:errors path="assignatura.hora" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="assignatura_horaDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_hora" path="assignatura.hora" aria-labelledby="assignatura.hora"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_horaDiv" path="assignatura.hora"   />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)}" >
-                    <div class="input-group-append"  data-target="#assignatura_hora"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#assignatura_horaDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
                     </c:if>
@@ -112,7 +112,7 @@
             </div>
         <script>
             $(function () {
-                $('#assignatura_hora').datetimepicker({
+                $('#assignatura_horaDiv').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
                     locale: '${lang}',
                     icons: {

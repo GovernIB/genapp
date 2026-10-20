@@ -3,8 +3,8 @@
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
 
-<form:form modelAttribute="assignaturaAlumneForm" method="${(empty method)?'post':method}"
-  enctype="multipart/form-data">
+<form:form modelAttribute="assignaturaAlumneForm" method="${(empty method)?'post':method}" 
+ enctype="multipart/form-data">
   
   <%@include file="assignaturaAlumneFormTitle.jsp" %>
  

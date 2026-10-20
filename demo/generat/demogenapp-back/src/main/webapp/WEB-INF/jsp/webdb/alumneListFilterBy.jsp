@@ -111,9 +111,9 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="dataNaixementDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementDesde" path="dataNaixementDesde" aria-labelledby="alumne_dataNaixement_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementDesdeDiv" path="dataNaixementDesde"  aria-labelledby="alumne_dataNaixement_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#dataNaixementDesde"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#dataNaixementDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     </c:if>
@@ -121,7 +121,7 @@
             </div>
         <script>
             $(function () {
-                $('#dataNaixementDesde').datetimepicker({
+                $('#dataNaixementDesdeDiv').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -134,9 +134,9 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="dataNaixementFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementFins" path="dataNaixementFins" aria-labelledby="alumne_dataNaixement_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#dataNaixementFinsDiv" path="dataNaixementFins"  aria-labelledby="alumne_dataNaixement_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#dataNaixementFins"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#dataNaixementFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     </c:if>
@@ -144,7 +144,7 @@
             </div>
         <script>
             $(function () {
-                $('#dataNaixementFins').datetimepicker({
+                $('#dataNaixementFinsDiv').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -185,9 +185,9 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="darrerAccesDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesDesde" path="darrerAccesDesde" aria-labelledby="alumne_darrerAcces_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesDesdeDiv" path="darrerAccesDesde"  aria-labelledby="alumne_darrerAcces_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#darrerAccesDesde"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#darrerAccesDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     </c:if>
@@ -195,7 +195,7 @@
             </div>
         <script>
             $(function () {
-                $('#darrerAccesDesde').datetimepicker({
+                $('#darrerAccesDesdeDiv').datetimepicker({
                     format: '${gen:getJSDateTimePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -207,9 +207,9 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="darrerAccesFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesFins" path="darrerAccesFins" aria-labelledby="alumne_darrerAcces_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#darrerAccesFinsDiv" path="darrerAccesFins"  aria-labelledby="alumne_darrerAcces_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#darrerAccesFins"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#darrerAccesFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     </c:if>
@@ -217,7 +217,7 @@
             </div>
         <script>
             $(function () {
-                $('#darrerAccesFins').datetimepicker({
+                $('#darrerAccesFinsDiv').datetimepicker({
                     format: '${gen:getJSDateTimePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -260,9 +260,9 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="despertadorDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorDesde" path="despertadorDesde" aria-labelledby="alumne_despertador_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorDesdeDiv" path="despertadorDesde"  aria-labelledby="alumne_despertador_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#despertadorDesde"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#despertadorDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
                     </c:if>
@@ -270,7 +270,7 @@
             </div>
         <script>
             $(function () {
-                $('#despertadorDesde').datetimepicker({
+                $('#despertadorDesdeDiv').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -284,9 +284,9 @@
               <span class="add-on">                   &nbsp;<fmt:message key="genapp.to" />&nbsp;              </span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="despertadorFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorFins" path="despertadorFins" aria-labelledby="alumne_despertador_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#despertadorFinsDiv" path="despertadorFins"  aria-labelledby="alumne_despertador_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#despertadorFins"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#despertadorFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
                     </c:if>
@@ -294,7 +294,7 @@
             </div>
         <script>
             $(function () {
-                $('#despertadorFins').datetimepicker({
+                $('#despertadorFinsDiv').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
                     locale: '${lang}',
                     icons: {

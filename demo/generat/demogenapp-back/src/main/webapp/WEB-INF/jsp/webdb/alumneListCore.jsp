@@ -8,9 +8,9 @@
   <div class="row" style="margin-left: 0px;">
   <c:if test="${__theFilterForm.visibleMultipleSelection}">
   <fieldset>
-  <legend class="sr-only">Selecció d'elements de la llista</legend>
+  <legend class="sr-only">Selecci&oacute; d'elements de la llista</legend>
   </c:if>
-  <table class="table table-sm table-bordered table-striped table-genapp table-genapp-list" style="width:auto;"> 
+  <table class="table table-sm table-bordered table-striped table-genapp table-genapp-list" style="width:auto;" > 
     <thead>
       <tr>
 

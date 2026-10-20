@@ -427,9 +427,10 @@ public class AdminController {
                             }
 
                         }
+                    } catch (NoSuchMethodException e) {
+                        // No action needed, just skip
                     } catch (Throwable e) {
                         // No action needed, just skip
-
                         e.printStackTrace();
                     }
                 }

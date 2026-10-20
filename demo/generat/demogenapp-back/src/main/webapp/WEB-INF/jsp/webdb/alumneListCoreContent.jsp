@@ -25,71 +25,113 @@
 
 
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.ALUMNEID)}">
-          <td>
+        <td>
           ${alumne.alumneID}
+             <c:if test="${empty alumne.alumneID}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.NOM)}">
-          <td>
+        <td>
           ${alumne.nom}
+             <c:if test="${empty alumne.nom}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.IDIOMAID)}">
-          <td>
+        <td>
           <c:set var="tmp">${alumne.idiomaID}</c:set>
           <c:if test="${not empty tmp}">
           ${__theFilterForm.mapOfIdiomaForIdiomaID[tmp]}
           </c:if>
+             <c:if test="${empty alumne.idiomaID}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.DATANAIXEMENT)}">
-          <td> <fmt:formatDate pattern="${gen:getDatePattern()}" value="${alumne.dataNaixement}" /></td>
+        <td>
+         <fmt:formatDate pattern="${gen:getDatePattern()}" value="${alumne.dataNaixement}" />
+             <c:if test="${empty alumne.dataNaixement}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
+          </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.SEXE)}">
-          <td>
+        <td>
           <c:set var="tmp">${alumne.sexe}</c:set>
           <c:if test="${not empty tmp}">
           ${__theFilterForm.mapOfValuesForSexe[tmp]}
           </c:if>
+             <c:if test="${empty alumne.sexe}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.ACTIU)}">
-          <td>
+        <td>
             <img height="18" width="18" src="<c:url value="/img/icn_alert_${alumne.actiu?'success':'error'}.png"/>" alt="${alumne.actiu}" >
+             <c:if test="${empty alumne.actiu}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.DARRERACCES)}">
-          <td> <fmt:formatDate pattern="${gen:getDateTimePattern()}" value="${alumne.darrerAcces}" /></td>
+        <td>
+          <fmt:formatDate pattern="${gen:getDateTimePattern()}" value="${alumne.darrerAcces}" />
+             <c:if test="${empty alumne.darrerAcces}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
+          </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.FOTOID)}">
-          <td>
+        <td>
             <c:if test="${not empty alumne.foto}">
               <a target="_blank" href="<c:url value="${dem:fileUrl(alumne.foto)}"/>">${alumne.foto.nom}</a>
             </c:if>
-           </td>
+             <c:if test="${empty alumne.foto}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
+          </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.TITOLACADEMICID)}">
-          <td>
+        <td>
           <c:set var="tmp">${alumne.titolAcademicID}</c:set>
           <c:if test="${not empty tmp}">
           ${alumne.titolAcademic.traduccions[lang].valor}
           </c:if>
+             <c:if test="${empty alumne.titolAcademic}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.DESPERTADOR)}">
-          <td> <fmt:formatDate pattern="${gen:getTimePattern()}" value="${alumne.despertador}" /></td>
+        <td>
+          <fmt:formatDate pattern="${gen:getTimePattern()}" value="${alumne.despertador}" />
+             <c:if test="${empty alumne.despertador}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
+          </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.PAGINAWEB)}">
-          <td>
+        <td>
                        <c:if test="${ not empty alumne.paginaWeb}">
                <a href="${alumne.paginaWeb}" target="_blank">${alumne.paginaWeb}</a>
              </c:if>
 
+             <c:if test="${empty alumne.paginaWeb}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
         <c:if test="${!gen:contains(__theFilterForm.hiddenFields,AlumneFields.DESCRIPCIO)}">
-          <td>
+        <td>
           ${alumne.descripcio}
+             <c:if test="${empty alumne.descripcio}">
+             <span aria-hidden="true">&nbsp;</span><span class="sr-only">Sense valor</span>
+             </c:if>
           </td>
         </c:if>
 

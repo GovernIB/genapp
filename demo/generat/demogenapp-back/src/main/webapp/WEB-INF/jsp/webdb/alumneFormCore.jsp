@@ -6,7 +6,7 @@
         <tr id="alumne_nom_rowid">
           <td id="alumne_nom_columnlabelid">
             <label for="alumne.nom">
-              <fmt:message key="${(empty __theForm.labels[AlumneFields.NOM])?'alumne.nom':__theForm.labels[AlumneFields.NOM]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AlumneFields.NOM])?'alumne.nom':__theForm.labels[AlumneFields.NOM]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.NOM]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AlumneFields.NOM]}" ></i>
@@ -14,7 +14,7 @@
             </td>
           <td id="alumne_nom_columnvalueid">
             <form:errors path="alumne.nom" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="alumne.nom"   />
+            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="alumne.nom"  required="required"  aria-required="true"   />
 
            </td>
         </tr>
@@ -24,7 +24,7 @@
         <tr id="alumne_idiomaID_rowid">
           <td id="alumne_idiomaID_columnlabelid">
             <label for="alumne.idiomaID">
-              <fmt:message key="${(empty __theForm.labels[AlumneFields.IDIOMAID])?'alumne.idiomaID':__theForm.labels[AlumneFields.IDIOMAID]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AlumneFields.IDIOMAID])?'alumne.idiomaID':__theForm.labels[AlumneFields.IDIOMAID]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.IDIOMAID]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AlumneFields.IDIOMAID]}" ></i>
@@ -34,11 +34,11 @@
           <form:errors path="alumne.idiomaID" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.IDIOMAID)}" >
           <form:hidden path="alumne.idiomaID"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.idiomaID,__theForm.listOfIdiomaForIdiomaID)}" aria-label="alumne.idiomaID" />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.idiomaID,__theForm.listOfIdiomaForIdiomaID)}" aria-label="alumne.idiomaID"   required aria-required="true"  />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.IDIOMAID)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select path="alumne.idiomaID" onchange="if(typeof onChangeIdiomaID == 'function') {  onChangeIdiomaID(this); };"  cssClass="form-control col-md-9-optional"  aria-label="alumne.idiomaID" >
+          <form:select path="alumne.idiomaID" cssClass="form-control col-md-9-optional"  required="required"  aria-required="true"  onchange="if(typeof onChangeIdiomaID == 'function') {  onChangeIdiomaID(this); };">
 
 
             <c:forEach items="${__theForm.listOfIdiomaForIdiomaID}" var="tmp">
@@ -50,7 +50,7 @@
             </c:forEach>
           <script>
               $(document).ready(function() {
-                  $('#alumne.idiomaID').select2();
+                  $('#alumne\\.idiomaID').select2();
               });
           </script>
           </form:select>
@@ -63,7 +63,7 @@
         <tr id="alumne_dataNaixement_rowid">
           <td id="alumne_dataNaixement_columnlabelid">
             <label for="alumne.dataNaixement">
-              <fmt:message key="${(empty __theForm.labels[AlumneFields.DATANAIXEMENT])?'alumne.dataNaixement':__theForm.labels[AlumneFields.DATANAIXEMENT]}" /> &nbsp;(*)
+              <fmt:message key="${(empty __theForm.labels[AlumneFields.DATANAIXEMENT])?'alumne.dataNaixement':__theForm.labels[AlumneFields.DATANAIXEMENT]}" />&nbsp;<span class="text-danger" aria-hidden="true">(*)</span><span class="sr-only">(obligatori, obligatorio)</span>
              </label>
               <c:if test="${not empty __theForm.help[AlumneFields.DATANAIXEMENT]}">
               <i class="fas fa-info-circle" title="${__theForm.help[AlumneFields.DATANAIXEMENT]}" ></i>
@@ -73,9 +73,9 @@
     <form:errors path="alumne.dataNaixement" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_dataNaixementDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixement" path="alumne.dataNaixement" aria-labelledby="alumne.dataNaixement"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixementDiv" path="alumne.dataNaixement"   required="required"  aria-required="true"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)}" >
-                    <div class="input-group-append"  data-target="#alumne_dataNaixement"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#alumne_dataNaixementDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     </c:if>
@@ -83,7 +83,7 @@
             </div>
         <script>
             $(function () {
-                $('#alumne_dataNaixement').datetimepicker({
+                $('#alumne_dataNaixementDiv').datetimepicker({
                     format: '${gen:getJSDatePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -110,11 +110,11 @@
           <form:errors path="alumne.sexe" cssClass="errorField alert alert-danger" />
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.SEXE)}" >
           <form:hidden path="alumne.sexe"/>
-          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.sexe,__theForm.listOfValuesForSexe)}" aria-label="alumne.sexe" />
+          <input type="text" readonly="true" class="form-control col-md-9-optional uneditable-input" value="${gen:findValue(__theForm.alumne.sexe,__theForm.listOfValuesForSexe)}" aria-label="alumne.sexe"   />
           </c:if>
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.SEXE)}" >
           <c:set var="containEmptyValue"  value="false" />
-          <form:select path="alumne.sexe" onchange="if(typeof onChangeSexe == 'function') {  onChangeSexe(this); };"  cssClass="form-control col-md-9-optional"  aria-label="alumne.sexe" >
+          <form:select path="alumne.sexe" cssClass="form-control col-md-9-optional"  onchange="if(typeof onChangeSexe == 'function') {  onChangeSexe(this); };">
 
 
             <c:forEach items="${__theForm.listOfValuesForSexe}" var="tmp">
@@ -154,7 +154,10 @@
           <td id="alumne_actiu_columnvalueid">
           <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)}" >
               <form:errors  path="alumne.actiu" cssClass="errorField alert alert-danger" />
-              <form:checkbox cssClass="" onclick="javascript:return ${ gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)? 'false' : 'true'}" id="alumne.actiu" path="alumne.actiu"  aria-label="alumne.actiu" />
+<fieldset>
+<legend class="sr-only">Evitar errors d'Accessibilitat</legend>
+              <form:checkbox cssClass="" onclick="javascript:return ${ gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)? 'false' : 'true'}" id="alumne.actiu" path="alumne.actiu"   />
+</fieldset>
           </c:if>
           <c:if test="${gen:contains(__theForm.readOnlyFields ,AlumneFields.ACTIU)}" >
                 <fmt:message key="genapp.checkbox.${__theForm.alumne.actiu}" />
@@ -177,9 +180,9 @@
     <form:errors path="alumne.darrerAcces" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_darrerAccesDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAcces" path="alumne.darrerAcces" aria-labelledby="alumne.darrerAcces"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAccesDiv" path="alumne.darrerAcces"   />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)}" >
-                    <div class="input-group-append"  data-target="#alumne_darrerAcces"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#alumne_darrerAccesDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
                     </c:if>
@@ -187,7 +190,7 @@
             </div>
         <script>
             $(function () {
-                $('#alumne_darrerAcces').datetimepicker({
+                $('#alumne_darrerAccesDiv').datetimepicker({
                     format: '${gen:getJSDateTimePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -218,19 +221,22 @@
             <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)}" >
               <div class="input-group col-md-9-optional" style="padding: 0px">
                 <div class="custom-file">
-                  <input id="alumne.fotoID" name="fotoID" class="custom-file-input form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? ' uneditable-input' : ''}"  type="file" />
-                  <label class="custom-file-label" for="alumne.fotoID" >
-                  </label>
+                  <input id="alumne.fotoID" name="fotoID" class="custom-file-input form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.FOTOID)? ' uneditable-input' : ''}"  type="file"  />
+                  <span id="fotoID-custom-file-label2" class="custom-file-label" >
+                    <c:if test="${ empty __theForm.alumne.foto}">
+                    <fmt:message key="genapp.form.file.select"/>
+                    </c:if>
+                  </span>
                 </div>
                 <c:choose>
                 <c:when test="${not empty __theForm.alumne.foto}">
-                <div class="input-group-append">
-                  <span class="input-group-text">
+                <div class="input-group-append input-group-append-file">
+                  <span class="input-group-text" id="fotoID-custom-file-label">
                   <small>              <a target="_blank" href="<c:url value="${dem:fileUrl(__theForm.alumne.foto)}"/>">${__theForm.alumne.foto.nom}</a>
 </small>
                   </span>
                   <span class="input-group-text" >
-                        <form:checkbox aria-label="alumne.fotoIDDelete" id="fotoIDDelete" path="fotoIDDelete"/>
+                        <form:checkbox id="fotoIDDelete" path="fotoIDDelete"/>
                         <label style="margin-bottom:0px" for="fotoIDDelete">
                         <small style="color:#000">&nbsp;<fmt:message key="genapp.form.file.delete"/></small>
                         </label>
@@ -243,15 +249,17 @@
                   <small></small>
                   </span>
                 </div>
+                </c:otherwise>
+                </c:choose>
                 <script>
-					$('#fotoID').on('change', function(){
-						var ruta = $('#fotoID').val(); 
+					$('#alumne\\.fotoID').on('change', function(){
+						var ruta = $('#alumne\\.fotoID').val(); 
 						var rutaArray = ruta.split('\\');
 						$('#fotoID-custom-file-label').css('display','block');
 						$('#fotoID-custom-file-label small').html(rutaArray[rutaArray.length - 1]);
-					});
-				</script>                </c:otherwise>
-                </c:choose>
+                       $('#fotoID-custom-file-label2').html(rutaArray[rutaArray.length - 1]);
+                   });
+				</script>
               </div>
             </c:if>
            </td>
@@ -274,7 +282,7 @@
          <ul class="nav nav-tabs" style="margin: 0 15px -1px;">
              <c:forEach items="${__theForm.idiomesTraduccio}" var="idioma" varStatus="counter">
             <li class="nav-item ">
-                 <a class="nav-link ${(counter.index == 0)? 'active':''}" href="#tab_${counter.index}_titolAcademic_${idioma.idiomaID}" data-toggle="tab">${idioma.nom}</a>
+                 <a class="nav-link ${(counter.index == 0)? 'active':''}" href="#tab_${counter.index}_titolAcademic_${idioma.idiomaID}" lang="${idioma.idiomaID}" data-toggle="tab">${idioma.nom}</a>
             </li>
           </c:forEach>
            
@@ -283,7 +291,7 @@
            <c:forEach items="${__theForm.idiomesTraduccio}" var="idioma" varStatus="counter">
            <div class="tab-pane ${(counter.index == 0)? 'active':'' }" id="tab_${counter.index}_titolAcademic_${idioma.idiomaID}">
                <form:errors path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="errorField alert alert-danger"/>
-               <form:input aria-labelledby="alumne.titolAcademicID_labelid" path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)? ' uneditable-input' : ''}" readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)}" maxlength="4000" />
+               <form:input aria-labelledby="alumne_titolAcademicID_labelid" path="alumne.titolAcademic.traduccions['${idioma.idiomaID}'].valor" cssClass="form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)? ' uneditable-input' : ''}" readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.TITOLACADEMICID)}" maxlength="4000" />
            </div>
            </c:forEach>
          </div>
@@ -307,9 +315,9 @@
     <form:errors path="alumne.despertador" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_despertadorDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertador" path="alumne.despertador" aria-labelledby="alumne.despertador"  />
+                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertadorDiv" path="alumne.despertador"   />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)}" >
-                    <div class="input-group-append"  data-target="#alumne_despertador"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#alumne_despertadorDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
                     </c:if>
@@ -317,7 +325,7 @@
             </div>
         <script>
             $(function () {
-                $('#alumne_despertador').datetimepicker({
+                $('#alumne_despertadorDiv').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
                     locale: '${lang}',
                     icons: {

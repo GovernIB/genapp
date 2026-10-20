@@ -159,9 +159,9 @@
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="horaDesdeDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaDesde" path="horaDesde" aria-labelledby="assignatura_hora_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaDesdeDiv" path="horaDesde"  aria-labelledby="assignatura_hora_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#horaDesde"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#horaDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
                     </c:if>
@@ -169,7 +169,7 @@
             </div>
         <script>
             $(function () {
-                $('#horaDesde').datetimepicker({
+                $('#horaDesdeDiv').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
                     locale: '${lang}',
                     icons: {
@@ -183,9 +183,9 @@
               <span class="add-on">                   &nbsp;<fmt:message key="genapp.to" />&nbsp;              </span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="horaFinsDiv" data-target-input="nearest">
-                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaFins" path="horaFins" aria-labelledby="assignatura_hora_label"  />
+                      <form:input  cssClass="form-control datetimepicker-input"  data-target="#horaFinsDiv" path="horaFins"  aria-labelledby="assignatura_hora_label"   />
                     <c:if test="${!false}" >
-                    <div class="input-group-append"  data-target="#horaFins"  data-toggle="datetimepicker">
+                    <div class="input-group-append"  data-target="#horaFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
                     </c:if>
@@ -193,7 +193,7 @@
             </div>
         <script>
             $(function () {
-                $('#horaFins').datetimepicker({
+                $('#horaFinsDiv').datetimepicker({
                     format: '${gen:getJSTimePattern()}',
                     locale: '${lang}',
                     icons: {
