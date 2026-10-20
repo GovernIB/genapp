@@ -77,6 +77,9 @@ public class BackWebGenerator extends IconUtils {
                 code.append("<%-- ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!! --%>\n");
                 code.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
                 code.append("\n");
+                
+                code.append("<fieldset>\n");
+                code.append("<legend class=\"sr-only\">Evitar errors d'Accessibilitat Web</legend>\n");
 
                 code.append("<form:form name=\"" + model + "\" cssClass=\"form-search\"  modelAttribute=\""
                         + instanceFilterForm + "\" \n");
@@ -121,6 +124,7 @@ public class BackWebGenerator extends IconUtils {
 
                 code.append("\n");
                 code.append("</form:form> \n");
+                code.append("</fieldset>\n");
                 code.append("    \n");
                 code.append("\n");
 
@@ -195,10 +199,10 @@ public class BackWebGenerator extends IconUtils {
                 // amb un fieldset (legend amagada visualment amb sr-only, text en catala a pinyo fix).
                 code.append("  <c:if test=\"${" + instanceFilterForm + ".visibleMultipleSelection}\">\n");
                 code.append("  <fieldset>\n");
-                code.append("  <legend class=\"sr-only\">Selecció d'elements de la llista</legend>\n");
+                code.append("  <legend class=\"sr-only\">Selecci&oacute; d'elements de la llista</legend>\n");
                 code.append("  </c:if>\n");
-                code.append(
-                        "  <table class=\"table table-sm table-bordered table-striped table-genapp table-genapp-list\" style=\"width:auto;\"> \n");
+                code.append("  <table class=\"table table-sm table-bordered table-striped table-genapp table-genapp-list\""
+                        + " style=\"width:auto;\" > \n");
                 code.append("    <thead>\n");
                 code.append("      <tr>\n\n");
 
@@ -268,10 +272,9 @@ public class BackWebGenerator extends IconUtils {
 
                 codeHeaderMultipleSelect
                         .append("      <c:if test=\"${" + instanceFilterForm + ".visibleMultipleSelection}\">\n");
-                codeHeaderMultipleSelect.append("      <th aria-label=\"Seleccionar tots\">\n");
-                codeHeaderMultipleSelect.append(
-                        "         <input type=\"checkbox\" aria-label=\"SeleccionarTots\" onClick=\"selectUnselectCheckBoxes(this)\" />\n");
-                codeHeaderMultipleSelect.append("      </th>\n");
+                codeHeaderMultipleSelect.append("    <th aria-label=\"Seleccionar tots\">");
+                codeHeaderMultipleSelect.append("<input type=\"checkbox\" aria-label=\"SeleccionarTots\" onClick=\"selectUnselectCheckBoxes(this)\" />");
+                codeHeaderMultipleSelect.append("</th>\n");
                 codeHeaderMultipleSelect.append("      </c:if>\n");
 
                 sourceFiles.add(new SourceFile(model + "ListCoreHeaderMultipleSelect.jsp",
@@ -627,20 +630,22 @@ public class BackWebGenerator extends IconUtils {
                             continue;
                         }
                         if (cls.equals(Time.class)) {
-                            String ariaLabelledBy = model + "_" + modelCamp + "_label";
+                            String ariaLabelledById = model + "_" + modelCamp  + "_label";
+                            String ariaLabelledByFull = " aria-labelledby=\"" + ariaLabelledById + "\" ";
+                            
                             String translationKey = model + "." + modelCamp;
                             codeFilterBy.append("            <%-- FILTRE TIME --%>      \n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
-                            codeFilterBy.append("              <label id=\"" + ariaLabelledBy + "\" style=\"display: inline;\">\n");
+                            codeFilterBy.append("              <label id=\"" + ariaLabelledById + "\" style=\"display: inline;\">\n");
                             codeFilterBy.append("                  <span class=\"add-on\"><fmt:message key=\"" + translationKey + "\" />:</span>\n");
                             codeFilterBy.append("              </label>\n");
                             codeFilterBy.append("\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
-                            codeFilterBy.append(generateTimePicker(modelCamp + "Desde", modelCamp + "Desde", ariaLabelledBy));
+                            codeFilterBy.append(generateTimePicker(modelCamp + "DesdeDiv", modelCamp + "Desde", ariaLabelledByFull));
 
                             codeFilterBy.append("\n\n");
 
@@ -648,7 +653,7 @@ public class BackWebGenerator extends IconUtils {
                             codeFilterBy.append("                   &nbsp;<fmt:message key=\"genapp.to\" />&nbsp;");
                             codeFilterBy.append("              </span>\n");
 
-                            codeFilterBy.append(generateTimePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabelledBy));
+                            codeFilterBy.append(generateTimePicker(modelCamp + "FinsDiv", modelCamp + "Fins", ariaLabelledByFull));
 
                             codeFilterBy.append("            </div>\n");
 
@@ -659,26 +664,28 @@ public class BackWebGenerator extends IconUtils {
 
                         if (cls.equals(Date.class)) {
 
-                            String ariaLabelledBy = model + "_" + modelCamp + "_label";
+                            
+                            String ariaLabelledById = model + "_" + modelCamp  + "_label";
+                            String ariaLabelledByFull = " aria-labelledby=\"" + ariaLabelledById + "\" ";
                             codeFilterBy.append("            <%-- FILTRE DATE --%>\n");
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             
                             // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
-                            codeFilterBy.append("              <label id=\"" + ariaLabelledBy + "\" style=\"display: inline;\">\n");
+                            codeFilterBy.append("              <label id=\"" + ariaLabelledById + "\" style=\"display: inline;\">\n");
                             codeFilterBy.append("                  <span class=\"add-on\"><fmt:message key=\"" + model + "."
                                     + modelCamp + "\" />:</span>\n");
                             codeFilterBy.append("              </label>\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
-                            codeFilterBy.append(generateDatePicker(modelCamp + "Desde", modelCamp + "Desde",ariaLabelledBy));
+                            codeFilterBy.append(generateDatePicker(modelCamp + "DesdeDiv", modelCamp + "Desde",ariaLabelledByFull));
 
                             codeFilterBy.append("\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
 
-                            codeFilterBy.append(generateDatePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabelledBy));
+                            codeFilterBy.append(generateDatePicker(modelCamp + "FinsDiv", modelCamp + "Fins", ariaLabelledByFull));
 
                             codeFilterBy.append("            </div>\n");
 
@@ -687,7 +694,8 @@ public class BackWebGenerator extends IconUtils {
                         }
 
                         if (cls.equals(Timestamp.class)) {
-                            final String ariaLabelledBy = model + "_" + modelCamp + "_label";
+                            String ariaLabelledById = model + "_" + modelCamp  + "_label";
+                            String ariaLabelledByFull = " aria-labelledby=\"" + ariaLabelledById + "\" ";
                             final String translationKey = model + "." + modelCamp;
               
 
@@ -695,18 +703,18 @@ public class BackWebGenerator extends IconUtils {
                             codeFilterBy.append("            <div class=\"" + inputgroupcss
                                     + "\" style=\"padding-right:24px;padding-bottom:4px;align-items:center;\">\n");
                             // No s'utilitza <label for="..."> perque aquest text fa referencia a dos camps (Desde/Fins)
-                            codeFilterBy.append("              <label id=\"" + ariaLabelledBy + "\" style=\"display: inline;\">\n");
+                            codeFilterBy.append("              <label id=\"" + ariaLabelledById + "\" style=\"display: inline;\">\n");
                             codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + translationKey + "\" />:</span>\n");
                             codeFilterBy.append("              </label>\n");
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.from\" /></span>\n");
 
-                            codeFilterBy.append(generateDateTimePicker(modelCamp + "Desde", modelCamp + "Desde", ariaLabelledBy));
+                            codeFilterBy.append(generateDateTimePicker(modelCamp + "DesdeDiv", modelCamp + "Desde", ariaLabelledByFull));
 
                             codeFilterBy.append(
                                     "              <span class=\"add-on\">&nbsp;<fmt:message key=\"genapp.to\" />&nbsp;</span>\n");
 
-                            codeFilterBy.append(generateDateTimePicker(modelCamp + "Fins", modelCamp + "Fins", ariaLabelledBy));
+                            codeFilterBy.append(generateDateTimePicker(modelCamp + "FinsDiv", modelCamp + "Fins", ariaLabelledByFull));
 
                             codeFilterBy.append("            </div>\n");
 
@@ -924,12 +932,12 @@ public class BackWebGenerator extends IconUtils {
                         "<un:useConstants var=\"" + instanceFields + "\" className=\"" + fieldsClass + "\"/>\n");
                 codeHeader.append("  \n");
 
-                String additionalFieldsHeaderUp = "\n\n        <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
+                String additionalFieldsHeaderUp = "\n\n"
+                        + "        <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
                         + "        <c:if test=\"${ __entry.key < 0 && ((empty __entry.value.searchBy)? true : !gen:contains(__theFilterForm.hiddenFields, __entry.value.searchBy)) && ((empty __entry.value.groupBy )? true : !gen:contains(__theFilterForm.hiddenFields, __entry.value.groupBy ))}\">\n"
-                        + "        <th>\n" + "        ${" + project.getPrefix().toLowerCase()
-                        + ":getSortIconsAdditionalField(__theFilterForm,__entry.value)}\n"
-                        // + " <fmt:message key=\"${__entry.value.codeName}\" />\n"
-                        + "        </th>\n" + "        </c:if>\n" + "        </c:forEach>\n\n";
+                        + "        <th>${" + project.getPrefix().toLowerCase() + ":getSortIconsAdditionalField(__theFilterForm,__entry.value)}</th>\n"
+                        + "        </c:if>\n"
+                        + "        </c:forEach>\n\n";
 
                 String additionalFieldsHeaderDown = additionalFieldsHeaderUp.replace("< 0", ">=0");
 
@@ -1108,6 +1116,8 @@ public class BackWebGenerator extends IconUtils {
                     + "          </c:forEach>\n\n\n";
 
             codeCoreContent.append(additionalFieldsUp);
+            
+            // CAMPS FORMULARI
 
             for (FieldInfo field : fields) {
                 // Class<?> cls = field.getJavaType();
@@ -1116,18 +1126,17 @@ public class BackWebGenerator extends IconUtils {
 
                 codeCoreContent.append("        <c:if test=\"${!gen:contains(" + instanceFilterForm + ".hiddenFields,"
                         + modelCampMay + ")}\">\n");
+                
+                codeCoreContent.append("        <td>\n");
+
                 try {
                     // FITXER
                     if (fileFields.contains(field)) {
                         if (modelCamp.endsWith("ID")) {
                             modelCamp = modelCamp.substring(0, modelCamp.length() - 2);
-                        }
-
-                        codeCoreContent.append("          <td>\n");
+                        }                       
                         // TODO FER MÈTODE QUE PASSAT UN FITXER RETORNI EL NOM
-
                         codeCoreContent.append(getOnlyReadFileField(project, model, modelCamp));
-                        codeCoreContent.append("           </td>\n");
                         continue;
                     }
 
@@ -1149,8 +1158,6 @@ public class BackWebGenerator extends IconUtils {
                          * } else
                          */
                         {
-
-                            codeCoreContent.append("          <td>\n");
                             ForeignKey fk = field.getWebFieldInfo().getForeignKey();
                             if (fk == null && field.getWebFieldInfo().getWebtype() != WebType.ComboBox) {
                                 // System.out.println(" ERROR DE QUERY: " + table.getNameJava() + "::" +
@@ -1222,15 +1229,12 @@ public class BackWebGenerator extends IconUtils {
                                     codeCoreContent.append("          </c:if>\n");
                                 }
                             }
-                            codeCoreContent.append("          </td>\n");
                             continue;
                         }
 
                         case WebType.Checkbox:
-                            codeCoreContent.append("          <td>\n");
-
+                            
                             if (field.getMinAllowedValue() != null) {
-
                                 codeCoreContent.append("            <fmt:message key=\"" + field.getMinAllowedValue()
                                         + ".${" + model + "." + modelCamp + "}\" />");
 
@@ -1248,25 +1252,25 @@ public class BackWebGenerator extends IconUtils {
                                     codeCoreContent.append("            </c:if>\n");
                                 }
                             }
-                            codeCoreContent.append("          </td>\n");
+                            
                             continue;
 
                         case WebType.Date:
                             codeCoreContent.append(
-                                    "          <td> <fmt:formatDate pattern=\"${gen:getDatePattern()}\" value=\"${"
-                                            + model + "." + modelCamp + "}\" /></td>\n");
+                                    "         <fmt:formatDate pattern=\"${gen:getDatePattern()}\" value=\"${"
+                                            + model + "." + modelCamp + "}\" />\n");
                             continue;
 
                         case WebType.Time:
                             codeCoreContent.append(
-                                    "          <td> <fmt:formatDate pattern=\"${gen:getTimePattern()}\" value=\"${"
-                                            + model + "." + modelCamp + "}\" /></td>\n");
+                                    "          <fmt:formatDate pattern=\"${gen:getTimePattern()}\" value=\"${"
+                                            + model + "." + modelCamp + "}\" />\n");
                             continue;
 
                         case WebType.DateTime:
                             codeCoreContent.append(
-                                    "          <td> <fmt:formatDate pattern=\"${gen:getDateTimePattern()}\" value=\"${"
-                                            + model + "." + modelCamp + "}\" /></td>\n");
+                                    "          <fmt:formatDate pattern=\"${gen:getDateTimePattern()}\" value=\"${"
+                                            + model + "." + modelCamp + "}\" />\n");
                             continue;
                         // TODO S'han de fer que tots els camps que referenciin a la taula fitxer
                         // canviin el tipus web a FILE
@@ -1281,6 +1285,15 @@ public class BackWebGenerator extends IconUtils {
 
                     }
                 } finally {
+
+                    codeCoreContent.append("             <c:if test=\"${empty " + model + "." + modelCamp + "}\">\n");
+                    // style=\"color: transparent; user-select: none;\"
+                    codeCoreContent.append("             <span aria-hidden=\"true\">&nbsp;</span>"
+                            + "<span class=\"sr-only\">Sense valor</span>\n");
+                    codeCoreContent.append("             </c:if>\n");
+
+                    
+                    codeCoreContent.append("          </td>\n");
                     codeCoreContent.append("        </c:if>\n");
                 }
 
@@ -1753,9 +1766,12 @@ public class BackWebGenerator extends IconUtils {
 
                 codeBase.append("\n\n");
 
+                
+
+                
                 codeBase.append("<form:form modelAttribute=\"" + instanceForm
-                        + "\" method=\"${(empty method)?'post':method}\"\n");
-                codeBase.append("  enctype=\"multipart/form-data\">\n");
+                        + "\" method=\"${(empty method)?'post':method}\" \n");
+                codeBase.append(" enctype=\"multipart/form-data\">\n");
                 codeBase.append("  \n");
 
                 codeBase.append("  <%@include file=\"" + model + "FormTitle.jsp\" %>\n");
@@ -1790,6 +1806,8 @@ public class BackWebGenerator extends IconUtils {
                 codeBase.append("\n");
 
                 codeBase.append("</form:form>\n");
+
+                
                 codeBase.append("\n");
                 codeBase.append("\n");
 
@@ -1888,13 +1906,21 @@ public class BackWebGenerator extends IconUtils {
                 code.append("      </c:if>\n");
                 code.append("    </c:forEach>\n");
                 code.append("    </c:if>\n\n");
+                
+                // TODO ERROR
+                
+                // 1. Leyenda informativa inicial exigida por accesibilidad --%>\n"
+                code.append("<small class=\"text-muted\" style=\"font-size:0.8em\"><span class=\"text-danger\" aria-hidden=\"true\">*</span>"
+                        + " &nbsp;<fmt:message key=\"info.camp.obligatori\"/>"
+                        + "</small>\n");
+
 
                 // Errors Globals del Formulari
                 code.append(
                         "    <form:errors cssClass=\"errorField alert alert-danger\" delimiter=\"&lt;p/&gt;\" />\n");
 
-                code.append("    <table id=\"" + model
-                        + "_tableid\" class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-genapp table-genapp-form\" > \n");
+                code.append("    <table id=\"" + model + "_tableid\" role=\"presentation\" "
+                        + "class=\"tdformlabel table-sm table table-bordered table-striped marTop10 table-genapp table-genapp-form\">\n");
                 code.append("    <tbody>      \n");
                 code.append("\n");
                 sourceFiles.add(new SourceFile(model + "FormCorePre.jsp", code.toString()));
@@ -2023,11 +2049,13 @@ public class BackWebGenerator extends IconUtils {
                     String modelCamp = field.getJavaName();
                     String modelCampMay = instanceFields + "." + field.getJavaName().toUpperCase();
                     Class<?> type = field.getJavaType();
-                    String required = field.isNotNullable()
-                            && !(type.equals(boolean.class) || type.equals(Boolean.class)) ? " &nbsp;(*)" : "";
+                    
+                    boolean isRequired = field.isNotNullable() && !(type.equals(boolean.class) || type.equals(Boolean.class));
+                    String requiredInLabel = isRequired ? ("&nbsp;<span class=\"text-danger\" aria-hidden=\"true\">(*)</span>"
+                            + "<span class=\"sr-only\">(obligatori, obligatorio)</span>") : "";
 
                     String codeField = generateFieldFormInput(model, instanceForm, fileFields, translationFields, field,
-                            modelCamp, project, modelCampMay);
+                            modelCamp, project, modelCampMay, isRequired);
 
                     if (codeField != null) {
 
@@ -2048,7 +2076,7 @@ public class BackWebGenerator extends IconUtils {
                       
                         code.append("              <fmt:message key=\"" + "${(empty " + instanceForm + ".labels["
                                 + modelCampMay + "])?'" + model + "." + modelCamp + "':" + instanceForm + ".labels["
-                                + modelCampMay + "]}" + "\" />" + required + "\n");
+                                + modelCampMay + "]}" + "\" />" + requiredInLabel + "\n");
                         code.append("             </label>\n");
                         code.append("              <c:if test=\"${not empty " + instanceForm + ".help[" + modelCampMay
                                 + "]}\">\n");
@@ -2077,7 +2105,11 @@ public class BackWebGenerator extends IconUtils {
 
     private static String generateFieldFormInput(final String model, final String instanceForm,
             List<FieldInfo> fileFields, List<FieldInfo> translationFields, FieldInfo field, String modelCamp,
-            Project project, String modelCampMay) throws Exception {
+            Project project, String modelCampMay, boolean isRequired) throws Exception {
+        
+        
+        String requiredInInputTag = isRequired ? " required=\"required\"  aria-required=\"true\" " : "";
+        String requiredInInputHTML5 = isRequired ? " required aria-required=\"true\" " : "";
 
         StringBuffer code = new StringBuffer();
 
@@ -2111,21 +2143,28 @@ public class BackWebGenerator extends IconUtils {
             // fitxer mai s'han de precarregar amb un valor)
             String classFile = "custom-file-input " + cssClass;
             code.append("                  <input id=\"" + model + "." + modelCamp + "\" name=\"" + modelCamp + "\" class=\""
-                    + classFile + "\" " + " type=\"file\" />\n");
+                    + classFile + "\" " + " type=\"file\" " + requiredInInputHTML5 + " />\n");
 
-            code.append("                  <label class=\"custom-file-label\" for=\"" + model + "." + modelCamp + "\" >\n");
+            code.append("                  <span id=\"" + modelCamp
+                    + "-custom-file-label2\" class=\"custom-file-label\" >\n");
+            code.append("                    <c:if test=\"${ empty " + instanceForm + "." + model + "." + fileObj + "}\">\n");
+            code.append("                    <fmt:message key=\"genapp.form.file.select\"/>\n");
             // code.append(" <fmt:message key=\"genapp.form.file.select\"/>\n");
-            code.append("                  </label>\n");
+            code.append("                    </c:if>\n");
+            code.append("                  </span>\n");
 
             code.append("                </div>\n");
 
             code.append("                <c:choose>\n");
+            
+            // =======================  TE VALOR ASSIGNAT !!!!!
             code.append("                <c:when test=\"${not empty " + instanceForm + "." + model + "." + fileObj
                     + "}\">\n");
 
             // code.append(" <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
-            code.append("                <div class=\"input-group-append\">\n");
-            code.append("                  <span class=\"input-group-text\">\n");
+            code.append("                <div class=\"input-group-append input-group-append-file\">\n");
+            code.append("                  <span class=\"input-group-text\" id=\"" + modelCamp
+                    + "-custom-file-label\">\n");
             // code.append(" <fmt:message key=\"genapp.form.file.change\"/>\n");
             code.append("                  <small>"
                     + getOnlyReadFileFieldWithoutCondition(project, instanceForm + "." + model, fileObj)
@@ -2134,7 +2173,7 @@ public class BackWebGenerator extends IconUtils {
             code.append("                  </span>\n");
             if (!field.isNotNullable) {
                 code.append("                  <span class=\"input-group-text\" >\n");
-                code.append("                        <form:checkbox aria-label=\"" + model + "." + modelCamp + "Delete\" id=\"" + modelCamp + "Delete\" path=\"" + modelCamp + "Delete\"/>\n");
+                code.append("                        <form:checkbox id=\"" + modelCamp + "Delete\" path=\"" + modelCamp + "Delete\"/>\n");
                 code.append("                        <label style=\"margin-bottom:0px\" for=\"" + modelCamp + "Delete\">\n");
                 code.append("                        <small style=\"color:#000\">&nbsp;<fmt:message key=\"genapp.form.file.delete\"/></small>\n");
                 code.append("                        </label>\n");
@@ -2143,6 +2182,7 @@ public class BackWebGenerator extends IconUtils {
             }
             code.append("                </div>\n");
             code.append("                </c:when>\n");
+            // =======================  NO TE VALOR ASSIGNAT!!!!!
             code.append("                <c:otherwise>\n");
 
             code.append("                <div class=\"input-group-append input-group-append-file\">\n");
@@ -2151,18 +2191,23 @@ public class BackWebGenerator extends IconUtils {
             code.append("                  <small></small>\n");
             code.append("                  </span>\n");
             code.append("                </div>\n");
+
+            code.append("                </c:otherwise>\n");
+            code.append("                </c:choose>\n");
+            
+            // -----------  Codi per actualitzar Nom del fitxer als LABELs
             code.append("                <script>\n");
-            code.append("					$('#" + modelCamp + "').on('change', function(){\n");
-            code.append("						var ruta = $('#" + modelCamp + "').val(); \n");
+            code.append("					$('#"  + model + "\\\\." + modelCamp + "').on('change', function(){\n");
+            code.append("						var ruta = $('#" + model + "\\\\." + modelCamp + "').val(); \n");
             code.append("						var rutaArray = ruta.split('\\\\');\n");
             code.append("						$('#" + modelCamp + "-custom-file-label').css('display','block');\n");
             code.append("						$('#" + modelCamp
                     + "-custom-file-label small').html(rutaArray[rutaArray.length - 1]);\n");
-            code.append("					});\n");
-            code.append("				</script>");
+            code.append("                       $('#" + modelCamp
+                    + "-custom-file-label2').html(rutaArray[rutaArray.length - 1]);\n");
+            code.append("                   });\n");
+            code.append("				</script>\n");
 
-            code.append("                </c:otherwise>\n");
-            code.append("                </c:choose>\n");
             code.append("              </div>\n");
             // code.append(" </div>\n");
             code.append("            </c:if>\n");
@@ -2184,7 +2229,7 @@ public class BackWebGenerator extends IconUtils {
             code.append("            <li class=\"nav-item \">\n");
             code.append(
                     "                 <a class=\"nav-link ${(counter.index == 0)? 'active':''}\" href=\"#tab_${counter.index}_"
-                            + simpleName + "_${idioma.idiomaID}\" data-toggle=\"tab\">${idioma.nom}</a>\n");
+                            + simpleName + "_${idioma.idiomaID}\" lang=\"${idioma.idiomaID}\" data-toggle=\"tab\">${idioma.nom}</a>\n");
             code.append("            </li>\n");
             code.append("          </c:forEach>\n");
             code.append("           \n");
@@ -2212,7 +2257,7 @@ public class BackWebGenerator extends IconUtils {
                 config = "";
             }
             
-            type = type + " aria-labelledby=\"" + model + "." + modelCamp +  "_labelid\"";
+            type = type + requiredInInputTag + " aria-labelledby=\"" + model + "_" + modelCamp +  "_labelid\"";
 
             code.append("               " + type + " path=\"" + fullmodel
                     + ".traduccions['${idioma.idiomaID}'].valor\" " + "cssClass=\"" + cssClass + "\" " + "readonly=\"${"
@@ -2278,6 +2323,7 @@ public class BackWebGenerator extends IconUtils {
                         + formInputReadOnly.replace("cssClass=\"", "cssClass=\"" + newInputSize + " ") + " style=\"\" "
                         + maxlength + " path=\"" + model + "." + modelCamp + "\" "
                         // + ((webType == WebType.URL)?" onClick=\"${__onClick}\" ": "")
+                        + requiredInInputTag
                         + "  />\n\n");
 
                 if (webType == WebType.URL) {
@@ -2317,14 +2363,17 @@ public class BackWebGenerator extends IconUtils {
                 code.append(
                         "          <input type=\"text\" readonly=\"true\" class=\"form-control col-md-9-optional uneditable-input\" "
                                 + "value=\"${gen:findValue(" + instanceForm + "." + model + "." + modelCamp + "," + instanceForm
-                        + ".listOf" + fkTableName + "For" + name + ")}\" aria-label=\"" + model + "." + modelCamp +  "\" />\n");
+                        + ".listOf" + fkTableName + "For" + name + ")}\" aria-label=\"" + model + "." + modelCamp +  "\"  "
+                                + requiredInInputHTML5 + " />\n");
                 code.append("          </c:if>\n");
                 code.append("          <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
                 code.append("          <c:set var=\"containEmptyValue\"  value=\"false\" />\n");
-                code.append("          <form:select path=\"" + model + "." + modelCamp + "\" onchange=\"if(typeof onChange" + name
-                        + " == 'function') {  onChange" + name
-                        + "(this); };\"  cssClass=\"form-control col-md-9-optional\"" 
-                        + "  aria-label=\"" + model + "." + modelCamp +  "\" >\n\n\n");
+                code.append("          <form:select path=\"" + model + "." + modelCamp + "\" "
+                        + "cssClass=\"form-control col-md-9-optional\" "
+                        //+ "aria-label=\"" + model + "." + modelCamp +  "\" "
+                        + requiredInInputTag
+                        + " onchange=\"if(typeof onChange" + name + " == 'function') {  onChange" + name
+                        + "(this); };\">\n\n\n");
 
                 code.append("            <c:forEach items=\"${" + instanceForm + ".listOf" + fkTableName + "For" + name
                         + "}\" var=\"tmp\">\n");
@@ -2351,7 +2400,7 @@ public class BackWebGenerator extends IconUtils {
 
                 if ("search".equalsIgnoreCase(field.getMaxAllowedValue())) {
                     code.append("          <script>\n" + "              $(document).ready(function() {\n"
-                            + "                  $('#" + id + "').select2();\n" + "              });\n"
+                            + "                  $('#" + id.replace(".", "\\\\.") + "').select2();\n" + "              });\n"
                             + "          </script>\n");
                 }
 
@@ -2381,7 +2430,7 @@ public class BackWebGenerator extends IconUtils {
                                     + readOnlyAttribute);
                 }
                 String path = model + "." + modelCamp;
-                code.append(" path=\"" + path + "\"  />\n");
+                code.append(" path=\"" + path + "\" " + requiredInInputTag + " />\n");
                 // Wrap
                 if (webType == WebType.TextArea) {
                     code.append("   </td>\n");
@@ -2428,10 +2477,14 @@ public class BackWebGenerator extends IconUtils {
                     prefix = "genapp.checkbox";
                     code.append("              <form:errors  path=\"" + model + "." + modelCamp
                             + "\" cssClass=\"errorField alert alert-danger\" />\n");
+                    
+                    code.append("<fieldset>\n");
+                    code.append("<legend class=\"sr-only\">Evitar errors d'Accessibilitat</legend>\n");
                     code.append("              <form:checkbox cssClass=\"\" onclick=\"javascript:return ${ "
                             + readOnlyCondition + "? 'false' : 'true'}\" id=\"" + model + "." + modelCamp
-                            + "\" path=\"" + model + "." + modelCamp
-                            + "\"  aria-label=\"" +  model + "." + modelCamp + "\" />\n"); // style=\"width:1%\"
+                            + "\" path=\"" + model + "." + modelCamp + "\"  " + requiredInInputTag + " />\n"); // style=\"width:1%\"
+                    
+                    code.append("</fieldset>\n");
                                                                                                                                                                                                                    // ????
                 } else {
                     if (prefix == null) {
@@ -2459,74 +2512,14 @@ public class BackWebGenerator extends IconUtils {
                 return code.toString();
 
             case WebType.Date:
-                /*
-                 * code.append("    <form:errors path=\"" + model + "." + modelCamp +
-                 * "\" cssClass=\"errorField alert alert-danger\" />\n");
-                 * 
-                 * code.append("            <div class=\"form-group\">\n");
-                 * code.append("                <div class=\"input-group date\" id=\"" + model +
-                 * "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
-                 * 
-                 * //code.
-                 * append("                    <input type=\"text\" class=\"form-control datetimepicker-input\" data-target=\"#datetimepicker4\">\n"
-                 * ); code.append("                      <form:input " + readOnlyAttribute +
-                 * " cssClass=\"form-control datetimepicker-input\" " + " data-target=\"#" +
-                 * model + "_" + modelCamp + "\"" + " path=\"" + model + "." + modelCamp +
-                 * "\" />\n"); code.append("                    <c:if test=\"${!" +
-                 * readOnlyCondition + "}\" >\n"); code.
-                 * append("                    <div class=\"input-group-append\"  data-target=\"#"
-                 * + model + "_" + modelCamp + "\"  data-toggle=\"datetimepicker\">\n"); code.
-                 * append("                        <div class=\"input-group-text\"><i class=\""
-                 * + ICON_CALENDAR + "\"></i></div>\n");
-                 * code.append("                    </div>\n");
-                 * code.append("                    </c:if>\n");
-                 * code.append("                </div>\n"); code.append("            </div>\n");
-                 * 
-                 * { String componentID = model + "_" + modelCamp;
-                 * code.append(generateDatePicker(componentID)); }
-                 * 
-                 * 
-                 * return code.toString();
-                 */
             case WebType.Time:
-                /*
-                 * code.append("    <form:errors path=\"" + model + "." + modelCamp +
-                 * "\" cssClass=\"errorField alert alert-danger\" />\n");
-                 * 
-                 * 
-                 * code.append("            <div class=\"form-group\">\n");
-                 * code.append("                <div class=\"input-group date\" id=\"" + model +
-                 * "_" + modelCamp + "\" data-target-input=\"nearest\">\n");
-                 * 
-                 * 
-                 * code.append("                      <form:input " + readOnlyAttribute +
-                 * " cssClass=\"form-control datetimepicker-input\" " + " data-target=\"#" +
-                 * model + "_" + modelCamp + "\"" + " path=\"" + model + "." + modelCamp +
-                 * "\" />\n"); code.append("                    <c:if test=\"${!" +
-                 * readOnlyCondition + "}\" >\n"); code.
-                 * append("                    <div class=\"input-group-append\"  data-target=\"#"
-                 * + model + "_" + modelCamp + "\"  data-toggle=\"datetimepicker\">\n"); code.
-                 * append("                        <div class=\"input-group-text\"><i class=\""
-                 * + IconUtils.ICON_CLOCK + "\"></i></div>\n");
-                 * code.append("                    </div>\n");
-                 * code.append("                    </c:if>\n");
-                 * code.append("                </div>\n"); code.append("            </div>\n");
-                 * 
-                 * 
-                 * { String componentID = model + "_" + modelCamp;
-                 * code.append(generateTimePicker(componentID)); }
-                 * 
-                 * 
-                 * 
-                 * return code.toString();
-                 */
             case WebType.DateTime: {
                 String pathID = model + "." + modelCamp;
-                final String ariaLabel = pathID;
+                final String ariaLabel = ""; // ja en el Label hi ha ID del input
                 code.append("    <form:errors path=\"" + pathID + "\" cssClass=\"errorField alert alert-danger\" />\n");
-                String componentID = model + "_" + modelCamp;
+                String componentID = model + "_" + modelCamp + "Div";
                 code.append(generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID,
-                        pathID, ariaLabel));
+                        pathID, ariaLabel, requiredInInputTag));
                 return code.toString();
             }
 
@@ -2549,14 +2542,14 @@ public class BackWebGenerator extends IconUtils {
         final int webType = WebType.Time;
         final String readOnlyCondition = "false";
         final String readOnlyAttribute = "";
-        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabelledBy);
+        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabelledBy, "");
     }
 
     protected static String generateDateTimePicker(String componentID, String path, String ariaLabel) throws Exception {
         final int webType = WebType.DateTime;
         final String readOnlyCondition = "false";
         final String readOnlyAttribute = "";
-        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabel);
+        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabel, "");
     }
 
     protected static String generateDatePicker(String componentID, String path, String ariaLabelledBy) throws Exception {
@@ -2564,11 +2557,13 @@ public class BackWebGenerator extends IconUtils {
         final int webType = WebType.Date;
         final String readOnlyCondition = "false";
         final String readOnlyAttribute = "";
-        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabelledBy);
+        return generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID, path, ariaLabelledBy, "");
     }
 
     protected static String generateCommonDateTimePicker(int webType, final String readOnlyCondition,
-            final String readOnlyAttribute, String componentID, String path, String ariaLabelledBy) throws Exception {
+            final String readOnlyAttribute, String componentID, String path, 
+            String ariaLabelledBy, // TODO ERROR
+            String requiredInInputTag) throws Exception {
 
         String pattern;
         String icon;
@@ -2599,11 +2594,11 @@ public class BackWebGenerator extends IconUtils {
 
         code.append("            <div class=\"form-group\"  style=\"margin-bottom: 0px;\" >\n");
         code.append("                <div class=\"input-group date\" id=\"" + componentID
-                + "Div\" data-target-input=\"nearest\">\n");
+                + "\" data-target-input=\"nearest\">\n");
 
         code.append("                      <form:input " + readOnlyAttribute
                 + " cssClass=\"form-control datetimepicker-input\" " + " data-target=\"#" + componentID + "\""
-                + " path=\"" + path + "\" aria-labelledby=\"" + ariaLabelledBy + "\"  />\n");
+                + " path=\"" + path + "\" " + ariaLabelledBy + " " + requiredInInputTag + " />\n");
         code.append("                    <c:if test=\"${!" + readOnlyCondition + "}\" >\n");
         code.append("                    <div class=\"input-group-append\"  data-target=\"#" + componentID
                 + "\"  data-toggle=\"datetimepicker\">\n");

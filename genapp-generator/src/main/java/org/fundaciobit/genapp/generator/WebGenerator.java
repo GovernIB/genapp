@@ -851,8 +851,8 @@ public class WebGenerator {
 
         switch (webType) {
             case WebType.Checkbox: {
-                return "<INPUT NAME=" + field.getJavaName() + " type=\"checkbox\" " + " <%=bean."
-                        + CodeGenUtils.get(field) + "?\"checked\":\"\"%> " + (mode == ModeWeb.LIST ? "DISABLED" : "")
+                return "<input name=" + field.getJavaName() + " type=\"checkbox\" " + " <%=bean."
+                        + CodeGenUtils.get(field) + "?\"checked\":\"\"%> " + (mode == ModeWeb.LIST ? "disabled" : "")
                         + " >\n";
             }
 
