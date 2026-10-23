@@ -2389,22 +2389,23 @@ public class BackWebGenerator extends IconUtils {
                     code.append("            <c:if test=\"${not containEmptyValue}\">\n");
                     // No funciona el seleccionar automàticamernt un valor buit o null
                     code.append("              <c:if test=\"${empty __theForm." + model + "." + modelCamp + " }\">\n");
-                    code.append("                  <option value=\"\" label=\" \" selected></option>\n\n");
+                    // TODO Per passar W3.ORG requereix label=" ", però això fa que es visualitzi incorrectament en FIrefox 
+                    code.append("                  <option value=\"\" selected></option>\n\n");
                     code.append("              </c:if>\n");
                     code.append(
                             "              <c:if test=\"${not empty __theForm." + model + "." + modelCamp + " }\">\n\n");
-                    code.append("                  <option value=\"\" label=\" \"></option>\n");
+                    // TODO Per passar W3.ORG requereix label=" ", però això fa que es visualitzi incorrectament en FIrefox
+                    code.append("                  <option value=\"\" ></option>\n");
                     code.append("              </c:if>\n");
                     code.append("            </c:if>\n");
                 }
 
+                code.append("          </form:select>\n");
                 if ("search".equalsIgnoreCase(field.getMaxAllowedValue())) {
                     code.append("          <script>\n" + "              $(document).ready(function() {\n"
                             + "                  $('#" + id.replace(".", "\\\\.") + "').select2();\n" + "              });\n"
                             + "          </script>\n");
                 }
-
-                code.append("          </form:select>\n");
                 code.append("          </c:if>\n");
                 // code.append(generateReadOnlySelect(" ", id, readOnlyCondition));
 
