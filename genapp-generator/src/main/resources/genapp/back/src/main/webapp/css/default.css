@@ -1,3 +1,9 @@
+/* ========================================  */
+/*            CSS NO EDITABLE                */
+/*  Els styles es modifiquen a stylesapp.css */ 
+/* ========================================  */
+
+
 /* Default CSS Template */
 .tdformlabel tbody td:nth-child(1) {
     text-align: right;
@@ -599,4 +605,18 @@ small {
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
     transition: all 0.2s ease-in-out;
+}
+
+
+.llistaformularititol {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.llistatformularisubtitol {
+    font-size: 1rem;
+    line-height: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-style:italic;
 }

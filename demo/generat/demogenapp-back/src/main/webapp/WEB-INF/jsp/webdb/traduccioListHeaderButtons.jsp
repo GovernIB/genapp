@@ -1,7 +1,7 @@
 <%-- ========= FITXER AUTOGENERAT - NO MODIFICAR !!!!! --%>
 <%@ include file="/WEB-INF/jsp/moduls/includes.jsp"%>
 
-<span style="font-size: 1.25rem;font-weight: bold;">
+<span class="llistaformularititol">
   <c:if test="${not empty __theFilterForm.titleCode}">
       <fmt:message key="${__theFilterForm.titleCode}">
         <fmt:param value="${__theFilterForm.titleParam}" />

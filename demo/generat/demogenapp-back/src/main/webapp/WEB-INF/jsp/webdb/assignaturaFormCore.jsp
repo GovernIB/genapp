@@ -69,20 +69,20 @@
             <%-- El camp pot ser null, per la qual cosa afegim una entrada buida si no s'ha definit abans --%>
             <c:if test="${not containEmptyValue}">
               <c:if test="${empty __theForm.assignatura.diaSetmana }">
-                  <option value="" label=" " selected></option>
+                  <option value="" selected></option>
 
               </c:if>
               <c:if test="${not empty __theForm.assignatura.diaSetmana }">
 
-                  <option value="" label=" "></option>
+                  <option value="" ></option>
               </c:if>
             </c:if>
+          </form:select>
           <script>
               $(document).ready(function() {
                   $('#assignatura\\.diaSetmana').select2();
               });
           </script>
-          </form:select>
           </c:if>
            </td>
         </tr>
