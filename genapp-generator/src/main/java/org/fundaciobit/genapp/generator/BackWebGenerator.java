@@ -14,6 +14,7 @@ import org.fundaciobit.genapp.Project;
 import org.fundaciobit.genapp.TableInfo;
 import org.fundaciobit.genapp.WebType;
 import org.fundaciobit.genapp.common.web.form.BaseFilterForm;
+import org.fundaciobit.genapp.common.web.html.HtmlCSS;
 import org.fundaciobit.genapp.common.web.html.IconUtils;
 
 /**
@@ -22,16 +23,7 @@ import org.fundaciobit.genapp.common.web.html.IconUtils;
  *
  */
 public class BackWebGenerator extends IconUtils {
-    
-    
-    public static final String TITOL_BEGIN = "<span class=\"llistaformularititol\">";
-    
-    public static final String TITOL_END = "</span>";
-    
-    
-    public static final String SUBTITOL_BEGIN = "<span class=\"llistaformularisubtitol\">";
-    
-    public static final String SUBTITOL_END = "</span>";
+
     
 
     public static List<SourceFile> generateListJsp(String packageControllerBack, String packageFormBack,
@@ -326,7 +318,7 @@ public class BackWebGenerator extends IconUtils {
                 codeHeaderButtons.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
                 codeHeaderButtons.append("\n");
 
-                codeHeaderButtons.append(TITOL_BEGIN + "\n");
+                codeHeaderButtons.append(HtmlCSS.TITOL_BEGIN + "\n");
                 codeHeaderButtons.append("  <c:if test=\"${not empty " + instanceFilterForm + ".titleCode}\">\n");
                 codeHeaderButtons.append("      <fmt:message key=\"${" + instanceFilterForm + ".titleCode}\">\n");
                 codeHeaderButtons.append("        <fmt:param value=\"${" + instanceFilterForm + ".titleParam}\" />\n");
@@ -342,7 +334,7 @@ public class BackWebGenerator extends IconUtils {
                 codeHeaderButtons.append("          <fmt:param value=\"${entitynameplural}\"/>\n");
                 codeHeaderButtons.append("      </fmt:message>\n");
                 codeHeaderButtons.append("  </c:if>\n");
-                codeHeaderButtons.append(TITOL_END + "\n");
+                codeHeaderButtons.append(HtmlCSS.TITOL_END + "\n");
                 codeHeaderButtons.append("\n");
                 codeHeaderButtons.append("  <%-- AGRUPAR PER BOTO - INICI  --%>\n");
                 codeHeaderButtons.append("  <c:if test=\"${fn:length(groupby_items) > 0}\">\n");
@@ -1833,7 +1825,7 @@ public class BackWebGenerator extends IconUtils {
                 codeTitle.append("  \n");
 
                 codeTitle.append("<div class=\"lead\" style=\"margin-bottom:10px\">\n");
-                codeTitle.append(TITOL_BEGIN + "\n");
+                codeTitle.append(HtmlCSS.TITOL_BEGIN + "\n");
                 codeTitle.append(" <c:choose>\n");
                 codeTitle.append("  <c:when test=\"${fn:startsWith(" + instanceForm + ".titleCode,'=')}\">\n");
                 codeTitle.append("       <c:out value=\"${fn:substringAfter(" + instanceForm
@@ -1864,10 +1856,10 @@ public class BackWebGenerator extends IconUtils {
                 // codeTitle.append(" </c:when>\n");
                 codeTitle.append("    </c:otherwise>\n");
                 codeTitle.append(" </c:choose>");
-                codeTitle.append(TITOL_END + "\n");
+                codeTitle.append(HtmlCSS.TITOL_END + "\n");
 
                 codeTitle.append("  <c:if test=\"${not empty " + instanceForm + ".subTitleCode}\">\n");
-                codeTitle.append(SUBTITOL_BEGIN + "\n");
+                codeTitle.append(HtmlCSS.SUBTITOL_BEGIN + "\n");
                 codeTitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceForm
                         + ".subTitleCode,'=')}\" />\n");
                 codeTitle.append("<c:if test=\"${subtitleTranslated}\">\n");
@@ -1877,7 +1869,7 @@ public class BackWebGenerator extends IconUtils {
                 codeTitle.append("<c:if test=\"${not subtitleTranslated}\">\n");
                 codeTitle.append("  <fmt:message key=\"${" + instanceForm + ".subTitleCode}\" />\n");
                 codeTitle.append("</c:if>\n");
-                codeTitle.append(SUBTITOL_END + "\n");
+                codeTitle.append(HtmlCSS.SUBTITOL_END + "\n");
                 codeTitle.append("  </c:if>\n");
 
                 codeTitle.append("</div>");
