@@ -55,18 +55,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.ALUMNEID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="alumne_alumneID" style="display: inline;">
+              <label id="alumne_alumneID" style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.alumneID" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="alumneIDDesde" />
+              <form:input cssClass="input-append input-small" path="alumneIDDesde"  aria-labelledby="alumne_alumneID" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="alumneIDFins" />
+              <form:input cssClass="input-append input-small search-query" path="alumneIDFins"  aria-labelledby="alumne_alumneID" />
 
             </div>
 
@@ -159,18 +159,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.ACTIU)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="alumne_actiu" style="display: inline;">
+              <label id="alumne_actiu" style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.actiu" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="actiuDesde" />
+              <form:input cssClass="input-append input-small" path="actiuDesde"  aria-labelledby="alumne_actiu" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="actiuFins" />
+              <form:input cssClass="input-append input-small search-query" path="actiuFins"  aria-labelledby="alumne_actiu" />
 
             </div>
 
@@ -233,18 +233,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AlumneFields.TITOLACADEMICID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="alumne_titolAcademicID" style="display: inline;">
+              <label id="alumne_titolAcademicID" style="display: inline;">
               <span class="add-on"><fmt:message key="alumne.titolAcademicID" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="titolAcademicIDDesde" />
+              <form:input cssClass="input-append input-small" path="titolAcademicIDDesde"  aria-labelledby="alumne_titolAcademicID" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="titolAcademicIDFins" />
+              <form:input cssClass="input-append input-small search-query" path="titolAcademicIDFins"  aria-labelledby="alumne_titolAcademicID" />
 
             </div>
 

@@ -55,18 +55,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.ID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne_id" style="display: inline;">
+              <label id="assignaturaAlumne_id" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.id" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="idDesde" />
+              <form:input cssClass="input-append input-small" path="idDesde"  aria-labelledby="assignaturaAlumne_id" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="idFins" />
+              <form:input cssClass="input-append input-small search-query" path="idFins"  aria-labelledby="assignaturaAlumne_id" />
 
             </div>
 
@@ -75,18 +75,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.ALUMNEID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne_alumneID" style="display: inline;">
+              <label id="assignaturaAlumne_alumneID" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.alumneID" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="alumneIDDesde" />
+              <form:input cssClass="input-append input-small" path="alumneIDDesde"  aria-labelledby="assignaturaAlumne_alumneID" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="alumneIDFins" />
+              <form:input cssClass="input-append input-small search-query" path="alumneIDFins"  aria-labelledby="assignaturaAlumne_alumneID" />
 
             </div>
 
@@ -95,18 +95,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.ASSIGNATURAID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne_assignaturaID" style="display: inline;">
+              <label id="assignaturaAlumne_assignaturaID" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.assignaturaID" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="assignaturaIDDesde" />
+              <form:input cssClass="input-append input-small" path="assignaturaIDDesde"  aria-labelledby="assignaturaAlumne_assignaturaID" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="assignaturaIDFins" />
+              <form:input cssClass="input-append input-small search-query" path="assignaturaIDFins"  aria-labelledby="assignaturaAlumne_assignaturaID" />
 
             </div>
 
@@ -115,18 +115,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaAlumneFields.NOTA)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignaturaAlumne_nota" style="display: inline;">
+              <label id="assignaturaAlumne_nota" style="display: inline;">
               <span class="add-on"><fmt:message key="assignaturaAlumne.nota" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="notaDesde" />
+              <form:input cssClass="input-append input-small" path="notaDesde"  aria-labelledby="assignaturaAlumne_nota" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="notaFins" />
+              <form:input cssClass="input-append input-small search-query" path="notaFins"  aria-labelledby="assignaturaAlumne_nota" />
 
             </div>
 

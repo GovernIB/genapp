@@ -546,32 +546,29 @@ public class BackWebGenerator extends IconUtils {
                                         + "              </label>\n"
                                         + "              </div>\n" + "\n"
                                         + "              <div class=\"input-group-prepend\" style=\"min-width:200px\">\n"
-                                        + "                <form:select aria-label=\"" + ariaLabel + "\"   id=\"" + id + "\" path=\"" + modelCamp
-                                        + "Select\" cssClass=\"search-query input-medium form-control select2 select2-hidden-accessible\" multiple=\"true\" style=\"width:100%;\" tabindex=\"-1\" aria-hidden=\"true\">\n"
+                                        + "              <form:select id=\"" + id + "\" path=\"" + modelCamp + "Select\" "
+                                        + " cssClass=\"search-query input-medium form-control select2 select2-hidden-accessible\"" 
+                                        + " multiple=\"true\" style=\"width:100%;\" tabindex=\"-1\" aria-hidden=\"true\">\n"
                                         + "                    <c:forEach var=\"_entry\" items=\"${__theFilterForm.mapOfValuesFor"
                                         + name + "}\">\n"
                                         + "                      <option value=\"${_entry.key}\" ${fn:contains(__theFilterForm."
                                         + modelCamp + "Select, _entry.key)?'selected':''} >${_entry.value}</option>\n"
-                                        + "                    </c:forEach>\n" + "                </form:select>\n"
-                                        + "              </div>\n" + "\n"
+                                        + "                    </c:forEach>\n" 
+                                        + "              </form:select>\n"
+                                        + "              </div>\n"
                                         + "              <script>\n"
                                         + "                $(document).ready(function() {\n"
                                         + "                    var $select = $('#" + id + "');\n"
-                                        + "                    var ariaLabel = $select.attr('aria-label');\n"
-                                        + "\n"
                                         + "                    $select.select2({\n"
                                         + "                        closeOnSelect: false\n"
                                         + "                    });\n"
-                                        + "\n"
-                                        + "                    if (ariaLabel) {\n"
-                                        + "                        $select.next('.select2-container')\n"
-                                        + "                               .find('[role=\"combobox\"]')\n"
-                                        + "                               .attr('aria-label', ariaLabel);\n"
+                                        + "                    $select.next('.select2-container')\n"
+                                        + "                           .find('[role=\"combobox\"]')\n"
+                                        + "                           .attr('aria-label', \"" + ariaLabel + "\");\n"
                                         
-                                        + "                        $select.next('.select2-container')\n"
-                                        + "                               .find('.select2-search__field')\n"
-                                        + "                               .attr('aria-label', ariaLabel);\n"
-                                        + "                    }\n"
+                                        + "                    $select.next('.select2-container')\n"
+                                        + "                           .find('.select2-search__field')\n"
+                                        + "                           .attr('aria-label', \"" + ariaLabel + "\");\n"
                                         + "\n"
                                         + "                    $('.select2-selection__rendered').css('padding-bottom','5px');\n"
                                         + "                });\n"
@@ -582,7 +579,7 @@ public class BackWebGenerator extends IconUtils {
                                 String ariaLabel = model + "_" + modelCamp;
                                 codeFilterBy.append("            <%-- FILTRE NUMERO DESDE-FINS --%>\n");
 
-                                codeFilterBy.append("              <label for=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
+                                codeFilterBy.append("              <label id=\"" + ariaLabel + "\" style=\"display: inline;\">\n");
                                 codeFilterBy.append("              <span class=\"add-on\"><fmt:message key=\"" + model
                                         + "." + modelCamp + "\" />:</span>\n");
                                 codeFilterBy.append("              </label>\n");
@@ -592,7 +589,7 @@ public class BackWebGenerator extends IconUtils {
                                 codeFilterBy.append("              \n");
                                 codeFilterBy.append(
                                         "              <form:input cssClass=\"input-append input-small\" path=\""
-                                                + modelCamp + "Desde\" />\n");
+                                                + modelCamp + "Desde\"  aria-labelledby=\"" + ariaLabel + "\" />\n");
                                 codeFilterBy.append("\n");
                                 codeFilterBy.append("\n");
                                 codeFilterBy.append(
@@ -600,7 +597,7 @@ public class BackWebGenerator extends IconUtils {
                                 codeFilterBy.append("\n");
                                 codeFilterBy.append(
                                         "              <form:input cssClass=\"input-append input-small search-query\" path=\""
-                                                + modelCamp + "Fins\" />\n");
+                                                + modelCamp + "Fins\"  aria-labelledby=\"" + ariaLabel + "\" />\n");
                                 codeFilterBy.append("\n");
 
                             }

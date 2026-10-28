@@ -55,18 +55,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.ASSIGNATURAID)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignatura_assignaturaID" style="display: inline;">
+              <label id="assignatura_assignaturaID" style="display: inline;">
               <span class="add-on"><fmt:message key="assignatura.assignaturaID" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="assignaturaIDDesde" />
+              <form:input cssClass="input-append input-small" path="assignaturaIDDesde"  aria-labelledby="assignatura_assignaturaID" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="assignaturaIDFins" />
+              <form:input cssClass="input-append input-small search-query" path="assignaturaIDFins"  aria-labelledby="assignatura_assignaturaID" />
 
             </div>
 
@@ -90,18 +90,18 @@
         <c:if test="${gen:contains(__theFilterForm.filterByFields ,AssignaturaFields.CREDITS)}">
             <div class="input-group" style="padding-right: 24px;padding-bottom: 4px;">
             <%-- FILTRE NUMERO DESDE-FINS --%>
-              <label for="assignatura_credits" style="display: inline;">
+              <label id="assignatura_credits" style="display: inline;">
               <span class="add-on"><fmt:message key="assignatura.credits" />:</span>
               </label>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.from" /></span>
               
-              <form:input cssClass="input-append input-small" path="creditsDesde" />
+              <form:input cssClass="input-append input-small" path="creditsDesde"  aria-labelledby="assignatura_credits" />
 
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
 
-              <form:input cssClass="input-append input-small search-query" path="creditsFins" />
+              <form:input cssClass="input-append input-small search-query" path="creditsFins"  aria-labelledby="assignatura_credits" />
 
             </div>
 
@@ -117,30 +117,24 @@
               </div>
 
               <div class="input-group-prepend" style="min-width:200px">
-                <form:select aria-label="assign_diaSetmana_select"   id="assign_diaSetmana_select" path="diaSetmanaSelect" cssClass="search-query input-medium form-control select2 select2-hidden-accessible" multiple="true" style="width:100%;" tabindex="-1" aria-hidden="true">
+              <form:select id="assign_diaSetmana_select" path="diaSetmanaSelect"  cssClass="search-query input-medium form-control select2 select2-hidden-accessible" multiple="true" style="width:100%;" tabindex="-1" aria-hidden="true">
                     <c:forEach var="_entry" items="${__theFilterForm.mapOfValuesForDiaSetmana}">
                       <option value="${_entry.key}" ${fn:contains(__theFilterForm.diaSetmanaSelect, _entry.key)?'selected':''} >${_entry.value}</option>
                     </c:forEach>
-                </form:select>
+              </form:select>
               </div>
-
               <script>
                 $(document).ready(function() {
                     var $select = $('#assign_diaSetmana_select');
-                    var ariaLabel = $select.attr('aria-label');
-
                     $select.select2({
                         closeOnSelect: false
                     });
-
-                    if (ariaLabel) {
-                        $select.next('.select2-container')
-                               .find('[role="combobox"]')
-                               .attr('aria-label', ariaLabel);
-                        $select.next('.select2-container')
-                               .find('.select2-search__field')
-                               .attr('aria-label', ariaLabel);
-                    }
+                    $select.next('.select2-container')
+                           .find('[role="combobox"]')
+                           .attr('aria-label', "assign_diaSetmana_select");
+                    $select.next('.select2-container')
+                           .find('.select2-search__field')
+                           .attr('aria-label', "assign_diaSetmana_select");
 
                     $('.select2-selection__rendered').css('padding-bottom','5px');
                 });
