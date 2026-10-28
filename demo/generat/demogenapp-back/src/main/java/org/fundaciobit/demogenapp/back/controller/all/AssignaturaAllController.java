@@ -1,5 +1,7 @@
 package org.fundaciobit.demogenapp.back.controller.all;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,8 +10,10 @@ import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaFilterForm;
 import org.fundaciobit.demogenapp.back.form.webdb.AssignaturaForm;
 import org.fundaciobit.demogenapp.back.utils.Tab;
 import org.fundaciobit.demogenapp.logic.AssignaturaRunAsUserLogicaService;
+import org.fundaciobit.demogenapp.model.fields.AssignaturaFields;
 import org.fundaciobit.demogenapp.persistence.AssignaturaJPA;
 import org.fundaciobit.genapp.common.i18n.I18NException;
+import org.fundaciobit.genapp.common.query.Field;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
 import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
@@ -74,6 +78,10 @@ public class AssignaturaAllController extends AssignaturaController {
             assignaturaFilterForm.setDeleteSelectedButtonVisible(false);
             // Ocultar CheckBox de selecció múltiple d'assignatures
             assignaturaFilterForm.setVisibleMultipleSelection(false);
+            // Afegir filtre per CREDITS
+            List<Field<?>> defaultFilters = assignaturaFilterForm.getDefaultFilterByFields();
+            defaultFilters.add(AssignaturaFields.CREDITS);
+            assignaturaFilterForm.setFilterByFields(defaultFilters);
         }
 
         return assignaturaFilterForm;
