@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Company: XmasSoft
  * 
  * @author Xmas
+ * @author anadal 
  *
  *
  * @param <C> Java Class associated to Field.
@@ -28,26 +29,42 @@ public abstract class Field<C> extends Whereable<C> implements Serializable {
 
     public final String codeLabel;
 
-    /**
-     * @param fieldID
-     * @param name
-     */
+    public final Integer size;
+
+    @Deprecated
     protected Field(String table, String javaName, String sqlName, Select<C> select) {
-        this(table, javaName, sqlName, select, null);
+        this(table, javaName, sqlName, select, null, null);
     }
 
     /**
      * @param fieldID
      * @param name
      */
-    protected Field(String table, String javaName, String sqlName, Select<C> select,
-            String codeLabel) {
+    @Deprecated
+    protected Field(String table, String javaName, String sqlName, Select<C> select, String codeLabel) {
+        this(table, javaName, sqlName, select, codeLabel, null);
+    }
+
+    /**
+     * @param fieldID
+     * @param name
+     */
+    protected Field(String table, String javaName, String sqlName, Select<C> select, Integer size) {
+        this(table, javaName, sqlName, select, null, size);
+    }
+
+    /**
+     * @param fieldID
+     * @param name
+     */
+    protected Field(String table, String javaName, String sqlName, Select<C> select, String codeLabel, Integer size) {
         super(table == null ? javaName : (table + "." + javaName));
         this.table = table;
         this.javaName = javaName;
         this.sqlName = sqlName;
         this.select = select;
         this.codeLabel = (codeLabel == null) ? this.fullName : codeLabel;
+        this.size = size;
     }
 
     public String getTable() {

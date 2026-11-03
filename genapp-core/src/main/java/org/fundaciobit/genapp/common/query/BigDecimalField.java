@@ -10,25 +10,31 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * 
  */
 public class BigDecimalField extends AbstractDecimalField<BigDecimal> {
-  private static final long serialVersionUID = 529835444916616L;
+    private static final long serialVersionUID = 529835444916616L;
 
-  public BigDecimalField(String table, String javaName, String sqlName) {
-    super(table, javaName, sqlName, new BigDecimalSelect(table, javaName));
-  }
-  
-  public BigDecimalField(String path, BigDecimalField field) {
-    super(null, path + field.javaName, null, new BigDecimalSelect(null,path + field.javaName), field.codeLabel);
-  }
-
-  public static class BigDecimalSelect extends SelectField<BigDecimal> {
-    public BigDecimalSelect(String table, String javaName) {
-      super(table, javaName);
+    @Deprecated
+    public BigDecimalField(String table, String javaName, String sqlName) {
+        super(table, javaName, sqlName, new BigDecimalSelect(table, javaName), (Integer) null);
     }
 
-    @Override
-    public BigDecimal getFromObject(Object rs) throws I18NException {
-      return (BigDecimal) rs;
+    public BigDecimalField(String table, String javaName, String sqlName, Integer size) {
+        super(table, javaName, sqlName, new BigDecimalSelect(table, javaName), size);
     }
 
-  };
+    public BigDecimalField(String path, BigDecimalField field) {
+        super(null, path + field.javaName, null, new BigDecimalSelect(null, path + field.javaName), field.codeLabel,
+                field.size);
+    }
+
+    public static class BigDecimalSelect extends SelectField<BigDecimal> {
+        public BigDecimalSelect(String table, String javaName) {
+            super(table, javaName);
+        }
+
+        @Override
+        public BigDecimal getFromObject(Object rs) throws I18NException {
+            return (BigDecimal) rs;
+        }
+
+    };
 }

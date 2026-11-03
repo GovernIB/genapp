@@ -8,26 +8,32 @@ import org.fundaciobit.genapp.common.i18n.I18NException;
  * 
  */
 public class LongField extends AbstractIntegerField<Long> {
-  private static final long serialVersionUID = 529835444916615L;
+    private static final long serialVersionUID = 529835444916615L;
 
-  public LongField(String table, String javaName, String sqlName) {
-    super(table, javaName, sqlName, new LongSelect(table,javaName));
-  }
-  
-  public LongField(String path, LongField field) {
-    super(null, path + field.javaName, null, new LongSelect(null,path + field.javaName), field.codeLabel);
-  }
-
-  public static class LongSelect extends SelectField<Long> {
-
-    public LongSelect(String table,String name) {
-      super(table, name);
+    @Deprecated
+    public LongField(String table, String javaName, String sqlName) {
+        super(table, javaName, sqlName, new LongSelect(table, javaName), (Integer) null);
     }
 
-    @Override
-    public Long getFromObject(Object obj) throws I18NException {
-      return (Long) obj;
+    public LongField(String table, String javaName, String sqlName, Integer size) {
+        super(table, javaName, sqlName, new LongSelect(table, javaName), size);
     }
 
-  };
+    public LongField(String path, LongField field) {
+        super(null, path + field.javaName, null, new LongSelect(null, path + field.javaName), field.codeLabel,
+                field.size);
+    }
+
+    public static class LongSelect extends SelectField<Long> {
+
+        public LongSelect(String table, String name) {
+            super(table, name);
+        }
+
+        @Override
+        public Long getFromObject(Object obj) throws I18NException {
+            return (Long) obj;
+        }
+
+    };
 }

@@ -12,11 +12,15 @@ public class IntegerField extends AbstractIntegerField<Integer> {
   private static final long serialVersionUID = 529835444916612L;
 
   public IntegerField(String table, String javaName, String sqlName) {
-    super(table, javaName, sqlName, new IntegerSelect(table,javaName));
+    super(table, javaName, sqlName, new IntegerSelect(table,javaName), (Integer)null);
   }
   
+  public IntegerField(String table, String javaName, String sqlName, Integer size) {
+      super(table, javaName, sqlName, new IntegerSelect(table,javaName), size);
+    }
+  
   public IntegerField(String path, IntegerField field) {
-    super(null, path + field.javaName, null, new IntegerSelect(null,path + field.javaName), field.codeLabel);
+    super(null, path + field.javaName, null, new IntegerSelect(null,path + field.javaName), field.codeLabel, field.size);
   }
   
   public static class IntegerSelect extends SelectField<Integer> {

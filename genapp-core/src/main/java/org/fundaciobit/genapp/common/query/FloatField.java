@@ -12,12 +12,17 @@ public class FloatField extends AbstractDecimalField<Float> {
 
   private static final long serialVersionUID = 529835444916618L;
 
+  @Deprecated
   public FloatField(String table, String javaName, String sqlName) {
-    super(table, javaName, sqlName, new FloatSelect(table,javaName));
+    super(table, javaName, sqlName, new FloatSelect(table,javaName), (Integer)null);
   }
   
+  public FloatField(String table, String javaName, String sqlName, Integer size) {
+      super(table, javaName, sqlName, new FloatSelect(table,javaName), size);
+    }
+  
   public FloatField(String path, FloatField field) {
-    super(null, path + field.javaName, null, new FloatSelect(null,path + field.javaName), field.codeLabel);
+    super(null, path + field.javaName, null, new FloatSelect(null,path + field.javaName), field.codeLabel, field.size);
   }
 
   public static class FloatSelect extends SelectField<Float> {

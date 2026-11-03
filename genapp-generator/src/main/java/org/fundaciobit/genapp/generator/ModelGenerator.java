@@ -180,60 +180,61 @@ public class ModelGenerator {
         for (int r = 0; r < fields.length; r++) {
             FieldInfo field = fields[r];
             typeClass = field.getJavaType();
+            
+            
             name = field.javaName;
             // Indices de Atributos
             String fieldType = typeClass.isPrimitive() ? SQL2Java.primitiveType2javaClassName(typeClass).getName()
                     : typeClass.getName();
             String fieldClass = getFieldType(fieldType);
-            indexes.append("\t public static final " + fieldClass + " "
+            indexes.append("    public static final " + fieldClass + " "
             // Field<" + fieldType + "> "
                     + name.toUpperCase() + " = new " + fieldClass + "(_TABLE_MODEL, \"" + name + "\", \""
-                    + field.sqlName + "\");" + (field.isPrimaryKey() ? "  // PK" : "") + "\n");
+                    + field.sqlName + "\", "  + field.getSize() + ");" + (field.isPrimaryKey() ? "  // PK" : "") + "\n");
 
         }
 
         StringBuffer interfaceCode = new StringBuffer("");
 
-        /** Cabecera */
-        interfaceCode.append("\n");
+        /** Capçalera */       
 
-        interfaceCode.append("package " + packages.fieldsPackage + ";\n");
+        interfaceCode.append("package " + packages.fieldsPackage + ";\n\n");
 
         String codeFileName = javaName + "Fields";
 
         // interfaceCode.append("import java.sql.*;\n");
 
         // interfaceCode.append("import " + GenAppUtils.PKG_BASE + ".common.*;\n");
-        interfaceCode.append("import " + GenAppPackages.PKG_BASE + ".common.query.*;\n");
-        // interfaceCode.append("\n\n");
+        interfaceCode.append("import " + GenAppPackages.PKG_BASE + ".common.query.*;\n\n");
+        interfaceCode.append("/** Informació dels camps de la taula de BBDD " + tableNameSQL + " */\n");
         interfaceCode.append("public interface " + codeFileName + " extends java.io.Serializable {");
-        interfaceCode.append("\n\n");
-        interfaceCode.append("  public static final String _TABLE_SQL = \"" + tableNameSQL + "\";\n");
-        interfaceCode.append("\n\n");
+        interfaceCode.append("\n");
+        interfaceCode.append("    public static final String _TABLE_SQL = \"" + tableNameSQL + "\";\n");
+        interfaceCode.append("\n");
 
         interfaceCode.append(
-                "  public static final String _TABLE_MODEL = \"" + CodeGenUtils.getModelName(javaName) + "\";\n");
-        interfaceCode.append("\n\n");
+                "    public static final String _TABLE_MODEL = \"" + CodeGenUtils.getModelName(javaName) + "\";\n");
+        interfaceCode.append("\n");
 
         interfaceCode.append(
-                "  public static final String _TABLE_TRANSLATION = " + "_TABLE_MODEL + \".\" + _TABLE_MODEL;\n");
-        interfaceCode.append("\n\n");
+                "    public static final String _TABLE_TRANSLATION = " + "_TABLE_MODEL + \".\" + _TABLE_MODEL;\n");
+        interfaceCode.append("\n");
 
         interfaceCode.append(indexes.toString());
-        interfaceCode.append("\n\n");
+        interfaceCode.append("\n");
 
-        interfaceCode.append("  public static final Field<?>[] ALL_" + javaName.toUpperCase() + "_FIELDS = {\n");
+        interfaceCode.append("    public static final Field<?>[] ALL_" + javaName.toUpperCase() + "_FIELDS = {\n");
         for (int i = 0; i < fields.length; i++) {
             if (i != 0) {
                 interfaceCode.append(",\n");
             }
-            interfaceCode.append("    ").append(fields[i].javaName.toUpperCase());
+            interfaceCode.append("        ").append(fields[i].javaName.toUpperCase());
         }
-        interfaceCode.append("\n  };\n");
+        interfaceCode.append("\n    };\n");
 
         // (3) Llista de PK's
-        interfaceCode.append("\n\n");
-        interfaceCode.append("  public static final Field<?>[] PRIMARYKEY_FIELDS = {\n");
+        interfaceCode.append("\n");
+        interfaceCode.append("    public static final Field<?>[] PRIMARYKEY_FIELDS = {\n        ");
 
         boolean init = false;
         for (FieldInfo pkName : beanCode.pkFields) {
@@ -243,7 +244,7 @@ public class ModelGenerator {
             interfaceCode.append(pkName.javaName.toUpperCase());
             init = true;
         }
-        interfaceCode.append("\n  };\n");
+        interfaceCode.append("\n    };\n");
 
         // Final de classe
         interfaceCode.append("}\n");

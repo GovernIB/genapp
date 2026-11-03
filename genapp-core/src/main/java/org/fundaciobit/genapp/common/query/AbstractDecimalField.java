@@ -9,13 +9,22 @@ package org.fundaciobit.genapp.common.query;
  */
 public abstract class AbstractDecimalField<N extends Number> extends Field<N> {
 
-    public AbstractDecimalField(String table, String javaName, String sqlName, Select<N> select,
-            String codeLabel) {
-        super(table, javaName, sqlName, select, codeLabel);
+    @Deprecated
+    public AbstractDecimalField(String table, String javaName, String sqlName, Select<N> select, String codeLabel) {
+        this(table, javaName, sqlName, select, codeLabel, null);
     }
 
-    protected AbstractDecimalField(String table, String javaName, String sqlName,
-            Select<N> select) {
-        super(table, javaName, sqlName, select);
+    @Deprecated
+    protected AbstractDecimalField(String table, String javaName, String sqlName, Select<N> select) {
+        this(table, javaName, sqlName, select, null, null);
+    }
+
+    public AbstractDecimalField(String table, String javaName, String sqlName, Select<N> select, String codeLabel,
+            Integer size) {
+        super(table, javaName, sqlName, select, codeLabel, size);
+    }
+
+    protected AbstractDecimalField(String table, String javaName, String sqlName, Select<N> select, Integer size) {
+        super(table, javaName, sqlName, select, size);
     }
 }

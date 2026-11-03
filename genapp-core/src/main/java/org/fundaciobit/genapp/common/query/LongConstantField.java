@@ -7,13 +7,13 @@ package org.fundaciobit.genapp.common.query;
  */
 public class LongConstantField extends Field<Long> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5503200808275762006L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5503200808275762006L;
 
-	public LongConstantField(Long value) {
-		super(null, String.valueOf(value), String.valueOf(value), null);
-	}
+    public LongConstantField(Long value) {
+        super(null, String.valueOf(value), String.valueOf(value), null, null, null);
+    }
 
 }

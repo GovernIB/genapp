@@ -1,26 +1,22 @@
-
 package org.fundaciobit.demogenapp.model.fields;
+
 import org.fundaciobit.genapp.common.query.*;
+
+/** Informació dels camps de la taula de BBDD dem_traduccio */
 public interface TraduccioFields extends java.io.Serializable {
+    public static final String _TABLE_SQL = "dem_traduccio";
 
-  public static final String _TABLE_SQL = "dem_traduccio";
+    public static final String _TABLE_MODEL = "traduccio";
 
+    public static final String _TABLE_TRANSLATION = _TABLE_MODEL + "." + _TABLE_MODEL;
 
-  public static final String _TABLE_MODEL = "traduccio";
+    public static final LongField TRADUCCIOID = new LongField(_TABLE_MODEL, "traduccioID", "traduccioid", 19);  // PK
 
+    public static final Field<?>[] ALL_TRADUCCIO_FIELDS = {
+        TRADUCCIOID
+    };
 
-  public static final String _TABLE_TRANSLATION = _TABLE_MODEL + "." + _TABLE_MODEL;
-
-
-	 public static final LongField TRADUCCIOID = new LongField(_TABLE_MODEL, "traduccioID", "traduccioid");  // PK
-
-
-  public static final Field<?>[] ALL_TRADUCCIO_FIELDS = {
-    TRADUCCIOID
-  };
-
-
-  public static final Field<?>[] PRIMARYKEY_FIELDS = {
-TRADUCCIOID
-  };
+    public static final Field<?>[] PRIMARYKEY_FIELDS = {
+        TRADUCCIOID
+    };
 }
