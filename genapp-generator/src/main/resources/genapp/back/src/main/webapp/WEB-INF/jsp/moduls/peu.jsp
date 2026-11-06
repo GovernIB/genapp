@@ -10,21 +10,27 @@
 
 		<!-- Esquerra -->
 		<div class="col-4 pt-2 elementPeuResponsive">
+            <p>
 			<strong class="font-weight-bold">
 				${symbol_dollar}{versio.projectName}
 				v${symbol_dollar}{versio.version}<%=Configuracio.isCAIB() ? "-caib" : ""%>
-			</strong> <br> 
+			</strong>
+            </p>
 			<small>
-			Build: ${symbol_dollar}{versio.buildTime} <br>
-            JDK: ${symbol_dollar}{version.jdkVersion} <br>
-			<fmt:message key="revisio" />: 
+            <p>Build: ${symbol_dollar}{versio.buildTime} </p>
+            <p>JDK: ${symbol_dollar}{version.jdkVersion} </p>
+			<p><fmt:message key="revisio" />: 
 			<c:if test="${symbol_dollar}{empty versio.scmRevision}">
 				<fmt:message key="scmversion.msg" />
 			</c:if>
+            </p>
+            <p>
 			<c:if test="${symbol_dollar}{not empty versio.scmRevision}">${symbol_dollar}{versio.scmRevision}</c:if>
-			<br>
+            </p>
+			<p>
 			<span style="padding-top: 2px">
 			 <i><fmt:message key="desenvolupatper" /></i></span>
+             </p>
 			 </small>
 		</div>
 

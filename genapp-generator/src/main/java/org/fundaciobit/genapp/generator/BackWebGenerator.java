@@ -253,16 +253,15 @@ public class BackWebGenerator extends IconUtils {
             {
 
                 StringBuffer codeMultipleSelect = new StringBuffer();
-
                 codeMultipleSelect.append("      <%--  CHECK DE SELECCIO MULTIPLE  --%>\n");
                 codeMultipleSelect
                         .append("      <c:if test=\"${" + instanceFilterForm + ".visibleMultipleSelection}\">\n");
-                codeMultipleSelect.append("      <td>\n");
+                codeMultipleSelect.append("        <th>\n"); // Per accessibilitat ha de ser <th> i no <td> (perque es un header de columna)
                 codeMultipleSelect
-                        .append("       <form:checkbox path=\"selectedItems\" aria-label=\"Seleccionar\" value=\""
+                        .append("        <form:checkbox path=\"selectedItems\" aria-label=\"Seleccionar\" value=\""
                                 + pkMapping.substring(1) + "\"/>\n");
-                codeMultipleSelect.append("       &nbsp;\n");
-                codeMultipleSelect.append("      </td>\n");
+                codeMultipleSelect.append("            <span class=\"sr-only\">Seleccionar fila</span>\n"); // Per accessibilitat web
+                codeMultipleSelect.append("        </th>\n"); // Per accessibilitat ha de ser <th> i no <td> (perque es un header de columna)
                 codeMultipleSelect.append("      </c:if>\n\n");
 
                 sourceFiles.add(new SourceFile(model + "ListCoreMultipleSelect.jsp", codeMultipleSelect.toString()));
@@ -291,7 +290,8 @@ public class BackWebGenerator extends IconUtils {
                 codeSubtitle.append("<%@ include file=\"/WEB-INF/jsp/moduls/includes.jsp\"%>\n");
                 codeSubtitle.append("\n");
                 codeSubtitle.append("  <c:if test=\"${not empty " + instanceFilterForm + ".subTitleCode}\">\n");
-                codeSubtitle.append("<h6 style=\"margin-top:-10px; margin-bottom:10px; font-style:italic;\">\n");
+                // TODO PASSA A STYLE !!!!
+                codeSubtitle.append("<p style=\"margin-top:-5px; margin-bottom:15px; font-style:italic; font-size: 1rem;font-weight: 500;line-height: 1.2;\">\n");
                 codeSubtitle.append("<c:set var=\"subtitleTranslated\" value=\"${fn:startsWith(" + instanceFilterForm
                         + ".subTitleCode,'=')}\" />\n");
                 codeSubtitle.append("<c:if test=\"${subtitleTranslated}\">\n");
@@ -301,7 +301,7 @@ public class BackWebGenerator extends IconUtils {
                 codeSubtitle.append("<c:if test=\"${not subtitleTranslated}\">\n");
                 codeSubtitle.append("  <fmt:message key=\"${" + instanceFilterForm + ".subTitleCode}\" />\n");
                 codeSubtitle.append("</c:if>\n");
-                codeSubtitle.append("</h6>\n");
+                codeSubtitle.append("</p>\n");
 
                 codeSubtitle.append("  </c:if>\n");
 
@@ -481,9 +481,15 @@ public class BackWebGenerator extends IconUtils {
 
                 final String searchByAdditional = "      <c:forEach var=\"__entry\" items=\"${__theFilterForm.additionalFields}\">\n"
                         + "      <c:if test=\"${ __entry.key < 0 && not empty __entry.value.searchBy }\">\n"
-                        + "      <div class=\"" + inputgroupcss
-                        + "\" style=\"padding-right: 24px;padding-bottom: 4px;\">\n"
-                        + "        <label for=\"${__entry.value.codeName}\" style=\"display: inline;\">\n"
+                        + "      <div class=\"" + inputgroupcss + "\" style=\"padding-right: 24px;padding-bottom: 4px;\">\n"
+                        + "        <c:choose>\n"
+                        + "          <c:when test=\"${gen:isFieldSearchInRange(__entry.value.searchBy)}\">\n"
+                        + "          <label id=\"${__entry.value.searchBy.fullName}_label\" style=\"display: inline;\">\n"
+                        + "          </c:when>\n"
+                        + "          <c:otherwise>\n"
+                        + "          <label for=\"${__entry.value.searchBy.fullName}\" style=\"display: inline;\">\n"
+                        + "          </c:otherwise>\n"
+                        + "       </c:choose>\n"
                         + "        <span class=\"add-on\"><fmt:message key=\"${__entry.value.codeName}\" />:</span>\n"
                         + "        </label>\n"
                         + "        <fmt:message key=\"genapp.form.searchby\" var=\"cercaperAF\" >\n"
@@ -491,11 +497,12 @@ public class BackWebGenerator extends IconUtils {
                         + "          </fmt:param>\n" + "        </fmt:message>\n" + "        <c:choose>\n"
                         + "          <c:when test=\"${gen:isFieldSearchInRange(__entry.value.searchBy)}\">\n"
                         + "            <span class=\"add-on\"><fmt:message key=\"genapp.from\" /></span>\n"
-                        + "            <input aria-label=\"${__entry.value.codeName}\"  id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"input-small input-medium\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
+                        + "            <input aria-labelledby=\"${__entry.value.searchBy.fullName}_label\" id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"input-small input-medium\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
                         + "            <span class=\"add-on\"><fmt:message key=\"genapp.to\" /></span>\n"
-                        + "            <input id=\"${__entry.value.searchBy.fullName}Fins\" name=\"${__entry.value.searchBy.fullName}Fins\" class=\"input-small input-medium search-query\" type=\"text\" value=\"${__entry.value.searchByValueFins}\"/>\n"
-                        + "          </c:when>\n" + "          <c:otherwise>\n"
-                        + "            <input aria-label=\"${__entry.value.codeName}\" id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"search-query input-medium\" placeholder=\"${cercaperAF}\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
+                        + "            <input aria-labelledby=\"${__entry.value.searchBy.fullName}_label\" id=\"${__entry.value.searchBy.fullName}Fins\" name=\"${__entry.value.searchBy.fullName}Fins\" class=\"input-small input-medium search-query\" type=\"text\" value=\"${__entry.value.searchByValueFins}\"/>\n"
+                        + "          </c:when>\n"
+                        + "          <c:otherwise>\n"
+                        + "            <input id=\"${__entry.value.searchBy.fullName}\" name=\"${__entry.value.searchBy.fullName}\" class=\"search-query input-medium\" placeholder=\"${cercaperAF}\" type=\"text\" value=\"${__entry.value.searchByValue}\"/>\n"
                         + "          </c:otherwise>\n" + "        </c:choose>\n" + "      </div>\n" + "      </c:if>\n"
                         + "      </c:forEach>\n";
 
@@ -1437,7 +1444,9 @@ public class BackWebGenerator extends IconUtils {
             if (onclick != null) {
                 codeButtons.append(" onclick=\"" + onclick + "\"");
             }
-            codeButtons.append(" title=\"<fmt:message key=\"" + codeMessage + "\"/>\">\n");
+            // Accessibilitat: Title attribute text is the same as text or alternative text.
+            //codeButtons.append(" title=\"<fmt:message key=\"" + codeMessage + "\"/>\">\n");
+            codeButtons.append(">\n");
             codeButtons.append(getImage(icon, tab + "   ",  codeMessage) + "\n");
             // NOTA (ca): s'afegeix text accessible (sr-only) ja que l'enllac nomes
             // conte una icona (sense text visible), cosa que WAVE marca com a

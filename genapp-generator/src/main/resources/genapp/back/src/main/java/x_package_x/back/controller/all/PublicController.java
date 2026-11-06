@@ -26,64 +26,66 @@ import ${package}.commons.utils.Version;
  * 
  */
 // Tile per accessibilitat
-@Tile(name = "acessibilitat", extendsTile = Tab.MENU_PUBLIC_AND_COMMON, type = TileType.ANOTHER, contentJsp = "/WEB-INF/jsp/all/acessibilitat.jsp")
+@Tile(
+        name = "accessibilitat",
+        extendsTile = Tab.MENU_PUBLIC_AND_COMMON,
+        type = TileType.ANOTHER,
+        contentJsp = "/WEB-INF/jsp/all/accessibilitat.jsp")
 @Controller
 public class PublicController {
 
-	protected final Logger log = Logger.getLogger(getClass());
-	
-	@Autowired
-	protected Version versio;
+    protected final Logger log = Logger.getLogger(getClass());
 
-	@RequestMapping(value = "/public/index.html")
-	public ModelAndView principal(HttpSession session, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+    @Autowired
+    protected Version versio;
 
-		Boolean initialized = (Boolean) session.getAttribute("inicialitzat");
+    @RequestMapping(value = "/public/index.html")
+    public ModelAndView principal(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
 
-		if (initialized == null) {
-			HtmlUtils.saveMessageInfo(request, "Benvingut a ${fullname}");
-			session.setAttribute("inicialitzat", true);
-		}
+        Boolean initialized = (Boolean) session.getAttribute("inicialitzat");
 
-		return new ModelAndView("homepublic");
+        if (initialized == null) {
+            HtmlUtils.saveMessageInfo(request, "Benvingut a ${fullname}");
+            session.setAttribute("inicialitzat", true);
+        }
 
-	}
-	
-	@RequestMapping(value = "/public/versio")
+        return new ModelAndView("homepublic");
+
+    }
+
+    @RequestMapping(value = "/public/versio")
     public void versio(HttpServletResponse response) throws Exception {
-        
+
         response.getWriter().write(versio.getVersion() + "|" + versio.getBuildTime());
         response.getWriter().flush();
         response.getWriter().close();
 
     }
-    
-    
+
     @RequestMapping(value = "/public/avislegal")
     public ModelAndView avislegal(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
         String lang = LocaleContextHolder.getLocale().getLanguage();
-        
+
         if ("es".equals(lang)) {
             return new ModelAndView("avislegal_es");
         } else {
             return new ModelAndView("avislegal_ca");
         }
     }
-    
-    
+
     @RequestMapping(value = "/public/accessibilitat")
     public ModelAndView accessibilitat(HttpSession session, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        ModelAndView mav = new ModelAndView("acessibilitat");
-        
+        ModelAndView mav = new ModelAndView("accessibilitat");
+
         mav.addObject("backurl", Configuracio.getBackUrl());
-        
+
         return mav;
-        
+
     }
 
 }

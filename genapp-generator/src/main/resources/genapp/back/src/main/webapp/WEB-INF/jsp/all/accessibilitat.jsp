@@ -14,6 +14,19 @@
 </p>
 
 <br>
+<h2>Pàgines Avaluades</h2>
+
+<div style="border: 1px solid #000000; padding: 10px; margin-bottom: 10px;border-radius: 15px;">
+
+<ol>
+<li>/portafibback/dest/estatDeFirmaPendent/list</li>
+<li>/portafibback/dest/estatDeFirmaFirmada/list</li>
+<li>...</li>
+</ol>
+
+</div>
+
+<br>
 <h2>Situació de compliment</h2>
 
 <p>
