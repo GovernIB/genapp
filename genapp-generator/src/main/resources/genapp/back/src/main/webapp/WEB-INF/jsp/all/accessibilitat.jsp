@@ -12,7 +12,9 @@
 <p>
     La present declaració d’accessibilitat només s’aplica al lloc web <b>${dollar}{backurl}</b> i no inclou les pàgines que condueixen a enllaços externs.
 </p>
-
+NotificacionsCallBackTimerEJB
+<%@include file="/WEB-INF/jsp/moduls/includes.jsp"%>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <br>
 <h2>Pàgines Avaluades</h2>
 
@@ -25,6 +27,7 @@
 </ol>
 
 </div>
+</sec:authorize>
 
 <br>
 <h2>Situació de compliment</h2>

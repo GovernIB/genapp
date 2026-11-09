@@ -12,6 +12,22 @@
 <p>
     La present declaració d’accessibilitat només s’aplica al lloc web <b>${backurl}</b> i no inclou les pàgines que condueixen a enllaços externs.
 </p>
+NotificacionsCallBackTimerEJB
+<%@include file="/WEB-INF/jsp/moduls/includes.jsp"%>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+<br>
+<h2>Pàgines Avaluades</h2>
+
+<div style="border: 1px solid #000000; padding: 10px; margin-bottom: 10px;border-radius: 15px;">
+
+<ol>
+<li>/portafibback/dest/estatDeFirmaPendent/list</li>
+<li>/portafibback/dest/estatDeFirmaFirmada/list</li>
+<li>...</li>
+</ol>
+
+</div>
+</sec:authorize>
 
 <br>
 <h2>Situació de compliment</h2>
