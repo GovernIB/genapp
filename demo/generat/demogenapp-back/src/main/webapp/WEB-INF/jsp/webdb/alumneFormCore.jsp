@@ -14,7 +14,7 @@
             </td>
           <td id="alumne_nom_columnvalueid">
             <form:errors path="alumne.nom" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="alumne.nom"  required="required"  aria-required="true"   />
+            <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="alumne.nom"  required="required"  aria-required="true"   />
 
            </td>
         </tr>
@@ -73,7 +73,7 @@
     <form:errors path="alumne.dataNaixement" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_dataNaixementDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixementDiv" path="alumne.dataNaixement"   required="required"  aria-required="true"  />
+                      <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_dataNaixementDiv" path="alumne.dataNaixement"   required="required"  aria-required="true"  />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DATANAIXEMENT)}" >
                     <div class="input-group-append"  data-target="#alumne_dataNaixementDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -180,7 +180,7 @@
     <form:errors path="alumne.darrerAcces" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_darrerAccesDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAccesDiv" path="alumne.darrerAcces"   />
+                      <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_darrerAccesDiv" path="alumne.darrerAcces"   />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DARRERACCES)}" >
                     <div class="input-group-append"  data-target="#alumne_darrerAccesDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -315,7 +315,7 @@
     <form:errors path="alumne.despertador" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="alumne_despertadorDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertadorDiv" path="alumne.despertador"   />
+                      <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#alumne_despertadorDiv" path="alumne.despertador"   />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AlumneFields.DESPERTADOR)}" >
                     <div class="input-group-append"  data-target="#alumne_despertadorDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -360,7 +360,7 @@
            <c:if test="${not (gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB))}">
 
             <form:errors path="alumne.paginaWeb" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? ' uneditable-input' : ''}"  style="" maxlength="255" path="alumne.paginaWeb"   />
+            <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AlumneFields.PAGINAWEB)? ' uneditable-input' : ''}"  style="" maxlength="255" path="alumne.paginaWeb"   />
 
            </c:if>
 

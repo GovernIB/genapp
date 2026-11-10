@@ -14,7 +14,7 @@
             </td>
           <td id="assignatura_nom_columnvalueid">
             <form:errors path="assignatura.nom" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? 'readonly' : ''}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="assignatura.nom"  required="required"  aria-required="true"   />
+            <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? 'true' : 'false'}" cssClass="w-100 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.NOM)? ' uneditable-input' : ''}"  style="" maxlength="100" path="assignatura.nom"  required="required"  aria-required="true"   />
 
            </td>
         </tr>
@@ -32,7 +32,7 @@
             </td>
           <td id="assignatura_credits_columnvalueid">
             <form:errors path="assignatura.credits" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? 'readonly' : ''}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? ' uneditable-input' : ''}"  style=""  path="assignatura.credits"  required="required"  aria-required="true"   />
+            <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? 'true' : 'false'}" cssClass="w-25 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.CREDITS)? ' uneditable-input' : ''}"  style=""  path="assignatura.credits"  required="required"  aria-required="true"   />
 
            </td>
         </tr>
@@ -102,7 +102,7 @@
     <form:errors path="assignatura.hora" cssClass="errorField alert alert-danger" />
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="assignatura_horaDiv" data-target-input="nearest">
-                      <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'readonly' : ''}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_horaDiv" path="assignatura.hora"   />
+                      <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)? 'true' : 'false'}" cssClass="form-control datetimepicker-input"  data-target="#assignatura_horaDiv" path="assignatura.hora"   />
                     <c:if test="${!gen:contains(__theForm.readOnlyFields ,AssignaturaFields.HORA)}" >
                     <div class="input-group-append"  data-target="#assignatura_horaDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
@@ -140,7 +140,7 @@
   <table style="width:100%">
   <tr>
   <td>
-       <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DESCRIPCIO)? 'readonly' : ''}" path="assignatura.descripcio"  />
+       <form:textarea rows="3" wrap="soft" style="overflow:auto;display: inline;resize:both;" cssClass="form-control col-md-9-optional" readonly="${gen:contains(__theForm.readOnlyFields ,AssignaturaFields.DESCRIPCIO)? 'true' : 'false'}" path="assignatura.descripcio"  />
    </td>
    <td style="width:40px">
       <div id="dropdownMenuButton_descripcio" style="vertical-align:top;display:inline;position:relative;">

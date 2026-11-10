@@ -2122,9 +2122,14 @@ public class BackWebGenerator extends IconUtils {
         StringBuffer code = new StringBuffer();
 
         final String readOnlyCondition = "gen:contains(" + instanceForm + ".readOnlyFields ," + modelCampMay + ")";
-        final String readOnlyAttribute = "readonly=\"${ " + readOnlyCondition + "? 'readonly' : ''}\"";
+        
+        final String readOnlyAttributeTag = "readonly=\"${" + readOnlyCondition + "? 'true' : 'false'}\"";
+        
+        //final String readOnlyAttributeHTML5 = "${" + readOnlyCondition + "? 'readonly' : ''}\"";
+
+
         final String cssClass = "form-control  ${" + readOnlyCondition + "? ' uneditable-input' : ''}"; // col-md-9-optional
-        final String formInputReadOnly = readOnlyAttribute + " cssClass=\"" + cssClass + "\" ";
+        
 
         if (fileFields.contains(field)) {
 
@@ -2327,8 +2332,9 @@ public class BackWebGenerator extends IconUtils {
                 code.append("            <form:errors path=\"" + model + "." + modelCamp
                         + "\" cssClass=\"errorField alert alert-danger\" />\n");
                 // code.append(" <div class=\"input-append\">\n");
+                final String formInputReadOnlyTag = readOnlyAttributeTag + " cssClass=\"" + cssClass + "\" ";
                 code.append("            <form:input "
-                        + formInputReadOnly.replace("cssClass=\"", "cssClass=\"" + newInputSize + " ") + " style=\"\" "
+                        + formInputReadOnlyTag.replace("cssClass=\"", "cssClass=\"" + newInputSize + " ") + " style=\"\" "
                         + maxlength + " path=\"" + model + "." + modelCamp + "\" "
                         // + ((webType == WebType.URL)?" onClick=\"${__onClick}\" ": "")
                         + requiredInInputTag
@@ -2436,7 +2442,7 @@ public class BackWebGenerator extends IconUtils {
                 } else {
                     code.append(
                             " rows=\"3\" wrap=\"soft\" style=\"overflow:auto;display: inline;resize:both;\" cssClass=\"form-control col-md-9-optional\" "
-                                    + readOnlyAttribute);
+                                    + readOnlyAttributeTag);
                 }
                 String path = model + "." + modelCamp;
                 code.append(" path=\"" + path + "\" " + requiredInInputTag + " />\n");
@@ -2527,7 +2533,7 @@ public class BackWebGenerator extends IconUtils {
                 final String ariaLabel = ""; // ja en el Label hi ha ID del input
                 code.append("    <form:errors path=\"" + pathID + "\" cssClass=\"errorField alert alert-danger\" />\n");
                 String componentID = model + "_" + modelCamp + "Div";
-                code.append(generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttribute, componentID,
+                code.append(generateCommonDateTimePicker(webType, readOnlyCondition, readOnlyAttributeTag, componentID,
                         pathID, ariaLabel, requiredInInputTag));
                 return code.toString();
             }
@@ -2570,7 +2576,7 @@ public class BackWebGenerator extends IconUtils {
     }
 
     protected static String generateCommonDateTimePicker(int webType, final String readOnlyCondition,
-            final String readOnlyAttribute, String componentID, String path, 
+            final String readOnlyAttributeTag, String componentID, String path, 
             String ariaLabelledBy, // TODO ERROR
             String requiredInInputTag) throws Exception {
 
@@ -2605,7 +2611,7 @@ public class BackWebGenerator extends IconUtils {
         code.append("                <div class=\"input-group date\" id=\"" + componentID
                 + "\" data-target-input=\"nearest\">\n");
 
-        code.append("                      <form:input " + readOnlyAttribute
+        code.append("                      <form:input " + readOnlyAttributeTag
                 + " cssClass=\"form-control datetimepicker-input\" " + " data-target=\"#" + componentID + "\""
                 + " path=\"" + path + "\" " + ariaLabelledBy + " " + requiredInInputTag + " />\n");
         code.append("                    <c:if test=\"${!" + readOnlyCondition + "}\" >\n");

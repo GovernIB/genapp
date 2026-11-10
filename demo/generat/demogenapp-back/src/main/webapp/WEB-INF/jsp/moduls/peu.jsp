@@ -22,8 +22,6 @@
 			<c:if test="${empty versio.scmRevision}">
 				<fmt:message key="scmversion.msg" />
 			</c:if>
-            </p>
-            <p>
 			<c:if test="${not empty versio.scmRevision}">${versio.scmRevision}</c:if>
             </p>
 			<p>

@@ -82,7 +82,7 @@
             </td>
           <td id="assignaturaAlumne_nota_columnvalueid">
             <form:errors path="assignaturaAlumne.nota" cssClass="errorField alert alert-danger" />
-            <form:input readonly="${ gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? 'readonly' : ''}" cssClass="w-50 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? ' uneditable-input' : ''}"  style=""  path="assignaturaAlumne.nota"   />
+            <form:input readonly="${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? 'true' : 'false'}" cssClass="w-50 form-control  ${gen:contains(__theForm.readOnlyFields ,AssignaturaAlumneFields.NOTA)? ' uneditable-input' : ''}"  style=""  path="assignaturaAlumne.nota"   />
 
            </td>
         </tr>

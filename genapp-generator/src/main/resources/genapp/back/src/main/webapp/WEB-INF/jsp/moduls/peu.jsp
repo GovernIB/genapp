@@ -23,8 +23,6 @@
 			<c:if test="${symbol_dollar}{empty versio.scmRevision}">
 				<fmt:message key="scmversion.msg" />
 			</c:if>
-            </p>
-            <p>
 			<c:if test="${symbol_dollar}{not empty versio.scmRevision}">${symbol_dollar}{versio.scmRevision}</c:if>
             </p>
 			<p>
