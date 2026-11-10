@@ -123,9 +123,6 @@
                     <div class="input-group-append"  data-target="#dataNaixementDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#dataNaixementDesdeDiv').datetimepicker({
@@ -137,6 +134,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
 
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
@@ -146,9 +146,6 @@
                     <div class="input-group-append"  data-target="#dataNaixementFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#dataNaixementFinsDiv').datetimepicker({
@@ -160,6 +157,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
             </div>
     
         </c:if>
@@ -197,9 +197,6 @@
                     <div class="input-group-append"  data-target="#darrerAccesDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#darrerAccesDesdeDiv').datetimepicker({
@@ -211,6 +208,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
               <span class="add-on">&nbsp;<fmt:message key="genapp.to" />&nbsp;</span>
             <div class="form-group"  style="margin-bottom: 0px;" >
                 <div class="input-group date" id="darrerAccesFinsDiv" data-target-input="nearest">
@@ -219,9 +219,6 @@
                     <div class="input-group-append"  data-target="#darrerAccesFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#darrerAccesFinsDiv').datetimepicker({
@@ -233,6 +230,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
             </div>
 
     
@@ -272,9 +272,6 @@
                     <div class="input-group-append"  data-target="#despertadorDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#despertadorDesdeDiv').datetimepicker({
@@ -286,6 +283,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
 
 
               <span class="add-on">                   &nbsp;<fmt:message key="genapp.to" />&nbsp;              </span>
@@ -296,9 +296,6 @@
                     <div class="input-group-append"  data-target="#despertadorFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#despertadorFinsDiv').datetimepicker({
@@ -310,6 +307,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
             </div>
 
         </c:if>

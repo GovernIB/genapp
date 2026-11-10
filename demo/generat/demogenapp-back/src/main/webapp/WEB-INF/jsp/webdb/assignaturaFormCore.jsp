@@ -107,9 +107,6 @@
                     <div class="input-group-append"  data-target="#assignatura_horaDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#assignatura_horaDiv').datetimepicker({
@@ -121,6 +118,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
            </td>
         </tr>
         </c:if>

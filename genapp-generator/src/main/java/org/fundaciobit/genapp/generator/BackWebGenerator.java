@@ -2619,10 +2619,7 @@ public class BackWebGenerator extends IconUtils {
                 + "\"  data-toggle=\"datetimepicker\">\n");
         code.append("                        <div class=\"input-group-text\"><i class=\"" + icon + "\"></i></div>\n");
         code.append("                    </div>\n");
-        code.append("                    </c:if>\n");
-        code.append("                </div>\n");
-        code.append("            </div>\n");
-
+        
         code.append("        <script>\n");
         code.append("            $(function () {\n");
         code.append("                $('#" + componentID + "').datetimepicker({\n");
@@ -2634,6 +2631,13 @@ public class BackWebGenerator extends IconUtils {
         code.append("                });\n");
         code.append("            });\n");
         code.append("        </script>\n");
+        
+        code.append("                    </c:if>\n");
+        code.append("                </div>\n");
+        code.append("            </div>\n");
+
+
+
         return code.toString();
     }
 

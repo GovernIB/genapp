@@ -78,9 +78,6 @@
                     <div class="input-group-append"  data-target="#alumne_dataNaixementDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#alumne_dataNaixementDiv').datetimepicker({
@@ -92,6 +89,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
            </td>
         </tr>
         </c:if>
@@ -185,9 +185,6 @@
                     <div class="input-group-append"  data-target="#alumne_darrerAccesDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#alumne_darrerAccesDiv').datetimepicker({
@@ -199,6 +196,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
            </td>
         </tr>
         </c:if>
@@ -320,9 +320,6 @@
                     <div class="input-group-append"  data-target="#alumne_despertadorDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#alumne_despertadorDiv').datetimepicker({
@@ -334,6 +331,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
            </td>
         </tr>
         </c:if>

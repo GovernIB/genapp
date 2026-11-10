@@ -165,9 +165,6 @@
                     <div class="input-group-append"  data-target="#horaDesdeDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#horaDesdeDiv').datetimepicker({
@@ -179,6 +176,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
 
 
               <span class="add-on">                   &nbsp;<fmt:message key="genapp.to" />&nbsp;              </span>
@@ -189,9 +189,6 @@
                     <div class="input-group-append"  data-target="#horaFinsDiv"  data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="far fa-clock"></i></div>
                     </div>
-                    </c:if>
-                </div>
-            </div>
         <script>
             $(function () {
                 $('#horaFinsDiv').datetimepicker({
@@ -203,6 +200,9 @@
                 });
             });
         </script>
+                    </c:if>
+                </div>
+            </div>
             </div>
 
         </c:if>
