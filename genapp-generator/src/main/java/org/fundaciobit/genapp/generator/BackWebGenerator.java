@@ -1814,6 +1814,25 @@ public class BackWebGenerator extends IconUtils {
                 codeBase.append("\n");
 
                 codeBase.append("</form:form>\n");
+                
+                // No es visualitza correctament avis en un camp buit required de tipus traducció #225
+                codeBase.append("<script>\n"
+                        + "    <%-- Les pipelles no actives de traduccions buides no visualitzen l'avis de camp requerit. --%>\n"
+                        + "    <%-- Amb aquest codi es posen a primer pla --%>\n"
+                        + "    document.querySelectorAll('form').forEach(function(form) {\n"
+                        + "    <%-- 'invalid' no bombolleja: cal utilitzar la fase de captura --%>\n"
+                        + "    form.addEventListener('invalid', function(e) {\n"
+                        + "            var pane = e.target.closest('.tab-pane');\n"
+                        + "            if (pane && !pane.classList.contains('active')) {\n"
+                        + "                // Activa el tab corresponent al camp invàlid\n"
+                        + "                var link = document.querySelector('a[href=\"#' + pane.id + '\"]');\n"
+                        + "                if (link) {\n"
+                        + "                    $(link).tab('show'); <%-- Bootstrap 4 (jQuery) --%>\n"
+                        + "                }\n"
+                        + "            }\n"
+                        + "        }, true);\n"
+                        + "    });\n"
+                        + "</script>\n");
 
                 
                 codeBase.append("\n");
