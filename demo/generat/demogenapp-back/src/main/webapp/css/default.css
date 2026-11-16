@@ -606,16 +606,18 @@ small {
     transition: all 0.2s ease-in-out;
 }
 
-
+/* Constant dins HtmlCSS de genapp-web */
 .llistaformularititol {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.llistatformularisubtitol {
+/* Constant dins HtmlCSS de genapp-web */
+.llistaformularisubtitol {
+    display: block;
     font-size: 1rem;
     line-height: 10px;
-    margin-top: 0px;
+    margin-top: 5px;
     margin-bottom: 0px;
     font-style:italic;
 }
