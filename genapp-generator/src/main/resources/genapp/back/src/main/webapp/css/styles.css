@@ -10,7 +10,7 @@ body {
 	background-color: #f7f7f7;
 }
 a{
-	color: #317a4c;
+	color: #0069d9;
 }
 a:hover{
 	color: #000;
@@ -181,7 +181,7 @@ a:hover{
 		color: #000 !important;
 	}
 	a.dropdown-item.mobil:hover {
-		color: #317a4c !important;
+		color: #0069d9 !important;
 		background-color: #FFF !important;
 	}
 	.p-3aplicacio{
@@ -403,7 +403,7 @@ a.dropdown-item.mobil:hover{
 }
 .btn-suport{
 	background-color: transparent;
-	color: #317a4c;
+	color: #0069d9;
 	padding: 0px;
 	cursor: pointer;
 	margin-bottom: 2px;
@@ -423,7 +423,7 @@ a.dropdown-item.mobil:hover{
 	list-style: circle;
 }
 .dades a {
-	color: #317a4c;
+	color: #0069d9;
 }
 .dades a:hover,
 .dades a:focus {
@@ -460,7 +460,7 @@ a.dropdown-item.mobil:hover{
 a.linkPeu:hover,
 a.linkPeu:focus,
 a.linkPeu:active {
-	color: #317a4c !important;
+	color: #0069d9 !important;
 }
 /* FI Peu */
 
@@ -552,7 +552,7 @@ a.iconoXarxes{
 
 /* Per paginació */
 .page-link{
-	color: #317a4c;
+	color: #0069d9;
 }
 .page-item.active .page-link {
 	background-color: #0069d9;
