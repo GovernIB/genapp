@@ -48,4 +48,10 @@ public @interface MenuOption {
      */
     public String group() default ""; // 
 
+    /** 
+     * @return Si es vol que l'opció de menú sigui visible només si es compleix una condició. 
+     * La condició ha de ser una classe que implementi MenuOptionCondition i que tingui un constructor sense paràmetres.
+     */
+    public Class<? extends MenuOptionCondition> condition() default MenuOptionConditionAlwaysVisible.class;
+
 }

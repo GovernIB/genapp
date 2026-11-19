@@ -20,12 +20,25 @@ class MenuItemOption extends MenuItem {
     protected String group = "";
     
     
+    /**
+     * @return Si es vol que l'opció de menú sigui visible només si es compleix una condició.
+     */
+    public Class<? extends MenuOptionCondition> condition = null;
+
+    
     public MenuItemOption(String label, String url, String urlbase, int order, boolean addSeparatorBefore,
-            boolean addSeparatorAfter, String group) {
+            boolean addSeparatorAfter, String group, Class<? extends MenuOptionCondition> condition) {
         super(label, url, urlbase, order);
         this.addSeparatorBefore = addSeparatorBefore;
         this.addSeparatorAfter = addSeparatorAfter;
         this.group = group;
+        this.condition = condition;
+    }
+    
+    @Deprecated
+    public MenuItemOption(String label, String url, String urlbase, int order, boolean addSeparatorBefore,
+            boolean addSeparatorAfter, String group) {
+        this(label, url, urlbase, order, addSeparatorBefore, addSeparatorAfter, group, null);
     }
     
 
@@ -67,6 +80,14 @@ class MenuItemOption extends MenuItem {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public Class<? extends MenuOptionCondition> getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Class<? extends MenuOptionCondition> condition) {
+        this.condition = condition;
     }
 
 }

@@ -5,9 +5,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.web.controller.CommonBaseController;
+import org.springframework.web.context.request.RequestAttributes;
 
 /**
  * 
@@ -31,8 +35,49 @@ public class MenuOptionManager {
      * @param group
      * @return
      * @throws Exception
+     * @deprecated additionalMenuItem s'ha de substituir per "condition" dins de @MenuOption i requereix paràmetres request.
      */
+    @Deprecated
     public static List<MenuItem> getMenuItems(String group, MenuItem... additionalMenuItems) throws Exception {
+        // Obtenir HttpServletRequest de ContextHolder de Spring
+        RequestAttributes ra = org.springframework.web.context.request.RequestContextHolder.currentRequestAttributes();
+        HttpServletRequest request;
+        if (ra  instanceof org.springframework.web.context.request.ServletRequestAttributes) {
+            request = ((org.springframework.web.context.request.ServletRequestAttributes) ra).getRequest();
+        } else {
+            request =  null;
+            log.warn("No s'ha pogut obtenir HttpServletRequest de RequestContextHolder."
+                    + " Algunes condicions de visibilitat de menú no funcionaran correctament.");
+        }
+        
+        return getMenuItems(request, group, additionalMenuItems);
+    }
+
+    /**
+     * 
+     * @param group
+     * @return
+     * @throws Exception
+     * @deprecated  additionalMenuItem s'ha de substituir per "condition" dins de @MenuOption
+     */
+    @Deprecated
+    public static List<MenuItem> getMenuItems(HttpServletRequest request, String group, MenuItem... additionalMenuItems)
+            throws Exception {
+        return internalGetMenuItems(request, group, additionalMenuItems);
+    }
+
+    public static List<MenuItem> getMenuItems(HttpServletRequest request, String group) throws Exception {
+        return getMenuItems(request, group, (MenuItem[]) null);
+    }
+
+    /**
+     * 
+     * @param group
+     * @return
+     * @throws Exception
+     */
+    private static List<MenuItem> internalGetMenuItems(HttpServletRequest request, String group,
+            MenuItem... additionalMenuItems) throws Exception {
 
         if (discoverMenuOptionAnnotations == null) {
             throw new Exception("MenuOptionManager no ha sigut inicialitzat.\n"
@@ -78,6 +123,12 @@ public class MenuOptionManager {
         // Convertir menuoption a menuitems
         List<MenuItem> items = new ArrayList<MenuItem>();
         for (MenuItemOption menuOption : menuOptions.keySet()) {
+
+            // Si la condició no es compleix, l'opció no es mostra
+            if (isVisible(request, menuOption) == false) {
+                continue;
+            }
+
             String baseLink;
             if (menuOption.getUrlbase() == null) {
                 baseLink = "";
@@ -126,8 +177,7 @@ public class MenuOptionManager {
         return items;
 
     }
-    
-    
+
     /**
      * Retorna els MenuItem agrupats per la classe Controller que els declara.
      * 
@@ -138,8 +188,26 @@ public class MenuOptionManager {
      *         que aquesta classe declara (ordenats igual que a {@link #getMenuItems(String, MenuItem...)}).
      * @throws Exception
      */
+    @Deprecated
     public static Map<Class<?>, List<MenuItem>> getMenuItemsByClass(String group, MenuItem... additionalMenuItems)
             throws Exception {
+
+        return getMenuItemsByClass(null, group, additionalMenuItems);
+
+    }
+
+    /**
+     * Retorna els MenuItem agrupats per la classe Controller que els declara.
+     * 
+     * @param group
+     * @param additionalMenuItems MenuItems addicionals que no provenen de cap classe anotada
+     *                             (s'afegiran agrupats sota la clau {@code null})
+     * @return Un Map on la clau és la classe Controller i el valor la llista de MenuItem
+     *         que aquesta classe declara (ordenats igual que a {@link #getMenuItems(String, MenuItem...)}).
+     * @throws Exception
+     */
+    public static Map<Class<?>, List<MenuItem>> getMenuItemsByClass(HttpServletRequest request, String group,
+            MenuItem... additionalMenuItems) throws Exception {
 
         if (discoverMenuOptionAnnotations == null) {
             throw new Exception("MenuOptionManager no ha sigut inicialitzat.\n"
@@ -187,6 +255,12 @@ public class MenuOptionManager {
         Map<Class<?>, List<MenuItem>> itemsByClass = new LinkedHashMap<Class<?>, List<MenuItem>>();
 
         for (MenuItemOption menuOption : menuOptions.keySet()) {
+
+            // Si la condició no es compleix, l'opció no es mostra
+            if (!isVisible(request, menuOption)) {
+                continue;
+            }
+
             String baseLink;
             Class<?> classe = menuOptions.get(menuOption);
 
@@ -238,9 +312,38 @@ public class MenuOptionManager {
 
     }
 
-    
-    
-    
-    
+    /**
+     * Instàncies de les condicions (una per classe) per no crear-les a cada petició.
+     */
+    private static final Map<Class<? extends MenuOptionCondition>, MenuOptionCondition> CONDITIONS = new ConcurrentHashMap<Class<? extends MenuOptionCondition>, MenuOptionCondition>();
+
+    /**
+     * Avalua la condició de visibilitat d'una opció de menú.
+     * Si no té condició retorna true. Si la condició llança una excepció,
+     * es registra l'error i l'opció s'amaga.
+     */
+    private static boolean isVisible(HttpServletRequest request, MenuItemOption menuOption) {
+
+        if (request == null) {
+            return true;
+        }
+
+        Class<? extends MenuOptionCondition> conditionClass = menuOption.getCondition();
+        if (conditionClass == null || conditionClass == MenuOptionConditionAlwaysVisible.class) {
+            return true;
+        }
+        try {
+            MenuOptionCondition condition = CONDITIONS.get(conditionClass);
+            if (condition == null) {
+                condition = conditionClass.getDeclaredConstructor().newInstance();
+                CONDITIONS.put(conditionClass, condition);
+            }
+            return condition.isVisible(request);
+        } catch (Throwable th) {
+            log.error("Error avaluant la condició " + conditionClass.getName() + " de l'opció de menú '"
+                    + menuOption.getLabel() + "': " + th.getMessage(), th);
+            return false;
+        }
+    }
 
 }

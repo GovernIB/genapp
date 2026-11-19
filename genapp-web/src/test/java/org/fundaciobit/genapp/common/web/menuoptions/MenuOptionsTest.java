@@ -16,7 +16,7 @@ public class MenuOptionsTest {
             MenuOptionManager.setDiscoverMenuOptionAnnotations(
                     new DiscoverMenuOptionAnnotations("org.fundaciobit.genapp.common.web.menuoptions"));
 
-            List<MenuItem>  menus = MenuOptionManager.getMenuItems(MENUOPTION_GROUP_TEST);
+            List<MenuItem>  menus = MenuOptionManager.getMenuItems(null, MENUOPTION_GROUP_TEST);
             
             for (MenuItem menuItem : menus) {
                 if (menuItem == null) {

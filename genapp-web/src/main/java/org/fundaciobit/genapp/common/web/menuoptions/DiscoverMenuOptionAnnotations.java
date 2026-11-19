@@ -59,7 +59,8 @@ public class DiscoverMenuOptionAnnotations {
 
                         MenuItemOption menuItemOption = new MenuItemOption(anotacio.labelCode(),
                                 anotacio.relativeLink(), anotacio.baseLink(), anotacio.order(),
-                                anotacio.addSeparatorBefore(), anotacio.addSeparatorAfter(), anotacio.group());
+                                anotacio.addSeparatorBefore(), anotacio.addSeparatorAfter(), anotacio.group(),
+                                anotacio.condition());
 
                         menuOptions.put(menuItemOption, classe);
 
