@@ -3,6 +3,7 @@ package ${package}.back.controller.all;
 import org.apache.log4j.Logger;
 
 import org.fundaciobit.genapp.common.web.HtmlUtils;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.fundaciobit.genapp.common.web.tiles.Tile;
 import org.fundaciobit.genapp.common.web.tiles.TileType;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -31,6 +32,13 @@ import ${package}.commons.utils.Version;
         extendsTile = Tab.MENU_PUBLIC_AND_COMMON,
         type = TileType.ANOTHER,
         contentJsp = "/WEB-INF/jsp/all/accessibilitat.jsp")
+@MenuOption(
+        labelCode = "=Pàgina Inicial Public",
+        baseLink = "/public/index.html",
+        relativeLink = "",
+        order = 10,
+        group = Tab.MENU_PUBLIC_AND_COMMON, 
+        condition = MenuOptionConditionNotAuthenticated.class)
 @Controller
 public class PublicController {
 

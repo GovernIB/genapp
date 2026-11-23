@@ -15,7 +15,7 @@
     MenuItem menuGoogle = new MenuItem("=MENU Google", "", "http://www.google.com", 0);
     MenuItem menumeneame = new MenuItem("=MENU Meneame", "", "http://www.meneame.net", 1000);
     */
-    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Tab.MENU_DESENVOLUPAMENT); //, menuGoogle, menumeneame);
+    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(request, Tab.MENU_DESENVOLUPAMENT); //, menuGoogle, menumeneame);
     menus.add(discoveredMenus);
     %>
     

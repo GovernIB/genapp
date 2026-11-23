@@ -4,6 +4,7 @@ import ${package}.commons.utils.Configuracio;
 
 import org.apache.log4j.Logger;
 import org.fundaciobit.genapp.common.web.HtmlUtils;
+import org.fundaciobit.genapp.common.web.menuoptions.MenuOption;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,14 @@ import ${package}.back.utils.Tab;
  * @autor anadal
  * 
  */
+@MenuOption(
+        labelCode = "=Pàgina Inicial Autenticat",
+        baseLink = "/common/principal.html",
+        relativeLink = "",
+        order = 10,
+        addSeparatorAfter = true, 
+        group = Tab.MENU_PUBLIC_AND_COMMON, 
+        condition = MenuOptionConditionAuthenticated.class)
 @Controller
 public class PrincipalController {
 
