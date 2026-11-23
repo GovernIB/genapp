@@ -29,7 +29,7 @@
                 new MenuItem("=Menú Inici Option 2","/common/option2", 30),
         };
     }
-    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(Tab.MENU_PUBLIC_AND_COMMON, menusAddicionals);
+    List<MenuItem> discoveredMenus = MenuOptionManager.getMenuItems(request, Tab.MENU_PUBLIC_AND_COMMON, menusAddicionals);
     menus.add(discoveredMenus);
     %>
 
