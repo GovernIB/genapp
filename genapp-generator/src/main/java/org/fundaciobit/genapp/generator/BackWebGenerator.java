@@ -2174,8 +2174,10 @@ public class BackWebGenerator extends IconUtils {
             // Spring afegeixi automaticament l'atribut value="" (els camps de tipus
             // fitxer mai s'han de precarregar amb un valor)
             String classFile = "custom-file-input " + cssClass;
+            // NOTA: No s'afegeix l'attribut "required" ni 'aria-required="true"' ja que no es pot definir valor
+            // per defecte en un camp de tipus fitxer 
             code.append("                  <input id=\"" + model + "." + modelCamp + "\" name=\"" + modelCamp + "\" class=\""
-                    + classFile + "\" " + " type=\"file\" " + requiredInInputHTML5 + " />\n");
+                    + classFile + "\"  type=\"file\"  />\n");
 
             code.append("                  <span id=\"" + modelCamp
                     + "-custom-file-label2\" class=\"custom-file-label\" >\n");
